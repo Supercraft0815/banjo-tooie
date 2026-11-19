@@ -2,26 +2,26 @@
 
 #define CLOCKWORK_DATA(arg0) ((ClockworkActorData*)(arg0->actorData))
 
-// size of 4 might be incorrect
+// Each of the four track slots has a path and a waypoint count.
 extern Unk80803CD8 *D_80803CD8_chclockworkmouse[4];
 extern s32 D_80803CE8_chclockworkmouse[4];
 extern Unk80803E08 *D_80803E08_chclockworkmouse[4];
 extern s32 D_80803E18_chclockworkmouse[4];
-extern s32 D_80803E28_chclockworkmouse[4];
-extern ActorData *D_80803E48_chclockworkmouse;
-extern ActorData *D_80803EF0_chclockworkmouse;
+extern s16 D_80803E28_chclockworkmouse[10];
+extern ActorData D_80803E48_chclockworkmouse;
+extern ActorData D_80803EF0_chclockworkmouse;
 
 extern f32 D_80803E3C_chclockworkmouse[3]; // all 0s
 
-extern void *D_80803950_chclockworkmouse; // unknown data
-extern void *D_80803964_chclockworkmouse; // unknown data
-extern void *D_80803978_chclockworkmouse; // unknown data
-extern void *D_80803E90_chclockworkmouse; // unknown data
-extern void *D_80803E9C_chclockworkmouse; // unknown data
-extern void *D_80803EB0_chclockworkmouse; // unknown data
-extern void *D_80803EBC_chclockworkmouse; // unknown data
-extern void *D_80803ED0_chclockworkmouse; // unknown data
-extern void *D_80803EE0_chclockworkmouse; // unknown data
+extern s16 D_80803950_chclockworkmouse[10];
+extern s16 D_80803964_chclockworkmouse[10];
+extern s16 D_80803978_chclockworkmouse[6];
+extern f32 D_80803E90_chclockworkmouse[3];
+extern f32 D_80803E9C_chclockworkmouse[5];
+extern f32 D_80803EB0_chclockworkmouse[3];
+extern f32 D_80803EBC_chclockworkmouse[5];
+extern f32 D_80803ED0_chclockworkmouse[4];
+extern f32 D_80803EE0_chclockworkmouse[4];
 
 s32 func_80800000_chclockworkmouse(void) {
     return func_800DA564(FLAG3_A37_CANARY_MARY_RACE_STATE_1, 3);
@@ -799,7 +799,7 @@ void func_80801CFC_chclockworkmouse(Actor* actor, s32 arg1) {
 }
 
 ActorData **chclockworkmouse_entrypoint_0(void) {
-    return &D_80803E48_chclockworkmouse;
+    return (ActorData **)&D_80803E48_chclockworkmouse;
 }
 
 void func_80801E2C_chclockworkmouse(Actor* actor) {
@@ -810,26 +810,26 @@ void func_80801E2C_chclockworkmouse(Actor* actor) {
     sp2C->unk0.f = (f32) (sp2C->unk0.f - func_800D8FF8());
     switch (func_801022E4(actor)) {
     case 0x7D:
-        _subaddieaudioquick_entrypoint_3(actor, actor->position, (u32 *)&D_80803964_chclockworkmouse, 0.1f);
+        _subaddieaudioquick_entrypoint_3(actor, actor->position, (u32 *)D_80803964_chclockworkmouse, 0.1f);
         if ((sp2C->unk0.f <= 0.0f) && (func_800DC298(0.03f) != 0) && (func_800C0638() == 0)) {
-            _subaddieaudioquick_entrypoint_2(actor, actor->position, &D_80803950_chclockworkmouse);
+            _subaddieaudioquick_entrypoint_2(actor, actor->position, D_80803950_chclockworkmouse);
             sp2C->unk0.f = 1.5f;
             return;
         }
     default:
         return;
     case 0x89:
-        _subaddieaudioquick_entrypoint_4(actor, actor->position, (u32 *)&D_80803964_chclockworkmouse, (u32 *)&D_80803E90_chclockworkmouse);
+        _subaddieaudioquick_entrypoint_4(actor, actor->position, (u32 *)D_80803964_chclockworkmouse, (u32 *)D_80803E90_chclockworkmouse);
         return;
     case 0x8A:
-        _subaddieaudioquick_entrypoint_4(actor, actor->position, (u32 *)&D_80803964_chclockworkmouse, (u32 *)&D_80803E9C_chclockworkmouse);
+        _subaddieaudioquick_entrypoint_4(actor, actor->position, (u32 *)D_80803964_chclockworkmouse, (u32 *)D_80803E9C_chclockworkmouse);
         return;
     case 0x85:
-        _subaddieaudioquick_entrypoint_4(actor, actor->position, (u32 *)&D_80803978_chclockworkmouse, (u32 *)&D_80803EB0_chclockworkmouse);
+        _subaddieaudioquick_entrypoint_4(actor, actor->position, (u32 *)D_80803978_chclockworkmouse, (u32 *)D_80803EB0_chclockworkmouse);
         return;
     case 0x80:
-        _subaddieaudioquick_entrypoint_4(actor, actor->position, (u32 *)&D_80803964_chclockworkmouse, (u32 *)&D_80803EBC_chclockworkmouse);
-        _subaddieaudioquick_entrypoint_3(actor, actor->position, (u32 *)&D_80803978_chclockworkmouse, 0.9f);
+        _subaddieaudioquick_entrypoint_4(actor, actor->position, (u32 *)D_80803964_chclockworkmouse, (u32 *)D_80803EBC_chclockworkmouse);
+        _subaddieaudioquick_entrypoint_3(actor, actor->position, (u32 *)D_80803978_chclockworkmouse, 0.9f);
         break;
     }
 }
@@ -1420,9 +1420,9 @@ s32 func_808032F8_chclockworkmouse(Actor* actor, s32 arg1, s32 arg2) {
         case 0x52:
         
         if (func_801022E4(actor) == 0x7D) {
-            _gcdialogcamera_entrypoint_3((u32 *)&D_80803ED0_chclockworkmouse, actor->scale);
+            _gcdialogcamera_entrypoint_3((u32 *)D_80803ED0_chclockworkmouse, actor->scale);
         } else {
-            _gcdialogcamera_entrypoint_3((u32 *)&D_80803EE0_chclockworkmouse, actor->scale);
+            _gcdialogcamera_entrypoint_3((u32 *)D_80803EE0_chclockworkmouse, actor->scale);
         }
         return 1;
     case 11:
@@ -1445,7 +1445,7 @@ s32 func_808032F8_chclockworkmouse(Actor* actor, s32 arg1, s32 arg2) {
 void func_8080364C_chclockworkmouse(BT_PARAM_OR_VOID(s32 bt_a0 BT_PASS2(, s32 bt_a1))) {
     func_801018A4();
 }
-
 ActorData **chclockworkmouse_entrypoint_1(void) {
-    return &D_80803EF0_chclockworkmouse;
+    return (ActorData **)&D_80803EF0_chclockworkmouse;
 }
+#include "clockworkmouse_data.inc"

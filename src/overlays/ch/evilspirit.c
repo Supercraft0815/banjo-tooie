@@ -2,7 +2,7 @@
 
 OSThread *chevilspirit_entrypoint_0(void)
 {
-    extern u8 D_80802270_chevilspirit[];
+    extern ActorData D_80802270_chevilspirit[1];
 
     return (OSThread *) D_80802270_chevilspirit;
 }
@@ -83,9 +83,9 @@ void func_80800104_chevilspirit(Actor *arg0) {
     s32 func_80801EC4_chevilspirit(BtIntPtr);
     void func_80802090_chevilspirit(Actor *, s32 *);
     void func_80802118_chevilspirit(void *);
-    extern s32 D_808021EC_chevilspirit;
-    extern s32 D_808022B8_chevilspirit;
-    extern s32 D_808022C8_chevilspirit;
+    extern s16 D_808021EC_chevilspirit[6];
+    extern s16 D_808022B8_chevilspirit[8];
+    extern s16 D_808022C8_chevilspirit[6];
     u8 *link;
     s32 timerDone;
     s32 light;
@@ -111,7 +111,7 @@ void func_80800104_chevilspirit(Actor *arg0) {
                 if (light) {
                     arg0->actorData[3] = _chlightfader_entrypoint_1(light, 1.0f, 2);
                 }
-                func_80802090_chevilspirit(arg0, &D_808022B8_chevilspirit);
+                func_80802090_chevilspirit(arg0, (s32 *)D_808022B8_chevilspirit);
                 _subaddiefade_entrypoint_3(arg0);
                 func_8010A828(arg0, 12);
                 func_80102424(arg0, 4);
@@ -138,11 +138,11 @@ void func_80800104_chevilspirit(Actor *arg0) {
                 func_80102424(arg0, 7);
                 ((f32 *)arg0->actorData)[4] = 1.5f;
             } else if (!func_80801EC4_chevilspirit((BtIntPtr)arg0) && func_80801A6C_chevilspirit(arg0, 3)) {
-                func_80802090_chevilspirit(arg0, &D_808021EC_chevilspirit);
+                func_80802090_chevilspirit(arg0, (s32 *)D_808021EC_chevilspirit);
                 func_80102424(arg0, 8);
                 ((f32 *)arg0->actorData)[4] = 1.5f;
             } else if (!func_808018DC_chevilspirit(arg0)) {
-                func_80802090_chevilspirit(arg0, &D_808021EC_chevilspirit);
+                func_80802090_chevilspirit(arg0, (s32 *)D_808021EC_chevilspirit);
                 func_80102424(arg0, 8);
                 ((f32 *)arg0->actorData)[4] = 1.5f;
             } else {
@@ -156,7 +156,7 @@ void func_80800104_chevilspirit(Actor *arg0) {
             }
             func_80102BF8(arg0, 0.2f, 15.0f, 1200.0f);
             if (func_800D9078(&((f32 *)arg0->actorData)[4])) {
-                func_80802090_chevilspirit(arg0, &D_808021EC_chevilspirit);
+                func_80802090_chevilspirit(arg0, (s32 *)D_808021EC_chevilspirit);
                 func_80102424(arg0, 8);
             }
             func_808012CC_chevilspirit(arg0);
@@ -168,7 +168,7 @@ void func_80800104_chevilspirit(Actor *arg0) {
         case 10:
             func_801078DC(arg0, link + 0x3C);
             if (_subaddiefade_entrypoint_0(arg0) == 0) {
-                func_80802090_chevilspirit(arg0, &D_808022C8_chevilspirit);
+                func_80802090_chevilspirit(arg0, (s32 *)D_808022C8_chevilspirit);
                 func_80103140(arg0, 0x90F, arg0->unk0->unk16);
                 func_80102424(arg0, 11);
                 _subaddiefade_entrypoint_2(arg0);
@@ -222,7 +222,7 @@ s32 func_808005EC_chevilspirit(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80802024_chevilspirit(Actor *, s32, s32);
     s32 _susubgame_entrypoint_3(Actor *, void *, u32, u32);
     void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
-    extern s32 D_808021D0_chevilspirit[];
+    extern f32 D_808021D0_chevilspirit[4];
     void *data;
 
     data = func_80100094(arg0, 0);
@@ -242,7 +242,7 @@ s32 func_808005EC_chevilspirit(Actor *arg0, s32 arg1, s32 arg2) {
         case 0x57:
             return _susubgame_entrypoint_3(arg0, (u8 *)data + 0x40, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
         case 0x52:
-            _gcdialogcamera_entrypoint_3(D_808021D0_chevilspirit, arg0->scale);
+            _gcdialogcamera_entrypoint_3((s32 *)D_808021D0_chevilspirit, arg0->scale);
             break;
         default:
             return 0;
@@ -428,7 +428,7 @@ void func_80800E20_chevilspirit(Actor *arg0, Gfx **arg1, s32 *arg2)
 s32 func_80800F8C_chevilspirit(Actor *arg0) {
     s32 func_800D3934(void);
     s32 func_800EA05C(void);
-    extern u16 D_808022E0_chevilspirit[1];
+    extern u16 D_808022E0_chevilspirit[2];
     s32 i;
     s32 map;
 
@@ -446,17 +446,17 @@ s32 func_80800F8C_chevilspirit(Actor *arg0) {
 
 int func_80800FF8_chevilspirit(BtIntPtr arg0) {
     s32 func_800EA05C();
-    extern u16 D_808022E4_chevilspirit;
-    extern u16 D_808022E8_chevilspirit;
+    extern u16 D_808022E4_chevilspirit[2];
+    extern s16 D_808022E8_chevilspirit[6];
     u16 *ptr;
     s32 map;
 
     map = func_800EA05C();
-    ptr = &D_808022E4_chevilspirit; loop_1: if (map == *ptr) {
+    ptr = D_808022E4_chevilspirit; loop_1: if (map == *ptr) {
             return 1;
         }
         ptr++;
-        if (ptr == &D_808022E8_chevilspirit) {
+        if (ptr == BT_DATA_FIELD(&D_808022E4_chevilspirit[2], (u16 *)D_808022E8_chevilspirit)) {
             return 0;
         }
     goto loop_1;
@@ -639,11 +639,11 @@ void func_80801534_chevilspirit(Actor *arg0) {
     void func_80102424(Actor *, s32);
     s32 func_808015E0_chevilspirit(Actor *, f32);
     void func_80802090_chevilspirit(Actor *, s32 *);
-    extern u16 D_808022E8_chevilspirit;
+    extern s16 D_808022E8_chevilspirit[6];
     func_8008FE94(5, (f32 *) arg0->actorData);
     ((f32 *) arg0->actorData)[1] += 100.0f;
     if (func_808015E0_chevilspirit(arg0, 25.0f) != 0) {
-        void *sound_data = &D_808022E8_chevilspirit;
+        void *sound_data = D_808022E8_chevilspirit;
         func_80802090_chevilspirit(arg0, sound_data);
         func_80102424(arg0, 1);
     }
@@ -787,7 +787,7 @@ s32 func_80801988_chevilspirit(Actor *arg0, Unk80132ED0 *arg1, s32 arg2) {
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_80801A6C_chevilspirit(Actor *, s32);
     void func_80802090_chevilspirit(Actor *, s32 *);
-    extern s32 D_808021E0_chevilspirit;
+    extern s16 D_808021E0_chevilspirit[6];
     struct SpiritFlags {
         u8 pad[0x64];
         BT_BITFIELD_ORDER(u8 pad64_30 : 2, u8 pad64_24 : 3);
@@ -810,7 +810,7 @@ s32 func_80801988_chevilspirit(Actor *arg0, Unk80132ED0 *arg1, s32 arg2) {
     ((struct SpiritFlags *)other)->unk64_29 = 1;
     ((struct SpiritFlags *)other)->unk64_27 = 1;
     if (arg2 == 0) {
-        func_80802090_chevilspirit(arg0, &D_808021E0_chevilspirit);
+        func_80802090_chevilspirit(arg0, (s32 *)D_808021E0_chevilspirit);
     }
     func_8010108C(other, 1, 0);
     return 1;
@@ -847,7 +847,7 @@ void func_80801B00_chevilspirit(BtIntPtr arg0, Actor *arg1, s32 arg2) {
     void func_800BA22C(BtIntPtr, s32);
     void func_800BA3FC(BtIntPtr, s32);
     BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
-    extern s32 D_808022F4_chevilspirit;
+    extern s16 D_808022F4_chevilspirit[22];
     f32 sp4C[15][3];
     f32 *var_s1;
     s32 temp_s0;
@@ -861,7 +861,7 @@ void func_80801B00_chevilspirit(BtIntPtr arg0, Actor *arg1, s32 arg2) {
         if (temp_v0 > 0) {
             temp_v0_2 = func_800B53A4(temp_v0);
             func_800BA3FC(temp_v0_2, arg2);
-            func_800BABB8(temp_v0_2, NULL, 0, 1.0f, &D_808022F4_chevilspirit);
+            func_800BABB8(temp_v0_2, NULL, 0, 1.0f, (s32 *)D_808022F4_chevilspirit);
             var_s0 = 0;
             if (temp_v0 > 0) {
                 var_s1 = sp4C[0];
@@ -897,7 +897,7 @@ void func_80801C04_chevilspirit(Actor *arg0) {
     void func_80102424(Actor *, s32);
     s32 func_80103140(Actor *, u32, u16);
     void func_80801E18_chevilspirit(void *);
-    extern s32 D_808021D0_chevilspirit[];
+    extern f32 D_808021D0_chevilspirit[4];
     u8 *link;
     f32 marker[6];
     u32 *game;
@@ -905,7 +905,7 @@ void func_80801C04_chevilspirit(Actor *arg0) {
     link = func_80100094(arg0, 0);
     _susubgame_entrypoint_0(arg0, (u32 *)(link + 0x40), 0);
     game = (u32 *)(link + 0x40);
-    _susubgame_entrypoint_12(game, D_808021D0_chevilspirit);
+    _susubgame_entrypoint_12(game, (s32 *)D_808021D0_chevilspirit);
     if (_subaddielink_entrypoint_3(func_80100094(arg0, 0)) == 0) {
         if (arg0->unk70_10 != 1 && arg0->unk70_10 != 2 && arg0->unk70_10 != 3) {
             func_80102424(arg0, 8);
@@ -952,14 +952,14 @@ void func_80801E18_chevilspirit(void *arg0) {
     void func_80103DFC(Actor *, f32 *);
     extern u32 D_80802320_chevilspirit[3];
     extern u32 D_8080232C_chevilspirit[3];
-    extern u8 D_80802338_chevilspirit[3];
+    extern f32 D_80802338_chevilspirit[3][2];
     u32 sp3C[3];
     f32 sp30[3];
     f32 delta;
     f32 sp28;
 
     if ((*(s32 *)((s8 *)(arg0) + (0x24))) != 0) {
-        sp28 = func_800F3780(func_800F0F9C((*(f32 *)((s8 *)(arg0) + (0x34))), 0.5f), D_80802338_chevilspirit, 3);
+        sp28 = func_800F3780(func_800F0F9C((*(f32 *)((s8 *)(arg0) + (0x34))), 0.5f), (u8 *)D_80802338_chevilspirit, 3);
         func_80103DFC(arg0, sp30);
         func_800F3214(sp3C, D_80802320_chevilspirit, D_8080232C_chevilspirit, sp28);
         func_800C8CB8((*(s32 *)((s8 *)(arg0) + (0x24))), sp30);
@@ -1000,13 +1000,13 @@ void func_80801F1C_chevilspirit(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
     void func_80102424(Actor *, s32);
     void func_80802090_chevilspirit(Actor *, s32 *);
-    extern s32 D_80802350_chevilspirit;
+    extern s16 D_80802350_chevilspirit[8];
     u8 *sp24;
 
     sp24 = func_80100094(arg0, 0);
     switch (arg1) {
     case 0x15C5:
-        func_80802090_chevilspirit(arg0, &D_80802350_chevilspirit);
+        func_80802090_chevilspirit(arg0, (s32 *)D_80802350_chevilspirit);
         func_80102424(arg0, 0xA);
         _subaddiefade_entrypoint_5(arg0);
         return;
@@ -1067,10 +1067,10 @@ void func_80802118_chevilspirit(void *arg0) {
     s32 func_800C2FDC(u8);
     s32 func_800C3D78(s32, u8);
     u8 temp_a1;
-
     temp_a1 = (((Actor *)arg0)->unk5F);
     if ((temp_a1 != 0) && (func_800C3D78(temp_a1 & 0xFF, temp_a1) == 0)) {
         func_800C2FDC((((Actor *)arg0)->unk5F));
         (((Actor *)arg0)->unk5F) = 0U;
     }
 }
+#include "evilspirit_data.inc"

@@ -4,7 +4,8 @@ typedef struct {
     s16 unk0[3];
     s16 icon;
 } SiloOption;
-extern SiloOption D_808012EC_chsilo[];
+typedef struct { s16 audio[6]; SiloOption options[7]; } SiloTable;
+extern SiloTable D_808012E0_chsilo; BT_IDO_ONLY(extern SiloOption D_808012EC_chsilo[];)
 
 s32 func_80800000_chsilo(s32 arg0) {
     s32 rom_read_word(s32, u32 *);
@@ -13,7 +14,7 @@ s32 func_80800000_chsilo(s32 arg0) {
     u32 address;
     s32 offset;
 
-    result = *(s32 *)&D_808012EC_chsilo[arg0];
+    result = *(s32 *)&D_808012E0_chsilo.options[arg0];
     address = (result & 0xFFFF) + 0xB0000000;
     offset = ((u32)result & 0xFFFF0000) >> 16;
     if (address & 2) {
@@ -95,7 +96,7 @@ void func_80800238_chsilo(void *arg0, BtIntPtr arg1) {
     do {
         if (func_8080015C_chsilo(arg0, var_s0) != 0) {
             _gcnewoption_entrypoint_12(arg1, var_s1, (s16) (var_s0 + 9));
-            _gcnewoption_entrypoint_31(arg1, var_s1, D_808012EC_chsilo[var_s0 - 1].icon);
+            _gcnewoption_entrypoint_31(arg1, var_s1, BT_DATA_FIELD(D_808012E0_chsilo.options, D_808012EC_chsilo)[var_s0 - 1].icon);
             var_s1 += 1;
         }
         var_s0 += 1;
@@ -192,7 +193,7 @@ s32 func_808004C0_chsilo(u8 *arg0, s32 arg1) {
     void func_8010A828(void **, s32);
     void func_80800398_chsilo(Actor *, s32);
     s32 func_80800420_chsilo(Actor *, s32);
-    extern s32 D_808012C0_chsilo;
+    extern s16 D_808012C0_chsilo[8];
     extern s32 _gcnewoption_entrypoint_35;
     BtIntPtr camera;
     s32 count;
@@ -229,10 +230,10 @@ s32 func_808004C0_chsilo(u8 *arg0, s32 arg1) {
             _subaddieDll_entrypoint_4(arg0, 0);
             break;
         case 2:
-            _subaddieaudioquick_entrypoint_2(arg0, (f32 *)(arg0 + 4), &D_808012C0_chsilo);
+            _subaddieaudioquick_entrypoint_2(arg0, (f32 *)(arg0 + 4), D_808012C0_chsilo);
             break;
         case 6:
-            _subaddieaudioquick_entrypoint_2(arg0, (f32 *)(arg0 + 4), &D_808012C0_chsilo);
+            _subaddieaudioquick_entrypoint_2(arg0, (f32 *)(arg0 + 4), D_808012C0_chsilo);
             break;
         case 4:
             camera = func_800F54E4();
@@ -257,7 +258,7 @@ s32 func_808004C0_chsilo(u8 *arg0, s32 arg1) {
             break;
         case 10:
             func_80090708(2);
-            _subaddieaudioquick_entrypoint_2(arg0, (f32 *)(arg0 + 4), &D_808012C0_chsilo);
+            _subaddieaudioquick_entrypoint_2(arg0, (f32 *)(arg0 + 4), D_808012C0_chsilo);
             break;
         case 8:
             func_800C964C(0x10);
@@ -266,7 +267,7 @@ s32 func_808004C0_chsilo(u8 *arg0, s32 arg1) {
             func_800EE7F8((f32 *)(arg0 + 0x28), (f32 *)(arg0 + 4));
             *(f32 *)(arg0 + 0x2C) -= 150.0f;
             func_800907C0((f32 *)(arg0 + 0x28));
-            _subaddieaudioquick_entrypoint_2(arg0, (f32 *)(arg0 + 4), &D_808012C0_chsilo);
+            _subaddieaudioquick_entrypoint_2(arg0, (f32 *)(arg0 + 4), D_808012C0_chsilo);
             break;
         case 11:
             func_80800398_chsilo(arg0, 1);
@@ -405,9 +406,8 @@ void func_80800B80_chsilo(Actor *arg0) {
     s32 func_8010CAC0(f32 *, u32);
     s32 func_8010CB0C(f32 *, s32, s32, s32);
     s32 func_80800000_chsilo(s32);
-    extern u32 D_808012D0_chsilo;
-    extern s32 D_808012E0_chsilo;
-    extern s16 D_808012E8_chsilo[][4];
+    extern s16 D_808012D0_chsilo[8];
+
     f32 delta;
 
     delta = func_800D8FF8();
@@ -444,12 +444,12 @@ void func_80800B80_chsilo(Actor *arg0) {
             *(f32 *)&arg0->actorData[4] += (arg0->position[0] - *(f32 *)&arg0->actorData[4]) * 0.2f;
             *(f32 *)&arg0->actorData[6] += (arg0->position[2] - *(f32 *)&arg0->actorData[6]) * 0.2f;
             if (*(f32 *)&arg0->actorData[5] < arg0->position[1] - 150.0f) {
-                _subaddieaudioquick_entrypoint_2((u8 *)arg0, arg0->position, &D_808012E0_chsilo);
+                _subaddieaudioquick_entrypoint_2((u8 *)arg0, arg0->position, D_808012E0_chsilo.audio);
                 func_808004C0_chsilo((u8 *)arg0, 5);
             } else {
                 *(f32 *)&arg0->actorData[5] -= 300.0f * delta;
                 func_800907C0((f32 *)&arg0->actorData[4]);
-                _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_808012D0_chsilo);
+                _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_808012D0_chsilo);
             }
             break;
         case 5:
@@ -459,13 +459,13 @@ void func_80800B80_chsilo(Actor *arg0) {
             if (arg0->position[1] < *(f32 *)&arg0->actorData[5]) {
                 func_80800398_chsilo(arg0, 0);
                 func_80800420_chsilo(arg0, 0);
-                _subaddieaudioquick_entrypoint_2((u8 *)arg0, arg0->position, &D_808012E0_chsilo);
+                _subaddieaudioquick_entrypoint_2((u8 *)arg0, arg0->position, D_808012E0_chsilo.audio);
                 func_80800378_chsilo((BtIntPtr)arg0);
                 func_808004C0_chsilo((u8 *)arg0, 7);
             } else {
                 *(f32 *)&arg0->actorData[5] += 300.0f * delta;
                 func_800907C0((f32 *)&arg0->actorData[4]);
-                _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_808012D0_chsilo);
+                _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_808012D0_chsilo);
             }
             break;
         case 10:
@@ -473,7 +473,7 @@ void func_80800B80_chsilo(Actor *arg0) {
                 func_800DA544(0x6BF);
                 func_800A7AD4(1, 0x11);
                 _gcgoto_entrypoint_1(func_80800000_chsilo((s32)arg0->unk58 - 1),
-                    D_808012E8_chsilo[(s32)arg0->unk58][0]);
+                    *(s16 *)((u8 *)&D_808012E0_chsilo + 8 + (s32)arg0->unk58 * sizeof(SiloOption)));
             }
             break;
         case 6:
@@ -575,7 +575,7 @@ void func_808011C8_chsilo(BtIntPtr arg0, s32 arg1) {
 
 OSThread *chsilo_entrypoint_0(void)
 {
-    extern u8 D_80801384_chsilo[];
-
+    extern ActorData D_80801384_chsilo[1];
     return (OSThread *) D_80801384_chsilo;
 }
+#include "silo_data.inc"

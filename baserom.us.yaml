@@ -4507,7 +4507,7 @@ segments:
     subsegments: 
       - [0x01F96A70, c, attract]
       - [0x01F96EB0, .rodata, attract]
-      - [0x01F96EB0, data, attract]
+      - [0x01F96EB0, .data, attract]
       - [0x01F96FB0, bss, attract]
   - name: chwitchytents_header
     dir: overlays/chwitchytents
@@ -5040,7 +5040,7 @@ segments:
     subsegments: 
       - [0x01FA6EB0, c, evilspirit]
       - [0x01FA9010, .rodata, evilspirit]
-      - [0x01FA9080, data, evilspirit]
+      - [0x01FA9080, .data, evilspirit]
       - [0x01FA9210, bss, evilspirit]
   - name: chhotfloorsmoke_header
     dir: overlays/chhotfloorsmoke
@@ -5632,7 +5632,7 @@ segments:
     subsegments: 
       - [0x01FC1A20, c, switches]
       - [0x01FC2540, .rodata, switches]
-      - [0x01FC2540, data, switches]
+      - [0x01FC2540, .data, switches]
       - [0x01FC2770, bss, switches]
   - name: chlagoonbits_header
     dir: overlays/chlagoonbits
@@ -5974,7 +5974,7 @@ segments:
     subsegments: 
       - [0x01FD2BB0, c, text]
       - [0x01FD3330, .rodata, text]
-      - [0x01FD3350, data, text]
+      - [0x01FD3350, .data, text]
       - [0x01FD33D0, bss, text]
   - name: chfactoryprop_header
     dir: overlays/chfactoryprop
@@ -8090,7 +8090,7 @@ segments:
     subsegments: 
       - [0x0202E000, c, clockworkmouse]
       - [0x02031680, .rodata, clockworkmouse]
-      - [0x02031950, data, clockworkmouse]
+      - [0x02031950, .data, clockworkmouse]
       - [0x02031F40, bss, clockworkmouse]
   - name: chjamjarsdummy_header
     dir: overlays/chjamjarsdummy
@@ -8280,7 +8280,7 @@ segments:
     subsegments: 
       - [0x02038C20, c, _training]
       - [0x020398E0, .rodata, _training]
-      - [0x02039A50, data, _training]
+      - [0x02039A50, .data, _training]
       - [0x02039BA0, bss, _training]
   - name: chstoneballcontrol_header
     dir: overlays/chstoneballcontrol
@@ -8433,7 +8433,7 @@ segments:
     subsegments: 
       - [0x02049250, c, credits]
       - [0x0204A400, .rodata, credits]
-      - [0x0204A450, data, credits]
+      - [0x0204A450, .data, credits]
       - [0x0204A840, bss, credits]
   - name: chcrusherboulder_header
     dir: overlays/chcrusherboulder
@@ -8471,7 +8471,7 @@ segments:
     subsegments: 
       - [0x0204BFD0, c, bitcont]
       - [0x0204C960, .rodata, bitcont]
-      - [0x0204C970, data, bitcont]
+      - [0x0204C970, .data, bitcont]
       - [0x0204CA40, bss, bitcont]
   - name: chintroticker_header
     dir: overlays/chintroticker
@@ -8604,7 +8604,7 @@ segments:
     subsegments: 
       - [0x0204F460, c, jinjo]
       - [0x02050620, .rodata, jinjo]
-      - [0x02050710, data, jinjo]
+      - [0x02050710, .data, jinjo]
       - [0x020508A0, bss, jinjo]
   - name: chevilmumbo_header
     dir: overlays/chevilmumbo
@@ -9309,7 +9309,7 @@ segments:
     subsegments: 
       - [0x0207F4E0, c, silo]
       - [0x02080710, .rodata, silo]
-      - [0x020807A0, data, silo]
+      - [0x020807A0, .data, silo]
       - [0x020808B0, bss, silo]
   - name: chmusicmenu_header
     dir: overlays/chmusicmenu
@@ -9575,7 +9575,7 @@ segments:
     subsegments: 
       - [0x020919E0, c, friendlystonehead]
       - [0x02092280, .rodata, friendlystonehead]
-      - [0x020922A0, data, friendlystonehead]
+      - [0x020922A0, .data, friendlystonehead]
       - [0x020923E0, bss, friendlystonehead]
   - name: chlavacolumnswitch_header
     dir: overlays/chlavacolumnswitch
@@ -11571,7 +11571,7 @@ segments:
     subsegments: 
       - [0x020C0CC0, c, lensflare]
       - [0x020C1350, .rodata, lensflare]
-      - [0x020C1370, data, lensflare]
+      - [0x020C1370, .data, lensflare]
       - [0x020C1630, bss, lensflare]
   - name: chfactorytoxiccloud_header
     dir: overlays/chfactorytoxiccloud
@@ -12294,7 +12294,7 @@ segments:
     subsegments: 
       - [0x020E79B0, c, footwear]
       - [0x020E8070, .rodata, footwear]
-      - [0x020E8090, data, footwear]
+      - [0x020E8090, .data, footwear]
       - [0x020E82A0, bss, footwear]
   - name: chicekey_header
     dir: overlays/chicekey
@@ -12408,7 +12408,7 @@ segments:
     subsegments: 
       - [0x020EBD10, c, secreteggs]
       - [0x020EC1A0, .rodata, secreteggs]
-      - [0x020EC1A0, data, secreteggs]
+      - [0x020EC1A0, .data, secreteggs]
       - [0x020EC270, bss, secreteggs]
   - name: chworlddoors_header
     dir: overlays/chworlddoors
@@ -13226,7 +13226,7 @@ segments:
     subsegments: 
       - [0x0210E3D0, c, introtext]
       - [0x0210E620, .rodata, introtext]
-      - [0x0210E620, data, introtext]
+      - [0x0210E620, .data, introtext]
       - [0x0210E970, bss, introtext]
   - name: gcmapDll_header
     dir: overlays/gcmapDll
@@ -13245,7 +13245,7 @@ segments:
     subsegments: 
       - [0x0210EB30, c, mapDll]
       - [0x0210F850, .rodata, mapDll]
-      - [0x0210FA40, data, mapDll]
+      - [0x0210FA40, .data, mapDll]
       - [0x02110780, bss, mapDll]
   - name: gcfrontend_header
     dir: overlays/gcfrontend

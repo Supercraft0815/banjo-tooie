@@ -1,8 +1,16 @@
 #include "ch/introtext.h"
 
+struct IntroTextStyle {
+    f32 fadeIn;
+    f32 duration;
+    f32 fadeOut;
+
+    s32 spacing;
+};
+
 OSThread *chintrotext_entrypoint_0(void)
 {
-    extern u8 D_808007D0_chintrotext[];
+    extern ActorData D_808007D0_chintrotext[];
 
     return (OSThread *) D_808007D0_chintrotext;
 }
@@ -71,19 +79,7 @@ void func_80800154_chintrotext(Actor *arg0) {
         u8 alignment;
         u8 style;
     } *data;
-    struct IntroTextStyle {
-        f32 fadeIn;
-        f32 duration;
-        f32 fadeOut;
-        s32 spacing;
-    union {
-        struct IntroTextStyle *style;
-        struct IntroTextData *lines;
-    } work;
-    s32 i;
-    s32 y;
-    };
-    extern f32 D_808007A0_chintrotext[][4];
+    extern struct IntroTextStyle D_808007A0_chintrotext[3];
     s32 expired;
     s32 spacing;
     union {
@@ -95,7 +91,7 @@ void func_80800154_chintrotext(Actor *arg0) {
 
     data = func_80100094(arg0, 1);
     expired = func_800D9078(&arg0->unk58);
-    work.style = (struct IntroTextStyle *)D_808007A0_chintrotext[data->style];
+    work.style = &D_808007A0_chintrotext[data->style];
     spacing = work.style->spacing;
     switch (arg0->unk70_10) {
         case 1: {
@@ -127,7 +123,10 @@ position_lines:
             break;
         case 3:
             func_800DA544(FLAG2_6AD_CURRENTLY_SHOWING_INTROTEXT);
-            _subaddiefade_entrypoint_1(arg0, (s32)func_800F12D4(arg0->unk58, 0, D_808007A0_chintrotext[data->style][0], 255.0f, 0.0f));
+            _subaddiefade_entrypoint_1(
+                arg0,
+                (s32)func_800F12D4(arg0->unk58, 0, D_808007A0_chintrotext[data->style].fadeIn, 255.0f, 0.0f)
+            );
             if (expired) {
                 func_8080051C_chintrotext(arg0, 4);
             }
@@ -139,7 +138,10 @@ position_lines:
             }
             break;
         case 5:
-            _subaddiefade_entrypoint_1(arg0, (s32)func_800F12D4(arg0->unk58, 0, work.style->fadeOut, 0.0f, 255.0f));
+            _subaddiefade_entrypoint_1(
+                arg0,
+                (s32)func_800F12D4(arg0->unk58, 0, work.style->fadeOut, 0.0f, 255.0f)
+            );
             if (expired) {
                 func_800FFAB0(arg0);
             }
@@ -188,9 +190,7 @@ void func_8080051C_chintrotext(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     void func_80101FDC(Actor *, u32);
     void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
-    extern f32 D_808007A0_chintrotext[][4];
-    extern f32 D_808007A4_chintrotext[][4];
-    extern f32 D_808007A8_chintrotext[][4];
+    extern struct IntroTextStyle D_808007A0_chintrotext[3];
     struct IntroTextData {
         u8 unk0[0x3F];
         u8 unk3F;
@@ -204,14 +204,14 @@ void func_8080051C_chintrotext(Actor *arg0, s32 arg1) {
             func_800DA544(FLAG2_6AD_CURRENTLY_SHOWING_INTROTEXT);
             break;
         case 3:
-            arg0->unk58 = D_808007A0_chintrotext[data->unk3F][0];
+            arg0->unk58 = D_808007A0_chintrotext[data->unk3F].fadeIn;
             break;
         case 4:
-            arg0->unk58 = D_808007A4_chintrotext[data->unk3F][0];
+            arg0->unk58 = D_808007A0_chintrotext[data->unk3F].duration;
             break;
         case 5:
             func_800DA524(FLAG2_6AD_CURRENTLY_SHOWING_INTROTEXT);
-            arg0->unk58 = D_808007A8_chintrotext[data->unk3F][0];
+            arg0->unk58 = D_808007A0_chintrotext[data->unk3F].fadeOut;
             break;
     }
 }
@@ -265,7 +265,6 @@ void chintrotext_entrypoint_3(s32 arg0, s16 arg1, s32 arg2, s32 arg3) {
         s8 unk3F;
     } *sp24;
     u32 *sp20;
-
     func_800EFD24(sp2C);
     sp28 = func_80108474(0x3B0, sp2C, 0);
     if (sp28 != 0) {
@@ -278,3 +277,4 @@ void chintrotext_entrypoint_3(s32 arg0, s16 arg1, s32 arg2, s32 arg3) {
         sp24->unk3F = arg3;
     }
 }
+#include "text_data.inc"

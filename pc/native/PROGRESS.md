@@ -2283,3 +2283,19 @@ einzeln begründet.
 Der instrumentierte Lauf über alle 71 Fälle erreichte 1.825 Zugriffsstellen in
 459 Funktionen. Er erfasste 1.896 Paare aus Zugriffsstelle und Zielsymbol
 in 128 Gruppen. Beide TSV-Berichte liegen in `xsym-scenarios71/`.
+
+## 2026-11-19 — N1, 16 weitere Datenmodule in C
+
+Level-, Actor-, Item- und Szenentabellen liegen jetzt in den zugehörigen
+C-Modulen. Das Spiel und der Host lesen die Kartenkonfiguration aus derselben
+Tabelle. Die zweite generierte Kartenliste und ihr Generator entfallen.
+Die Zahl der offenen Module sinkt von 61 auf 45.
+
+Mit Original-IDO behalten alle 260 Funktionen der 16 Module ihre Position,
+Größe und Instruktionen. Die Paketprüfungen erfassen 11.088 Datenbytes,
+184 Relokationen und 170 Beweise über 32-Bit-Werte. Der gemeinsame Build
+besteht `make check` und den vollständigen Bytevergleich beider ROMs.
+Im nativen Build stimmen die 71 bestehenden Spielspuren bei allen
+421.115 Retraces überein. Belege liegen unter
+`build/acceptance/n1-2026-11-18/root-current16-ido/result.json` und
+`logs/root-current16-full71.log` im selben Abnahmeordner.

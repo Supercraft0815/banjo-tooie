@@ -1,0 +1,152 @@
+/* data_to_c.py: from asm/data/overlays/ch/footwear.data.s */
+#include "core2/actor_animation_entry.h"
+
+void func_80105834(Actor *);
+void func_80101870();
+void func_80108ED0();
+void func_80107C2C();
+
+FootwearTable D_808006E0_chfootwear BT_DATA(4, overlays_ch_footwear, 0x0) = {{{17, 26, 3, 13, 0},
+                                                                              {14, 27, 2, 16, 0},
+                                                                              {38, 43, 3, 14, 78},
+                                                                              {37, 41, 3, 15, 79},
+                                                                              {17, 26, 0, 13, 0}},
+                                                                             0};
+ActorAnimationEntry D_80800714_chfootwear[2] BT_DATA(4, overlays_ch_footwear,
+                                                     0x34) = {{0.0f, 0x0, 0x0}, {1.5f, 0xd6, 0x0}};
+ActorAnimationEntry D_80800724_chfootwear[2] BT_DATA(4, overlays_ch_footwear, 0x44) = {
+    {0.0f, 0x0, 0x0}, {0.699999988f, 0x67, 0x0}};
+ActorAnimationEntry D_80800734_chfootwear[2] BT_DATA(4, overlays_ch_footwear, 0x54) = {
+    {0.0f, 0x0, 0x0}, {0.800000012f, 0x214, 0x0}};
+ActorAnimationEntry D_80800744_chfootwear[2] BT_DATA(4, overlays_ch_footwear, 0x64) = {
+    {0.0f, 0x0, 0x0}, {1.79999995f, 0x299, 0x0}};
+s16 D_80800754_chfootwear[10] BT_DATA(4, overlays_ch_footwear, 0x74) = {19,   1028, 10,  409,  22,
+                                                                        7000, 1,    600, 1500, 0};
+f32 D_80800768_chfootwear[3] BT_DATA(4, overlays_ch_footwear, 0x88) = {0.38f, 0.88f, -1.0f};
+s16 D_80800774_chfootwear[10] BT_DATA(4, overlays_ch_footwear, 0x94) = {19,    1008, 10,  358,  22,
+                                                                        23000, 1,    600, 1500, 0};
+ActorData D_80800788_chfootwear[1] BT_DATA(4, overlays_ch_footwear, 0xA8) = {
+    {344,
+     538,
+     1559,
+     1,
+     D_80800714_chfootwear,
+     (void (*)(struct Actor *))func_808000B8_chfootwear,
+     (void (*)(struct Actor *))func_80105834,
+     (void (*)(long, long))func_80101870,
+     32768000,
+     0,
+     0,
+     0,
+     16384,
+     0,
+     0,
+     (BtIntPtr)func_80108ED0,
+     0,
+     0,
+     (void (*)(struct Actor *))func_80800000_chfootwear,
+     (void (*)(void *, long, void *, long, void *))func_80107C2C,
+     -32752,
+     17424,
+     (void (*)(struct Actor *, long, long))func_80800364_chfootwear,
+     0}};
+ActorData D_808007D0_chfootwear[1] BT_DATA(4, overlays_ch_footwear, 0xF0) = {
+    {344,
+     558,
+     1558,
+     1,
+     D_80800724_chfootwear,
+     (void (*)(struct Actor *))func_808000B8_chfootwear,
+     (void (*)(struct Actor *))func_80105834,
+     (void (*)(long, long))func_80101870,
+     32768000,
+     0,
+     0,
+     0,
+     16384,
+     0,
+     0,
+     (BtIntPtr)func_80108ED0,
+     0,
+     0,
+     (void (*)(struct Actor *))func_80800000_chfootwear,
+     (void (*)(void *, long, void *, long, void *))func_80107C2C,
+     -32752,
+     25616,
+     (void (*)(struct Actor *, long, long))func_80800364_chfootwear,
+     0}};
+ActorData D_80800818_chfootwear[1] BT_DATA(4, overlays_ch_footwear, 0x138) = {
+    {344,
+     987,
+     1962,
+     1,
+     D_80800734_chfootwear,
+     (void (*)(struct Actor *))func_808000B8_chfootwear,
+     (void (*)(struct Actor *))func_80105834,
+     (void (*)(long, long))func_80101870,
+     32768000,
+     0,
+     0,
+     0,
+     16384,
+     0,
+     0,
+     (BtIntPtr)func_80108ED0,
+     0,
+     0,
+     (void (*)(struct Actor *))func_80800000_chfootwear,
+     (void (*)(void *, long, void *, long, void *))func_80107C2C,
+     -32752,
+     25680,
+     (void (*)(struct Actor *, long, long))func_80800364_chfootwear,
+     0}};
+ActorData D_80800860_chfootwear[1] BT_DATA(4, overlays_ch_footwear, 0x180) = {
+    {344,
+     362,
+     2098,
+     1,
+     D_80800744_chfootwear,
+     (void (*)(struct Actor *))func_808000B8_chfootwear,
+     (void (*)(struct Actor *))func_80105834,
+     (void (*)(long, long))func_80101870,
+     32768000,
+     0,
+     0,
+     0,
+     16384,
+     0,
+     0,
+     (BtIntPtr)func_80108ED0,
+     0,
+     0,
+     (void (*)(struct Actor *))func_80800000_chfootwear,
+     (void (*)(void *, long, void *, long, void *))func_80107C2C,
+     -32752,
+     25680,
+     (void (*)(struct Actor *, long, long))func_80800364_chfootwear,
+     0}};
+ActorData D_808008A8_chfootwear[1] BT_DATA(4, overlays_ch_footwear, 0x1C8) = {
+    {344,
+     1137,
+     1559,
+     1,
+     D_80800714_chfootwear,
+     (void (*)(struct Actor *))func_808000B8_chfootwear,
+     (void (*)(struct Actor *))func_80105834,
+     (void (*)(long, long))func_80101870,
+     32768000,
+     0,
+     0,
+     0,
+     16384,
+     0,
+     0,
+     (BtIntPtr)func_80108ED0,
+     0,
+     0,
+     (void (*)(struct Actor *))func_80800000_chfootwear,
+     (void (*)(void *, long, void *, long, void *))func_80107C2C,
+     -32752,
+     17424,
+     (void (*)(struct Actor *, long, long))func_80800364_chfootwear,
+     0}};

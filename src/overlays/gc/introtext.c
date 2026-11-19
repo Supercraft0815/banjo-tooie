@@ -45,21 +45,21 @@ s32 *func_808000C8_gcintrotext(s32 arg0) {
 }
 
 s32 func_808001AC_gcintrotext(s32 arg0) {
-    extern u16 D_8080056C_gcintrotext;
-    extern u16 D_8080056E_gcintrotext;
-    extern u16 D_80800570_gcintrotext[24];
+    extern u16 D_8080056C_gcintrotext[26];
+    BT_IDO_ONLY(extern u16 D_8080056E_gcintrotext;)
+    BT_IDO_ONLY(extern u16 D_80800570_gcintrotext[24];)
     s32 i;
-
-    if (arg0 == D_8080056C_gcintrotext) {
+    if (arg0 == D_8080056C_gcintrotext[0]) {
         return 0;
     }
-    if (arg0 == D_8080056E_gcintrotext) {
+    if (arg0 == BT_DATA_FIELD(D_8080056C_gcintrotext[1], D_8080056E_gcintrotext)) {
         return 0;
     }
     for (i = 0; i < 24; i++) {
-        if (arg0 == D_80800570_gcintrotext[i]) {
+        if (arg0 == BT_DATA_FIELD(&D_8080056C_gcintrotext[2], D_80800570_gcintrotext)[i]) {
             return 0;
         }
     }
     return 1;
 }
+#include "introtext_data.inc"

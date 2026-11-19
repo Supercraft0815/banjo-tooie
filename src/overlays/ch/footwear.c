@@ -1,5 +1,5 @@
 #include "common.h"
-
+typedef struct { s16 entries[5][5]; s16 padding; } FootwearTable;
 void func_80800000_chfootwear(Actor *arg0) {
     typedef struct {
         f32 unk0[3];
@@ -64,10 +64,10 @@ void func_808000B8_chfootwear(Actor *arg0) {
     void func_8010D600(BtIntPtr);
     void func_80800424_chfootwear(Actor *, s32);
     s32 func_80800644_chfootwear(BtIntPtr, BtIntPtr);
-    extern s16 D_808006E0_chfootwear[][5];
-    extern u32 D_80800754_chfootwear[];
-    extern u32 D_80800768_chfootwear[];
-    extern u32 D_80800774_chfootwear[];
+    extern FootwearTable D_808006E0_chfootwear;
+    extern s16 D_80800754_chfootwear[10];
+    extern f32 D_80800768_chfootwear[3];
+    extern s16 D_80800774_chfootwear[10];
 
     switch (((FootwearData *)arg0->actorData)->unk18) {
         case 1:
@@ -82,7 +82,7 @@ void func_808000B8_chfootwear(Actor *arg0) {
                     arg0->rotation[1] = func_800136E4(((FootwearData *)arg0->actorData)->unk1C + 90.0f);
                     break;
                 case 1:
-                    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80800774_chfootwear, 0.25f);
+                    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, (u32 *)D_80800774_chfootwear, 0.25f);
                     break;
                 case 2:
                 case 3:
@@ -111,11 +111,11 @@ void func_808000B8_chfootwear(Actor *arg0) {
             break;
         case 2:
             if (func_800D90A4(&((FootwearData *)arg0->actorData)->unkC)) {
-                func_80800424_chfootwear(arg0, D_808006E0_chfootwear[((FootwearData *)arg0->actorData)->unk14][2] ? 3 : 4);
+                func_80800424_chfootwear(arg0, D_808006E0_chfootwear.entries[((FootwearData *)arg0->actorData)->unk14][2] ? 3 : 4);
             }
             break;
         case 3:
-            if (func_800F549C(arg0->unk79_4, D_808006E0_chfootwear[((FootwearData *)arg0->actorData)->unk14][2]) == 0.0f) {
+            if (func_800F549C(arg0->unk79_4, D_808006E0_chfootwear.entries[((FootwearData *)arg0->actorData)->unk14][2]) == 0.0f) {
                 func_80800424_chfootwear(arg0, 4);
             }
             break;
@@ -163,7 +163,7 @@ void func_80800424_chfootwear(Actor *arg0, s32 arg1) {
         s32 unk14;
         s32 unk18;
     } FootwearData;
-    extern s16 D_808006E0_chfootwear[][5];
+    extern FootwearTable D_808006E0_chfootwear;
     void _fxsparkle_entrypoint_1(f32 *, u32);
     void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     void func_8010A570(Actor *);
@@ -177,7 +177,7 @@ void func_80800424_chfootwear(Actor *arg0, s32 arg1) {
             break;
         case 2:
             func_8010A570(arg0);
-            _fxsparkle_entrypoint_1(arg0->position, D_808006E0_chfootwear[((FootwearData *)arg0->actorData)->unk14][3]);
+            _fxsparkle_entrypoint_1(arg0->position, D_808006E0_chfootwear.entries[((FootwearData *)arg0->actorData)->unk14][3]);
             _subaddieDll_entrypoint_4(arg0, 1);
             arg0->unk64_16 = 0;
             ((FootwearData *)arg0->actorData)->unkC = 1.0f;
@@ -199,7 +199,7 @@ s32 func_8080050C_chfootwear(Actor *arg0, BtIntPtr arg1, s32 arg2) {
     s32 func_800F65D0(BtIntPtr);
     s32 func_800F6D24(BtIntPtr);
     s32 func_800F7C0C(BtIntPtr, s32, f32);
-    extern s16 D_808006E0_chfootwear[][5];
+    extern FootwearTable D_808006E0_chfootwear;
 
 
     s16 temp_a0;
@@ -213,9 +213,9 @@ s32 func_8080050C_chfootwear(Actor *arg0, BtIntPtr arg1, s32 arg2) {
     if (func_800F65D0(arg1) == 0) {
         return 0;
     }
-    if (func_800C6E38(D_808006E0_chfootwear[arg0->actorData[5]][0]) == 0) {
+    if (func_800C6E38(D_808006E0_chfootwear.entries[arg0->actorData[5]][0]) == 0) {
         if (arg2 != 0) {
-            temp_a0 = D_808006E0_chfootwear[arg0->actorData[5]][4];
+            temp_a0 = D_808006E0_chfootwear.entries[arg0->actorData[5]][4];
             if (temp_a0 != 0) {
                 _sudialog_entrypoint_0(temp_a0, 0xE);
             }
@@ -225,7 +225,7 @@ s32 func_8080050C_chfootwear(Actor *arg0, BtIntPtr arg1, s32 arg2) {
     if (func_800F64A4(arg1, 0x501) == 0) {
         return 0;
     }
-    if ((arg2 != 0) && (func_800F7C0C(arg1, D_808006E0_chfootwear[arg0->actorData[5]][1], arg0->unk50) != 2)) {
+    if ((arg2 != 0) && (func_800F7C0C(arg1, D_808006E0_chfootwear.entries[arg0->actorData[5]][1], arg0->unk50) != 2)) {
         return 0;
     }
     return 1;
@@ -240,35 +240,35 @@ s32 func_80800664_chfootwear(Actor *arg0,s32 arg1)
 
 OSThread *chfootwear_entrypoint_0(void)
 {
-    extern u8 D_80800788_chfootwear[];
+    extern ActorData D_80800788_chfootwear[];
 
     return (OSThread *) D_80800788_chfootwear;
 }
 
 OSThread *chfootwear_entrypoint_1(void)
 {
-    extern u8 D_808007D0_chfootwear[];
+    extern ActorData D_808007D0_chfootwear[];
 
     return (OSThread *) D_808007D0_chfootwear;
 }
 
 OSThread *chfootwear_entrypoint_2(void)
 {
-    extern u8 D_80800818_chfootwear[];
+    extern ActorData D_80800818_chfootwear[];
 
     return (OSThread *) D_80800818_chfootwear;
 }
 
 OSThread *chfootwear_entrypoint_3(void)
 {
-    extern u8 D_80800860_chfootwear[];
+    extern ActorData D_80800860_chfootwear[];
 
     return (OSThread *) D_80800860_chfootwear;
 }
 
 OSThread *chfootwear_entrypoint_4(void)
 {
-    extern u8 D_808008A8_chfootwear[];
-
+    extern ActorData D_808008A8_chfootwear[];
     return (OSThread *) D_808008A8_chfootwear;
 }
+#include "footwear_data.inc"

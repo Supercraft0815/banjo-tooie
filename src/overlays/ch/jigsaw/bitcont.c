@@ -1,14 +1,22 @@
 #include "common.h"
 
+typedef struct {
+    s16 jiggy;
+    s16 count;
+    f32 range[2];
+    s16 flag;
+    s16 firstFlag;
+} BitConfig;
+
 void func_80800000_chjigsawbitcont(Actor *arg0, u32 arg1) {
     s32 func_800DA298(GameFlag);
     void func_800DA544(GameFlag);
     void func_80101FDC(Actor *, u32);
     void func_80108B04(Actor *, u32);
-    extern s16 D_808009B4_chjigsawbitcont[][8];
+    extern BitConfig D_808009A8_chjigsawbitcont[1];
     func_80101FDC(arg0, arg1);
-    if ((arg1 == 2) && (func_800DA298(D_808009B4_chjigsawbitcont[arg0->unk74_7][0]) == 0)) {
-        func_800DA544(D_808009B4_chjigsawbitcont[arg0->unk74_7][0]);
+    if ((arg1 == 2) && (func_800DA298(D_808009A8_chjigsawbitcont[arg0->unk74_7].flag) == 0)) {
+        func_800DA544(D_808009A8_chjigsawbitcont[arg0->unk74_7].flag);
         func_80108B04(arg0, 0);
     }
 }
@@ -21,14 +29,7 @@ s32 func_80800084_chjigsawbitcont(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
     void func_80100120(Actor *);
     void func_80800890_chjigsawbitcont(Actor *, s32, s32);
-    extern f32 D_808009A8_chjigsawbitcont[][4];
-    typedef struct {
-        s16 jiggy;
-        s16 count;
-        f32 range[2];
-        s16 flag;
-        s16 firstFlag;
-    } BitConfig;
+    extern BitConfig D_808009A8_chjigsawbitcont[1];
     typedef struct {
         u8 pad0[0x74];
         BT_BITFIELD_ORDER(u32 pad74_22 : 10, u32 pad74_0 : 21);
@@ -47,16 +48,16 @@ s32 func_80800084_chjigsawbitcont(Actor *arg0, s32 arg1, s32 arg2) {
         case 0x3D:
             if (arg2 == -1) {
                 _chjigsawcollect_entrypoint_1(&arg0,
-                    ((BitConfig *)D_808009A8_chjigsawbitcont)[arg0->unk74_7].jiggy, 0);
+                    D_808009A8_chjigsawbitcont[arg0->unk74_7].jiggy, 0);
             } else {
-                config = &((BitConfig *)D_808009A8_chjigsawbitcont)[arg0->unk74_7];
+                config = &D_808009A8_chjigsawbitcont[arg0->unk74_7];
                 for (i = 0; i < config->count; i++) {
                     if (!func_800DA298(config->firstFlag + i)) {
                         func_80800890_chjigsawbitcont(arg0, i, arg2);
                     } else {
                         data->count++;
                     }
-                    config = &((BitConfig *)D_808009A8_chjigsawbitcont)[arg0->unk74_7];
+                    config = &D_808009A8_chjigsawbitcont[arg0->unk74_7];
                 }
             }
             break;
@@ -65,7 +66,7 @@ s32 func_80800084_chjigsawbitcont(Actor *arg0, s32 arg1, s32 arg2) {
                 func_80100120(arg0);
             }
             if (arg2 == arg0->unk74_7 &&
-                !func_800DA298(((BitConfig *)D_808009A8_chjigsawbitcont)[arg0->unk74_7].flag)) {
+                !func_800DA298(D_808009A8_chjigsawbitcont[arg0->unk74_7].flag)) {
                 func_80800000_chjigsawbitcont(arg0, 2);
             }
             break;
@@ -82,7 +83,7 @@ void func_80800214_chjigsawbitcont(Actor *arg0)
     void func_800FCAE0(u32, u32, u32);
     s32 func_800FCCD4(s32);
     void *func_80100094(Actor *, u32);
-    extern s16 D_808009AA_chjigsawbitcont[][8];
+    extern BitConfig D_808009A8_chjigsawbitcont[1];
     struct BitContData
     {
         u8 pad[0x10];
@@ -111,7 +112,7 @@ void func_80800214_chjigsawbitcont(Actor *arg0)
     }
     ((struct BitContData *) arg0->actorData)->timer = 0.0f;
     arg0->unk64_20 = 0;
-    if ((data->count < D_808009AA_chjigsawbitcont[arg0->unk74_7][0]) && func_800FCCD4(5))
+    if ((data->count < D_808009A8_chjigsawbitcont[arg0->unk74_7].count) && func_800FCCD4(5))
     {
         func_800FCAE0(5, 0, 0x1F40);
         func_800FCA90(5);
@@ -128,9 +129,7 @@ void func_808002E4_chjigsawbitcont(Actor *arg0) {
     s32 func_800FFAB0(BtIntPtr);
     void *func_80100094(Actor *, u32);
     void func_80108B04(Actor *, u32);
-    extern f32 D_808009A8_chjigsawbitcont[][4];
-    typedef struct { s16 flag; s16 pad; f32 range[2]; s16 collected; s16 padE; } JigsawBitContEntry;
-    extern s16 D_808009B4_chjigsawbitcont[][8];
+    extern BitConfig D_808009A8_chjigsawbitcont[1];
     Prop *props[3];
     struct {
         f32 positions[3][3];
@@ -145,7 +144,7 @@ void func_808002E4_chjigsawbitcont(Actor *arg0) {
         func_800FFAB0(arg0);
         return;
     }
-    if (func_800D0B68(((JigsawBitContEntry *)D_808009A8_chjigsawbitcont)[arg0->unk74_7].flag, 1)) {
+    if (func_800D0B68(D_808009A8_chjigsawbitcont[arg0->unk74_7].jiggy, 1)) {
         func_800FFAB0(arg0);
         return;
     }
@@ -154,7 +153,7 @@ void func_808002E4_chjigsawbitcont(Actor *arg0) {
     for (i = 0; i < count; i++) {
         func_800EE88C(data->positions[i], props[i]->position);
     }
-    if (func_800DA298(D_808009B4_chjigsawbitcont[arg0->unk74_7][0])) {
+    if (func_800DA298(D_808009A8_chjigsawbitcont[arg0->unk74_7].flag)) {
         func_80108B04(arg0, 1);
     }
 }
@@ -167,9 +166,8 @@ s32 func_8080040C_chjigsawbitcont(BtIntPtr arg0) {
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
     void func_80108B04(Actor *, u32);
-    extern f32 D_808009A8_chjigsawbitcont[][4];
-    extern s16 D_808009B6_chjigsawbitcont[][8];
-    s16 *entry;
+    extern BitConfig D_808009A8_chjigsawbitcont[1];
+    BitConfig *entry;
     struct {
         s16 positions[18];
         s16 count;
@@ -182,21 +180,21 @@ if (!entry) {}
     actor = func_80106790(((Actor *)arg0)->unk3C);
     data = func_80100094(actor, 0);
     data->count++;
-    func_800DA544(D_808009B6_chjigsawbitcont[actor->unk74_7][0] + ((Actor *)arg0)->unk6C_0);
+    func_800DA544(D_808009A8_chjigsawbitcont[actor->unk74_7].firstFlag + ((Actor *)arg0)->unk6C_0);
     count = data->count;
-    entry = (s16 *)D_808009A8_chjigsawbitcont[actor->unk74_7];
-    if (count == entry[1]) {
-        func_800D0BD4(entry[0], 1);
+    entry = &D_808009A8_chjigsawbitcont[actor->unk74_7];
+    if (count == entry->count) {
+        func_800D0BD4(entry->jiggy, 1);
         func_800FC660(5);
         func_80108B04(actor, -1);
         return;
     }
     if (!actor->unk64_20) {
-        ratio = (f32)count / (f32)entry[1];
+        ratio = (f32)count / (f32)entry->count;
         ((f32 *)actor->actorData)[4] = 1.75f * ratio;
         func_800FC660(5);
     } else {
-        ratio = 1.0f / (f32)entry[1];
+        ratio = 1.0f / (f32)entry->count;
         ((f32 *)actor->actorData)[4] += 1.75f * ratio;
         func_800FCAE0(5, 0x7FFF, 0x1F40);
     }
@@ -205,7 +203,7 @@ if (!entry) {}
 
 OSThread *chjigsawbitcont_entrypoint_0(void)
 {
-    extern u8 D_808009B8_chjigsawbitcont[];
+    extern ActorData D_808009B8_chjigsawbitcont[];
 
     return (OSThread *) D_808009B8_chjigsawbitcont;
 }
@@ -244,14 +242,14 @@ void func_80800634_chjigsawbitcont(BtIntPtr arg0) {
     s32 func_800FFAB0(BtIntPtr);
     s32 func_8010C9B0(BtIntPtr, s32);
     s32 func_8080040C_chjigsawbitcont(BtIntPtr);
-    extern s32 D_80800A00_chjigsawbitcont;
+    extern s16 D_80800A00_chjigsawbitcont[20];
     BtIntPtr sp24;
     BtIntPtr temp_a0;
 
     temp_a0 = arg0 + 4;
     sp24 = temp_a0;
     if ((func_800E3E8C(temp_a0, 0x42480000) != 0) && !(func_8001211C() & 3) && (func_800DC0C0() < 0.1f)) {
-        func_800BBCB8(sp24, 0, 0x3F800000, 2, &D_80800A00_chjigsawbitcont);
+        func_800BBCB8(sp24, 0, 0x3F800000, 2, (s32 *)D_80800A00_chjigsawbitcont);
     }
     if (func_8010C9B0(sp24, 0x32) != 0) {
         func_8080040C_chjigsawbitcont(arg0);
@@ -264,7 +262,7 @@ void func_808006D8_chjigsawbitcont(Actor *arg0) {
     s32 _subaddiebounce_entrypoint_1(Actor *);
     s32 _subaddiebounce_entrypoint_2(Actor *);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    extern u8 D_808009A0_chjigsawbitcont[];
+    extern s16 D_808009A0_chjigsawbitcont[4];
     f32 sp24;
     f32 temp;
 
@@ -283,7 +281,8 @@ void func_808006D8_chjigsawbitcont(Actor *arg0) {
             if (arg0->unk79_4 >= 3) {
                 if (_subaddiebounce_entrypoint_1(arg0)) {
                     arg0->unk79_4 = 2;
-                    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808009A0_chjigsawbitcont);
+                    _subaddieaudioquick_entrypoint_2(arg0, arg0->position,
+                        D_808009A0_chjigsawbitcont);
                 }
                 temp = 360.0f * sp24;
                 arg0->rotation[1] += temp;
@@ -293,7 +292,8 @@ void func_808006D8_chjigsawbitcont(Actor *arg0) {
                 if (arg0->unk79_4 <= 0) {
                     func_80800570_chjigsawbitcont(arg0, 3);
                 }
-                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_808009A0_chjigsawbitcont);
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position,
+                    D_808009A0_chjigsawbitcont);
             }
             break;
         case 3:
@@ -312,22 +312,22 @@ void func_80800868_chjigsawbitcont(void *arg0) {
 void func_80800890_chjigsawbitcont(Actor *arg0, s32 arg1, s32 arg2) {
     Actor *actor;
     f32 (*positions)[3];
-    f32 *range;
+    BitConfig *config;
     Actor *func_801084B0(BtIntPtr, Actor **);
     void *func_80100094(Actor *, u32);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800DC178(f32, f32);
     void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     void func_80800570_chjigsawbitcont(Actor *, u32);
-    extern f32 D_808009A8_chjigsawbitcont[][4];
+    extern BitConfig D_808009A8_chjigsawbitcont[1];
 
     actor = func_801084B0(0x17F, &arg0);
     positions = func_80100094(arg0, 0);
     actor->unk6C_0 = arg1;
     func_800EE7F8((f32 *)actor->actorData, positions[actor->unk6C_0]);
     actor->unk3C = arg0->unk0;
-    range = D_808009A8_chjigsawbitcont[arg0->unk74_7];
-    actor->unk58 = func_800DC178(range[1], range[2]);
+    config = &D_808009A8_chjigsawbitcont[arg0->unk74_7];
+    actor->unk58 = func_800DC178(config->range[0], config->range[1]);
     switch (arg2) {
         case 0:
             _subaddieDll_entrypoint_4(actor, 1);
@@ -340,7 +340,7 @@ void func_80800890_chjigsawbitcont(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chjigsawbitcont_entrypoint_1(void)
 {
-    extern u8 D_80800A28_chjigsawbitcont[];
-
+    extern ActorData D_80800A28_chjigsawbitcont[];
     return (OSThread *) D_80800A28_chjigsawbitcont;
 }
+#include "bitcont_data.inc"

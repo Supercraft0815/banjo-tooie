@@ -1,6 +1,6 @@
 #include "common.h"
 
-/* extern */
+typedef struct { s16 unk0; s16 text; s8 ability; s8 unk5; u8 padding[2]; } TrainingLesson;
 
 void func_80800000_chmole_training(Actor *arg0) {
     void* func_80100094(Actor*, u32);
@@ -37,8 +37,8 @@ void func_80800088_chmole_training(Actor *arg0) {
     void func_80800BA8_chmole_training(Actor *);
     void func_80800C28_chmole_training(void *);
     void func_80800C3C_chmole_training(void *);
-    extern s8 D_80800E34_chmole_training[][8];
-    extern s16 D_80800E32_chmole_training[][4];
+    extern TrainingLesson D_80800E30_chmole_training[27];
+
     s32 ability;
 
     if (arg0->unk3C != NULL) {
@@ -60,7 +60,7 @@ void func_80800088_chmole_training(Actor *arg0) {
             return;
         case 7:
             _gcnewoption_entrypoint_6(arg0, 0);
-            ability = D_80800E34_chmole_training[(s32)arg0->unk54][0];
+            ability = D_80800E30_chmole_training[(s32)arg0->unk54].ability;
             if (ability != -1 && !func_800C6E38(ability)) {
                 func_80101FDC(arg0, 8);
                 return;
@@ -72,7 +72,7 @@ void func_80800088_chmole_training(Actor *arg0) {
             func_80101FDC(arg0, 11);
             return;
         case 10:
-            if (_sumole_entrypoint_17(arg0, D_80800E32_chmole_training[(s32)arg0->unk54][0], -1, 0)) {
+            if (_sumole_entrypoint_17(arg0, D_80800E30_chmole_training[(s32)arg0->unk54].text, -1, 0)) {
                 _sumole_entrypoint_19(arg0, 0);
                 func_80101FDC(arg0, 12);
                 return;
@@ -390,7 +390,7 @@ void func_80800C70_chmole_training(Actor *arg0) {
 
 OSThread *chmole_training_entrypoint_1(void)
 {
-    extern u8 D_80800F30_chmole_training[];
-
+    extern ActorData D_80800F30_chmole_training[1];
     return (OSThread *) D_80800F30_chmole_training;
 }
+#include "_training_data.inc"

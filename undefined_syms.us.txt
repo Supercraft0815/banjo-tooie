@@ -124,6 +124,26 @@ SECTIONS
     {
         D_8080053E_chweldarhead = D_80800538_chweldarhead + 0x6;
     }
+    .chfriendlystonehead :
+    {
+        D_8080099C_chfriendlystonehead = D_80800998_chfriendlystonehead + 0x4;
+        D_8080099E_chfriendlystonehead = D_80800998_chfriendlystonehead + 0x6;
+        D_808009A4_chfriendlystonehead = D_80800998_chfriendlystonehead + 0xC;
+    }
+    .gcintrotext :
+    {
+        D_8080056E_gcintrotext = D_8080056C_gcintrotext + 0x2;
+        D_80800570_gcintrotext = D_8080056C_gcintrotext + 0x4;
+    }
+    .chjinjo :
+    {
+        D_80801302_chjinjo = D_80801300_chjinjo + 0x2;
+        D_80801304_chjinjo = D_80801300_chjinjo + 0x4;
+    }
+    .chsilo :
+    {
+        D_808012EC_chsilo = D_808012E0_chsilo + 0xC;
+    }
     .chintrochar :
     {
         func_80804158_chintrochar = func_80804054_chintrochar + 0x104;

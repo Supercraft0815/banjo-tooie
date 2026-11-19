@@ -1,9 +1,20 @@
 #include "common.h"
+typedef struct {
+    u8 r, g, b, a;
+    f32 size;
+    f32 position;
+    u8 type;
+    u8 pad[3];
+} Flare;
+typedef struct {
+    s32 map;
+    Flare *flares;
+} FlareSet;
 
 s32 chlensflare_entrypoint_0(void) {
     s32 _gcskyDll_entrypoint_3();
     s32 func_800EA05C();
-    extern s32 D_808008F0_chlensflare[][2];
+    extern FlareSet D_808008F0_chlensflare[7];
     s32 sp1C;
     s32 sp18;
 
@@ -12,8 +23,8 @@ s32 chlensflare_entrypoint_0(void) {
     if (_gcskyDll_entrypoint_3() == 0) {
         return 0;
     }
-    for (; -1 != D_808008F0_chlensflare[sp1C][0]; sp1C++) {
-        if (sp18 == D_808008F0_chlensflare[sp1C][0]) {
+    for (; -1 != D_808008F0_chlensflare[sp1C].map; sp1C++) {
+        if (sp18 == D_808008F0_chlensflare[sp1C].map) {
             return 1;
         }
     }
@@ -29,8 +40,8 @@ void func_80800084_chlensflare(Actor *arg0) {
     } LensFlareActorData;
     s32 func_800EA05C();
     void func_800FFAB0(Actor *);
-    extern s32 D_808008F0_chlensflare[][2];
-    s32 (*var_v1)[2];
+    extern FlareSet D_808008F0_chlensflare[7];
+    FlareSet *var_v1;
     s32 temp_a0;
     s32 temp_v0;
     s32 var_a1;
@@ -41,7 +52,7 @@ void func_80800084_chlensflare(Actor *arg0) {
     var_a1 = 0;
     sentinel = -1;
 loop_1:
-    temp_a0 = (*var_v1)[0];
+    temp_a0 = var_v1->map;
     var_v1++;
     if (sentinel != temp_a0) {
         goto compare;
@@ -61,23 +72,12 @@ found:
 
 void func_808000FC_chlensflare(void *arg0, s32 arg1) {
     typedef struct {
-        u8 r, g, b, a;
-        f32 size;
-        f32 position;
-        u8 type;
-        u8 pad[3];
-    } Flare;
-    typedef struct {
-        Flare *flares;
-        s32 unk4;
-    } FlareSet;
-    typedef struct {
         u8 pad[0x64];
         BT_BITFIELD_ORDER(u32 unused : 11, u32 rest : 20);
         u32 forced : 1;
         BT_BITFIELD_ORDER(u32 rest : 20, u32 unused : 11);
     } FlareActor;
-    extern FlareSet D_808008F4_chlensflare[];
+    extern FlareSet D_808008F0_chlensflare[7];
     s32 func_800BFFB4(s32, s32, f32 *);
     void func_800E8830(s32, f32 *);
     s32 func_800E88AC(s32, f32 *);
@@ -149,7 +149,7 @@ void func_808000FC_chlensflare(void *arg0, s32 arg1) {
         screen[1] = 228.0f - screen[1];
         func_800E40DC(screen[0], screen[1], scale, delta);
         func_800EFB24(delta, scale, source);
-        flares = D_808008F4_chlensflare[((Objlensflare_arg0 *)arg0)->unk24].flares;
+        flares = D_808008F0_chlensflare[((Objlensflare_arg0 *)arg0)->unk24].flares;
         for (i = 0; flares[i].type; i++) {}
         if (flares[i].r) {
             func_800EFA88(color, flares[i].r, flares[i].g, flares[i].b);
@@ -208,7 +208,7 @@ s32 func_80800634_chlensflare(void *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chlensflare_entrypoint_1(void)
 {
-    extern u8 D_80800928_chlensflare[];
-
+    extern ActorData D_80800928_chlensflare[];
     return (OSThread *) D_80800928_chlensflare;
 }
+#include "lensflare_data.inc"

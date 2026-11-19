@@ -1,25 +1,23 @@
 #include "ch/secreteggs.h"
+#include "core2/actor_animation_entry.h"
 
-typedef struct unkEggData
-{
-    u16 unk0;
-    u16 unk4;
-    u16 unk8;
-    u16 unkC;
-} unkEggData;
 
-extern unkEggData D_80800494_chsecreteggs[0x3];
-extern s32 D_808004A8_chsecreteggs;
+extern ActorAnimationEntry D_80800490_chsecreteggs[3];
+extern s16 D_808004A8_chsecreteggs[34];
+
 extern f32 D_808004EC_chsecreteggs[5];
 extern f32 D_80800500_chsecreteggs[3];
-extern u32 D_8080050C_chsecreteggs;
+
+extern ActorData D_8080050C_chsecreteggs;
 
 void func_80800000_chsecreteggs(Actor* arg0)
 {
     BtIntPtr temp_v0;
 
     temp_v0 = func_800B53A4(0x14);
-    func_800BABB8(temp_v0, arg0->position, arg0->position, 1.0f, &D_808004A8_chsecreteggs);
+    func_800BABB8(temp_v0, arg0->position, arg0->position,
+                  1.0f, (s32 *)D_808004A8_chsecreteggs);
+
     switch (arg0->unk0->unk14)
     {
     case 0x974:
@@ -125,7 +123,8 @@ s32 func_80800328_chsecreteggs(Actor* arg0, s32 arg1, s32 arg2)
         return 1;
     case 0x1F:
         func_801015D0(arg0);
-        switch (D_80800494_chsecreteggs[arg0->unk70_10].unk0)
+        /* The three egg states use the animation IDs from the actor descriptor. */
+        switch (D_80800490_chsecreteggs[arg0->unk70_10].index)
         {
         case 0x1D4:
             func_800DF744(1, 1);
@@ -150,6 +149,7 @@ s32 func_80800328_chsecreteggs(Actor* arg0, s32 arg1, s32 arg2)
             func_800DA544(FLAG_3E5_SNS_EGG_ACQUIRED_PINK);
             var_a1 = 0x1552;
         }
+
         if (var_a1 != 0)
         {
             _subaddiedialog_entrypoint_11(arg0->unk0, var_a1, 4, arg0->position, 0x6F);
@@ -163,8 +163,8 @@ s32 func_80800328_chsecreteggs(Actor* arg0, s32 arg1, s32 arg2)
         return 0;
     }
 }
-
 u32* chsecreteggs_entrypoint_0(void) 
 {
-    return &D_8080050C_chsecreteggs;
+    return (u32 *)&D_8080050C_chsecreteggs;
 }
+#include "secreteggs_data.inc"

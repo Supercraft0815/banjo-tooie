@@ -1,25 +1,25 @@
 #include "common.h"
-
+typedef struct { s16 map; s16 unk2; s8 title; s8 secondaryTitle; s8 stringIndex; u8 pad; } CreditEntry;
 typedef struct { u8 pad0[0x3]; u8 unk3; u8 unk4; } Objcredits_D_8012760D; /* offsets.py genstruct: fields from raw offsets on &D_8012760D; rename once understood */ s16 func_80800000_chcredits(s32 arg0) {
     extern s32 D_8012760D;
-    extern s16 D_80801208_chcredits[];
-    extern s16 D_808012C0_chcredits[];
-    s32 offset = arg0 << 3;
+    extern CreditEntry D_80801200_chcredits[105];
+
+    /* Start the map lookup at the following credits record. */
     if ((((Objcredits_D_8012760D *)&D_8012760D)->unk4) == 2) {
-        return *(s16 *)((u8 *)D_808012C0_chcredits + offset);
+        return D_80801200_chcredits[arg0 + 24].map;
     }
-    return *(s16 *)((u8 *)D_80801208_chcredits + offset);
+    return D_80801200_chcredits[arg0 + 1].map;
 }
 
 s16 func_8080003C_chcredits(s32 arg0) {
     extern s32 D_8012760D;
-    extern s16 D_80801202_chcredits[];
-    extern s16 D_808012BA_chcredits[];
-    s32 offset = arg0 << 3;
+    extern CreditEntry D_80801200_chcredits[105];
+
+    /* The second credits sequence begins at record 23. */
     if ((((Objcredits_D_8012760D *)&D_8012760D)->unk4) == 2) {
-        return *(s16 *)((u8 *)D_808012BA_chcredits + offset);
+        return D_80801200_chcredits[arg0 + 23].unk2;
     }
-    return *(s16 *)((u8 *)D_80801202_chcredits + offset);
+    return D_80801200_chcredits[arg0].unk2;
 }
 
 s32 func_80800078_chcredits(void) {
@@ -130,10 +130,7 @@ void func_80800464_chcredits(Actor *arg0) {
     void func_800E715C(u8 *, u8 *);
     void *func_80100094(Actor *, u32);
     extern volatile u8 D_80127610[];
-    extern s8 D_80801204_chcredits[];
-    extern s8 D_808012BC_chcredits[];
-    extern s8 D_808012BD_chcredits[];
-    extern s8 D_808012BE_chcredits[];
+    extern CreditEntry D_80801200_chcredits[105];
     u8 *buffer;
     u32 *strings;
     s32 asset;
@@ -142,8 +139,8 @@ void func_80800464_chcredits(Actor *arg0) {
 
     buffer = func_80100094(arg0, 0);
     if (((u8 *)D_80127610)[1] == 2) {
-        asset = D_808012BC_chcredits[((u8 *)D_80127610)[0] * 8] + 0x1B86;
-        if (D_808012BC_chcredits[((u8 *)D_80127610)[0] * 8] >= 0) {
+        asset = D_80801200_chcredits[((u8 *)D_80127610)[0] + 23].title + 0x1B86;
+        if (D_80801200_chcredits[((u8 *)D_80127610)[0] + 23].title >= 0) {
             strings = _gldbstring_entrypoint_0(NULL, asset);
             for (i = 0; i != 2; i++) {
                 text = _gldbstring_entrypoint_1(strings, i);
@@ -159,14 +156,17 @@ void func_80800464_chcredits(Actor *arg0) {
                 func_800E715C(buffer + i * 0x80, "");
             }
         }
-        asset = D_808012BD_chcredits[((u8 *)D_80127610)[0] * 8] + 0x1B88;
+
+        asset = D_80801200_chcredits[((u8 *)D_80127610)[0] + 23].secondaryTitle + 0x1B88;
         strings = _gldbstring_entrypoint_0(NULL, asset);
-        text = _gldbstring_entrypoint_1(strings, D_808012BE_chcredits[((u8 *)D_80127610)[0] * 8]);
+
+        text = _gldbstring_entrypoint_1(strings, D_80801200_chcredits[((u8 *)D_80127610)[0] + 23].stringIndex);
         func_800E715C(buffer + 0x100, text);
         _gldbstring_entrypoint_2(asset);
     } else {
-        asset = D_80801204_chcredits[((u8 *)D_80127610)[0] * 8] + 0x1B68;
-        if (D_80801204_chcredits[((u8 *)D_80127610)[0] * 8] >= 0) {
+
+        asset = D_80801200_chcredits[((u8 *)D_80127610)[0]].title + 0x1B68;
+        if (D_80801200_chcredits[((u8 *)D_80127610)[0]].title >= 0) {
             strings = _gldbstring_entrypoint_0(NULL, asset);
             for (i = 0; i != 2; i++) {
                 text = _gldbstring_entrypoint_1(strings, i);
@@ -502,7 +502,7 @@ void func_80801108_chcredits(Actor *arg0, Gfx **arg1) {
     void func_800B99CC(Gfx **, s32, s32 *);
     s32 func_80800C84_chcredits(Actor *, Gfx **);
     s32 func_80800F50_chcredits(Actor *, Gfx **);
-    extern s32 D_80801590_chcredits;
+    extern s32 D_80801590_chcredits[3];
     s32 var_a1;
 
     if (!arg0->unk64_19) {
@@ -512,7 +512,7 @@ void func_80801108_chcredits(Actor *arg0, Gfx **arg1) {
         } else if (var_a1 < 0xA) {
             var_a1 = 0;
         }
-        func_800B99CC(arg1, var_a1, &D_80801590_chcredits);
+        func_800B99CC(arg1, var_a1, D_80801590_chcredits);
     }
     func_80800F50_chcredits(arg0, arg1);
     func_80800C84_chcredits(arg0, arg1);
@@ -520,13 +520,13 @@ void func_80801108_chcredits(Actor *arg0, Gfx **arg1) {
 
 OSThread *chcredits_entrypoint_2(void)
 {
-    extern u8 D_8080159C_chcredits[];
+    extern ActorData D_8080159C_chcredits[1];
 
     return (OSThread *) D_8080159C_chcredits;
 }
-
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
 volatile u8 D_80127610 [ 4 ] BT_DATA(4, bss_core2bss1_0_1, 0x5B0);
 #endif
+#include "credits_data.inc"

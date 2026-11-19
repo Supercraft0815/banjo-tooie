@@ -1,8 +1,27 @@
 #include "common.h"
 
+/* Each actor selects one of five fade and animation records. */
+struct AttractEntry {
+    u16 animation;
+
+    u8 fade;
+    u8 pad3;
+    /* Delays copied into the actor countdown on the two state transitions. */
+    f32 unk4;
+    f32 unk8;
+    f32 scale;
+
+    s16 x;
+    s16 y;
+    f32 unk14;
+
+    u8 flags;
+    u8 pad19[3];
+};
+
 OSThread *chattract_entrypoint_0(void)
 {
-    extern u8 D_808004F4_chattract[];
+    extern ActorData D_808004F4_chattract[1];
 
     return (OSThread *) D_808004F4_chattract;
 }
@@ -19,52 +38,43 @@ void func_80800014_chattract(Actor *arg0) {
     s32 func_800D9078(f32 *);
     void func_800FFAB0(Actor *);
     void func_80102424(Actor *, s32);
+
     struct AttractState {
         u8 pad[0x78];
         BT_BITFIELD_ORDER(u16 rest : 14, u16 state : 2);
         BT_BITFIELD_ORDER(u16 state : 2, u16 rest : 14);
     };
-    struct AttractEntry {
-        u16 animation;
-        u8 fade;
-        u8 pad3;
-        f32 unk4;
-        f32 unk8;
-        f32 scale;
-        s16 x;
-        s16 y;
-        f32 unk14;
-        u8 flags;
-        u8 pad19[3];
-    };
-    extern f32 D_8080046C_chattract[][7];
-    extern u8 D_8080046A_chattract[][28];
-    extern f32 D_80800470_chattract[][7];
+
+    extern struct AttractEntry D_80800468_chattract[5];
     struct AttractEntry *entry;
 
     if (arg0->unk54 != 0.0f) {
         arg0->rotation[1] += arg0->unk54 * func_800D8FF8();
     }
+
     if (arg0->unk79_4 != 0) {
         if (!((struct AttractState *)arg0)->state && func_800D9078(&arg0->unk58)) {
-            if (D_8080046A_chattract[arg0->unk74_7][0] != 0) {
+            if (D_80800468_chattract[arg0->unk74_7].fade != 0) {
                 _subaddiefade_entrypoint_2(arg0);
             } else {
                 _subaddiefade_entrypoint_1(arg0, 255);
             }
-            arg0->unk58 = D_8080046C_chattract[arg0->unk74_7][0];
+
+            arg0->unk58 = D_80800468_chattract[arg0->unk74_7].unk4;
             arg0->unk79_4 = 0;
             func_80102424(arg0, arg0->unk70_10);
         }
     } else if (!((struct AttractState *)arg0)->state && func_800D9078(&arg0->unk58)) {
-        entry = (struct AttractEntry *)((s32)arg0->unk74_7 * (s32)sizeof(struct AttractEntry) + (BtIntPtr)(&D_8080046C_chattract[0][0] - 1));
+
+        entry = &D_80800468_chattract[arg0->unk74_7];
+
         if (entry->unk8 != 0.0f) {
             if (entry->pad3 != 0) {
                 _subaddiefade_entrypoint_5(arg0);
             } else {
                 _subaddiefade_entrypoint_1(arg0, 0);
             }
-            arg0->unk58 = D_80800470_chattract[arg0->unk74_7][0];
+            arg0->unk58 = D_80800468_chattract[arg0->unk74_7].unk8;
             arg0->unk79_4 = 1;
         } else if (entry->pad3 != 0) {
             _subaddiefade_entrypoint_3(arg0);
@@ -96,32 +106,22 @@ s32 func_808002AC_chattract(Actor *arg0, s32 arg1, s32 arg2) {
     void _subaddiefade_entrypoint_2(void *arg0);
     void func_80102424(Actor *, s32);
     s32 func_80103140(Actor *, u32, u16);
+
     struct AttractFlags {
         u8 pad[0x7A];
         BT_BITFIELD_ORDER(u8 value : 2, u8 rest : 6);
         BT_BITFIELD_ORDER(u8 rest : 6, u8 value : 2);
     };
-    struct AttractEntry {
-        u16 animation;
-        u8 fade;
-        u8 pad3;
-        f32 unk4;
-        f32 unk8;
-        f32 scale;
-        s16 x;
-        s16 y;
-        f32 unk14;
-        u8 flags;
-        u8 pad19[3];
-    };
-    extern struct AttractEntry D_80800468_chattract[];
+    extern struct AttractEntry D_80800468_chattract[5];
     struct AttractEntry *entry;
 
     if (arg1 == 0x95) {
         entry = &D_80800468_chattract[arg0->unk74_7];
-        func_80103140(arg0, entry->animation, 0);
+        func_80103140(arg0,
+                      entry->animation, 0);
         func_80102424(arg0, arg0->unk74_7);
         arg0->unk58 = entry->unk4;
+
         arg0->scale = entry->scale;
         ((struct AttractFlags *)arg0)->value = entry->flags;
         if (entry->fade != 0) {
@@ -152,7 +152,6 @@ void chattract_entrypoint_2(s32 arg0) {
     extern s32 B_80800540_chattract;
     Actor *temp_v0;
     Unk80132ED0 *temp_v0_2;
-
     temp_v0 = func_80108454(0x4B5, &B_80800540_chattract, 0);
     if (temp_v0 != NULL) {
         temp_v0->unk74_7 = arg0 + 1;
@@ -161,3 +160,4 @@ void chattract_entrypoint_2(s32 arg0) {
         func_800EC828();
     }
 }
+#include "attract_data.inc"

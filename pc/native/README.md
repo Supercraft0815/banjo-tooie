@@ -512,8 +512,8 @@ complete compressed and decompressed ROMs remain byte-equal.
 The map loader (`gc/mapDll.c`, 12 functions) now uses typed native layers and
 configuration records. Its 228 original map records retain both model IDs,
 signed grid padding and clone flags; the cell-size table includes its original
-default. `generate_map_data.py` reproduces the checked-in scalar tables from the
-owning N64 assembly data, so ordinary native tests still need no ROM or extraction.
+default. The N64, ILP32, and LP64 builds use the same tables in
+`src/overlays/gc/mapDll_data.inc`. Native map tests read them without a ROM or extraction.
 Loading pins both model layers, initializes zone state and the vector table,
 combines bounds and passes native pointers to lighting, instance and texture
 interfaces. Failure releases partially loaded map resources; texture preloading

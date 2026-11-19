@@ -1,38 +1,42 @@
 #include "common.h"
 
 struct SwitchEntry {
-        u16 unk0;
-        u16 flag;
-        s32 unk4;
-        u8 unk8[8];
-        u16 map;
-        u16 pad12;
-    };
+    u16 unk0;
+    u16 flag;
+    s32 unk4;
+
+    u16 modelId;
+    s16 event;
+    u16 doorModel;
+    u16 door;
+    u16 map;
+    u16 doorFlag;
+};
 
 OSThread *chdinoswitches_entrypoint_0(void)
 {
-    extern u8 D_80800C30_chdinoswitches[];
+    extern ActorData D_80800C30_chdinoswitches[];
 
     return (OSThread *) D_80800C30_chdinoswitches;
 }
 
 OSThread *chdinoswitches_entrypoint_1(void)
 {
-    extern u8 D_80800C78_chdinoswitches[];
+    extern ActorData D_80800C78_chdinoswitches[];
 
     return (OSThread *) D_80800C78_chdinoswitches;
 }
 
 OSThread *chdinoswitches_entrypoint_2(void)
 {
-    extern u8 D_80800CC0_chdinoswitches[];
+    extern ActorData D_80800CC0_chdinoswitches[];
 
     return (OSThread *) D_80800CC0_chdinoswitches;
 }
 
 OSThread *chdinoswitches_entrypoint_3(void)
 {
-    extern u8 D_80800D08_chdinoswitches[];
+    extern ActorData D_80800D08_chdinoswitches[];
 
     return (OSThread *) D_80800D08_chdinoswitches;
 }
@@ -46,7 +50,7 @@ void func_80800030_chdinoswitches(Actor *arg0) {
     void func_800DA544(s32);
     void func_80103110(Actor *, u32);
     s32 func_80800108_chdinoswitches(u8 *arg0);
-    extern struct SwitchEntry D_80800B20_chdinoswitches[];
+    extern struct SwitchEntry D_80800B20_chdinoswitches[12];
     s32 sp24[1];
     struct SwitchEntry *sp20;
 
@@ -70,13 +74,14 @@ void func_80800030_chdinoswitches(Actor *arg0) {
 
 s32 func_80800108_chdinoswitches(u8 *arg0) {
     s32 func_800EA05C(void);
-    extern struct SwitchEntry D_80800B20_chdinoswitches[];
+    extern struct SwitchEntry D_80800B20_chdinoswitches[12];
     s32 map;
     s32 index;
 
     map = func_800EA05C();
     for (index = 1; index < 12; index++) {
-        if (map == D_80800B20_chdinoswitches[index].map && ((Actor *)arg0)->unk74_7 == D_80800B20_chdinoswitches[index].unk0) {
+        if (map == D_80800B20_chdinoswitches[index].map &&
+            ((Actor *)arg0)->unk74_7 == D_80800B20_chdinoswitches[index].unk0) {
             return index;
         }
     }
@@ -85,11 +90,14 @@ s32 func_80800108_chdinoswitches(u8 *arg0) {
 
 void func_80800270_chdinoswitches(void *arg0) {
     s32 func_801032B0(Actor *actor,u16 id,u16 palette);
-    extern u8 D_80800B28_chdinoswitches[];
+    extern struct SwitchEntry D_80800B20_chdinoswitches[12];
     s32 index = *(s32 *)((u8 *)arg0 + 0x18);
 
-    func_801032B0(arg0, *(u16 *)(D_80800B28_chdinoswitches + index * 0x14),
-                  *(u16 *)((u8 *)*(void **)arg0 + 0x16));
+    func_801032B0(
+        arg0,
+        D_80800B20_chdinoswitches[index].modelId,
+        *(u16 *)((u8 *)*(void **)arg0 + 0x16)
+    );
 }
 
 s32 func_808002B0_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
@@ -104,7 +112,7 @@ s32 func_808002B0_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _chswitch_entrypoint_10(BtIntPtr, s32, s32);
     s32 _subaddiefind_entrypoint_10(Actor *, s32, u32);
     s32 func_80800108_chdinoswitches(u8 *arg0);
-    extern u8 D_80800B28_chdinoswitches[];
+    extern struct SwitchEntry D_80800B20_chdinoswitches[12];
     extern u8 D_8011A270[];
     extern u8 D_8011A248[];
     s32 unused[2];
@@ -126,7 +134,7 @@ s32 func_808002B0_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
     case 0x99:
         index = ((ActorFlags *)arg0)->unk74_21
                     ? arg0->actorData[0] : func_80800108_chdinoswitches(arg0);
-        value = *(u16 *)(D_80800B28_chdinoswitches + index * 0x14);
+        value = D_80800B20_chdinoswitches[index].modelId;
         if (value == 0x7B8 || value == 0x7B9 || value == 0x942) {
             func_80101074(D_8011A270);
         } else {
@@ -155,7 +163,7 @@ s32 func_808003E8_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80103110(Actor *, u32);
     void _chdinoswitches_entrypoint_4(s32, s32);
     extern u8 D_8011A248[];
-    extern u16 D_80800B22_chdinoswitches[][10];
+    extern struct SwitchEntry D_80800B20_chdinoswitches[12];
     BtIntPtr callback;
     Unk80132ED0 *temp;
 
@@ -200,7 +208,7 @@ s32 func_808003E8_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
     case 0x95:
         _subaddiefind_entrypoint_10(arg0, 0x364, arg0->unk74_7);
         _chswitch_entrypoint_10((BtIntPtr)arg0, arg1, arg2);
-        if (func_800DA298(D_80800B22_chdinoswitches[arg0->actorData[0]][0]) != 0) {
+        if (func_800DA298(D_80800B20_chdinoswitches[arg0->actorData[0]].flag) != 0) {
             func_80103110(arg0, 0);
         }
         break;
@@ -247,12 +255,12 @@ void func_80800714_chdinoswitches(Actor *arg0) {
     void func_80109EEC(s16 *, s32);
     void func_8010A570(Actor *);
     s32 func_80800108_chdinoswitches(u8 *arg0);
-    extern u16 D_80800B22_chdinoswitches[][10];
+    extern struct SwitchEntry D_80800B20_chdinoswitches[12];
     s32 temp_v0;
 
     temp_v0 = func_80800108_chdinoswitches(arg0);
     arg0->actorData[0] = temp_v0;
-    if (func_800DA298(D_80800B22_chdinoswitches[temp_v0][0]) != 0) {
+    if (func_800DA298(D_80800B20_chdinoswitches[temp_v0].flag) != 0) {
         func_80102424(arg0, 3);
         func_80101EE4(arg0, 0.3f);
         func_8010A570(arg0);
@@ -271,11 +279,11 @@ void func_808007A0_chdinoswitches(Actor *arg0) {
     void func_80101EE4(Actor *, f32);
     void func_80102424(Actor *, s32);
     void func_80103110(Actor *, u32);
-    extern u16 D_80800B22_chdinoswitches[][10];
+    extern struct SwitchEntry D_80800B20_chdinoswitches[12];
     BtIntPtr temp_a0;
 
     if (arg0->unk70_10 == 2 && func_80101E14(arg0, 0.3f) != 0) {
-        func_800DA544(D_80800B22_chdinoswitches[arg0->actorData[0]][0]);
+        func_800DA544(D_80800B20_chdinoswitches[arg0->actorData[0]].flag);
         func_80102424(arg0, 3);
         func_80101EE4(arg0, 0.3f);
         func_80103110(arg0, 0);
@@ -321,22 +329,11 @@ void func_808008F0_chdinoswitches(Actor *arg0) {
     s32 _chdoormake_entrypoint_12(Actor *, s32, s32);
     s32 _chdoormake_entrypoint_10(void *, s32, s32);
     void func_8010A800(Actor *, s32);
-    struct DoorEntry {
-        u16 unk0;
-        u16 flag;
-        s32 unk4;
-        u16 unk8;
-        s16 event;
-        u16 unkC;
-        u16 door;
-        u16 unk10;
-        u16 doorFlag;
-    };
-    struct DoorEntry *entry;
-    extern u8 D_80800B28_chdinoswitches[];
+    struct SwitchEntry *entry;
+    extern struct SwitchEntry D_80800B20_chdinoswitches[12];
     s32 index;
 
-    entry = (struct DoorEntry *)(D_80800B28_chdinoswitches - 8);
+    entry = D_80800B20_chdinoswitches;
     index = func_80800108_chdinoswitches(arg0);
     arg0->actorData[0] = index;
     entry += index;
@@ -366,18 +363,20 @@ void func_808008F0_chdinoswitches(Actor *arg0) {
 
 void func_80800A48_chdinoswitches(void *arg0) {
     s32 func_80103140(Actor *actor,u32 id,u16 palette);
-    extern u8 D_80800B2C_chdinoswitches[];
+    extern struct SwitchEntry D_80800B20_chdinoswitches[12];
     s32 index = *(s32 *)((u8 *)arg0 + 0x18);
 
-    func_80103140(arg0, *(u16 *)(D_80800B2C_chdinoswitches + index * 0x14),
-                  *(u16 *)((u8 *)*(void **)arg0 + 0x16));
+    func_80103140(
+        arg0,
+        D_80800B20_chdinoswitches[index].doorModel,
+        *(u16 *)((u8 *)*(void **)arg0 + 0x16)
+    );
 }
 
 s32 func_80800A88_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _chdoor_entrypoint_1(BtIntPtr, s32, BtIntPtr);
     void _glcutDll_entrypoint_17(void);
     s32 _glcutDll_entrypoint_19(s32);
-
     switch (arg1) {
         case 0xB:
             if (arg0->actorData[0] == 4 && arg2 == 0x23 && _glcutDll_entrypoint_19(0x37) != 0) {
@@ -390,3 +389,4 @@ s32 func_80800A88_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
             return _chdoor_entrypoint_1((BtIntPtr)arg0, arg1, arg2);
     }
 }
+#include "switches_data.inc"

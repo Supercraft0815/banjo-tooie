@@ -1,4 +1,4 @@
-#include "common.h"
+#include "mapDll_config.h"
 
 #if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 #include "native_map.h"
@@ -8,7 +8,7 @@
 #include "native_zones.h"
 #include "native_texture.h"
 #include "native_vector_table.h"
-#include "native_map_data.inc"
+
 #include "core2/1EAF950.h"
 #include "memory.h"
 
@@ -38,13 +38,13 @@ void gcmapDll_entrypoint_1(NativeMap *map) {
         if(light) {
             _dblight_entrypoint_0(light,layer->vertices[0],color);
             _dblight_entrypoint_1(light,layer->vertices[0],func_800B27A0(layer->model));
-            layer->light=_rtlight_entrypoint_1(light,layer->vertices[0],func_800B27A0(layer->model));
+            layer->light=_rtlight_entrypoint_1(light,layer->vertices[0],(BtIntPtr)func_800B27A0(layer->model));
         } else layer->light=NULL;
     }
     for(int i=0;i<2;++i) {
         NativeMapLayer *layer=&map->layers[i];
         layer->vpl=layer->model && func_800A946C()<3 ? func_800B2868(layer->model) : NULL;
-        layer->module=layer->vpl ? _vpmodule_entrypoint_0(layer->vpl,layer->vertices[0],color) : NULL;
+        layer->module=layer->vpl ? _vpmodule_entrypoint_0(layer->vpl,(BtIntPtr)layer->vertices[0],(BtIntPtr)color) : NULL;
     }
     for(int i=0;i<2;++i) {
         NativeMapLayer *layer=&map->layers[i];
@@ -191,24 +191,24 @@ failed:
     return 0;
 }
 #else
-s16 *func_80800000_gcmapDll(s32 arg0) {
-    extern s16 D_80800F10_gcmapDll[];
-    s16 *p = D_80800F10_gcmapDll;
-    while (*p != 0) {
-        if (arg0 == *p) return p;
-        p += 7;
+MapConfig *func_80800000_gcmapDll(s32 arg0) {
+    extern MapConfig D_80800F10_gcmapDll[];
+    MapConfig *p = D_80800F10_gcmapDll;
+    while (p->id != 0) {
+        if (arg0 == p->id) return p;
+        p++;
     }
     return NULL;
 }
 
 s32 gcmapDll_entrypoint_0(s32 arg0) {
-    extern s16 D_80800F10_gcmapDll[];
-    s16 *p = D_80800F10_gcmapDll;
-    if (*p != 0) {
+    extern MapConfig D_80800F10_gcmapDll[];
+    MapConfig *p = D_80800F10_gcmapDll;
+    if (p->id != 0) {
     do {
-        if (arg0 == *p) return 1;
-        p += 7;
-    } while (*p != 0);
+        if (arg0 == p->id) return 1;
+        p++;
+    } while (p->id != 0);
     }
     return 0;
 }
@@ -395,18 +395,18 @@ void func_808005A8_gcmapDll(u8 *arg0) {
 
 /* extern */
 
-void func_80800668_gcmapDll(s32 arg0, u8 *arg1, s32 arg2) {
+void func_80800668_gcmapDll(s32 arg0, s16 (*arg1)[2], s32 arg2) {
     s32 func_800BF744(s16, s16);
     s32 var_s1;
-    u8 *var_s0;
+    s16 (*var_s0)[2];
 
     var_s1 = 0;
     if (arg2 > 0) {
         var_s0 = arg1;
         do {
-            func_800BF744((*(s16 *)((s8 *)(var_s0) + (0))), (*(s16 *)((s8 *)(var_s0) + (2))));
+            func_800BF744((*var_s0)[0], (*var_s0)[1]);
             var_s1 += 1;
-            var_s0 += 4;
+            var_s0++;
         } while (var_s1 != arg2);
     }
 }
@@ -414,13 +414,13 @@ void func_80800668_gcmapDll(s32 arg0, u8 *arg1, s32 arg2) {
 void gcmapDll_entrypoint_2(s32 arg0) {
     s32 func_800DA298(s32);
     s32 func_800EA05C();
-    extern u8 D_80801B98_gcmapDll;
-    extern u8 D_80801BA0_gcmapDll;
-    extern u8 D_80801BA8_gcmapDll;
-    extern u8 D_80801BB0_gcmapDll;
-    extern u8 D_80801BB8_gcmapDll;
-    extern u8 D_80801BC8_gcmapDll;
-    extern u8 D_80801BD8_gcmapDll;
+    extern s16 D_80801B98_gcmapDll[2][2];
+    extern s16 D_80801BA0_gcmapDll[2][2];
+    extern s16 D_80801BA8_gcmapDll[2][2];
+    extern s16 D_80801BB0_gcmapDll[2][2];
+    extern s16 D_80801BB8_gcmapDll[4][2];
+    extern s16 D_80801BC8_gcmapDll[4][2];
+    extern s16 D_80801BD8_gcmapDll[4][2];
     s32 map;
 
     map = func_800EA05C();
@@ -432,12 +432,12 @@ void gcmapDll_entrypoint_2(s32 arg0) {
     case 0xA5:
     case 0xA6:
     case 0x18B:
-        func_80800668_gcmapDll(arg0, &D_80801B98_gcmapDll, 2);
+        func_80800668_gcmapDll(arg0, D_80801B98_gcmapDll, 2);
         break;
     case 0xA7:
     case 0xAF:
     case 0x193:
-        func_80800668_gcmapDll(arg0, &D_80801BA0_gcmapDll, 2);
+        func_80800668_gcmapDll(arg0, D_80801BA0_gcmapDll, 2);
         break;
     case 0xB7:
     case 0xD9:
@@ -448,27 +448,27 @@ void gcmapDll_entrypoint_2(s32 arg0) {
     case 0x171:
     case 0x172:
     case 0x176:
-        func_80800668_gcmapDll(arg0, &D_80801BB0_gcmapDll, 2);
+        func_80800668_gcmapDll(arg0, D_80801BB0_gcmapDll, 2);
         break;
     case 0x134:
-        func_80800668_gcmapDll(arg0, &D_80801BA8_gcmapDll, 2);
+        func_80800668_gcmapDll(arg0, D_80801BA8_gcmapDll, 2);
         break;
     case 0x160:
         if (func_800DA298(0x360)) {
-            func_80800668_gcmapDll(arg0, &D_80801BC8_gcmapDll, 4);
+            func_80800668_gcmapDll(arg0, D_80801BC8_gcmapDll, 4);
         } else {
-            func_80800668_gcmapDll(arg0, &D_80801BB8_gcmapDll, 4);
+            func_80800668_gcmapDll(arg0, D_80801BB8_gcmapDll, 4);
         }
         break;
     case 0x18C:
-        func_80800668_gcmapDll(arg0, &D_80801BB8_gcmapDll, 4);
+        func_80800668_gcmapDll(arg0, D_80801BB8_gcmapDll, 4);
         break;
     case 0x18D:
-        func_80800668_gcmapDll(arg0, &D_80801BD8_gcmapDll, 4);
+        func_80800668_gcmapDll(arg0, D_80801BD8_gcmapDll, 4);
         break;
     case 0x194:
     case 0x195:
-        func_80800668_gcmapDll(arg0, &D_80801BC8_gcmapDll, 4);
+        func_80800668_gcmapDll(arg0, D_80801BC8_gcmapDll, 4);
         break;
     }
 }
@@ -668,19 +668,19 @@ void gcmapDll_entrypoint_6(void *arg0, s32 arg1) {
     s32 func_800B27FC(s32);
     s32 func_800D5B24();
     s32 func_800D674C(u32);
-    s16 *func_80800000_gcmapDll(s32);
-    void *sp1C;
-    void *temp_v0;
-
+    MapConfig *func_80800000_gcmapDll(s32);
+    MapConfig *sp1C;
+    MapConfig *temp_v0;
     temp_v0 = func_80800000_gcmapDll(arg1);
     sp1C = temp_v0;
-    if ((*(u16 *)((s8 *)(temp_v0) + (2))) != 0) {
+    if (temp_v0->assets[0] != 0) {
         func_800D5B24();
-        (*(s32 *)((s8 *)(arg0) + (0x24))) = _dbtex_entrypoint_0(func_800B27FC(func_800D674C((*(u16 *)((s8 *)(sp1C) + (2))))));
+        (*(s32 *)((s8 *)(arg0) + (0x24))) = _dbtex_entrypoint_0(func_800B27FC(func_800D674C(sp1C->assets[0])));
     }
-    if ((*(u16 *)((s8 *)(sp1C) + (4))) != 0) {
+    if (sp1C->assets[1] != 0) {
         func_800D5B24();
-        (*(s32 *)((s8 *)(arg0) + (0x50))) = _dbtex_entrypoint_0(func_800B27FC(func_800D674C((*(u16 *)((s8 *)(sp1C) + (4))))));
+        (*(s32 *)((s8 *)(arg0) + (0x50))) = _dbtex_entrypoint_0(func_800B27FC(func_800D674C(sp1C->assets[1])));
     }
 }
 #endif
+#include "mapDll_data.inc"

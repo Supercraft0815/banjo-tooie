@@ -2,12 +2,8 @@
 #define BT_NATIVE_MAP_H
 #include "native_model.h"
 
-typedef struct {
-    s16 id;
-    u16 assets[2];
-    s8 padding[6];
-    u8 clone[2];
-} NativeMapConfig;
+#include "overlays/gc/mapDll_config.h"
+typedef MapConfig NativeMapConfig;
 _Static_assert(sizeof(NativeMapConfig)==14,"map configuration layout");
 typedef struct {
     void *collision,*instances,*light,*model;

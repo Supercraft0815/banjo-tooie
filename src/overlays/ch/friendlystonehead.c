@@ -1,4 +1,4 @@
-#include "common.h"
+#include "su/baddiedialog_descriptor.h"
 
 void func_80102424(Actor *, s32);
 
@@ -8,15 +8,15 @@ void func_80800000_chfriendlystonehead(BtIntPtr arg0)
 }
 
 void func_80800020_chfriendlystonehead(Actor *arg0) {
-    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, void *, f32);
     s32 func_80101DDC(Actor *);
     void func_8010C820(BtIntPtr, s32, s32);
     void func_80800238_chfriendlystonehead(Actor *);
     void func_80800284_chfriendlystonehead(Actor *);
     void func_808002BC_chfriendlystonehead(void *);
     s32 func_80800540_chfriendlystonehead(Actor *);
-    extern u32 D_80800950_chfriendlystonehead;
-    extern u32 D_8080095C_chfriendlystonehead;
+    extern s16 D_80800950_chfriendlystonehead[6];
+    extern s16 D_8080095C_chfriendlystonehead[6];
 
     func_8010C820(arg0, 0xA0, 0x50);
     switch (arg0->unk70_10) {
@@ -24,7 +24,7 @@ void func_80800020_chfriendlystonehead(Actor *arg0) {
         func_80800238_chfriendlystonehead(arg0);
         break;
     case 2:
-        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80800950_chfriendlystonehead, 0.2f);
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80800950_chfriendlystonehead, 0.2f);
         func_80800284_chfriendlystonehead(arg0);
         func_808002BC_chfriendlystonehead(arg0);
         if (func_80101DDC(arg0)) {
@@ -40,7 +40,7 @@ void func_80800020_chfriendlystonehead(Actor *arg0) {
         func_808002BC_chfriendlystonehead(arg0);
         break;
     case 5:
-        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_8080095C_chfriendlystonehead, 0.15f);
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_8080095C_chfriendlystonehead, 0.15f);
         func_80800238_chfriendlystonehead(arg0);
         if (func_80101DDC(arg0)) {
             func_80102424(arg0, 1);
@@ -65,7 +65,7 @@ void func_80800160_chfriendlystonehead(void **arg0, BtIntPtr arg1) {
 s32 func_808001A8_chfriendlystonehead(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
     void func_808006C4_chfriendlystonehead(Actor *, s32, s32);
-    extern s32 D_80800968_chfriendlystonehead;
+    extern f32 D_80800968_chfriendlystonehead[4];
 
     switch (arg1) {
     case 0x2E:
@@ -75,7 +75,7 @@ s32 func_808001A8_chfriendlystonehead(Actor *arg0, s32 arg1, s32 arg2) {
         func_808006C4_chfriendlystonehead(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
         break;
     case 0x52:
-        _gcdialogcamera_entrypoint_3(&D_80800968_chfriendlystonehead, arg0->scale);
+        _gcdialogcamera_entrypoint_3(D_80800968_chfriendlystonehead, arg0->scale);
         break;
     default:
         return 0;
@@ -118,13 +118,13 @@ void func_808002F8_chfriendlystonehead(void) {
 
 void func_80800328_chfriendlystonehead(Actor *arg0) {
     s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
-    s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, s32 *, s32 *, s32);
+    s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, subaddiedialog_UnkStruct2 *, subaddiedialog_UnkStruct1 *, s32);
     s32 func_800D0A9C(u32, u32);
     s32 func_800DA298(s32);
     s32 func_800DA9E4(s32, s32);
     void func_80800830_chfriendlystonehead(Actor *, s16);
-    extern s32 D_808008C0_chfriendlystonehead;
-    extern s32 D_80800978_chfriendlystonehead;
+    extern subaddiedialog_UnkStruct1 D_808008C0_chfriendlystonehead[4];
+    extern subaddiedialog_UnkStruct2 D_80800978_chfriendlystonehead;
     s32 var_v1;
 
     var_v1 = func_800DA298(0x9CB) != 0;
@@ -150,18 +150,18 @@ void func_80800328_chfriendlystonehead(Actor *arg0) {
             func_80800830_chfriendlystonehead(arg0, 0xF1F);
         }
     } else {
-        _subaddiedialog_entrypoint_8(arg0, arg0->position, &D_80800978_chfriendlystonehead, &D_808008C0_chfriendlystonehead, 4);
+        _subaddiedialog_entrypoint_8(arg0, arg0->position, &D_80800978_chfriendlystonehead, D_808008C0_chfriendlystonehead, 4);
     }
 }
 
 void func_80800444_chfriendlystonehead(Actor *arg0) {
-    s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, s32 *, s32 *, s32);
+    s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, subaddiedialog_UnkStruct2 *, subaddiedialog_UnkStruct1 *, s32);
     s32 func_800D0A9C(u32, u32);
     s32 func_800DA298(s32);
     s32 func_800DA9E4(s32, s32);
     void func_80800830_chfriendlystonehead(Actor *, s16);
-    extern s32 D_808008E0_chfriendlystonehead;
-    extern s32 D_80800988_chfriendlystonehead;
+    extern subaddiedialog_UnkStruct1 D_808008E0_chfriendlystonehead[5];
+    extern subaddiedialog_UnkStruct2 D_80800988_chfriendlystonehead;
     s32 var_v1;
 
     var_v1 = func_800DA298(0xA17) != 0;
@@ -185,7 +185,7 @@ void func_80800444_chfriendlystonehead(Actor *arg0) {
             func_80800830_chfriendlystonehead(arg0, 0x127D);
         }
     } else {
-        _subaddiedialog_entrypoint_8(arg0, arg0->position, &D_80800988_chfriendlystonehead, &D_808008E0_chfriendlystonehead, 5);
+        _subaddiedialog_entrypoint_8(arg0, arg0->position, &D_80800988_chfriendlystonehead, D_808008E0_chfriendlystonehead, 5);
     }
 }
 
@@ -196,12 +196,12 @@ s32 func_80800540_chfriendlystonehead(Actor *arg0) {
     s32 func_800DA564(s32, s32);
     void func_800DA7A8(s32 startIndex, s32 set, s32 length);
     s32 func_800DC128(s32, s32);
-    s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, s32 *);
+    s32 _subaddiedialog_entrypoint_7(BtIntPtr, BtIntPtr, subaddiedialog_UnkStruct0 *);
     extern u16 D_80800908_chfriendlystonehead[][2];
-    extern s32 D_80800998_chfriendlystonehead;
-    extern u16 D_8080099C_chfriendlystonehead;
-    extern u16 D_8080099E_chfriendlystonehead;
-    extern u16 D_808009A4_chfriendlystonehead;
+    extern subaddiedialog_UnkStruct0 D_80800998_chfriendlystonehead;
+    BT_IDO_ONLY(extern u16 D_8080099C_chfriendlystonehead;)
+    BT_IDO_ONLY(extern u16 D_8080099E_chfriendlystonehead;)
+    BT_IDO_ONLY(extern u16 D_808009A4_chfriendlystonehead;)
     u16 text;
     u16 secondary;
     s32 index;
@@ -228,9 +228,9 @@ s32 func_80800540_chfriendlystonehead(Actor *arg0) {
         }
         text += func_800DA564(0x32B, 2) - 1;
     }
-    D_8080099C_chfriendlystonehead = text;
-    D_808009A4_chfriendlystonehead = secondary;
-    D_8080099E_chfriendlystonehead = text;
+    BT_DATA_FIELD(D_80800998_chfriendlystonehead.unk4, D_8080099C_chfriendlystonehead) = text;
+    BT_DATA_FIELD(D_80800998_chfriendlystonehead.unkC, D_808009A4_chfriendlystonehead) = secondary;
+    BT_DATA_FIELD(D_80800998_chfriendlystonehead.unk6, D_8080099E_chfriendlystonehead) = text;
     return _subaddiedialog_entrypoint_7((BtIntPtr)arg0, (BtIntPtr)arg0->position, &D_80800998_chfriendlystonehead);
 }
 
@@ -297,7 +297,7 @@ void func_80800830_chfriendlystonehead(Actor *arg0, s16 arg1) {
 
 OSThread *chfriendlystonehead_entrypoint_0(void)
 {
-    extern u8 D_808009B4_chfriendlystonehead[];
-
+    extern ActorData D_808009B4_chfriendlystonehead[];
     return (OSThread *) D_808009B4_chfriendlystonehead;
 }
+#include "friendlystonehead_data.inc"

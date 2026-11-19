@@ -2,7 +2,10 @@
 s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
 s32 func_800C05B8(s32, s32, f32 *, Unk80132ED0 *, BtIntPtr, s32, s16);
 
-/* extern */
+typedef struct { s16 map; s16 color; } JinjoMapColor;
+BT_IDO_ONLY(extern s16 D_80801302_chjinjo;)
+BT_IDO_ONLY(extern JinjoMapColor D_80801304_chjinjo[];)
+BT_IDO_ONLY(extern s16 D_80801324_chjinjo[6];)
 
 void func_80800000_chjinjo(Actor *arg0) {
     s16 chjinjo_entrypoint_2(s32);
@@ -38,8 +41,9 @@ s32 func_808000DC_chjinjo(Actor *arg0) {
 }
 
 s32 chjinjo_entrypoint_0(s32 arg0) {
-    extern s16 D_80801368_chjinjo[];
-    return ((s16 *)&D_80801368_chjinjo)[arg0];
+    extern s16 D_80801368_chjinjo[10];
+
+    return D_80801368_chjinjo[arg0];
 }
 
 /* extern */
@@ -61,68 +65,64 @@ void func_80800120_chjinjo(Actor *arg0) {
 void chjinjo_entrypoint_1(s32 arg0, s32 arg1) {
     void func_800D0C78(u32 arg0, u32 arg1, u32 arg2);
     func_800D0C78(arg0 + 0x51, 1, arg1);
-}    typedef struct { s16 unk0; s16 unk2; s16 unk4; s16 unk6; s16 unk8; s16 unkA; s16 unkC; s16 unkE; } Objjinjo_chjinjo_entrypoint_2_var_v1; /* offsets.py genstruct: fields from raw offsets on var_v1; rename once understood */
+}
 
 s16 chjinjo_entrypoint_2(s32 arg0) {
     s32 func_800EA05C();
-    extern s16 D_80801300_chjinjo;
-    extern s16 D_80801302_chjinjo;
-    extern s32 D_80801304_chjinjo;
-    extern s32 D_80801324_chjinjo;
-    s32 *var_v1;
+    extern JinjoMapColor D_80801300_chjinjo[9];
+    JinjoMapColor *var_v1;
     if (arg0 == -1) {
         arg0 = func_800EA05C();
     }
-    var_v1 = &D_80801304_chjinjo;
-    if (arg0 == D_80801300_chjinjo) {
-        return D_80801302_chjinjo;
+    var_v1 = BT_DATA_FIELD(&D_80801300_chjinjo[1], D_80801304_chjinjo);
+    if (arg0 == D_80801300_chjinjo[0].map) {
+        return BT_DATA_FIELD(D_80801300_chjinjo[0].color, D_80801302_chjinjo);
     }
 loop_5:
-    if (arg0 == (((Objjinjo_chjinjo_entrypoint_2_var_v1 *)var_v1)->unk0)) {
-        return (((Objjinjo_chjinjo_entrypoint_2_var_v1 *)var_v1)->unk2);
+    if (arg0 == var_v1[0].map) {
+        return var_v1[0].color;
     }
-    if (arg0 == (((Objjinjo_chjinjo_entrypoint_2_var_v1 *)var_v1)->unk4)) {
-        return (((Objjinjo_chjinjo_entrypoint_2_var_v1 *)var_v1)->unk6);
+    if (arg0 == var_v1[1].map) {
+        return var_v1[1].color;
     }
-    if (arg0 == (((Objjinjo_chjinjo_entrypoint_2_var_v1 *)var_v1)->unk8)) {
-        return (((Objjinjo_chjinjo_entrypoint_2_var_v1 *)var_v1)->unkA);
+    if (arg0 == var_v1[2].map) {
+        return var_v1[2].color;
     }
-    if (arg0 == (((Objjinjo_chjinjo_entrypoint_2_var_v1 *)var_v1)->unkC)) {
-        return (((Objjinjo_chjinjo_entrypoint_2_var_v1 *)var_v1)->unkE);
+    if (arg0 == var_v1[3].map) {
+        return var_v1[3].color;
     }
+
     var_v1 += 4;
-    if (var_v1 == &D_80801324_chjinjo) {
+    if (var_v1 == BT_DATA_FIELD(&D_80801300_chjinjo[9], (JinjoMapColor *)D_80801324_chjinjo)) {
         return -1;
     }
     goto loop_5;
-}    typedef struct { s16 unk0; s16 unk2; s16 unk4; s16 unk6; s16 unk8; s16 unkA; s16 unkC; s16 unkE; } Objjinjo_chjinjo_entrypoint_3_var_v1; /* offsets.py genstruct: fields from raw offsets on var_v1; rename once understood */
+}
 
 s16 chjinjo_entrypoint_3(s32 arg0) {
-    extern s16 D_80801300_chjinjo;
-    extern s16 D_80801302_chjinjo;
-    extern s32 D_80801304_chjinjo;
-    extern s32 D_80801324_chjinjo;
-    s32 *var_v1;
+    extern JinjoMapColor D_80801300_chjinjo[9];
+    JinjoMapColor *var_v1;
 
-    var_v1 = &D_80801304_chjinjo;
-    if (arg0 == D_80801302_chjinjo) {
-        return D_80801300_chjinjo;
+    var_v1 = BT_DATA_FIELD(&D_80801300_chjinjo[1], D_80801304_chjinjo);
+    if (arg0 == BT_DATA_FIELD(D_80801300_chjinjo[0].color, D_80801302_chjinjo)) {
+        return D_80801300_chjinjo[0].map;
     }
 loop_3:
-    if (arg0 == (((Objjinjo_chjinjo_entrypoint_3_var_v1 *)var_v1)->unk2)) {
-        return (((Objjinjo_chjinjo_entrypoint_3_var_v1 *)var_v1)->unk0);
+    if (arg0 == var_v1[0].color) {
+        return var_v1[0].map;
     }
-    if (arg0 == (((Objjinjo_chjinjo_entrypoint_3_var_v1 *)var_v1)->unk6)) {
-        return (((Objjinjo_chjinjo_entrypoint_3_var_v1 *)var_v1)->unk4);
+    if (arg0 == var_v1[1].color) {
+        return var_v1[1].map;
     }
-    if (arg0 == (((Objjinjo_chjinjo_entrypoint_3_var_v1 *)var_v1)->unkA)) {
-        return (((Objjinjo_chjinjo_entrypoint_3_var_v1 *)var_v1)->unk8);
+    if (arg0 == var_v1[2].color) {
+        return var_v1[2].map;
     }
-    if (arg0 == (((Objjinjo_chjinjo_entrypoint_3_var_v1 *)var_v1)->unkE)) {
-        return (((Objjinjo_chjinjo_entrypoint_3_var_v1 *)var_v1)->unkC);
+    if (arg0 == var_v1[3].color) {
+        return var_v1[3].map;
     }
+
     var_v1 += 4;
-    if (var_v1 == &D_80801324_chjinjo) {
+    if (var_v1 == BT_DATA_FIELD(&D_80801300_chjinjo[9], (JinjoMapColor *)D_80801324_chjinjo)) {
         return -1;
     }
     goto loop_3;
@@ -180,7 +180,7 @@ void func_808002E0_chjinjo(Actor *arg0) {
     void func_80800F14_chjinjo(Actor *);
     void func_80800F80_chjinjo(Actor *);
     s32 func_8080102C_chjinjo(Actor *, s32);
-    extern u32 D_8080137C_chjinjo;
+    extern s16 D_8080137C_chjinjo[10];
     f32 sp74[3];
     f32 sp68[3];
     f32 sp64;
@@ -283,7 +283,7 @@ void func_808002E0_chjinjo(Actor *arg0) {
                     }
                 }
                 if (func_80101E14(arg0, 0.1f)) {
-                    _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_8080137C_chjinjo);
+                    _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, D_8080137C_chjinjo);
                     arg0->actorData[5] = 1;
                     func_800FC63C(0x1C, 0x7FFF);
                     func_800FCA90(0x1C);
@@ -381,7 +381,7 @@ s32 func_80800C10_chjinjo(Actor *arg0, s32 arg1, void *volatile arg2) {
     void func_8010A570(Actor *);
     s32 func_8010A6B0(Actor *, s32);
     u32 func_80801098_chjinjo(Actor *, s32);
-    extern s32 D_80801324_chjinjo;
+    extern s16 D_80801324_chjinjo[6];
     extern void _chjinjo_entrypoint_4(s32, s32, s32);
     JinjoEvent *sp44;
     s32 sp40;
@@ -400,7 +400,7 @@ s32 func_80800C10_chjinjo(Actor *arg0, s32 arg1, void *volatile arg2) {
         if ((s32)arg0->unk70_10 < 5) {
             if (func_8010A6B0(arg0, sp44->unk18_5)) {
                 sp40 = func_800D0CC8(arg0->unk6C_0);
-                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80801324_chjinjo);
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80801324_chjinjo);
                 func_80102424(arg0, 6);
                 _subaddieDll_entrypoint_4(arg0, 1);
                 func_8010A570(arg0);
@@ -442,28 +442,28 @@ s32 func_80800C10_chjinjo(Actor *arg0, s32 arg1, void *volatile arg2) {
 }
 
 void func_80800EE4_chjinjo(Actor *arg0) {
-    extern u32 D_80801358_chjinjo;
-    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80801358_chjinjo, 0.6f);
+    extern s16 D_80801358_chjinjo[8];
+    _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80801358_chjinjo, 0.6f);
 }
 
 void func_80800F14_chjinjo(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     s32 func_80101E14(Actor *, f32);
-    extern s32 D_8080133C_chjinjo;
-    extern s32 D_80801348_chjinjo;
+    extern s16 D_8080133C_chjinjo[6];
+    extern s16 D_80801348_chjinjo[8];
     if (func_80101E14(arg0, 0.2f) != 0) {
         if (arg0->unk6C_9 == 0x48F) {
-            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80801348_chjinjo);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80801348_chjinjo);
             return;
         }
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_8080133C_chjinjo);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_8080133C_chjinjo);
     }
 }
 
 void func_80800F80_chjinjo(Actor *arg0) {
-    extern u32 D_80801330_chjinjo;
+    extern s16 D_80801330_chjinjo[6];
     if (arg0->unk6C_9 != 0x48F) {
-        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80801330_chjinjo, 0.2f);
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80801330_chjinjo, 0.2f);
     }
 }
 
@@ -516,14 +516,14 @@ u32 func_80801098_chjinjo(Actor *arg0, s32 arg1) {
 
 OSThread *chjinjo_entrypoint_5(void)
 {
-    extern u8 D_808013A4_chjinjo[];
+    extern ActorData D_808013A4_chjinjo[1];
 
     return (OSThread *) D_808013A4_chjinjo;
 }
 
 OSThread *chjinjo_entrypoint_6(void)
 {
-    extern u8 D_808013EC_chjinjo[];
-
+    extern ActorData D_808013EC_chjinjo[1];
     return (OSThread *) D_808013EC_chjinjo;
 }
+#include "jinjo_data.inc"
