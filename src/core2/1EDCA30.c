@@ -304,10 +304,17 @@ void func_80103930(void *arg0)
 /* extern */
 
 void func_80103938(void *arg0) {
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    void func_80104504(void *);
+    if ((*(s16 *)((s8 *)(arg0) + (0x8E))) != 0) {
+        func_80104504(arg0);
+    }
+#else
     void func_80104504();
     if ((*(s16 *)((s8 *)(arg0) + (0x8E))) != 0) {
         func_80104504();
     }
+#endif
 }
 
 /* extern */

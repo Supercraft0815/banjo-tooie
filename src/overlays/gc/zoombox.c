@@ -284,7 +284,12 @@ int gczoombox_entrypoint_1(BtIntPtr bt_a0)
 int gczoombox_entrypoint_1()
 #endif
 {
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    s32 func_800E7188(u8 *);
+    return func_800E7188((u8 *)bt_a0);
+#else
     BT_NATIVE_ONLY(return) func_800E7188();
+#endif
 }
 
 s32 func_808006B4_gczoombox(void *arg0, s32 arg1) {

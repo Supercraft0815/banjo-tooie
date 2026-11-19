@@ -268,8 +268,13 @@ s32 func_800E7188(u8 *arg0) {
 /* extern */
 
 BtIntPtr func_800E71B8(BtIntPtr arg0) {
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    s32 _gldialog_entrypoint_1(const u8 *);
+    if (_gldialog_entrypoint_1((const u8 *)arg0) != 0) {
+#else
     s32 _gldialog_entrypoint_1();
     if (_gldialog_entrypoint_1() != 0) {
+#endif
         return arg0 += 2;
     }
     return arg0;

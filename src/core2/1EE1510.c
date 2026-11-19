@@ -637,8 +637,8 @@ void func_80108B44(uintptr_t arg0, uintptr_t arg1, uintptr_t arg2) {
 #else
 void func_80108B44(u8 *arg0, s32 arg1, s32 arg2) {
     s32 func_8010114C(s32, s32, s32);
-    s32 func_801069A4();
-    if ((arg2 == ((u32) (((Obj1EE1510_arg0 *)arg0)->unk12) >> 1)) && (func_801069A4() != 0)) {
+    BT_IDO_ONLY(s32 func_801069A4();) BT_NATIVE_ONLY(s32 func_801069A4(Unk80132ED0 *);)
+    if ((arg2 == ((u32) (((Obj1EE1510_arg0 *)arg0)->unk12) >> 1)) && (func_801069A4(BT_NATIVE_ONLY((Unk80132ED0 *)arg0)) != 0)) {
         func_8010114C((s32) arg0, 0x3D, arg1);
     }
 }
@@ -657,8 +657,8 @@ void func_80108B8C(uintptr_t arg0, uintptr_t arg1, uintptr_t arg2) {
 #else
 void func_80108B8C(u8 *arg0, s32 arg1, s32 arg2) {
     s32 func_8010114C(s32, s32, s32);
-    s32 func_801069A4();
-    if ((arg2 == ((u32) (((Obj1EE1510_arg0 *)arg0)->unk12) >> 1)) && (func_801069A4() != 0)) {
+    BT_IDO_ONLY(s32 func_801069A4();) BT_NATIVE_ONLY(s32 func_801069A4(Unk80132ED0 *);)
+    if ((arg2 == ((u32) (((Obj1EE1510_arg0 *)arg0)->unk12) >> 1)) && (func_801069A4(BT_NATIVE_ONLY((Unk80132ED0 *)arg0)) != 0)) {
         func_8010114C((s32) arg0, 0x59, arg1);
     }
 }

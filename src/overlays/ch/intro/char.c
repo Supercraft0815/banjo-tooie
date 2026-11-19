@@ -1385,14 +1385,14 @@ void func_80804054_chintrochar(Actor *actor, s32 index, f32 orientation, f32 *of
 
 void func_80804238_chintrochar(s32 *arg0) {
     void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
-    BtIntPtr func_801065A4();
+    BtIntPtr func_801065A4(BT_ILP32_ONLY(void *));
 #ifdef BT_NATIVE
     void chintrochar_entrypoint_1(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4);
 #else
     s32 _chintrochar_entrypoint_1();
 #endif
     BtIntPtr sp1C;
-    sp1C = func_801065A4();
+    sp1C = func_801065A4(BT_ILP32_ONLY(arg0));
     if (sp1C != 0) {
         _glid_entrypoint_0(sp1C, 1, (s32 *)_chintrochar_entrypoint_1, *arg0);
         _glid_entrypoint_0(sp1C, 2, (s32 *)_chintrochar_entrypoint_1, *arg0);

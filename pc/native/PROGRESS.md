@@ -3411,3 +3411,20 @@ bestehen. Original-IDO bestätigt alle 16.401 Funktionen und beide
 vollständigen ROMs. Fünf Gastfunktionen ändern ihre IR. Alle 9.706
 Laufzeit-Fixups behalten ihre Zieladressen. Belege unter
 `build/acceptance/n1-2026-11-18/current-asset-decoder*`.
+
+### 2026-11-19 – Dialogargumente und Messung der Fremdsymbolzugriffe (N1/N2)
+
+Zehn Module übergeben die Argumente für Dialoge, ZoomBoxen, Frontend,
+Introfiguren und die zugehörigen Spieler-, Licht- und Audiopfade direkt.
+Mit FixCalls ist die normalisierte IR für jede Gastfunktion identisch.
+Alle 9.706 Laufzeit-Fixups behalten ihre Zieladresse. Alle 74 Replays mit
+447.849 Retraces, elf Gastsuiten und 67 Sanitizertests bestehen. Der
+Original-IDO-Build bestätigt 16.401 Funktionen und beide vollständigen
+ROMs. Die Prüfung ohne FixCalls bleibt offen. Belege unter
+`build/acceptance/n1-2026-11-18/current-dialog-forwarded*`.
+
+Die separate Instrumentierung des Spline-Stands prüfte 6.415 Stellen
+über alle 74 Replays. Sie fand 133 Fremdzugriffe in 55 Funktionen und
+23 Gruppen. Beim Kartenspeicher-Stand waren es 257 in 77 Funktionen
+und 32 Gruppen. Die einzelnen Adressen und auslösenden Replays stehen
+unter `current-spline-storage-source/build/ilp32-xsym/xsym_report.tsv`.

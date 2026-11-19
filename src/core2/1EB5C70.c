@@ -39,7 +39,11 @@ void func_800DC4B0(s32 arg0,s32 arg1)
     func_80020C08(arg0,0x4,arg1);
 }
 
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+void func_800DC4D4(s32 arg0) { s32 func_80020760(void *); if (arg0 != 0) { if (func_80020760((void *)(BtIntPtr)arg0) != 0) func_80020A60(arg0); } }
+#else
 void func_800DC4D4(s32 arg0) { if (arg0 != 0) { if (func_80020760() != 0) func_80020A60(arg0); } }
+#endif
 
 void func_800DC508(BT_NATIVE_ONLY(s32 bt_a0))
 {

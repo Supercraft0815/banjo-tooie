@@ -468,3 +468,9 @@ Five guest functions change how they index the four independent decoder
 records and read their size headers. All 9,706 fixup locations, both complete
 ROM images and all 74 replay traces match. See
 n1-2026-11-18/current-asset-decoder-ir.log and current-asset-decoder-full.log.
+
+2026-11-19  Dialog and scene argument forwarding
+The ten revised source units produce identical normalized guest IR with
+FixCalls. All 9,706 fixup slots retain their addresses. Both complete
+ROM images and all 74 regular replays match. See
+n1-2026-11-18/current-dialog-forwarded-ir-status.txt and current-dialog-forwarded-full.log.

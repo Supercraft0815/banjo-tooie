@@ -1,19 +1,24 @@
 #include "common.h"
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+#define CHANIM_MARKER(arg) arg
+#else
+#define CHANIM_MARKER(arg)
+#endif
 
 /* extern */
 
 void chanim_entrypoint_0(s32 arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
-    Actor *func_80106790();
-    (*(s32 *)((s8 *)(((s8 *)func_80100094(func_80106790(), 0) + (arg1 * 4))) + (4))) = 0;
+    Actor *func_80106790(CHANIM_MARKER(void *));
+    (*(s32 *)((s8 *)(((s8 *)func_80100094(func_80106790(CHANIM_MARKER((void *)(BtIntPtr)arg0)), 0) + (arg1 * 4))) + (4))) = 0;
 }
 
 /* extern */
 
 void chanim_entrypoint_1(BtIntPtr arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
-    Actor *func_80106790();
-    (*(s32 *)((s8 *)(((s8 *)func_80100094(func_80106790(), 0) + (arg1 * 4))) + (4))) = arg2;
+    Actor *func_80106790(CHANIM_MARKER(void *));
+    (*(s32 *)((s8 *)(((s8 *)func_80100094(func_80106790(CHANIM_MARKER((void *)(BtIntPtr)arg0)), 0) + (arg1 * 4))) + (4))) = arg2;
 }
 
 /* extern */
@@ -21,10 +26,10 @@ void chanim_entrypoint_1(BtIntPtr arg0, s32 arg1, s32 arg2) {
 void chanim_entrypoint_2(s32 arg0, s32 arg1, s32 arg2) {
     s32 func_800DC128(s32, s32);
     void *func_80100094(Actor *, u32);
-    Actor *func_80106790();
+    Actor *func_80106790(CHANIM_MARKER(void *));
     s32 *data[2];
 
-    data[0] = func_80100094(func_80106790(), 0);
+    data[0] = func_80100094(func_80106790(CHANIM_MARKER((void *)(BtIntPtr)arg0)), 0);
     data[0][arg1 + 1] = func_800DC128(0, arg2 + 1);
 }
 

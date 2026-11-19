@@ -127,7 +127,11 @@ void func_808001DC_gcdialogexec(u8 *arg0) {
 /* extern */
 
 s32 func_808002E4_gcdialogexec(volatile u8 *arg0) {
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    s32 _gldialog_entrypoint_1(volatile u8 *);
+#else
     s32 _gldialog_entrypoint_1();
+#endif
     s32 temp_v0;
     volatile s32 sp18 = 0;
     s32 var_a2;
@@ -135,7 +139,11 @@ s32 func_808002E4_gcdialogexec(volatile u8 *arg0) {
     volatile u8 *var_a0;
     s32 var_a1;
 
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    temp_v0 = _gldialog_entrypoint_1(arg0);
+#else
     temp_v0 = _gldialog_entrypoint_1();
+#endif
     var_a2 = sp18;
     var_a0 = arg0;
     if (*arg0 != 0) {
@@ -1159,7 +1167,7 @@ int func_80802020_gcdialogexec(u8 *arg0) {
     } Dialog;
     s32 _gldialog_entrypoint_1();
     BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_14(void *, s16, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_14(BtIntPtr, s32, s32);)
-    void func_800E6DD8(char *, s32, s32, s32);
+    BT_IDO_ONLY(void func_800E6DD8(char *, s32, s32, s32);) BT_NATIVE_ONLY(void func_800E6DD8(char *, s32, u8, s32);)
     s32 pad;
     s32 count;
     u8 buffer[20];

@@ -16,7 +16,12 @@ void func_800F3880(PlayerState *player) {
 #else
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F3880(s32 arg0)
 {
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    void func_80098E64(void *);
+    func_80098E64((void *)(BtIntPtr)arg0);
+#else
     func_80098E64();
+#endif
     heap_free(arg0); BT_NATIVE_ONLY(return 0;)
 }
 #endif

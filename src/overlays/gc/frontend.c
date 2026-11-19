@@ -1,4 +1,9 @@
 #include "common.h"
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+#define GC_FRONTEND_ARG(arg) arg
+#else
+#define GC_FRONTEND_ARG(arg)
+#endif
 #include "core2/1EB3750.h"
 
 typedef struct { u16 opcode; s16 value; } GCFrontendCommand;
@@ -82,10 +87,10 @@ int gcfrontend_entrypoint_2(void) {
 }
 
 s32 gcfrontend_entrypoint_3(s32 arg0) {
-    s32 func_80800450_gcfrontend();
+    s32 func_80800450_gcfrontend(GC_FRONTEND_ARG(s32));
     GCFrontendRange *temp_v1;
 
-    temp_v1 = &D_80800D80_gcfrontend[func_80800450_gcfrontend()];
+    temp_v1 = &D_80800D80_gcfrontend[func_80800450_gcfrontend(GC_FRONTEND_ARG(arg0))];
     return func_800DA298((temp_v1->firstFlag + arg0) - temp_v1->start);
 }
 
@@ -98,10 +103,10 @@ u8 gcfrontend_entrypoint_5(s32 arg0) {
 }
 
 u8 gcfrontend_entrypoint_6(s32 arg0) {
-    s32 func_80800450_gcfrontend();
+    s32 func_80800450_gcfrontend(GC_FRONTEND_ARG(s32));
     GCFrontendRange *temp_v1;
 
-    temp_v1 = &D_80800D80_gcfrontend[func_80800450_gcfrontend()];
+    temp_v1 = &D_80800D80_gcfrontend[func_80800450_gcfrontend(GC_FRONTEND_ARG(arg0))];
     return temp_v1->scenes[arg0 - temp_v1->start].state;
 }
 
@@ -160,10 +165,10 @@ void gcfrontend_entrypoint_8(s32 arg0, s32 arg1) {
 }
 
 void gcfrontend_entrypoint_9(s32 arg0) {
-    s32 func_80800450_gcfrontend();
+    s32 func_80800450_gcfrontend(GC_FRONTEND_ARG(s32));
     GCFrontendRange *temp_v1;
 
-    temp_v1 = &D_80800D80_gcfrontend[func_80800450_gcfrontend()];
+    temp_v1 = &D_80800D80_gcfrontend[func_80800450_gcfrontend(GC_FRONTEND_ARG(arg0))];
     func_800DA544((temp_v1->firstFlag + arg0) - temp_v1->start);
 }
 
@@ -340,12 +345,14 @@ void func_80800738_gcfrontend(void *arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
 } 
 
 s16 gcfrontend_entrypoint_14(s32 arg0) {
-    s32 func_80800450_gcfrontend();
+    s32 func_80800450_gcfrontend(GC_FRONTEND_ARG(s32));
     GCFrontendRange *temp_v1;
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    temp_v1 = &D_80800D80_gcfrontend[func_80800450_gcfrontend(arg0)];
+#elif defined(BT_NATIVE)
     temp_v1 = &D_80800D80_gcfrontend[((s32 (*)())func_80800450_gcfrontend)()];
 #else
-    temp_v1 = &D_80800D80_gcfrontend[func_80800450_gcfrontend()];
+    temp_v1 = &D_80800D80_gcfrontend[func_80800450_gcfrontend(GC_FRONTEND_ARG(arg0))];
 #endif
     return temp_v1->lookup[arg0 - temp_v1->start];
 }
