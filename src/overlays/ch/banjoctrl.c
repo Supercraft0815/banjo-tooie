@@ -339,7 +339,7 @@ s32 func_8080091C_chbanjoctrl(BtIntPtr arg0, BtIntPtr arg1) {
     void func_800F586C(BtIntPtr, f32 *, f32 *);
     int func_800F6720(BtIntPtr);
     int func_800F7700(BtIntPtr, s32, f32 *);
-    s32 func_800F8418();
+    BT_IDO_ONLY(s32 func_800F8418();) BT_NATIVE_ONLY(void func_800F8418(BtIntPtr, f32 *);)
     f32 direction[3];
     f32 minimum[3];
     f32 maximum[3];
@@ -381,7 +381,7 @@ s32 func_8080091C_chbanjoctrl(BtIntPtr arg0, BtIntPtr arg1) {
         }
     }
     if (changed) {
-        func_800F8418(arg1, actor->actorData);
+        func_800F8418(arg1, BT_NATIVE_ONLY((f32 *))actor->actorData);
     }
 BT_NATIVE_ONLY(return 0;) }
 
@@ -436,7 +436,7 @@ void func_80800B18_chbanjoctrl(Actor *arg0) {
     func_800F7814(player, position);
 }
 
-/* extern */ void func_80800D04_chbanjoctrl(u8 *arg0) { BtUIntPtr func_800F54E4(void); s32 func_800F8418(BtIntPtr, u8 *, u8 *); f32 temp_f0; temp_f0 = (((Actor *)arg0)->position[1]); if (temp_f0 < (*(f32 *)((s8 *)(arg0) + (0x1C)))) { (*(f32 *)((s8 *)(arg0) + (0x1C))) = temp_f0; func_800F8418(func_800F54E4(), arg0 + 0x18, arg0); } }
+/* extern */ void func_80800D04_chbanjoctrl(u8 *arg0) { BtUIntPtr func_800F54E4(void); BT_IDO_ONLY(s32 func_800F8418(BtIntPtr, u8 *, u8 *);) BT_NATIVE_ONLY(void func_800F8418(BtIntPtr, f32 *);) f32 temp_f0; temp_f0 = (((Actor *)arg0)->position[1]); if (temp_f0 < (*(f32 *)((s8 *)(arg0) + (0x1C)))) { (*(f32 *)((s8 *)(arg0) + (0x1C))) = temp_f0; BT_IDO_ONLY(func_800F8418(func_800F54E4(), arg0 + 0x18, arg0);) BT_NATIVE_ONLY(func_800F8418(func_800F54E4(), (f32 *)(arg0 + 0x18));) } }
 
 /* extern */
 

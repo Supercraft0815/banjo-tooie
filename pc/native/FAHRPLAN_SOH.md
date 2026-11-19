@@ -470,7 +470,7 @@ bt-safepoints, default<O2>, bt-fixcalls`.
    `port.py worklist protos` (4.217; Reihenfolge float 421, arity 362, ret, size). Wo IDO mit der
    echten Signatur anderen Code erzeugt (`protos_ido_keep.txt`), bleibt die alte Deklaration unter
    `BT_IDO_ONLY` und die richtige unter `BT_NATIVE_ONLY` auf derselben Zeile.
-   Die Spielauswahl gibt die Slotnummer auch im ILP32-Gast an die Originalfunktionen für Speichern und Status weiter. Mit eingeschaltetem FixCalls bleiben kanonische IR und alle 74 Replays identisch.
+   Die Spielauswahl gibt die Slotnummer auch im ILP32-Gast an die Originalfunktionen für Speichern und Status weiter. Mit eingeschaltetem FixCalls bleiben kanonische IR und alle 74 Replays identisch. Die Kamera von Chilli Billi und der Positionsvektor bei Humba erhalten ihre Argumente aus den Originalaufrufern. Im Diagnosebuild ohne FixCalls stimmt der gesamte Chilli-Billi-Fall überein. Bei Humba liegt die erste verbleibende Abweichung bei Retrace 5.084 in den Actorflags.
 3. `bt-stackslots`: den Pass seine Fundstellen ausgeben lassen (wie `widened.txt`), je Stelle die
    Locals nativ zu einem Array machen (Muster: `su/spline.c`, `f32 points[4][3]`). Dazu der
    Fall, den der Pass nicht sieht (Callee liest Nachbar-Locals): Scan nach Gruppen gleichartiger

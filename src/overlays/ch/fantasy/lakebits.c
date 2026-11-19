@@ -32,7 +32,7 @@ void func_8080007C_chfantasylakebits(Actor *arg0) {
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     BtUIntPtr func_800F54E4(void);
-    s32 func_800F8418(BtIntPtr, f32 *);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800F8418(BtIntPtr, f32 *);
     void func_80800300_chfantasylakebits(BtIntPtr, s16);
     extern u32 D_80800920_chfantasylakebits[];
     extern u32 D_80800928_chfantasylakebits[];

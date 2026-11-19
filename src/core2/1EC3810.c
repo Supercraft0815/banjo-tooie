@@ -346,7 +346,7 @@ void func_800EA45C(void) {
 void func_800EA51C(void) {
     BT_IDO_ONLY(s32 func_800D89C8(s16, s32, f32 *, f32 *, f32, s32, BtIntPtr, f32 *, f32 *);)
     BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F5A00(BtIntPtr, f32 *);
-    s32 func_800F8418(BtIntPtr, f32 *);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800F8418(BtIntPtr, f32 *);
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     u8 *func_80103C94(Actor *);
 #endif

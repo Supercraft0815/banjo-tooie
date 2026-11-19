@@ -242,7 +242,7 @@ void func_80800608_chdumbwaiterlift(Actor *arg0, void *arg1, s32 arg2, s32 arg3)
     void _subaddieDll_entrypoint_4(void *, s32);
     void func_800EE7F8(f32 *, f32 *);
     BtUIntPtr func_800F54E4(void);
-    s32 func_800F8418(BtIntPtr, f32 *);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800F8418(BtIntPtr, f32 *);
     void func_800F8444(BtIntPtr, f32 *);
     void func_80101FDC(Actor *, u32);
     s32 func_808008B4_chdumbwaiterlift(void);

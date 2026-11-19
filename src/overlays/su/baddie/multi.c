@@ -127,7 +127,7 @@ void subaddiemulti_entrypoint_6(f32 *arg0, f32 arg1) {
     f32 func_800F1DF4(f32 *, f32 *);
     void func_800F5A00(BtIntPtr, f32 *);
     s32 func_800F6438(BtUIntPtr);
-    s32 func_800F8418(BtIntPtr, f32 *);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800F8418(BtIntPtr, f32 *);
     f32 sqrtf(f32);
     f32 sp50[4];
     f32 height;

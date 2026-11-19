@@ -2868,3 +2868,22 @@ native Sanitizertests bestehen. Der Original-IDO-Vergleich bestätigt
 16.401 Funktionen und beide vollständigen ROMs. Die Einzelbelege liegen
 unter `build/acceptance/n2-2026-11-18/current-timer-status*` sowie in
 `timer-status-mask-proof.json` und `timer-status-mips.txt`.
+
+## 2026-11-19 — N2, Drachenkamera und Spielerposition
+
+Der Kameraaufruf bei Chilli Billi übergibt beide Vektoren. Der vierte
+Spielervektor erhält alle drei Koordinaten aus dem zweiten Argument. Die
+Originalaufrufer verwenden bei beiden Operationen keinen Rückgabewert.
+Ein LP64-Test mit dem echten Positionssetter prüft Adressen oberhalb von
+4 GiB, die Nachbarfelder und die Reihenfolge bei überlappenden Vektoren.
+
+Im regulären Build bestehen elf Gastsuiten, alle 74 Replays mit 447.849
+Retraces sowie 62 native Sanitizertests. Alle 16.401 geprüften Funktionen
+und beide ROM-Abbilder stimmen mit dem Original-IDO-Build überein.
+Im separaten Diagnosebuild ohne FixCalls bestanden auch Chilli Billi,
+Intro sowie die Innenräume von Mayahem Temple und Jolly Roger’s Lagoon.
+Bei vier Humba-Verwandlungen liegt die erste verbleibende Abweichung
+in den Actorflags bei Retrace 5.084. Der zuvor gemessene Positionsfehler
+bei Retrace 4.842 ist behoben. Belege unter
+`build/acceptance/n2-2026-11-18/current-position-camera*`,
+`current-position-host.log` und `oracle-position-camera*.jsonl`.

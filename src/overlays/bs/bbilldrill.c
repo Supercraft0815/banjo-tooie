@@ -131,7 +131,7 @@ void func_808002DC_bsbbilldrill(void *arg0, s32 arg1) {
     f32 func_800962D4(void *);
     void func_80098520(void *, f32);
     void func_8009BA9C(PlayerState *, f32 *);
-    void func_8009C1F8(void *, f32 *);
+    void func_8009C1F8(BT_IDO_ONLY(void *) BT_NATIVE_ONLY(PlayerState *), f32 *);
     s32 func_8009D454(PlayerState *, volatile u8, s32 *);
     void func_8009DE38(PlayerState *, s32, f32);
     void func_8009DF18(PlayerState *, s32, f32, s32);

@@ -93,7 +93,7 @@ void func_80800254_chfantasyonion(u8 *arg0) {
     s32 func_800F5C94(BtIntPtr);
     s32 func_800F79DC(BtIntPtr, s32, BtIntPtr);
     s32 func_800F832C(BtIntPtr, f32 *);
-    s32 func_800F8418(BtIntPtr, f32 *);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800F8418(BtIntPtr, f32 *);
     s32 func_80102BAC(u8 *, s32, s32, s32);
     f32 func_80800000_chfantasyonion(Actor *);
     typedef struct {

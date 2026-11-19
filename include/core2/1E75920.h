@@ -5,6 +5,9 @@
 
 #include "overlays/ba/playerstate.h"
 
+#ifdef BT_NATIVE
+void func_8009C1F8(PlayerState *, f32[3]);
+#endif
 f32 func_8009C150(PlayerState *);
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8009C128(PlayerState *, f32[3]);
 

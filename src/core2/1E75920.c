@@ -72,10 +72,17 @@ void func_8009C1CC(u8 *arg0, BtIntPtr arg1) {
 
 /* extern */
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8009C1F8(BT_IDO_ONLY(void *arg0) BT_PASS2(void *arg0, s32 bt_a1)) {
-    s32 func_800EE7F8(BT_IDO_ONLY(s32) BT_PASS2(s32, s32));
-    BT_NATIVE_ONLY(return) func_800EE7F8(BT_IDO_ONLY((((Obj1E75920_arg0 *)arg0)->unkE4) + 0x24) BT_PASS2((((Obj1E75920_arg0 *)arg0)->unkE4) + 0x24, bt_a1));
+#ifdef BT_NATIVE
+void func_8009C1F8(PlayerState *player, f32 source[3]) {
+    s32 i;
+    for (i = 0; i < 3; i++) player->unkE4[9 + i] = source[i];
 }
+#else
+void func_8009C1F8(void *arg0) {
+    s32 func_800EE7F8(s32);
+    func_800EE7F8((((Obj1E75920_arg0 *)arg0)->unkE4) + 0x24);
+}
+#endif
 
 s32 func_8009C21C(u8 *arg0) {
     s32 func_800EE7F8();

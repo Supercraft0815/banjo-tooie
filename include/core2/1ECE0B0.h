@@ -86,6 +86,9 @@ void func_800F8294(BtIntPtr, f32*);
 void func_800F82C0(s32);
 void func_800F82D4(BtIntPtr, s32);
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F832C(BtIntPtr, f32*);
+#ifdef BT_NATIVE
+void func_800F8418(BtIntPtr player, f32 position[3]);
+#endif
 s32 func_800F8B64(void);
 void func_800F8850();
 void func_800F8DD8();

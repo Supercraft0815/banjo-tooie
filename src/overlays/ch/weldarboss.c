@@ -1866,7 +1866,7 @@ void func_80803080_chweldarboss(Actor *arg0, s32 arg1) {
     void func_800F5D9C(BtIntPtr, f32 *);
     s32 func_800F6478(BtIntPtr);
     s32 func_800F6590(BtIntPtr);
-    s32 func_800F8418(BtIntPtr, f32 *);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800F8418(BtIntPtr, f32 *);
     void *func_80100094(Actor *, u32);
     WeldarData *data;
     f32 sp50[3];

@@ -1,5 +1,8 @@
 #include "core2/1ECE0B0.h"
 #include "core2/1EC3810.h"
+#ifdef BT_NATIVE
+#include "core2/1ECD170.h"
+#endif
 
 extern struct {
     PlayerState *players[8];
@@ -1992,9 +1995,9 @@ void func_800F83E4(BtIntPtr arg0, f32 arg1) {
     baphysics_set_vertical_velocity(D_80135490.players[arg0], arg1);
 }
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F8418(BtIntPtr arg0 BT_PASS2(, f32 *bt_a1))
+void func_800F8418(BtIntPtr arg0 BT_PASS2(, f32 *position))
 {
-    BT_NATIVE_ONLY(return) func_800F4648(D_80135490.players[arg0] BT_PASS2(, bt_a1));
+    func_800F4648(D_80135490.players[arg0] BT_PASS2(, position));
 }
 
 void func_800F8444(BtIntPtr arg0, f32 *arg1) {

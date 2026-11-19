@@ -537,13 +537,14 @@ void func_800F45E0(struct player_state_s *arg0, f32 *arg1) {
     baroll_applyIdeal(arg0);
 }
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F4648(void *arg0, f32 arg1[3]) {
+void func_800F4648(void *arg0, f32 arg1[3]) {
+    BT_NATIVE_ONLY(void func_8009C1F8(struct player_state_s *, f32[3]);)
     f32 sp24[3];
     f32 sp18[3];
 
     func_8009C128(arg0, sp24);
     func_800EFB24(sp18, arg1, sp24);
-    BT_NATIVE_ONLY(return) func_8009C1F8(arg0, sp18);
+    func_8009C1F8(arg0, sp18);
 }
 
 /* extern */

@@ -305,3 +305,11 @@ func_800D9078 forwards to func_800F1574. The MIPS callee returns zero
 or one on every path. Removing the masks of its result with 255 from
 the old IR leaves each of the 13 affected bodies equal to the new IR.
 See n2-2026-11-18/timer-status-mask-proof.json and timer-status-mips.txt.
+
+2026-11-19  N2 dragon camera and player position
+func_808006C8_chdragonbrothers, func_8009C1F8, func_800F4648 and
+func_800F8418 return void. The camera and the setter have no return
+consumer in the original MIPS. The setter copies three floats in order
+to player->unkE4 + 9 from the second argument, as func_800EE7F8 did.
+The LP64 sanitizer probe also checks overlapping input and output.
+See n2-2026-11-18/current-position-camera-ir.log and current-position-host.log.

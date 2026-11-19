@@ -1732,7 +1732,7 @@ void func_80802F00_chdiggerboss(BtIntPtr arg0, s32 arg1) {
     BtUIntPtr func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
     s32 func_800F7F98(BtIntPtr, u32);
-    s32 func_800F8418(BtIntPtr, f32 *);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800F8418(BtIntPtr, f32 *);
     void func_80802878_chdiggerboss(Actor *, s32, s32);
     s32 func_80803BE8_chdiggerboss(BtIntPtr, s32, s32);
     void func_808056B8_chdiggerboss(BtIntPtr);

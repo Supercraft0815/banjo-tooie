@@ -79,7 +79,7 @@ void func_808002A0_gcsectionskip(BtIntPtr arg0, s16 *arg1) {
     void func_800EFB24(void *, void *, void *);
     void func_800F5D70(BtIntPtr, f32 *);
     void func_800F5D9C(BtIntPtr, f32 *);
-    s32 func_800F8418(BtIntPtr, f32 *);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800F8418(BtIntPtr, f32 *);
     void func_8080019C_gcsectionskip(f32 *, f32 *, f32 *, f32, f32);
     f32 sp54[3];
     f32 sp48[3];

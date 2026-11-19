@@ -322,7 +322,7 @@ void func_808008B8_chfactorycrusher(BtIntPtr arg0, f32 arg1) {
 void func_808008F0_chfactorycrusher(Actor *arg0) {
     BtUIntPtr func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32 *);
-    s32 func_800F8418(BtIntPtr, f32 *);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800F8418(BtIntPtr, f32 *);
     f32 lower;
     f32 upper;
     f32 position[3];

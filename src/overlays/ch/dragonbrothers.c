@@ -542,8 +542,9 @@ f32 func_8080063C_chdragonbrothers(Actor *arg0) {
     return sp3C + sp38;
 }
 
-s32 func_808006C8_chdragonbrothers(Actor *arg0) {
-    s32 _ncpod_entrypoint_8(BtIntPtr, BtIntPtr, BtIntPtr);
+BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_808006C8_chdragonbrothers(Actor *arg0) {
+    BT_IDO_ONLY(s32 _ncpod_entrypoint_8(BtIntPtr, BtIntPtr, BtIntPtr);)
+    BT_NATIVE_ONLY(void _ncpod_entrypoint_8(u8 *, f32 *, f32 *);)
     s32 func_80016B30(s32, s32);
     s32 func_80016B54(s32, s32);
     void func_800C3FC0(s32, f32, s32);
@@ -594,9 +595,13 @@ s32 func_808006C8_chdragonbrothers(Actor *arg0) {
         sp44[0] = ((f32 *)data)[10];
         sp44[1] = ((f32 *)data)[16];
         sp44[2] = 0.0f;
-        BT_NATIVE_ONLY(s32 result =) _ncpod_entrypoint_8((BtIntPtr)func_80110024((s16 *)func_800F5EF8(((s32 *)data)[8])), (BtIntPtr)sp50, (BtIntPtr)sp44);
-        ((f32 *)data)[15] = sp5C; BT_NATIVE_ONLY(return result;)
-    } BT_NATIVE_ONLY(else return 0;)
+#ifdef BT_NATIVE
+        _ncpod_entrypoint_8(func_80110024((s16 *)func_800F5EF8(((s32 *)data)[8])), sp50, sp44);
+#else
+        _ncpod_entrypoint_8((BtIntPtr)func_80110024((s16 *)func_800F5EF8(((s32 *)data)[8])), (BtIntPtr)sp50, (BtIntPtr)sp44);
+#endif
+        ((f32 *)data)[15] = sp5C;
+    }
 }
 
 void func_808008C8_chdragonbrothers(Actor *arg0) {
@@ -607,7 +612,7 @@ void func_808008C8_chdragonbrothers(Actor *arg0) {
     s32 func_800F5EF8(BtIntPtr);
     void *func_80100094(Actor *, u32);
     void func_808005A4_chdragonbrothers(void *, s32);
-    s32 func_808006C8_chdragonbrothers(Actor *);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_808006C8_chdragonbrothers(Actor *);
     u8 *temp_s0;
     f32 sp28[3];
 
