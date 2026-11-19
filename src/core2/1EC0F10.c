@@ -135,7 +135,7 @@ void func_800E7988(Gfx** gfx, u32 texture_persp) {
     }
 }
 
-extern Gfx D_80123310[];
+#include "render_setup.inc"
 
 void func_800E79E8(Gfx** gfx) {
     gSPDisplayList((*gfx)++, OS_K0_TO_PHYSICAL(D_80123310));

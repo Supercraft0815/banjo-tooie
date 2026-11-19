@@ -2962,3 +2962,19 @@ der gleichwertige Innenoffset in `func_800D7138`. Elf Gastsuiten,
 74 Referenzen mit 447.849 Retraces und 62 Sanitizertests bestehen.
 16.401 Original-IDO-Funktionen und beide ROM-Abbilder sind bytegleich.
 Die Belege liegen unter `build/acceptance/n1-2026-11-18/current-cache-records*`.
+
+## 2026-11-19 — N1, RSP-Programme, Rendertabellen und Actor-Daten
+
+Der Gast lädt neun RSP-Bereiche mit insgesamt 25.792 Bytes aus der eigenen
+ROM. Die Originalquellen liefern die gemeinsamen Video-, Musik-, Schrift-
+und Dekompressionstabellen sowie die acht Materialbänke mit je 464
+Grafikpaketen. Die Tabelle für Marker-Treffer umfasst alle acht
+Originalplätze. Damit liegen auch die drei reservierten Einträge innerhalb
+des Objekts. Der strenge Scan fällt von 206 auf 111 Einträge, alle in
+`.data`. Die 9.688 beim Start umgewandelten Zeigerwörter liegen weiterhin
+an ihren Originaladressen.
+
+Alle elf Gastsuiten, 74 Replays mit 447.849 Retraces und 62 Sanitizertests
+bestehen. Der Vergleich mit Original-IDO prüft 16.401 Funktionen und
+beide vollständigen ROM-Abbilder. Belege unter
+`build/acceptance/n1-2026-11-18/current-materials-raster*`.

@@ -1,7 +1,7 @@
 #include "threads.h"
 #include "types.h"
 #include "core1/1E2D890.h"
-
+#include "core1/core1_runtime_data.h"
 #ifdef BT_NATIVE
 void func_80014DC4(void);
 u32 __osDisableInt(void);
@@ -9,7 +9,7 @@ void __osRestoreInt(u32);
 #endif
 
 // .data
-extern s32 D_8003F5F0;
+BT_IDO_ONLY(extern s32 D_8003F5F0;)
 
 // .bss
 typedef struct {

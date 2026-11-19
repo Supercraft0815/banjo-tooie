@@ -15,17 +15,17 @@
 #define AH(actor, member, original) (original)
 #define MW(marker, field, member, original) (original)
 #endif
-
+#include "actor_hit_default.inc"
 OSThread *func_80107C20(void)
 {
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
-    void func_80108F08(void *, void *, s32);
-    static void (*D_80124580[8])(void *, void *, s32) = { [3] = func_80108F08 };
-#else
-    extern u8 D_80124580[];
-#endif
 
-    return (OSThread *) D_80124580;
+
+
+
+
+
+
+    return (OSThread *)&D_80124580;
 }
 
 #if defined(BT_NATIVE) && !defined(BT_ILP32)

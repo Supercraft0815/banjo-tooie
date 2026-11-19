@@ -1,5 +1,5 @@
 #include "core2/1EDAEA0.h"
-
+#include "actor_blink.inc"
 
 void* func_800DE448(f32*, f32*, f32, f32*, BtIntPtr);
 void func_800DF47C(s32 (*arg0)(Actor*), Actor*);
@@ -63,7 +63,7 @@ f32 *func_801018D8(Actor *arg0) {
     f32 *func_80101918(f32);
     f32 *var_v1;
 
-    if ((*(u16 *)((s8 *)(arg0) + 0x94)) & 1) {
+    if (BLINK_NATIVE((arg0->pad94 >> 16), *(u16 *)((s8 *)(arg0) + 0x94)) & 1) {
         var_v1 = func_80101918(arg0->scale);
     } else {
         var_v1 = NULL;
@@ -72,7 +72,7 @@ f32 *func_801018D8(Actor *arg0) {
 }
 
 f32 *func_80101918(f32 arg0) {
-    extern f32 D_801243E0[];
+
     D_801243E0[1] = -4.0f / arg0;
     return D_801243E0;
 }
@@ -86,10 +86,10 @@ void func_80101934(Actor *arg0) {
             BT_BITFIELD_ORDER(u32 index : 4, u32 unused : 28);
         } flags;
     };
-    extern void (*D_801243E8[])(Actor *);
 
-    if (((union RenderActor *)arg0)->flags.index != 0) {
-        D_801243E8[((union RenderActor *)arg0)->flags.index](arg0);
+
+    if (BLINK_NATIVE((arg0->flags74 & 15u), ((union RenderActor *)arg0)->flags.index) != 0) {
+        BLINK_CALLBACK(BLINK_NATIVE((arg0->flags74 & 15u), ((union RenderActor *)arg0)->flags.index))(arg0);
     }
 }
 
@@ -135,7 +135,7 @@ int func_80101970(Actor *arg0) {
     } BT_NATIVE_ONLY(return 0;)
 }
 
-void func_80101A50(void *arg0) {
+void func_80101A50(Actor *arg0) {
     f32 func_800DC0C0(void);
     void func_800DF744(s32, s32);
 
@@ -148,37 +148,37 @@ void func_80101A50(void *arg0) {
         BT_BITFIELD_ORDER(u32 pad7C : 19, char : 0);
         BT_BITFIELD_ORDER(u32 disabled : 1, u32 pad7F : 12);
         BT_BITFIELD_ORDER(u32 pad7F : 12, u32 disabled : 1; u32 pad7C : 19);
-    } *actor = arg0;
+    } *actor = (void *)arg0; LOAD_ACTOR_BLINK(arg0)
 
-    if (!actor->disabled) {
-        switch (actor->blinkState) {
+    if (!BLINK_NATIVE(arg0->unk7C_12, actor->disabled)) {
+        switch (BLINK_NATIVE(blink.state, actor->blinkState)) {
             case 0:
                 if (func_800DC0C0() < 0.03f) {
-                    actor->blinkState = 1;
+                    BLINK_NATIVE(blink.state, actor->blinkState) = 1;
                 }
                 break;
             case 1:
-                if (actor->blinkFrame == 3) {
-                    actor->blinkState = 2;
+                if (BLINK_NATIVE(blink.frame, actor->blinkFrame) == 3) {
+                    BLINK_NATIVE(blink.state, actor->blinkState) = 2;
                 } else {
-                    actor->blinkFrame++;
+                    BLINK_NATIVE(blink.frame, actor->blinkFrame)++;
                 }
                 break;
             case 2:
-                actor->blinkFrame--;
-                if (actor->blinkFrame == 0) {
-                    actor->blinkState = 0;
+                BLINK_NATIVE(blink.frame, actor->blinkFrame)--;
+                if (BLINK_NATIVE(blink.frame, actor->blinkFrame) == 0) {
+                    BLINK_NATIVE(blink.state, actor->blinkState) = 0;
                 }
                 break;
         }
     }
-    func_800DF744(1, actor->blinkFrame + 1);
-    func_800DF744(2, actor->blinkFrame + 1);
+    STORE_ACTOR_BLINK(arg0) func_800DF744(1, BLINK_NATIVE(blink.frame, actor->blinkFrame) + 1);
+    func_800DF744(2, BLINK_NATIVE(blink.frame, actor->blinkFrame) + 1);
 }
 
 /* extern */
 
-void func_80101BA0(s32 arg0) {
+void func_80101BA0(Actor *arg0) {
     void func_800DF744(s32, s32);
     func_800DF744(1, 4);
     func_800DF744(2, 4);

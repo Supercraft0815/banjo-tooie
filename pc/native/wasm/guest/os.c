@@ -5,6 +5,7 @@
 #include <ultra64.h>
 _Noreturn void bt_unported(const char *name); // guest/libc.c
 #include "bt_guest.h"
+#include "rsp_sizes.h"
 
 void BT_HOST(osCreateThread)(OSThread *, OSId, void (*)(void *), void *, void *, OSPri);
 void BT_HOST(osStartThread)(OSThread *);
@@ -289,7 +290,12 @@ u32 bt_guest_boot_stack_top(void) { return (u32)&boot_stack[0x10000]; }
 
 void func_80012030(void *unused); // core1 entrypoint (src/core1/1E29B60.c)
 int native_assets_open(const char *path);
+/* Task.ucode and Task.ucode_data point into these spans through the N64 linker names. */
+u8 bt_rsp_text[BT_RSP_TEXT_BYTES] __attribute__((aligned(16)));
+u8 bt_rsp_data[BT_RSP_DATA_BYTES] __attribute__((aligned(16)));
+void BT_HOST(load_rsp)(u8 *text, u32 text_size, u8 *data, u32 data_size);
 void bt_guest_start(void) {
+    host_load_rsp(bt_rsp_text, sizeof(bt_rsp_text), bt_rsp_data, sizeof(bt_rsp_data));
     // The asset archive (banjotooie.ld: assets_ROM_START..assets_ROM_END of the US ROM).
     if (!native_assets_open("rom:5180-1a14580")) bt_unported("asset archive (ROM is not the US version?)");
     func_80012030(NULL);

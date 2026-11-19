@@ -35,10 +35,10 @@ void func_8011649C(const f32 *v,f32 *vectors,s32 count) {
 }
 /* 1EEFCA0.s func_801164E0: s8 normals (stride 4) times D_80126634 into vectors, and their dot
    products with v into dots. */
-extern f32 D_80126634;
+extern const f32 D_80126634[];
 void func_801164E0(const f32 *v,const s8 *normals,f32 *vectors,f32 *dots,s32 count) {
     do{
-        f32 x=normals[0]*D_80126634,y=normals[1]*D_80126634,z=normals[2]*D_80126634;
+        f32 x=normals[0]*D_80126634[0],y=normals[1]*D_80126634[0],z=normals[2]*D_80126634[0];
         vectors[0]=x;vectors[1]=y;vectors[2]=z;*dots++=(x*v[0]+y*v[1])+z*v[2];
         normals+=4;vectors+=3;
     }while(--count>0);

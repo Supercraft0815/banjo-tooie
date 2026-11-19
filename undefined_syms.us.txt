@@ -140,6 +140,12 @@ D_8011A47C = D_8011A478 + 0x4;
 /* One-past address used by the original list iteration. */
 D_8011A498 = D_8011A480 + 0x18;
 
+/* One past the five original vertex scratch buffers. */
+D_801243DC = D_801243A0 + 0x3C;
+
+/* The zero callback shares the actor origin's third coordinate. */
+D_801243E8 = D_801243E0 + 0x8;
+
 /* Aliases within audio storage. */
 D_80079FA2 = D_80079FA0 + 0x2;
 D_80079FA3 = D_80079FA0 + 0x3;
@@ -369,3 +375,30 @@ boot_cpdist = boot_inflate_tables + 0x60;
 boot_border = boot_inflate_tables + 0x9C;
 boot_cplext = boot_inflate_tables + 0xAF;
 boot_cpdext = boot_inflate_tables + 0xCE;
+
+/* Assembly labels within the core1 inflater tables. */
+mask_bits = core1_inflate_tables + 0x0;
+cplens = core1_inflate_tables + 0x22;
+cpdist = core1_inflate_tables + 0x60;
+border = core1_inflate_tables + 0x9C;
+cplext = core1_inflate_tables + 0xAF;
+cpdext = core1_inflate_tables + 0xCE;
+
+/* Fields within the core2 inflate tables. */
+D_80126692 = D_80126654 + 0x3E;
+D_801266B2 = D_80126654 + 0x5E;
+D_801266EE = D_80126654 + 0x9A;
+D_8012670C = D_80126654 + 0xB8;
+
+/* Original symbols within the core1 runtime data. */
+D_8003F4E0 = core1_runtime_data + 0x0;
+D_8003F530 = core1_runtime_data + 0x50;
+D_8003F5D0 = core1_runtime_data + 0xF0;
+D_8003F5E0 = core1_runtime_data + 0x100;
+D_8003F5F0 = core1_runtime_data + 0x110;
+D_8003F600 = core1_runtime_data + 0x120;
+D_8003F750 = core1_runtime_data + 0x270;
+D_8003F760 = core1_runtime_data + 0x280;
+D_8003F764 = core1_runtime_data + 0x284;
+D_8003F778 = core1_runtime_data + 0x298;
+D_80041180 = core1_runtime_data + 0x1CA0;

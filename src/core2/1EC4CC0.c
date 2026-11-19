@@ -1,4 +1,5 @@
 #include "common.h"
+#include "marker_defaults.inc"
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_world_grid.h"
 #include "native_actor.h"
@@ -7,7 +8,6 @@
 #include "memory.h"
 #include "core2/1EAF950.h"
 #include "core2/1EC8070.h"
-
 typedef struct { NativeMarkerProp *prop; s32 distance; } MarkerGroupElement;
 static struct {
     s32 position[3], distance, type;
@@ -502,15 +502,15 @@ s32 func_800EBB30(s32 *arg0, s32 *arg1) {
 
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
 OSThread *func_800EBB50(void) {
-    static uintptr_t callbacks[5];
-    return (OSThread *)callbacks;
+
+    return (OSThread *)&D_80123540;
 }
 #else
 OSThread *func_800EBB50(void)
 {
-    extern u8 D_80123540[];
 
-    return (OSThread *) D_80123540;
+
+    return (OSThread *)&D_80123540;
 }
 #endif
 
@@ -717,11 +717,11 @@ void func_800EBE24(void *data) {
     if (offset>=sizeof(marker_pool) || offset%sizeof(marker_pool[0])) return;
     index=offset/sizeof(marker_pool[0]);
     marker_pool[index].unk10 &= 0xFFFF0001u;
-    marker_used[index>>3] &= ~(0x80u >> (index & 7));
+    marker_used[index>>3] &= D_80123554[index & 7];
 }
 #else
 void func_800EBE24(void *arg0) {
-    extern s32 D_80123554;
+
     extern s32 D_80132ED0;
     u8 *base;
     s32 temp_v0;
@@ -732,7 +732,7 @@ void func_800EBE24(void *arg0) {
     *(u16 *) ((s8 *) arg0 + 0x12) &= 1;
     temp_v1 = base;
     temp_v1 += temp_v0 / 48 >> 3;
-    *(temp_v1 + 0x2580) = *(temp_v1 + 0x2580) & *((s32 *) &D_80123554 + (temp_v0 / 48 & 7));
+    *(temp_v1 + 0x2580) = *(temp_v1 + 0x2580) & D_80123554[temp_v0 / 48 & 7];
 }
 #endif
 

@@ -1,5 +1,5 @@
 #include "core1/heap.h"
-
+#include "core1/core1_runtime_data.h"
 #include "memory.h"
 
 void* func_8001C0A0(s32);
@@ -7,7 +7,7 @@ void heap_init_empty_block(struct HeapHeader*);
 void func_8001B864(void*);
 void heap_merge_free_block(struct EmptyHeapBlock* block);
 
-extern s32 D_8003F750;
+BT_IDO_ONLY(extern s32 D_8003F750;)
 extern s32 D_8007BF00;
 
 s32 func_8001A6C0(s32 arg0, s32 size) {

@@ -2,7 +2,7 @@
 
 s16 func_800A8184(void);
 
-extern Gfx D_80123340[];
+#include "viewport_setup.inc"
 extern s16 D_80127750;
 extern s16 D_80127752;
 

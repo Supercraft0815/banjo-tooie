@@ -1,5 +1,5 @@
 #include "core2/1EB5E70.h"
-
+#include "model_render_banks.inc"
 typedef struct {
     s32 header;
     s32 geometry;

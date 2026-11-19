@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core1/core1_runtime_data.h"
 typedef struct {
     s16 volume;
     u8 unk2;
@@ -276,7 +276,7 @@ void func_80017244(void) {
 }
 
 void func_800172D4(u8 index, s32 track_id) {
-    extern u16 D_8003F600[];
+    BT_IDO_ONLY(extern u16 D_8003F600[];)
     MusicSlotView *slots = (MusicSlotView *)&D_80079FA0;
     slots[index].index_cpy = track_id;
     slots[index].unk2 = 1;
@@ -401,7 +401,7 @@ void func_800175F0(void) {
 }
 
 u32 func_80017764(s32 arg0) {
-    extern u16 D_8003F600[];
+    BT_IDO_ONLY(extern u16 D_8003F600[];)
     return ((u16 *)&D_8003F600)[arg0];
 }
 

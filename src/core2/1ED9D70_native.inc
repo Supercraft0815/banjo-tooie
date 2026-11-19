@@ -4,30 +4,30 @@
 #include <limits.h>
 
 s32 func_8001211C(void);
-static struct { s32 stride,capacity,frame; void *data; } scratch[5]={{.stride=3},{.stride=4},{.stride=12},{.stride=12},{.stride=6}};
+#include "vertex_scratch.inc"
 static FreeList *vertex_entries,*packed_entries;
 static s32 unique_palette=0x3667;
 
 void *func_80100480(s32 type,s32 count) {
-    if(type<0 || type>=5 || count<0 || count>INT_MAX/scratch[type].stride) return NULL;
-    if(!scratch[type].data || scratch[type].capacity<count) {
-        scratch[type].data=heap_realloc(scratch[type].data,count*scratch[type].stride);
-        scratch[type].capacity=count;
+    if(type<0 || type>=5 || count<0 || count>INT_MAX/D_801243A0[type].stride) return NULL;
+    if(!D_801243A0[type].data || D_801243A0[type].capacity<count) {
+        D_801243A0[type].data=heap_realloc(D_801243A0[type].data,count*D_801243A0[type].stride);
+        D_801243A0[type].capacity=count;
     }
-    scratch[type].frame=func_8001211C();return scratch[type].data;
+    D_801243A0[type].frame=func_8001211C();return D_801243A0[type].data;
 }
 void func_8010052C(void) { }
 void func_80100534(void) {
     s32 frame=func_8001211C();
-    for(s32 i=0;i<5;++i) if(scratch[i].data && frame-scratch[i].frame>=31) {
-        heap_free(scratch[i].data);scratch[i].data=NULL;scratch[i].capacity=scratch[i].frame=0;
+    for(s32 i=0;i<5;++i) if(D_801243A0[i].data && frame-D_801243A0[i].frame>=31) {
+        heap_free(D_801243A0[i].data);D_801243A0[i].data=NULL;D_801243A0[i].capacity=D_801243A0[i].frame=0;
     }
 }
 void func_801005B8(void) { }
 void func_80100610(void) {
     for(s32 i=0;i<5;++i) {
-        if(scratch[i].data) heap_free(scratch[i].data);
-        scratch[i].data=NULL;scratch[i].capacity=scratch[i].frame=0;
+        if(D_801243A0[i].data) heap_free(D_801243A0[i].data);
+        D_801243A0[i].data=NULL;D_801243A0[i].capacity=D_801243A0[i].frame=0;
     }
 }
 void func_80100670(void) { func_80100610(); }

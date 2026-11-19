@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core1/core1_runtime_data.h"
 u16 func_8001D450(u16 arg0) {
     u16 r = ((arg0 & 0xF800) / 2) & 0xF800;
     u16 g = ((arg0 & 0x7C0) / 2) & 0x7C0;
@@ -29,7 +29,7 @@ void func_8001D5C4(u16 *arg0, u8 *arg1) {
 
 void func_8001D6C0(u16 *arg0, int arg1, int arg2, u8 arg3) {
     u16 func_8001D450(u16);
-    extern u16 D_8003F778[];
+    BT_IDO_ONLY(extern u16 D_8003F778[];)
     int sp40;
     int var_s0;
     int var_s6;

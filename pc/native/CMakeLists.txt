@@ -63,6 +63,8 @@ add_custom_command(OUTPUT "${BT_SINE_DATA}"
     VERBATIM)
 add_library(bt_native_test_trig_data STATIC EXCLUDE_FROM_ALL "${BT_SINE_DATA}")
 add_library(bt_native_core STATIC
+    "${BT_ROOT}/src/core2/inflate_rodata.c"
+    "${BT_ROOT}/src/core1/trig_constants.c"
     "${BT_ROOT}/src/core2/1EB5E70_geometry.inc"
     "${BT_ROOT}/src/core2/1EA3AA0.c"
     "${BT_ROOT}/src/core2/1EBCFC0.c"
@@ -716,7 +718,7 @@ else()
 endif()
 add_test(NAME native_model_modes COMMAND "${Python3_EXECUTABLE}"
     "${CMAKE_CURRENT_SOURCE_DIR}/tests/model_modes.py" "$<TARGET_FILE:bt_native_model_modes_test>"
-    "${BT_ROOT}/asm/data/core2/1EF5290.data.s")
+    "${BT_ROOT}/decompressed.us.z64")
 
 add_executable(bt_native_fog_test tests/fog.c)
 target_link_libraries(bt_native_fog_test PRIVATE bt_native_core bt_native_test_trig_data)

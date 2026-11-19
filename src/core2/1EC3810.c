@@ -447,7 +447,7 @@ void func_800EB210(void *arg0, void *arg1, s32 arg2) {
     }
 }    typedef struct { u8 pad0[0xC]; s32 (*unkC)(void *, s32, s32); } Obj1EC3810_func_800EB2DC_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
-/* extern */
+#include "marker_hit_callbacks.h"
 
 void func_800EB2DC(void *arg0, BtIntPtr arg1, s32 arg2) {
     struct Flags { u32 pad[10]; BT_BITFIELD_ORDER(unsigned int :22, unsigned int  : 9); unsigned int enabled:1; BT_BITFIELD_ORDER(unsigned int :9, unsigned int  : 22); };
@@ -455,10 +455,10 @@ void func_800EB2DC(void *arg0, BtIntPtr arg1, s32 arg2) {
     void *func_800EC3C4(void *);
     void *temp_v0;
 
-    if ((func_800EB15C(arg0) != 0) && ((struct Flags *)arg0)->enabled) {
+    if ((func_800EB15C(arg0) != 0) && MARKER_HIT_LAYOUT((((Unk80132ED0 *)arg0)->unk28 >> 9) & 1, ((struct Flags *)arg0)->enabled)) {
         temp_v0 = func_800EC3C4(arg0);
-        if ((arg0 != NULL) && ((((Obj1EC3810_func_800EB2DC_temp_v0 *)temp_v0)->unkC) != NULL)) {
-            (((Obj1EC3810_func_800EB2DC_temp_v0 *)temp_v0)->unkC)(arg0, arg1, arg2);
+        if ((arg0 != NULL) && (MARKER_HIT_LAYOUT(((MarkerHitMethods *)temp_v0)->impact, ((Obj1EC3810_func_800EB2DC_temp_v0 *)temp_v0)->unkC) != NULL)) {
+            MARKER_HIT_LAYOUT(((MarkerHitMethods *)temp_v0)->impact(arg0, (void *)arg1, arg2), ((Obj1EC3810_func_800EB2DC_temp_v0 *)temp_v0)->unkC(arg0, arg1, arg2));
         }
     }
 }

@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "letterbox_color.inc"
 f32 D_8012A9A0[32];
 
 void func_800C4B90(s32 arg0, f32 arg1, f32 arg2) {
@@ -331,7 +331,7 @@ void func_800C54F0(s32 arg0) {
 void func_800C5668(s32 arg0, Gfx **arg1) {
     void func_800A8A04(s32, s32 *, s32 *, s32 *, s32 *);
     void func_800B9A24(Gfx **, s32, s32 *, s32, s32, s32, s32);
-    extern s32 D_8011A880;
+
     extern f32 D_8012A9A0[];
     s8 *entry;
     s32 alpha;
@@ -348,7 +348,7 @@ void func_800C5668(s32 arg0, Gfx **arg1) {
         ratio = (f32)*(s32 *)entry / (f32)*(s32 *)(entry + 8);
         sp34 = *(s32 *)entry;
         alpha = (s32)(ratio * 255.0f);
-        func_800B9A24(arg1, alpha, &D_8011A880, sp44, sp40, sp3C, sp34);
-        func_800B9A24(arg1, alpha, &D_8011A880, sp44, (sp40 + sp38) - sp34, sp3C, sp34);
+        func_800B9A24(arg1, alpha, D_8011A880, sp44, sp40, sp3C, sp34);
+        func_800B9A24(arg1, alpha, D_8011A880, sp44, (sp40 + sp38) - sp34, sp3C, sp34);
     }
 }

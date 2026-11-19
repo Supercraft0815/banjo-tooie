@@ -222,8 +222,8 @@ OSThread *func_80109518(void)
 }
 
 s32 func_80109524(s32 arg0) {
-    extern s16 D_801245A0[3][8];
-    return D_801245A0[arg0][0];
+
+    return D_801245A0[arg0].sprite;
 }    typedef struct { u8 pad0[0x24]; u32 unk24; } Obj1EE27C0_arg2; /* offsets.py genstruct: fields from raw offsets on arg2; rename once understood */
 
 /* extern */
@@ -242,7 +242,7 @@ void func_80109538(void *arg0, f32 *arg1, void *arg2, s32 arg3) {
     if (_subaddiecustomhits_entrypoint_4(arg0, sp2C, 0) == 0) {
         func_800EE7F8(sp2C, arg1);
     }
-    arg2 != NULL ? (var_a1 = ((u32) (((Obj1EE27C0_arg2 *)arg2)->unk24) >> 0x16) == 0 ? 0 : 1) : (var_a1 = 0);
+    arg2 != NULL ? (var_a1 = HIT_SPRITE_TYPE(arg2) == 0 ? 0 : 1) : (var_a1 = 0);
     if (arg3 != 0) {
         sp24 = func_800B53A4(0xA);
         func_800BA3FC(sp24, func_80109524(var_a1));

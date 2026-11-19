@@ -8,9 +8,29 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 import data_inventory
 import data
 import xsym_report
+import rsp_assets
 
 
 class InventoryTest(unittest.TestCase):
+    def test_rsp_program_views_have_matching_ends(self):
+        addresses = {}
+        for section in ('Text', 'Data'):
+            position = 0x80000
+            for program in rsp_assets.PROGRAMS:
+                if section == 'Data' and program == 'rspboot':
+                    continue
+                name = program.replace('.', '_') + section
+                addresses[name + 'Start'] = position
+                position += 32
+                addresses[name + 'End'] = position
+        links, sizes = rsp_assets.linker_views(addresses)
+        self.assertEqual(sizes, {'Text': 160, 'Data': 128})
+        self.assertEqual(len(links), 18)
+        self.assertIn('rspbootTextEnd bt_rsp_text 64', links)
+        addresses['rspbootTextStart'] += 8
+        with self.assertRaisesRegex(ValueError, 'noncontiguous'):
+            rsp_assets.linker_views(addresses)
+
     def test_xsym_respects_block_ends_and_overlapping_data(self):
         with tempfile.TemporaryDirectory() as tmp:
             out = pathlib.Path(tmp)

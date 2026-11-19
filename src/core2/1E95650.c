@@ -1,6 +1,6 @@
 #include "common.h"
 #include "core2/particle_internal.h"
-
+#include "fill_rectangle_setup.inc"
 void func_800BBD60(void *arg0, BtIntPtr arg1) {
     BtIntPtr func_800D674C(s32);
     void *func_800DE448(f32 *, f32 *, f32, f32 *, BtIntPtr);
@@ -154,10 +154,10 @@ void func_800BC410(Gfx **arg0, s32 arg1, s32 arg2, s32 arg3) {
 }
 
 void func_800BC474(Gfx **arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7) {
-    extern Gfx D_8011A730[];
-    gSPDisplayList((*arg0)++, (u8 *)D_8011A730 - 0x80000000);
+
+    gSPDisplayList((*arg0)++, FILL_RECT_LIST(D_8011A730));
     gDPSetFillColor((*arg0)++,
-        (((arg5 << 8) & 0xF800) | ((arg6 << 3) & 0x7C0) | ((arg7 >> 2) & 0x3E) | 1) << 16 |
+        (u32)(((arg5 << 8) & 0xF800) | ((arg6 << 3) & 0x7C0) | ((arg7 >> 2) & 0x3E) | 1) << 16 |
         (((arg5 << 8) & 0xF800) | ((arg6 << 3) & 0x7C0) | ((arg7 >> 2) & 0x3E) | 1));
     gDPFillRectangle((*arg0)++,
         (arg1 > 0 ? arg1 : 0),
@@ -174,8 +174,8 @@ void func_800BC580(Gfx **arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
 }
 
 void func_800BC5B0(Gfx **arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    extern Gfx D_8011A730[];
-    gSPDisplayList((*arg0)++, (u8 *)D_8011A730 - 0x80000000);
+
+    gSPDisplayList((*arg0)++, FILL_RECT_LIST(D_8011A730));
     gDPSetFillColor((*arg0)++, 0xFFFCFFFC);
     gDPFillRectangle((*arg0)++,
         (arg1 > 0 ? arg1 : 0),

@@ -1,5 +1,5 @@
 #include "core2/1EC2350.h"
-
+#include "frame_cache_settings.inc"
 struct StateView {
     u8 flags[80];
     s32 times[80];
@@ -17,12 +17,12 @@ void func_800E8A60(void) {
 }
 
 void func_800E8A68(void) {
-    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s16) freelist_capacity(s32);
-    s32 freelist_is_element_alive(s32, s32);
+    FRAME_RETAIL(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s16) freelist_capacity(s32);)
+    FRAME_RETAIL(s32 freelist_is_element_alive(s32, s32);)
     f32 func_800D8FF8(void);
     void *func_800E8CB0(u8);
     void func_800E8DE4(u8 *, f32);
-    extern s32 D_8012D680;
+    extern FrameCurveList D_8012D680;
     f32 delta;
     s32 i;
 
@@ -41,8 +41,8 @@ void func_800E8A68(void) {
 }
 
 void func_800E8B04(void) {
-    s32 freelist_free(s32);
-    extern s32 D_8012D680;
+    FRAME_RETAIL(s32 freelist_free(s32);)
+    extern FrameCurveList D_8012D680;
     if (D_8012D680 != 0) {
         freelist_free(D_8012D680);
         D_8012D680 = 0;
@@ -50,19 +50,19 @@ void func_800E8B04(void) {
 }
 
 void func_800E8B3C(void) {
-    BtIntPtr freelist_defrag(BtIntPtr);
-    extern s32 D_8012D680;
+    FRAME_RETAIL(BtIntPtr freelist_defrag(BtIntPtr);)
+    extern FrameCurveList D_8012D680;
     if (D_8012D680 != 0) {
         D_8012D680 = freelist_defrag(D_8012D680);
     }
 }
 
 u8 func_800E8B74(u32 arg0) {
-    s32 freelist_new(s32, s32);
-    void *freelist_next(s32 *, s32 *);
+    FRAME_RETAIL(s32 freelist_new(s32, s32);)
+    FRAME_RETAIL(void *freelist_next(s32 *, s32 *);)
     BtIntPtr func_800D674C(s32);
     extern void func_800E8CDC(u8);
-    extern s32 D_8012D680;
+    extern FrameCurveList D_8012D680;
     s16 *temp;
     s32 index;
     s16 *entry;
@@ -82,10 +82,10 @@ u8 func_800E8B74(u32 arg0) {
 }
 
 void func_800E8C08(u8 arg0) {
-    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) freelist_erase(s32, s32);
-    s32 freelist_free(s32);
-    s32 freelist_used_count(s32);
-    extern s32 D_8012D680;
+    FRAME_RETAIL(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) freelist_erase(s32, s32);)
+    FRAME_RETAIL(s32 freelist_free(s32);)
+    FRAME_RETAIL(s32 freelist_used_count(s32);)
+    extern FrameCurveList D_8012D680;
     freelist_erase(D_8012D680, arg0);
     if (freelist_used_count(D_8012D680) == 0) {
         freelist_free(D_8012D680);
@@ -107,17 +107,17 @@ s32 func_800E8C58(u8 arg0) {
 }
 
 void *func_800E8CB0(u8 arg0) {
-    extern s32 D_8012D680;
-    void * freelist_at(void *list, s32 index);
+    extern FrameCurveList D_8012D680;
+    FRAME_RETAIL(void * freelist_at(void *list, s32 index);)
     return freelist_at(D_8012D680, arg0);
 }
 
 void func_800E8CDC(u8 arg0) {
     void *func_800E8CB0(u8);
-    extern s32 D_80123500;
+
     (*(f32 *)((s8 *)(func_800E8CB0(arg0)) + (4))) = 0.0f;
     func_800E8D28(arg0, 1.0f);
-    func_800E8D5C(arg0, &D_80123500, 2U);
+    func_800E8D5C(arg0, D_80123500, 2U);
 }
 
 void func_800E8D28(u8 arg0, f32 arg1) {
@@ -190,9 +190,9 @@ u8 *func_800E8F68(u8 *arg0) {
 
 void func_800E8F8C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     void func_800E8E70(BtIntPtr, void *, s32, s32);
-    extern s32 D_80123524;
+
     extern struct StateView D_8012D690;
-    extern s32 D_8012D960;
+    FRAME_RETAIL(extern s32 D_8012D960;)
     extern s16 D_80132560[];
     extern s32 unknown3_ROM_START;
     s32 index;
@@ -200,19 +200,19 @@ void func_800E8F8C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     u8 *dest;
 
     index = (u16)D_80132560[arg1] + arg2;
-    func_800E8E70((BtIntPtr)&D_8012D960,
-                  (u8 *)D_80123524 + index * 0xD8,
+    func_800E8E70((BtIntPtr)FRAME_VIEW(D_8012D690.padding, &D_8012D960),
+                  FRAME_VIEW((void *)(BtUIntPtr)(D_80123524 + (u32)index * 0xD8u), (u8 *)D_80123524 + index * 0xD8),
                   0xD8, arg3);
     dest = (u8 *)(arg0 * 0xD8 + 0x3A8 + (BtIntPtr)&D_8012D690);
     saved = dest;
-    rare_memcpy(dest, &D_8012D960, 0xD8);
-    *(s32 *)(saved + 0x18) += (BtIntPtr)&unknown3_ROM_START;
+    rare_memcpy(dest, FRAME_VIEW(D_8012D690.padding, &D_8012D960), 0xD8);
+    FRAME_VIEW(*(u32 *)(saved + 0x18) = bank_word(saved + 0x18) + (u32)(BtUIntPtr)&unknown3_ROM_START, *(s32 *)(saved + 0x18) += (BtIntPtr)&unknown3_ROM_START);
 }
 
 s32 func_800E9048(void) {
-    extern s16 D_80131CE0;
+    FRAME_RETAIL(extern s16 D_80131CE0;)
 
-    return D_80131CE0;
+    return FRAME_VIEW((s16)bank_halfword((u8 *)&D_8012D690 + 0x4650), D_80131CE0);
 }
 
 s16 func_800E9054(s32 arg0) {
@@ -220,7 +220,7 @@ s16 func_800E9054(s32 arg0) {
     s32 index = arg0;
     index *= 9;
     index *= 2;
-    return *(s16 *)((u8 *)&D_80131CF6 + index);
+    return FRAME_VIEW((s16)bank_halfword((u8 *)&D_8012D690 + 0x4666 + index), *(s16 *)((u8 *)&D_80131CF6 + index));
 }
 
 void func_800E9070(BtIntPtr arg0, s32 arg1) {
@@ -232,7 +232,7 @@ void func_800E9070(BtIntPtr arg0, s32 arg1) {
 
 void func_800E90A4(s32 arg0, s32 arg1) {
     extern struct StateView D_8012D690;
-    BtIntPtr offset = arg0 - (BtIntPtr)&D_8012D690;
+    BtIntPtr offset = FRAME_VIEW((u32)arg0 - (u32)(BtUIntPtr)&D_8012D690, arg0 - (BtIntPtr)&D_8012D690);
     u8 *p = (u8 *)&D_8012D690 + ((offset - 0x3A8) / 216);
     *p = *p - 1;
 }
@@ -240,8 +240,8 @@ void func_800E90A4(s32 arg0, s32 arg1) {
 u8 *func_800E90D8(s32 arg0, s32 arg1, s32 arg2) {
     s32 func_8001211C(void);
     void func_800E95AC(u32, s32);
-    extern s32 D_80123514[];
-    extern s32 D_8012351C[];
+
+
     extern struct StateView D_8012D690;
     extern s16 D_80132560[];
     extern u8 D_80132650[];
@@ -305,14 +305,14 @@ void *func_800E93AC(s32 arg0) {
 
 void func_800E93CC(s32 arg0) {
     void func_800E8E70(BtIntPtr, void *, s32, s32);
-    extern s16 D_80131CE0;
-    extern s32 D_80123524;
+    FRAME_RETAIL(extern s16 D_80131CE0;)
+
     extern s32 unknown2_ROM_START;
     u8 *sp1C[2];
 
     sp1C[1] = (u8 *)&unknown2_ROM_START;
-    func_800E8E70((BtIntPtr)&D_80131CE0, (void *)sp1C[1], 8, arg0);
-    D_80123524 = (D_80131CE0 * 0x12 + 0xB) & ~3;
+    func_800E8E70((BtIntPtr)FRAME_VIEW((u8 *)&D_8012D690 + 0x4650, &D_80131CE0), (void *)sp1C[1], 8, arg0);
+    D_80123524 = (FRAME_VIEW((s16)bank_halfword((u8 *)&D_8012D690 + 0x4650), D_80131CE0) * 0x12 + 0xB) & ~3;
     D_80123524 += (BtIntPtr)sp1C[1];
 }
 
@@ -328,13 +328,13 @@ void func_800E9438(s32 arg0) {
     var_s1 = 0;
     temp_s3 = heap_alloc(0x12);
     var_s0 = 0;
-    if (*(s16 *)((u8 *)&D_8012D690 + 0x4650) > 0) {
+    if (FRAME_VIEW(func_800E9048(), *(s16 *)((u8 *)&D_8012D690 + 0x4650)) > 0) {
         do {
             func_800E9340(temp_s3, var_s0, arg0);
             D_80132560[var_s0] = var_s1;
             var_s0++;
-            var_s1 += temp_s3[7];
-        } while (var_s0 < *(s16 *)((u8 *)&D_8012D690 + 0x4650));
+            var_s1 += FRAME_VIEW((s16)bank_halfword(temp_s3 + 7), temp_s3[7]);
+        } while (var_s0 < FRAME_VIEW(func_800E9048(), *(s16 *)((u8 *)&D_8012D690 + 0x4650)));
     }
     heap_free(temp_s3);
 }
@@ -359,7 +359,7 @@ void func_800E94E4(void) {
 void func_800E9574(void) {
     void func_800E93CC(s32);
     void func_800E9438(s32);
-    extern s32 D_80123510;
+
     func_800E94E4();
     func_800E93CC(0);
     func_800E9438(0);
@@ -368,8 +368,8 @@ void func_800E9574(void) {
 
 void func_800E95AC(u32 arg0, s32 arg1) {
     s32 func_8001211C(void);
-    extern s32 D_80123514[];
-    extern s32 D_8012351C[];
+
+
     extern s16 D_80132560[];
     extern u8 D_80132650[];
     extern struct StateView D_8012D690;
@@ -411,7 +411,7 @@ void func_800E96B0(s32 arg0) {
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
-s32 D_8012D680 BT_DATA(4, bss_core2bss2_1, 0xD40);
+FrameCurveList D_8012D680 BT_DATA(4, bss_core2bss2_1, 0xD40);
 s16 D_80132560 [ 120 ] BT_DATA(16, bss_core2bss2_1_reset_tail, 0x0);
 u8 D_80132650 [ 1880 ] BT_DATA(4, bss_core2bss2_1_reset_tail, 0xF0);
 #endif

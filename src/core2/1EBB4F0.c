@@ -14,7 +14,7 @@ typedef struct {
     void *frameSprite;
 } SpriteSettings;                                typedef struct { u8 pad0[0x4]; s16 unk4; s16 unk6; } Obj1EBB4F0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 #include "core2/1EBB4F0.h"
-
+#include "sprite_render_setup.inc"
 s32 func_800E1C00(void *arg0, BtIntPtr arg1, f32 arg2, f32 arg3, BtIntPtr arg4)
 {
   f32 sp24;
@@ -69,17 +69,17 @@ s32 func_800E1C00(void *arg0, BtIntPtr arg1, f32 arg2, f32 arg3, BtIntPtr arg4)
 }
 
 void func_800E1DF4(u8 *arg0, u8 *arg1) {
-    extern s32 D_801231B0;
+
     extern SpriteSettings D_8012D470;
     Gfx *gfx;
 
     gfx = *(Gfx **)arg0;
-    gSPDisplayList(gfx++, (u8 *)&D_801231B0 - 0x80000000);
+    gSPDisplayList(gfx++, SPRITE_RENDER_SETUP);
     if (D_8012D470.unk1F == 0) {
         gDPSetColorDither(gfx++, G_CD_DISABLE);
     }
     gDPSetColor(gfx++, G_SETPRIMCOLOR,
-        ((*(s32 *)((u8 *)&D_8012D470 + 0x10) & 0xFF) << 24)
+        (((u32)*(s32 *)((u8 *)&D_8012D470 + 0x10) & 0xFF) << 24)
         | ((*(s32 *)((u8 *)&D_8012D470 + 0x14) & 0xFF) << 16)
         | (*(s16 *)((u8 *)&D_8012D470 + 0x1C) & 0xFF)
         | ((*(s32 *)((u8 *)&D_8012D470 + 0x18) & 0xFF) << 8));
@@ -327,7 +327,7 @@ void func_800E2630(u8 *arg0, s32 arg1, s32 arg2) {
         *(s16 *)((u8 *)&D_8012D470 + 0x1C) = arg2;
         color = (*(Gfx **)arg0)++;
         color->words.w0 = 0xFA000000;
-        color->words.w1 = ((*(s32 *)((u8 *)&D_8012D470 + 0x10) & 0xFF) << 24)
+        color->words.w1 = (((u32)*(s32 *)((u8 *)&D_8012D470 + 0x10) & 0xFF) << 24)
             | ((*(s32 *)((u8 *)&D_8012D470 + 0x14) & 0xFF) << 16)
             | (*(s16 *)((u8 *)&D_8012D470 + 0x1C) & 0xFF)
             | ((*(s32 *)((u8 *)&D_8012D470 + 0x18) & 0xFF) << 8);

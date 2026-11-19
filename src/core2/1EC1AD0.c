@@ -1,11 +1,11 @@
 #include "common.h"
-
+#include "depth_compression.inc"
 typedef struct FreeList FreeList;
 #include "depth_frame_state.inc"
 f32 func_800E81E0(s32 x, s32 y, f32 offset, f32 scale) {
     u16 func_8001A0C0(s32, s32);
     f32 mlAbsF(f32);
-    extern s32 D_801234C0[][2];
+
 
 
     f32 stack_padding[2];

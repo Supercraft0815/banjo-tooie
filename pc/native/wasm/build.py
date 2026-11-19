@@ -115,6 +115,7 @@ GUEST_FLAGS = [
     '-isystem', str(HERE / 'guest' / 'include'),
     '-I', str(NATIVE / 'include'), '-I', str(ROOT / 'include'),
     '-I', str(ROOT / 'lib' / 'ultralib' / 'include'), '-I', str(ROOT / 'src'),
+    '-I', str(OUT / 'gen'),
     '-include', str(OUT / 'gen' / 'overlay_aliases.h'),
     # -fwrapv-pointer: IDO code adds unsigned "negative" offsets to pointers (p + 0xFFFFFFF1); with
     # inbounds GEPs the wasm backend folds them into the load offset, past the 4 GiB memory.
@@ -269,9 +270,12 @@ def c_types(objs):
 
 
 def data_files():
+    import rsp_assets
     ld = (ROOT / 'banjotooie.ld').read_text()
     # asm/data from splat plus the bss files kept next to the C sources (src/**/core*bss*.s).
-    return sorted({str(ROOT / m) for m in re.findall(r'build/us/((?:asm/data|src)/[^ )]+\.s)\.o', ld)})
+    files = {str(ROOT / m) for m in re.findall(r'build/us/((?:asm/data|src)/[^ )]+\.s)\.o', ld)}
+    # RSP programs and constants are loaded from the supplied cartridge at startup.
+    return sorted(files - rsp_assets.wrapper_paths(ROOT))
 
 
 def host_imports():
@@ -311,6 +315,7 @@ def write_if_changed(path, text):
 def build_guest(jobs, compiler_version):
     import data
     import o32_thunks
+    import rsp_assets
 
     gen = OUT / 'gen'
     gen.mkdir(parents=True, exist_ok=True)
@@ -319,6 +324,11 @@ def build_guest(jobs, compiler_version):
     if aliases.returncode != 0:
         sys.exit(aliases.stderr)
     write_if_changed(gen / 'overlay_aliases.h', (gen / 'overlay_aliases.h.tmp').read_text())
+
+    n64, n64_addr, n64_rom = n64_sections()
+    rsp_views, rsp_sizes = rsp_assets.linker_views(n64_addr)
+    write_if_changed(gen / 'rsp_sizes.h', ''.join(
+        f'#define BT_RSP_{section.upper()}_BYTES {size}\n' for section, size in rsp_sizes.items()))
 
     # 1. Guest objects.
     tag = guest_object_tag(compiler_version)
@@ -337,7 +347,8 @@ def build_guest(jobs, compiler_version):
 
     # 2. Data and traps.
     defined, undef = nm(objs)
-    n64, n64_addr, n64_rom = n64_sections()
+    if not all(defined.get(n, '').upper() in {'B', 'D'} for n in ('bt_rsp_text', 'bt_rsp_data')):
+        raise RuntimeError('guest RSP storage missing')
     labels = set()
     files = data_files()
     c_data = {n for n, k in defined.items() if k.upper() in 'DBRCV'}
@@ -366,7 +377,7 @@ def build_guest(jobs, compiler_version):
     # Symbols the N64 linker script defines (undefined_syms.us.txt: A = B; A = B + off; A = 0xaddr;).
     # The FixCalls pass points them into the object that holds them, or makes them plain numbers.
     have = sorted((a, n) for n, a in n64_addr.items() if n in defined or n in ddef)
-    linker_syms = []
+    linker_syms = list(rsp_views)
     for n, expr in re.findall(r'^\s*(\w+)\s*=\s*([^;]+);', (ROOT / 'undefined_syms.us.txt').read_text(), re.M):
         m = re.fullmatch(r'([A-Za-z_]\w*)(?:\s*\+\s*(0x[0-9A-Fa-f]+|\d+))?', expr.strip())
         if m:

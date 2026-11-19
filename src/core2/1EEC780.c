@@ -1,5 +1,5 @@
 #include "core2/1EEC090.h"
-
+#include "camera_probe_angles.inc"
 void func_80112E50(void *, f32, s32);
 
 s32 func_80112E90()
@@ -17,10 +17,10 @@ s32 func_80112E98(PlayerState *arg0, f32 *arg1, f32 *arg2, f32 arg3, s32 arg4, s
     void *func_800FB3C0(f32 *, f32 *, f32, f32 *, s32, u32);
     void func_80110770(void *, f32 *);
     void func_801113B8(void *);
-    struct AngleTable { f32 *unk0; s32 unk4; };
-    extern struct AngleTable D_80124A38, D_80124A40, D_80124A48;
+
+
     f32 sp9C[3];
-    struct AngleTable *phi_s4;
+    CameraProbeAngles *phi_s4;
     f32 *phi_s0;
     f32 sp88[3];
     f32 phi_f20;
@@ -42,7 +42,7 @@ s32 func_80112E98(PlayerState *arg0, f32 *arg1, f32 *arg2, f32 arg3, s32 arg4, s
         phi_f26 = 150.0f;
         break;
     }
-    for (phi_s0 = phi_s4->unk0; phi_s0 < phi_s4->unk0 + phi_s4->unk4; phi_s0++) {
+    for (phi_s0 = phi_s4->angles; phi_s0 < phi_s4->angles + phi_s4->count; phi_s0++) {
         phi_f20 = *phi_s0;
         if (arg4 == 3) {
             phi_f20 = -phi_f20;

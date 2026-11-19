@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "core1/core1_runtime_data.h"
 void func_8001E2A0()
 {
     func_8001DA60(func_80014F00());
@@ -122,7 +122,7 @@ void func_8001E578(s32 arg0) { extern s32 D_8007E94C, D_8007E958; OSThread *func
 void func_8001E5DC(s32 arg0) {
     extern s32 D_8007E948;
     extern s32 D_8011A3F0;
-    extern u8 D_80041180[];
+    BT_IDO_ONLY(extern u8 D_80041180[];)
     extern OSThread D_8007E788;
     extern __OSThreadOddFpStorage D_8007E938;
     extern OSThread *__osFaultedThread, *__osRunningThread;

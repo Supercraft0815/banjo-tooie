@@ -423,15 +423,29 @@ u32 w2c_env_rom_inflate(struct w2c_env *env, u32 dev, u32 n, u32 dst) {
 }
 
 // US core1 blocks (tools/tooie_utils.h); split positions from baserom.us.yaml relative to each block.
-void bt_rom_audio(int text, u8 *out) {
+static void copy_core1_rsp(int text, u8 *out, u32 size) {
     u32 at = text ? 0x1e29b60 : 0x1e3f718, end = text ? 0x1e3f718 : 0x1e42550;
-    u32 offset = text ? 0x25850 : 0x5640, size = text ? BT_AUDIO_TEXT_BYTES : BT_AUDIO_DATA_BYTES;
+    u32 offset = text ? 0x25850 : 0x5640;
     u32 capacity = text ? 0x2a9a0 : 0x69b0;
     u8 *block = malloc(capacity);
-    if (!block) bt_fatal("out of memory loading n_audio");
-    if (inflate_rom_block(at, end - at, block, capacity) < offset + size) bt_fatal("truncated n_audio in core1");
+    if (!block) bt_fatal("out of memory loading RSP section");
+    if (size > capacity - offset || inflate_rom_block(at, end - at, block, capacity) < offset + size)
+        bt_fatal("truncated RSP section in core1");
     memcpy(out, block + offset, size);
     free(block);
+}
+
+void bt_rom_audio(int text, u8 *out) {
+    copy_core1_rsp(text, out, text ? BT_AUDIO_TEXT_BYTES : BT_AUDIO_DATA_BYTES);
+}
+
+void w2c_env_load_rsp(struct w2c_env *env, u32 text, u32 text_size, u32 data, u32 data_size) {
+    (void)env;
+    if ((u64)text + text_size > bt_inst.w2c_memory.size ||
+        (u64)data + data_size > bt_inst.w2c_memory.size)
+        bt_fatal("RSP sections outside guest memory");
+    copy_core1_rsp(1, G_range(text, text_size), text_size);
+    copy_core1_rsp(0, G_range(data, data_size), data_size);
 }
 
 #define LIBM1(name, T) T w2c_env_##name(struct w2c_env *env, T x) { (void)env; return name(x); }

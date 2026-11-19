@@ -1,6 +1,6 @@
 #include "types.h"
 #include "gfx.h"
-
+#include "core1/core1_runtime_data.h"
 extern s32 D_80078F88;
 extern s32 D_8007913C;
 extern OSMesgQueue D_80079010;
@@ -123,7 +123,7 @@ void func_80014F64(OSMesgQueue* queue, OSMesg mesg) {
 }
 
 void func_80014FE8(void) {
-    extern OSViMode D_8003F4E0, D_8003F530;
+    BT_IDO_ONLY(extern OSViMode D_8003F4E0;) BT_IDO_ONLY(extern OSViMode D_8003F530;)
 #ifdef BT_NATIVE
     extern OSViMode *D_80078F68;
 #else
@@ -271,7 +271,7 @@ void func_8001546C(s32 arg0) {
     void func_80014A54(void);
     void func_8001E5DC(s32);
     s16 func_8001E7C0(void);
-    extern s32 D_8003F5D0;
+    BT_IDO_ONLY(extern s32 D_8003F5D0;)
     extern OSMesgQueue D_80078FD0;
     extern OSMesgQueue D_80079030;
     extern volatile s32 D_80079138;
@@ -428,7 +428,7 @@ void func_80015860(s32 arg0) {
 }
 
 void func_80015878(void) {
-    extern s16 D_8003F5E0;
+    BT_IDO_ONLY(extern s16 D_8003F5E0;)
     extern s16 D_80079778[];
     s32 i;
 

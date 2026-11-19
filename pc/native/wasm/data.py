@@ -82,13 +82,7 @@ def parse_file(path):
             pending.append(m.group(1))
             continue
         if '.incbin' in line:
-            # RSP microcode: the HLE renderer never reads it, so the labels only need distinct addresses.
-            base = last_end if last_end is not None else 0
-            cur[2].append((base, 16, 'space', 16))
-            for name in pending:
-                cur[1][name] = base
-            pending, last_end = [], base + 16
-            continue
+            raise ValueError(f'{path}: binary asset needs a native storage owner')
         m = ITEM.match(line)
         if not m:
             m = CONT.match(line)  # spimdisasm continues a string on a line without address comment

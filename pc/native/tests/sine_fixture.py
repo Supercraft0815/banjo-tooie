@@ -34,8 +34,6 @@ def generate(rom, output):
     output.write('};\n')
     last = floats(0x1E547C0, 4)
     output.write('float D_8003CC90[] = {' + ', '.join(x.hex() + 'f' for x in last) + '};\n')
-    for i, value in enumerate(floats(0x1E591E0, 24)):
-        output.write(f'float D_{0x800416B0 + 4 * i:08X} = {value.hex()}f;\n')
 
 
 if __name__ == '__main__':
