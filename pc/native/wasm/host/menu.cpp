@@ -15,7 +15,7 @@ static SDL_GLContext context;
 static bool opened, focus_content, focus_pages, on_pages = true;
 static SDL_ThreadID owner;
 static int page, port, capture = -1;
-static const char *const pages[] = {"Grafik", "Audio", "Steuerung", "Verbesserungen", "Debug"};
+static const char *const pages[] = {"Grafik", "Audio", "Steuerung", "Verbesserungen", "Mods", "Debug"};
 
 static void mode_key(const SDL_DisplayMode *mode, char *key, size_t n) {
     // Stable across SDL enumeration order and display IDs. Keep logical and backing sizes distinct.
@@ -232,7 +232,7 @@ void bt_menu_draw(const char *fps, unsigned repeated, unsigned skipped) {
     ImGui::SetNextWindowPos(ImVec2(screen.x * .5f, screen.y * .5f), ImGuiCond_Always, ImVec2(.5f, .5f));
     ImGui::Begin("Einstellungen", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoMove);
     ImGui::BeginChild("pages", ImVec2(158,0), ImGuiChildFlags_NavFlattened);
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 6; i++) {
         if (ImGui::Selectable(pages[i], page == i, 0, ImVec2(0, 28))) { page = i; capture = -1; on_pages = true; }
         if (page == i) {
             ImGui::SetItemDefaultFocus();
@@ -259,6 +259,18 @@ void bt_menu_draw(const char *fps, unsigned repeated, unsigned skipped) {
             for (int id : {BT_SET_FPS, BT_SET_CAMERA, BT_SET_CAM_INVERT, BT_SET_LANGUAGE}) option(id);
             break;
         case 4: {
+            static char order[256];
+            static bool populated = false;
+            if (!populated) { SDL_strlcpy(order, bt_mod_order(), sizeof order); populated = true; }
+            ImGui::TextWrapped("Das erste Paket mit einer passenden Datei hat Vorrang. Die Reihenfolge gilt ab dem nächsten Spielstart.");
+            ImGui::SetNextItemWidth(-1);
+            ImGui::InputText("Paketreihenfolge (Komma-getrennt)", order, sizeof order);
+            if (ImGui::Button("Paketreihenfolge speichern")) {
+                if (!bt_mod_order_set(order)) SDL_strlcpy(order, bt_mod_order(), sizeof order);
+            }
+            break;
+        }
+        case 5: {
             option(BT_SET_SHOW_FPS); option(BT_SET_RENDER_STATS);
             if (bt_setting(BT_SET_RENDER_STATS)) ImGui::TextWrapped("%s · Wiederholungen %u · Ausgelassene Retraces %u",
                                                                     fps, repeated, skipped);

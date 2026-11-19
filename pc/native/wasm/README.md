@@ -106,3 +106,19 @@ selects another INI file for isolated windowed runs. Headless runs skip the sett
 ImGui. Host-only source bundles must include `pc/native/third_party/imgui` alongside the host.
 The included core and SDL3/OpenGL3 backends come from [Dear ImGui v1.93.0](https://github.com/ocornut/imgui/releases/tag/v1.93.0)
 under the [MIT license](../third_party/imgui/LICENSE.txt).
+
+## Mod packages
+
+Put packages in the game's working directory. Under **Mods**, enter their names
+in priority order, separated by commas, and restart the game. The first package
+with a matching file wins. An empty list uses the original resources.
+`BT_MOD_ORDER=first,second` selects the same order for a scripted run.
+
+- For GPU textures, select a render scale of 2× or higher and set `BT_TEX_DUMP`
+  to an output directory. Put an enlarged
+  PNG in `mods/first/textures/` with the exact filename from the dump. The
+  dimensions in the filename describe the original tile. Enlarge both axes by
+  the same integer factor of at least two.
+- For models and other assets, set `BT_ASSET_DUMP` to an output directory.
+  Put the replacement's uncompressed bytes under the same eight-digit
+  hexadecimal filename, for example `mods/first/assets/000006ea.bin`.

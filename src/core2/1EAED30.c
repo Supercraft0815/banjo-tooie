@@ -3,6 +3,11 @@
 #include "memory.h"
 #include "vector.h"
 #include "native_assets.h"
+#if defined(BT_ILP32)
+#include "bt_guest.h"
+u32 BT_HOST(asset_override)(u32 id, void *dst, u32 capacity);
+void BT_HOST(asset_dump)(u32 id, const void *src, u32 size);
+#endif
 static Vector *native_asset_refs[2];
 #define ASSET_REFS native_asset_refs
 void *D_8012B450[130];
@@ -360,6 +365,19 @@ void *func_800D5B34(s32 arg0)
   result = native_asset_load(arg0, &D_8012B7E8);
   if (!result) return NULL;
 #else
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+  {
+    u32 replacement_size = host_asset_override((u32)arg0, NULL, 0);
+    if (replacement_size) {
+      if (replacement_size > 0x7FFFFFFFu) return NULL;
+      result = heap_alloc((s32)replacement_size);
+      if (!result || host_asset_override((u32)arg0, result, replacement_size) != replacement_size) {
+        if (result) heap_free(result);
+        return NULL;
+      }
+      D_8012B7E8 = (s32)replacement_size;
+    } else {
+#endif
   index = arg0 * 4;
   rom_read_word(D_8011B900 + index, &D_8012B440);
   if ((!(D_8012B440 & 0xF)) && (mode == 0))
@@ -392,6 +410,15 @@ void *func_800D5B34(s32 arg0)
     }
     result = heap_alloc(size);
     rom_dma_read(result, (u8 *) (D_8012B448 + (D_8012B440 >> 6)), size);
+  }
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    }
+  }
+#endif
+#endif
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+  if (result && D_8012B7E8 > 0) {
+    host_asset_dump((u32)arg0, result, (u32)D_8012B7E8);
   }
 #endif
   D_8012B7E5 = (u8) D_8012B7E4;
@@ -467,6 +494,17 @@ s32 func_800D5EB4(s32 arg0, u8 *arg1, s32 arg2) {
 #if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
     return native_asset_read_into(arg0, arg1, arg2);
 #else
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    u32 replacement_size;
+    if (arg2 < 0) return 0;
+    replacement_size = host_asset_override((u32)arg0, NULL, 0);
+    if (replacement_size) {
+        if (replacement_size > (u32)arg2 || replacement_size > 0x7FFFFFFFu) return 0;
+        if (host_asset_override((u32)arg0, arg1, replacement_size) != replacement_size) return 0;
+        host_asset_dump((u32)arg0, arg1, replacement_size);
+        return (s32)replacement_size;
+    }
+#endif
     void *func_800E6950(s32, s32, void *);
     void rom_dma_read(u8 *, u8 *, u32);
     s32 rom_read_word(s32, u32 *);
@@ -486,6 +524,9 @@ s32 func_800D5EB4(s32 arg0, u8 *arg1, s32 arg2) {
     if (((u32) (D_8012B440 << 0x1A) >> 0x1E) & 1) {
         func_800E6950(arg0, 0, arg1);
         var_v1 = D_8012B7E8;
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+        if (var_v1 > 0) host_asset_dump((u32)arg0, arg1, (u32)var_v1);
+#endif
     } else {
     rom_read_word(D_8011B900 + var_v1 + 4, &D_8012B444);
     var_a2 = ((u32) D_8012B444 >> 6) - (temp_t3 = (u32) D_8012B440 >> 6);
@@ -498,6 +539,9 @@ s32 func_800D5EB4(s32 arg0, u8 *arg1, s32 arg2) {
     }
     if (arg2 >= var_a2) {
         rom_dma_read(arg1, D_8012B448 + temp_t3, var_a2);
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+        host_asset_dump((u32)arg0, arg1, (u32)var_a2);
+#endif
     } else {
         return 0;
     }

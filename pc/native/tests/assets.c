@@ -71,8 +71,13 @@ static void test_copy_and_sampling(void) {
     func_800E0170(destination, 0.5f, 0, poses);
     CHECK(fabsf(poses->ptr[1].unk1C[0] - 1.5f) < 0.0001f);
     CHECK(!func_800D5EB4(138, raw, 2) && raw[0] == 42);
-    CHECK(func_800D5EB4(138, raw, 4) == 16);
-    CHECK(raw[0] == 'a' && raw[1] == 'b' && raw[2] == 'c' && raw[3] == 0);
+    if (getenv("BT_MOD_ORDER")) {
+        CHECK(func_800D5EB4(138, raw, 4) == 3);
+        CHECK(raw[0] == 'm' && raw[1] == 'o' && raw[2] == 'd' && raw[3] == 42);
+    } else {
+        CHECK(func_800D5EB4(138, raw, 4) == 16);
+        CHECK(raw[0] == 'a' && raw[1] == 'b' && raw[2] == 'c' && raw[3] == 0);
+    }
     func_800DFC60(poses);
 }
 

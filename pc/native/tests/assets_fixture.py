@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build synthetic assets for the native manager without copyrighted game data."""
 from pathlib import Path
+import os
 import struct
 import subprocess
 import sys
@@ -12,7 +13,7 @@ def main():
     payload = bytearray()
     entries = []
     for index in range(140):
-        raw = struct.pack(">10H", 0, 10, 1, 0, 0x16, 2, 0, index * 128, 10, (index + 1) * 128)
+        raw = struct.pack(">10H", 0, 10, 1, 0, 0x16, 2, 0, index * 64, 10, (index + 1) * 64)
         flags = 6
         if index & 1:
             encoder = zlib.compressobj(wbits=-15)
@@ -37,7 +38,16 @@ def main():
         valid, invalid = Path(directory) / "valid.bin", Path(directory) / "invalid.bin"
         valid.write_bytes(archive)
         invalid.write_bytes(struct.pack(">II", 0x7FFFFFFF, 0))
-        return subprocess.call([str(Path(sys.argv[1]).resolve()), str(valid), str(invalid)])
+        command = [str(Path(sys.argv[1]).resolve()), str(valid), str(invalid)]
+        env = {k:v for k,v in os.environ.items() if k not in ('BT_MOD_ORDER','BT_ASSET_DUMP')}
+        subprocess.run(command, cwd=directory, env=env, check=True)
+        for name, payload in [('first',b'mod'), ('second',b'other')]:
+            assets = Path(directory) / 'mods' / name / 'assets'
+            assets.mkdir(parents=True)
+            (assets / '0000008a.bin').write_bytes(payload)
+        dump = Path(directory) / 'dump'
+        subprocess.run(command, cwd=directory, env={**env,'BT_MOD_ORDER':'first,second','BT_ASSET_DUMP':str(dump)}, check=True)
+        assert (dump / '0000008a.bin').read_bytes() == b'mod'
 
 
 if __name__ == "__main__":

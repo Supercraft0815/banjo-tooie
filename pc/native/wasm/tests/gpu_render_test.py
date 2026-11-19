@@ -11,6 +11,7 @@ import tempfile
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
 import build
+from a9_mod_texture_test import hash_texture, png
 
 
 def check_samples(exe, env):
@@ -56,8 +57,9 @@ def main():
         exe = str(Path(tmp) / 'gpu-renderer')
         subprocess.run([build.CLANG, '-O2', '-Wno-shift-op-parentheses', '-DBT_GPU_OPENGL=1', '-DBT_IMAGE_ACCESS_HOST=1',
                         '-I', str(HERE.parent / 'host'), *build.SDL_CFLAGS,
-                        str(HERE / 'gpu_renderer.c'), str(HERE.parent / 'host/glad/gl.c'), '-o', exe,
-                        '-lpthread', '-lm', *build.SDL_LIBS, *build.PLATFORM_LIBS[sys.platform]], check=True, capture_output=True)
+                        str(HERE / 'gpu_renderer.c'), str(HERE.parent / 'host/glad/gl.c'),
+                        str(HERE.parent / 'host/mod_texture.c'), '-o', exe,
+                        '-lpthread', '-lm', '-lz', *build.SDL_LIBS, *build.PLATFORM_LIBS[sys.platform]], check=True)
         output = []
         env = {k: v for k, v in os.environ.items() if not k.startswith('BT_')}
         for backend in ('soft', 'gpu'):
@@ -86,6 +88,18 @@ def main():
         assert len(outputs[0]) == 128*96*4 and outputs[0] == outputs[1], 'filtered texrect strip seam at 4x'
         assert len(set(outputs[0][::4]))>8, 'empty strip fixture'
         print('PASS 4x: split and whole filtered texrect images have 12,288 identical pixels')
+        key = hash_texture(0, 2, 2, 1, bytes([255]*4))
+        shades = [17, 52, 87, 122, 157, 192]
+        png(Path(tmp) / 'mods/stripes/textures' / f'{key}_2x1.png', 6, 3,
+            b''.join(bytes((v,v,v,255)) for v in shades))
+        run = subprocess.run([exe, 'mod-wrap'], cwd=tmp, env={**env,'BT_RENDERER':'gpu','BT_SCALE':'4'},
+                             check=True, capture_output=True, timeout=60)
+        coords = [math.floor(3*(-60/32+x/4)) for x in range(32)]
+        for mode in range(3):
+            indices = [(s % 6 if mode == 0 else min(s % 12, 11 - s % 12) if mode == 1 else
+                        min(5, max(0, s))) for s in coords]
+            assert run.stdout[32*mode:32*(mode+1)] == bytes(shades[i] for i in indices), (mode,run.stdout)
+        print('PASS 3x replacement: all six texels through repeat, mirror and clamp, including negative S')
         base = {**env,'BT_RENDERER':'gpu','BT_SCALE':'1'}
         results = [subprocess.run([exe,'programs'],env={**base,'BT_GPU_SPECIALIZE':value},
                                   check=True,capture_output=True,timeout=60).stdout for value in ('0','1')]

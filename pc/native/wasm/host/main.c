@@ -6,6 +6,7 @@
 #include "crash.h"
 #include "plat.h"
 #include "crash_build.h"
+#include "mod_texture.h"
 
 w2c_bt bt_inst;
 u8 *bt_mem;
@@ -31,6 +32,7 @@ void w2c_bt_func_800D5D70(w2c_bt *instance);
 
 int main(int argc, char **argv) {
     bt_settings_load();
+    bt_mod_texture_init(getenv("BT_MOD_ORDER"));
     const char *version = getenv("BT_VERSION");
     const char *map_path = bt_path_env("BT_GAME_MAP");
     const char *native_map = bt_path_env("BT_NATIVE_MAP");

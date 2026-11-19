@@ -161,7 +161,7 @@ add_library(bt_native_core STATIC
     "${BT_ROOT}/src/overlays/gs/propsDll.c"
     "${BT_ROOT}/src/overlays/gs/propmarker.c"
     "${BT_ROOT}/src/overlays/gs/maker.c"
-    platform/rdram.c memory.c input.c drone_states.c quaternion.c animation_resource.c assets.c cic.c spline.c model.c)
+    platform/rdram.c memory.c input.c drone_states.c quaternion.c animation_resource.c assets.c wasm/host/mod_assets.c cic.c spline.c model.c)
 target_link_libraries(bt_native_core PUBLIC bt_native_options ZLIB::ZLIB)
 if(UNIX AND NOT APPLE)
     target_link_libraries(bt_native_core PUBLIC m)

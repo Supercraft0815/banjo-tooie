@@ -9,6 +9,32 @@
 
 static void snapshot(void) { assert(fwrite(bt_mem+FB, 1, 4*4096, stdout) == 4*4096); }
 
+// Three rows of the same tile, sampling from negative S through two full periods.
+static void mod_wrap_picture(void) {
+    bt_mod_texture_init("stripes");
+    rdp_register_framebuffer(FB, W, 0);
+    rdp_begin();
+    rdp_command(0xED000000, W*4 << 12 | H*4);
+    target(FB); fill(0x00010001,0,0,W,H);
+    wr16(bt_mem + TEX, 0xFFFF);
+    wr16(bt_mem + TEX + 2, 0xFFFF);
+    rdp_command(0xFD100001, TEX);
+    rdp_command(0xF5100200, 0);
+    rdp_command(0xF4000000, 4 << 12);
+    rdp_command(0xF2000000, 4 << 12);
+    rdp_command(0xEF200000, 0);
+    for (int mode = 0; mode < 3; mode++) {
+        rdp_command(0xF5100200, (2 << 18) | (mode << 8) | (1 << 4));
+        rdp_texrect(0xE4000000 | (7*4 << 12) | (mode*4), mode*4, (u32)(u16)-60 << 16, 4096u << 16, 0);
+    }
+    rdp_end();
+    u32 *pixels = NULL; size_t cap = 0; int w, h;
+    assert(rdp_picture(FB, W, H, -1, &pixels, &cap, &w, &h) && w == 4*W && h == 4*H);
+    for (int mode = 0; mode < 3; mode++)
+        for (int x = 0; x < 32; x++) putchar((unsigned char)pixels[(4*mode+1)*w+x]);
+    free(pixels);
+}
+
 static void *draw_first_task(void *unused) {
     (void)unused;
     rdp_begin(); scene(); rdp_end();
@@ -204,6 +230,7 @@ int main(int argc, char **argv) {
     if (argc == 2 && (!strcmp(argv[1],"whole") || !strcmp(argv[1],"strips"))) {
         strip_picture(!strcmp(argv[1],"strips")); return 0;
     }
+    if (argc == 2 && !strcmp(argv[1],"mod-wrap")) { mod_wrap_picture(); return 0; }
     if (argc == 2 && !strcmp(argv[1], "depth")) { depth_writes(); return 0; }
 #ifdef BT_IMAGE_ACCESS_HOST
     if (argc == 2 && !strcmp(argv[1], "image-access")) { check_image_access(); return 0; }

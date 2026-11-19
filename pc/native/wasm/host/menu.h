@@ -17,6 +17,8 @@ void bt_setting_set(int id, int value);
 void bt_settings_load(void);
 const char *bt_fullscreen_mode(void);
 void bt_fullscreen_mode_set(const char *mode);
+const char *bt_mod_order(void);
+int bt_mod_order_set(const char *order);
 void bt_menu_display_changed(void);
 void bt_settings_option(const char *key, const char *value);
 

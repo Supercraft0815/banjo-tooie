@@ -2310,3 +2310,26 @@ blieb leer. Das IDO-Objekt jeder der drei Quelldateien mit insgesamt 60
 Funktionen und beide ROMs sind bytegleich. Prüfprotokolle und Spurhashes
 stehen in `build/acceptance/n3-2026-11-18/player-calls-ido/result.json`
 und `root-player-current-pairs.json` im selben Ordner.
+
+## 2026-11-19 — A9, HUD-Texturen und Modell-Assets
+
+Die Reihenfolge im Menü bestimmt, welches Paket bei identischem Dateinamen
+gewinnt. Auf dem Apple M4 Pro zeigen zwei Bilder aus Mayahem Temple den
+Wechsel: Paket A vergrößert das Ei im Nest (Asset 0x6EA) und färbt das
+Porträt im Pausenmenü grün. Paket B zeigt das kleine Ei und ein magentafarbenes
+Porträt. Ohne Mods stimmen beide 608 × 456 Pixel großen Bilder mit den
+Aufnahmen vor A9 überein. Der GPU-Test prüft außerdem eine dreifach vergrößerte
+Streifentextur mit Wiederholung, Spiegelung und geklemmten Rändern.
+
+Der ILP32-Gast und der direkte LP64-Asset-Lader verwenden denselben
+Paketleser. Die Größenprüfung lässt den Zielpuffer bei zu kleinem Platz
+unberührt. Der LP64-Asset-Test lief in beiden Paketkonfigurationen mit
+Adress- und Undefined-Behavior-Sanitizern. Die 71 Spielspuren vor und
+nach dem Umbau sind ohne Mods vollständig identisch. Die Bilder, Hashes,
+GPU- und Gastproben liegen unter
+`build/acceptance/a9-mod-assets-2026-11-17/`, insbesondere
+`gpu-model-compare/model-comparison.png` und `root-asset-refactor71/results.json`.
+Ein separater Build aus `e5c081ace` mit ausschließlich den A9-Änderungen
+bestand alle 71 Spielspuren. Im regulären CMake-Build bestehen die Tests
+`native_assets` und `native_animation_resources`. Die Erkennung externer
+Rice-CRC-Dateinamen steht noch aus.

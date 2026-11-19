@@ -24,6 +24,11 @@ static DrawProgram draw_program(GLuint name) {
     glUniform1i(glGetUniformLocation(name,"mats"),1);
     glUniform1i(glGetUniformLocation(name,"dst"),4);
     glUniform1i(glGetUniformLocation(name,"silhouette"),6);
+    for (int k = 0; k < 8; k++) {
+        char sampler[] = "modtex0";
+        sampler[6] += k;
+        glUniform1i(glGetUniformLocation(name, sampler), 7 + k);
+    }
     return (DrawProgram){name,glGetUniformLocation(name,"scale"),glGetUniformLocation(name,"frame"),
         glGetUniformLocation(name,"color16"),glGetUniformLocation(name,"rmw"),glGetUniformLocation(name,"soften")};
 }

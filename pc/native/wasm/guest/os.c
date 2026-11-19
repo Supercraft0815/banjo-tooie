@@ -114,6 +114,8 @@ s32 bt_camera_stick(void) { return (s32)host_camera_stick(); }  // free camera s
 u32 BT_HOST(language)(void);
 s32 bt_language(void) { return (s32)host_language(); }  // dialog language index (0: English)
 u32 BT_HOST(asset_shift)(void);
+u32 BT_HOST(asset_override)(u32 id, void *dst, u32 capacity);
+void BT_HOST(asset_dump)(u32 id, const void *src, u32 size);
 s32 bt_asset_shift(void) { return (s32)host_asset_shift(); }  // ROM offset of the asset region with those dialogs
 void _gcgoto_entrypoint_1(u32 map, u32 exit);
 void set_widescreen(s32 enabled);

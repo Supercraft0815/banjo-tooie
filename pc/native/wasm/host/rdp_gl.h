@@ -51,6 +51,7 @@ static void *gpu_share;  // visible window: pictures are shown as textures
 #include <SDL3/SDL.h>
 #include "glad/gl.h"
 #include "rdp_glsl.h"
+#include "mod_texture.h"
 static SDL_Window *gpu_window;
 static PFNGLTEXTUREBARRIERPROC gpu_barrier;
 
@@ -74,11 +75,11 @@ typedef struct {
 // rmw: the blender reads memory at scale 1; such batches draw one triangle at a time and blend in the
 // shader against the target itself (texture barrier), so every blend step rounds to RGBA5551 like rdp.c.
 typedef struct { GLuint name; GLint scale,frame,color16,rmw,soften; } DrawProgram;
-typedef struct { const DrawProgram *program; GpuTarget *t; GLenum zfunc; GLboolean zmask; int decal, rmw, sc[4], first, count; } GpuBatch;
+typedef struct { const DrawProgram *program; GpuTarget *t; GLenum zfunc; GLboolean zmask; int decal, rmw, sc[4], first, count; GLuint mod_tex[8]; } GpuBatch;
 // border: what each of the 8 one-texel border pieces (L R T B, then corners LT RT LB RB) last got copied
 // from, as atlas source x | y << 16 plus 1 (0: never written); see gpu_seams.
-typedef struct { u64 key; u32 gen; u16 x, y; u32 border[8], stamp; int idx; } GpuTexture;
-typedef struct { u64 gen; u32 tlut, agen; Tile desc; u16 x, y, w, h; int slot; } GpuTileMemo;
+typedef struct { u64 key; u32 gen; u16 x, y, factor; u32 border[8], stamp; int idx; GLuint mod_tex; } GpuTexture;
+typedef struct { u64 gen; u32 mode, agen; Tile desc; u16 x, y, w, h, factor; int slot; } GpuTileMemo;
 // A filtered triangle that maps one clamped tile edge to edge (gpu_seams); x, y, s, t per corner.
 typedef struct { int slot; u16 w, h; u32 image; float v[3][4]; } GpuPiece;
 
@@ -473,6 +474,8 @@ static int gpu_tile_owner(const Tile *tl, int w, int h, int tlut) {
 
 static void gpu_atlas_reset(void) {
     gpu_flush();  // queued draws still sample the old atlas
+    for (int i = 0; i < GPU_TEXTURES; ++i)
+        if (gpu.tex[i].gen == gpu.atlas_gen && gpu.tex[i].mod_tex) glDeleteTextures(1, &gpu.tex[i].mod_tex);
     gpu.atlas_gen++;
     gpu.ntex = gpu.ax = gpu.ay = gpu.shelf = 0;
 }
@@ -492,8 +495,9 @@ static u64 gpu_tmem_hash(void) {
 static void gpu_tile_image(int i, u16 *x, u16 *y, u16 *pw, u16 *ph) {
     const Tile *tl = &R.tile[i & 7];
     GpuTileMemo *memo = &gpu.memo[i & 7];
-    u32 tlut = R.om_h >> 14 & 3;
-    if (memo->gen == tmem_gen && memo->agen == gpu.atlas_gen && memo->tlut == tlut && !memcmp(&memo->desc, tl, sizeof *tl)) {
+    int mods = rdp_scale() >= 2 && (bt_mod_texture_active() || getenv("BT_TEX_DUMP"));
+    u32 mode = (R.om_h >> 14 & 3) | (u32)mods << 2;
+    if (memo->gen == tmem_gen && memo->agen == gpu.atlas_gen && memo->mode == mode && !memcmp(&memo->desc, tl, sizeof *tl)) {
         *x = memo->x; *y = memo->y; *pw = memo->w; *ph = memo->h;
         return;
     }
@@ -504,32 +508,52 @@ static void gpu_tile_image(int i, u16 *x, u16 *y, u16 *pw, u16 *ph) {
     if (own < 0) { gpu_mask_materialize(); own = 0; }
     u64 key = own ? gpu_mix(gpu_mix(0x4D41534Bull << 32 | R.trec[own - 1].uid, (u64)(tl->fmt == 3)), (u64)w | (u64)h << 16) :
                     gpu_mix(gpu_mix(gpu_tmem_hash(), (u64)tl->fmt | (u64)tl->siz << 3 | (u64)tl->line << 5 | (u64)tl->tmem << 14 |
-                                                     (u64)tl->pal << 23 | (u64)tlut << 27), (u64)w | (u64)h << 16);
+                                                     (u64)tl->pal << 23 | (u64)mode << 27), (u64)w | (u64)h << 16);
     u32 slot = (u32)key & (GPU_TEXTURES - 1);
     while (gpu.tex[slot].gen == gpu.atlas_gen && gpu.tex[slot].key != key) slot = (slot + 1) & (GPU_TEXTURES - 1);
     GpuTexture *e = &gpu.tex[slot];
     if (e->gen != gpu.atlas_gen) {
-        if (gpu.ax + w + 2 > GPU_ATLAS) { gpu.ay += gpu.shelf; gpu.ax = gpu.shelf = 0; }  // + 2: seam border
-        if (gpu.ay + h + 2 > GPU_ATLAS || gpu.ntex * 2 > GPU_TEXTURES) {
+        int rw = 0, rh = 0;
+        u32 *replacement = NULL;
+        if (!own) {
+            for (int t = 0; t < h; t++) for (int s = 0; s < w; s++) {
+                int o[4]; decode_texel(tl, s, t, o);
+                gpu.decode[t * w + s] = (u32)o[0] | (u32)o[1] << 8 | (u32)o[2] << 16 | (u32)o[3] << 24;
+            }
+            if (mods) {
+                u64 hash = bt_mod_texture_hash(tl->fmt, tl->siz, w, h, gpu.decode);
+                bt_mod_texture_dump(hash, w, h, gpu.decode);
+                replacement = bt_mod_texture_load(hash, w, h, &rw, &rh);
+                if (rw > gpu.max_size || rh > gpu.max_size) replacement = NULL;
+            }
+        }
+        if (!replacement && (gpu.ax + w + 2 > GPU_ATLAS)) { gpu.ay += gpu.shelf; gpu.ax = gpu.shelf = 0; }  // + 2: seam border
+        if ((!replacement && (gpu.ay + h + 2 > GPU_ATLAS)) || gpu.ntex * 2 > GPU_TEXTURES) {
             gpu_atlas_reset();  // the caller rebuilds its material: other tiles of it may be gone
             gpu_tile_image(i, x, y, pw, ph);
             return;
         }
-        *e = (GpuTexture){.key = key, .gen = gpu.atlas_gen, .x = (u16)(gpu.ax + 1), .y = (u16)(gpu.ay + 1)};
-        gpu.ax += w + 2; if (h + 2 > gpu.shelf) gpu.shelf = h + 2;
+        *e = (GpuTexture){.key = key, .gen = gpu.atlas_gen, .factor = replacement ? rw / w : 1};
         gpu.ntex++;
-        if (own) { gpu_mask_copy(e, own - 1, w, h, tl->fmt == 3); goto placed; }
-        for (int t = 0; t < h; t++) for (int s = 0; s < w; s++) {
-            int o[4];
-            decode_texel(tl, s, t, o);
-            gpu.decode[t * w + s] = (u32)o[0] | (u32)o[1] << 8 | (u32)o[2] << 16 | (u32)o[3] << 24;
+        if (replacement) {
+            glGenTextures(1, &e->mod_tex);
+            glBindTexture(GL_TEXTURE_2D, e->mod_tex);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, rw, rh, 0, GL_RGBA, GL_UNSIGNED_BYTE, replacement);
+            gpu.uploads++;
+        } else {
+            e->x = (u16)(gpu.ax + 1); e->y = (u16)(gpu.ay + 1);
+            gpu.ax += w + 2; if (h + 2 > gpu.shelf) gpu.shelf = h + 2;
+            if (own) { gpu_mask_copy(e, own - 1, w, h, tl->fmt == 3); goto placed; }
+            glBindTexture(GL_TEXTURE_2D, gpu.atlas);
+            gpu_upload(e->x, e->y, w, h, GL_RGBA_INTEGER, GL_UNSIGNED_BYTE, 4, gpu.decode);
+            gpu.uploads++;
         }
-        glBindTexture(GL_TEXTURE_2D, gpu.atlas);
-        gpu_upload(e->x, e->y, w, h, GL_RGBA_INTEGER, GL_UNSIGNED_BYTE, 4, gpu.decode);
-        gpu.uploads++;
     }
 placed:
-    *memo = (GpuTileMemo){.gen = tmem_gen, .tlut = tlut, .agen = gpu.atlas_gen, .desc = *tl, .x = e->x, .y = e->y, .w = (u16)w, .h = (u16)h, .slot = (int)slot};
+    w *= e->factor; h *= e->factor;
+    *memo = (GpuTileMemo){.gen = tmem_gen, .mode = mode, .agen = gpu.atlas_gen, .desc = *tl, .x = e->x, .y = e->y, .w = (u16)w, .h = (u16)h, .factor = e->factor, .slot = (int)slot};
     *x = e->x; *y = e->y; *pw = (u16)w; *ph = (u16)h;
 }
 
@@ -560,13 +584,19 @@ static int gpu_record(u32 *r, int mode, int tex, int tile, int seam) {
         const Tile *tl = &R.tile[(tile + i) & 7];
         u32 *o = r + 16 + 8 * i;
         u16 x = 0, y = 0, w = 0, h = 0;
-        if (lod ? need0 || need1 : i == 0 ? need0 : need1) gpu_tile_image(tile + i, &x, &y, &w, &h);
+        int needed = lod ? need0 || need1 : i == 0 ? need0 : need1;
+        int factor = 1;
+        if (needed) {
+            gpu_tile_image(tile + i, &x, &y, &w, &h);
+            factor = gpu.memo[(tile + i) & 7].factor;
+            if (factor < 1) factor = 1;
+        }
         o[0] = x | (u32)y << 16; o[1] = w | (u32)h << 16;
         o[2] = (u32)tl->uls | (u32)tl->ult << 16; o[3] = (u32)tl->lrs | (u32)tl->lrt << 16;
         o[4] = (u32)tl->cms | (u32)tl->cmt << 2 | (u32)tl->masks << 4 | (u32)tl->maskt << 8 |
                (u32)tl->shifts << 12 | (u32)tl->shiftt << 16;
-        o[5] = i == 0 ? (u32)seam : 0;  // the shader may read tile 0's seam border (gpu_seams)
-        o[6] = o[7] = 0;
+        o[5] = i == 0 && factor == 1 ? (u32)seam : 0;  // high-res replacements use their own tile edges
+        o[6] = (u32)factor; o[7] = needed ? gpu.tex[gpu.memo[(tile + i) & 7].slot].mod_tex : 0;
     }
     return 16 + 8 * ntiles;
 }
@@ -648,14 +678,19 @@ static void gpu_emit(GpuTarget *t, const GpuVertex *v, int n, int zon) {
                ((R.om_l & 0x4000) && (bl >> (4 + sh) & 3) == 1));
     gpu_scissor(t, sc);
     const DrawProgram *program=select_draw_program(gpu.m+4*v[0].mat);
+    GLuint mod_tex[8] = {0};
+    const u32 *material = gpu.m + (size_t)v[0].mat * 4;
+    int ntiles = material[14] > 8 ? 8 : (int)material[14];
+    for (int k = 0; k < ntiles; ++k) mod_tex[k] = material[16 + 8 * k + 7];
     GpuBatch *b = gpu.nb ? &gpu.b[gpu.nb - 1] : NULL;
     if (!b || b->program != program || b->t != t || b->zfunc != zfunc || b->zmask != zmask || b->decal != decal || b->rmw != rmw ||
-        memcmp(b->sc, sc, sizeof sc)) {
+        memcmp(b->sc, sc, sizeof sc) || memcmp(b->mod_tex, mod_tex, sizeof mod_tex)) {
         if (gpu.nb == gpu.cap_b && !(gpu.b = realloc(gpu.b, (size_t)(gpu.cap_b = gpu.cap_b * 2 + 64) * sizeof *gpu.b)))
             bt_fatal("allocating GPU batches");
         b = &gpu.b[gpu.nb++];
         *b = (GpuBatch){.program=program, .t = t, .zfunc = zfunc, .zmask = zmask, .decal = decal, .rmw = rmw, .first = gpu.nv};
         memcpy(b->sc, sc, sizeof sc);
+        memcpy(b->mod_tex, mod_tex, sizeof mod_tex);
     }
     if (gpu.nv + n > gpu.cap_v && !(gpu.v = realloc(gpu.v, (size_t)(gpu.cap_v = (gpu.nv + n) * 2) * sizeof *gpu.v)))
         bt_fatal("allocating GPU vertices");
@@ -715,7 +750,7 @@ static int gpu_seam_tile(const GpuTarget *t, const RdpVtx *const *in) {
 
 static void gpu_piece(const RdpVtx *const *in, int tile, u32 image) {
     const GpuTileMemo *memo = &gpu.memo[tile & 7];
-    if (memo->gen != tmem_gen || memo->agen != gpu.atlas_gen ||
+    if (memo->factor > 1 || memo->gen != tmem_gen || memo->agen != gpu.atlas_gen ||
         memcmp(&memo->desc, &R.tile[tile & 7], sizeof memo->desc)) return;
     if (gpu.npiece == gpu.cap_piece &&
         !(gpu.piece = realloc(gpu.piece, (size_t)(gpu.cap_piece = gpu.cap_piece * 2 + 64) * sizeof *gpu.piece)))
@@ -975,6 +1010,7 @@ static void gpu_flush(void) {
     glActiveTexture(GL_TEXTURE6); glBindTexture(GL_TEXTURE_2D, gpu.shadow.texture ? gpu.shadow.texture : gpu.blank);
     glActiveTexture(GL_TEXTURE0);
     const DrawProgram *program=NULL;
+    GLuint bound_mod[8] = {0};
     GpuTarget *bound = NULL;
     int decal = -1;
     for (int i = 0; i < gpu.nb; i++) {
@@ -985,6 +1021,12 @@ static void gpu_flush(void) {
             glUniform1ui(program->frame,gpu.frame);
             glUniform1i(program->soften,bt_setting(BT_SET_SMOOTH));
             bound=NULL;
+        }
+        for (int k = 0; k < 8; ++k) if (b->mod_tex[k] && bound_mod[k] != b->mod_tex[k]) {
+            glActiveTexture(GL_TEXTURE0 + 7 + k);
+            glBindTexture(GL_TEXTURE_2D, b->mod_tex[k]);
+            bound_mod[k] = b->mod_tex[k];
+            glActiveTexture(GL_TEXTURE0);
         }
         if (b->t != bound) {
             bound = b->t;

@@ -2,10 +2,22 @@
 #include "native_model.h"
 #include "core2/animation_resource.h"
 #include "memory.h"
+#if defined(__wasm__)
+#include "bt_guest.h"
+#endif
 #include "overlays/gl/dbDll.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <zlib.h>
+
+#if defined(__wasm__)
+u32 BT_HOST(asset_override)(u32 id, void *dst, u32 capacity);
+void BT_HOST(asset_dump)(u32 id, const void *src, u32 size);
+#define bt_mod_asset_read host_asset_override
+#define bt_mod_asset_dump host_asset_dump
+#else
+#include "wasm/host/mod_assets.h"
+#endif
 
 static FILE *archive;
 static u32 *entries;
@@ -107,30 +119,42 @@ s32 native_asset_rom_offset(s32 id) {
     return 0x5180 + payload_start + (entries[id] >> 6);
 }
 
-void *native_asset_load(s32 id, s32 *size) {
+static void *load_asset(s32 id, s32 *size, int *replacement) {
     s32 packed_size = native_asset_packed_size(id);
     u32 flags = native_asset_flags(id);
-    u8 *packed, *data;
+    u8 *packed = NULL, *data;
     s32 output_size;
     if (!archive || !size || packed_size <= 0) return NULL;
-    packed = heap_alloc((packed_size + 1) & ~1);
-    if (packed_size & 1) packed[packed_size] = 0;
-    if (fseek(archive, payload_start + (entries[id] >> 6), SEEK_SET) ||
-        fread(packed, 1, packed_size, archive) != (size_t)packed_size) {
-        heap_free(packed);
-        return NULL;
+    output_size = (s32)bt_mod_asset_read((u32)id, NULL, 0);
+    *replacement = output_size > 0;
+    if (*replacement) {
+        data = heap_alloc(output_size);
+        if (!data || bt_mod_asset_read((u32)id, data, (u32)output_size) != (u32)output_size) {
+            if (data) heap_free(data);
+            return NULL;
+        }
+    } else {
+        packed = heap_alloc((packed_size + 1) & ~1);
+        if (!packed) return NULL;
+        if (packed_size & 1) packed[packed_size] = 0;
+        if (fseek(archive, payload_start + (entries[id] >> 6), SEEK_SET) ||
+            fread(packed, 1, packed_size, archive) != (size_t)packed_size) {
+            heap_free(packed);
+            return NULL;
+        }
+        if ((flags & 15) == 10)
+            func_808000E8_gldbDll((s32 *)packed, id - 0x955, packed_size);
+        data = packed;
+        output_size = (packed_size + 1) & ~1;
     }
-    if ((flags & 15) == 10)
-        func_808000E8_gldbDll((s32 *)packed, id - 0x955, packed_size);
-    data = packed;
-    output_size = (packed_size + 1) & ~1;
-    if ((flags & 16) || (flags & 15) == 10) {
+    if (packed && ((flags & 16) || (flags & 15) == 10)) {
         z_stream stream = {0};
         int result;
         if (packed_size < 3) { heap_free(packed); return NULL; }
         output_size = ((u32)packed[0] << 8 | packed[1]) * 16;
         if (!output_size) { heap_free(packed); return NULL; }
         data = heap_alloc(output_size);
+        if (!data) { heap_free(packed); return NULL; }
         rare_memset(data, 0, output_size);
         stream.next_in = packed + 2;
         stream.avail_in = packed_size - 2;
@@ -144,6 +168,7 @@ void *native_asset_load(s32 id, s32 *size) {
         heap_free(packed);
         if (result != Z_STREAM_END) { heap_free(data); return NULL; }
     }
+    bt_mod_asset_dump((u32)id, data, (u32)output_size);
     if ((flags & 15) == 0 && !native_model_decode(data, output_size)) {
         heap_free(data);
         return NULL;
@@ -164,16 +189,22 @@ void *native_asset_load(s32 id, s32 *size) {
     return data;
 }
 
+void *native_asset_load(s32 id, s32 *size) {
+    int replacement;
+    return load_asset(id, size, &replacement);
+}
+
 s32 native_asset_read_into(s32 id, void *destination, s32 capacity) {
     s32 size;
+    int replacement;
     void *data;
     if (!destination || capacity < 0) return 0;
-    data = native_asset_load(id, &size);
+    data = load_asset(id, &size, &replacement);
     if (!data) return 0;
     if (capacity < size) { heap_free(data); return 0; }
     rare_memcpy(destination, data, size);
     heap_free(data);
-    if ((native_asset_flags(id) & 16) || (native_asset_flags(id) & 15) == 10) {
+    if (replacement || (native_asset_flags(id) & 16) || (native_asset_flags(id) & 15) == 10) {
         func_800D5FDC(size);
         return size;
     }

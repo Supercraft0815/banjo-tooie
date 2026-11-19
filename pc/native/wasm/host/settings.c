@@ -4,6 +4,7 @@
 // (BT_HEADLESS) ignore the file, so their results never depend on the player's choices.
 #include <SDL3/SDL.h>
 #include <stdatomic.h>
+#include <ctype.h>
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>
@@ -37,8 +38,33 @@ static BtSetting S[BT_SET_COUNT] = {
     [BT_SET_LANGUAGE] = {"language", "BT_LANG", "Sprache (Neustart, EU-ROM)", 0, 3, 0, {"Englisch", "Französisch", "Deutsch", "Spanisch"}},
 };
 static _Atomic int values[BT_SET_COUNT];
-static char path[1024], fullscreen_mode[80];
+static char path[1024], fullscreen_mode[80], mod_order[256];
+static void save_option(const char *key, const char *value);
 const char *bt_fullscreen_mode(void) { return fullscreen_mode; }
+const char *bt_mod_order(void) { return mod_order; }
+
+static int valid_mod_order(const char *order) {
+    size_t total = 0;
+    while (*order) {
+        size_t n = 0;
+        while (order[n] && order[n] != ',') {
+            unsigned char c = (unsigned char)order[n];
+            if (!(isalnum(c) || c == '_' || c == '-') || ++n > 63) return 0;
+        }
+        if (order[n] == ',' && !order[n + 1]) return 0;
+        if (!n || (total += n + (order[n] == ',')) > sizeof mod_order - 1) return 0;
+        order += n;
+        if (*order == ',') order++;
+    }
+    return 1;
+}
+
+int bt_mod_order_set(const char *order) {
+    if (!order || !valid_mod_order(order)) return 0;
+    SDL_strlcpy(mod_order, order, sizeof mod_order);
+    save_option("mod_order", mod_order);
+    return 1;
+}
 int bt_setting(int id) { return atomic_load(&values[id]); }
 const BtSetting *bt_setting_info(int id) { return &S[id]; }
 
@@ -46,6 +72,8 @@ static int clamp(const BtSetting *s, int v) { return v < s->min ? s->min : v > s
 
 // Main thread, first thing in main(): file values become the environment the subsystems read.
 void bt_settings_load(void) {
+    const char *order_env = getenv("BT_MOD_ORDER");
+    if (order_env && valid_mod_order(order_env)) SDL_strlcpy(mod_order, order_env, sizeof mod_order);
     if (!getenv("BT_HEADLESS")) {
         const char *override = getenv("BT_SETTINGS");
         if (override && *override) snprintf(path, sizeof path, "%s", override);
@@ -57,11 +85,15 @@ void bt_settings_load(void) {
     }
     if (path[0]) {
         FILE *f = fopen(path, "r");
-        char line[200], key[64], text[128];
+        char line[512], key[64], text[256];
         while (f && fgets(line, sizeof line, f)) {
-            if (line[0] == '#' || sscanf(line, "%63[^=]=%127[^\r\n]", key, text) != 2) continue;
+            if (line[0] == '#' || sscanf(line, "%63[^=]=%255[^\r\n]", key, text) != 2) continue;
             if (!strcmp(key, "fullscreen_mode")) {
                 SDL_strlcpy(fullscreen_mode, text, sizeof fullscreen_mode);
+                continue;
+            }
+            if (!strcmp(key, "mod_order")) {
+                if (!order_env && valid_mod_order(text)) SDL_strlcpy(mod_order, text, sizeof mod_order);
                 continue;
             }
             if (bt_input_option(key, text)) continue;
@@ -76,6 +108,7 @@ void bt_settings_load(void) {
         // BT_RENDERER takes a name, not a number; scripted runs (no file) keep the software reference.
         bt_setenv("BT_RENDERER", S[BT_SET_RENDERER].value ? "gpu" : "soft", 0);
     }
+    if (!order_env && mod_order[0]) bt_setenv("BT_MOD_ORDER", mod_order, 0);
     if (getenv("BT_RENDERER")) S[BT_SET_RENDERER].value = !strcmp(getenv("BT_RENDERER"), "gpu");
     for (int i = 0; i < BT_SET_COUNT; i++) {
         if (S[i].env && getenv(S[i].env)) S[i].value = clamp(&S[i], atoi(getenv(S[i].env)));
