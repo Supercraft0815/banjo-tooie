@@ -3,7 +3,7 @@
 #include "common.h"
 #include "native_gsfile.h"
 typedef struct { u8 type, index; } NativeCameraEntry;
-typedef struct {
+typedef struct NativeCameraDatabase {
     s32 counts[8];
     s16 handles[8];
     s32 selected;
@@ -11,7 +11,8 @@ typedef struct {
     s32 maximum;
     NativeCameraEntry entries[];
 } NativeCameraDatabase;
-extern NativeCameraDatabase *D_80119540;
+#include "core2/player_form_data.h"
+#define D_80119540 (player_form_data.database)
 void func_800A5550(void *, void *);
 void func_800A5598(void *, void *);
 void func_800A55E0(void);

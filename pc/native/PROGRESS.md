@@ -3016,3 +3016,14 @@ Alle 9.688 Zeigerwort-Adressen, 16.401 Originalfunktionen und beide ROMs
 sind geprüft. Belege unter
 `build/acceptance/n1-2026-11-18/current-core-audio-config*` und
 `current-rng-ground*`.
+
+## 2026-11-19 — N1, Spielerformen und Kartenregeln
+
+14 bisherige Assembler-Einträge teilen sich 848 Bytes mit den ursprünglichen
+Tabellengrenzen. Die Kameradatenbank behält auf dem 64-Bit-Host ihre volle
+Adresse. Die 20. Spielerform und der gültige Index null der folgenden Tabelle
+lesen ihre sich überlappenden Werte aus demselben Speicher. Der strenge Scan
+sinkt von 90 auf 76. Elf Gastsuiten, 74 Replays mit 447.849 Retraces, 63
+Sanitizertests, 9.688 Zeigerwort-Adressen und 16.401 Originalfunktionen
+sind geprüft. Beide ROM-Abbilder sind bytegleich. Die Belege stehen unter
+`build/acceptance/n1-2026-11-18/current-player-form-data*`.

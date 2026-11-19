@@ -1,5 +1,5 @@
 #include "core2/1E78BF0.h"
-
+#include "core2/player_form_data.h"
 s32 func_8009F300() 
 {
     return 0x4;
@@ -312,14 +312,14 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(BtIntPtr) func_8009FC80(PlayerState *arg0) {
     void func_8009C128(PlayerState *, f32[3]);
     BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     f32 func_800DC178(f32, f32);
-    extern s32 D_80119220;
+    BT_IDO_ONLY(extern s32 D_80119220;)
     f32 sp24[3];
 
     func_8009C128(arg0, sp24);
     sp24[0] += func_800DC178(-30.0f, 30.0f);
     sp24[1] += func_800DC178(95.0f, 105.0f);
     sp24[2] += func_800DC178(-30.0f, 30.0f);
-    BT_NATIVE_ONLY(return) func_800BBCB8(sp24, NULL, 1.0f, 1, &D_80119220);
+    BT_NATIVE_ONLY(return) func_800BBCB8(sp24, NULL, 1.0f, 1, BT_DATA_FIELD((s32 *)player_form_data.particle_commands, &D_80119220));
 }
 
 /* extern */

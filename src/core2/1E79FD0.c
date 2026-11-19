@@ -1,5 +1,5 @@
 #include "1E79FD0_types.h"
-
+#include "core2/player_form_data.h"
 s32 func_800A06E0() 
 {
     return 0x18;
@@ -18,8 +18,8 @@ void func_800A0714(BtIntPtr arg0, s32 arg1) {
     void func_800DF3E0(void);
     void func_800DF744(s32, s32);
     f32 func_800F1214(f32, f32, f32);
-    extern u8 D_80119250[];
-    extern u8 D_80119254[];
+    BT_IDO_ONLY(extern u8 D_80119250[];)
+    BT_IDO_ONLY(extern u8 D_80119254[];)
     s32 value;
 
     func_800DF3E0();
@@ -97,13 +97,13 @@ void func_800A0714(BtIntPtr arg0, s32 arg1) {
         func_800DF744(0x32, (s32) func_800F1214((*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x138)))) + (4))), 1.0f, 5.0f));
         return;
     case 0x988:
-        value = *(D_80119250 + func_800A940C((((PlayerState *)arg0)->unk184)));
+        value = *(BT_DATA_FIELD(player_form_data.render_order, D_80119250) + func_800A940C((((PlayerState *)arg0)->unk184)));
         func_800DF744(5, value);
         func_800DF744(4, value);
         func_800DF744(3, (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x138)))) + (0x16))));
         return;
     case 0x98D:
-        func_800DF744(4, *(D_80119254 + func_800A940C((((PlayerState *)arg0)->unk184))));
+        func_800DF744(4, *(BT_DATA_FIELD(player_form_data.alternate_render_order, D_80119254) + func_800A940C((((PlayerState *)arg0)->unk184))));
         return;
     case 0x984:
     case 0x986:

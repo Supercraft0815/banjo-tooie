@@ -2,6 +2,7 @@
 #define __CORE2_1E7BFA0_H__
 
 #include "common.h"
+#include "core2/player_form_data.h"
 #include "transformations.h"
 
 #include "overlays/ba/playerstate.h"

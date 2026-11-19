@@ -57,6 +57,7 @@ set_source_files_properties("${BT_ROOT}/src/core2/1EB5E70_geometry.inc" "${BT_RO
 add_library(bt_native_core STATIC
     "${BT_ROOT}/src/core2/inflate_rodata.c"
     "${BT_ROOT}/src/core2/model_materials.c"
+    "${BT_ROOT}/src/core2/player_form_data.c"
     "${BT_ROOT}/src/core1/trig_constants.c"
     "${BT_ROOT}/src/core1/trig_tables.c"
     "${BT_ROOT}/src/core2/1EB5E70_geometry.inc"

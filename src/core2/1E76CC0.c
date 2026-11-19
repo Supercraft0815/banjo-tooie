@@ -1,5 +1,5 @@
 #include "core2/1E76CC0.h"
-
+#include "core2/player_form_data.h"
 s32 func_8009D3D0() 
 {
     return 0x20;
@@ -29,14 +29,14 @@ void func_8009D3F8(s32 arg0, s32 arg1) {
 s32 func_8009D454(PlayerState *arg0, volatile u8 arg1, s32 *arg2) {
     void func_8009C128(PlayerState *, f32[3]);
     u8 func_800C4350(s32, f32[3], s32 *);
-    extern s32 D_80119210;
+    BT_IDO_ONLY(extern s32 D_80119210;)
     f32 sp1C[3];
     s32 var_a0;
 
     func_8009C128(arg0, sp1C);
     var_a0 = arg1;
     if (var_a0 == 0) {
-        var_a0 = func_800C4350(var_a0, sp1C, &D_80119210) & 0xFF;
+        var_a0 = func_800C4350(var_a0, sp1C, BT_DATA_FIELD((s32 *)player_form_data.sound_commands, &D_80119210)) & 0xFF;
     }
     return func_800C4350(var_a0, sp1C, arg2);
 }
@@ -140,10 +140,10 @@ void func_8009D658(PlayerState *arg0) {
 
 void func_8009D7A4(PlayerState *arg0, f32 arg1, f32 arg2) {
     f32 func_800DC178(f32, f32);
-    extern s16 D_80119208[];
+    BT_IDO_ONLY(extern s16 D_80119208[];)
     void *temp_v0;
 
-    func_8009DF18(arg0, D_80119208[*(s32 *)((s8 *)*(void **)((s8 *)arg0 + 0x104) + 0x18)], func_800DC178(arg1, arg2), 0x61A8);
+    func_8009DF18(arg0, BT_DATA_FIELD(player_form_data.alternate_sounds, D_80119208)[*(s32 *)((s8 *)*(void **)((s8 *)arg0 + 0x104) + 0x18)], func_800DC178(arg1, arg2), 0x61A8);
     temp_v0 = *(void **)((s8 *)arg0 + 0x104);
     (((Obj1E76CC0_func_8009D7A4_temp_v0 *)temp_v0)->unk18)++;
     temp_v0 = *(void **)((s8 *)arg0 + 0x104);
@@ -173,14 +173,14 @@ void func_8009D89C(PlayerState *arg0, f32 arg1) {
     void func_800C31DC(u8, f32);
     void func_800C35E8(u8, f32[3]);
     void func_800C3BDC(u8);
-    extern s16 D_80119200[];
+    BT_IDO_ONLY(extern s16 D_80119200[];)
     f32 sp24[3];
     void *temp_v0;
 
     func_8009C128(arg0, sp24);
     func_800C35E8((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x104)))) + (0))), sp24);
     temp_v0 = (*(void **)((s8 *)(arg0) + (0x104)));
-    func_800C301C((((Obj1E76CC0_func_8009D89C_temp_v0 *)temp_v0)->unk0), D_80119200[((Obj1E76CC0_func_8009D89C_temp_v0 *)temp_v0)->unk8]);
+    func_800C301C((((Obj1E76CC0_func_8009D89C_temp_v0 *)temp_v0)->unk0), BT_DATA_FIELD(player_form_data.sounds, D_80119200)[((Obj1E76CC0_func_8009D89C_temp_v0 *)temp_v0)->unk8]);
     func_800C31DC((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x104)))) + (0))), arg1);
     func_800C3BDC((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x104)))) + (0))));
     temp_v0 = (*(void **)((s8 *)(arg0) + (0x104)));

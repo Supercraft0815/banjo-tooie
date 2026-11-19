@@ -651,7 +651,7 @@ segments:
       - [0x1EF16C0, .data, 1E6B900]
       - [0x1EF1750, data]
       - [0x1EF1820, .data, 1E76360]
-      - [0x1EF2AF0, data]
+      - [0x1EF2AF0, .data, player_form_data]
       - [0x1EF2E40, .data, 1E7F220]
       - [0x1EF3530, .data, 1E7F3A0]
       - [0x1EF3B10, .data, 1E7F4D0]

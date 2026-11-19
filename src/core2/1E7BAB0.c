@@ -1,28 +1,28 @@
 #include "common.h"
-
+#include "core2/player_form_data.h"
 s32 func_800A21C0() 
 {
     return 0x14;
 } typedef struct { u8 pad0[0xB4]; union { u8 * unkB4; s8 * unkB4_s8p; void * unkB4_voidp; }; } Obj1E7BAB0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_800A21C8(void *arg0) {
-    struct MapEntry { s16 map; u8 first; u8 second; };
-    extern struct MapEntry D_80119270[];
+
+    BT_IDO_ONLY(extern PlayerMapRule D_80119270[];)
     s32 func_800C8C18(void);
     s32 func_800EA05C();
     s32 map;
     s32 i;
-    struct MapEntry *entry;
+    PlayerMapRule *entry;
     s8 first;
     void *data;
 
     map = func_800EA05C();
-    for (i = 0; D_80119270[i].map != -1; i++) {
-        if (map == D_80119270[i].map) {
+    for (i = 0; BT_DATA_FIELD(player_form_data.map_rules, D_80119270)[i].map != -1; i++) {
+        if (map == BT_DATA_FIELD(player_form_data.map_rules, D_80119270)[i].map) {
             break;
         }
     }
-    entry = &D_80119270[i];
+    entry = &BT_DATA_FIELD(player_form_data.map_rules, D_80119270)[i];
     (((Obj1E7BAB0_arg0 *)arg0)->unkB4)[0] = entry->first;
     (((Obj1E7BAB0_arg0 *)arg0)->unkB4)[1] = entry->second;
     if (entry->map == -1 && func_800C8C18() > 0) {

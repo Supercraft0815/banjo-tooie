@@ -11,8 +11,8 @@ void func_800A26B8(PlayerState *arg0) {
     f32 func_800964DC(PlayerState *);
     void func_8009C128(PlayerState *, f32[3]);
     void func_8009FC34(PlayerState *, s32);
-    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
-    extern s32 D_80119320[];
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, BT_NATIVE_ONLY(s16) BT_IDO_ONLY(s32)[]);
+    BT_IDO_ONLY(extern s32 D_80119320[];)
     f32 sp34[3];
     f32 sp30;
     f32 sp2C;
@@ -24,7 +24,7 @@ void func_800A26B8(PlayerState *arg0) {
     if (!((sp2C + sp28) < (sp30 - sp34[1]))) {
         sp34[1] = sp30;
         func_8009FC34(arg0, 1);
-        func_800BABB8(_fxsplash_entrypoint_2(sp34, 25.0f), 0, 0, 1.0f, D_80119320);
+        func_800BABB8(_fxsplash_entrypoint_2(sp34, 25.0f), 0, 0, 1.0f, BT_DATA_FIELD(player_form_data.splash_commands, D_80119320));
     }
 }
 
@@ -341,14 +341,14 @@ s32 func_800A3040()
 f32 func_800A3048(PlayerState *arg0) {
     s32 func_8008E40C(PlayerState *);
     s32 func_800D3E40(s32);
-    extern f32 D_801194D0[];
+    BT_IDO_ONLY(extern f32 D_801194D0[];)
     if (func_800D3E40(7) == 0) {
         return 1.0f;
     }
     if (func_8008E40C(arg0) != 0) {
         return 1.2f;
     }
-    return D_801194D0[*(u8 *)((s8 *)*(void **)((s8 *)arg0 + 0xA0) + 0x29)];
+    return BT_DATA_FIELD(player_form_data.lookup.form.scale, D_801194D0)[*(u8 *)((s8 *)*(void **)((s8 *)arg0 + 0xA0) + 0x29)];
 }
 
 void func_800A30B4(PlayerState *arg0, f32 *arg1, f32 *arg2) {
@@ -367,13 +367,13 @@ void func_800A30B4(PlayerState *arg0, f32 *arg1, f32 *arg2) {
 void func_800A3148(PlayerState *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
     f32 _basnowball_entrypoint_4(PlayerState *);
     void _bsfirstp_entrypoint_6(PlayerState *, f32 *, f32 *, f32 *);
-    extern f32 D_80119340[][3];
+    BT_IDO_ONLY(extern f32 D_80119340[][3];)
     f32 temp_f0;
     s32 temp_v1;
     f32 *temp_v0;
 
     temp_v1 = *(u8 *)((s8 *)*(void **)((s8 *)arg0 + 0xA0) + 0x29);
-    temp_v0 = D_80119340[temp_v1];
+    temp_v0 = BT_DATA_FIELD(player_form_data.dimensions, D_80119340)[temp_v1];
     *arg1 = temp_v0[0];
     *arg2 = temp_v0[1];
     *arg3 = temp_v0[2];
@@ -392,13 +392,13 @@ void func_800A3148(PlayerState *arg0, f32 *arg1, f32 *arg2, f32 *arg3) {
 
 void func_800A3200(PlayerState *arg0, f32 *arg1, f32 *arg2) {
     f32 _basnowball_entrypoint_4(PlayerState *);
-    extern f32 D_80119430[][2];
+    BT_IDO_ONLY(extern f32 D_80119430[][2];)
     f32 temp_f0;
     s32 temp_v0;
     f32 *temp_v1;
 
     temp_v0 = (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xA0)))) + (0x29)));
-    temp_v1 = D_80119430[temp_v0];
+    temp_v1 = BT_DATA_FIELD(player_form_data.radii, D_80119430)[temp_v0];
     *arg1 = temp_v1[0];
     *arg2 = temp_v1[1];
     if (temp_v0 == 2) {

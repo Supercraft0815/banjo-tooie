@@ -1,5 +1,5 @@
 #include "core2/1E7B250.h"
-
+#include "core2/player_form_data.h"
 s32 func_800A1960() 
 {
     return 0x10;
@@ -132,7 +132,7 @@ void func_800A1F0C(void *volatile arg0, s32 *arg1) {
 
 void func_800A1F78(void *arg0) {
     s32 func_800EA05C();
-    extern s16 D_80119260[];
+    BT_IDO_ONLY(extern s16 D_80119260[];)
     s32 i;
     s32 temp_v0;
     void *temp_v0_2;
@@ -142,8 +142,8 @@ void func_800A1F78(void *arg0) {
     (*(f32 *)((s8 *)((((Obj1E7B250_arg0 *)arg0)->unk108)) + (8))) = 255.0f;
     (*(f32 *)((s8 *)((((Obj1E7B250_arg0 *)arg0)->unk108)) + (0xC))) = 255.0f;
     (*(u8 *)((s8 *)((((Obj1E7B250_arg0 *)arg0)->unk108)) + (0))) = 1U;
-    for (i = 0; D_80119260[i] != 0; i++) {
-        if (temp_v0 == D_80119260[i]) {
+    for (i = 0; BT_DATA_FIELD(player_form_data.maps, D_80119260)[i] != 0; i++) {
+        if (temp_v0 == BT_DATA_FIELD(player_form_data.maps, D_80119260)[i]) {
             (*(u8 *)((s8 *)((((Obj1E7B250_arg0 *)arg0)->unk108)) + (0))) = 2U;
             break;
         }
