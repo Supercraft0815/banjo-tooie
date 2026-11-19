@@ -92,6 +92,13 @@ class TraceTest(unittest.TestCase):
             self.assertEqual(corpus.trace_summary(out, case)['retraces'], 3)
             with self.assertRaisesRegex(ValueError, 'expected player state 176, got 0'):
                 corpus.trace_summary(out, dict(case, expected_player_state=176))
+            with self.assertRaisesRegex(ValueError, 'got None'):
+                corpus.trace_summary(out, dict(case, expected_player_slot=1))
+            actor = rows[2]['actors'][0]
+            state = actor['health_flags'][5] >> 10 & 63
+            self.assertEqual(corpus.trace_summary(out, dict(case, expected_actor_state=(0x42, state)))['retraces'], 3)
+            with self.assertRaisesRegex(ValueError, 'never reached state'):
+                corpus.trace_summary(out, dict(case, expected_actor_state=(0xAA, state)))
             with self.assertRaisesRegex(ValueError, 'unexpected permanent flags'):
                 corpus.trace_summary(out, dict(case, expected_permanent_flags_hash='different'))
             self.assertEqual(rows[2]['actors'][0]['id'], 0x42)

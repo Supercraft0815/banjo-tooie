@@ -2252,3 +2252,34 @@ das bisherige native Datenabbild geprüft. Berichte und Protokolle liegen
 in `build/acceptance/n1-2026-11-18/` unter `proof/fieldtables5-summary.json`,
 `proof/dialog4-summary.json`, `proof/literal-stubs-oracle.json` und
 `logs/root-fieldtables-dialog9-*`.
+
+## 2026-11-19 — Q2, Mumbo, Weltbosse und zwei Fahrgeschäfte
+
+Die Formabfrage für Spielerinteraktionen verwendet jetzt auch im ILP32-Gast
+die unteren fünf Bits des Schiebezählers wie die MIPS-Instruktion. Vorher
+konnte ein Schieben um 32 die Interaktion mit Mumbo verhindern. Im nativen
+Funktionsvergleich änderte sich allein die Maske in `func_800F543C`. Original-IDO
+erzeugte das gesamte Objekt mit 282 Funktionen bytegleich. Beide ROM-Abbilder
+bestanden den vollständigen Bytevergleich.
+
+Neun Replays führen Banjo im jeweiligen Mumbo-Schädel bis zur Übergabe.
+Sie prüfen Mumbos aktiven Spielerplatz, Zustand und die dauerhaften
+Spielstandflags. In Mingy Jongos Schädel prüft ein weiterer Fall den Kampf.
+Mr. Patch und Terry erreichen jetzt nachweislich ihre Kampfzustände.
+Weldar und beide Hailfire-Peaks-Drachen sind in ihrer Arena sichtbar. Zwei
+weitere Eingabefolgen lassen Banjo in den Grubenwagen und auf den Saucer
+of Peril springen. Das Spiel löst den Wechsel zur Renn- bzw. Schießstrecke
+selbst aus.
+
+Jeder der 22 neu aufgenommenen oder aktualisierten Abläufe lieferte in zwei
+Durchläufen bytegleiche Spielspuren und Bilder. Die Bildbögen, Eingabeprüfungen
+und jeweiligen SHA-256-Werte liegen unter
+`build/acceptance/q2-followup-2026-11-18/root-reviewed/`. HAG 1 wurde dort
+ebenfalls untersucht. Bei seiner Initialisierung standen beide Panzerteile
+außerhalb des Spielfelds. Dieser Lauf ist als Fehlerbeleg aufbewahrt.
+Die 71 aufgenommenen Fälle umfassen 421.115 Retraces und besuchen 82 der
+229 benannten Karten. Die übrigen 147 sind in `coverage71/summary.json`
+einzeln begründet.
+Der instrumentierte Lauf über alle 71 Fälle erreichte 1.825 Zugriffsstellen in
+459 Funktionen. Er erfasste 1.896 Paare aus Zugriffsstelle und Zielsymbol
+in 128 Gruppen. Beide TSV-Berichte liegen in `xsym-scenarios71/`.

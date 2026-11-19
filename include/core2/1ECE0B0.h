@@ -48,7 +48,7 @@ s32 func_800F6438(BtUIntPtr);
 int func_800F6774(BtUIntPtr);
 
 #ifdef BT_NATIVE
-#define ALLOW_SHIFT(t) (1 << (((t) + 0x1F) & 0x1F)) // IDO folds the shift mod 32
+#define ALLOW_SHIFT(t) (1u << (((t) + 0x1Fu) & 0x1Fu)) // MIPS uses the low five bits of the shift count
 #else
 #define ALLOW_SHIFT(t) (1 << ((t) + 0x1F))
 #endif

@@ -13,6 +13,8 @@ import sweep
 import trace_tools
 import corpus_worlds
 import corpus_bosses
+import corpus_mumbo
+import corpus_rides
 import corpus_multiplayer
 import corpus_transformations
 
@@ -65,6 +67,8 @@ CASES = {
     **corpus_bosses.CASES,
     **corpus_multiplayer.CASES,
     **corpus_transformations.CASES,
+    **corpus_mumbo.CASES,
+    **corpus_rides.CASES,
 }
 
 
@@ -103,20 +107,30 @@ def replay(exe, rom, directory, case):
 
 def trace_summary(directory, case):
     maps, last = {}, None
+    encounter = case.get('expected_actor_state')
+    saw_encounter = encounter is None
     with (directory / 'trace.jsonl').open() as stream:
         header = trace_tools.read_trace(stream)
         for count, line in enumerate(stream, 1):
             last = trace_tools.read_retrace(line, count)
             key = str(last['map'])
             maps[key] = maps.get(key, 0) + 1
+            if not saw_encounter and last['map'] == case['expected_map']:
+                actor_id, state = encounter
+                # Actor.unk70_10 occupies bits 10..15 of the word at +0x70.
+                saw_encounter = any(actor['id'] == actor_id and (actor['health_flags'][5] >> 10 & 63) == state
+                                    for actor in last['actors'])
     if last is None or last['map'] != case['expected_map']:
         raise ValueError(f'{directory.name}: expected final map {case["expected_map"]}, got {last and last["map"]}')
+    if not saw_encounter:
+        raise ValueError(f'{directory.name}: actor {encounter[0]:#x} never reached state {encounter[1]}')
     players = case.get('expected_players', 0)
     if players and (len(last['players']) < players or not all(p['present'] for p in last['players'][:players])):
         raise ValueError(f'{directory.name}: expected {players} active players in the final scene')
     if 'expected_player_state' in case:
-        player = next(iter(last['players']), {})
-        actual = player['status'][0] if player.get('status') else None
+        slot = case.get('expected_player_slot', 0)
+        player = last['players'][slot] if 0 <= slot < len(last['players']) else {}
+        actual = player['status'][0] if player.get('present') else None
         if actual != case['expected_player_state']:
             raise ValueError(f'{directory.name}: expected player state {case["expected_player_state"]}, got {actual}')
     expected_flags = case.get('expected_permanent_flags_hash')

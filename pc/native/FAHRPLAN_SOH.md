@@ -17,7 +17,7 @@ Die Zahlen in der Vergleichstabelle und den Arbeitspaketen beschreiben den Ausga
 |---|---|---|
 | P0 | Arbeitsstand gesichert, bekanntes Fehlverhalten mit zehn Proben dokumentiert | abgeschlossen |
 | Q1 | 14 Bildbögen mit Startpunkt, Pause und Ego-Sicht | Emulatorvergleich und Abzeichnung auf Nutzerwunsch zurückgestellt |
-| Q2 | 56 akzeptierte Fälle mit 315.790 Retraces, darunter fünf Bossbegegnungen, 17 Mehrspielerfälle und alle zehn Humba-Verwandlungen | Mumbo, Solo-Spiel, weitere Bosse und Minispiele. Für die 162 unbesuchten Karten ist je ein Grund verzeichnet |
+| Q2 | 71 akzeptierte Fälle mit 421.115 Retraces. Alle neun Mumbo-Schädel, zehn Humba-Verwandlungen, die acht Weltbosse, Saucer of Peril und das Rennen gegen Canary Mary sind erfasst | Solo-Banjo, Solo-Kazooie und HAG 1. Für die 147 unbesuchten benannten Karten ist je ein Grund verzeichnet |
 | Q3 | Acht Stunden mit Heapprüfung über 194 Karten, alle 46 Referenzen mit Host-Sanitizern bestanden | abgeschlossen |
 | Q4 | Menschlicher 100-%-Durchlauf | auf Nutzerwunsch zurückgestellt |
 | Q5 | Zonenbereinigung und drei Modellzugriffe wieder auf Originalcode, 229 Karten geprüft | weitere handportierte Teile |

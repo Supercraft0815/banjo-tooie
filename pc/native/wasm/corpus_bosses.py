@@ -28,35 +28,27 @@ def battle_press(approach=False, attack_at=56, attacks=16):
     return ','.join(events)
 
 
-# The longer dialogue in Woo Fak Fak's encounter needs a later attack sequence.
+# For a retry, the game reads its permanent retry flag when it loads the arena.
+# The second dragon entrance spawns on the upper platform and Terry's third
+# entrance is inside the nest. The actor and state come from each boss overlay.
+retry_press = battle_press(attack_at=68, attacks=50)
 _BOSSES = (
-    ('targitzan', 0x17A, 64, (), fast_battle_press()),
-    ('old-king-coal', 0xD1, 64, (0x86, 0x179), battle_press()),
-    ('mr-patch', 0xF9, 64, (0x9C, 0x17F), battle_press(approach=True)),
-    ('lord-woo-fak-fak', 0xFC, 120, (0x1AF, 0x377), battle_press(attack_at=100, attacks=32)),
-    ('terry', 0x113, 64, (0xE5, 0x172), battle_press(approach=True)),
+    # name, map, entrance, seconds, save flags, controller inputs, active actor state
+    ('targitzan', 0x17A, 1, 64, (), fast_battle_press(), (0x7F4, 5)),
+    ('old-king-coal', 0xD1, 1, 64, (), battle_press(), (0x650, 4)),
+    ('mr-patch', 0xF9, 1, 64, (0x17F,), battle_press(approach=True), (0x794, 6)),
+    ('lord-woo-fak-fak', 0xFC, 1, 120, (), battle_press(attack_at=100, attacks=32), (0x7F9, 8)),
+    ('terry', 0x113, 3, 95, (0x172,), retry_press, (0x6DA, 10)),
+    ('weldar', 0x110, 1, 95, (0x174,), retry_press, (0x817, 17)),
+    ('chilli-billi', 0x12B, 2, 95, (0x1D4,), retry_press, (0x7FC, 10)),
+    ('chilly-willy', 0x12C, 2, 95, (0x1D3,), retry_press, (0x7FD, 10)),
 )
 
 CASES = {
     name: {
-        'flags': FLAGS, 'seconds': seconds, 'press': press,
-        'warp': f'34:{map_id:X}:1', 'expected_map': map_id,
-        'boss': name, 'source_flags_left_clear': list(boss_flags),
+        'flags': FLAGS + flags, 'seconds': seconds, 'press': press, 'dump_every': 300,
+        'warp': f'34:{map_id:X}:{entrance}', 'expected_map': map_id,
+        'boss': name, 'expected_actor_state': actor_state,
     }
-    for name, map_id, seconds, boss_flags, press in _BOSSES
-}
-
-# Separate later-game encounter: source has the arena and defeat/retry flags,
-# but no mapped Hag 1 actor routine is present in the C overlays.
-OPEN_COVERAGE = {
-    'hag-1': {'expected_map': 0x19A, 'defeated_flag': 0x043, 'retry_flag': 0x044,
-              'reason': 'arena is named; no matching Hag 1 overlay/setup source found'},
-    'weldar': {'tested_maps': [0x10A, 0x109], 'retry_flag': 0x174,
-               'reason': 'both traces repeat, but screenshots show only wall/ceiling; no active encounter verified'},
-    'chilly-willy': {'entry_map': 0x12C, 'attempted_expected_map': 0x128,
-                     'retry_flag': 0x1D3, 'reason': 'trace ended on 0x12C; no dragon visible'},
-    'chilli-billi': {'entry_map': 0x12B, 'attempted_expected_map': 0x127,
-                     'retry_flag': 0x1D4, 'reason': 'trace ended on 0x12B; no dragon visible'},
-    'mingy-jongo': {'entry_map': 0x13F, 'flags': [0x296, 0x408],
-                    'reason': 'trace repeats, but visible actor not yet matched to actor opcode/model'},
+    for name, map_id, entrance, seconds, flags, press, actor_state in _BOSSES
 }

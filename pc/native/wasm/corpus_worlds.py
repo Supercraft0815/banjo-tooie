@@ -21,6 +21,15 @@ FLAGS = tuple(range(0x392, 0x39B)) + tuple(START_ABILITIES)
 START_PRESS = press(34, 0)
 
 
+def retrace_seconds(frame):
+    return frame * 782031 / 46875000
+
+
+def pad_at_retrace(frame, mask):
+    # Change the pad just before the NTSC retrace samples it.
+    return f'{(frame * 782031 - 0.1) / 46875000:.11f}:{mask:x}'
+
+
 CASES = {
     f'{slug}-{part}': {
         'region': region,

@@ -1,5 +1,9 @@
 {
   "cases": {
+    "canary-mary-race": {
+      "retrace_count": 4556,
+      "sha256": "1cf3d1243fe03365e4cf1fe2d1e3c05d45df3f40d0d6755504b1e8ff837ec39d"
+    },
     "ccl-entrance": {
       "retrace_count": 2638,
       "sha256": "c75e7c51ddf33d25d527d319f21bbff0ff647a09d3d2b66ed5d92f628b56858f"
@@ -7,6 +11,14 @@
     "ccl-interior": {
       "retrace_count": 2638,
       "sha256": "c7b118a2907fbc58e98d52782ddf3a24cce7980117ce546e6a0c949d0efa9088"
+    },
+    "chilli-billi": {
+      "retrace_count": 5695,
+      "sha256": "747c0907a17e1d130112fd83c51c8703d9f7fd13ef48406cacb47ff0f5620aa3"
+    },
+    "chilly-willy": {
+      "retrace_count": 5695,
+      "sha256": "73f5a6b1ae4e46b35274014b1769ebf55943310c80839e846539ab36f975e095"
     },
     "ck-entrance": {
       "retrace_count": 2638,
@@ -68,6 +80,10 @@
       "retrace_count": 7193,
       "sha256": "aa5cdad115db8a29541fdba1c5e36c4a59a8acd0cbbbb6a904c07dacbcefab9d"
     },
+    "mingy-jongo": {
+      "retrace_count": 7673,
+      "sha256": "524cfc39fce2736b33af9e21458e2079b17a33e6689fe6f5aadadd8efdc3c421"
+    },
     "mp-all-games": {
       "retrace_count": 4976,
       "sha256": "cc37c21b18e7abc9698cfd5dbeaefaffeb6cdb7f9abf012025562dd6c886e513"
@@ -90,7 +106,7 @@
     },
     "mp-colosseum-kickball": {
       "retrace_count": 5275,
-      "sha256": "04154c89bc562fca368f71e28bc034496e5cdaf9f92ebd8721c2ae1ac11feb00"
+      "sha256": "433351c5ce88768729200d9715a10ee54e8ca13861b360d9b09dc48cf25d56ce"
     },
     "mp-dodgems": {
       "retrace_count": 4856,
@@ -98,11 +114,11 @@
     },
     "mp-hoop-hurry": {
       "retrace_count": 4316,
-      "sha256": "35ed635e1e5fa50a2f8da85ad1ac0aa44afa70a6a13f3da325ed6a5f3c779199"
+      "sha256": "25a1f63a4340fcf6bcef1fad23f555559881a82a333a179212e03d2581a8f585"
     },
     "mp-mayan-kickball": {
       "retrace_count": 4736,
-      "sha256": "dd221bba35102af6a603c1a53c8711db7a6eba0f93ea4ad21189ce3038c33aaf"
+      "sha256": "6e7105a6d397c71b150d72338d874431b1377b85dcf3e5b696db1e5c80646cdc"
     },
     "mp-menu": {
       "retrace_count": 2398,
@@ -114,7 +130,7 @@
     },
     "mp-packing": {
       "retrace_count": 5215,
-      "sha256": "f84de88a4d05a2f1ed31989b32a73f7b83d833d5c354c7aa247b10263432b700"
+      "sha256": "9d84b2988fd131eab559edbdce668dfa7ed48b27de062021c7e6733015fb0120"
     },
     "mp-quiz": {
       "retrace_count": 6234,
@@ -138,7 +154,7 @@
     },
     "mr-patch": {
       "retrace_count": 3837,
-      "sha256": "351d7c2097e7d3329ab9b0d6cdc36aa39e85cb5442d5aef119922c0a7967db47"
+      "sha256": "ba08d56e41a90c0288390b12336ec1ba843a0d24679f9e3fbb7893a92f2cb7c4"
     },
     "mt-entrance": {
       "retrace_count": 2638,
@@ -148,6 +164,42 @@
       "retrace_count": 2638,
       "sha256": "71c609e62e32602446a6afb208cb03eca606412e30b59604e8b445ddd959f7a6"
     },
+    "mumbo-ccl": {
+      "retrace_count": 7973,
+      "sha256": "34ed4855c27330bc6d1ab66a9df6ca50808e3609b9eed96dbb5120e915aa8908"
+    },
+    "mumbo-ggm": {
+      "retrace_count": 7673,
+      "sha256": "d88f21b308304c11b79180ff8a9bbc5ddc28b0d85cb06fff74a0cca42056b543"
+    },
+    "mumbo-gi": {
+      "retrace_count": 7793,
+      "sha256": "c8a304ec24ad41ffd87db8f3e5b95c59133cf639435bb029310455b3a0399aea"
+    },
+    "mumbo-hfp": {
+      "retrace_count": 7673,
+      "sha256": "8a3f56e5b0fcf0d4a786146a145e662c63c0729f29707a5d7a8c2a6907d1aaa6"
+    },
+    "mumbo-ioh": {
+      "retrace_count": 7673,
+      "sha256": "501d367ed6463040c5547632f854b43fc507da2f40aaf6a2bf61bd6e8ef6bc1a"
+    },
+    "mumbo-jrl": {
+      "retrace_count": 7673,
+      "sha256": "3189b1b9d96e50fdf6a801a4355e46b5c4bc55355be88ef6d080b1af9befe78a"
+    },
+    "mumbo-mt": {
+      "retrace_count": 7673,
+      "sha256": "d7945b58998365f31c5efb3ecc32153c887706ca9a5eed089ebf4d5fec0ea102"
+    },
+    "mumbo-tdl": {
+      "retrace_count": 7673,
+      "sha256": "00b8d29e94b0be90576449bc1c130d62d3b224c47141d37c8f609433736e0c0e"
+    },
+    "mumbo-ww": {
+      "retrace_count": 7853,
+      "sha256": "14600fadff5e7298480077ff15160271221472c22ecadd52e1fc1bbc862a1ec2"
+    },
     "new-game": {
       "retrace_count": 56943,
       "sha256": "751321b8272d22b7d1be66de0e70383452334176945e756b3ce90cfd917a0d17"
@@ -155,6 +207,10 @@
     "old-king-coal": {
       "retrace_count": 3837,
       "sha256": "eea9e3084364b1bf03ba0592828bab597eb34aaa0024114c94d4332087ab1bef"
+    },
+    "saucer-of-peril": {
+      "retrace_count": 4496,
+      "sha256": "6cdc1f74ced6ae67590196a0eca9ed912b18089fb1912854a7ccb91ee3a60d9c"
     },
     "targitzan": {
       "retrace_count": 3837,
@@ -169,8 +225,12 @@
       "sha256": "ffc3a34446474051f87e44a6b7d4439f071ca7819f84d89a5d1e02b8590db6a6"
     },
     "terry": {
-      "retrace_count": 3837,
-      "sha256": "149d122801a119b3ba50988af255ac4356cb63f75a17a4af9a8a1b1d9bfcee5d"
+      "retrace_count": 5695,
+      "sha256": "1df69c6adf2b4ecd72f22422b482801e9fe3dddcdb87b814c808eb8415b931b7"
+    },
+    "weldar": {
+      "retrace_count": 5695,
+      "sha256": "6884488116a8458e894380ec846aebe83c5f762e3940ce82e37a8cc4c11280e8"
     },
     "worlds": {
       "retrace_count": 16544,
@@ -210,7 +270,7 @@
     },
     "wumba-submarine": {
       "retrace_count": 7013,
-      "sha256": "962938f382a76340d7f62229071d86c7d2b8d0a546ee16bdd8f566b67f8e9efa"
+      "sha256": "7336242cc6f374593475b441e81892a0b4cb3ebbbc6dc186b69554a0e7bf1b7f"
     },
     "wumba-washer": {
       "retrace_count": 7013,

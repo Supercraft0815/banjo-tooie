@@ -419,7 +419,7 @@ s32 func_800F5410(BtIntPtr arg0)
 
 s32 func_800F543C(BtIntPtr arg0)
 {
-    return 1 << (func_800A3274(D_80135490.players[arg0]) + 0x1F);
+    return ALLOW_SHIFT(func_800A3274(D_80135490.players[arg0]));
 }
 
 void func_800F5470(s32 arg0 BT_PASS2(, s32 bt_a1))
