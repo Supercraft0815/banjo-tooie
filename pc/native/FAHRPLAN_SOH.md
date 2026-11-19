@@ -39,6 +39,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Tempeltüren und Audiobusse. Die Tore verwenden zwölf Paare aus Tür-ID und Auslösedistanz. Die beiden Audiobusse lesen die überlappenden Routing-Bytes aus einem gemeinsamen C-Objekt. Gast- und LP64-Proben prüfen die erzeugten Mischbefehle.
 
+- Vertexpuffer und Freilisten. Die fünf Vertexpuffer und die beiden Freilisten behalten bei der Defragmentierung ihre Daten. Der LP64-Test prüft auch belegte und freigegebene Listeneinträge.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

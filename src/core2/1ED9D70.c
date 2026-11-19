@@ -1,3 +1,12 @@
+#ifdef BT_NATIVE
+#include "freelist.h"
+FreeList *D_80135A60[2];
+#ifdef BT_ILP32
+s32 D_80135A68;
+#else
+s32 D_80135A68 = 0x3667;
+#endif
+#endif
 #if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original code
 #include "1ED9D70_native.inc"
 #else
@@ -91,6 +100,7 @@ void func_80100670()
     func_80100610();
 }
 
+#ifndef BT_NATIVE
 typedef struct {
     s16 next_free;
     u8 data[];
@@ -102,6 +112,7 @@ typedef struct {
     FreeListElement data[];
 } FreeList;
 
+#endif
 FreeList *freelist_new(s32, s32);
 void *freelist_next(FreeList **, s32 *);
 
@@ -115,14 +126,15 @@ void *func_80100690(s32 *arg0) {
     return freelist_next(&D_80135A60[0], arg0);
 }
 
-extern FreeList *D_80135A64;
+BT_IDO_ONLY(extern FreeList *D_80135A64;)
+#define PACKED_VERTEX_LIST BT_DATA_FIELD(D_80135A60[1], D_80135A64)
 
 void *func_801006E0(s32 *arg0) {
-    FreeList *volatile *list = &D_80135A64;
-    if (D_80135A64 == 0) {
+    FreeList *volatile *list = &PACKED_VERTEX_LIST;
+    if (PACKED_VERTEX_LIST == 0) {
         *list = freelist_new(0xC, 2);
     }
-    return freelist_next(&D_80135A64, arg0);
+    return freelist_next(&PACKED_VERTEX_LIST, arg0);
 }
 
 int func_8010072C(s32 *arg0, u8 *arg1) {
@@ -182,16 +194,16 @@ void func_80100938(s32 arg0) {
     struct Entry { s32 data; s16 value; u8 padding[2]; BT_BITFIELD_ORDER(u32 count : 8, u32 unused : 24); BT_BITFIELD_ORDER(u32 unused : 24, u32 count : 8); };
     struct Entry *entry;
 
-    entry = freelist_at(D_80135A64, arg0);
+    entry = freelist_at(PACKED_VERTEX_LIST, arg0);
     entry->count--;
     if (entry->count == 0) {
         _glpackvtx_entrypoint_1(entry->data);
         entry->data = 0;
         entry->value = 0;
-        freelist_erase(D_80135A64, arg0);
-        if (freelist_used_count(D_80135A64) == 0) {
-            freelist_free(D_80135A64);
-            D_80135A64 = NULL;
+        freelist_erase(PACKED_VERTEX_LIST, arg0);
+        if (freelist_used_count(PACKED_VERTEX_LIST) == 0) {
+            freelist_free(PACKED_VERTEX_LIST);
+            PACKED_VERTEX_LIST = NULL;
         }
     }
 }    typedef struct { u8 pad0[0x9]; s8 unk9; } Obj1ED9D70_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
@@ -235,7 +247,7 @@ s32 func_80100A74(s16 arg0, s32 arg1) { extern FreeList *D_80135A60[2]; void *fr
 s32 func_80100AC4(s16 arg0) {
     void *freelist_at(FreeList *, s32);
     extern FreeList *D_80135A60[2];
-    extern FreeList *D_80135A64;
+    BT_IDO_ONLY(extern FreeList *D_80135A64;)
     s32 var_v1;
     void *temp_v0;
     void *temp_v0_2;
@@ -244,7 +256,7 @@ s32 func_80100AC4(s16 arg0) {
     if ((((Obj1ED9D70_func_80100AC4_temp_v0 *)temp_v0)->unk8) == 0) {
         return 0;
     }
-    temp_v0_2 = freelist_at(D_80135A64, (s16) (((Obj1ED9D70_func_80100AC4_temp_v0 *)temp_v0)->unk8));
+    temp_v0_2 = freelist_at(PACKED_VERTEX_LIST, (s16) (((Obj1ED9D70_func_80100AC4_temp_v0 *)temp_v0)->unk8));
     if ((((Obj1ED9D70_func_80100AC4_temp_v0_2 *)temp_v0_2)->unk8) != 0) {
         var_v1 = (((Obj1ED9D70_func_80100AC4_temp_v0_2 *)temp_v0_2)->unk0);
     } else {
@@ -372,7 +384,7 @@ void func_80100F0C(s16 arg0, s32 arg1) {
 
     sp34 = freelist_at(D_80135A60[0], arg0);
     if (sp34->index != 0) {
-        var_s0 = freelist_at(D_80135A64, sp34->index);
+        var_s0 = freelist_at(PACKED_VERTEX_LIST, sp34->index);
         if (var_s0->index != 0) {
             sp24.asset = var_s0->asset;
             if (var_s0->age < 0x3666) {
@@ -386,8 +398,8 @@ void func_80100F0C(s16 arg0, s32 arg1) {
             temp_value = func_800B2840(temp_value);
             var_s0->value = _glpackvtx_entrypoint_0(temp_value, arg1, 0);
             var_s0->asset = sp24.asset;
-            var_s0->age = ((Obj1ED9D70_D_80135A60 *)&D_80135A60)->unk8;
-            ((Obj1ED9D70_D_80135A60 *)&D_80135A60)->unk8 += 1;
+            var_s0->age = BT_DATA_FIELD(D_80135A68, ((Obj1ED9D70_D_80135A60 *)&D_80135A60)->unk8);
+            BT_DATA_FIELD(D_80135A68, ((Obj1ED9D70_D_80135A60 *)&D_80135A60)->unk8) += 1;
             var_s0->index = 1;
         }
     }

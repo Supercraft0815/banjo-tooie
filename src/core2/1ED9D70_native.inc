@@ -5,8 +5,9 @@
 
 s32 func_8001211C(void);
 #include "vertex_scratch.inc"
-static FreeList *vertex_entries,*packed_entries;
-static s32 unique_palette=0x3667;
+#define vertex_entries D_80135A60[0]
+#define packed_entries D_80135A60[1]
+
 
 void *func_80100480(s32 type,s32 count) {
     if(type<0 || type>=5 || count<0 || count>INT_MAX/D_801243A0[type].stride) return NULL;
@@ -23,7 +24,11 @@ void func_80100534(void) {
         heap_free(D_801243A0[i].data);D_801243A0[i].data=NULL;D_801243A0[i].capacity=D_801243A0[i].frame=0;
     }
 }
-void func_801005B8(void) { }
+void func_801005B8(void) {
+    for (s32 i = 0; i < 5; ++i) {
+        if (D_801243A0[i].data) D_801243A0[i].data = defrag(D_801243A0[i].data);
+    }
+}
 void func_80100610(void) {
     for(s32 i=0;i<5;++i) {
         if(D_801243A0[i].data) heap_free(D_801243A0[i].data);
@@ -81,7 +86,7 @@ void *func_80100AC4(s16 index) {
     NativePackedVertexEntry *packed=freelist_at(packed_entries,entry->packed);
     return packed->refs ? packed->data : NULL;
 }
-void func_80100B3C(void) {unique_palette=0x3667;}
+void func_80100B3C(void) {D_80135A68=0x3667;}
 void func_80100B4C(void) {
     func_80100C74();func_80100C74();
     for(s32 i=1;vertex_entries && i<freelist_capacity(vertex_entries);++i)
@@ -114,7 +119,17 @@ s16 func_80100D24(void *model,s32 asset,s32 buffers,s32 packed,s32 palette,s32 *
 void func_80100E18(s16 index) {
     NativeVertexCacheEntry *entry=freelist_at(vertex_entries,index);entry->age=2;
 }
-void func_80100E54(void) { }
+void func_80100E54(void) {
+    if (vertex_entries) vertex_entries = freelist_defrag(vertex_entries);
+    if (!packed_entries) return;
+    for (s32 i = 1; i < freelist_capacity(packed_entries); ++i) {
+        if (freelist_is_element_alive(packed_entries, i)) {
+            NativePackedVertexEntry *entry = freelist_at(packed_entries, i);
+            entry->data = defrag(entry->data);
+        }
+    }
+    packed_entries = freelist_defrag(packed_entries);
+}
 void func_80100F0C(s16 index,void *palette) {
     NativeVertexCacheEntry *entry=freelist_at(vertex_entries,index);
     if(!entry->packed)return;
@@ -127,6 +142,6 @@ void func_80100F0C(s16 index,void *palette) {
     } else _glpackvtx_entrypoint_1(packed->data);
     void *model=func_800D674C(asset);
     packed->data=_glpackvtx_entrypoint_0(func_800B2840(model),palette,NULL);
-    packed->asset=asset;packed->palette=unique_palette++;packed->refs=1;
+    packed->asset=asset;packed->palette=D_80135A68++;packed->refs=1;
     for(s32 i=0;i<3;++i)packed->color[i]=255;
 }

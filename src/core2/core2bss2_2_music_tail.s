@@ -27,10 +27,7 @@ dlabel D_80135A50
     /* 80135A50 */ .space 0x10
 
 dlabel D_80135A60
-    /* 80135A60 */ .space 0x04
-
-dlabel D_80135A64
-    /* 80135A64 */ .space 0x04
+    /* 80135A60 */ .space 0x8
 
 dlabel D_80135A68
     /* 80135A68 */ .space 0x08

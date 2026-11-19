@@ -3487,3 +3487,9 @@ Der instrumentierte Korpus mit allen 74 Replays überwachte 6.413 Stellen. Es bl
 Im isolierten Taxistand übernimmt der C-Quelltext die Rückgabe der Rechenzeit an den Scheduler. Ohne den Safepoints-Pass stimmen alle 74 deterministischen Replays mit 447.849 Retraces überein. Elf Gastsuiten und 68 Sanitizertests bestehen. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Alle 9.706 Fixup-Adressen bleiben erhalten. Belege unter `build/acceptance/n1-2026-11-18/current-source-scheduling*`.
 
 Mit echter Uhr beendeten alle 74 Eingabefolgen den Lauf mit Exitcode 0 und laufendem Bildwechsel. Dabei erreichten 52 Fälle ihre Zielkarte, beim Kontrolllauf mit Pass waren es 58. Die Einzelmessungen zu beiden Builds stehen unter `build/acceptance/n2-safepoints-rebase-2026-11-19/wallclock-decoder-cic-source/` und `wallclock-control/`. Die verhaltensgleiche Umstellung im fortlaufenden Quellstand wird separat geprüft.
+
+### 2026-11-19 – Vertexpuffer und Freilisten (N1/N3)
+
+Die fünf Vertexpuffer und die beiden Freilisten behalten bei der Defragmentierung ihre Daten. Der LP64-Test prüft auch belegte und freigegebene Listeneinträge.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 68 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 4 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-vertex-lists*`.
