@@ -197,7 +197,7 @@ s32 func_800A2C84(PlayerState *arg0) {
     s32 func_80096628(PlayerState *);
     void func_8009C128(PlayerState *, f32[3]);
     s32 _fxstep_entrypoint_5(s32, s32, f32);
-    s32 _fxstep_entrypoint_6(s32, f32 *);
+    void _fxstep_entrypoint_6(BtIntPtr effect, f32 position[3]);
     f32 sp2C[3];
     s32 pad;
     s32 sp24;

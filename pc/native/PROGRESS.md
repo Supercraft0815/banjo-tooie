@@ -2674,3 +2674,24 @@ mit der Spielstandauswahl bestanden alle 60 nativen Tests, elf Suiten und
 74 Replays mit 447.849 Retraces. Original-IDO erhielt alle 16.401
 Funktionen und beide vollständigen ROM-Abbilder. Die kumulativen Nachweise
 liegen unter `build/acceptance/n1-2026-11-18/current-six-settings*`.
+
+## 2026-11-19 — N2, Signaturen und Positionsübergabe beim Schritteffekt
+
+Der MIPS-Code reicht die Spielerposition im zweiten Argumentregister an
+die Vektorkopie durch. Der C-Aufruf übergibt jetzt sowohl diesen Zeiger
+als auch das Ziel im Schritteffekt. In Mayahem Temple löste allein diese
+Aufrufstelle im isolierten Vergleich den Abbruch bei Retrace 1.843 aus.
+Der optimierte Diagnosebuild mit abgeschalteter Aufrufkorrektur besteht
+nun die 2.638 Retraces am Eingang von Mayahem Temple und Terrydactyland.
+Der erweiterte Diagnosekorpus hat weitere abweichende Fälle.
+
+Die ergänzten Signaturen umfassen die Halbwort-Rückgabe von `func_800D211C`,
+die Vorzeichenerweiterung in `func_800F3780`, die Wortbreite beim
+Audio-Loop und sieben Wrapper ohne Rückgabewert. Der Linker meldet auf
+diesem Paketstand ohne FixCalls noch 72 statt 83 ungültiger Aufrufvarianten.
+Im normalen Build bestehen alle elf Suiten und 74 Replays mit 447.849
+Retraces. Original-IDO bestätigt 16.401 Funktionen und beide ROM-Abbilder.
+Die Aufruferbelege und Prüfungen stehen unter
+`build/acceptance/n2-2026-11-18/` in `signature-7-9-closed-report.md`,
+`switch-minimal-sites.json`, `current-closed-ir.log`,
+`current-closed-ido/result.json` und `current-closed.log`.

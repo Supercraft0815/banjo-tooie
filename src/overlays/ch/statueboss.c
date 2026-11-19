@@ -187,7 +187,7 @@ void func_8080000C_chstatueboss(Actor *arg0) {
     void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
     s32 _chintrotext_entrypoint_2(s32);
     s32 _glcutDll_entrypoint_20(void);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     void _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
     s32 func_800DA298(s32);
     void func_800F497C(BtIntPtr);
@@ -274,7 +274,7 @@ void func_80800298_chstatueboss(Actor *arg0) {
     s32 _chexploder_entrypoint_5(Actor *, s32, f32 *, s32, f32, s32);
     void _gcfrontend_entrypoint_10(void);
     s32 _subaddieaudioquick_entrypoint_4(Actor *, f32 *, u32 *, u32 *);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
@@ -512,7 +512,7 @@ s32 func_80800934_chstatueboss(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800F82D4(BtIntPtr, s32);
     s32 func_800D395C(void);
     u32 func_800FDC28(u32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     void _subaddiecustomhits_entrypoint_0(Actor *, void (*)(void));
 #ifdef BT_NATIVE
     OSThread *chstatueboss_entrypoint_1(void);
@@ -676,7 +676,7 @@ void func_80800DA8_chstatueboss(Actor *arg0, s32 arg1) {
     s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
     s32 _gcfrontend_entrypoint_9(s32);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     s32 func_800CE88C(s32, s32);
     s32 func_800CE8D8(s32, s32, s32);
     s32 func_800DA544(s32);

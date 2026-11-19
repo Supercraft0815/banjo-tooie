@@ -295,7 +295,7 @@ u8 func_80800360_chstoneballcontrol(u8 *arg0, s32 arg1, s32 arg2) {
     s32 func_800CE88C(s32, s32);
     void func_800CE8D8(s32, f32, s32);
     s32 func_800D2054(s32, s32, s32);
-    u8 func_800D211C(s32);
+    BT_IDO_ONLY(u8) BT_NATIVE_ONLY(s16) func_800D211C(s32);
     s32 func_800D395C(void);
     s32 func_800DA9E4(s32, s32);
     s32 func_800EA05C(void);

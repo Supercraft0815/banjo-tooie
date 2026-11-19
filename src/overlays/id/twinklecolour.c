@@ -1,7 +1,7 @@
 #include "common.h"
 
 void idtwinklecolour_entrypoint_0(s32 arg0, s16 *arg1, s32 arg2, u8 *arg3) {
-    s16 func_800DC214(s16, s16);
+    BT_IDO_ONLY(s16 func_800DC214(s16, s16);) BT_NATIVE_ONLY(s32 func_800DC214(s32, s32);)
     struct Entry {
         f32 value;
         s16 pos[3];
@@ -93,7 +93,7 @@ void idtwinklecolour_entrypoint_2(s32 arg0, u8 *arg1, u8 *arg2, s32 arg3, u8 *ar
 
 void func_80800574_idtwinklecolour(void *arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
     void _glid_entrypoint_2(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s32), BtIntPtr arg3);
-    s16 func_800DC214(s16, s16);
+    BT_IDO_ONLY(s16 func_800DC214(s16, s16);) BT_NATIVE_ONLY(s32 func_800DC214(s32, s32);)
 #ifndef BT_NATIVE
     extern s32 _idtwinklecolour_entrypoint_0;
 #endif

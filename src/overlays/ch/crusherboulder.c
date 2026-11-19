@@ -106,7 +106,7 @@ void func_80800338_chcrusherboulder(Actor *arg0) {
     s32 _sumumbofx_entrypoint_1(void *, s32);
     s32 func_8010A800(BtIntPtr, s32);
     s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
-    s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, u8, s32 *, s32);
+    BT_IDO_ONLY(s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, u8, s32 *, s32);) BT_NATIVE_ONLY(s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, u32, s32 *, s32);)
     void func_800187B4(s32, f32, f32, f32);
     extern s32 D_808013A0_chcrusherboulder[5];
     u8 *sp3C;

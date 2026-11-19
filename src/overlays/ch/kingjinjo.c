@@ -78,7 +78,7 @@ void func_80800018_chkingjinjo(Actor *arg0) {
 void func_80800194_chkingjinjo(Actor *arg0) {
     u8 _subaddieaudioquick_entrypoint_1(Actor *, f32 *);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     void _subaddierouteDll_entrypoint_5(Actor *, void *, s32, f32, f32, f32);
     s32 _subaddierouteDll_entrypoint_6(Actor *arg0, void *arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s32 arg6);
     s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
@@ -210,7 +210,7 @@ void func_80800194_chkingjinjo(Actor *arg0) {
 s32 func_80800634_chkingjinjo(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _gcgoto_entrypoint_1(s32, s32);
     s32 _glcutDll_entrypoint_20(void);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
     void _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
     void _subaddierouteDll_entrypoint_1(Actor *);

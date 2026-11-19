@@ -99,7 +99,7 @@ void func_80800404_chsunlightspell(Actor *arg0, s32 arg1) {
     void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
     s16 _chmumbopad_entrypoint_0(s32);
     void _subaddieaudioloop_entrypoint_2(Actor *);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     s32 _sumumbofx_entrypoint_0(Actor *, s32, s32, s16);
     s32 _sumumbofx_entrypoint_1(void *, s32);
     void _sumumbofx_entrypoint_2(void *);

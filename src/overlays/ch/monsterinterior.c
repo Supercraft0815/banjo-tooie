@@ -187,7 +187,7 @@ void func_8080003C_chmonsterinterior(Actor *arg0) {
 }
 
 void func_808000BC_chmonsterinterior(Actor *arg0) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
     s32 _susubgame_entrypoint_9(void);
     s32 func_800CEAD0(s32);
@@ -253,7 +253,7 @@ void func_808000BC_chmonsterinterior(Actor *arg0) {
 s32 func_808002D4_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _chintrotext_entrypoint_2(s32);
     s32 _glcutDll_entrypoint_20(void);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     s32 _susubgame_entrypoint_3(void *, BtIntPtr, s32, u32);
     s32 _susubgame_entrypoint_4(void *, BtIntPtr);
     void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
@@ -401,7 +401,7 @@ void func_8080078C_chmonsterinterior(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcfrontend_entrypoint_11(void);
     void _gcfrontend_entrypoint_9(s32 arg0);
     void _gcgoto_entrypoint_1(u32 a0, u32 a1);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
     void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     void func_800D1000(u32 arg0, u32 arg1, f32* arg2, u32 arg3, Unk80132ED0* arg4);
@@ -605,7 +605,7 @@ void func_80800DA4_chmonsterinterior(Actor *arg0) {
 void func_80800E0C_chmonsterinterior(Actor *arg0) {
     struct Multi;
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_11(void);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     s32 _subaddiefind_entrypoint_9(s32);
     void _sumultiscore_entrypoint_6(struct Multi *);
     void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);

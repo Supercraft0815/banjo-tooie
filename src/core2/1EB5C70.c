@@ -1,4 +1,5 @@
 #include "common.h"
+BT_NATIVE_ONLY(void func_80020C08(s32, s16, s32);)
 
 typedef struct { s32 unk0; s32 unk4; s32 unk8; s32 unkC; s16 unk10; } Obj1EB5C70_D_8012C800; /* offsets.py genstruct: fields from raw offsets on &D_8012C800; rename once understood */ void func_800DC380(void) {
     s32 func_80012EDC(s32 *);
@@ -19,7 +20,7 @@ void func_800DC3D4(s32 arg0, f32 arg1, u16 arg2, u8 arg3, u8 arg4, BtIntPtr arg5
     func_80020790((s16) (arg0 + 1), arg2, arg3, arg1, arg4, 0, arg5);
 }
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800DC42C(s32 arg0, volatile s32 arg1) { BT_NATIVE_ONLY(return) func_80020C08(arg0, 0x10, arg1); }
+void func_800DC42C(s32 arg0, volatile s32 arg1) { func_80020C08(arg0, 0x10, arg1); }
 
 void func_800DC454(s32 arg0, u16 arg1) {
     s32 var_a2;
@@ -28,14 +29,14 @@ void func_800DC454(s32 arg0, u16 arg1) {
     func_80020C08(arg0, 8, var_a2);
 }
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800DC48C(s32 arg0,s32 arg1)
+void func_800DC48C(s32 arg0,s32 arg1)
 {
-    BT_NATIVE_ONLY(return) func_80020C08(arg0,0x100,arg1);
+    func_80020C08(arg0,0x100,arg1);
 }
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800DC4B0(s32 arg0,s32 arg1)
+void func_800DC4B0(s32 arg0,s32 arg1)
 {
-    BT_NATIVE_ONLY(return) func_80020C08(arg0,0x4,arg1);
+    func_80020C08(arg0,0x4,arg1);
 }
 
 void func_800DC4D4(s32 arg0) { if (arg0 != 0) { if (func_80020760() != 0) func_80020A60(arg0); } }

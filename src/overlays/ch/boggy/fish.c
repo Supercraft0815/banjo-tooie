@@ -19,7 +19,7 @@ typedef struct { u8 pad0[0x24]; u32 unk24; } Objfish_arg1; /* offsets.py genstru
 }
 
 s32 func_80800064_chboggyfish(Actor *arg0, s32 arg1, void *volatile arg2) {
-    u8 func_800D731C(s32);
+    BT_IDO_ONLY(u8 func_800D731C(s32);) BT_NATIVE_ONLY(s32 func_800D731C(s32);)
     s32 func_800DA298(s32);
     s32 func_800DBE60(u8, s32, s32);
     void func_800FFAB0(Actor *);

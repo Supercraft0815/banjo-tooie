@@ -120,7 +120,7 @@ void func_80800448_chbabydino(Actor *arg0) {
     void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
     s32 _capod_entrypoint_21(Unk80132ED0 *, BtIntPtr, s32, s32);
     s32 _subaddieDll_entrypoint_4(void *, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     s32 _subaddiedialog_entrypoint_8(Actor *, void *, s32 *, s32 *, s32);
     s32 func_800DA298(s32);
     void func_800DA544(GameFlag);
@@ -178,7 +178,7 @@ s32 func_808005F0_chbabydino(Actor *arg0, s32 arg1) {
     void _capod_entrypoint_13(Unk80132ED0 *, Unk80132ED0 *, u32, u32);
     s32 _glcutDll_entrypoint_19(s32);
     s32 _subaddieDll_entrypoint_4(void *, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     s32 func_800EA05C();
     void func_80102424(Actor *, s32);
 

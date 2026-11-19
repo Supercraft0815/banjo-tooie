@@ -45,7 +45,7 @@ void func_8080000C_chevilspirit(Actor *arg0) {
 
 void func_80800104_chevilspirit(Actor *arg0) {
     s32 _chlightfader_entrypoint_1(s32, f32, s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     s32 _subaddiefade_entrypoint_0(Actor *);
     s32 _subaddiefade_entrypoint_2();
     void _subaddiefade_entrypoint_3(Actor *);
@@ -877,7 +877,7 @@ void func_80801B00_chevilspirit(BtIntPtr arg0, Actor *arg1, s32 arg2) {
 }
 
 void func_80801C04_chevilspirit(Actor *arg0) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     s32 _subaddielink_entrypoint_3(u8 *);
     void _subaddiemarker_entrypoint_1(Actor *, s32, s32, f32 *, s32);
     void _susubgame_entrypoint_0(BtIntPtr arg0, u8 *arg1, s32 arg2);

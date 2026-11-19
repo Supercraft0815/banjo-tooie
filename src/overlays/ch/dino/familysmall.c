@@ -21,7 +21,7 @@ typedef struct { s32 unk0; u8 pad4[0x4]; f32 unk8; u8 padC[0x1C]; f32 unk28; f32
 void func_80800090_chdinofamilysmall(u8 *arg0) {
     s32 _chdinofamilyfx_entrypoint_0(u8 *);
     s32 _subaddieaudioquick_entrypoint_2(u8 *, u8 *, s32 *);
-    s32 _subaddiedialog_entrypoint_11(s32, s32, s32, u8 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(s32, s32, s32, u8 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(s32, s32, s32, u8 *, s16);)
     s32 _subaddiedialog_entrypoint_4(u8 *, s32, s32);
     s32 _sudeflect_entrypoint_1(u8 *, f32, f32, f32, s32);
     s32 _sumumbofx_entrypoint_14(BtIntPtr);

@@ -70,7 +70,7 @@ void func_80800030_chnicecavemen(Actor *arg0) {
 }
 
 void func_80800128_chnicecavemen(Actor *arg0) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);)
     void _subaddiepalette_entrypoint_1(void *arg0, u8 *arg1);
     void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
     s32 func_800DA298(s32);
@@ -160,7 +160,7 @@ void func_808003B8_chnicecavemen(Actor* arg0)
 s32 func_808003D8_chnicecavemen(Actor *arg0, s32 arg1, s32 arg2) {
     extern u32 D_808018D8_chnicecavemen[4];
     void _gcdialogcamera_entrypoint_3(u32 *, f32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);)
     s32 _subaddiepalette_entrypoint_4(void *, void *);
     BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
     s32 _suexpression_entrypoint_12(void *, s32, s32);
@@ -282,7 +282,7 @@ void func_80800624_chnicecavemen(Actor *arg0, s32 arg1) {
 
 void func_8080077C_chnicecavemen(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _subaddiedialog_entrypoint_10(s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, u32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);)
     s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);
     void _subaddieitem_entrypoint_0(BtIntPtr, BtUIntPtr, s32, s32);
     void _subaddieitem_entrypoint_2(BtIntPtr);
@@ -443,7 +443,7 @@ int func_80800BF8_chnicecavemen(BtIntPtr arg0) {
 /* extern */
 
 s32 func_80800C6C_chnicecavemen(Actor *arg0) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0*, u32, u32, f32*, u32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0*, u32, u32, f32*, u32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0*, u32, u32, f32*, s16);)
     void func_80102424(Actor*, s32);
     int func_80800BF8_chnicecavemen();
 #ifdef BT_NATIVE

@@ -1189,7 +1189,7 @@ void func_8080219C_chfactoryrobot(void *arg0) {
 /* extern */
 
 void func_808021D4_chfactoryrobot(void *arg0, s32 arg1) {
-    u8 func_800D731C(u16);
+    BT_IDO_ONLY(u8 func_800D731C(u16);) BT_NATIVE_ONLY(s32 func_800D731C(s32);)
     s32 func_800DBE60(u8, s32, s32);
     s32 func_800E8C58(u8);
     s32 func_801015D0();

@@ -72,7 +72,7 @@ s32 func_808001E4_chweldarhead(Actor *arg0, s32 arg1, s32 arg2) {
     void func_8080038C_chweldarhead(Actor *, s32, s32);
     s32 _susubgame_entrypoint_3(Actor *, void *, u32, u32);
     s32 _gcdialogcamera_entrypoint_3(f32 *, f32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     Actor *func_80108528(s32, f32 *, s32, Actor **);
     void func_80102FDC(void *, f32);
     void _chappearfx_entrypoint_1(Actor *, u32, u32, f32);

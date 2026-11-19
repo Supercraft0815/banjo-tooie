@@ -51,7 +51,7 @@ void func_80800000_chfactorymagnet(Actor *arg0) {
 
 void func_80800224_chfactorymagnet(Actor *arg0) {
     s32 _chmrtannoy_entrypoint_0(void);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     s32 _sumumbofx_entrypoint_14(BtIntPtr);
     s32 _sumumbofx_entrypoint_27(BtIntPtr);
     s32 _sumumbofx_entrypoint_5(BtIntPtr, s32);

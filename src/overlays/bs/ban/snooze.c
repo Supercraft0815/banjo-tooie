@@ -200,7 +200,7 @@ void func_80800588_bsbansnooze(BtIntPtr arg0)
   s32 bastick_getZone(PlayerState *);
   void bs_setState(void *self, s32 nextState);
   s32 func_8009BCD4(BtIntPtr, s32);
-  f32 func_800F3780(f32, s32 *, s32);
+  BT_IDO_ONLY(f32 func_800F3780(f32, s32 *, s32);) BT_NATIVE_ONLY(f32 func_800F3780(f32, s32 *, s16);)
   void func_80800128_bsbansnooze(PlayerState *, f32);
   s32 player_inWater(BtIntPtr);
   extern s32 D_80800A60_bsbansnooze[6];

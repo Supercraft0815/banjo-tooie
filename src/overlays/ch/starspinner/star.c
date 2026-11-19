@@ -170,7 +170,7 @@ s32 func_80800454_chstarspinnerstar(Actor *arg0, f32 arg1) {
 
 void func_808005F8_chstarspinnerstar(void **arg0, s32 arg1) {
     s32 _glcutDll_entrypoint_20();
-    u8 func_800D731C(u16);
+    BT_IDO_ONLY(u8 func_800D731C(u16);) BT_NATIVE_ONLY(s32 func_800D731C(s32);)
     s32 func_800DA298(s32);
     s32 func_800DBE60(u8, s32, s32);
     s32 func_801015D0();

@@ -55,7 +55,7 @@ void func_8080000C_chmineproplight(Actor *arg0) {
 
 void func_80800168_chmineproplight(Actor *arg0, void *arg1) {
     BtIntPtr func_800D674C(s32);
-    u8 func_800D731C(u16);
+    BT_IDO_ONLY(u8 func_800D731C(u16);) BT_NATIVE_ONLY(s32 func_800D731C(s32);)
     void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, BtIntPtr);
     void func_800DF7E8(u8);
     void func_800DF830(s32);

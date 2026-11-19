@@ -1020,9 +1020,9 @@ void gcmapsects_entrypoint_16(void *arg0) {
     }
 }
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) gcmapsects_entrypoint_17(void *arg0)
+void gcmapsects_entrypoint_17(void *arg0)
 {
-  s32 func_800BF4DC(s32, u8, void *);
+  BT_IDO_ONLY(s32 func_800BF4DC(s32, u8, void *);) BT_NATIVE_ONLY(void func_800BF4DC(s32, s32);)
   s32 func_800BFF28();
   u8 *new_var;
   s32 func_800BFF4C();
@@ -1045,7 +1045,7 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) gcmapsects_entrypoint_17(void *arg0)
     }
     *((u8 *) (((s8 *) arg0) + 0x7A)) = (u8) (*(new_var = (u8 *) (((s8 *) arg0) + 0x7B)));
   }
-  BT_NATIVE_ONLY(return) func_800BF4DC(1, *((u8 *) (((s8 *) arg0) + 0x7E)), arg0);
+  BT_IDO_ONLY(func_800BF4DC(1, *((u8 *) (((s8 *) arg0) + 0x7E)), arg0);) BT_NATIVE_ONLY(func_800BF4DC(1, *((u8 *)arg0 + 0x7E));)
 }
 
 void gcmapsects_entrypoint_18(u8 *arg0, s32 arg1) {

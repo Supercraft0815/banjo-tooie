@@ -1047,7 +1047,7 @@ void func_80801944_chweldarboss(Actor *arg0, void *arg1) {
         s32 unk84;
     } WeldarData;
     void *func_80100094(Actor *, u32);
-    u8 func_800D731C(s32);
+    BT_IDO_ONLY(u8 func_800D731C(s32);) BT_NATIVE_ONLY(s32 func_800D731C(s32);)
     s32 func_800DBE60(u8, s32, s32);
     void func_800DF744(s32, s32);
     void func_800EE7F8(f32 *, f32 *);
@@ -1413,7 +1413,7 @@ s32 func_80802100_chweldarboss(Actor *arg0, s32 arg1) {
 }
 
 void func_80802214_chweldarboss(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0*, u32, u32, f32*, u32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0*, u32, u32, f32*, u32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0*, u32, u32, f32*, s16);)
     s32 func_800C064C(void);
     s32 func_800C067C(s32 arg0);
     if ((arg1 == 0x1359) && (func_800C064C() == 0x1358)) {

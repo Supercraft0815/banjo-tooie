@@ -143,7 +143,7 @@ s32 func_80800434_chpotogoldgame(BtIntPtr arg0, s32 arg1) {
     void func_800CE8D8(s32, f32, s32);
     void func_800CE928(s32, BtIntPtr, BtIntPtr);
     s32 func_800D0A9C(u32, u32);
-    s32 func_800D211C(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s16) func_800D211C(s32);
     s32 func_800DA298(s32);
     void func_800DA544(s32);
     BtUIntPtr func_800F54E4(void);
@@ -358,7 +358,7 @@ s32 func_80800A94_chpotogoldgame(Actor *arg0, s32 arg1, s32 arg2) {
     void _chappearfx_entrypoint_1(Actor *, u32, u32, f32);
     void _gcfrontend_entrypoint_10(void);
     void func_800C0850(void);
-    s32 func_800D211C(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s16) func_800D211C(s32);
     BtUIntPtr func_800F54E4(void);
     s32 func_800F7B9C(BtIntPtr, s32);
     Actor *func_80108528(s32, f32[3], s32, Actor **);
@@ -622,7 +622,7 @@ void chpotogoldgame_entrypoint_0(s32 arg0, BtIntPtr arg1) {
 
 void func_808010A0_chpotogoldgame(void *arg0) {
     s32 func_800D2054(s32, s32, s32);
-    s32 func_800D211C(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s16) func_800D211C(s32);
     s32 func_8080206C_chpotogoldgame();
     s32 sp1C;
 

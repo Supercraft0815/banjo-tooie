@@ -2101,7 +2101,7 @@ OSThread *chquiz_entrypoint_3(void)
 }
 
 s32 func_80803B54_chquiz(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     return _subaddiedialog_entrypoint_11(arg0->unk0, arg1, arg2, arg0->position, 0x4D);
 }
 
@@ -2280,7 +2280,7 @@ void func_80804170_chquiz(Actor *arg0, s32 arg1) {
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_17();
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_18(void);
     s32 _glglobalsettings_entrypoint_3();
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     s32 _suquiz_entrypoint_11(s32);
     s32 _suquiz_entrypoint_18(s32);
     s32 _suquiz_entrypoint_19(s32);

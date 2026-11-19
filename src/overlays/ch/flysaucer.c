@@ -1885,7 +1885,7 @@ void func_80803150_chflysaucer(Actor *arg0) {
 }
 
 void func_808031C8_chflysaucer(Actor *arg0) {
-    u8 func_800D731C(u16);
+    BT_IDO_ONLY(u8 func_800D731C(u16);) BT_NATIVE_ONLY(s32 func_800D731C(s32);)
     s32 func_800DBE60(u8, s32, s32);
     u8 sp1F;
 

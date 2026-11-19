@@ -45,7 +45,7 @@ void func_8080003C_chblackeye(void *arg0) {
 }
 
 void func_80800128_chblackeye(Actor *arg0, s32 arg1) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     s32 func_800D0B68(u32, u32);
     s32 func_800DA9E4(s32, s32);
     s32 func_800DC128(s32, s32);

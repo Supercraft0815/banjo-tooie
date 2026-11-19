@@ -299,7 +299,7 @@ void func_8080044C_chprisonbits(Actor *arg0) {
 void func_80800518_chprisonbits(Actor *arg0) {
     s32 _capod_entrypoint_22(void);
     s32 _glsplinefind_entrypoint_1(s32);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
     void _susubgame_entrypoint_5(Actor *, void *, s32, s32, s32);
     f32 func_800D8FF8(void);
@@ -438,7 +438,7 @@ s32 func_808009C4_chprisonbits(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
     void func_80800CC4_chprisonbits(Actor *, s32, s32);
     void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     void func_80102424(Actor *, s32);
     BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
     s32 _suexpression_entrypoint_12(void *, s32, s32);
@@ -568,7 +568,7 @@ int func_80800DFC_chprisonbits(Actor *arg0) {
 }
 
 void chprisonbits_entrypoint_5(s32 arg0, s32 arg1) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
     s32 func_800DA298(s32);
     void func_800DA544(s32);

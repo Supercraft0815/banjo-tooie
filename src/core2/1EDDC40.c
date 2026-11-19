@@ -87,13 +87,13 @@ void func_80104460(u8 *arg0) {
 }
 
 void func_80104504(void *arg0) {
-    s32 freelist_erase(s32, s16, void *);
+    BT_IDO_ONLY(s32 freelist_erase(s32, s16, void *);) BT_NATIVE_ONLY(void freelist_erase(s32, s32);)
     extern s32 D_80136E80;
     s16 temp_a1;
 
     temp_a1 = (*(s16 *)((s8 *)(arg0) + (0x8E)));
     if (temp_a1 != 0) {
-        freelist_erase(D_80136E80, temp_a1, arg0);
+        BT_IDO_ONLY(freelist_erase(D_80136E80, temp_a1, arg0);) BT_NATIVE_ONLY(freelist_erase(D_80136E80, temp_a1);)
         (*(s16 *)((s8 *)(arg0) + (0x8E))) = 0;
     }
 }    typedef struct { u8 pad0[0x3]; u8 unk3; } Obj1EDDC40_func_80104544_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */

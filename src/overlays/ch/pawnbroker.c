@@ -22,7 +22,7 @@ OSThread *chpawnbroker_entrypoint_2(void)
 }
 
 void func_80800024_chpawnbroker(Actor *arg0) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     s32 _subaddieitem_entrypoint_3(Actor *, f32 *, void *);
     s32 _sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4);
     void _suexpression_entrypoint_10(u32 *, Unk80132ED0 *, BtUIntPtr);
@@ -273,7 +273,7 @@ s32 func_808007BC_chpawnbroker(Actor *arg0, void *arg1, s32 *arg2, s32 arg3, s32
 }
 
 void func_8080083C_chpawnbroker(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
+    BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s16);)
     void _subaddieitem_entrypoint_2(BtIntPtr);
     s32 func_800D0A9C(u32, u32);
     s32 func_800D0B68(u32, u32);

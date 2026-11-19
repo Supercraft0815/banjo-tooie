@@ -129,7 +129,7 @@ BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s32) func_800BE7F8(s32 arg0, s32 arg1) {
 /* extern */
 
 void func_800BE9B0(void) {
-    s32 _gcmapsects_entrypoint_17(s32 *);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) _gcmapsects_entrypoint_17(s32 *);
     if ((((Obj1E97EF0_D_801285B0 *)&D_801285B0)->unk77) != 0) {
         _gcmapsects_entrypoint_17(&D_801285B0);
     }

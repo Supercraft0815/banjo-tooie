@@ -352,7 +352,7 @@ void func_800C1860(SfxSource *arg0) {
 
 void func_800C18C8(s32 index, s32 a, s32 b, s32 c, s32 d) {
     s32 func_800C122C(s32, s32, s32, s32);
-    s32 func_800DC48C(s32, s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800DC48C(s32, s32);
     s32 parameters;
     s32 source;
     if (index) {
@@ -366,7 +366,7 @@ void func_800C18C8(s32 index, s32 a, s32 b, s32 c, s32 d) {
 
 void func_800C191C(s32 arg0, s32 arg1) {
     s32 func_800C1448();
-    s32 func_800DC4B0(s32, s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800DC4B0(s32, s32);
     if (arg0 != 0) {
 #ifdef BT_NATIVE
         func_800DC4B0(((s32 (*)())func_800C1448)(), arg1);
@@ -380,7 +380,7 @@ void func_800C191C(s32 arg0, s32 arg1) {
 
 void func_800C1950(s32 arg0, s32 arg1) {
     s32 func_800C1448();
-    s32 func_800DC42C(s32, s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800DC42C(s32, s32);
     if (arg0 != 0) {
 #ifdef BT_NATIVE
         func_800DC42C(((s32 (*)())func_800C1448)(), arg1);

@@ -457,7 +457,7 @@ s32 func_80800DE4_chwaspnestgame(Actor *arg0, s32 arg1) {
 }
 
 s32 func_80800EB8_chwaspnestgame(void *arg0, s32 arg1, s32 arg2) {
-    s32 func_800D211C(s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s16) func_800D211C(s32);
 
     switch (arg1) {
         case 0x1405:
