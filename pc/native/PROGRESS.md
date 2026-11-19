@@ -3041,3 +3041,13 @@ Sanitizertests. Alle 9.688 Zeigerwort-Adressen, 16.401 Originalfunktionen
 und beide ROM-Abbilder sind identisch. Belege unter
 `build/acceptance/n1-2026-11-18/current-reflection-dialog*` und
 `current-player-motion*`.
+
+### 2026-11-19 – Musikstücke und Flächenrückseiten in C
+
+Die Musikauswahl liest ihre 48 Spurkennungen aus derselben C-Tabelle wie der
+Originalbuild. Die beiden Befehlslisten für das Ausblenden von Vorder- und
+Rückseiten kommen auf Gast und Host aus einer gemeinsamen Definition. Der
+strenge Scan findet 55 verbleibende Assembler-Einträge. 11 Gastsuiten,
+74 Replays mit 447.849 Retraces und 63 Sanitizertests bestehen. Alle 9.688
+Zeigerwort-Adressen, 16.401 Originalfunktionen und beide ROM-Abbilder stimmen
+überein. Belege unter `build/acceptance/n1-2026-11-18/current-track-culling*`.

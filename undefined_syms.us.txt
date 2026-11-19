@@ -428,3 +428,4 @@ D_801194D0 = player_form_data + 0x2D0;
 D_8011951C = player_form_data + 0x31C;
 D_80119540 = player_form_data + 0x340;
 D_80117F02 = player_node_mapping + 2;
+D_80123E5E = D_80123E40 + 0x1E;

@@ -60,6 +60,7 @@ add_library(bt_native_core STATIC
     "${BT_ROOT}/src/core2/player_form_data.c"
     "${BT_ROOT}/src/core2/dialog_render_data.c"
     "${BT_ROOT}/src/core2/player_motion_data.c"
+    "${BT_ROOT}/src/core2/face_culling_data.c"
     "${BT_ROOT}/src/core1/trig_constants.c"
     "${BT_ROOT}/src/core1/trig_tables.c"
     "${BT_ROOT}/src/core2/1EB5E70_geometry.inc"

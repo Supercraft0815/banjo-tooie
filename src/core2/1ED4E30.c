@@ -1,5 +1,20 @@
 #include "core2/1ED4E30.h"
 
+u32 D_80123DD0[4] BT_DATA(4, music_track_flags, 0) = {0};
+s16 D_80123DE0[48] BT_DATA(2, music_track_flags, 0x10) = {
+    0x32, 0x33, 0x55, 0x39, 0x38, 0x3E, 0x42, 0x48,
+    0x40, 0x49, 0x47, 0x4C, 0x45, 0x4B, 0x4F, 0x50,
+    0x53, 0x3B, 0x52, 0x4E, 0x3F, 0x63, 0x41, 0x56,
+    0x57, 0x61, 0x76, 0x75, 0x7E, 0x82, 0x7A, 0x58,
+    0x59, 0x5A, 0x5B, 0x5C, 0x5D, 0x62, 0x7F, 0x5E,
+    0x5F, 0x1F, 0x20, 0x65, 0x66, 0x64, 0x54, 0x9A,
+};
+struct {
+    u8 active;
+    u8 padding[29];
+    s16 volume_origin;
+} D_80123E40 BT_DATA(2, music_track_flags, 0x70) = {0};
+
 typedef struct {
     u8 unk0[8];
     f32 fade[2];
@@ -21,14 +36,13 @@ extern s32 D_80135960;                                    typedef struct { u8 pa
 void func_800FB540(void *arg0) {
     void func_800DA544(GameFlag);
     BT_IDO_ONLY(s32 func_800FED70(s16, void *);) BT_NATIVE_ONLY(void func_800FED70(s32);)
-    extern s16 D_80123DE0;
     s16 *var_v1;
     s32 var_v0;
 
     if ((((Obj1ED4E30_arg0 *)arg0)->unk33) == 0) {
         BT_IDO_ONLY(func_800FED70((((Obj1ED4E30_arg0 *)arg0)->unk28), arg0);) BT_NATIVE_ONLY(func_800FED70(((Obj1ED4E30_arg0 *)arg0)->unk28);)
         (((Obj1ED4E30_arg0 *)arg0)->unk33) = 1U;
-        for (var_v1 = &D_80123DE0, var_v0 = 0; var_v0 < 0x30; var_v0++, var_v1++) {
+        for (var_v1 = D_80123DE0, var_v0 = 0; var_v0 < 0x30; var_v0++, var_v1++) {
             if ((((Obj1ED4E30_arg0 *)arg0)->unk28) == *var_v1) {
                 func_800DA544(var_v0 + 0x53E);
                 return;
@@ -129,17 +143,16 @@ void func_800FB808(void) {
     void func_800FB908(void);
     void func_800FE614(void);
     void func_80017864(void);
-    extern u8 D_80123E40;
     extern u8 D_801359B0;
     extern f32 D_801359B4;
     extern f32 D_801359B8;
     MusicTrack *track;
     int i;
 
-    if (D_80123E40 != 0) {
+    if (D_80123E40.active != 0) {
         func_800FB908();
     }
-    D_80123E40 = 1;
+    D_80123E40.active = 1;
     D_801359B4 = 0;
     D_801359B8 = 1.0f;
     for (track = D_801357D0; track < &D_801357D0[6]; track++) {
@@ -163,7 +176,6 @@ void func_800FB908(void) {
     void func_80017244(void);
     void func_80016E7C(void);
     void freelist_free(struct FreeList *);
-    extern u8 D_80123E40;
     MusicTrack *track;
     func_80017244();
     func_80016E7C();
@@ -171,7 +183,7 @@ void func_800FB908(void) {
         freelist_free(track->freelist);
         track->freelist = 0;
     }
-    D_80123E40 = 0;
+    D_80123E40.active = 0;
 }
 
 void func_800FB968(void)
@@ -748,9 +760,8 @@ void func_800FCD14(s32 arg0, s32 arg1) { BT_NATIVE_ONLY(void func_800174C0(u8, s
 
 void func_800FCD5C(void) {
     BtIntPtr freelist_defrag(BtIntPtr);
-    extern u8 D_80123E40;
     MusicTrack *track;
-    if (D_80123E40 != 0) {
+    if (D_80123E40.active != 0) {
         for (track = D_801357D0; track < &D_801357D0[6]; track++) {
             track->freelist = freelist_defrag(track->freelist);
         }
@@ -821,10 +832,9 @@ s32 func_800FCF50(s32 arg0)
 {
   s16 *new_var;
   s32 func_800DA298(s32);
-  extern s16 D_80123DE0;
   s32 var_v0;
   s32 var_a1;
- var_v0 = 0; var_a1 = 0x30; do { new_var = &D_80123DE0;
+ var_v0 = 0; var_a1 = 0x30; do { new_var = D_80123DE0;
     if (arg0 == (*(new_var + var_v0)))
     {
       return func_800DA298(var_v0 + 0x53E);

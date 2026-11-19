@@ -2,8 +2,6 @@
 #include "native_reflection.h"
 #include "gfx.h"
 u32 D_8012D5E0;
-Gfx D_80123418[2]={{{0xD9FFFFFF,0x400}},{{0xDF000000,0}}};
-Gfx D_80123428[2]={{{0xD9FFFFFF,0x200}},{{0xDF000000,0}}};
 #else
 extern Gfx D_80123418[],D_80123428[];
 #endif
