@@ -182,12 +182,12 @@ void func_80018634(void)
 }
 
 void func_80018704(s32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
-    extern f32 D_80041730;
+
     Motor *motor;
 
     if (arg3 != 0.0f) {
         motor = &D_8007B2D0[arg0];
-        if (motor->unk0 != 0 && (arg4 != 0 || !(D_80041730 < motor->unkC - motor->unk10) || !(arg1 + arg2 < motor->unk18 + motor->unk14))) {
+        if (motor->unk0 != 0 && (arg4 != 0 || !(0.1f < motor->unkC - motor->unk10) || !(arg1 + arg2 < motor->unk18 + motor->unk14))) {
             motor->unkC = arg3;
             motor->unk14 = arg1;
             motor->unk10 = 0;

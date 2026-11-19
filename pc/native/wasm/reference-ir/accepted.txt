@@ -121,3 +121,13 @@ to baanim_playForDuration_onceSmooth. Original IDO puts 0x40400000 and
 integer literals as float bits. Those two arguments are the only canonical
 IR changes. See signature-five-final-ir.log and signature-five-original-loads.log
 in build/acceptance/n2-2026-11-18/.
+
+2026-11-19  N1 Core 1 and Core 2 literal pools and debug messages
+The five stages rodata-pools4, rodata-splits4, rodata-core1, rodata-core2
+and rodata-audio-debug2 identify 55 literals from the original big-endian
+ROM. Substitution at the 57 load sites preserves the canonical function
+bodies. The debug texts have their original bytes. Each comparison covers
+16,768 guest functions and 9,688 initial swap targets. The cumulative N64
+link preserves all function addresses and instructions across the five new
+translation-unit boundaries. See proof/rodata-*-whole.json and
+current-rodata-ido/result.json in build/acceptance/n1-2026-11-18/.

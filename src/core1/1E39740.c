@@ -1,12 +1,12 @@
 #include "common.h"
 
 f32 func_80021C10(s32 arg0) {
-    extern f32 D_80041990;
+
     f32 sp4;
     f32 sp0;
 
     arg0 &= 0xFF;
-    sp4 = D_80041990;
+    sp4 = 1.030993f;
     sp0 = 1.0f;
     if (arg0 != 0) {
         do {
@@ -59,8 +59,8 @@ s32 func_80021C8C(ALLink **arg0, f32 *arg1, u8 arg2, u8 arg3, u8 arg4, u8 arg5) 
 s32 func_80021E1C(void *arg0, f32 *arg1) {
     f32 func_8001395C(f32);
     f32 func_80027170(s32);
-    extern f32 D_80041994;
-    extern f32 D_80041998;
+
+
     f32 sp2C;
     void *sp28;
     s32 sp24;
@@ -74,7 +74,7 @@ s32 func_80021E1C(void *arg0, f32 *arg1) {
                 ((Obj1E39740_func_80021E1C_sp28 *)sp28)->unk24 = 0;
             }
             sp2C = (f32)*&((Obj1E39740_func_80021E1C_sp28 *)sp28)->unk24 / (f32)*&((Obj1E39740_func_80021E1C_sp28 *)sp28)->unk22;
-            sp2C = func_8001395C(sp2C * D_80041994);
+            sp2C = func_8001395C(sp2C * 6.2831855f);
             sp2C = (f32)*&((Obj1E39740_func_80021E1C_sp28 *)sp28)->unk28 * sp2C;
             *arg1 = (f32)*&((Obj1E39740_func_80021E1C_sp28 *)sp28)->unk29 + sp2C;
             break;
@@ -84,7 +84,7 @@ s32 func_80021E1C(void *arg0, f32 *arg1) {
                 ((Obj1E39740_func_80021E1C_sp28 *)sp28)->unk24 = 0;
             }
             sp2C = (f32)*&((Obj1E39740_func_80021E1C_sp28 *)sp28)->unk24 / (f32)*&((Obj1E39740_func_80021E1C_sp28 *)sp28)->unk22;
-            sp2C = *(f32 *)((s8 *)sp28 + 0x28) * func_8001395C(sp2C * D_80041998);
+            sp2C = *(f32 *)((s8 *)sp28 + 0x28) * func_8001395C(sp2C * 6.2831855f);
             *arg1 = func_80027170((s32)sp2C);
             break;
         default:

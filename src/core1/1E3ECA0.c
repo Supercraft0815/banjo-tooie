@@ -1,15 +1,15 @@
 #include "common.h"
 
 f32 func_80027170(s32 arg0) {
-    extern f32 D_80041CD0;
-    extern f32 D_80041CD4;
+
+
     f32 x;
     f32 ratio = 1.0f;
 
     if (arg0 >= 0) {
-        x = D_80041CD0;
+        x = 1.0005778f;
     } else {
-        x = D_80041CD4;
+        x = 0.99942255f;
         arg0 = -arg0;
     }
     while (arg0 != 0) {

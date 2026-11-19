@@ -75,7 +75,7 @@ BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s32) func_800BE7F8(s32 arg0, s32 arg1) {
     void func_800DF830(s32);
     void func_800DF83C(s32);
     s32 func_800EA340(void);
-    extern f32 D_801257B0;
+
     struct RenderEntry {
         s32 unk0, handle, unk8, model;
         s32 vertices[2];
@@ -107,7 +107,7 @@ BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s32) func_800BE7F8(s32 arg0, s32 arg1) {
         func_800DF5D8(base.state->red, base.state->green, base.state->blue, 255);
         func_800DF7DC(entry->texture);
         func_800DF818(entry->vertices[entry->index]);
-        func_800DF428(D_801257B0);
+        func_800DF428(29999.0f);
         func_800DF440(0);
         func_800DF4B0(1);
         func_800DE448(0, 0, 1.0f, 0, entry->model);

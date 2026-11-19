@@ -3,7 +3,7 @@
 #else
 void func_800DE318(void) {
     extern GeoCommandFunction *D_80123198[];
-    extern f32 D_80125D50;
+
     extern s32 D_8012C828;
     extern f32 D_8012C82C;
     extern f32 D_8012C830;
@@ -20,7 +20,7 @@ void func_800DE318(void) {
     extern s32 D_8012CA28;
     extern s16 D_8012CA38;
     D_8012C824 = 0;
-    D_8012C82C = D_80125D50;
+    D_8012C82C = 30000.0f;
     D_8012C828 = 1;
     D_8012C830 = 1.0f;
     D_8012C834 = 0;

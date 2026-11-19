@@ -70,7 +70,7 @@ int func_800D97E8(f32 a[4], f32 b[4]) {
 void func_800D9888(f32 arg0[4], f32 arg1[4], f32 arg2[4], f32 arg3) {
     f32 func_80013970(f32);
     f32 func_80013A7C(f32);
-    extern f32 D_80125D20;
+
     f32 temp_f12;
     f32 sp38;
     f32 sp34;
@@ -78,8 +78,8 @@ void func_800D9888(f32 arg0[4], f32 arg1[4], f32 arg2[4], f32 arg3) {
     f32 sp2C;
 
     temp_f12 = arg1[0]*arg2[0] + arg1[1]*arg2[1] + arg1[2]*arg2[2] + arg1[3]*arg2[3];
-    if (D_80125D20 < (1.0f + temp_f12)) {
-        if (D_80125D20 < (1.0f - temp_f12)) {
+    if (1e-05f < (1.0f + temp_f12)) {
+        if (1e-05f < (1.0f - temp_f12)) {
             sp2C = func_80013A7C(temp_f12);
             sp30 = func_80013970(sp2C);
             if (0.0f != sp30) {

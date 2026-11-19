@@ -2567,3 +2567,20 @@ Beide Mac-Architekturen und die beiden AppImages in separaten Debian-Containern
 erreichten jeweils die 2.698 erwarteten Intro-Retraces. Die Windows-Prüfung
 bestätigte die benötigten Laufzeitdateien. Die Pakete bleiben auf Nutzerwunsch
 lokal. Inhaltsfreigabe, Apple-Signatur und Notarisierung stehen aus.
+
+## 2026-11-19 — N1, Konstanten und Diagnoseausgaben aus Core 1 und Core 2
+
+Fünf zusätzliche C-Dateien trennen Code mit eigenem Konstantenpool vom
+angrenzenden Rodata-Bereich. Die zweite Audiodatei verwendet wie ihr
+Original IDO 7.1 mit Debug-Optimierung. Der strenge Datenimport zählt
+558 verbleibende Einträge gegenüber 617 vor diesen Änderungen.
+Die Einzelvergleiche belegen 55 Konstanten und 57 Lesezugriffe anhand
+der Originalbytes. Auch die Texte der Absturzdiagnose behalten ihre Bytes.
+
+Der gemeinsame Neuaufbau mit Original-IDO prüfte 1.119 C-Objekte gegen
+1.114 ursprüngliche Module. Alle 16.401 Funktionen behalten Adresse, Größe
+und Instruktionen. Entpacktes ROM und aufgefüllte Cartridge sind bytegleich.
+Die elf Testsuiten und 74 Replays mit 447.849 Retraces bestanden. Die
+Nachweise liegen unter `build/acceptance/n1-2026-11-18/` in
+`current-rodata-ido/result.json`, `current-rodata-74.log` und den fünf
+Einzelprüfungen `proof/rodata-*-whole.json`.

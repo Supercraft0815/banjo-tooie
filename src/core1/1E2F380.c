@@ -50,7 +50,7 @@ s32 func_800178C4(BtIntPtr arg0, s32 arg1, f32 arg2)
   u32 func_800260B0(void *);
   void func_80026238(BtIntPtr arg0, s32 arg1, volatile u8 arg2, volatile s32 arg3);
   void func_800262DC(BtIntPtr arg0, s32 arg1, u8 arg2);
-  extern const f32 D_80041720;
+
   extern u8 D_8007AE80[];
   extern u8 D_8007AEA0[];
   extern u32 D_8007AED0[];
@@ -76,7 +76,7 @@ s32 func_800178C4(BtIntPtr arg0, s32 arg1, f32 arg2)
   if (player->sequence != NULL)
   {
     tempo = func_800260B0(player);
-    duration = ((arg2 * D_80041720) * player->sequence->header->rate) / tempo;
+    duration = ((arg2 * 1e+06f) * player->sequence->header->rate) / tempo;
     if (duration == 0)
     {
       for (immediate = 0; immediate < player->sequence->header->count; immediate++)

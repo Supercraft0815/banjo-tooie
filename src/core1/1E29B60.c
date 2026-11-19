@@ -193,7 +193,7 @@ void func_800123F4(BT_IDO_ONLY(void) BT_PASS2(s32 bt_a0, s32 bt_a1) BT_PASS2(, s
     void func_800A7D30(void);
     s16 func_800A8184(void);
     f32 func_800D9004(void);
-    extern f32 D_800416A0;
+
     extern s32 D_80043384;
 
     func_8001207C();
@@ -210,7 +210,7 @@ void func_800123F4(BT_IDO_ONLY(void) BT_PASS2(s32 bt_a0, s32 bt_a1) BT_PASS2(, s
     }
     func_8008160C(1);
     func_8001E010();
-    if (func_800D9004() <= D_800416A0) {
+    if (func_800D9004() <= 0.05f) {
         do_crc_check();
     }
     if (D_80043384 != 0) {

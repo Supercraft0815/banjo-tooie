@@ -463,9 +463,9 @@ void func_8002AA30(void *arg0, s16 arg1, BtIntPtr arg2) {
 void func_8002AA74(void * volatile arg0, volatile s16 arg1, s32 * volatile arg2) {
     void func_80028C04(void *arg0, f32 arg1);
     extern PoolFreeList *D_800411F4;
-    extern f32 D_80041D30;       
+
     if (arg1 == 8) {
-        (((Obj1E411A0_arg0 *)arg0)->unk2) = (s16)(s32)((f32)*arg2 * D_80041D30);
+        (((Obj1E411A0_arg0 *)arg0)->unk2) = (s16)(s32)((f32)*arg2 * 0.1f);
     } else if (arg1 == 9) {
         (((Obj1E411A0_arg0 *)arg0)->unk0) = (s16)*arg2;
     }

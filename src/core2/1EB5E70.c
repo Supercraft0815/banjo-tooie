@@ -124,7 +124,7 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
     extern Gfx D_80122DB0[], D_80122DF0[], D_80122EB0[], D_80122F70[];
     extern s32 D_80122DC8[], D_80122DCC[];
     extern RenderCallback D_80123030[], D_80123038[];
-    extern f32 D_80125D54, D_80125D58, D_80125D5C, D_80125D60, D_80125D64;
+
     void func_800E39A8(BtIntPtr, BtIntPtr);
     void func_800EE7F8(f32 *, f32 *);
     void func_800DE318(void);
@@ -195,9 +195,9 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
         func_800EFD24(object_position);
     }
     func_800EFB24((s32 *)camera_focus, (s32 *)object_position, &D_8012CE98);
-    if (D_80125D54 < mlAbsF(camera_focus[0]) ||
-        D_80125D58 < mlAbsF(camera_focus[1]) ||
-        D_80125D5C < mlAbsF(camera_focus[2])) {
+    if (30000.0f < mlAbsF(camera_focus[0]) ||
+        30000.0f < mlAbsF(camera_focus[1]) ||
+        30000.0f < mlAbsF(camera_focus[2])) {
         func_800DE318();
         return NULL;
     }
@@ -210,7 +210,7 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
         local_norm = D_8012CA1C;
     }
     distance = func_800EEF94(camera_focus);
-    if (4000.0f <= distance && D_8012C82C == D_80125D60) {
+    if (4000.0f <= distance && D_8012C82C == 30000.0f) {
         if (local_norm * arg3 * D_8012C830 * 50.0f < D_8012C82C) {
             D_8012C82C = local_norm * arg3 * D_8012C830 * 50.0f;
         }
@@ -311,7 +311,7 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
     }
     if (arg5->flags & 4) {
         if (camera_focus[2] == 0.0f) {
-            camera_focus[2] = D_80125D64;
+            camera_focus[2] = -0.1f;
         }
         func_80013C80(arg0->mtx, (LookAt *)D_8012CA40.current, D_8012CA40.position[0], D_8012CA40.position[1], D_8012CA40.position[2],
             camera_focus[0], camera_focus[1], camera_focus[2], 0.0f, 1.0f, 0.0f);
@@ -440,7 +440,7 @@ ImageStruct *func_800DF944(void *a0, f32 *coords, f32 a2, f32 a3, f32 *a4, s32 a
     void func_800E4640(Gfx **);
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_800EFD24(f32 *);
-    extern f32 D_80125D68;
+
     extern s16 widescreen_enabled;
     f32 sp44[3];
     f32 sp38[3];
@@ -453,7 +453,7 @@ ImageStruct *func_800DF944(void *a0, f32 *coords, f32 a2, f32 a3, f32 *a4, s32 a
         func_800EFA4C(sp44, 0.0f, 0.0f, -10.0f);
     }
     if (a5 != 0 && widescreen_enabled != 0) {
-        sp44[0] *= func_800A8AF0(func_800A89F8()) / D_80125D68;
+        sp44[0] *= func_800A8AF0(func_800A89F8()) / 1.3333334f;
     }
     func_800EFA4C(sp38, 0.0f, 0.0f, a2);
     if (a4 != NULL) {

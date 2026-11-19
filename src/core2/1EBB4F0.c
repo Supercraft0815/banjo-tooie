@@ -22,8 +22,8 @@ s32 func_800E1C00(void *arg0, BtIntPtr arg1, f32 arg2, f32 arg3, BtIntPtr arg4)
   f32 func_800E3928(BtIntPtr, BtIntPtr);
   f32 func_800E42C0();
   void func_800EE7F8(f32 dst[3], f32 src[3]);
-  extern f32 D_80125D90;
-  extern f32 D_80125D94;
+
+
   extern SpriteSettings D_8012D470;
   extern s16 D_8012D48C;
   f32 sp18;
@@ -45,7 +45,7 @@ s32 func_800E1C00(void *arg0, BtIntPtr arg1, f32 arg2, f32 arg3, BtIntPtr arg4)
     {
       var_f0 = temp_f2;
     }
-    if (((sp18 * D_80125D90) < sp24) && ((var_f0 / sp24) < D_80125D94))
+    if (((sp18 * 0.15f) < sp24) && ((var_f0 / sp24) < 0.1f))
     {
       return 0;
     }
@@ -551,13 +551,13 @@ void func_800E2C54(u8 *arg0, u8 *resource, s32 index, s32 flip, f32 *positionArg
 f32 func_800E2DF0(void) {
     s32 func_800A89F8();
     f32 func_800A8AF0(s32);
-    extern f32 D_80125D98;
+
     extern SpriteSettings D_8012D470;
     f32 var_f2;
 
     var_f2 = (*(f32 *)((s8 *)(&D_8012D470) + (0x2C)));
     if ((*(u8 *)((s8 *)(&D_8012D470) + (0x23))) != 0) {
-        var_f2 *= D_80125D98 / func_800A8AF0(func_800A89F8());
+        var_f2 *= 1.3333334f / func_800A8AF0(func_800A89F8());
     }
     return var_f2;
 }

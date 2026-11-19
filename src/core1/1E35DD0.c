@@ -9,9 +9,9 @@ void func_8001E2C8(void) {
     extern s32 D_8007E950;
     void func_8001D37C(BtIntPtr arg0, ...);
     void func_8001D96C();
-    extern s32 D_80041840;
+
     func_8001D96C();
-    func_8001D37C(&D_80041840, D_8007E950);
+    func_8001D37C("\nFault: CPU exception in thread %d!\n", D_8007E950);
     func_8001E2A0();
 }
 
@@ -20,9 +20,9 @@ void func_8001E304(void) {
     void func_8001D37C(BtIntPtr arg0, ...);
     void func_8001D96C();
     void func_8001D9CC(u16 arg0, u16 arg1);
-    extern s32 D_80041868;
+
     func_8001D96C();
-    func_8001D37C(&D_80041868);
+    func_8001D37C("\nFault: WATCH GFX!\n");
     func_8001D9CC(0, 0xA);
     _gzreg_entrypoint_1();
     func_8001E2A0();
@@ -31,9 +31,9 @@ void func_8001E304(void) {
 void func_8001E34C(void) {
     void func_8001D37C(BtIntPtr arg0, ...);
     void func_8001D96C();
-    extern s32 D_8004187C;
+
     func_8001D96C();
-    func_8001D37C(&D_8004187C);
+    func_8001D37C("\nWe seem to be stuck in an infinite loop!\n");
     func_8001E2A0();
 }
 
@@ -46,35 +46,35 @@ void func_8001E3A0(void) {
     extern s32 D_8007E948;
     s32 func_8001211C(void);
     void func_8001D37C(BtIntPtr arg0, ...);
-    extern s32 D_800418A8;
-    func_8001D37C(&D_800418A8, func_8001211C(), D_8007E948);
+
+    func_8001D37C("\n[%d] Crash of unknown origin! (type = %d)\n", func_8001211C(), D_8007E948);
     func_8001E2A0();
 }
 
 void func_8001E3E0(void) {
     s32 func_8001211C(void);
     void func_8001D37C(BtIntPtr arg0, ...);
-    extern s32 D_800418D4;
-    func_8001D37C(&D_800418D4, func_8001211C());
+
+    func_8001D37C("\n[%d] Out of Memory!\n", func_8001211C());
     func_8001E2A0();
 }
 
 void func_8001E418(void) {
     void func_8001D37C(BtIntPtr arg0, ...);
     void func_8001D96C();
-    extern s32 D_800418EC;
+
     func_8001D96C();
-    func_8001D37C(&D_800418EC);
+    func_8001D37C("\nFault: Halt!\n");
     func_8001E2A0();
 }
 
 void func_8001E44C(void) {
     void func_8001D3D8(s16 arg0, s16 arg1, const char *arg2, ...);
     void func_8001D96C();
-    extern s32 D_800418FC;
+
     extern s32 D_8007E950;
     func_8001D96C();
-    func_8001D3D8(0x11, 0x18, &D_800418FC, D_8007E950);
+    func_8001D3D8(0x11, 0x18, "Error: Software lock in thread %d!\n", D_8007E950);
     func_8001E2A0();
 }
 

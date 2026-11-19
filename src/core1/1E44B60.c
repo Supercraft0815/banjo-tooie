@@ -5,9 +5,9 @@ Acmd *func_8002D030(u8 *arg0, s16 *arg1, s32 arg2, Acmd *arg3) {
     void func_80028C04(void *, f32);
     Acmd *func_8002D450(u8 *, s16 *, Acmd *);
     f32 sqrtf(f32);
-    extern f32 D_80041DA0;
-    extern f32 D_80041DA4;
-    extern f32 D_80041DA8;
+
+
+
     Acmd *sp2C;
     f32 sp28;
     Acmd *sp24;
@@ -18,12 +18,12 @@ Acmd *func_8002D030(u8 *arg0, s16 *arg1, s32 arg2, Acmd *arg3) {
     sp2C = func_8002D450(arg0, arg1, arg3);
     if (((struct FilterState *)arg0)->count != 0 && ((struct FilterState *)arg0)->count < 0x40) {
         if (((struct FilterState *)arg0)->count >= 6) {
-            sp28 = D_80041DA0 / sqrtf((f32)((struct FilterState *)arg0)->count + 1.0f);
+            sp28 = 26755.0f / sqrtf((f32)((struct FilterState *)arg0)->count + 1.0f);
         } else {
             sp28 = 65536.0f / ((f32)((struct FilterState *)arg0)->count + 1.0f);
         }
-        if (sp28 < D_80041DA4) {
-            sp28 = D_80041DA8;
+        if (sp28 < 7723.0f) {
+            sp28 = 7723.0f;
         }
         sp24 = sp2C++;
         sp24->words.w0 = *arg1 & 0xFFFF;

@@ -527,7 +527,7 @@ s32 func_8010D490(f32 *arg0, f32 *arg1, f32 arg2, f32 arg3, s32 arg4) {
     s32 func_800F5898();
     f32 func_800F5BF0(BtIntPtr, f32 *);
     s32 func_800F6438(BtUIntPtr);
-    extern f32 D_80126530;
+
     s32 var_s0;
     s32 var_s6;
     f32 sp74[3];
@@ -540,7 +540,7 @@ s32 func_8010D490(f32 *arg0, f32 *arg1, f32 arg2, f32 arg3, s32 arg4) {
     func_800EE7F8(sp50, arg1);
     temp_f24 = func_800F0C68(arg0, sp50, arg2, arg3);
     var_s6 = -1;
-    arg3 = D_80126530;
+    arg3 = 1e+08f;
     var_s0 = 0;
     if (func_800F5898() > 0) {
         do {

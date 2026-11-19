@@ -6,9 +6,9 @@ f32 func_800E81E0(s32 x, s32 y, f32 offset, f32 scale) {
     u16 func_8001A0C0(s32, s32);
     f32 mlAbsF(f32);
     extern s32 D_801234C0[][2];
-    extern f32 D_80125E40;
-    extern f32 D_80125E44;
-    f32 stack_padding[6];
+
+
+    f32 stack_padding[2];
     f32 difference;
     u16 sample;
     s32 *compression;
@@ -16,8 +16,8 @@ f32 func_800E81E0(s32 x, s32 y, f32 offset, f32 scale) {
     sample = func_8001A0C0(x, y);
     compression = D_801234C0[(sample >> 0xD) & 7];
     y = (((sample >> 2) & 0x7FF) << compression[0]) + compression[1];
-    difference = ((f32) ((y / 256) - 0x1FF) / D_80125E40) - offset;
-    return mlAbsF(difference) < D_80125E44 ? 0.0f : scale / difference;
+    difference = ((f32) ((y / 256) - 0x1FF) / 511.0f) - offset;
+    return mlAbsF(difference) < 1e-06f ? 0.0f : scale / difference;
 }
 
 void func_800E829C(void) {

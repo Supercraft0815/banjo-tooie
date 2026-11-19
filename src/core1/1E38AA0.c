@@ -208,10 +208,10 @@ void func_80021884(ALLink *arg0) {
 
 s32 func_800218C4(s32 arg0) {
     extern PoolFreeList *D_800411F4;
-    extern f32 D_80041980;
+
     volatile f32 sp4;
 
-    sp4 = ((f32) arg0 * (f32) D_800411F4->unk40 / D_80041980) + 0.5f;
+    sp4 = ((f32) arg0 * (f32) D_800411F4->unk40 / 1e+06f) + 0.5f;
     return (s32) sp4;
 }
 

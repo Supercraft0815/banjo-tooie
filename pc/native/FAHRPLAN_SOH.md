@@ -443,7 +443,7 @@ Ziel: der native Build braucht `data.py` nicht mehr.
 2. Je Modul: ändern, `data_to_c.py apply`, `data_to_c.py verify` (Docker-Klon, `.data` und
    Relocations je Objekt), `port.py gate`. Wörter, die zufällig wie Adressen aussehen, gehören in
    `stub_constants.txt` (`data_to_c.py constants`).
-   Die letzten fünf Module (Athlete, Klungo, Evil Mumbo, Quiz und Game Select) sind aufgeteilt. Der kumulative Original-IDO-Vergleich umfasst 3.372 Funktionen in 113 Modulen und beide vollständigen ROMs. Alle 74 Replays mit 447.849 Retraces stimmen überein. Der strenge Scan meldet noch 617 Dateneinträge für Assembler-Daten, Rodata und BSS.
+   Die letzten fünf Module (Athlete, Klungo, Evil Mumbo, Quiz und Game Select) sind aufgeteilt. Der kumulative Original-IDO-Vergleich umfasst 3.372 Funktionen in 113 Modulen und beide vollständigen ROMs. Alle 74 Replays mit 447.849 Retraces stimmen überein. Nach den fünf folgenden Rodata-Paketen meldet der strenge Scan noch 558 Einträge für Assembler-Daten, Rodata und BSS. Fünf Dateien wurden dafür entlang der ursprünglichen Objektgrenzen geteilt.
 3. `port.py worklist xsym` (348 Zugriffe, 86 Dateien, Gruppen in
    `build/ilp32-xsym/xsym_groups.tsv`): je Gruppe erst die Daten als ein C-Objekt, dann die
    Zugriffe. Nach Q2 den Bericht neu erzeugen.

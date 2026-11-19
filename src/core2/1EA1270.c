@@ -2,8 +2,8 @@
 
 #ifdef BT_NATIVE
 #include "ml/spline.h"
-f32 D_80125920 = 100000000.0f;
-f32 D_80125924 = 0.009999999776f;
+
+
 #else
 typedef void (*SplineDerivativeFunc)(f32, u8, s32 *, f32 *);
 #endif
@@ -228,7 +228,7 @@ void func_800C810C(u8 *arg0, f32 arg1, f32 *arg2, f32 *arg3) {
 }
 
 f32 func_800C8198(Unk800C7A68 *arg0, f32 arg1[3], f32 min, f32 max, f32 step) {
-    extern f32 D_80125920;
+
     void func_800EFB24(void *, void *, void *);
     f32 func_800F0E00(f32, f32);
     f32 func_800F13F0(f32, f32);
@@ -242,7 +242,7 @@ f32 func_800C8198(Unk800C7A68 *arg0, f32 arg1[3], f32 min, f32 max, f32 step) {
 
     min = func_800F0E00(0.0f, min);
     max = func_800F13F0(1.0f, max);
-    f24 = D_80125920;
+    f24 = 1e+08f;
     f28 = min;
     f20 = min;
     do {
@@ -266,7 +266,7 @@ f32 func_800C8198(Unk800C7A68 *arg0, f32 arg1[3], f32 min, f32 max, f32 step) {
 
 f32 func_800C82CC(void *arg0, f32 *arg1) {
     f32 func_800EEB40(f32 *, f32 *);
-    extern f32 D_80125924;
+
     f32 result;
     f32 step;
     f32 min;
@@ -278,7 +278,7 @@ f32 func_800C82CC(void *arg0, f32 *arg1) {
     if (result >= 0) {
     return result;
 
-} initial = D_80125924;
+} initial = 0.01f;
     step = initial;
     result = func_800C8198(arg0, arg1, 0.0f, 1.0f, initial);
     min = result - step;

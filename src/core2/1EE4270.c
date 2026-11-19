@@ -56,7 +56,7 @@ s32 func_8010AAC0(void *arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
     void func_8010A624(Actor *);
     u32 func_8010A654(Actor *, s32);
     u32 func_8010A698(Actor *);
-    extern f32 D_80126510, D_80126514;
+
     extern f32 D_80136F30[3];
     struct {
         s32 object;
@@ -91,7 +91,7 @@ s32 func_8010AAC0(void *arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
         special = 1;
     }
     if (special) {
-        state.radius *= D_80126510 * func_8010A40C(arg0);
+        state.radius *= 0.6f * func_8010A40C(arg0);
         if (state.radius * 1.25f < *(s16 *)&(actor = *argAddress)->unk0->unk20) {
             state.height = *(s16 *)&actor->unk0->unk20;
         } else {
@@ -123,7 +123,7 @@ s32 func_8010AAC0(void *arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
         func_800EE7F8(D_80136F30, state.normal);
         if (!state.blocked) {
             func_800EF410(normal, delta);
-            if (D_80126514 < func_800EEAA4(state.normal, normal)) {
+            if (-0.9396926f < func_800EEAA4(state.normal, normal)) {
                 result = 0;
             }
         }
@@ -153,7 +153,7 @@ s32 func_8010AD4C(void *arg0, f32 arg1[3], s32 arg2, f32 arg3) {
     f32 func_800EC708(Unk80132ED0 *);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_8010A40C(void *);
-    extern f32 D_80126518;
+
     extern f32 D_80136F20[3];
     extern f32 D_80136F30[3];
     f32 sp3C[1];
@@ -162,7 +162,7 @@ s32 func_8010AD4C(void *arg0, f32 arg1[3], s32 arg2, f32 arg3) {
     f32 temp_f2;
 
     sp34 = func_800EC708(*(Unk80132ED0 **)arg0);
-    temp_f2 = func_8010A40C(arg0) * (sp34 * D_80126518);
+    temp_f2 = func_8010A40C(arg0) * (sp34 * 0.666f);
     sp3C[0] = temp_f2;
     arg1[1] = arg1[1] + temp_f2;
     ((f32 *)arg0)[2] = ((f32 *)arg0)[2] + temp_f2;
@@ -200,7 +200,7 @@ s32 func_8010AE9C(void *arg0, f32 arg1[3], s32 arg2, f32 arg3) {
     f32 func_800EC708(Unk80132ED0 *);
     void func_800EE7F8(f32 *, f32 *);
     f32 func_8010A40C(void *);
-    extern f32 D_8012651C;
+
     extern f32 D_80136F20[3];
     extern f32 D_80136F30[3];
     f32 sp3C[1];
@@ -209,7 +209,7 @@ s32 func_8010AE9C(void *arg0, f32 arg1[3], s32 arg2, f32 arg3) {
     f32 temp_f2;
 
     sp34 = func_800EC708(*(Unk80132ED0 **)arg0);
-    temp_f2 = func_8010A40C(arg0) * (sp34 * D_8012651C);
+    temp_f2 = func_8010A40C(arg0) * (sp34 * 0.666f);
     sp3C[0] = temp_f2;
     arg1[1] = arg1[1] + temp_f2;
     ((f32 *)arg0)[2] = ((f32 *)arg0)[2] + temp_f2;
@@ -788,7 +788,7 @@ s32 func_8010C100(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     Actor *func_80106790(Unk80132ED0 *);
     f32 func_8010A40C(void *);
     s32 func_8010C2D8(Actor *, f32 *, f32, Actor *);
-    extern f32 D_80126520;
+
     f32 position[3];
     Actor *other;
     Unk80132ED0 *marker;
@@ -799,7 +799,7 @@ s32 func_8010C100(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     f32 scale;
 
     scale = func_80103F38(arg0, position);
-    radius = func_8010A40C(arg0) * (D_80126520 * scale);
+    radius = func_8010A40C(arg0) * (0.7f * scale);
     list = func_800BE3F8((u8 *)arg0->position);
     while (*list != 0) {
         entry = (Entry *)func_800E9E88(*list);
@@ -892,19 +892,19 @@ s32 func_8010C3E8(Actor *arg0) {
 
 f32 func_8010C460(Actor *arg0) {
     f32 func_80103F38(Actor *, f32 *);
-    extern f32 D_80126524;
-    f32 temp_f2;
-    int index;
-    f32 result[1];
+    f32 value;
 
-    temp_f2 = func_80103F38(arg0, NULL) * D_80126524;
-    result[0] = temp_f2;
-    index = 0;
-    if (result[index] < 60.0f) {
+    value = func_80103F38(arg0, NULL) * 0.666f;
+    if (value < 60.0f) {
         return 60.0f;
     }
-    return result[index];
+    return value;
 }
+
+
+
+
+
 
 /* extern */
 

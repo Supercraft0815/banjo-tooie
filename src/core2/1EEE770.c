@@ -27,7 +27,7 @@ void func_80114EEC(void *arg0, BtIntPtr arg1) {
 void func_80114FA4(Gfx **arg0, u8 *arg1) {
     void func_800B99CC(Gfx **, s32, s32 *);
     extern u8 D_80124A50;
-    extern f32 D_80126600, D_80126604, D_80126608;
+
     s32 i;
     f32 fraction;
     u8 component;
@@ -37,14 +37,14 @@ void func_80114FA4(Gfx **arg0, u8 *arg1) {
 
     if (arg1[0xC] != 0) {
         if (arg1[0xE] != 0) {
-            if (D_80126600 < *(f32 *)(arg1 + 8)) {
+            if (3000.0f < *(f32 *)(arg1 + 8)) {
                 fraction = 1.0f;
             } else {
-                fraction = *(f32 *)(arg1 + 8) * D_80126604;
+                fraction = *(f32 *)(arg1 + 8) * 0.00033333333f;
             }
             for (i = 0; i != 3; i++) {
                 component = table[*(s32 *)(arg1 + 4)][i + 1];
-                color[i] = -(s32)component * (fraction * D_80126608) + (f32)component;
+                color[i] = -(s32)component * (fraction * 0.4f) + (f32)component;
             }
             alpha = (f32)table[*(s32 *)(arg1 + 4)][4];
             func_800B99CC(arg0, (s32)(alpha * fraction + alpha), color);
@@ -93,7 +93,7 @@ void func_801151C4(void *arg0) {
     void func_800CA7E4(BtIntPtr, s32 *);
     void func_800EFA4C(f32 *, f32, f32, f32);
     BtIntPtr func_8010FF80(s32 *);
-    extern f32 D_8012660C;
+
     f32 sp4C[3];
     f32 sp40[3];
     f32 sp34[3];
@@ -106,7 +106,7 @@ void func_801151C4(void *arg0) {
     camera = func_8010FF80(*(s32 **)arg0);
     func_800CA7E4(camera, (s32 *)sp40);
     if (func_800BEAAC((BtIntPtr)sp40, (BtIntPtr)&sp30) == 0) {
-        func_800EFA4C(sp34, sp40[0], sp40[1] + D_8012660C, sp40[2]);
+        func_800EFA4C(sp34, sp40[0], sp40[1] + 10000.0f, sp40[2]);
         triangle = func_800BEF00(sp40, sp34, sp4C, 0x1F00);
         if (triangle != NULL) {
             flag = (triangle[2] & 0x20000) ? 1 : 0;

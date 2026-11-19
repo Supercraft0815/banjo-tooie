@@ -3,7 +3,7 @@
 void func_800A5320(void) {
     void func_800EF8BC(f32 dst[3], f32 src[3], f32 pitch);
     void func_800EFA4C(f32 *, f32, f32, f32);
-    extern f32 D_801255C0;
+
     extern f32 D_801270A0[3], D_801270B0[3], D_801270C0[3];
     extern f32 D_801270D0[3], D_801270E0[3];
     f32 sp34[3];
@@ -12,7 +12,7 @@ void func_800A5320(void) {
 
     func_800EFA4C(sp34, 0.0f, -1.0f, 0.0f);
     func_800EF8BC(sp1C, sp34, 68.0f);
-    func_800EFA4C(sp28, sp1C[1] * D_801255C0, 0.0f, sp1C[2]);
+    func_800EFA4C(sp28, sp1C[1] * 1.3333334f, 0.0f, sp1C[2]);
     D_801270E0[0] = sp1C[0];
     D_801270E0[1] = sp1C[1];
     D_801270E0[2] = sp1C[2];

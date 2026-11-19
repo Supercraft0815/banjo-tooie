@@ -44,7 +44,7 @@ void func_80112648(void *arg0) {
     BT_IDO_ONLY(f32) BT_NATIVE_ONLY(s32) func_800F5CEC(s32);
     void func_800F5D70(BtIntPtr, f32 *);
     s32 func_80110840(s32 *);
-    extern f32 D_80126580;
+
     f32 temp_f2;
     f32 sp30[3];
     s32 temp_v0;
@@ -62,7 +62,7 @@ void func_80112648(void *arg0) {
     }
     BT_NATIVE_ONLY(s32 bt_f5cec = func_800F5CEC(temp_v0);) (*(BT_IDO_ONLY(f32) BT_NATIVE_ONLY(s32) *)((s8 *)((*(void **)((s8 *)(arg0) + (0x4C)))) + (4))) = BT_IDO_ONLY(func_800F5CEC(temp_v0)) BT_NATIVE_ONLY(bt_f5cec);
     func_800F5D70(temp_v0, sp30);
-    if ((func_800EEFFC(sp30) < D_80126580) || (func_800F5B0C(temp_v0) != 0) || (func_801125F4(temp_v0) == 0)) {
+    if ((func_800EEFFC(sp30) < 0.01f) || (func_800F5B0C(temp_v0) != 0) || (func_801125F4(temp_v0) == 0)) {
         (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x4C)))) + (4))) = 0.0f;
     }
     temp_v0_3 = (*(void **)((s8 *)(arg0) + (0x4C)));

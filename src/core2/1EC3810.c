@@ -466,10 +466,10 @@ void func_800EB2DC(void *arg0, BtIntPtr arg1, s32 arg2) {
 s32 func_800EB350(Actor *arg0, f32 *arg1, f32 *arg2) {
     s32 func_800AAEF4(f32 *, f32, f32 *, f32 *);
     void func_80103328(Actor *);
-    extern f32 D_80125E5C;
+
 
     func_80103328(arg0);
-    return func_800AAEF4(arg0->position, (f32)(u16)arg0->pad68 * arg0->scale * D_80125E5C, arg1, arg2) == 0;
+    return func_800AAEF4(arg0->position, (f32)(u16)arg0->pad68 * arg0->scale * 1.1f, arg1, arg2) == 0;
 }
 
 #ifdef BT_NATIVE

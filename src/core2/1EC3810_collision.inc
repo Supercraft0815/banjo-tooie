@@ -56,7 +56,7 @@ s32 func_800EA628(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     Actor *func_80106790(Unk80132ED0 *);
     extern s32 D_80132DD0;
     extern s32 D_80132DD4;
-    extern f32 D_80125E50;
+
     s32 result;
     Prop *prop;
     s32 modelId;
@@ -93,7 +93,7 @@ s32 func_800EA628(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
                             rotation[0] = 0.0f;
                             rotation[1] = (f32)(u32)prop->data.model.yaw * 2.0f;
                             rotation[2] = (f32)(u32)prop->data.model.roll * 2.0f;
-                            scale = (f32)prop->scale * D_80125E50;
+                            scale = (f32)prop->scale * 0.01f;
                             if (func_800AAEF4(position, func_800B2354((void *)func_800B2840((s32)model)) * scale, arg1, arg2)) {
                                 modelHit = func_800AB868(collision, func_800B2840((s32)model), position, rotation, scale, arg1, arg2, arg3, arg4);
                                 if (modelHit != 0) {
@@ -168,7 +168,7 @@ s32 func_800EAA2C(s32 arg0, volatile s32 arg1, s32 arg2, f32 arg3, f32 *arg4, vo
     u8 *func_80103AA0(u8 *);
     s32 func_80103CDC(u8 *, u8 *);
     Actor *func_80106790(Unk80132ED0 *);
-    extern f32 D_80125E54;
+
     extern s32 D_80132DD0;
     extern s32 D_80132DD4;
     typedef u8 *(*CollisionFunc)(u8 *, s32, s32, f32, f32 *, s32, u32);
@@ -222,7 +222,7 @@ s32 func_800EAA2C(s32 arg0, volatile s32 arg1, s32 arg2, f32 arg3, f32 *arg4, vo
                         rotation[1] = (f32)prop[2] + (f32)prop[2];
                         rotation[2] = (f32)prop[3] + (f32)prop[3];
                         hit = func_800AC848(collision, func_800B2840((s32)model), position, rotation,
-                            (f32)prop[10] * D_80125E54, arg1, arg2, arg3, arg4, arg5, arg6);
+                            (f32)prop[10] * 0.01f, arg1, arg2, arg3, arg4, arg5, arg6);
                         if (hit != 0 && D_80132DD0 != 0) {
                             ((void (*)(s32, s32))D_80132DD0)(*(s32 *)prop, D_80132DD4);
                         }
@@ -319,7 +319,7 @@ s32 func_800EADFC(s32 arg0, s32 arg1, f32 arg2, f32 *arg3, u32 arg4) {
     u8 *func_80103AA0(u8 *);
     s32 func_80103CDC(u8 *, u8 *);
     Actor *func_80106790(Unk80132ED0 *);
-    extern f32 D_80125E58;
+
     s32 result;
     s32 hit;
     Prop *prop;
@@ -355,7 +355,7 @@ s32 func_800EADFC(s32 arg0, s32 arg1, f32 arg2, f32 *arg3, u32 arg4) {
                         rotation[1] = (f32)(u32)*((u8 *)model_prop + 2) + (f32)(u32)*((u8 *)model_prop + 2);
                         rotation[2] = (f32)(u32)*((u8 *)model_prop + 3) + (f32)(u32)*((u8 *)model_prop + 3);
                         hit = func_800AD1AC(collision, func_800B2840(model), position, rotation,
-                            (f32)(u32)*((u8 *)model_prop + 0xA) * D_80125E58, arg1, arg2, *output, arg4);
+                            (f32)(u32)*((u8 *)model_prop + 0xA) * 0.01f, arg1, arg2, *output, arg4);
                         if (hit != 0) {
                             result = hit;
                         }
