@@ -1,4 +1,5 @@
 #include "common.h"
+#include "core2/particle_internal.h"
 
 void func_800BBD60(void *arg0, BtIntPtr arg1) {
     BtIntPtr func_800D674C(s32);
@@ -12,8 +13,8 @@ void func_800BBD60(void *arg0, BtIntPtr arg1) {
     struct Flags { BT_BITFIELD_ORDER(u8 visible : 1, u8 rest : 7); BT_BITFIELD_ORDER(u8 rest : 7, u8 visible : 1); };
 
     image = func_800D674C(*(u16 *)((u8 *)arg0 + 2));
-    entry = *(u8 **)((u8 *)arg0 + 0x8C);
-    while (entry < *(u8 **)((u8 *)arg0 + 0x90)) {
+    entry = (u8 *)((ParticleEmitter *)arg0)->begin;
+    while (entry < (u8 *)((ParticleEmitter *)arg0)->end) {
         pos[0] = (f32)(*(s16 *)(entry + 6) + *(s16 *)((u8 *)arg0 + 0xC));
         pos[1] = (f32)(*(s16 *)(entry + 8) + *(s16 *)((u8 *)arg0 + 0xE));
         pos[2] = (f32)(*(s16 *)(entry + 0xA) + *(s16 *)((u8 *)arg0 + 0x10));
@@ -94,8 +95,8 @@ void func_800BBFDC(void *arg0, BtIntPtr arg1) {
     if ((*(u16 *)((s8 *)(arg0) + (0))) & 1) {
         func_800EFA4C(sp6C, 90.0f, 0.0f, 0.0f);
     }
-    var_s0 = (*(u8 **)((s8 *)(arg0) + (0x8C)));
-    if (var_s0 < (*(u8 **)((s8 *)(arg0) + (0x90)))) {
+    var_s0 = (u8 *)((ParticleEmitter *)arg0)->begin;
+    if (var_s0 < (u8 *)((ParticleEmitter *)arg0)->end) {
         do {
             sp78[0] = (f32) ((*(s16 *)((s8 *)(var_s0) + (6))) + (*(s16 *)((s8 *)(arg0) + (0xC))));
             sp78[1] = (f32) ((*(s16 *)((s8 *)(var_s0) + (8))) + (*(s16 *)((s8 *)(arg0) + (0xE))));
@@ -111,7 +112,7 @@ void func_800BBFDC(void *arg0, BtIntPtr arg1) {
                 ((struct DrawFlags *)((u8 *)var_s0 + 0x39))->drawn |= func_800E2720(arg1, (s16) (*(s16 *)((s8 *)(var_s0) + (0x2C))) >> 8, var_s4, sp78, sp60, (s32) ((*(f32 *)((s8 *)(var_s0) + (0xC))) * (f32) (u32) (*(u8 *)((s8 *)(arg0) + (0x83)))));
             }
             var_s0 += 0x3C;
-        } while (var_s0 < (*(u8 **)((s8 *)(arg0) + (0x90))));
+        } while (var_s0 < (u8 *)((ParticleEmitter *)arg0)->end);
     }
     func_800E2A14(arg1);
 }
@@ -141,7 +142,7 @@ void func_800BC3B8(void *arg0, s32 arg1) {
 
 void* func_800BC3F0(void* arg0) 
 {
-    return defrag(arg0);
+    BT_NATIVE_ONLY(void *defrag(void *);) return defrag(arg0);
 }
 void func_800BC410(Gfx **arg0, s32 arg1, s32 arg2, s32 arg3) {
     void func_800BC474(Gfx **, s32, s32, s32, s32, s32, s32, s32);

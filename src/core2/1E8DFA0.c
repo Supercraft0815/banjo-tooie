@@ -1,29 +1,24 @@
 #include "common.h"
+#include "core2/particle_internal.h"
 
 /* extern */
 
 int func_800B46B0(void *arg0, BtIntPtr arg1, f32 arg2[3], f32 arg3[3]) {
-    struct Bounds {
-        u16 flags;
-        u8 pad2[0xAA];
-        s16 lower;
-        s16 upper;
-    };
     void *func_800BEF00(f32 *a,f32 *b,f32 *out,u32 flags);
     f32 sp2C[3];
     s32 var_a3;
     f32 temp_f0;
     s16 temp_v0;
 
-    if ((((struct Bounds *)arg0)->lower == -0x8000) && (((struct Bounds *)arg0)->upper == 0x7FFF)) {
-        if (((struct Bounds *)arg0)->flags & 0x100) {
+    if ((((ParticleEmitter *)arg0)->min_y == -0x8000) && (((ParticleEmitter *)arg0)->max_y == 0x7FFF)) {
+        if (((ParticleEmitter *)arg0)->flags & 0x100) {
             var_a3 = 0x420021;
         } else {
             var_a3 = 0x400000;
         }
-        return func_800BEF00(arg2, arg3, sp2C, var_a3);
+        return func_800BEF00(arg2, arg3, sp2C, var_a3) BT_NATIVE_ONLY(!= NULL);
     } else {
-    temp_v0 = ((struct Bounds *)arg0)->upper;
+    temp_v0 = ((ParticleEmitter *)arg0)->max_y;
     if (temp_v0 != 0x7FFF) {
         temp_f0 = (f32) temp_v0;
         if (temp_f0 < arg3[1]) {
@@ -31,8 +26,8 @@ int func_800B46B0(void *arg0, BtIntPtr arg1, f32 arg2[3], f32 arg3[3]) {
             return 1;
         }
     }
-    if (((struct Bounds *)arg0)->lower != -0x8000) {
-        temp_f0 = (f32) ((struct Bounds *)arg0)->lower;
+    if (((ParticleEmitter *)arg0)->min_y != -0x8000) {
+        temp_f0 = (f32) ((ParticleEmitter *)arg0)->min_y;
         if (arg3[1] < temp_f0) {
             arg3[1] = temp_f0;
             return 1;
@@ -261,21 +256,21 @@ s32 func_800B4790(BtIntPtr arg0) {
 
 void func_800B5028(void) {
     BtIntPtr heap_alloc(s32);
-    extern s32 D_80127F10;
+    extern ParticleEmitter **D_80127F10;
     extern s16 D_80127F18;
-    D_80127F10 = heap_alloc(0);
+    D_80127F10 = (ParticleEmitter **)heap_alloc(0);
     D_80127F18 = 0;
 }
 
 void func_800B5054(void) {
     s32 func_800BA2C4(void *);
     void heap_free(void *);
-    extern s32 D_80127F10;
+    extern ParticleEmitter **D_80127F10;
     extern s16 D_80127F18;
     extern u8 D_80127F1D;
     s32 i;
     for (i = 0; i < D_80127F18; i++) {
-        func_800BA2C4(((void **)D_80127F10)[i]);
+        func_800BA2C4(D_80127F10[i]);
     }
     heap_free((void *)D_80127F10);
     D_80127F10 = 0;
@@ -287,13 +282,13 @@ void func_800B50F0(void) {
     s32 func_800B4790(BtIntPtr);
     void func_800B5450(void *);
     f32 func_800D8FF8(void);
-    extern s32 D_80127F10;
+    extern ParticleEmitter **D_80127F10;
     extern f32 D_80127F14;
     extern s16 D_80127F18;
-    BtIntPtr emitter;
+    ParticleEmitter *emitter;
     s32 i;
     BtIntPtr offset;
-    u8 *entry;
+    ParticleEmitter *entry;
 
     if (D_80127F14 < func_800D8FF8()) {
         D_80127F14 = 0.0f;
@@ -301,48 +296,48 @@ void func_800B50F0(void) {
         D_80127F14 -= func_800D8FF8();
     }
     if (D_80127F10 != 0) {
-        for (i = 0, offset = 0; i < D_80127F18; i++, offset += 4) {
-            emitter = *(s32 *)(D_80127F10 + offset);
-            func_800B4790(emitter);
-            if (*(u8 *)(emitter + 9) != 0 &&
-                *(u8 *)(emitter + 7) == 2 &&
-                *(s32 *)(emitter + 0x8C) == *(s32 *)(emitter + 0x90)) {
-                *(u8 *)(emitter + 8) = 1;
+        for (i = 0, offset = 0; i < D_80127F18; i++, offset += sizeof(*D_80127F10)) {
+            emitter = *(ParticleEmitter **)((u8 *)D_80127F10 + offset);
+            func_800B4790((BtIntPtr)emitter);
+            if (emitter->managed != 0 &&
+                emitter->state == 2 &&
+                emitter->end == emitter->begin) {
+                emitter->remove_when_empty = 1;
             } else {
-                *(u8 *)(emitter + 8) = 0;
+                emitter->remove_when_empty = 0;
             }
         }
         if (D_80127F18 > 0) {
             offset = 0;
             do {
-                entry = *(u8 **)(D_80127F10 + offset);
-                if (entry[8] != 0) {
+                entry = *(ParticleEmitter **)((u8 *)D_80127F10 + offset);
+                if (entry->remove_when_empty != 0) {
                     func_800B5450(entry);
                 } else {
-                    offset += 4;
+                    offset += sizeof(*D_80127F10);
                 }
-            } while (offset < D_80127F18 * 4);
+            } while (offset < D_80127F18 * (s32)sizeof(*D_80127F10));
         }
     }
 }
 
 void func_800B525C(BtIntPtr arg0) {
     void func_800BC358(void *, BtIntPtr, s32);
-    extern s32 D_80127F10;
+    extern ParticleEmitter **D_80127F10;
     extern s16 D_80127F18;
     s32 i;
     for (i = 0; i < D_80127F18; i++) {
-        func_800BC358(((void **)D_80127F10)[i], arg0, 4);
+        func_800BC358(D_80127F10[i], arg0, 4);
     }
 }
 
 void func_800B52EC(BtIntPtr arg0) {
     void func_800BC358(void *, BtIntPtr, s32);
-    extern s32 D_80127F10;
+    extern ParticleEmitter **D_80127F10;
     extern s16 D_80127F18;
     s32 i;
     for (i = 0; i < D_80127F18; i++) {
-        func_800BC358(((void **)D_80127F10)[i], arg0, 0);
+        func_800BC358(D_80127F10[i], arg0, 0);
     }
 }
 
@@ -354,28 +349,28 @@ void func_800B537C(s32 arg0)
 BtIntPtr func_800B53A4(s32 arg0) {
     s16 *func_800BA2E8(s32 arg0);
     void *heap_realloc(void *, BtIntPtr);
-    extern s32 D_80127F10;
+    extern ParticleEmitter **D_80127F10;
     extern s16 D_80127F18;
-    D_80127F10 = (BtIntPtr)heap_realloc((void *)D_80127F10, ++D_80127F18 * 4);
-    (*(s32 *)((s8 *)((D_80127F10 + (D_80127F18 * 4))) + (-4))) = func_800BA2E8(arg0);
-    (*(s8 *)((s8 *)((*(void **)((s8 *)((D_80127F10 + (D_80127F18 * 4))) + (-4)))) + (9))) = 1;
-    return ((s32 *)D_80127F10 + D_80127F18)[-1];
+    D_80127F10 = heap_realloc(D_80127F10, ++D_80127F18 * (s32)sizeof(*D_80127F10));
+    D_80127F10[D_80127F18 - 1] = (ParticleEmitter *)func_800BA2E8(arg0);
+    D_80127F10[D_80127F18 - 1]->managed = 1;
+    return (BtIntPtr)D_80127F10[D_80127F18 - 1];
 }
 
 void func_800B5450(void *arg0) {
     s32 func_800BA2C4(void *);
     void *heap_realloc(void *, BtIntPtr);
-    extern s32 D_80127F10;
+    extern ParticleEmitter **D_80127F10;
     extern s16 D_80127F18;
     s32 i = 0;
 
-    while (arg0 != (*(void ***)&D_80127F10)[i] && i < D_80127F18) { i++; }
+    while (BT_DATA_FIELD(i < D_80127F18 && arg0 != D_80127F10[i], arg0 != D_80127F10[i] && i < D_80127F18)) { i++; }
     if (i == D_80127F18)
         return;
     func_800BA2C4(arg0);
-    (*(void ***)&D_80127F10)[i] = (*(void ***)&D_80127F10)[D_80127F18 - 1];
+    D_80127F10[i] = D_80127F10[D_80127F18 - 1];
     D_80127F18--;
-    D_80127F10 = (BtIntPtr)heap_realloc((void *)D_80127F10, D_80127F18 * 4);
+    D_80127F10 = heap_realloc(D_80127F10, D_80127F18 * (s32)sizeof(*D_80127F10));
 }
 
 void func_800B5534(s8 *arg0)
@@ -390,29 +385,22 @@ void func_800B553C(s8 *arg0)
 
 void *func_800B5548(void *arg0) {
     BtIntPtr defrag(BtIntPtr);
-    extern s32 D_80127F10;
+    extern ParticleEmitter **D_80127F10;
     extern s16 D_80127F18;
     int i;
     BtIntPtr old;
-    struct RelocatedEmitter {
-        u8 pad[0x8C];
-        void *start;
-        void *end;
-        void *capacity;
-    };
-
     if (arg0) {
         old = (BtIntPtr)arg0;
         i = 0;
-        while ((*(void ***)&D_80127F10)[i] != arg0 && i < D_80127F18) {
+        while (BT_DATA_FIELD(i < D_80127F18 && D_80127F10[i] != arg0, D_80127F10[i] != arg0 && i < D_80127F18)) {
             i++;
         }
         arg0 = (void *)defrag((BtIntPtr)arg0);
-        ((struct RelocatedEmitter *)arg0)->start = (void *)((BtIntPtr)arg0 + (u32)((BtIntPtr)((struct RelocatedEmitter *)arg0)->start - old));
-        ((struct RelocatedEmitter *)arg0)->end = (void *)((BtIntPtr)arg0 + (u32)((BtIntPtr)((struct RelocatedEmitter *)arg0)->end - old));
-        ((struct RelocatedEmitter *)arg0)->capacity = (void *)((BtIntPtr)arg0 + (u32)((BtIntPtr)((struct RelocatedEmitter *)arg0)->capacity - old));
+        ((ParticleEmitter *)arg0)->begin = (void *)((BtIntPtr)arg0 + (BtUIntPtr)((BtIntPtr)((ParticleEmitter *)arg0)->begin - old));
+        ((ParticleEmitter *)arg0)->end = (void *)((BtIntPtr)arg0 + (BtUIntPtr)((BtIntPtr)((ParticleEmitter *)arg0)->end - old));
+        ((ParticleEmitter *)arg0)->capacity = (void *)((BtIntPtr)arg0 + (BtUIntPtr)((BtIntPtr)((ParticleEmitter *)arg0)->capacity - old));
         if (i < D_80127F18) {
-            (*(void ***)&D_80127F10)[i] = arg0;
+            D_80127F10[i] = arg0;
         }
     }
     return arg0;
@@ -420,8 +408,8 @@ void *func_800B5548(void *arg0) {
 
 void func_800B562C(void) {
     BtIntPtr defrag(BtIntPtr);
-    extern s32 D_80127F10;
-    D_80127F10 = defrag(D_80127F10);
+    extern ParticleEmitter **D_80127F10;
+    D_80127F10 = (ParticleEmitter **)defrag((BtIntPtr)D_80127F10);
 }
 
 void func_800B5654(s32 arg0, s32 arg1) {
@@ -438,7 +426,7 @@ void func_800B5654(s32 arg0, s32 arg1) {
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
-s32 D_80127F10 BT_DATA(4, bss_core2bss1_0_2, 0x770);
+ParticleEmitter **D_80127F10 BT_DATA(4, bss_core2bss1_0_2, 0x770);
 f32 D_80127F14 BT_DATA(4, bss_core2bss1_0_2, 0x774);
 s16 D_80127F18 BT_DATA(4, bss_core2bss1_0_2, 0x778);
 s8 D_80127F1C BT_DATA(4, bss_core2bss1_0_2, 0x77C);
