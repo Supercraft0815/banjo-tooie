@@ -2,6 +2,9 @@
 #include "1EE7960_native.inc"
 #else
 #include "common.h"
+#ifdef BT_NATIVE
+#include "core2/geometry_callbacks.h"
+#endif
 
 extern s32 D_80137074;    typedef struct { s32 * unk0; u8 pad4[0xC]; s8 unk10; u8 pad11[0x3]; u8 * unk14; f32 * unk18; f32 * unk1C; } Obj1EE7960_D_80137060; /* offsets.py genstruct: fields from raw offsets on &D_80137060; rename once understood */
 
@@ -71,7 +74,7 @@ void func_8010E204(void *arg0, s32 arg1, f32 arg2) {
     func_800B38C8(D_80137074);
 }
 
-void func_8010E2C4(s32 *arg0, s32 arg1, s32 arg2, f32 arg3) {
+void func_8010E2C4(BT_NATIVE_ONLY(struct GeometryRenderData *arg0) BT_IDO_ONLY(s32 *arg0), s32 arg1, BT_NATIVE_ONLY(void *arg2) BT_IDO_ONLY(s32 arg2), BT_NATIVE_ONLY(const f32 *arg3) BT_IDO_ONLY(f32 arg3)) {
     s32 func_800B37E4(s32, s32);
     int func_800DF8D4(s32 *);
     s32 func_8010E070();
@@ -81,7 +84,7 @@ void func_8010E2C4(s32 *arg0, s32 arg1, s32 arg2, f32 arg3) {
     if (arg2 != 0) {
         func_800B37E4((*(s32 *)((s8 *)(&D_80137060) + (0x14))), arg2);
     } else {
-        func_8010E204(arg0, arg1, arg3);
+        func_8010E204(arg0, arg1, BT_DATA_FIELD(0.0f, arg3));
     }
     func_8010E070();
 }

@@ -2,6 +2,9 @@
 #include "1EE8B70_native.inc"
 #else
 #include "common.h"
+#ifdef BT_NATIVE
+#include "core2/geometry_callbacks.h"
+#endif
 
 typedef struct {
     s32 *model;
@@ -199,7 +202,7 @@ void func_8010F68C(s32 arg0, s32 arg1) {
     }
 }
 
-void func_8010F950(s32 *arg0, s32 arg1, volatile s32 arg2, s32 arg3) {
+void func_8010F950(BT_NATIVE_ONLY(struct GeometryRenderData *arg0) BT_IDO_ONLY(s32 *arg0), s32 arg1, BT_NATIVE_ONLY(void *arg2) BT_IDO_ONLY(volatile s32 arg2), BT_NATIVE_ONLY(const f32 *arg3) BT_IDO_ONLY(s32 arg3)) {
     s32 func_800DF8B4(s32 *);
     s32 func_800DF8BC(s32 *);
     void func_8010F384(s32 *, s32, s32);

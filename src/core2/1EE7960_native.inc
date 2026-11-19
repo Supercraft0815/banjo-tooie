@@ -31,9 +31,9 @@ void func_8010E204(NativeRenderData *data,s32 count,f32 unused) {
     if(count<0)func_800B3748(model_lighting.lights);
     func_800B38C8(model_lighting.lights);
 }
-void func_8010E2C4(NativeRenderData *data,s32 count,NativeModelLightList *lights,f32 value) {
+void func_8010E2C4(NativeRenderData *data,s32 count,void *lights,const f32 *camera) {
     model_lighting.render=data;model_lighting.bones=func_800DF8D4(data);
-    if(lights)func_800B37E4(model_lighting.lights,lights);else func_8010E204(data,count,value);
+    if(lights)func_800B37E4(model_lighting.lights,lights);else func_8010E204(data,count,0.0f);
     func_8010E070();
 }
 void func_8010E334(void) {model_lighting.lights=func_800B3310(4);}

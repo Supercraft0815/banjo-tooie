@@ -59,6 +59,7 @@ add_library(bt_native_core STATIC
     "${BT_ROOT}/src/core2/model_materials.c"
     "${BT_ROOT}/src/core2/player_form_data.c"
     "${BT_ROOT}/src/core2/actor_item_types.c"
+    "${BT_ROOT}/src/core2/1EFC920.c"
     "${BT_ROOT}/src/core2/dialog_render_data.c"
     "${BT_ROOT}/src/core2/player_motion_data.c"
     "${BT_ROOT}/src/core2/face_culling_data.c"
@@ -187,7 +188,7 @@ add_test(NAME native_overlay_aliases
     COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/tests/overlay_aliases.py"
         "${CMAKE_C_COMPILER}" "${BT_OVERLAY_ALIASES}")
 
-add_executable(bt_native_level_test tests/level.c "${BT_ROOT}/src/overlays/gc/level.c")
+add_executable(bt_native_level_test tests/level.c "${BT_ROOT}/src/overlays/gc/level.c" "${BT_ROOT}/src/core2/1E78170.c")
 target_link_libraries(bt_native_level_test PRIVATE bt_native_options)
 # Keep this unit test limited to the level query; the full game target must resolve everything.
 target_compile_options(bt_native_level_test PRIVATE -ffunction-sections -fdata-sections)

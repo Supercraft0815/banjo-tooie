@@ -4,39 +4,6 @@
 
 .section .bss
 
-dlabel D_80127060
-    /* 80127060 */ .space 0x08
-
-dlabel D_80127068
-    /* 80127068 */ .space 0x04
-
-dlabel D_8012706C
-    /* 8012706C */ .space 0x04
-
-dlabel D_80127070
-    /* 80127070 */ .space 0x04
-
-dlabel D_80127074
-    /* 80127074 */ .space 0x01
-
-dlabel D_80127075
-    /* 80127075 */ .space 0x01
-
-dlabel D_80127076
-    /* 80127076 */ .space 0x01
-
-dlabel D_80127077
-    /* 80127077 */ .space 0x01
-
-dlabel D_80127078
-    /* 80127078 */ .space 0x04
-
-dlabel D_8012707C
-    /* 8012707C */ .space 0x04
-
-dlabel D_80127080
-    /* 80127080 */ .space 0x10
-
 dlabel D_80127090
     /* 80127090 */ .space 0x02
 

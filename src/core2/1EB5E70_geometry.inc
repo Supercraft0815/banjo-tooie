@@ -1,6 +1,8 @@
 #if defined(BT_NATIVE) && !defined(BT_ILP32) // ILP32 runs the original interpreter
 #include "1EB5E70_geometry_native.inc"
 #else
+void func_800DE2A4(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void *), u8 *);
+
 void func_800DC580(void *arg0, void *arg1) {
     extern RenderData D_8012C948;
     (*(f32 *)((s8 *)(arg0) + (0))) = (f32) ((*(f32 *)((s8 *)(arg1) + (0))) * D_8012C948.scale);
@@ -15,9 +17,9 @@ void func_800DC5BC(void *arg0, void *arg1) {
     ((f32 *)arg0)[2] = ((f32 *)arg1)[2] * D_8012C948.scale + (*(f32 **)((u8 *)&D_8012C948 + 4))[2];
 }
 
-void func_800DC61C(s32 arg0, s32 arg1) {
+void func_800DC61C(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *context), BT_IDO_ONLY(s32 arg1) BT_NATIVE_ONLY(u8 *command)) {
 }
-void func_800DC628(s32 arg0, s32 arg1) {
+void func_800DC628(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *context), BT_IDO_ONLY(s32 arg1) BT_NATIVE_ONLY(u8 *command)) {
 }
 struct GeoCommand800DC634 {
     u32 header[2];
@@ -26,9 +28,9 @@ struct GeoCommand800DC634 {
     f32 position[3];
 };
 
-void func_800DC634(s32 model, struct GeoCommand800DC634 *cmd) {
+void func_800DC634(BT_IDO_ONLY(s32 model) BT_NATIVE_ONLY(void *model), BT_IDO_ONLY(struct GeoCommand800DC634 *cmd) BT_NATIVE_ONLY(u8 *data)) {
+    BT_NATIVE_ONLY(struct GeoCommand800DC634 *cmd = (struct GeoCommand800DC634 *)data;)
     void func_800193C4(f32 *, f32 *);
-    void func_800DE2A4(s32, u8 *);
     void mlMtxApply(Mtx *);
     void mlMtxPop(void);
     void mlMtxRotPitch(f32);
@@ -67,8 +69,8 @@ void func_800DC634(s32 model, struct GeoCommand800DC634 *cmd) {
     }
 }
 
-void func_800DC740(s32 model, struct GeoCommand800DC634 *cmd) {
-    void func_800DE2A4(s32, u8 *);
+void func_800DC740(BT_IDO_ONLY(s32 model) BT_NATIVE_ONLY(void *model), BT_IDO_ONLY(struct GeoCommand800DC634 *cmd) BT_NATIVE_ONLY(u8 *data)) {
+    BT_NATIVE_ONLY(struct GeoCommand800DC634 *cmd = (struct GeoCommand800DC634 *)data;)
     void mlMtxApply(Mtx *);
     void mlMtxPop(void);
     void mlMtxRotPitch(f32);
@@ -107,8 +109,8 @@ void func_800DC740(s32 model, struct GeoCommand800DC634 *cmd) {
     }
 }
 
-void func_800DC84C(s32 model, struct GeoCommand800DC634 *cmd) {
-    void func_800DE2A4(s32, u8 *);
+void func_800DC84C(BT_IDO_ONLY(s32 model) BT_NATIVE_ONLY(void *model), BT_IDO_ONLY(struct GeoCommand800DC634 *cmd) BT_NATIVE_ONLY(u8 *data)) {
+    BT_NATIVE_ONLY(struct GeoCommand800DC634 *cmd = (struct GeoCommand800DC634 *)data;)
     void mlMtxApply(Mtx *);
     void mlMtxPop(void);
     void mlMtxRotPitch(f32);
@@ -147,13 +149,12 @@ void func_800DC84C(s32 model, struct GeoCommand800DC634 *cmd) {
     }
 }
 
-void func_800DC958(s32 arg0, u8 *arg1) {
+void func_800DC958(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY(u8 *arg1) BT_NATIVE_ONLY(u8 *arg1)) {
     void func_800193C4(f32 *, f32 *);
     void func_80019AA0(void *, s32);
 #ifndef BT_NATIVE
     s32 func_800ADE2C(s32, s32);
 #endif
-    void func_800DE2A4(s32, u8 *);
     s32 func_800EF3DC(s32 *, s32 *);
     s32 func_800EFB24(s32 *, s32 *, s32 *);
     void mlMtxPop(void);
@@ -229,8 +230,7 @@ transformed:
     }
 }
 
-void func_800DCB58(s32 arg0, u8 *arg1) {
-    void func_800DE2A4(s32, u8 *);
+void func_800DCB58(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY(u8 *arg1) BT_NATIVE_ONLY(u8 *arg1)) {
     s32 func_800EF3DC(s32 *, s32 *);
     s32 func_800EFB24(s32 *, s32 *, s32 *);
     extern s32 D_8012CE98;
@@ -293,8 +293,7 @@ void func_800DCB58(s32 arg0, u8 *arg1) {
     }
 }
 
-void func_800DCD10(s32 arg0, u8 *arg1) {
-    void func_800DE2A4(s32, u8 *);
+void func_800DCD10(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY(u8 *arg1) BT_NATIVE_ONLY(u8 *arg1)) {
     s32 func_800EF3DC(s32 *, s32 *);
     s32 func_800EFB24(s32 *, s32 *, s32 *);
     extern s32 D_8012CE98;
@@ -357,7 +356,8 @@ void func_800DCD10(s32 arg0, u8 *arg1) {
     }
 }
 
-void func_800DCEC8(Gfx **gfx, u8 *data) {
+void func_800DCEC8(BT_IDO_ONLY(Gfx **gfx) BT_NATIVE_ONLY(void *context), BT_IDO_ONLY(u8 *data) BT_NATIVE_ONLY(u8 *data)) {
+    BT_NATIVE_ONLY(Gfx **gfx = (Gfx **)context;)
     extern s32 D_8012C820;
     struct Command { u8 padding[8]; s32 mode; };
     struct Command *cmd = (struct Command *) data;
@@ -372,12 +372,11 @@ void func_800DCEC8(Gfx **gfx, u8 *data) {
     }
 }
 
-void func_800DCF48(s32 model, u8 *data) {
+void func_800DCF48(BT_IDO_ONLY(s32 model) BT_NATIVE_ONLY(void *model), BT_IDO_ONLY(u8 *data) BT_NATIVE_ONLY(u8 *data)) {
     void func_80019AA0(void *, s32);
 #ifndef BT_NATIVE
     s32 func_800ADE2C(s32, s32);
 #endif
-    void func_800DE2A4(s32, u8 *);
     void mlMtxApply(Mtx *);
     void mlMtxPop(void);
     extern s32 D_8012C968;
@@ -408,7 +407,8 @@ void func_800DCF48(s32 model, u8 *data) {
     }
 }
 
-void func_800DD024(Gfx **gfx, u8 *data) {
+void func_800DD024(BT_IDO_ONLY(Gfx **gfx) BT_NATIVE_ONLY(void *context), BT_IDO_ONLY(u8 *data) BT_NATIVE_ONLY(u8 *data)) {
+    BT_NATIVE_ONLY(Gfx **gfx = (Gfx **)context;)
     struct Command { u8 padding[8]; s16 index; };
     struct Command *cmd = (struct Command *)data;
     Gfx *gfx_sub_list;
@@ -441,20 +441,19 @@ void func_800DD07C(void *model, u8 *data) {
     context->mtx++;
 }
 
-void func_800DD19C(s32 arg0, u8 *commands) {
-    void func_800DE2A4(s32, u8 *);
+void func_800DD19C(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY(u8 *commands) BT_NATIVE_ONLY(u8 *commands)) {
     commands += *(s32 *)(commands + 8);
     func_800DE2A4(arg0, commands);
 }
 
-void func_800DD1C0(Gfx **gfx, u8 *data) {
+void func_800DD1C0(BT_IDO_ONLY(Gfx **gfx) BT_NATIVE_ONLY(void *context), BT_IDO_ONLY(u8 *data) BT_NATIVE_ONLY(u8 *data)) {
+    BT_NATIVE_ONLY(Gfx **gfx = (Gfx **)context;)
     struct Command { u8 padding[0xA]; s16 index; };
     gSPDisplayList((*gfx)++, osVirtualToPhysical(&D_8012C960->commands[((struct Command *)data)->index]));
 }
 
-void func_800DD214(s32 model, u8 *data) {
+void func_800DD214(BT_IDO_ONLY(s32 model) BT_NATIVE_ONLY(void *model), BT_IDO_ONLY(u8 *data) BT_NATIVE_ONLY(u8 *data)) {
     void func_800193C4(f32 *, f32 *);
-    void func_800DE2A4(s32, u8 *);
     f32 func_800EEB40(f32 *, f32 *);
     extern s16 D_8012CA38;
     extern s32 D_8012CE98;
@@ -485,8 +484,7 @@ void func_800DD214(s32 model, u8 *data) {
     }
 }
 
-void func_800DD2E8(s32 model, u8 *data) {
-    void func_800DE2A4(s32, u8 *);
+void func_800DD2E8(BT_IDO_ONLY(s32 model) BT_NATIVE_ONLY(void *model), BT_IDO_ONLY(u8 *data) BT_NATIVE_ONLY(u8 *data)) {
     f32 func_800EEB40(f32 *, f32 *);
     extern s32 D_8012CE98;
     extern f32 D_8012CF70[3];
@@ -509,8 +507,7 @@ void func_800DD2E8(s32 model, u8 *data) {
     }
 }
 
-void func_800DD37C(s32 model, u8 *data) {
-    void func_800DE2A4(s32, u8 *);
+void func_800DD37C(BT_IDO_ONLY(s32 model) BT_NATIVE_ONLY(void *model), BT_IDO_ONLY(u8 *data) BT_NATIVE_ONLY(u8 *data)) {
     f32 func_800EEB40(f32 *, f32 *);
     extern s32 D_8012CE98;
     extern f32 D_8012CF80[3];
@@ -533,7 +530,7 @@ void func_800DD37C(s32 model, u8 *data) {
     }
 }
 
-void func_800DD410(s32 arg0, u8 *arg1) {
+void func_800DD410(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY(u8 *arg1) BT_NATIVE_ONLY(u8 *arg1)) {
     void func_800193C4(f32 *, f32 *);
     void func_80019AA0(void *, s32);
 #ifndef BT_NATIVE
@@ -561,7 +558,7 @@ void func_800DD410(s32 arg0, u8 *arg1) {
 
 /* extern */
 
-void func_800DD4AC(s32 arg0, u8 *arg1) {
+void func_800DD4AC(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY(u8 *arg1) BT_NATIVE_ONLY(u8 *arg1)) {
     extern s32 D_8012C844;
     extern RenderData D_8012C948;
     void func_800EFA20(void *arg0, void *arg1, f32 arg2);
@@ -574,15 +571,14 @@ void func_800DD4AC(s32 arg0, u8 *arg1) {
     }
 }
 
-void func_800DD504(s32 arg0, u8 *arg1) { extern s32 D_8012C844; extern RenderData D_8012C948; void func_800EF04C(f32[3], f32[3]); void func_800EFA20(void *, void *, f32); void func_800DC028(s32, s32, s32); extern f32 *D_8012C94C; f32 sp18[4]; if (D_8012C844 != 0) { func_800EFA20(sp18, arg1 + 0xC, D_8012C948.scale); func_800EF04C(sp18, D_8012C94C); func_800DC028(D_8012C844, (*(s16 *)((s8 *)(arg1) + (8))), sp18); } }
-void func_800DD56C(s32 model, u8 *data) {
+void func_800DD504(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY(u8 *arg1) BT_NATIVE_ONLY(u8 *arg1)) { extern s32 D_8012C844; extern RenderData D_8012C948; void func_800EF04C(f32[3], f32[3]); void func_800EFA20(void *, void *, f32); void func_800DC028(s32, s32, s32); extern f32 *D_8012C94C; f32 sp18[4]; if (D_8012C844 != 0) { func_800EFA20(sp18, arg1 + 0xC, D_8012C948.scale); func_800EF04C(sp18, D_8012C94C); func_800DC028(D_8012C844, (*(s16 *)((s8 *)(arg1) + (8))), sp18); } }
+void func_800DD56C(BT_IDO_ONLY(s32 model) BT_NATIVE_ONLY(void *model), BT_IDO_ONLY(u8 *data) BT_NATIVE_ONLY(u8 *data)) {
     struct SelectorCommand {
         u32 header[2];
         s16 branch_offset_count;
         s16 index;
         s32 branch_offsets[1];
     };
-    void func_800DE2A4(s32, u8 *);
     struct SelectorCommand *cmd = (struct SelectorCommand *)data;
     s32 sub_cmd_addr;
     s32 selection;
@@ -618,12 +614,13 @@ void func_800DD56C(s32 model, u8 *data) {
 }
 
 typedef struct { f32 m[4][4]; } MtxF;
-void func_800DD65C(Gfx **arg0, void *arg1) {
+void func_800DD65C(BT_IDO_ONLY(Gfx **arg0) BT_NATIVE_ONLY(void *context), BT_IDO_ONLY(void *arg1) BT_NATIVE_ONLY(u8 *arg1)) {
+    BT_NATIVE_ONLY(Gfx **arg0 = (Gfx **)context;)
 #ifndef BT_NATIVE
-    s32 func_8010F070(MtxF *, s32 *, s16);
+    BT_IDO_ONLY(s32 func_8010F070(MtxF *, s32 *, s16);) BT_NATIVE_ONLY(void func_8010F070(f32 *, s32 *, s32);)
 #endif
     MtxF *mlMtx_get_stack_pointer(void);
-    extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);
+    BT_IDO_ONLY(extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);)
     s32 sp38[2];
     MtxF *mtx;
     s32 sp2C[2];
@@ -635,11 +632,11 @@ void func_800DD65C(Gfx **arg0, void *arg1) {
     if (*(s16 *)((u8 *)arg1 + 0xE)) {
         sp2C[0] = sp38[0];
         if (*(s16 *)((u8 *)arg1 + 0xE) & 1) {
-            func_8010F070(mtx, sp2C, *(s16 *)((u8 *)arg1 + 0xC));
+            func_8010F070(BT_NATIVE_ONLY((f32 *))mtx, sp2C, *(s16 *)((u8 *)arg1 + 0xC));
         }
     }
     if (D_8012CEC4 != NULL) {
-        D_8012CEC4(mtx, sp38, *(s16 *)((u8 *)arg1 + 0xC));
+        D_8012CEC4(BT_NATIVE_ONLY((f32 *))mtx, sp38, *(s16 *)((u8 *)arg1 + 0xC));
     }
     list = &D_8012C960->commands[*(s16 *)((u8 *)arg1 + 8)];
     packet = (*arg0)++;
@@ -648,14 +645,15 @@ void func_800DD65C(Gfx **arg0, void *arg1) {
 }
 
 struct GeoContext800DD728 { Gfx *gfx; Mtx *mtx; };
-void func_800DD728(struct GeoContext800DD728 *context, void *arg1) {
+void func_800DD728(BT_IDO_ONLY(struct GeoContext800DD728 *context) BT_NATIVE_ONLY(void *context_data), BT_IDO_ONLY(void *arg1) BT_NATIVE_ONLY(u8 *arg1)) {
+    BT_NATIVE_ONLY(struct GeoContext800DD728 *context = (struct GeoContext800DD728 *)context_data;)
     MtxF *func_80018BB4(void);
 #ifndef BT_NATIVE
-    s32 func_8010F070(MtxF *, s32 *, s16);
+    BT_IDO_ONLY(s32 func_8010F070(MtxF *, s32 *, s16);) BT_NATIVE_ONLY(void func_8010F070(f32 *, s32 *, s32);)
 #endif
     void mlMtxApply(Mtx *);
     MtxF *mlMtx_get_stack_pointer(void);
-    extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);
+    BT_IDO_ONLY(extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);)
     struct DrawCommand {
         s32 header[2];
         s16 indices[6];
@@ -680,18 +678,18 @@ void func_800DD728(struct GeoContext800DD728 *context, void *arg1) {
     mlMtxApply(context->mtx);
     if (command->flags && (command->flags & 1)) {
         if (command->counts2[0]) {
-            func_8010F070(mtx, &start2, command->counts2[0]);
+            func_8010F070(BT_NATIVE_ONLY((f32 *))mtx, &start2, command->counts2[0]);
         }
         if (command->counts1[0]) {
-            func_8010F070(mtx2, &start2, command->counts1[0]);
+            func_8010F070(BT_NATIVE_ONLY((f32 *))mtx2, &start2, command->counts1[0]);
         }
     }
     if (D_8012CEC4 != NULL) {
         if (command->counts2[0]) {
-            D_8012CEC4(mtx, start, command->counts2[0]);
+            D_8012CEC4(BT_NATIVE_ONLY((f32 *))mtx, start, command->counts2[0]);
         }
         if (command->counts1[0]) {
-            D_8012CEC4(mtx2, start, command->counts1[0]);
+            D_8012CEC4(BT_NATIVE_ONLY((f32 *))mtx2, start, command->counts1[0]);
         }
     }
     packet = context->gfx++;
@@ -700,18 +698,18 @@ void func_800DD728(struct GeoContext800DD728 *context, void *arg1) {
     for (i = 1; command->indices[i]; i++) {
             if (command->flags && (command->flags & 1)) {
                 if (command->counts2[i]) {
-                    func_8010F070(mtx, &start2, command->counts2[i]);
+                    func_8010F070(BT_NATIVE_ONLY((f32 *))mtx, &start2, command->counts2[i]);
                 }
                 if (command->counts1[i]) {
-                    func_8010F070(mtx2, &start2, command->counts1[i]);
+                    func_8010F070(BT_NATIVE_ONLY((f32 *))mtx2, &start2, command->counts1[i]);
                 }
             }
             if (D_8012CEC4 != NULL) {
                 if (command->counts2[i]) {
-                    D_8012CEC4(mtx, start, command->counts2[i]);
+                    D_8012CEC4(BT_NATIVE_ONLY((f32 *))mtx, start, command->counts2[i]);
                 }
                 if (command->counts1[i]) {
-                    D_8012CEC4(mtx2, start, command->counts1[i]);
+                    D_8012CEC4(BT_NATIVE_ONLY((f32 *))mtx2, start, command->counts1[i]);
                 }
             }
             matrixPacket = context->gfx++;
@@ -729,14 +727,15 @@ struct GeoContext800DD998 {
     Mtx *mtx;
 };
 
-void func_800DD998(struct GeoContext800DD998 *context, u8 *arg1) {
+void func_800DD998(BT_IDO_ONLY(struct GeoContext800DD998 *context) BT_NATIVE_ONLY(void *context_data), BT_IDO_ONLY(u8 *arg1) BT_NATIVE_ONLY(u8 *arg1)) {
+    BT_NATIVE_ONLY(struct GeoContext800DD998 *context = (struct GeoContext800DD998 *)context_data;)
     MtxF *func_80018BB4(void);
 #ifndef BT_NATIVE
-    s32 func_8010F070(MtxF *, s32 *, s16);
+    BT_IDO_ONLY(s32 func_8010F070(MtxF *, s32 *, s16);) BT_NATIVE_ONLY(void func_8010F070(f32 *, s32 *, s32);)
 #endif
     void mlMtxApply(Mtx *);
     MtxF *mlMtx_get_stack_pointer(void);
-    extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);
+    BT_IDO_ONLY(extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);)
     Gfx *packet;
     Gfx *list;
     s32 sp64;
@@ -762,18 +761,18 @@ void func_800DD998(struct GeoContext800DD998 *context, u8 *arg1) {
     do {
         if (*(s16 *)(arg1 + 0x2E) != 0 && (*(s16 *)(arg1 + 0x2E) & 1)) {
             if (command->counts2[i] != 0) {
-                func_8010F070(sp5C, &sp60, command->counts2[i]);
+                func_8010F070(BT_NATIVE_ONLY((f32 *))sp5C, &sp60, command->counts2[i]);
             }
             if (command->counts1[i] != 0) {
-                func_8010F070(sp58, &sp60, command->counts1[i]);
+                func_8010F070(BT_NATIVE_ONLY((f32 *))sp58, &sp60, command->counts1[i]);
             }
         }
         if (D_8012CEC4 != NULL) {
             if (command->counts2[i] != 0) {
-                D_8012CEC4(sp5C, &sp64, command->counts2[i]);
+                D_8012CEC4(BT_NATIVE_ONLY((f32 *))sp5C, &sp64, command->counts2[i]);
             }
             if (command->counts1[i] != 0) {
-                D_8012CEC4(sp58, &sp64, command->counts1[i]);
+                D_8012CEC4(BT_NATIVE_ONLY((f32 *))sp58, &sp64, command->counts1[i]);
             }
         }
         list = context->gfx++;
@@ -817,8 +816,7 @@ void func_800DDB38(void *arg0, u8 *arg1) {
     context->mtx++;
 }
 
-void func_800DDC28(volatile s32 arg0, u8 *arg1) {
-    void func_800DE2A4(s32, u8 *);
+void func_800DDC28(BT_IDO_ONLY(volatile s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY(u8 *arg1) BT_NATIVE_ONLY(u8 *arg1)) {
     s32 func_800E3D0C(f32 *, f32 *);
     extern RenderData D_8012C948;
     f32 scaled_min[3];
@@ -842,8 +840,7 @@ void func_800DDC28(volatile s32 arg0, u8 *arg1) {
     }
 }
 
-void func_800DDD14(volatile s32 arg0, u8 *arg1) {
-    void func_800DE2A4(s32, u8 *);
+void func_800DDD14(BT_IDO_ONLY(volatile s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY(u8 *arg1) BT_NATIVE_ONLY(u8 *arg1)) {
     s32 func_800E3D0C(f32 *, f32 *);
     void func_800EE88C(f32 *, s16 *);
     void func_800EF04C(f32 *, f32 *);
@@ -868,13 +865,12 @@ void func_800DDD14(volatile s32 arg0, u8 *arg1) {
     }
 }
 
-void func_800DDDC4(volatile s32 arg0, u8 *arg1) {
+void func_800DDDC4(BT_IDO_ONLY(volatile s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY(u8 *arg1) BT_NATIVE_ONLY(u8 *arg1)) {
     void func_80019224(f32 *, f32 *);
     void func_80019AA0(void *, s32);
 #ifndef BT_NATIVE
     s32 func_800ADE2C(s32, s32);
 #endif
-    void func_800DE2A4(s32, u8 *);
     s32 func_800E3E8C(f32 *, f32);
     void func_800EE88C(f32 *, s16 *);
     void func_800EF334(f32 *, f32);
@@ -884,7 +880,7 @@ void func_800DDDC4(volatile s32 arg0, u8 *arg1) {
     f32 pos[3];
     f32 radius;
     s32 offset;
-    s32 model;
+    BT_IDO_ONLY(s32 model;) BT_NATIVE_ONLY(void *model;)
 
     if (*(s16 *)(arg1 + 0x12) == -1) {
         func_800EE88C(pos, (s16 *)(arg1 + 8));
@@ -917,8 +913,7 @@ void func_800DDDC4(volatile s32 arg0, u8 *arg1) {
     }
 }
 
-void func_800DDF14(volatile s32 arg0, u8 *arg1) {
-    void func_800DE2A4(s32, u8 *);
+void func_800DDF14(BT_IDO_ONLY(volatile s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY(u8 *arg1) BT_NATIVE_ONLY(u8 *arg1)) {
     s32 func_800E3E8C(f32 *, f32);
     void func_800EE88C(f32 *, s16 *);
     void func_800EF334(f32 *, f32);
@@ -926,7 +921,7 @@ void func_800DDF14(volatile s32 arg0, u8 *arg1) {
     f32 sp2C[3];
     f32 radius;
     s32 offset;
-    s32 model;
+    BT_IDO_ONLY(s32 model;) BT_NATIVE_ONLY(void *model;)
 
     func_800EE88C(sp2C, (s16 *)(arg1 + 8));
     func_800EF334(sp2C, D_8012C948.scale);
@@ -942,8 +937,7 @@ void func_800DDF14(volatile s32 arg0, u8 *arg1) {
     arg1 += offset; func_800DE2A4(model, arg1);
 }
 
-void func_800DDFA0(volatile s32 arg0, u8 *arg1) {
-    void func_800DE2A4(s32, u8 *);
+void func_800DDFA0(BT_IDO_ONLY(volatile s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY(u8 *arg1) BT_NATIVE_ONLY(u8 *arg1)) {
     s32 func_800E3E8C(f32 *, f32);
     void func_800EE88C(f32 *, s16 *);
     void func_800EF04C(f32 *, f32 *);
@@ -953,7 +947,7 @@ void func_800DDFA0(volatile s32 arg0, u8 *arg1) {
     f32 sp2C[3];
     f32 radius;
     s32 offset;
-    s32 model;
+    BT_IDO_ONLY(s32 model;) BT_NATIVE_ONLY(void *model;)
 
     func_800EE88C(sp2C, (s16 *)(arg1 + 8));
     func_800EF334(sp2C, D_8012C948.scale);
@@ -970,9 +964,8 @@ void func_800DDFA0(volatile s32 arg0, u8 *arg1) {
     arg1 += offset; func_800DE2A4(model, arg1);
 }
 
-void func_800DE03C(s32 arg0, u8 *arg1) {
+void func_800DE03C(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY(u8 *arg1) BT_NATIVE_ONLY(u8 *arg1)) {
     struct camera_command { u8 pad[12]; BT_BITFIELD_ORDER(unsigned int zone : 8, unsigned int : 24; unsigned int zone : 8); };
-    void func_800DE2A4(s32, u8 *);
     BT_IDO_ONLY(s32 _dbzone_entrypoint_0(s32, u8 *, u8, u8 *);) BT_NATIVE_ONLY(s32 _dbzone_entrypoint_0(u8 *, u8 *, u32);)
     s32 _glzone_entrypoint_3(s32, s32);
     extern s32 D_8012C848;
@@ -991,7 +984,7 @@ void func_800DE03C(s32 arg0, u8 *arg1) {
     }
 }
 
-void func_800DE0D8(s32 arg0, u8 *arg1) {
+void func_800DE0D8(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY(u8 *arg1) BT_NATIVE_ONLY(u8 *arg1)) {
     void func_80019AA0(void *, s32);
 #ifndef BT_NATIVE
     s32 func_800ADE2C(s32, s32);
@@ -1000,7 +993,7 @@ void func_800DE0D8(s32 arg0, u8 *arg1) {
     void mlMtxPop(void);
     extern RenderData D_8012C948;
     extern s32 D_8012CE58;
-    extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);
+    BT_IDO_ONLY(extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);)
     struct command { s32 header[2]; s16 count; s16 id; struct { s16 bone; s16 tag; } entries[1]; };
     s32 sp48[2];
     s32 i;
@@ -1010,19 +1003,19 @@ void func_800DE0D8(s32 arg0, u8 *arg1) {
     if (D_8012CEC4 != NULL) {
         for (i = 0; i < command->count; i++) {
                 func_80019AA0(&D_8012CE58, func_800ADE2C(*(s32 *)((u8 *)&D_8012C948 + 0x20), command->entries[i].bone));
-                D_8012CEC4(mlMtx_get_stack_pointer(), sp48, command->entries[i].tag);
+                D_8012CEC4(BT_NATIVE_ONLY((f32 *))mlMtx_get_stack_pointer(), sp48, command->entries[i].tag);
                 mlMtxPop();
         }
     }
 }
 
-void func_800DE1C4(s32 arg0, u8 *arg1) {
+void func_800DE1C4(BT_IDO_ONLY(s32 arg0) BT_NATIVE_ONLY(void *arg0), BT_IDO_ONLY(u8 *arg1) BT_NATIVE_ONLY(u8 *arg1)) {
     MtxF *func_80018BB4(void);
 #ifndef BT_NATIVE
-    s32 func_8010F070(MtxF *, s32 *, s16);
+    BT_IDO_ONLY(s32 func_8010F070(MtxF *, s32 *, s16);) BT_NATIVE_ONLY(void func_8010F070(f32 *, s32 *, s32);)
 #endif
     MtxF *mlMtx_get_stack_pointer(void);
-    extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);
+    BT_IDO_ONLY(extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);)
     s32 sp38[2];
     MtxF *sp34;
     MtxF *sp30;
@@ -1040,27 +1033,27 @@ void func_800DE1C4(s32 arg0, u8 *arg1) {
         if (*(s16 *)(arg1 + 0xE) & 1) {
             temp_a2 = *(s16 *)(arg1 + 0xA);
             if (temp_a2 != 0) {
-                func_8010F070(sp34, &sp2C, temp_a2);
+                func_8010F070(BT_NATIVE_ONLY((f32 *))sp34, &sp2C, temp_a2);
             }
             temp_a2_2 = *(s16 *)(arg1 + 0xC);
             if (temp_a2_2 != 0) {
-                func_8010F070(sp30, &sp2C, temp_a2_2);
+                func_8010F070(BT_NATIVE_ONLY((f32 *))sp30, &sp2C, temp_a2_2);
             }
         }
     }
     if (D_8012CEC4 != NULL) {
         temp_a2_3 = *(s16 *)(arg1 + 0xA);
         if (temp_a2_3 != 0) {
-            D_8012CEC4(sp34, sp38, temp_a2_3);
+            D_8012CEC4(BT_NATIVE_ONLY((f32 *))sp34, sp38, temp_a2_3);
         }
         temp_a2_4 = *(s16 *)(arg1 + 0xC);
         if (temp_a2_4 != 0) {
-            D_8012CEC4(sp30, sp38, temp_a2_4);
+            D_8012CEC4(BT_NATIVE_ONLY((f32 *))sp30, sp38, temp_a2_4);
         }
     }
 }
 
-void func_800DE2A4(s32 model, u8 *commands) {
+void func_800DE2A4(BT_IDO_ONLY(s32 model) BT_NATIVE_ONLY(void *model), u8 *commands) {
     s32 next;
     while (1) {
         D_8012CF8C[*(s32 *)commands](model, commands);

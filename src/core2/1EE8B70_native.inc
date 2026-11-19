@@ -46,7 +46,7 @@ void func_8010F68C(NativeVertexList *vertices,NativeVertexLight *colors) {
     }
     vertices->count_flags=(vertices->count_flags&~1u)|(additive_lighting.count!=0);
 }
-void func_8010F950(NativeRenderData *data,s32 amount,uintptr_t unused,const f32 *camera) {
+void func_8010F950(NativeRenderData *data,s32 amount,void *unused,const f32 *camera) {
     (void)unused;(void)camera;additive_lighting.render=data;additive_lighting.used=additive_lighting.entries;
     func_8010F384(data,amount,0);if(data)func_8010F68C(data->vertices,data->colors);
 }

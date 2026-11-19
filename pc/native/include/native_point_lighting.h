@@ -17,13 +17,13 @@ NativePointLight *func_8010E81C(f32);
 NativePointLight *func_8010E924(s32,f32 *,f32,f32);
 void func_8010EACC(NativeRenderData *,s32,f32);
 void func_8010EBE4(NativeVertexList *,s8 *,NativeVertexLight *);
-void func_8010EECC(NativeRenderData *,s32,uintptr_t,const f32 *);
+void func_8010EECC(NativeRenderData *,s32,void *,const f32 *);
 NativePointLight *func_8010F280(s32);
 void func_8010F384(NativeRenderData *,s32,uintptr_t);
 void func_8010F68C(NativeVertexList *,NativeVertexLight *);
-void func_8010F950(NativeRenderData *,s32,uintptr_t,const f32 *);
+void func_8010F950(NativeRenderData *,s32,void *,const f32 *);
 void func_80800000_trangler(NativeRenderData *,s32,s32,const f32 *);
-void trangler_entrypoint_0(NativeRenderData *,s32,uintptr_t,const f32 *);
+void trangler_entrypoint_0(NativeRenderData *,s32,void *,const f32 *);
 /* MIPS trunc.w.s yields its indefinite word for invalid conversion. */
 static inline s32 native_point_word(f32 value) {
     return isfinite(value) && value>=-2147483648.0f && value<2147483648.0f ? (s32)value : INT_MIN;

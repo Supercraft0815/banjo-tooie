@@ -159,6 +159,23 @@ static void test_matrix_and_projection(void) {
         Gfx *list=native_model_modes(flags[i]);CHECK(list && list[0].words.w0>>24==G_SETTILE && list[12].words.w0==0xDF000000 && list[23].words.w0==0xDF000000);
     }
 }
+static void test_callback_modes(void) {
+    u64 storage[32];
+    u8 *commands=(u8 *)storage;
+    for(int mode=0;mode<5;++mode) {
+        NativeGeometryContext context=setup(0);
+        context.vertex_callback=NULL;
+        fixture(commands,17);
+        commands[14]=0;
+        CHECK(native_geometry_decode(commands,172,8,2));
+        func_800DF660(mode,1,mode==1 ? (uintptr_t)lights : 0,255);
+        CHECK(native_geometry_execute(&context,commands,172));
+        CHECK(!context.vertex_callback);
+        if(mode==0)CHECK(vertices->vertices[0].v.tc[0]!=-77 || vertices->vertices[0].v.tc[1]!=-77);
+        if(mode==1)CHECK(vertices->vertices[0].v.cn[0]==127 && vertices->vertices[0].v.cn[1]==63);
+        func_800DF660(0,0,0,255);
+    }
+}
 static void initialize(void) {
     func_800DF38C();display=heap_alloc(sizeof(*display)+8*sizeof(Gfx));display->header[0]=8;
     vertices=heap_alloc(sizeof(*vertices)+16*sizeof(Vtx));vertices->count_flags=32;
@@ -216,7 +233,7 @@ static void test_archive(const char *path) {
     printf("Executed %u original models in %u mode passes: %u graphics packets and %u matrices.\n",models,draws,commands,matrix_count);
 }
 int main(int argc,char **argv) {
-    initialize();test_opcodes();test_branches();test_limits();test_matrix_and_projection();if(argc==2)test_archive(argv[1]);else CHECK(argc==1);func_8010F270();func_8010E7F4();
+    initialize();test_opcodes();test_branches();test_limits();test_matrix_and_projection();test_callback_modes();if(argc==2)test_archive(argv[1]);else CHECK(argc==1);func_8010F270();func_8010E7F4();
     native_graphics_dispose(&memory);func_800B3370(lights);func_800ADF5C(bones);heap_free(vertices);heap_free(display);func_800DF35C();
     puts("native geometry dispatch, transforms, culling, zones, lighting and packet order passed");return 0;
 }

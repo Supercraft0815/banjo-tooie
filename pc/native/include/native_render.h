@@ -4,7 +4,7 @@
 #include "core2/model_materials.h"
 typedef struct {u32 header[2];Gfx commands[];} NativeDisplayList;
 typedef struct {s16 light[3];u8 color[4];} NativeVertexLight;
-typedef struct {
+typedef struct GeometryRenderData {
     f32 scale,*position,*rotation,*origin,*extra_rotation;
     u8 *textures;NativeDisplayList *display_list;NativeVertexList *vertices;
     NativeBoneMatrices *animation;u8 texture_animation;void *zones;
@@ -73,7 +73,7 @@ s8 *func_800DF8CC(NativeRenderData *);
 int func_800DF8D4(NativeRenderData *);
 f32 *func_800DF8F8(NativeRenderData *);
 void func_800DF900(NativeRenderData *);
-void func_8010EF70(NativeRenderData *,s32,s32,f32 *);
+void func_8010EF70(NativeRenderData *,s32,void *,const f32 *);
 void func_8010F070(f32 *,s32 *,s32);
 void func_8010F270(void);
 int native_texture_projection_apply(NativeRenderData *,f32 *,s32 *,s32);

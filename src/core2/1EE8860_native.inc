@@ -6,7 +6,7 @@ void func_800EF2A0(f32 *);
 void func_800EF368(f32 *,f32);
 void func_800F24D0(MtxF *,f32 *,f32 *);
 static struct {NativeRenderData *data;f32 right[3],up[3];int bones;} texture_projection;
-void func_8010EF70(NativeRenderData *data,s32 unused1,s32 unused2,f32 *camera) {
+void func_8010EF70(NativeRenderData *data,s32 unused1,void *unused2,const f32 *camera) {
     (void)unused1;(void)unused2;texture_projection.data=data;texture_projection.bones=func_800DF8D4(data);
     f32 direction[3],up[3]={0,1,0};
     for(int i=0;i<3;++i)direction[i]=data->position[i]-camera[i];

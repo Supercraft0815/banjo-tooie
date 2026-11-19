@@ -19,7 +19,7 @@ void func_800B38C8(NativeModelLightList *);
 NativeModelLightList *func_800B38E8(NativeModelLightList *);
 void func_8010E070(void);
 void func_8010E204(NativeRenderData *,s32,f32);
-void func_8010E2C4(NativeRenderData *,s32,NativeModelLightList *,f32);
+void func_8010E2C4(NativeRenderData *,s32,void *,const f32 *);
 void func_8010E334(void);
 void func_8010E358(void);
 void func_8010E390(void);

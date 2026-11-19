@@ -11,10 +11,7 @@ dlabel D_8012B2C0
     /* 8012B2C0 */ .space 0x60
 
 dlabel D_8012B320
-    /* 8012B320 */ .space 0x01
-
-dlabel D_8012B321
-    /* 8012B321 */ .space 0x3F
+    /* 8012B320 */ .space 0x40
 
 dlabel D_8012B360
     /* 8012B360 */ .space 0x10

@@ -2,6 +2,9 @@
 #include "angler_native.inc"
 #else
 #include "common.h"
+#ifdef BT_NATIVE
+#include "core2/geometry_callbacks.h"
+#endif
 
 void func_80800000_trangler(s32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     struct entry { s32 data[9]; f32 value; };
@@ -49,7 +52,7 @@ void func_80800000_trangler(s32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     mlMtxPop();
 }
 
-void trangler_entrypoint_0(s32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+void trangler_entrypoint_0(BT_NATIVE_ONLY(struct GeometryRenderData *arg0) BT_IDO_ONLY(s32 *arg0), s32 arg1, BT_NATIVE_ONLY(void *arg2) BT_IDO_ONLY(s32 arg2), BT_NATIVE_ONLY(const f32 *arg3) BT_IDO_ONLY(s32 arg3)) {
     struct state {
         s32 *actor;
         s32 data[3];

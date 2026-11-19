@@ -37,15 +37,3 @@ dlabel D_80126E50
 
 dlabel D_80126E5C
     /* 80126E5C */ .space 0x1E4
-
-dlabel D_80127040
-    /* 80127040 */ .space 0x04
-
-dlabel D_80127044
-    /* 80127044 */ .space 0x04
-
-dlabel D_80127048
-    /* 80127048 */ .space 0x04
-
-dlabel D_8012704C
-    /* 8012704C */ .space 0x04

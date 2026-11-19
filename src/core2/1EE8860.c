@@ -2,8 +2,11 @@
 #include "1EE8860_native.inc"
 #else
 #include "common.h"
+#ifdef BT_NATIVE
+#include "core2/geometry_callbacks.h"
+#endif
 
-void func_8010EF70(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+void func_8010EF70(BT_NATIVE_ONLY(struct GeometryRenderData *arg0) BT_IDO_ONLY(s32 arg0), s32 arg1, BT_NATIVE_ONLY(void *arg2) BT_IDO_ONLY(s32 arg2), BT_NATIVE_ONLY(const f32 *arg3) BT_IDO_ONLY(s32 arg3)) {
     s32 func_800192FC(s32 *, s32 *);
     BT_IDO_ONLY(u8 func_800DF8D4();) BT_NATIVE_ONLY(int func_800DF8D4(s32 *);)
     s32 func_800DF8F8(s32);
@@ -32,7 +35,7 @@ void func_8010EF70(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
 }
 
-void func_8010F070(s32 arg0, s32 *arg1, s32 arg2)
+void func_8010F070(BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(s32) arg0, s32 *arg1, s32 arg2)
 {
   s32 func_800DF8B4(s32 *);
   s32 func_800DF8CC(s32 *);

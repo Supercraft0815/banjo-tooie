@@ -1,5 +1,8 @@
 #include "core2/1EB5E70.h"
 #include "model_render_banks.inc"
+#ifdef BT_NATIVE
+#include "core2/geometry_callbacks.h"
+#endif
 typedef struct {
     s32 header;
     s32 geometry;
@@ -28,15 +31,19 @@ typedef struct {
 
 s32 D_8012C850[60];
 
-typedef void (*GeoCommandFunction)(s32, u8 *);
+typedef void (*GeoCommandFunction)(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void *), u8 *);
 extern GeoCommandFunction *D_8012CF8C;
 
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+typedef NativeDisplayList DisplayListView;
+typedef NativeRenderData RenderData;
+#else
 typedef struct {
     u32 header[2];
     Gfx commands[1];
 } DisplayListView;
 
-typedef struct {
+typedef struct GeometryRenderData {
     f32 scale;
     f32 *position;
     f32 *rotation;
@@ -54,6 +61,7 @@ typedef struct {
     u8 *animated_vertices;
     Mtx *matrices;
 } RenderData;
+#endif
 
 extern DisplayListView *D_8012C960;
 
@@ -110,7 +118,7 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
     extern s32 D_8012C9AC;
     extern void (*D_8012C9B0)(s32);
     extern s32 D_8012C9B4, D_8012C9B8, D_8012C9BC, D_8012C9C8;
-    extern s32 D_8012CA08, D_8012CA0C, D_8012CA18, D_8012CA28;
+    extern s32 D_8012CA08, D_8012CA18, D_8012CA28; BT_IDO_ONLY(extern s32 D_8012CA0C;) BT_NATIVE_ONLY(extern void *D_8012CA0C;)
     extern u8 D_8012CA11;
     extern f32 D_8012CA1C, D_8012CA20;
     extern f32 D_8012CE48[3];
@@ -119,11 +127,11 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
     extern s32 D_8012CE98;
     extern f32 D_8012CEB8[3];
     extern f32 D_8012CEA8;
-    extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);
+    BT_IDO_ONLY(extern s32 (*D_8012CEC4)(MtxF *, s32 *, s16);)
     extern s32 D_8012C820;
     extern Gfx D_80122DB0[], D_80122DF0[], D_80122EB0[], D_80122F70[];
     extern s32 D_80122DC8[], D_80122DCC[];
-    extern RenderCallback D_80123030[], D_80123038[];
+    BT_IDO_ONLY(extern RenderCallback D_80123030[];) BT_IDO_ONLY(extern RenderCallback D_80123038[];)
 
     void func_800E39A8(BtIntPtr, BtIntPtr);
     void func_800EE7F8(f32 *, f32 *);
@@ -162,7 +170,7 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
     void func_800AE598(u8 *, Mtx **);
 #endif
 #ifndef BT_NATIVE
-    void func_8010EF70(RenderData *, s32, s32, void *);
+    BT_IDO_ONLY(void func_8010EF70(RenderData *, s32, s32, void *);) BT_NATIVE_ONLY(void func_8010EF70(RenderData *, s32, void *, const f32 *);)
 #endif
     void func_800E4640(Gfx **);
     void func_8010F270(void);
@@ -256,7 +264,7 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
         }
     }
     gfx = arg0->gfx;
-    gSPSegment(gfx++, 1, osVirtualToPhysical(D_8012C948.vertices + 0x18));
+    gSPSegment(gfx++, 1, osVirtualToPhysical((u8 *)D_8012C948.vertices + 0x18));
     gSPSegment(gfx++, 2, osVirtualToPhysical(((TextureData *)D_8012C948.textures)->data[((TextureData *)D_8012C948.textures)->count]));
     if (D_8012C948.texture_animation) {
         s32 i;
@@ -394,13 +402,19 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
     if (arg5->flags & 0x10) {
         func_8010EF70(&D_8012C948, 0, 0, &D_8012CE98);
     }
-    if (D_8012C838 == 1) {
+    if (D_8012C838 == 1 BT_NATIVE_ONLY(&& D_8012CA11 < 5)) {
+#ifdef BT_NATIVE
+        GeometryCallbacks *callbacks = &D_80123030[D_8012CA11];
+        callbacks->begin(&D_8012C948, D_8012CA08, D_8012CA0C, (const f32 *)&D_8012CE98);
+        D_8012CEC4 = callbacks->vertex;
+#else
         if (D_80123030[D_8012CA11].draw) {
             D_80123030[D_8012CA11].draw(&D_8012C948, D_8012CA08, D_8012CA0C, &D_8012CE98);
         }
         D_8012CEC4 = (s32 (*)(MtxF *, s32 *, s16))D_80123030[D_8012CA11].value;
+#endif
     }
-    func_800DE2A4((BtIntPtr)arg0, ((u8 *)arg5 + arg5->geometry));
+    func_800DE2A4(BT_IDO_ONLY((BtIntPtr)arg0) BT_NATIVE_ONLY((void *)arg0), ((u8 *)arg5 + arg5->geometry));
     if (arg5->flags & 0x40) {
         func_800E4640(&arg0->gfx);
     } else {
@@ -409,10 +423,14 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
     if (arg5->flags & 0x182) {
         gSPDisplayList(arg0->gfx++, OS_K0_TO_PHYSICAL(D_80122DB0));
     }
-    if (D_8012C838 == 1) {
+    if (D_8012C838 == 1 BT_NATIVE_ONLY(&& D_8012CA11 < 5)) {
+#ifdef BT_NATIVE
+        if (D_80123030[D_8012CA11].finish) D_80123030[D_8012CA11].finish();
+#else
         if (D_80123038[D_8012CA11].draw) {
             ((void (*)(void))D_80123038[D_8012CA11].draw)();
         }
+#endif
         D_8012CEC4 = 0;
     }
     if (arg5->flags & 0x10) {
@@ -503,6 +521,7 @@ s32 D_8012C9B4 BT_DATA(4, bss_core2bss2_1, 0x74);
 s32 D_8012C9B8 BT_DATA(4, bss_core2bss2_1, 0x78);
 s32 D_8012C9BC BT_DATA(4, bss_core2bss2_1, 0x7C);
 s32 D_8012C9C8 BT_DATA(4, bss_core2bss2_1, 0x88);
+void *D_8012CA0C BT_DATA(4, bss_core2bss2_1, 0xCC);
 s32 D_8012CA08 BT_DATA(4, bss_core2bss2_1, 0xC8);
 u8 D_8012CA11 BT_DATA(4, bss_core2bss2_1, 0xD1);
 s32 D_8012CA18 BT_DATA(4, bss_core2bss2_1, 0xD8);

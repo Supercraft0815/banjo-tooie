@@ -350,3 +350,15 @@ of the boolean query func_800CEAA8. Collision, prop and audio readers use
 the same mapped fields. All 9,703 original fixup addresses are accounted
 for. See n1-2026-11-18/current-fixed-camera-cumulative-ir.log, the
 corresponding fixup and reader reports, and current-*-methods-ir.log.
+
+2026-11-19  Geometry callbacks, map return stack and fog
+The five vertex call sites sign-extend the original signed halfword index.
+The geometry tables refer to their C owners. The original helpers called by
+func_8010E2C4 and func_8010EECC ignore the trailing float argument. The
+native calls supply 0.0f there. All 9,703 runtime fixup words retain their
+original addresses. The 38 map-return functions now address fields in the
+shared map and exit stack. The three fog functions address the same two fog
+records. Five geometry commands discard volatile argument copies unused by
+the command. See n1-2026-11-18/current-renderer-callbacks-ir.log,
+current-respawn-stack-ir.log and current-fog-state-ir.log. Both the normal
+and strict data builds match all 447,849 retraces.

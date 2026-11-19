@@ -183,17 +183,17 @@ void func_800DF5D8(u32 arg0, u32 arg1, u32 arg2, s32 arg3) {
     func_800DF410(arg3);
 }
 
-void func_800DF660(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+void func_800DF660(s32 arg0, s32 arg1, BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32) arg2, s32 arg3) {
     extern s32 D_8012C838;
-    extern s32 D_8012CA08;
+    extern s32 D_8012CA08; BT_NATIVE_ONLY(extern void *D_8012CA0C;) BT_NATIVE_ONLY(extern u8 D_8012CA11;)
     if ((arg1 == 0) && (arg2 == 0)) {
         D_8012C838 = 0;
         return;
     }
     D_8012C838 = 1;
-    (*(s32 *)((s8 *)(&D_8012CA08) + (0))) = arg1;
-    (*(s32 *)((s8 *)(&D_8012CA08) + (4))) = arg2;
-    (*(s8 *)((s8 *)(&D_8012CA08) + (9))) = (s8) arg0;
+    BT_DATA_FIELD(D_8012CA08, (*(s32 *)((s8 *)(&D_8012CA08) + (0)))) = arg1;
+    BT_DATA_FIELD(D_8012CA0C, (*(s32 *)((s8 *)(&D_8012CA08) + (4)))) = arg2;
+    BT_DATA_FIELD(D_8012CA11, (*(s8 *)((s8 *)(&D_8012CA08) + (9)))) = (s8) arg0;
     func_800DF410(arg3);
 }
 

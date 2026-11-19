@@ -3144,3 +3144,21 @@ sowohl die Zeit zwischen zwei Bildwechseln als auch die Wartezeit in
 `SDL_GL_SwapWindow`. Die Messung überschreitet die A2-Grenze von einem Retrace.
 Messdaten, Displayzustand und Laststichproben stehen unter
 `build/acceptance/a2-2026-11-17/diag-2026-11-19/active-display-20261119-163145/`.
+
+### 2026-11-19 – Strenger Datenbuild ohne verbliebene Assembler-Dateneinträge
+
+Die fünf Geometrie-Callback-Sätze und vier Listen mit jeweils 25 Befehlen liegen
+in C. Die 33 Geometriebefehle bekommen den Renderkontext und den Befehlszeiger.
+Die Vertex-Callbacks übernehmen den vorzeichenbehafteten Index. Der Kartenwechsel
+speichert vier Paare aus Karte und Ausgang. Der Test prüft auch Karten-IDs über
+255 sowie die Reihenfolge beim Zurückspringen. Der Nebelzustand enthält zwei
+Einträge. Die Nebelschichten liegen in ihrem eigenen Objekt.
+
+Der reguläre und der strenge Build bestehen jeweils elf Gastsuiten und alle 74
+Replays mit 447.849 Retraces. Die strenge Datenliste ist leer. Die 38
+handgeschriebenen Assembler-Eingaben und neun bestehenden Funktions-Traps sind
+im Build ausgewiesen. 64 Sanitizertests bestehen. Original-IDO bestätigt alle
+16.401 Funktionen und beide ROM-Abbilder bytegenau. Im instrumentierten Korpus
+erreichen 1.336 von 6.216 überwachten Stellen ein fremdes Symbol. Die Treffer
+verteilen sich auf 301 Funktionen und 64 Gruppen. Belege unter
+`build/acceptance/n1-2026-11-18/current-fog-state*`.

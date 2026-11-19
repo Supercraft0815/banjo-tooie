@@ -1,4 +1,5 @@
 #include "native_geometry.h"
+#include "core2/geometry_callbacks.h"
 #include "native_vector_table.h"
 #include "native_zones.h"
 #include <limits.h>
@@ -256,6 +257,19 @@ int native_geometry_execute(NativeGeometryContext *out,const u8 *commands,u32 si
        native_render.geometry_mode>2 || (native_render.geometry_mode==2 && !native_render.data.position) ||
        !out->gfx || !out->mtx || !out->gfx_end || !out->mtx_end || out->gfx>out->gfx_end || out->mtx>out->mtx_end ||
        !s_mtx_stack || s_mtx_stack<D_8007B4F0 || s_mtx_stack>D_8007B4F0+30)return 0;
-    MtxF *saved=s_mtx_stack;GeometryRun run={out,commands,size};int result=geo_walk(&run,commands,0);
+    NativeGeometryVertexCallback previous=out->vertex_callback;
+    GeometryCallbacks *callbacks=NULL;
+    MtxF *saved=s_mtx_stack;
+    if(native_render.callback_mode) {
+        if(native_render.callback_type>=5)return 0;
+        callbacks=&D_80123030[native_render.callback_type];
+        callbacks->begin(&native_render.data,(s32)native_render.callback_args[0],
+                         (void *)native_render.callback_args[1],out->camera);
+        if(!previous)out->vertex_callback=callbacks->vertex;
+    }
+    GeometryRun run={out,commands,size};
+    int result=geo_walk(&run,commands,0);
+    if(callbacks && callbacks->finish)callbacks->finish();
+    out->vertex_callback=previous;
     s_mtx_stack=saved;return result;
 }

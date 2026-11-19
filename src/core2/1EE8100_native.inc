@@ -51,7 +51,7 @@ void func_8010EBE4(NativeVertexList *vertices,s8 *normals,NativeVertexLight *col
         }
     }
 }
-void func_8010EECC(NativeRenderData *data,s32 count,uintptr_t unused,const f32 *camera) {
+void func_8010EECC(NativeRenderData *data,s32 count,void *unused,const f32 *camera) {
     (void)unused;(void)camera;
     point_lighting.render=data;point_lighting.bones=data ? func_800DF8D4(data) : 0;
     point_lighting.used=point_lighting.entries;

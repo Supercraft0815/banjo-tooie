@@ -14,7 +14,7 @@ void func_80800000_trangler(NativeRenderData *data,s32 amount,s32 forced,const f
     for(s32 id=func_800C8760(0,1);id;id=func_800C878C(id,0,1))func_8010E924(id,center,radius,data->scale);
     list->count=list->used-list->entries;mlMtxPop();
 }
-void trangler_entrypoint_0(NativeRenderData *data,s32 packed,uintptr_t unused,const f32 *camera) {
+void trangler_entrypoint_0(NativeRenderData *data,s32 packed,void *unused,const f32 *camera) {
     (void)unused;NativePointLighting *list=func_8010E810();list->render=data;list->bones=data ? func_800DF8D4(data) : 0;list->used=list->entries;
     func_80800000_trangler(data,((u32)packed>>16)&0xFFFF,packed&0xFFFF,camera);
     func_800C87B8(list->ambient);if(data)func_8010EBE4(data->vertices,data->normals,data->colors);
