@@ -52,9 +52,9 @@ void func_80800130_chbkcart(Actor *arg0) {
         u16 node;
     } CartRoute;
     typedef struct {
-        u32 unused : 29;
+        BT_BITFIELD_ORDER(u32 unused : 29, u32 unused2 : 2);
         u32 stopped : 1;
-        u32 unused2 : 2;
+        BT_BITFIELD_ORDER(u32 unused2 : 2, u32 unused : 29);
     } CartFlags;
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void _subaddiefade_entrypoint_3(Actor *);
@@ -159,9 +159,9 @@ s32 func_808004DC_chbkcart(Actor *arg0, s32 arg1, s32 arg2) {
     f32 func_8010CD50(Actor *, BtUIntPtr);
     extern s32 D_80800870_chbkcart[4];
     struct CartFlags {
-        u32 unused : 29;
+        BT_BITFIELD_ORDER(u32 unused : 29, u32 unused2 : 2);
         u32 active : 1;
-        u32 unused2 : 2;
+        BT_BITFIELD_ORDER(u32 unused2 : 2, u32 unused : 29);
     };
     Actor *sp24;
 

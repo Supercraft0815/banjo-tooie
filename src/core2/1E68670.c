@@ -31,11 +31,11 @@ s32 func_8008EE04(s32 arg0, s32 arg1) {
 struct player_state_s;
 typedef struct {
     u8 pad0[0x74];
-    u32 pad74_20 : 12;
-    u32 unk74_19 : 1;
+    BT_BITFIELD_ORDER(u32 pad74_20 : 12, u32 pad74_0 : 16);
+    BT_BITFIELD_ORDER(u32 unk74_19 : 1, u32 unk74_16 : 1);
     u32 pad74_17 : 2;
-    u32 unk74_16 : 1;
-    u32 pad74_0 : 16;
+    BT_BITFIELD_ORDER(u32 unk74_16 : 1, u32 unk74_19 : 1);
+    BT_BITFIELD_ORDER(u32 pad74_0 : 16, u32 pad74_20 : 12);
 } Unk8008EE1C;
 
 s32 func_8008EE1C(Unk8008EE1C *arg0, s32 arg1) {

@@ -116,9 +116,9 @@ void func_808001D0_chalienkids(Actor *arg0) {
     extern s32 D_80801E80_chalienkids[];
     struct AlienKidsFlags {
         u8 pad[0x74];
-        u32 pad74_6 : 26;
+        BT_BITFIELD_ORDER(u32 pad74_6 : 26, u32 pad74_0 : 5);
         u32 unk74_5 : 1;
-        u32 pad74_0 : 5;
+        BT_BITFIELD_ORDER(u32 pad74_0 : 5, u32 pad74_6 : 26);
     };
     s32 flags;
 
@@ -280,9 +280,9 @@ typedef union {
     Actor actor;
     struct {
         u8 pad0[0x74];
-        u32 pad74_6 : 26;
+        BT_BITFIELD_ORDER(u32 pad74_6 : 26, u32 pad74_0 : 5);
         u32 unk74_5 : 1;
-        u32 pad74_0 : 5;
+        BT_BITFIELD_ORDER(u32 pad74_0 : 5, u32 pad74_6 : 26);
     } flags;
     struct {
         u8 pad0[0x50];
@@ -580,9 +580,9 @@ void func_80800FA4_chalienkids(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3) {
         Actor actor;
         struct {
             u8 pad[0x94];
-            u32 pad94_17 : 15;
+            BT_BITFIELD_ORDER(u32 pad94_17 : 15, u32 pad94_0 : 16);
             u32 unk94_16 : 1;
-            u32 pad94_0 : 16;
+            BT_BITFIELD_ORDER(u32 pad94_0 : 16, u32 pad94_17 : 15);
         } flags;
     } InitActor;
     f32 *data;

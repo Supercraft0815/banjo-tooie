@@ -495,8 +495,8 @@ void func_80800A44_chmonsterinterior(Actor *arg0, s32 arg1) {
     void func_80800BC8_chmonsterinterior(u8 **, s32);
     struct SpawnFlags {
         u8 pad[0x70];
-        u8 pad70 : 7;
-        u8 flag : 1;
+        BT_BITFIELD_ORDER(u8 pad70 : 7, u8 flag : 1);
+        BT_BITFIELD_ORDER(u8 flag : 1, u8 pad70 : 7);
     };
     Actor *spawned;
     f32 position[3];

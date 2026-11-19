@@ -387,7 +387,7 @@ s32 func_808009BC_chnastycavemen(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800FFA88(Unk80132ED0 *);
     void func_80105A9C(Actor *, f32);
     void func_80108A30(s32, void *, f32, s32);
-    struct NastyFlags { u32 pad : 15; u32 active : 1; u32 rest : 16; };
+    struct NastyFlags { BT_BITFIELD_ORDER(u32 pad : 15, u32 rest : 16); u32 active : 1; BT_BITFIELD_ORDER(u32 rest : 16, u32 pad : 15); };
     s32 sp2C;
     Prop *sp28;
 

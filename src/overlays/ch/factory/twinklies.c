@@ -380,9 +380,9 @@ void func_80800A84_chfactorytwinklies(Actor *arg0, s32 arg1) {
     } ActorFlags;
     struct {
         u8 pad[0x2A];
-        u8 pad2A_6 : 2;
+        BT_BITFIELD_ORDER(u8 pad2A_6 : 2, u8 pad2A_0 : 5);
         u8 flag : 1;
-        u8 pad2A_0 : 5;
+        BT_BITFIELD_ORDER(u8 pad2A_0 : 5, u8 pad2A_6 : 2);
     } *marker;
 
     if (arg1 == 0 || arg1 == 1 || arg1 == 2) {
@@ -801,9 +801,9 @@ void func_8080171C_chfactorytwinklies(Actor *arg0) {
         s32 light;
     } Twinklie;
     typedef struct {
-        u32 unused : 18;
+        BT_BITFIELD_ORDER(u32 unused : 18, u32 rest : 13);
         u32 active : 1;
-        u32 rest : 13;
+        BT_BITFIELD_ORDER(u32 rest : 13, u32 unused : 18);
     } MarkerFlags;
     s32 *sp24;
 
@@ -879,14 +879,14 @@ void func_808018A0_chfactorytwinklies(Actor *arg0) {
         u32 pad34[7];
         s32 light;
         u32 pad54[8];
-        u32 unused : 11;
+        BT_BITFIELD_ORDER(u32 unused : 11, u32 rest : 20);
         u32 visible : 1;
-        u32 rest : 20;
+        BT_BITFIELD_ORDER(u32 rest : 20, u32 unused : 11);
     } Twinklie;
     typedef struct {
-        u32 unused : 18;
+        BT_BITFIELD_ORDER(u32 unused : 18, u32 rest : 13);
         u32 active : 1;
-        u32 rest : 13;
+        BT_BITFIELD_ORDER(u32 rest : 13, u32 unused : 18);
     } MarkerFlags;
     struct {
         u8 pad0[6];
@@ -1023,8 +1023,8 @@ void func_80801DD8_chfactorytwinklies(Actor *arg0, s32 arg1) {
     extern s16 D_80802478_chfactorytwinklies[];
     struct TwinklieFlags {
         u8 pad[0x70];
-        u32 reserved : 31;
-        u32 flag : 1;
+        BT_BITFIELD_ORDER(u32 reserved : 31, u32 flag : 1);
+        BT_BITFIELD_ORDER(u32 flag : 1, u32 reserved : 31);
     };
     struct CounterData {
         s32 pad[16];

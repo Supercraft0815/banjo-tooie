@@ -37,8 +37,8 @@ s32 func_808000C4_chfantasydrillfield(void *arg0 BT_PASS2(, s32 bt_a1)) {
         u16 item;
         u16 unkA;
         u32 unkC;
-        u32 id : 11;
-        u32 rest : 21;
+        BT_BITFIELD_ORDER(u32 id : 11, u32 rest : 21);
+        BT_BITFIELD_ORDER(u32 rest : 21, u32 id : 11);
     } DrillProp;
     Prop *props[8];
     s32 count;

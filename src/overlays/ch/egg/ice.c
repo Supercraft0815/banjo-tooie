@@ -44,8 +44,8 @@ void func_80800114_cheggice(void *arg0) {
     void func_80800000_cheggice(Actor *);
     struct FireData {
         u8 pad[0x39];
-        u8 flag : 1;
-        u8 rest : 7;
+        BT_BITFIELD_ORDER(u8 flag : 1, u8 rest : 7);
+        BT_BITFIELD_ORDER(u8 rest : 7, u8 flag : 1);
     } *data;
 
     data = func_80100094(arg0, 0);

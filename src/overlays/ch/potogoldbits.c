@@ -72,7 +72,7 @@ void func_80800188_chpotogoldbits(u8 *arg0) {
     s32 func_80103110(u8 *, s32);
     extern s32 D_80800968_chpotogoldbits[4];
     extern s32 D_80800978_chpotogoldbits[4];
-    struct GoldFlags { u32 other : 1; u32 played : 1; };
+    struct GoldFlags { BT_BITFIELD_ORDER(u32 other : 1, u32 : 30); BT_BITFIELD_ORDER(u32 played : 1, u32 played : 1; u32 other : 1); };
     f32 temp_f0;
     u8 *sp2C;
 

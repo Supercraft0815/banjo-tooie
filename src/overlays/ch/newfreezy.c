@@ -129,9 +129,9 @@ void func_808002C0_chnewfreezy(Actor *arg0) {
         u8 pad5D[3];
     } *part;
     struct FreezyLinkFlags {
-        u32 pad : 29;
+        BT_BITFIELD_ORDER(u32 pad : 29, u32 pad2 : 2);
         u32 active : 1;
-        u32 pad2 : 2;
+        BT_BITFIELD_ORDER(u32 pad2 : 2, u32 pad : 29);
     };
     Actor *linked;
     s32 selected[1];

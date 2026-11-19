@@ -288,9 +288,9 @@ void func_80800708_chboggygirl(Actor *arg0, s32 arg1, s32 arg2) {
     typedef struct {
         u8 pad[0x14];
         s16 unk14;
-        u8 high : 1;
+        BT_BITFIELD_ORDER(u8 high : 1, u8 low : 6);
         u8 flag : 1;
-        u8 low : 6;
+        BT_BITFIELD_ORDER(u8 low : 6, u8 high : 1);
         u8 unk17;
         u8 item[1];
     } GirlData;
@@ -386,9 +386,9 @@ void func_8080097C_chboggygirl(Actor *arg0) {
     s32 func_80105A5C(Actor *);
     struct Flags {
         u8 pad[0x14];
-        u32 high : 17;
+        BT_BITFIELD_ORDER(u32 high : 17, u32 low : 14);
         u32 flag : 1;
-        u32 low : 14;
+        BT_BITFIELD_ORDER(u32 low : 14, u32 high : 17);
     };
     struct Flags *sp24;
     struct Flags *temp_v0;
@@ -417,7 +417,7 @@ void func_8080097C_chboggygirl(Actor *arg0) {
 void func_80800A4C_chboggygirl(Actor *arg0) {
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800DA980(s32, s32);
-    struct Flags { u8 pad[0x16]; u8 high : 1; u8 flag : 1; u8 low : 6; };
+    struct Flags { u8 pad[0x16]; BT_BITFIELD_ORDER(u8 high : 1, u8 low : 6); u8 flag : 1; BT_BITFIELD_ORDER(u8 low : 6, u8 high : 1); };
     struct Flags *data;
     s32 dialog;
 

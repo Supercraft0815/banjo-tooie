@@ -26,21 +26,21 @@ typedef struct WaterfallFxActor {
     s32 unk54;
     f32 unk58;
     u8 pad5C[8];
-    u32 pad64_21 : 11;
+    BT_BITFIELD_ORDER(u32 pad64_21 : 11, u32 pad64_0 : 20);
     u32 unk64_20 : 1;
-    u32 pad64_0 : 20;
+    BT_BITFIELD_ORDER(u32 pad64_0 : 20, u32 pad64_21 : 11);
     s32 pad68;
     s32 pad6C;
     union {
         u32 value;
         struct {
-            u32 pad : 31;
-            u32 active : 1;
+            BT_BITFIELD_ORDER(u32 pad : 31, u32 active : 1);
+            BT_BITFIELD_ORDER(u32 active : 1, u32 pad : 31);
         } bits;
     } unk70;
-    u32 pad74_16 : 16;
+    BT_BITFIELD_ORDER(u32 pad74_16 : 16, u32 pad74_0 : 7);
     u32 unk74_7 : 9;
-    u32 pad74_0 : 7;
+    BT_BITFIELD_ORDER(u32 pad74_0 : 7, u32 pad74_16 : 16);
 } WaterfallFxActor;
 
 void func_8080000C_chwaterfallfx(Actor *arg0) {

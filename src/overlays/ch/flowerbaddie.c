@@ -40,9 +40,9 @@ void func_8080005C_chflowerbaddie(Actor *arg0) {
         Actor actor;
         struct {
             u32 reserved[30];
-            u32 : 29;
+            BT_BITFIELD_ORDER(u32 : 29, u32  : 2);
             u32 inactive : 1;
-            u32 : 2;
+            BT_BITFIELD_ORDER(u32 : 2, u32  : 29);
         } flags;
     };
     void *sp34;
@@ -145,9 +145,9 @@ s32 func_80800380_chflowerbaddie(Actor *arg0, s32 arg1, s32 *arg2) {
         s32 *event;
         u32 flags;
         struct {
-            u32 upper : 29;
+            BT_BITFIELD_ORDER(u32 upper : 29, u32 lower : 2);
             u32 active : 1;
-            u32 lower : 2;
+            BT_BITFIELD_ORDER(u32 lower : 2, u32 upper : 29);
         } bits;
     } data;
 
@@ -269,9 +269,9 @@ s32 func_808007F0_chflowerbaddie(Actor *arg0) {
         Actor actor;
         struct {
             u32 reserved[25];
-            u32 : 2;
+            BT_BITFIELD_ORDER(u32 : 2, u32  : 29);
             u32 blocked : 1;
-            u32 : 29;
+            BT_BITFIELD_ORDER(u32 : 29, u32  : 2);
         } flags;
     };
 
@@ -307,9 +307,9 @@ s32 func_808008D4_chflowerbaddie(Actor *arg0) {
         Actor actor;
         struct {
             u32 reserved[25];
-            u32 : 2;
+            BT_BITFIELD_ORDER(u32 : 2, u32  : 29);
             u32 blocked : 1;
-            u32 : 29;
+            BT_BITFIELD_ORDER(u32 : 29, u32  : 2);
         } flags;
     };
 

@@ -42,8 +42,8 @@ s32 subaddiecustomhits_entrypoint_2(Unk80132ED0 *arg0, f32 *arg1, f32 arg2, s32 
     } *hit;
     struct MarkerId {
         u8 pad[0x12];
-        u16 id : 15;
-        u16 flag : 1;
+        BT_BITFIELD_ORDER(u16 id : 15, u16 flag : 1);
+        BT_BITFIELD_ORDER(u16 flag : 1, u16 id : 15);
     };
 
     actor = func_80106790(arg0);
@@ -95,8 +95,8 @@ s32 subaddiecustomhits_entrypoint_4(Actor *arg0, f32 *arg1, f32 *arg2) {
     f32 value;
     struct MarkerId {
         u8 pad[0x12];
-        u16 id : 15;
-        u16 flag : 1;
+        BT_BITFIELD_ORDER(u16 id : 15, u16 flag : 1);
+        BT_BITFIELD_ORDER(u16 flag : 1, u16 id : 15);
     };
 
     hit = (void *)func_80104124();
@@ -122,9 +122,9 @@ f32 subaddiecustomhits_entrypoint_5(Actor *arg0, f32 *arg1) {
     void func_80103328(Actor *);
     struct CustomHitFlags {
         u32 pad[2];
-        u32 unused : 30;
+        BT_BITFIELD_ORDER(u32 unused : 30, u32 last : 1);
         u32 custom : 1;
-        u32 last : 1;
+        BT_BITFIELD_ORDER(u32 last : 1, u32 unused : 30);
     };
     Unk80132ED0 *marker;
 

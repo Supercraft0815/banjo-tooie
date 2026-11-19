@@ -103,8 +103,8 @@ void func_8080032C_chdoor(u8 *arg0, f32 arg1) {
     struct DoorMotionData {
         u32 flags;
         u32 unk4;
-        u32 motion : 6;
-        u32 other : 26;
+        BT_BITFIELD_ORDER(u32 motion : 6, u32 other : 26);
+        BT_BITFIELD_ORDER(u32 other : 26, u32 motion : 6);
         u32 unkC;
         s16 first;
         s16 second;
@@ -253,8 +253,8 @@ void func_80800754_chdoor(u8 *arg0) {
     struct DoorInitialData {
         u32 flags;
         u32 unused4;
-        u32 mode : 6;
-        u32 unused8 : 26;
+        BT_BITFIELD_ORDER(u32 mode : 6, u32 unused8 : 26);
+        BT_BITFIELD_ORDER(u32 unused8 : 26, u32 mode : 6);
         s16 state;
         s16 unusedE;
         s16 position[3];
@@ -305,8 +305,8 @@ void func_808008A0_chdoor(u8 *arg0) {
     struct DoorInitialData {
         u32 flags;
         u32 unused4;
-        u32 mode : 6;
-        u32 unused8 : 26;
+        BT_BITFIELD_ORDER(u32 mode : 6, u32 unused8 : 26);
+        BT_BITFIELD_ORDER(u32 unused8 : 26, u32 mode : 6);
         s16 unusedC;
         s16 state;
         s16 angle;
@@ -403,13 +403,13 @@ void func_808009F4_chdoor(u8 *arg0) {
 
 void func_80800B14_chdoor(u8 *arg0, s32 arg1) {
     struct DoorFlags {
-        u32 unused : 6;
+        BT_BITFIELD_ORDER(u32 unused : 6, u32 rest : 25);
         u32 special : 1;
-        u32 rest : 25;
+        BT_BITFIELD_ORDER(u32 rest : 25, u32 unused : 6);
     };
     struct DoorActorFlags {
-        u8 unused : 7;
-        u8 active : 1;
+        BT_BITFIELD_ORDER(u8 unused : 7, u8 active : 1);
+        BT_BITFIELD_ORDER(u8 active : 1, u8 unused : 7);
     };
     void *func_80100094(Actor *, u32);
     void func_80101FDC(u8 *, s32);

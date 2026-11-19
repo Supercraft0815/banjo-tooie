@@ -457,9 +457,9 @@ void func_80800A4C_chdiggerboss(Actor *arg0) {
     extern s16 D_80809D00_chdiggerboss;
     struct DiggerBossActorFlags {
         u8 pad0[0x70];
-        u32 pad70_4 : 28;
+        BT_BITFIELD_ORDER(u32 pad70_4 : 28, u32 pad70_0 : 3);
         u32 expressionEnabled : 1;
-        u32 pad70_0 : 3;
+        BT_BITFIELD_ORDER(u32 pad70_0 : 3, u32 pad70_4 : 28);
     };
     struct {
         s16 state;
@@ -2988,9 +2988,9 @@ void func_80805448_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2) {
     extern u8 D_8080A068_chdiggerboss[];
     struct MarkerFlags {
         u8 pad0[0x18];
-        unsigned int pad18:27; u8 flags18:4; unsigned int end18:1;
+        BT_BITFIELD_ORDER(unsigned int pad18:27, unsigned int end18 : 1); u8 flags18:4; BT_BITFIELD_ORDER(unsigned int end18:1, unsigned int pad18 : 27);
         u8 pad1C[0xC];
-        unsigned int pad28:23; u16 flags28:8; unsigned int end28:1;
+        BT_BITFIELD_ORDER(unsigned int pad28:23, unsigned int end28 : 1); u16 flags28:8; BT_BITFIELD_ORDER(unsigned int end28:1, unsigned int pad28 : 23);
     };
     u8 *data;
     s32 i;
@@ -3105,7 +3105,7 @@ void func_808057D0_chdiggerboss(Actor *arg0) {
 }
 
 void func_808058B0_chdiggerboss(Actor *arg0, void *arg1) {
-    struct DiggerHit { u8 prefix[0x1A]; u16 id : 11; u16 flags : 5; };
+    struct DiggerHit { u8 prefix[0x1A]; BT_BITFIELD_ORDER(u16 id : 11, u16 flags : 5); BT_BITFIELD_ORDER(u16 flags : 5, u16 id : 11); };
     struct DiggerHitData { u8 prefix[0x28]; f32 cooldown; };
     void *func_80100094(Actor *, u32);
     s32 func_800F79DC(BtIntPtr, s32, BtIntPtr);

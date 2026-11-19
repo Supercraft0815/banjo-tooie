@@ -205,9 +205,9 @@ void func_8080057C_chterryegg(Actor *arg0) {
 void func_808005C4_chterryegg(Actor *arg0) {
     typedef struct {
         u8 pad0[0x74];
-        u32 pad74_31 : 11;
+        BT_BITFIELD_ORDER(u32 pad74_31 : 11, u32 pad74_0 : 20);
         u32 unk74_20 : 1;
-        u32 pad74_0 : 20;
+        BT_BITFIELD_ORDER(u32 pad74_0 : 20, u32 pad74_31 : 11);
     } TerryEggFlags;
     s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
@@ -368,9 +368,9 @@ s32 func_80800A2C_chterryegg(Actor *arg0, s32 arg1, s32 arg2) {
     extern OSThread *_chterryegg_entrypoint_0(void);
     struct TerryEggFlags {
         u8 pad[0x74];
-        u32 pad74_21 : 11;
+        BT_BITFIELD_ORDER(u32 pad74_21 : 11, u32 pad74_0 : 20);
         u32 active : 1;
-        u32 pad74_0 : 20;
+        BT_BITFIELD_ORDER(u32 pad74_0 : 20, u32 pad74_21 : 11);
     };
     switch (arg1) {
     case 0x3E:
@@ -518,9 +518,9 @@ void func_80800E88_chterryegg(Actor *arg0, s32 arg1) {
     f32 func_80801188_chterryegg(Actor *, s32);
     struct TerryEggFlags {
         u8 pad[0x74];
-        u32 pad74_21 : 11;
+        BT_BITFIELD_ORDER(u32 pad74_21 : 11, u32 pad74_0 : 20);
         u32 active : 1;
-        u32 pad74_0 : 20;
+        BT_BITFIELD_ORDER(u32 pad74_0 : 20, u32 pad74_21 : 11);
     };
     f32 position[3];
 

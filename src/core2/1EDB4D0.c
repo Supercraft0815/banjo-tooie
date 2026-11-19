@@ -284,7 +284,7 @@ s32 func_80102128(Actor *arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4) {
 }
 
 void func_80102190(void *arg0, s32 arg1) {
-    struct Flags { u8 pad[0x74]; u8 upper:4; u8 flag:1; u8 lower:3; };
+    struct Flags { u8 pad[0x74]; BT_BITFIELD_ORDER(u8 upper:4, u8 lower : 3); u8 flag:1; BT_BITFIELD_ORDER(u8 lower:3, u8 upper : 4); };
     struct Flags *p = arg0;
     if (arg1 != 0) {
         p->flag = 0;
@@ -306,7 +306,7 @@ int func_801021BC(Actor *arg0, s32 arg1) {
 /* extern */
 
 void func_80102204(Actor *arg0) {
-    struct Flags { u8 pad[0x70]; u8 upper:7; u8 flag:1; };
+    struct Flags { u8 pad[0x70]; BT_BITFIELD_ORDER(u8 upper:7, u8 flag : 1); BT_BITFIELD_ORDER(u8 flag:1, u8 upper : 7); };
     void _dbanim_entrypoint_0(u8 *, s32, u8 *);
     void func_8008B304(s32);
     s32 func_8008B4D4(struct anctrl_s *);
@@ -377,7 +377,7 @@ s32 func_80102320(Actor *arg0, f32 arg1, f32 arg2) {
 /* extern */
 
 s32 func_80102394(Actor *arg0) {
-    typedef struct { u32 pad : 12; u32 flag : 1; u32 rest : 19; } Flags;
+    typedef struct { BT_BITFIELD_ORDER(u32 pad : 12, u32 rest : 19); u32 flag : 1; BT_BITFIELD_ORDER(u32 rest : 19, u32 pad : 12); } Flags;
     void *func_80100368(void *);
     s32 func_80101080();
     s32 func_8010108C(Actor *, s32, s32);

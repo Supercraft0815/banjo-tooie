@@ -14,15 +14,15 @@ s32 func_80103140(Actor *arg0, u32 arg1, u16 arg2) {
     u8 *func_801039E4(Unk80132ED0 *);
     struct ActorFlags {
         u8 pad0[0x70];
-        u32 pad70_4 : 28;
+        BT_BITFIELD_ORDER(u32 pad70_4 : 28, u32 pad70_0 : 3);
         u32 active : 1;
-        u32 pad70_0 : 3;
+        BT_BITFIELD_ORDER(u32 pad70_0 : 3, u32 pad70_4 : 28);
     };
     struct ModelFlags {
         u32 pad0[2];
-        u32 pad8_2 : 30;
+        BT_BITFIELD_ORDER(u32 pad8_2 : 30, u32 pad8_0 : 1);
         u32 hidden : 1;
-        u32 pad8_0 : 1;
+        BT_BITFIELD_ORDER(u32 pad8_0 : 1, u32 pad8_2 : 30);
     };
     u16 newId;
     u32 sp38;
@@ -99,8 +99,8 @@ void func_80103328(Actor *arg0) {
     void func_800EE940(s16 *, f32 *);
     u8 *func_80103964(u8 *);
     typedef struct {
-        u16 radius : 11;
-        u16 flags : 5;
+        BT_BITFIELD_ORDER(u16 radius : 11, u16 flags : 5);
+        BT_BITFIELD_ORDER(u16 flags : 5, u16 radius : 11);
     } RadiusFlags;
     s32 min[3];
     s32 max[3];
@@ -170,22 +170,22 @@ void func_80103508(u8 *arg0) {
     s32 sp3C[3];
     struct {
         u8 pad0[0x70];
-        u32 pad70_25 : 7;
-        u32 mode2 : 1;
-        u32 pad70_22 : 2;
+        BT_BITFIELD_ORDER(u32 pad70_25 : 7, u32 pad70_0 : 3);
+        BT_BITFIELD_ORDER(u32 mode2 : 1, u32 active : 1);
+        BT_BITFIELD_ORDER(u32 pad70_22 : 2, u32 pad70_4 : 17);
         u32 mode1 : 1;
-        u32 pad70_4 : 17;
-        u32 active : 1;
-        u32 pad70_0 : 3;
-        u32 pad74_24 : 8;
-        u32 hasResource : 1;
-        u32 pad74_0 : 23;
+        BT_BITFIELD_ORDER(u32 pad70_4 : 17, u32 pad70_22 : 2);
+        BT_BITFIELD_ORDER(u32 active : 1, u32 mode2 : 1);
+        BT_BITFIELD_ORDER(u32 pad70_0 : 3, u32 pad70_25 : 7);
+        BT_BITFIELD_ORDER(u32 pad74_24 : 8, char : 0);
+        BT_BITFIELD_ORDER(u32 hasResource : 1, u32 pad74_0 : 23);
+        BT_BITFIELD_ORDER(u32 pad74_0 : 23, u32 hasResource : 1; u32 pad74_24 : 8);
         u8 pad78[3];
-        u8 mode : 2;
-        u8 pad7B : 6;
+        BT_BITFIELD_ORDER(u8 mode : 2, u8 pad7B : 6);
+        BT_BITFIELD_ORDER(u8 pad7B : 6, u8 mode : 2);
         u8 pad7C[0x1A];
-        u16 fade : 1;
-        u16 pad96 : 15;
+        BT_BITFIELD_ORDER(u16 fade : 1, u16 pad96 : 15);
+        BT_BITFIELD_ORDER(u16 pad96 : 15, u16 fade : 1);
     } *flags = (void *)arg0;
     s32 vertices;
 
@@ -256,12 +256,12 @@ void func_8010381C(Actor *arg0) {
     Unk80132ED0 *var_v0;
     struct {
         u8 pad0[0x70];
-        u32 pad70_4 : 28;
+        BT_BITFIELD_ORDER(u32 pad70_4 : 28, u32 pad70_0 : 3);
         u32 active : 1;
-        u32 pad70_0 : 3;
-        u32 pad74_24 : 8;
-        u32 hasResource : 1;
-        u32 pad74_0 : 23;
+        BT_BITFIELD_ORDER(u32 pad70_0 : 3, u32 pad70_4 : 28);
+        BT_BITFIELD_ORDER(u32 pad74_24 : 8, char : 0);
+        BT_BITFIELD_ORDER(u32 hasResource : 1, u32 pad74_0 : 23);
+        BT_BITFIELD_ORDER(u32 pad74_0 : 23, u32 hasResource : 1; u32 pad74_24 : 8);
     } *flags = (void *)arg0;
     u16 temp_v0;
 
@@ -346,9 +346,9 @@ u8 *func_801039E4(Unk80132ED0 *arg0) {
     Actor *actor;
     typedef struct {
         u32 pad0[2];
-        u32 pad8_2 : 30;
+        BT_BITFIELD_ORDER(u32 pad8_2 : 30, u32 pad8_0 : 1);
         u32 unk8_1 : 1;
-        u32 pad8_0 : 1;
+        BT_BITFIELD_ORDER(u32 pad8_0 : 1, u32 pad8_2 : 30);
     } HitData;
 
     sp24 = func_80103964(arg0);
@@ -400,12 +400,12 @@ int func_80103B24(u8 *arg0, s32 arg1, u8 *arg2) {
         u8 pad0[0x60];
         s16 id;
         u8 pad62[0xE];
-        u32 pad70_25 : 7;
-        u32 flag24 : 1;
-        u32 flag23 : 1;
-        u32 pad70_22 : 1;
-        u32 flag21 : 1;
-        u32 pad70_0 : 21;
+        BT_BITFIELD_ORDER(u32 pad70_25 : 7, u32 pad70_0 : 21);
+        BT_BITFIELD_ORDER(u32 flag24 : 1, u32 flag21 : 1);
+        BT_BITFIELD_ORDER(u32 flag23 : 1, u32 pad70_22 : 1);
+        BT_BITFIELD_ORDER(u32 pad70_22 : 1, u32 flag23 : 1);
+        BT_BITFIELD_ORDER(u32 flag21 : 1, u32 flag24 : 1);
+        BT_BITFIELD_ORDER(u32 pad70_0 : 21, u32 pad70_25 : 7);
     } *actor = (struct ModelActor *)arg0;
     s32 func_800B2840(s32);
     s32 func_80100A74(s16, s32);
@@ -442,12 +442,12 @@ s32 func_80103BF0(Actor *arg0, u32 arg1, u32 arg2) {
         u8 pad4[0x5C];
         s16 id;
         u8 pad62[0xE];
-        u32 pad70_25 : 7;
-        u32 flag24 : 1;
-        u32 flag23 : 1;
-        u32 pad70_22 : 1;
-        u32 flag21 : 1;
-        u32 pad70_0 : 21;
+        BT_BITFIELD_ORDER(u32 pad70_25 : 7, u32 pad70_0 : 21);
+        BT_BITFIELD_ORDER(u32 flag24 : 1, u32 flag21 : 1);
+        BT_BITFIELD_ORDER(u32 flag23 : 1, u32 pad70_22 : 1);
+        BT_BITFIELD_ORDER(u32 pad70_22 : 1, u32 flag23 : 1);
+        BT_BITFIELD_ORDER(u32 flag21 : 1, u32 flag24 : 1);
+        BT_BITFIELD_ORDER(u32 pad70_0 : 21, u32 pad70_25 : 7);
     } *actor = (struct ModelActor *)arg0;
     s32 func_800B2840(s32);
     s32 func_80100A74(s16, s32);

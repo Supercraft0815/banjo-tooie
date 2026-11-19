@@ -137,9 +137,9 @@ void *suexpression_entrypoint_7(Actor *arg0, s32 arg1, s16 arg2) {
     u32 *func_80100074(Actor *, u32, u32);
     struct ExpressionFlags {
         u8 unused;
-        u8 high : 4;
+        BT_BITFIELD_ORDER(u8 high : 4, u8 low : 2);
         u8 index : 2;
-        u8 low : 2;
+        BT_BITFIELD_ORDER(u8 low : 2, u8 high : 4);
     };
     void *data;
     s32 sp28;

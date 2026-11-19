@@ -104,12 +104,12 @@ void func_808002E4_gczoombox(void *arg0) {
         u8 pad1C8[4];
         u8 unk1CC;
         u8 pad1CD[0x17];
-        u32 flag31:1;
-        u32 padFlags27:4;
-        u32 flag26:1;
-        u32 padFlags24:2;
-        u32 flag23:1;
-        u32 padFlags0:23;
+        BT_BITFIELD_ORDER(u32 flag31:1, u32 padFlags0 : 23);
+        BT_BITFIELD_ORDER(u32 padFlags27:4, u32 flag23 : 1);
+        BT_BITFIELD_ORDER(u32 flag26:1, u32 padFlags24 : 2);
+        BT_BITFIELD_ORDER(u32 padFlags24:2, u32 flag26 : 1);
+        BT_BITFIELD_ORDER(u32 flag23:1, u32 padFlags27 : 4);
+        BT_BITFIELD_ORDER(u32 padFlags0:23, u32 flag31 : 1);
     } *this = arg0;
 
     if (this->flag26 || this->flag31) {
@@ -136,10 +136,10 @@ f32 func_80800364_gczoombox(void *arg0) {
     f32 var_f2;
     struct {
         u8 pad[0x1E4];
-        u32 padFlags:29;
-        u32 direction:1;
-        u32 sync:1;
-        u32 lastFlag:1;
+        BT_BITFIELD_ORDER(u32 padFlags:29, u32 lastFlag : 1);
+        BT_BITFIELD_ORDER(u32 direction:1, u32 sync : 1);
+        BT_BITFIELD_ORDER(u32 sync:1, u32 direction : 1);
+        BT_BITFIELD_ORDER(u32 lastFlag:1, u32 padFlags : 29);
         u8 pad1E8[4];
         f32 position;
         f32 duration;
@@ -162,10 +162,10 @@ f32 func_80800364_gczoombox(void *arg0) {
 int func_808003D8_gczoombox(void *arg0, f32 arg1, f32 arg2) {
     struct {
         u8 pad[0x1E4];
-        u32 padFlags:29;
-        u32 direction:1;
-        u32 sync:1;
-        u32 lastFlag:1;
+        BT_BITFIELD_ORDER(u32 padFlags:29, u32 lastFlag : 1);
+        BT_BITFIELD_ORDER(u32 direction:1, u32 sync : 1);
+        BT_BITFIELD_ORDER(u32 sync:1, u32 direction : 1);
+        BT_BITFIELD_ORDER(u32 lastFlag:1, u32 padFlags : 29);
         u8 pad1E8[4];
         f32 position;
         f32 duration;
@@ -184,13 +184,13 @@ void func_80800470_gczoombox(void *arg0) {
         s8 unk170;
         s8 state;
         u8 pad172[0x72];
-        u32 a:15;
-        u32 flag1:1;
-        u32 b:11;
+        BT_BITFIELD_ORDER(u32 a:15, u32 d : 2);
+        BT_BITFIELD_ORDER(u32 flag1:1, u32 flag4 : 1);
+        BT_BITFIELD_ORDER(u32 b:11, u32 c : 1);
         u32 test:1;
-        u32 c:1;
-        u32 flag4:1;
-        u32 d:2;
+        BT_BITFIELD_ORDER(u32 c:1, u32 b : 11);
+        BT_BITFIELD_ORDER(u32 flag4:1, u32 flag1 : 1);
+        BT_BITFIELD_ORDER(u32 d:2, u32 a : 15);
     } *this = arg0;
     this->state = 5;
     this->flag4 = 1;
@@ -218,19 +218,19 @@ void func_808004D0_gczoombox(u8 *arg0) {
         u8 pad172[6];
         u8 count;
         u8 pad179[0x6B];
-        u32 flag80:1;
-        u32 flag40:1;
-        u32 flag20:1;
-        u32 pad3:1;
-        u32 flag08:1;
-        u32 flag04:1;
+        BT_BITFIELD_ORDER(u32 flag80:1, u32 pad30 : 2);
+        BT_BITFIELD_ORDER(u32 flag40:1, u32 flagE704 : 1);
+        BT_BITFIELD_ORDER(u32 flag20:1, u32 pad16 : 13);
+        BT_BITFIELD_ORDER(u32 pad3:1, u32 flagE501 : 1);
+        BT_BITFIELD_ORDER(u32 flag08:1, u32 pad9 : 6);
+        BT_BITFIELD_ORDER(u32 flag04:1, u32 flagE580 : 1);
         u32 pad6:2;
-        u32 flagE580:1;
-        u32 pad9:6;
-        u32 flagE501:1;
-        u32 pad16:13;
-        u32 flagE704:1;
-        u32 pad30:2;
+        BT_BITFIELD_ORDER(u32 flagE580:1, u32 flag04 : 1);
+        BT_BITFIELD_ORDER(u32 pad9:6, u32 flag08 : 1);
+        BT_BITFIELD_ORDER(u32 flagE501:1, u32 pad3 : 1);
+        BT_BITFIELD_ORDER(u32 pad16:13, u32 flag20 : 1);
+        BT_BITFIELD_ORDER(u32 flagE704:1, u32 flag40 : 1);
+        BT_BITFIELD_ORDER(u32 pad30:2, u32 flag80 : 1);
     } *this = arg0;
     int i;
     u8 *sound;
@@ -375,9 +375,9 @@ u8 func_808008F4_gczoombox(void *arg0, s32 arg1, s32 arg2) {
 
 void func_80800964_gczoombox(void *arg0) {
     typedef struct {
-        u32 pad : 11;
+        BT_BITFIELD_ORDER(u32 pad : 11, u32 rest : 20);
         u32 enabled : 1;
-        u32 rest : 20;
+        BT_BITFIELD_ORDER(u32 rest : 20, u32 pad : 11);
     } Flags;
     int func_800D52B0(void);
     int i;
@@ -395,9 +395,9 @@ void func_80800964_gczoombox(void *arg0) {
 
 void func_808009E4_gczoombox(u8 *this, s32 arg1) {
     typedef struct {
-        u32 pad : 20;
+        BT_BITFIELD_ORDER(u32 pad : 20, u32 rest : 11);
         u32 enabled : 1;
-        u32 rest : 11;
+        BT_BITFIELD_ORDER(u32 rest : 11, u32 pad : 20);
     } Flags;
     f32 _suexpression_entrypoint_0(u8);
     f32 func_80027170(s32);
@@ -545,22 +545,22 @@ void func_80800FE0_gczoombox(u8 *arg0)
 {
   typedef struct 
   {
-    u32 unused31 : 1;
-    u32 first : 1;
-    u32 second : 1;
-    u32 unused28 : 4;
-    u32 side : 1;
-    u32 unused23 : 4;
-    u32 style : 1;
-    u32 unused18 : 1;
-    u32 centered : 1;
-    u32 unused16 : 1;
-    u32 alternate : 1;
-    u32 unused14 : 7;
-    u8 increasing : 1;
-    u32 unused6 : 5;
-    u32 synced : 1;
-    u32 unused0 : 1;
+    BT_BITFIELD_ORDER(u32 unused31 : 1, u32 unused0 : 1);
+    BT_BITFIELD_ORDER(u32 first : 1, u32 synced : 1);
+    BT_BITFIELD_ORDER(u32 second : 1, u32 unused6 : 5);
+    BT_BITFIELD_ORDER(u32 unused28 : 4, u8 increasing : 1);
+    BT_BITFIELD_ORDER(u32 side : 1, u32 unused14 : 7);
+    BT_BITFIELD_ORDER(u32 unused23 : 4, u32 alternate : 1);
+    BT_BITFIELD_ORDER(u32 style : 1, u32 unused16 : 1);
+    BT_BITFIELD_ORDER(u32 unused18 : 1, u32 centered : 1);
+    BT_BITFIELD_ORDER(u32 centered : 1, u32 unused18 : 1);
+    BT_BITFIELD_ORDER(u32 unused16 : 1, u32 style : 1);
+    BT_BITFIELD_ORDER(u32 alternate : 1, u32 unused23 : 4);
+    BT_BITFIELD_ORDER(u32 unused14 : 7, u32 side : 1);
+    BT_BITFIELD_ORDER(u8 increasing : 1, u32 unused28 : 4);
+    BT_BITFIELD_ORDER(u32 unused6 : 5, u32 second : 1);
+    BT_BITFIELD_ORDER(u32 synced : 1, u32 first : 1);
+    BT_BITFIELD_ORDER(u32 unused0 : 1, u32 unused31 : 1);
   } Flags;
   typedef struct 
   {
@@ -722,15 +722,15 @@ void func_8080156C_gczoombox(void *this, s32 arg1) {
         u8 frame_count;
         u8 sequence_count;
         u8 pad1D3[0x11];
+        BT_BITFIELD_ORDER(u32 : 8, u32  : 10);
+        BT_BITFIELD_ORDER(u32 flag23 : 1, u32 flag10 : 1);
+        BT_BITFIELD_ORDER(u32 flag22 : 1, u32  : 1);
+        BT_BITFIELD_ORDER(u32 flag21 : 1, u32 flag12 : 1);
         u32 : 8;
-        u32 flag23 : 1;
-        u32 flag22 : 1;
-        u32 flag21 : 1;
-        u32 : 8;
-        u32 flag12 : 1;
-        u32 : 1;
-        u32 flag10 : 1;
-        u32 : 10;
+        BT_BITFIELD_ORDER(u32 flag12 : 1, u32 flag21 : 1);
+        BT_BITFIELD_ORDER(u32 : 1, u32 flag22 : 1);
+        BT_BITFIELD_ORDER(u32 flag10 : 1, u32 flag23 : 1);
+        BT_BITFIELD_ORDER(u32 : 10, u32  : 8);
     } Box;
     void func_80015E80(s32, void *);
     void func_80015ECC(s32, void *);
@@ -840,18 +840,18 @@ void gczoombox_entrypoint_2(u8 *arg0, BtIntPtr arg1) {
         u8 pad[0x1AC];
         s16 alpha;
         u8 pad1[0x36];
-        u32 unused31 : 3;
-        u32 visible : 1;
-        u32 unused27 : 4;
-        u32 animated : 1;
-        u32 unused22 : 4;
-        u32 highlighted : 1;
-        u32 unused17 : 4;
-        u32 blend : 1;
-        u32 unused12 : 6;
-        u32 dim : 1;
-        u32 capped : 1;
-        u32 unused4 : 5;
+        BT_BITFIELD_ORDER(u32 unused31 : 3, u32 unused4 : 5);
+        BT_BITFIELD_ORDER(u32 visible : 1, u32 capped : 1);
+        BT_BITFIELD_ORDER(u32 unused27 : 4, u32 dim : 1);
+        BT_BITFIELD_ORDER(u32 animated : 1, u32 unused12 : 6);
+        BT_BITFIELD_ORDER(u32 unused22 : 4, u32 blend : 1);
+        BT_BITFIELD_ORDER(u32 highlighted : 1, u32 unused17 : 4);
+        BT_BITFIELD_ORDER(u32 unused17 : 4, u32 highlighted : 1);
+        BT_BITFIELD_ORDER(u32 blend : 1, u32 unused22 : 4);
+        BT_BITFIELD_ORDER(u32 unused12 : 6, u32 animated : 1);
+        BT_BITFIELD_ORDER(u32 dim : 1, u32 unused27 : 4);
+        BT_BITFIELD_ORDER(u32 capped : 1, u32 visible : 1);
+        BT_BITFIELD_ORDER(u32 unused4 : 5, u32 unused31 : 3);
     } Box;
     s32 minimum;
 
@@ -920,11 +920,11 @@ void func_80801BD0_gczoombox(u8 *box, s32 state) {
 
 s32 func_80801C0C_gczoombox(void *arg0, u8 *arg1) {
     struct Flags {
-        u32 pad0:12;
-        u32 large:1;
+        BT_BITFIELD_ORDER(u32 pad0:12, u32 pad2 : 15);
+        BT_BITFIELD_ORDER(u32 large:1, u32 alternate : 1);
         u32 pad1:3;
-        u32 alternate:1;
-        u32 pad2:15;
+        BT_BITFIELD_ORDER(u32 alternate:1, u32 large : 1);
+        BT_BITFIELD_ORDER(u32 pad2:15, u32 pad0 : 12);
     };
     int func_800D36C4(s32, s32);
     struct Box { u8 padding[0x1DC]; f32 scale; };
@@ -976,14 +976,14 @@ s32 func_80801C0C_gczoombox(void *arg0, u8 *arg1) {
 
 void gczoombox_entrypoint_4(u8 *box) {
     struct Flags {
-            u32 b31:1; u32 b30:1; u32 b29:1; u32 b28:1;
-            u32 b27:1; u32 b26:1; u32 b25:1; u32 b24:1;
-            u32 b23:1; u32 b22:1; u32 b21:1; u32 b20:1;
-            u32 b19:1; u32 b18:1; u32 b17:1; u32 b16:1;
-            u32 b15:1; u32 b14:1; u32 b13:1; u32 b12:1;
-            u32 b11:1; u32 b10:1; u32 b9:1; u32 b8:1;
-            u32 b7:1; u32 b6:1; u32 b5:1; u32 b4:1;
-            u32 b3:1; u32 b2:1; u32 b1:1; u32 b0:1;
+            BT_BITFIELD_ORDER(u32 b31:1, u32 b0 : 1); BT_BITFIELD_ORDER(u32 b30:1, u32 b1 : 1); BT_BITFIELD_ORDER(u32 b29:1, u32 b2 : 1); BT_BITFIELD_ORDER(u32 b28:1, u32 b3 : 1);
+            BT_BITFIELD_ORDER(u32 b27:1, u32 b4 : 1); BT_BITFIELD_ORDER(u32 b26:1, u32 b5 : 1); BT_BITFIELD_ORDER(u32 b25:1, u32 b6 : 1); BT_BITFIELD_ORDER(u32 b24:1, u32 b7 : 1);
+            BT_BITFIELD_ORDER(u32 b23:1, u32 b8 : 1); BT_BITFIELD_ORDER(u32 b22:1, u32 b9 : 1); BT_BITFIELD_ORDER(u32 b21:1, u32 b10 : 1); BT_BITFIELD_ORDER(u32 b20:1, u32 b11 : 1);
+            BT_BITFIELD_ORDER(u32 b19:1, u32 b12 : 1); BT_BITFIELD_ORDER(u32 b18:1, u32 b13 : 1); BT_BITFIELD_ORDER(u32 b17:1, u32 b14 : 1); BT_BITFIELD_ORDER(u32 b16:1, u32 b15 : 1);
+            BT_BITFIELD_ORDER(u32 b15:1, u32 b16 : 1); BT_BITFIELD_ORDER(u32 b14:1, u32 b17 : 1); BT_BITFIELD_ORDER(u32 b13:1, u32 b18 : 1); BT_BITFIELD_ORDER(u32 b12:1, u32 b19 : 1);
+            BT_BITFIELD_ORDER(u32 b11:1, u32 b20 : 1); BT_BITFIELD_ORDER(u32 b10:1, u32 b21 : 1); BT_BITFIELD_ORDER(u32 b9:1, u32 b22 : 1); BT_BITFIELD_ORDER(u32 b8:1, u32 b23 : 1);
+            BT_BITFIELD_ORDER(u32 b7:1, u32 b24 : 1); BT_BITFIELD_ORDER(u32 b6:1, u32 b25 : 1); BT_BITFIELD_ORDER(u32 b5:1, u32 b26 : 1); BT_BITFIELD_ORDER(u32 b4:1, u32 b27 : 1);
+            BT_BITFIELD_ORDER(u32 b3:1, u32 b28 : 1); BT_BITFIELD_ORDER(u32 b2:1, u32 b29 : 1); BT_BITFIELD_ORDER(u32 b1:1, u32 b30 : 1); BT_BITFIELD_ORDER(u32 b0:1, u32 b31 : 1);
     };
     struct Box {
         u8 text0[0x30];
@@ -1393,14 +1393,14 @@ u8 *gczoombox_entrypoint_5(s32 y, s32 portrait_id, s32 arg2, s32 arg3, BtIntPtr 
     void gczoombox_entrypoint_20(void *, f32, s32, s32, f32, s32, s32);
     void gczoombox_entrypoint_30(void *, s32);
     struct Flags {
-        u32 b31:1; u32 b30:1; u32 b29:1; u32 b28:1;
-        u32 b27:1; u32 b26:1; u32 b25:1; u32 b24:1;
-        u32 b23:1; u32 b22:1; u32 b21:1; u32 b20:1;
-        u32 b19:1; u32 b18:1; u32 b17:1; u32 b16:1;
-        u32 b15:1; u32 b14:1; u32 b13:1; u32 b12:1;
-        u32 b11:1; u32 b10:1; u32 b9:1; u32 b8:1;
-        u32 b7:1; u32 b6:1; u32 b5:1; u32 b4:1;
-        u32 b3:1; u32 b2:1; u32 b1:1; u32 b0:1;
+        BT_BITFIELD_ORDER(u32 b31:1, u32 b0 : 1); BT_BITFIELD_ORDER(u32 b30:1, u32 b1 : 1); BT_BITFIELD_ORDER(u32 b29:1, u32 b2 : 1); BT_BITFIELD_ORDER(u32 b28:1, u32 b3 : 1);
+        BT_BITFIELD_ORDER(u32 b27:1, u32 b4 : 1); BT_BITFIELD_ORDER(u32 b26:1, u32 b5 : 1); BT_BITFIELD_ORDER(u32 b25:1, u32 b6 : 1); BT_BITFIELD_ORDER(u32 b24:1, u32 b7 : 1);
+        BT_BITFIELD_ORDER(u32 b23:1, u32 b8 : 1); BT_BITFIELD_ORDER(u32 b22:1, u32 b9 : 1); BT_BITFIELD_ORDER(u32 b21:1, u32 b10 : 1); BT_BITFIELD_ORDER(u32 b20:1, u32 b11 : 1);
+        BT_BITFIELD_ORDER(u32 b19:1, u32 b12 : 1); BT_BITFIELD_ORDER(u32 b18:1, u32 b13 : 1); BT_BITFIELD_ORDER(u32 b17:1, u32 b14 : 1); BT_BITFIELD_ORDER(u32 b16:1, u32 b15 : 1);
+        BT_BITFIELD_ORDER(u32 b15:1, u32 b16 : 1); BT_BITFIELD_ORDER(u32 b14:1, u32 b17 : 1); BT_BITFIELD_ORDER(u32 b13:1, u32 b18 : 1); BT_BITFIELD_ORDER(u32 b12:1, u32 b19 : 1);
+        BT_BITFIELD_ORDER(u32 b11:1, u32 b20 : 1); BT_BITFIELD_ORDER(u32 b10:1, u32 b21 : 1); BT_BITFIELD_ORDER(u32 b9:1, u32 b22 : 1); BT_BITFIELD_ORDER(u32 b8:1, u32 b23 : 1);
+        BT_BITFIELD_ORDER(u32 b7:1, u32 b24 : 1); BT_BITFIELD_ORDER(u32 b6:1, u32 b25 : 1); BT_BITFIELD_ORDER(u32 b5:1, u32 b26 : 1); BT_BITFIELD_ORDER(u32 b4:1, u32 b27 : 1);
+        BT_BITFIELD_ORDER(u32 b3:1, u32 b28 : 1); BT_BITFIELD_ORDER(u32 b2:1, u32 b29 : 1); BT_BITFIELD_ORDER(u32 b1:1, u32 b30 : 1); BT_BITFIELD_ORDER(u32 b0:1, u32 b31 : 1);
     };
     struct Box {
         u8 pad[0x1C4];
@@ -1590,11 +1590,11 @@ void gczoombox_entrypoint_19(void *arg0) {
 void gczoombox_entrypoint_20(void *arg0, f32 arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s32 arg6) {
     struct Flags {
         u8 pad[0x1E6];
-        u8 high : 3;
-        u8 flag10 : 1;
+        BT_BITFIELD_ORDER(u8 high : 3, u8 low : 2);
+        BT_BITFIELD_ORDER(u8 flag10 : 1, u8 flag4 : 1);
         u8 middle : 1;
-        u8 flag4 : 1;
-        u8 low : 2;
+        BT_BITFIELD_ORDER(u8 flag4 : 1, u8 flag10 : 1);
+        BT_BITFIELD_ORDER(u8 low : 2, u8 high : 3);
     };
     if (arg0 != NULL) {
         (((Objzoombox_arg0 *)arg0)->unk1CC) = arg2;
@@ -1617,9 +1617,9 @@ void gczoombox_entrypoint_20(void *arg0, f32 arg1, s32 arg2, s32 arg3, f32 arg4,
 void gczoombox_entrypoint_21(void *arg0, s32 arg1) {
     struct Flags {
         u8 padding[0x1E5];
-        u8 high : 5;
+        BT_BITFIELD_ORDER(u8 high : 5, u8 low : 2);
         u8 flag : 1;
-        u8 low : 2;
+        BT_BITFIELD_ORDER(u8 low : 2, u8 high : 5);
     };
     if (arg1 != 0) {
         ((struct Flags *)arg0)->flag = 1;
@@ -1635,9 +1635,9 @@ u32 gczoombox_entrypoint_22(void *arg0) {
 void gczoombox_entrypoint_23(void *arg0, s32 arg1) {
     struct Flags {
         u8 pad[0x1E6];
-        u8 unused : 4;
+        BT_BITFIELD_ORDER(u8 unused : 4, u8 rest : 3);
         u8 flag : 1;
-        u8 rest : 3;
+        BT_BITFIELD_ORDER(u8 rest : 3, u8 unused : 4);
     };
     if (arg0 != NULL) {
         if (arg1 != 0) {
@@ -1651,7 +1651,7 @@ void gczoombox_entrypoint_23(void *arg0, s32 arg1) {
 /* extern */
 
 void gczoombox_entrypoint_24(u8 *arg0, s32 arg1) {
-    struct Flags { u8 rest : 7; u8 flag : 1; };
+    struct Flags { BT_BITFIELD_ORDER(u8 rest : 7, u8 flag : 1); BT_BITFIELD_ORDER(u8 flag : 1, u8 rest : 7); };
     void func_80802BF4_gczoombox(u8 *);
     if (arg1 != 0) {
         ((struct Flags *)(arg0 + 0x1E6))->flag = 1;
@@ -1664,7 +1664,7 @@ void gczoombox_entrypoint_24(u8 *arg0, s32 arg1) {
 /* extern */
 
 void gczoombox_entrypoint_25(u8 *arg0, s32 arg1) {
-    struct Flags { u8 rest : 7; u8 flag : 1; };
+    struct Flags { BT_BITFIELD_ORDER(u8 rest : 7, u8 flag : 1); BT_BITFIELD_ORDER(u8 flag : 1, u8 rest : 7); };
     void func_80802BF4_gczoombox(u8 *);
     if (arg1 != 0) {
         ((struct Flags *)(arg0 + 0x1E7))->flag = 1;
@@ -1675,7 +1675,7 @@ void gczoombox_entrypoint_25(u8 *arg0, s32 arg1) {
 }
 
 void gczoombox_entrypoint_26(void *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4) {
-    struct Flags { u8 flag : 1; u8 rest : 7; };
+    struct Flags { BT_BITFIELD_ORDER(u8 flag : 1, u8 rest : 7); BT_BITFIELD_ORDER(u8 rest : 7, u8 flag : 1); };
     if (arg0 != NULL) {
         if ((((Objzoombox_arg0 *)arg0)->unk1E4) & 1) {
             (((Objzoombox_arg0 *)arg0)->unk1B2) = (s16) (0x130 - arg1);
@@ -1731,20 +1731,20 @@ int gczoombox_entrypoint_32(u8 *arg0) {
         u8 unk170;
         u8 state;
         u8 pad172[0x2A];
-        u32 pad19C:8;
+        BT_BITFIELD_ORDER(u32 pad19C:8, u32 pad19E : 16);
         u32 unk19D:8;
-        u32 pad19E:16;
+        BT_BITFIELD_ORDER(u32 pad19E:16, u32 pad19C : 8);
         s32 unk1A0;
         u8 pad1A4[0x40];
-        u32 flag80:1;
-        u32 flag40:1;
-        u32 flag20:1;
-        u32 pad3:1;
+        BT_BITFIELD_ORDER(u32 flag80:1, u32 pad9 : 23);
+        BT_BITFIELD_ORDER(u32 flag40:1, u32 flagE580 : 1);
+        BT_BITFIELD_ORDER(u32 flag20:1, u32 pad6 : 2);
+        BT_BITFIELD_ORDER(u32 pad3:1, u32 flag04 : 1);
         u32 flag08:1;
-        u32 flag04:1;
-        u32 pad6:2;
-        u32 flagE580:1;
-        u32 pad9:23;
+        BT_BITFIELD_ORDER(u32 flag04:1, u32 pad3 : 1);
+        BT_BITFIELD_ORDER(u32 pad6:2, u32 flag20 : 1);
+        BT_BITFIELD_ORDER(u32 flagE580:1, u32 flag40 : 1);
+        BT_BITFIELD_ORDER(u32 pad9:23, u32 flag80 : 1);
     } *this = (void *)arg0;
 
     if (this == NULL || this->state == 0 || this->state == 0xB || this->state == 9) {
@@ -1810,7 +1810,7 @@ void gczoombox_entrypoint_35(u8 *arg0, BtIntPtr arg1, s16 arg2, s32 arg3) {
 void gczoombox_entrypoint_36(u8 *arg0, s16 arg1) {
     s32 _gczoomboxdata_entrypoint_2(s32, u8 *, u8 *);
     void func_80802C80_gczoombox(u8 *, s32);
-    struct Flags { u8 bit7:1; u8 bit6:1; u8 bit5:1; u8 rest:5; };
+    struct Flags { BT_BITFIELD_ORDER(u8 bit7:1, u8 rest : 5); BT_BITFIELD_ORDER(u8 bit6:1, u8 bit5 : 1); BT_BITFIELD_ORDER(u8 bit5:1, u8 bit6 : 1); BT_BITFIELD_ORDER(u8 rest:5, u8 bit7 : 1); };
 
     if (arg1 != *(s16 *)(arg0 + 0x172)) {
         *(s16 *)(arg0 + 0x140) = 0;
@@ -1828,7 +1828,7 @@ void gczoombox_entrypoint_36(u8 *arg0, s16 arg1) {
 
 int gczoombox_entrypoint_37(u8 *arg0, s16 arg1) {
     s32 _gczoomboxdata_entrypoint_2(s32, u8 *, u8 *);
-    struct Flags { u8 bit7:1; u8 bit6:1; u8 bit5:1; u8 rest:5; };
+    struct Flags { BT_BITFIELD_ORDER(u8 bit7:1, u8 rest : 5); BT_BITFIELD_ORDER(u8 bit6:1, u8 bit5 : 1); BT_BITFIELD_ORDER(u8 bit5:1, u8 bit6 : 1); BT_BITFIELD_ORDER(u8 rest:5, u8 bit7 : 1); };
 
     if (arg0 == NULL || arg1 == *(s16 *)(arg0 + 0x172) ||
         (*(u8 *)(arg0 + 0x171) != 6 &&
@@ -1876,12 +1876,12 @@ int gczoombox_entrypoint_39(void *arg0) {
 
 void gczoombox_entrypoint_40(u8 *arg0, s32 arg1) {
     struct ZoomFlags {
-        u32 high : 1;
-        u32 first : 1;
-        u32 second : 1;
-        u32 middle : 25;
-        u32 active : 1;
-        u32 low : 3;
+        BT_BITFIELD_ORDER(u32 high : 1, u32 low : 3);
+        BT_BITFIELD_ORDER(u32 first : 1, u32 active : 1);
+        BT_BITFIELD_ORDER(u32 second : 1, u32 middle : 25);
+        BT_BITFIELD_ORDER(u32 middle : 25, u32 second : 1);
+        BT_BITFIELD_ORDER(u32 active : 1, u32 first : 1);
+        BT_BITFIELD_ORDER(u32 low : 3, u32 high : 1);
     };
     u8 sp58[0x30];
     u8 sp28[0x30];
@@ -1937,9 +1937,9 @@ void gczoombox_entrypoint_42(void *arg0, f32 arg1) {
 void gczoombox_entrypoint_43(void *arg0, s32 arg1) {
     struct Flags {
         u8 padding[0x1E7];
-        u8 high : 1;
+        BT_BITFIELD_ORDER(u8 high : 1, u8 low : 6);
         u8 flag : 1;
-        u8 low : 6;
+        BT_BITFIELD_ORDER(u8 low : 6, u8 high : 1);
     };
     if (arg1 != 0) {
         ((struct Flags *)arg0)->flag = 1;
@@ -1951,9 +1951,9 @@ void gczoombox_entrypoint_43(void *arg0, s32 arg1) {
 void gczoombox_entrypoint_44(void *arg0, s32 arg1) {
     struct Flags {
         u8 padding[0x1E7];
-        u8 high : 2;
+        BT_BITFIELD_ORDER(u8 high : 2, u8 low : 5);
         u8 flag : 1;
-        u8 low : 5;
+        BT_BITFIELD_ORDER(u8 low : 5, u8 high : 2);
     };
     if (arg1 != 0) {
         ((struct Flags *)arg0)->flag = 1;
@@ -1965,9 +1965,9 @@ void gczoombox_entrypoint_44(void *arg0, s32 arg1) {
 void gczoombox_entrypoint_45(void *arg0, s32 arg1) {
     struct Flags {
         u8 padding[0x1E7];
-        u8 high : 3;
+        BT_BITFIELD_ORDER(u8 high : 3, u8 low : 4);
         u8 flag : 1;
-        u8 low : 4;
+        BT_BITFIELD_ORDER(u8 low : 4, u8 high : 3);
     };
     if (arg1 != 0) {
         ((struct Flags *)arg0)->flag = 1;

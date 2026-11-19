@@ -2,9 +2,9 @@
 
 s32 subaddievolume_entrypoint_0(u8 *arg0, f32 arg1[][3], s32 arg2, s32 arg3, s32 *arg4) {
     typedef struct {
-        u32 unused:19;
+        BT_BITFIELD_ORDER(u32 unused:19, u32 remaining : 12);
         u32 enabled:1;
-        u32 remaining:12;
+        BT_BITFIELD_ORDER(u32 remaining:12, u32 unused : 19);
     } Flags;
     typedef struct {
         s16 min[3];

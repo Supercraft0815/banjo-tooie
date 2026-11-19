@@ -30,9 +30,9 @@ void func_80800064_chhillbilly(Actor *arg0) {
         u8 pad0[0x74];
         u8 flags74;
         u8 pad75[3];
-        u32 pad78_3 : 29;
+        BT_BITFIELD_ORDER(u32 pad78_3 : 29, u32 pad78_0 : 2);
         u32 unk78_2 : 1;
-        u32 pad78_0 : 2;
+        BT_BITFIELD_ORDER(u32 pad78_0 : 2, u32 pad78_3 : 29);
     };
     s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
     s32 _subaddierouteDll_entrypoint_4(Actor *);
@@ -151,12 +151,12 @@ s32 func_808003C8_chhillbilly(u8 *arg0) {
     s32 _sucoaster_entrypoint_13();
     struct Flags {
         u8 pad[0x64];
-        u32 : 2;
+        BT_BITFIELD_ORDER(u32 : 2, u32  : 29);
         u32 flag : 1;
-        u32 : 29;
+        BT_BITFIELD_ORDER(u32 : 29, u32  : 2);
         u8 pad68[0xC];
-        u8 : 7;
-        u8 flag74 : 1;
+        BT_BITFIELD_ORDER(u8 : 7, u8 flag74 : 1);
+        BT_BITFIELD_ORDER(u8 flag74 : 1, u8  : 7);
     };
     if (((struct Flags *)arg0)->flag) {
         return _subaddiejoy_entrypoint_6(arg0, 0) == 1;
@@ -173,9 +173,9 @@ s32 func_8080042C_chhillbilly(u8 *arg0) {
     s32 _subaddiejoy_entrypoint_6(u8 *, s32);
     struct Flags {
         u8 pad[0x64];
-        u32 : 2;
+        BT_BITFIELD_ORDER(u32 : 2, u32  : 29);
         u32 flag : 1;
-        u32 : 29;
+        BT_BITFIELD_ORDER(u32 : 29, u32  : 2);
     };
 
     if (((struct Flags *)arg0)->flag) {
@@ -210,8 +210,8 @@ s32 func_80800540_chhillbilly(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_808006B4_chhillbilly(Actor *, s32, u32);
     void func_808009D8_chhillbilly(Actor *, s32, s32);
     extern u8 D_80800B54_chhillbilly[];
-    struct ActorFlags { u8 pad[0x78]; u32 upper : 29; u32 flag : 1; u32 lower : 2; };
-    struct Flags { u8 pad[0x2A]; u8 upper : 2; u8 enabled : 1; u8 lower : 5; };
+    struct ActorFlags { u8 pad[0x78]; BT_BITFIELD_ORDER(u32 upper : 29, u32 lower : 2); u32 flag : 1; BT_BITFIELD_ORDER(u32 lower : 2, u32 upper : 29); };
+    struct Flags { u8 pad[0x2A]; BT_BITFIELD_ORDER(u8 upper : 2, u8 lower : 5); u8 enabled : 1; BT_BITFIELD_ORDER(u8 lower : 5, u8 upper : 2); };
     struct Event { s16 value; u8 type; u8 pad; };
     s32 result;
     s32 animation;
@@ -263,7 +263,7 @@ s32 func_808006B4_chhillbilly(Actor *arg0, s32 arg1, u32 arg2) {
     void func_8010297C(void *, f32, f32, f32);
     void func_80800894_chhillbilly(Actor *, s32);
     void func_808009D8_chhillbilly(Actor *, s32, s32);
-    struct Flags { u8 pad[0x2A]; u8 upper : 2; u8 enabled : 1; u8 lower : 5; };
+    struct Flags { u8 pad[0x2A]; BT_BITFIELD_ORDER(u8 upper : 2, u8 lower : 5); u8 enabled : 1; BT_BITFIELD_ORDER(u8 lower : 5, u8 upper : 2); };
     s32 state;
 
     switch (arg2) {
@@ -334,7 +334,7 @@ void func_80800894_chhillbilly(Actor *arg0, s32 arg1) {
     s32 _sucoaster_entrypoint_6(Actor *, f32, ...);
     void func_8010A570(Actor *);
     void func_808009D8_chhillbilly(Actor *, s32, s32);
-    struct Flags { u8 pad[0x2A]; u8 upper : 2; u8 enabled : 1; u8 lower : 5; };
+    struct Flags { u8 pad[0x2A]; BT_BITFIELD_ORDER(u8 upper : 2, u8 lower : 5); u8 enabled : 1; BT_BITFIELD_ORDER(u8 lower : 5, u8 upper : 2); };
 
     switch (arg1) {
     case 12:

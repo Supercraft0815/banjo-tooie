@@ -24,20 +24,20 @@ typedef struct {
     u8 pad0[0x60];
     s16 reference;
     u8 pad62[0x12];
-    u32 pad74_26 : 6;
-    u32 renderMode : 1;
+    BT_BITFIELD_ORDER(u32 pad74_26 : 6, u32 pad74_0 : 6);
+    BT_BITFIELD_ORDER(u32 renderMode : 1, u32 reverse : 1);
     u32 pad74_7 : 18;
-    u32 reverse : 1;
-    u32 pad74_0 : 6;
-    u32 pad78_8 : 24;
-    u32 level : 2;
-    u32 pad78_2 : 4;
-    u32 color : 1;
-    u32 pad78_0 : 1;
+    BT_BITFIELD_ORDER(u32 reverse : 1, u32 renderMode : 1);
+    BT_BITFIELD_ORDER(u32 pad74_0 : 6, u32 pad74_26 : 6);
+    BT_BITFIELD_ORDER(u32 pad78_8 : 24, char : 0);
+    BT_BITFIELD_ORDER(u32 level : 2, u32 pad78_0 : 1);
+    BT_BITFIELD_ORDER(u32 pad78_2 : 4, u32 color : 1);
+    BT_BITFIELD_ORDER(u32 color : 1, u32 pad78_2 : 4);
+    BT_BITFIELD_ORDER(u32 pad78_0 : 1, u32 level : 2; u32 pad78_8 : 24);
     u8 pad7C[0x18];
-    u32 pad94 : 16;
+    BT_BITFIELD_ORDER(u32 pad94 : 16, u32 pad94_0 : 15);
     u32 special : 1;
-    u32 pad94_0 : 15;
+    BT_BITFIELD_ORDER(u32 pad94_0 : 15, u32 pad94 : 16);
     u8 red, green, blue, alpha;
 } ActorRenderState;
 
@@ -120,11 +120,11 @@ BtIntPtr func_80106C4C(Actor *arg0) {
     union {
         u32 value;
         struct {
-            u32 pad25 : 25;
-            u32 flag6 : 1;
+            BT_BITFIELD_ORDER(u32 pad25 : 25, u32 flag0 : 1);
+            BT_BITFIELD_ORDER(u32 flag6 : 1, u32 flag1 : 1);
             u32 pad4 : 4;
-            u32 flag1 : 1;
-            u32 flag0 : 1;
+            BT_BITFIELD_ORDER(u32 flag1 : 1, u32 flag6 : 1);
+            BT_BITFIELD_ORDER(u32 flag0 : 1, u32 pad25 : 25);
         } bits;
     } flags;
     f32 sp38[3];

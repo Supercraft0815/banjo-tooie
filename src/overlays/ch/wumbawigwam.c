@@ -46,14 +46,14 @@ void func_80800158_chwumbawigwam(u8 *arg0) {
 
     typedef struct {
         u8 pad0[0x64];
-        u32 : 11;
-        u32 sound1 : 1;
-        u32 sound2 : 1;
-        u32 : 19;
+        BT_BITFIELD_ORDER(u32 : 11, u32  : 19);
+        BT_BITFIELD_ORDER(u32 sound1 : 1, u32 sound2 : 1);
+        BT_BITFIELD_ORDER(u32 sound2 : 1, u32 sound1 : 1);
+        BT_BITFIELD_ORDER(u32 : 19, u32  : 11);
         u8 pad68[0xC];
-        u32 : 2;
+        BT_BITFIELD_ORDER(u32 : 2, u32  : 29);
         u32 effect : 1;
-        u32 : 29;
+        BT_BITFIELD_ORDER(u32 : 29, u32  : 2);
     } WigwamFlags;
     s32 _gcgoto_entrypoint_5(s32, s32, f32);
     s32 _subaddieaudioquick_entrypoint_2(u8 *, u8 *, s32 *);
@@ -297,8 +297,8 @@ void func_80800B9C_chwumbawigwam(u8 *arg0, s32 arg1) {
 void func_80800E04_chwumbawigwam(Actor *arg0, void *arg1) {
     typedef struct {
         u8 pad[0x7A];
-        u8 mode : 2;
-        u8 : 6;
+        BT_BITFIELD_ORDER(u8 mode : 2, u8  : 6);
+        BT_BITFIELD_ORDER(u8 : 6, u8 mode : 2);
     } WigwamRenderFlags;
     BtIntPtr func_80100094();
     s32 _subaddiefade_entrypoint_1(BtIntPtr, s32);

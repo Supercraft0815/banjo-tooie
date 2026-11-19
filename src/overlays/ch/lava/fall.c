@@ -13,11 +13,11 @@ void func_8080000C_chlavafall(void *arg0) {
 
 typedef struct {
     u8 pad0[0x1A];
-    u16 playerIndex : 11;
-    u16 pad1A : 5;
+    BT_BITFIELD_ORDER(u16 playerIndex : 11, u16 pad1A : 5);
+    BT_BITFIELD_ORDER(u16 pad1A : 5, u16 playerIndex : 11);
     u8 pad1C[8];
-    u32 flags : 10;
-    u32 pad24 : 22;
+    BT_BITFIELD_ORDER(u32 flags : 10, u32 pad24 : 22);
+    BT_BITFIELD_ORDER(u32 pad24 : 22, u32 flags : 10);
 } LavaFallContact;
 
 typedef union {

@@ -39,8 +39,8 @@ void func_80800000_chdinofamilymissing(Actor *arg0) {
 void func_80800104_chdinofamilymissing(Actor *arg0) {
     struct DinoFamilyMissingFlags {
         u8 pad0[0x74];
-        u32 pad74_4 : 28;
-        u32 unk74_0 : 4;
+        BT_BITFIELD_ORDER(u32 pad74_4 : 28, u32 unk74_0 : 4);
+        BT_BITFIELD_ORDER(u32 unk74_0 : 4, u32 pad74_4 : 28);
     };
     void _chdinofamilyfx_entrypoint_0(Actor *arg0);
     void _glcutDll_entrypoint_24(u32, u32, u32);

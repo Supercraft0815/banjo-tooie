@@ -166,8 +166,7 @@ def flags_hash(flags):
 def guest_object_tag(compiler_version=None):
     if compiler_version is None:
         compiler_version = run([CLANG, '--version'], check=True).stdout.strip()
-    bitfields = hashlib.sha1((HERE / 'bitfields.py').read_bytes()).hexdigest()
-    return flags_hash([CLANG, compiler_version, *GUEST_FLAGS, bitfields])
+    return flags_hash([CLANG, compiler_version, *GUEST_FLAGS])
 
 
 def guest_pipeline(disabled, xsym):
@@ -200,8 +199,6 @@ def up_to_date(obj, dep):
 
 
 def compile_one(src, tag):
-    import bitfields
-
     obj = OUT / 'obj' / tag / (src.replace('/', '__') + '.o')
     dep, log = obj.with_suffix('.d'), obj.with_suffix('.log')
     if up_to_date(obj, dep):
@@ -209,22 +206,7 @@ def compile_one(src, tag):
     obj.parent.mkdir(parents=True, exist_ok=True)
     extra = ['-I', str(ROOT / 'lib' / 'ultralib' / 'include' / 'PR')] if src.startswith('lib/ultralib/') else []
     cmd = [CLANG] + GUEST_FLAGS + extra
-    if src.startswith('src/'):
-        # Game code: bitfields get the N64 bit order (bitfields.py) between preprocessing and compiling.
-        pre = obj.with_suffix('.i')
-        r = run(cmd + ['-MMD', '-MF', str(dep), '-MT', str(obj), '-E', str(ROOT / src), '-o', str(pre)])
-        if r.returncode == 0:
-            text = pre.read_text()
-            if re.search(r'\w\s*:\s*\d+\s*[;,]', text):
-                def dump(t):
-                    return run([CLANG, '--target=wasm32-unknown-unknown', '-w', '-fsyntax-only', '-x', 'cpp-output',
-                                '-Xclang', '-fdump-record-layouts-complete', '-'], input=t).stdout
-                text, notes = bitfields.rewrite(text, dump, (str(ROOT / 'src'), str(ROOT / 'include')))
-                pre.write_text(text)
-                obj.with_suffix('.bitfields').write_text(''.join(n + '\n' for n in notes))
-            r = run(cmd + ['-x', 'cpp-output', '-c', str(pre), '-o', str(obj)])
-    else:
-        r = run(cmd + ['-MMD', '-MF', str(dep), '-c', str(ROOT / src), '-o', str(obj)])
+    r = run(cmd + ['-MMD', '-MF', str(dep), '-MT', str(obj), '-c', str(ROOT / src), '-o', str(obj)])
     if r.returncode != 0:
         log.write_text(r.stderr)
         if obj.exists():

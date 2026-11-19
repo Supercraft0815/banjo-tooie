@@ -2,16 +2,16 @@
 
 typedef struct { u8 pad0[0xE]; s16 unkE; } Objfx_subaddiefx_entrypoint_0_temp_v0_2; /* offsets.py genstruct: fields from raw offsets on temp_v0_2; rename once understood */ void subaddiefx_entrypoint_0(u8 *arg0, s32 arg1, u8 *arg2) {
     typedef struct {
-        s32 angle0 : 15;
+        BT_BITFIELD_ORDER(s32 angle0 : 15, u32 active : 2);
         s32 angle1 : 15;
-        u32 active : 2;
+        BT_BITFIELD_ORDER(u32 active : 2, s32 angle0 : 15);
         s16 phase0;
         s16 phase1;
     } FxState;
     typedef struct {
-        u32 unused : 19;
+        BT_BITFIELD_ORDER(u32 unused : 19, u32 rest : 12);
         u32 enabled : 1;
-        u32 rest : 12;
+        BT_BITFIELD_ORDER(u32 rest : 12, u32 unused : 19);
     } FxFlags;
     u8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *arg0, s32 arg1, f32 *arg2);
@@ -102,9 +102,9 @@ typedef struct { u8 pad0[0xE]; s16 unkE; } Objfx_subaddiefx_entrypoint_0_temp_v0
 
 void subaddiefx_entrypoint_1(BtIntPtr arg0, void *arg1) {
     typedef struct {
-        s32 angle0 : 15;
+        BT_BITFIELD_ORDER(s32 angle0 : 15, u32 active : 2);
         s32 angle1 : 15;
-        u32 active : 2;
+        BT_BITFIELD_ORDER(u32 active : 2, s32 angle0 : 15);
         s16 phase0;
         s16 phase1;
     } FxState;

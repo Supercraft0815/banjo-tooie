@@ -54,9 +54,9 @@ void func_80800018_chseaweedbaddy(Actor *arg0) {
         Actor actor;
         struct {
             u32 reserved[30];
-            u32 : 29;
+            BT_BITFIELD_ORDER(u32 : 29, u32  : 2);
             u32 inactive : 1;
-            u32 : 2;
+            BT_BITFIELD_ORDER(u32 : 2, u32  : 29);
         } flags;
     };
     f32 delta;
@@ -288,9 +288,9 @@ void func_80800710_chseaweedbaddy(u8 *arg0, s32 arg1) {
 
 void func_808007E4_chseaweedbaddy(u8 *arg0, s32 arg1) {
     struct Flags {
-        unsigned int : 29;
+        BT_BITFIELD_ORDER(unsigned int : 29, unsigned int  : 2);
         unsigned int active : 1;
-        unsigned int : 2;
+        BT_BITFIELD_ORDER(unsigned int : 2, unsigned int  : 29);
     };
     void func_80800710_chseaweedbaddy(u8 *, s32);
     if (!((struct Flags *)(arg0 + 0x78))->active &&
@@ -309,9 +309,9 @@ s32 func_8080082C_chseaweedbaddy(Actor *arg0) {
         Actor actor;
         struct {
             u32 reserved[25];
-            u32 : 2;
+            BT_BITFIELD_ORDER(u32 : 2, u32  : 29);
             u32 blocked : 1;
-            u32 : 29;
+            BT_BITFIELD_ORDER(u32 : 29, u32  : 2);
         } flags;
     };
 
@@ -347,9 +347,9 @@ s32 func_80800910_chseaweedbaddy(Actor *arg0) {
         Actor actor;
         struct {
             u32 reserved[25];
-            u32 : 2;
+            BT_BITFIELD_ORDER(u32 : 2, u32  : 29);
             u32 blocked : 1;
-            u32 : 29;
+            BT_BITFIELD_ORDER(u32 : 29, u32  : 2);
         } flags;
     };
 

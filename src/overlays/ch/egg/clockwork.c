@@ -129,9 +129,9 @@ s32 func_808003B4_cheggclockwork(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
     struct {
         u8 pad[0x38];
-        u32 unk38_0 : 12;
+        BT_BITFIELD_ORDER(u32 unk38_0 : 12, u32 unk38_13 : 19);
         u32 flag : 1;
-        u32 unk38_13 : 19;
+        BT_BITFIELD_ORDER(u32 unk38_13 : 19, u32 unk38_0 : 12);
     } *data;
 
     data = func_80100094(arg0, 0U);
@@ -176,9 +176,9 @@ Actor *cheggclockwork_entrypoint_1(f32 *arg0, BtIntPtr arg1, s32 arg2, s32 arg3,
     Actor *actor;
     struct {
         u8 pad[0x38];
-        u32 unk38_0 : 12;
+        BT_BITFIELD_ORDER(u32 unk38_0 : 12, u32 unk38_13 : 19);
         u32 flag : 1;
-        u32 unk38_13 : 19;
+        BT_BITFIELD_ORDER(u32 unk38_13 : 19, u32 unk38_0 : 12);
     } *data;
 
     _sueggmove_entrypoint_10(arg0);

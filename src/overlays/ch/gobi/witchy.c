@@ -88,7 +88,7 @@ void func_808001E8_chgobiwitchy(Actor *arg0) {
     }
     func_80105A9C(arg0, 500.0f);
     func_80102FDC(arg0, 0.25f);
-    ((struct { u8 pad; u8 : 7; u8 flag : 1; } *)&arg0->pad94)->flag = 1;
+    ((struct { u8 pad; BT_BITFIELD_ORDER(u8 : 7, u8 flag : 1); BT_BITFIELD_ORDER(u8 flag : 1, u8  : 7); } *)&arg0->pad94)->flag = 1;
 }
 
 /* extern */

@@ -206,8 +206,8 @@ void func_808000AC_chboggyfatboy(Actor *arg0) {
     struct {
         s16 position[3];
         s16 yaw;
-        u32 flag : 1;
-        u32 pad8 : 31;
+        BT_BITFIELD_ORDER(u32 flag : 1, u32 pad8 : 31);
+        BT_BITFIELD_ORDER(u32 pad8 : 31, u32 flag : 1);
         u8 item[0x14];
         f32 timer;
     } *data;
@@ -603,7 +603,7 @@ void func_80800D84_chboggyfatboy(Actor *arg0) {
 
 
 
-    struct { u8 pad[8]; u8 flag : 1; } *sp44;
+    struct { u8 pad[8]; BT_BITFIELD_ORDER(u8 flag : 1, u8 : 7; u8 flag : 1); } *sp44;
     f32 sp38[3];
     f32 sp2C[3];
 

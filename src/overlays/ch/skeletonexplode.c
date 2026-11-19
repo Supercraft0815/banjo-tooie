@@ -172,12 +172,12 @@ void func_808004DC_chskeletonexplode(Actor *arg0, Actor *arg1, u32 arg2, s32 arg
     s32 func_80103140(Actor *, u32, u16);
     struct SkeletonExplodeFlags {
         u8 pad[0x74];
-        u32 pad74_4 : 28;
-        u32 unk74_0 : 4;
-        u32 pad78_14 : 18;
-        u32 unk7A_13 : 2;
+        BT_BITFIELD_ORDER(u32 pad74_4 : 28, u32 unk74_0 : 4);
+        BT_BITFIELD_ORDER(u32 unk74_0 : 4, u32 pad74_4 : 28);
+        BT_BITFIELD_ORDER(u32 pad78_14 : 18, char : 0);
+        BT_BITFIELD_ORDER(u32 unk7A_13 : 2, u32 pad7A_8 : 9);
         u32 unk7A_11 : 3;
-        u32 pad7A_8 : 9;
+        BT_BITFIELD_ORDER(u32 pad7A_8 : 9, u32 unk7A_13 : 2; u32 pad78_14 : 18);
     };
     struct SkeletonExplodeFlags *dst = (void *)arg0;
     struct SkeletonExplodeFlags *src = (void *)arg1;
@@ -516,7 +516,7 @@ s32 func_80800E88_chskeletonexplode(Actor *arg0) {
     u8 *transforms;
     u32 i;
     struct {
-        u32 mode : 8;
+        BT_BITFIELD_ORDER(u32 mode : 8, u32 : 24; u32 mode : 8);
     } flags;
 
     data = func_80100094(arg0, 1);

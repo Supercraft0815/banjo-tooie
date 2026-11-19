@@ -273,15 +273,15 @@ position_actor:
 u8 func_80800360_chstoneballcontrol(u8 *arg0, s32 arg1, s32 arg2) {
     typedef struct {
         u8 pad0[0x65];
-        u8 flags65_hi : 3;
+        BT_BITFIELD_ORDER(u8 flags65_hi : 3, u8 flags65_lo : 4);
         u8 dialog : 1;
-        u8 flags65_lo : 4;
+        BT_BITFIELD_ORDER(u8 flags65_lo : 4, u8 flags65_hi : 3);
         u8 pad66[0xC];
-        u8 state : 6;
-        u8 flags72_lo : 2;
+        BT_BITFIELD_ORDER(u8 state : 6, u8 flags72_lo : 2);
+        BT_BITFIELD_ORDER(u8 flags72_lo : 2, u8 state : 6);
         u8 pad73[6];
-        u8 mode : 4;
-        u8 flags79_lo : 4;
+        BT_BITFIELD_ORDER(u8 mode : 4, u8 flags79_lo : 4);
+        BT_BITFIELD_ORDER(u8 flags79_lo : 4, u8 mode : 4);
     } ControlFlags;
     s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
     s32 _capod_entrypoint_17(f32);
@@ -559,9 +559,9 @@ void func_80800B4C_chstoneballcontrol(void *arg0, s32 arg1) {
     void func_80102424(Actor *, s32);
     struct StoneballFlags {
         u8 pad0[0x64];
-        u32 pad64_30 : 2;
+        BT_BITFIELD_ORDER(u32 pad64_30 : 2, u32 pad64_0 : 29);
         u32 active : 1;
-        u32 pad64_0 : 29;
+        BT_BITFIELD_ORDER(u32 pad64_0 : 29, u32 pad64_30 : 2);
     } *flags = arg0;
     Actor *actor = arg0;
 
@@ -847,11 +847,11 @@ void func_8080128C_chstoneballcontrol(Actor *arg0) {
 void func_808012E0_chstoneballcontrol(void *arg0, s32 arg1) {
     struct Fields {
         u8 pad0[0x64];
-        u8 unused : 7;
-        u8 active : 1;
+        BT_BITFIELD_ORDER(u8 unused : 7, u8 active : 1);
+        BT_BITFIELD_ORDER(u8 active : 1, u8 unused : 7);
         u8 pad1[9];
-        u16 high : 7;
-        u16 state : 9;
+        BT_BITFIELD_ORDER(u16 high : 7, u16 state : 9);
+        BT_BITFIELD_ORDER(u16 state : 9, u16 high : 7);
     };
     struct Fields *p = arg0;
     p->state = arg1;
@@ -1172,7 +1172,7 @@ void func_80801B44_chstoneballcontrol(Actor *arg0) {
 
 void func_80801BE0_chstoneballcontrol(Actor *arg0) {
     typedef struct { f32 timer; f32 unk4; f32 position[3]; f32 unk14; f32 unk18; f32 unk1C; u8 owner; } BallData;
-    typedef struct { u8 pad[0x24]; u32 id:10; u32 flags:22; } MarkerState;
+    typedef struct { u8 pad[0x24]; BT_BITFIELD_ORDER(u32 id:10, u32 flags : 22); BT_BITFIELD_ORDER(u32 flags:22, u32 id : 10); } MarkerState;
     s32 _sukickball_entrypoint_6(u8 *, BtIntPtr);
     s32 _sukickball_entrypoint_7(u8 *, BtIntPtr);
     BtIntPtr _sukickball_entrypoint_8(Actor *arg0, s32 arg1);
@@ -1525,7 +1525,7 @@ void func_8080282C_chstoneballcontrol(u8 *arg0, s32 arg1) {
 }
 
 void func_80802C30_chstoneballcontrol(s32 *arg0) {
-    typedef struct { u8 pad[0x1A]; u16 index; u8 pad1[8]; u32 id:10; u32 flags:22; } Marker;
+    typedef struct { u8 pad[0x1A]; u16 index; u8 pad1[8]; BT_BITFIELD_ORDER(u32 id:10, u32 flags : 22); BT_BITFIELD_ORDER(u32 flags:22, u32 id : 10); } Marker;
     typedef struct { Marker *marker; s32 unk4; u32 flags; } Entry;
     s32 *func_800BE3F8(void *);
     Entry *func_800E9E88(BtIntPtr);
@@ -1680,8 +1680,8 @@ void func_80803148_chstoneballcontrol(u8 *arg0) {
     typedef StoneballVector Position;
     typedef struct { f32 timer; u8 pad[0x1C]; u8 owner; } BallData;
     typedef struct { u8 pad[0x3A]; u8 count; } ParentData;
-    typedef struct { u8 pad[0x24]; u32 id:10; u32 flags:22; } MarkerState;
-    typedef struct { u8 pad[0x70]; u32 upper:16; u32 state:6; u32 flags:10; } ActorState;
+    typedef struct { u8 pad[0x24]; BT_BITFIELD_ORDER(u32 id:10, u32 flags : 22); BT_BITFIELD_ORDER(u32 flags:22, u32 id : 10); } MarkerState;
+    typedef struct { u8 pad[0x70]; BT_BITFIELD_ORDER(u32 upper:16, u32 flags : 10); u32 state:6; BT_BITFIELD_ORDER(u32 flags:10, u32 upper : 16); } ActorState;
 
 
 #ifndef BT_NATIVE
@@ -1852,8 +1852,8 @@ OSThread *chstoneballcontrol_entrypoint_4(void)
 s32 func_808036C0_chstoneballcontrol(Actor *arg0, s32 arg1, s32 arg2) {
     typedef struct {
         u8 pad[0x64];
-        u32 : 3;
-        u32 controller_index : 2;
+        BT_BITFIELD_ORDER(u32 : 3, u32 : 27);
+        BT_BITFIELD_ORDER(u32 controller_index : 2, u32 controller_index : 2; u32  : 3);
     } BallFlags;
     void *func_80100094(Actor *, u32);
     void func_800BD268();
@@ -2195,7 +2195,7 @@ void func_80804218_chstoneballcontrol(Actor *arg0) {
 
 void func_80804304_chstoneballcontrol(u8 *arg0) {
     typedef StoneballVector Vec3;
-    typedef struct { u8 high:3; u8 active:1; u8 low:4; } BallFlags;
+    typedef struct { BT_BITFIELD_ORDER(u8 high:3, u8 low : 4); u8 active:1; BT_BITFIELD_ORDER(u8 low:4, u8 high : 3); } BallFlags;
 
     s32 _sukickball_entrypoint_12(u8 *, s32);
     s32 _sukickball_entrypoint_13(f32 *, f32 *, f32);
@@ -2302,10 +2302,10 @@ void func_808046C4_chstoneballcontrol(Actor *arg0) {
     void func_800BD28C();
     typedef struct {
         u8 pad[0x64];
-        u32 enabled : 1;
-        u32 : 1;
+        BT_BITFIELD_ORDER(u32 enabled : 1, u32 : 27);
+        BT_BITFIELD_ORDER(u32 : 1, u32 controller_index : 2);
         u32 active : 1;
-        u32 controller_index : 2;
+        BT_BITFIELD_ORDER(u32 controller_index : 2, u32  : 1; u32 enabled : 1);
     } BallFlags;
     struct {
         void *handle;

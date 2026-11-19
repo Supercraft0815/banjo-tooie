@@ -179,7 +179,7 @@ void func_80100938(s32 arg0) {
     void freelist_erase(FreeList *, s32);
     void freelist_free(FreeList *);
     s32 freelist_used_count(FreeList *);
-    struct Entry { s32 data; s16 value; u8 padding[2]; u32 count : 8; u32 unused : 24; };
+    struct Entry { s32 data; s16 value; u8 padding[2]; BT_BITFIELD_ORDER(u32 count : 8, u32 unused : 24); BT_BITFIELD_ORDER(u32 unused : 24, u32 count : 8); };
     struct Entry *entry;
 
     entry = freelist_at(D_80135A64, arg0);
@@ -206,7 +206,7 @@ void func_801009C4(void **arg0, s32 arg1) {
     void **var_s1;
     void *temp_a0;
     s32 var_s0;
-    struct EntryBits { void *lists[2]; u32 index : 8; u32 used : 8; u32 padding : 16; };
+    struct EntryBits { void *lists[2]; BT_BITFIELD_ORDER(u32 index : 8, u32 padding : 16); u32 used : 8; BT_BITFIELD_ORDER(u32 padding : 16, u32 index : 8); };
 
     var_s0 = 0;
     var_s1 = arg0;
@@ -316,8 +316,8 @@ void func_80100C74(void) {
 s16 func_80100D24(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
     typedef struct VertexListView {
         u8 pad0[0x16];
-        u16 count : 15;
-        u16 flags : 1;
+        BT_BITFIELD_ORDER(u16 count : 15, u16 flags : 1);
+        BT_BITFIELD_ORDER(u16 flags : 1, u16 count : 15);
         Vtx vertices[1];
     } VertexListView;
     void *func_800B2400(VertexListView *, s32);
@@ -364,7 +364,7 @@ void func_80100F0C(s16 arg0, s32 arg1) {
     s32 func_800D674C(s32);
     void func_80100938(s32);
     extern FreeList *D_80135A60[2];
-    struct Entry { s32 value; s16 asset; s16 age; u32 index : 8; u32 rest : 24; };
+    struct Entry { s32 value; s16 asset; s16 age; BT_BITFIELD_ORDER(u32 index : 8, u32 rest : 24); BT_BITFIELD_ORDER(u32 rest : 24, u32 index : 8); };
     struct Entry *sp34;
     struct Entry *var_s0;
     s32 temp_value;

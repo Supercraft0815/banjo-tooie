@@ -289,8 +289,8 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) gspropsDll_entrypoint_3(s16 *arg0) {
     s32 func_80800524_gspropsDll(s32);
     typedef struct {
         u8 pad[0x12];
-        u8 reserved : 7;
-        u8 enabled : 1;
+        BT_BITFIELD_ORDER(u8 reserved : 7, u8 enabled : 1);
+        BT_BITFIELD_ORDER(u8 enabled : 1, u8 reserved : 7);
     } PropFlags;
     s32 sp2C;
     s32 sp20[3];
@@ -315,12 +315,12 @@ void gspropsDll_entrypoint_4(s16 *arg0) {
     void func_800EE8CC(s32 *, s16 *);
     typedef struct {
         u8 pad[8];
-        u32 reserved : 26;
-        u32 flag5 : 1;
-        u32 flag4 : 1;
-        u32 reserved2 : 2;
-        u32 flag1 : 1;
-        u32 reserved3 : 1;
+        BT_BITFIELD_ORDER(u32 reserved : 26, u32 reserved3 : 1);
+        BT_BITFIELD_ORDER(u32 flag5 : 1, u32 flag1 : 1);
+        BT_BITFIELD_ORDER(u32 flag4 : 1, u32 reserved2 : 2);
+        BT_BITFIELD_ORDER(u32 reserved2 : 2, u32 flag4 : 1);
+        BT_BITFIELD_ORDER(u32 flag1 : 1, u32 flag5 : 1);
+        BT_BITFIELD_ORDER(u32 reserved3 : 1, u32 reserved : 26);
     } PropFlags;
     s32 sp2C;
     s32 sp20[3];

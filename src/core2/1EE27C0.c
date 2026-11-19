@@ -28,11 +28,11 @@ s32 func_80108EF4(void *arg0, s32 arg1) {
 void func_80108F08(void *arg0, void *arg1, s32 arg2) {
     typedef struct {
         u8 pad0[0x1A];
-        u16 player : 11;
-        u16 pad1A : 5;
+        BT_BITFIELD_ORDER(u16 player : 11, u16 pad1A : 5);
+        BT_BITFIELD_ORDER(u16 pad1A : 5, u16 player : 11);
         u8 pad1C[8];
-        u32 id : 10;
-        u32 pad24 : 22;
+        BT_BITFIELD_ORDER(u32 id : 10, u32 pad24 : 22);
+        BT_BITFIELD_ORDER(u32 pad24 : 22, u32 id : 10);
     } HitMarker;
     typedef struct {
         u8 pad0[4];
@@ -40,15 +40,15 @@ void func_80108F08(void *arg0, void *arg1, s32 arg2) {
         u8 pad10[0x4C];
         u8 health[3];
         u8 pad5F[5];
-        u32 pad64 : 6;
+        BT_BITFIELD_ORDER(u32 pad64 : 6, u32 pad64b : 25);
         u32 bounce : 1;
-        u32 pad64b : 25;
+        BT_BITFIELD_ORDER(u32 pad64b : 25, u32 pad64 : 6);
         u32 pad68;
-        u32 pad6C : 11;
+        BT_BITFIELD_ORDER(u32 pad6C : 11, u32 pad6Cb : 9);
         u32 id : 12;
-        u32 pad6Cb : 9;
-        u32 pad70 : 31;
-        u32 flag : 1;
+        BT_BITFIELD_ORDER(u32 pad6Cb : 9, u32 pad6C : 11);
+        BT_BITFIELD_ORDER(u32 pad70 : 31, char : 0);
+        BT_BITFIELD_ORDER(u32 flag : 1, u32 flag : 1; u32 pad70 : 31);
     } HitActor;
     void *func_80106790(BtIntPtr);
     s32 _glhittableDll_entrypoint_10(s32);
@@ -332,11 +332,11 @@ s32 func_801098D0(f32 *arg0, f32 arg1, void *arg2) {
         u32 pad[3];
         struct HitTable *(*get)(void);
         u32 pad10[2];
-        u32 unused0 : 11;
-        u32 hit : 4;
+        BT_BITFIELD_ORDER(u32 unused0 : 11, u32 unused2 : 1);
+        BT_BITFIELD_ORDER(u32 hit : 4, u32 mode : 4);
         u32 unused1 : 12;
-        u32 mode : 4;
-        u32 unused2 : 1;
+        BT_BITFIELD_ORDER(u32 mode : 4, u32 hit : 4);
+        BT_BITFIELD_ORDER(u32 unused2 : 1, u32 unused0 : 11);
     };
     f32 sp4C[3];
     f32 sp48;
@@ -371,21 +371,21 @@ s32 func_801099D0(BtIntPtr arg0, f32 arg1, s32 arg2, BtIntPtr arg3, s32 arg4, Bt
         u32 pad[5];
         u16 id;
         u16 pad16;
-        u32 pad18 : 15;
+        BT_BITFIELD_ORDER(u32 pad18 : 15, u32 pad1a : 16);
         u32 active : 1;
-        u32 pad1a : 16;
+        BT_BITFIELD_ORDER(u32 pad1a : 16, u32 pad18 : 15);
         u32 pad1c[3];
-        u32 pad28 : 22;
+        BT_BITFIELD_ORDER(u32 pad28 : 22, u32 pad28b : 9);
         u32 enabled : 1;
-        u32 pad28b : 9;
+        BT_BITFIELD_ORDER(u32 pad28b : 9, u32 pad28 : 22);
     };
     struct Entry {
         struct Marker *marker;
         u32 pad4;
-        u32 pad8 : 27;
-        u32 enabled : 1;
-        u32 pad8b : 3;
-        u32 active : 1;
+        BT_BITFIELD_ORDER(u32 pad8 : 27, u32 active : 1);
+        BT_BITFIELD_ORDER(u32 enabled : 1, u32 pad8b : 3);
+        BT_BITFIELD_ORDER(u32 pad8b : 3, u32 enabled : 1);
+        BT_BITFIELD_ORDER(u32 active : 1, u32 pad8 : 27);
     };
     struct Table {
         u32 pad[4];
@@ -460,7 +460,7 @@ void func_80109C20(s32 arg0, f32 arg1, s32 arg2, s32 arg3) {
 
 /* extern */
 
-void func_80109C4C(BtIntPtr arg0, f32 arg1, s32 arg2, BtIntPtr arg3, s32 arg4, BtIntPtr arg5, s32 arg6) { struct Flags { u8 pad[0x24]; u32 value : 10; u32 rest : 22; }; s32 temp; u32 saved; s32 func_801099D0(BtIntPtr, f32, s32, BtIntPtr, s32, BtIntPtr); saved = ((struct Flags *)arg5)->value; ((struct Flags *)arg5)->value = arg6; func_801099D0(arg0, arg1, arg2, arg3, arg4, arg5); ((struct Flags *)arg5)->value = saved; }
+void func_80109C4C(BtIntPtr arg0, f32 arg1, s32 arg2, BtIntPtr arg3, s32 arg4, BtIntPtr arg5, s32 arg6) { struct Flags { u8 pad[0x24]; BT_BITFIELD_ORDER(u32 value : 10, u32 rest : 22); BT_BITFIELD_ORDER(u32 rest : 22, u32 value : 10); }; s32 temp; u32 saved; s32 func_801099D0(BtIntPtr, f32, s32, BtIntPtr, s32, BtIntPtr); saved = ((struct Flags *)arg5)->value; ((struct Flags *)arg5)->value = arg6; func_801099D0(arg0, arg1, arg2, arg3, arg4, arg5); ((struct Flags *)arg5)->value = saved; }
 
 s32 func_80109CC4(f32 *arg0, f32 arg1, void *arg2) {
     typedef struct {
@@ -469,19 +469,19 @@ s32 func_80109CC4(f32 *arg0, f32 arg1, void *arg2) {
         u16 pad16;
         u16 flags18;
         u8 pad1A[0xA];
-        u32 group : 10;
-        u32 pad24 : 22;
-        u32 pad28 : 22;
-        u32 enabled : 1;
-        u32 pad28b : 9;
+        BT_BITFIELD_ORDER(u32 group : 10, u32 pad24 : 22);
+        BT_BITFIELD_ORDER(u32 pad24 : 22, u32 group : 10);
+        BT_BITFIELD_ORDER(u32 pad28 : 22, char : 0);
+        BT_BITFIELD_ORDER(u32 enabled : 1, u32 pad28b : 9);
+        BT_BITFIELD_ORDER(u32 pad28b : 9, u32 enabled : 1; u32 pad28 : 22);
     } HitMarker;
     typedef struct {
         HitMarker *marker;
         u32 pad4;
-        u32 pad8 : 27;
-        u32 active : 1;
-        u32 pad8b : 3;
-        u32 valid : 1;
+        BT_BITFIELD_ORDER(u32 pad8 : 27, u32 valid : 1);
+        BT_BITFIELD_ORDER(u32 active : 1, u32 pad8b : 3);
+        BT_BITFIELD_ORDER(u32 pad8b : 3, u32 active : 1);
+        BT_BITFIELD_ORDER(u32 valid : 1, u32 pad8 : 27);
     } HitEntry;
     typedef struct {
         u8 pad0[0x10];
@@ -489,9 +489,9 @@ s32 func_80109CC4(f32 *arg0, f32 arg1, void *arg2) {
     } HitCallbacks;
     typedef struct {
         u8 pad0[0x70];
-        u32 pad70 : 30;
+        BT_BITFIELD_ORDER(u32 pad70 : 30, u32 pad70b : 1);
         u32 hit : 1;
-        u32 pad70b : 1;
+        BT_BITFIELD_ORDER(u32 pad70b : 1, u32 pad70 : 30);
     } HitFlags;
     s32 *func_800BE444(f32 *);
     s16 func_800CB854(s32 *);
@@ -595,8 +595,8 @@ void func_80109FB8(s32 arg0, volatile s32 arg1) {
 void func_80109FE8(void **arg0, s32 arg1) {
     struct Flags {
         u8 padding[0x1B];
-        u8 other : 7;
-        u8 enabled : 1;
+        BT_BITFIELD_ORDER(u8 other : 7, u8 enabled : 1);
+        BT_BITFIELD_ORDER(u8 enabled : 1, u8 other : 7);
     };
     if (arg1 != 0) {
         ((struct Flags *) *arg0)->enabled = 0;
@@ -610,29 +610,29 @@ Unk80132ED0 *func_8010A01C(f32 *arg0, f32 *arg1, f32 arg2, f32 arg3, s32 arg4) {
         u32 pad[5];
         u16 id;
         u16 pad16;
-        u32 pad18 : 15;
+        BT_BITFIELD_ORDER(u32 pad18 : 15, u32 pad1a : 16);
         u32 active : 1;
-        u32 pad1a : 16;
+        BT_BITFIELD_ORDER(u32 pad1a : 16, u32 pad18 : 15);
         u32 pad1c[2];
-        u32 type : 10;
-        u32 pad24 : 22;
-        u32 pad28 : 22;
-        u32 enabled : 1;
-        u32 pad28b : 9;
+        BT_BITFIELD_ORDER(u32 type : 10, u32 pad24 : 22);
+        BT_BITFIELD_ORDER(u32 pad24 : 22, u32 type : 10);
+        BT_BITFIELD_ORDER(u32 pad28 : 22, char : 0);
+        BT_BITFIELD_ORDER(u32 enabled : 1, u32 pad28b : 9);
+        BT_BITFIELD_ORDER(u32 pad28b : 9, u32 enabled : 1; u32 pad28 : 22);
     };
     struct ActorFlags {
         u32 pad[37];
-        u32 pad94 : 14;
+        BT_BITFIELD_ORDER(u32 pad94 : 14, u32 rest : 17);
         u32 enabled : 1;
-        u32 rest : 17;
+        BT_BITFIELD_ORDER(u32 rest : 17, u32 pad94 : 14);
     };
     struct Entry {
         struct Marker *marker;
         u32 pad4;
-        u32 pad8 : 27;
-        u32 enabled : 1;
-        u32 pad8b : 3;
-        u32 active : 1;
+        BT_BITFIELD_ORDER(u32 pad8 : 27, u32 active : 1);
+        BT_BITFIELD_ORDER(u32 enabled : 1, u32 pad8b : 3);
+        BT_BITFIELD_ORDER(u32 pad8b : 3, u32 enabled : 1);
+        BT_BITFIELD_ORDER(u32 active : 1, u32 pad8 : 27);
     };
     s32 *func_800BE444(f32 *);
     s16 func_800CB854(s32 *);
@@ -790,7 +790,7 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(u32) func_8010A590(Actor *arg0)
 
 u32 func_8010A5B0(Actor *arg0, s32 arg1) {
     u32 func_8010A610(void **);
-    struct Flags { u8 pad[0x2A]; u8 upper : 6; u8 enabled : 1; u8 lower : 1; };
+    struct Flags { u8 pad[0x2A]; BT_BITFIELD_ORDER(u8 upper : 6, u8 lower : 1); u8 enabled : 1; BT_BITFIELD_ORDER(u8 lower : 1, u8 upper : 6); };
     u32 result;
 
     result = func_8010A610((void **)arg0);
@@ -816,9 +816,9 @@ void func_8010A624(Actor *arg0) {
 void func_8010A63C(Actor *arg0) {
     struct Flags {
         u8 pad[8];
-        u32 upper : 28;
+        BT_BITFIELD_ORDER(u32 upper : 28, u32 lower : 3);
         u32 enabled : 1;
-        u32 lower : 3;
+        BT_BITFIELD_ORDER(u32 lower : 3, u32 upper : 28);
     } *flags;
 
     flags = (struct Flags *)arg0->unk0->unk0;
@@ -828,9 +828,9 @@ void func_8010A63C(Actor *arg0) {
 u32 func_8010A654(void ***arg0, s32 arg1) {
     struct Flags {
         u8 pad[8];
-        u32 upper : 28;
+        BT_BITFIELD_ORDER(u32 upper : 28, u32 lower : 3);
         u32 enabled : 1;
-        u32 lower : 3;
+        BT_BITFIELD_ORDER(u32 lower : 3, u32 upper : 28);
     } *ptr = **arg0;
     u32 result = ptr->enabled;
 

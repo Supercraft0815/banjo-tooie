@@ -51,7 +51,7 @@ void func_80800088_chmolehill(u8 *arg0) {
 typedef struct { s32 values[5]; } AnimationTimes;
 void func_80800160_chmolehill(u8 *arg0) {
 
-    typedef struct { u8 high : 4; u8 enabled : 1; u8 low : 3; } ActorFlags;
+    typedef struct { BT_BITFIELD_ORDER(u8 high : 4, u8 low : 3); u8 enabled : 1; BT_BITFIELD_ORDER(u8 low : 3, u8 high : 4); } ActorFlags;
     void _subaddieaudioquick_entrypoint_2(Actor *arg0, f32 arg1[3], void *arg2);
     s32 anctrl_getPlaybackType(BtIntPtr);
     void chmolehill_entrypoint_1(Actor *, s32);

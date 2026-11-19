@@ -121,9 +121,9 @@ void glsplinefuncs_entrypoint_1(s32 arg0, SplineSpawnWord arg1, s32 arg2) {
         f32 rotation[3];
         f32 unk50;
         u8 unused54[0x20];
-        u32 unused74:27;
+        BT_BITFIELD_ORDER(u32 unused74:27, u32 unused77 : 4);
         u32 splineFlag:1;
-        u32 unused77:4;
+        BT_BITFIELD_ORDER(u32 unused77:4, u32 unused74 : 27);
     } SplineActor;
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     void func_800D87D4(s32 *, s32);

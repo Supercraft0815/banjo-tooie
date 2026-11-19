@@ -151,9 +151,9 @@ s32 func_8080057C_chfactorylight(Actor *arg0, s32 arg1, s32 arg2) {
     void func_808008E4_chfactorylight(Actor *);
     struct LightActorFlags {
         u8 pad[0x7C];
-        u32 upper : 16;
+        BT_BITFIELD_ORDER(u32 upper : 16, u32 lower : 15);
         u32 initialized : 1;
-        u32 lower : 15;
+        BT_BITFIELD_ORDER(u32 lower : 15, u32 upper : 16);
     };
     void *data;
     s32 i;
@@ -223,8 +223,8 @@ void func_80800778_chfactorylight(void *arg0, s32 *arg1)
   struct LightSelector
   {
     u8 pad[0x6C];
-    u32 unused : 23;
-    u32 index : 9;
+    BT_BITFIELD_ORDER(u32 unused : 23, u32 index : 9);
+    BT_BITFIELD_ORDER(u32 index : 9, u32 unused : 23);
   };
   u32 var_v0;
   struct ColorChannels

@@ -17,16 +17,16 @@ void func_8080000C_sucoasterhit(Unk80132ED0 *arg0, Unk80132ED0 *arg1) {
     Actor *func_80106790(Unk80132ED0 *);
     struct ActorFlags {
         u8 padding[0x64];
-        u32 upper64 : 2;
+        BT_BITFIELD_ORDER(u32 upper64 : 2, u32 lower64 : 29);
         u32 flag64 : 1;
-        u32 lower64 : 29;
+        BT_BITFIELD_ORDER(u32 lower64 : 29, u32 upper64 : 2);
         u8 padding68[0xC];
-        u32 upper74 : 7;
+        BT_BITFIELD_ORDER(u32 upper74 : 7, u32 lower74 : 24);
         u32 flag74 : 1;
-        u32 lower74 : 24;
-        u32 upper78 : 29;
-        u32 flag78 : 1;
-        u32 lower78 : 2;
+        BT_BITFIELD_ORDER(u32 lower74 : 24, u32 upper74 : 7);
+        BT_BITFIELD_ORDER(u32 upper78 : 29, char : 0);
+        BT_BITFIELD_ORDER(u32 flag78 : 1, u32 lower78 : 2);
+        BT_BITFIELD_ORDER(u32 lower78 : 2, u32 flag78 : 1; u32 upper78 : 29);
     };
     struct Data {
         u8 padding[0x16];
@@ -56,15 +56,15 @@ void func_80800114_sucoasterhit(Unk80132ED0 *arg0, Unk80132ED0 *arg1) {
     Actor *func_80106790(Unk80132ED0 *);
     struct ActorFlags {
         u8 padding[0x78];
-        u32 upper : 29;
+        BT_BITFIELD_ORDER(u32 upper : 29, u32 lower : 2);
         u32 flag : 1;
-        u32 lower : 2;
+        BT_BITFIELD_ORDER(u32 lower : 2, u32 upper : 29);
     };
     struct DataFlags {
         u8 padding[0x18];
-        u8 upper : 4;
+        BT_BITFIELD_ORDER(u8 upper : 4, u8 lower : 3);
         u8 flag : 1;
-        u8 lower : 3;
+        BT_BITFIELD_ORDER(u8 lower : 3, u8 upper : 4);
     };
     Actor *actor;
     struct DataFlags *data;
@@ -90,9 +90,9 @@ void func_808001C8_sucoasterhit(Unk80132ED0 *arg0, BtIntPtr arg1) {
     s32 _sucoaster_entrypoint_9(void *, s32, s32);
     struct Flags {
         u8 padding[0x78];
-        u32 upper : 29;
+        BT_BITFIELD_ORDER(u32 upper : 29, u32 lower : 2);
         u32 flag : 1;
-        u32 lower : 2;
+        BT_BITFIELD_ORDER(u32 lower : 2, u32 upper : 29);
     };
     Actor *temp_v0;
 
@@ -108,8 +108,8 @@ s32 func_80800208_sucoasterhit(BtIntPtr arg0, void *arg1, BtIntPtr arg2, s32 *ar
     s32 func_800F0E28(s32, s32, ...);
     struct HitData {
         u8 padding[0x24];
-        u32 id : 10;
-        u32 lower : 22;
+        BT_BITFIELD_ORDER(u32 id : 10, u32 lower : 22);
+        BT_BITFIELD_ORDER(u32 lower : 22, u32 id : 10);
     };
     s32 temp_a1;
     s32 temp_v1;
@@ -178,21 +178,21 @@ void func_80800294_sucoasterhit(Unk80132ED0 *arg0, BtIntPtr arg1, s32 arg2) {
     extern s16 D_80800CC4_sucoasterhit[11];
     struct MarkerFields {
         u8 padding[0x18];
-        u32 upper18 : 11;
-        u32 mode : 4;
+        BT_BITFIELD_ORDER(u32 upper18 : 11, u32 lower18 : 5);
+        BT_BITFIELD_ORDER(u32 mode : 4, u32 player : 11);
         u32 bit16 : 1;
-        u32 player : 11;
-        u32 lower18 : 5;
+        BT_BITFIELD_ORDER(u32 player : 11, u32 mode : 4);
+        BT_BITFIELD_ORDER(u32 lower18 : 5, u32 upper18 : 11);
         u32 unk1C;
         u32 unk20;
-        u32 id : 10;
-        u32 lower24 : 22;
+        BT_BITFIELD_ORDER(u32 id : 10, u32 lower24 : 22);
+        BT_BITFIELD_ORDER(u32 lower24 : 22, u32 id : 10);
     };
     struct DataFlags {
         u8 padding[0x19];
-        u8 upper : 2;
+        BT_BITFIELD_ORDER(u8 upper : 2, u8 lower : 5);
         u8 flag : 1;
-        u8 lower : 5;
+        BT_BITFIELD_ORDER(u8 lower : 5, u8 upper : 2);
     };
     struct HitVitals { u8 pad[0x5C]; u8 health[3]; };
     Actor *sp9C;
@@ -379,9 +379,9 @@ s32 sucoasterhit_entrypoint_1(Actor *arg0) {
     s32 func_80800AEC_sucoasterhit(Actor *, void *);
     struct HitFlags {
         u8 padding[0x18];
-        u32 upper : 4;
+        BT_BITFIELD_ORDER(u32 upper : 4, u32 lower : 27);
         u32 hit : 1;
-        u32 lower : 27;
+        BT_BITFIELD_ORDER(u32 lower : 27, u32 upper : 4);
     };
     Actor *data;
     s32 active;

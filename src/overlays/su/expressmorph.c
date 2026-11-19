@@ -141,8 +141,8 @@ void suexpressmorph_entrypoint_1(u8 *arg0) {
 void suexpressmorph_entrypoint_2(u8 *arg0, void *arg1) {
     struct MorphFlags {
         u8 pad[0x17];
-        u8 other : 7;
-        u8 active : 1;
+        BT_BITFIELD_ORDER(u8 other : 7, u8 active : 1);
+        BT_BITFIELD_ORDER(u8 active : 1, u8 other : 7);
     };
     s32 pad0;
     u8 *sp38;

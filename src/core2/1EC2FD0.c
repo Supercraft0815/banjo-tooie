@@ -147,18 +147,18 @@ NativeMarkerProp *func_800E98C0(NativeWorldCell *cube) {
 void *func_800E98C0(s32 arg0) {
     typedef struct {
         u8 pad0[3];
-        u8 reserved0 : 6;
+        BT_BITFIELD_ORDER(u8 reserved0 : 6, u8 reserved1 : 1);
         u8 isMirrored : 1;
-        u8 reserved1 : 1;
+        BT_BITFIELD_ORDER(u8 reserved1 : 1, u8 reserved0 : 6);
         u8 pad4[6];
-        u16 frame : 5;
-        u16 random : 5;
-        u16 reserved2 : 1;
-        u16 flag10 : 1;
-        u16 flag8 : 1;
-        u16 flag4 : 1;
-        u16 isModelProp : 1;
-        u16 isActorProp : 1;
+        BT_BITFIELD_ORDER(u16 frame : 5, u16 isActorProp : 1);
+        BT_BITFIELD_ORDER(u16 random : 5, u16 isModelProp : 1);
+        BT_BITFIELD_ORDER(u16 reserved2 : 1, u16 flag4 : 1);
+        BT_BITFIELD_ORDER(u16 flag10 : 1, u16 flag8 : 1);
+        BT_BITFIELD_ORDER(u16 flag8 : 1, u16 flag10 : 1);
+        BT_BITFIELD_ORDER(u16 flag4 : 1, u16 reserved2 : 1);
+        BT_BITFIELD_ORDER(u16 isModelProp : 1, u16 random : 5);
+        BT_BITFIELD_ORDER(u16 isActorProp : 1, u16 frame : 5);
     } SpriteProp;
     f32 func_800DC0C0(void);
     void *func_800E9804();
@@ -187,12 +187,12 @@ NativeMarkerProp *func_800E99E0(NativeWorldCell *cube) {
 void *func_800E99E0(BT_PARAM_OR_VOID(s16 *bt_a0)) {
     typedef struct {
         u8 pad[0xB];
-        u8 reserved : 3;
-        u8 flag10 : 1;
-        u8 flag8 : 1;
-        u8 flag4 : 1;
-        u8 reserved2 : 1;
-        u8 flag1 : 1;
+        BT_BITFIELD_ORDER(u8 reserved : 3, u8 flag1 : 1);
+        BT_BITFIELD_ORDER(u8 flag10 : 1, u8 reserved2 : 1);
+        BT_BITFIELD_ORDER(u8 flag8 : 1, u8 flag4 : 1);
+        BT_BITFIELD_ORDER(u8 flag4 : 1, u8 flag8 : 1);
+        BT_BITFIELD_ORDER(u8 reserved2 : 1, u8 flag10 : 1);
+        BT_BITFIELD_ORDER(u8 flag1 : 1, u8 reserved : 3);
     } Flags;
     void *func_800E9804();
     Flags *p;
@@ -218,23 +218,23 @@ Prop *func_800E9A24(NativeWorldCell *cube) {
 void *func_800E9A24(s32 arg0) {
     typedef struct {
     u8 pad[6];
-    u16 value : 9;
+    BT_BITFIELD_ORDER(u16 value : 9, u8 flag7 : 1);
     u8 flags7 : 6;
-    u8 flag7 : 1;
+    BT_BITFIELD_ORDER(u8 flag7 : 1, u16 value : 9);
     u16 value8;
     u8 valueA;
     u8 valueB;
     u32 valueC;
     u8 pad10[2];
-    u16 reserved12 : 6;
-    u16 flag12b : 1;
-    u16 flag12a : 1;
-    u16 flag13a : 1;
+    BT_BITFIELD_ORDER(u16 reserved12 : 6, u16 flag13f : 2);
+    BT_BITFIELD_ORDER(u16 flag12b : 1, u16 flag13e : 2);
+    BT_BITFIELD_ORDER(u16 flag12a : 1, u16 flag13d : 1);
+    BT_BITFIELD_ORDER(u16 flag13a : 1, u16 flag13c : 1);
     u16 flag13b : 1;
-    u16 flag13c : 1;
-    u16 flag13d : 1;
-    u16 flag13e : 2;
-    u16 flag13f : 2;
+    BT_BITFIELD_ORDER(u16 flag13c : 1, u16 flag13a : 1);
+    BT_BITFIELD_ORDER(u16 flag13d : 1, u16 flag12a : 1);
+    BT_BITFIELD_ORDER(u16 flag13e : 2, u16 flag12b : 1);
+    BT_BITFIELD_ORDER(u16 flag13f : 2, u16 reserved12 : 6);
    
     } Data;
     Data *p = func_800E9898(arg0);
@@ -279,9 +279,9 @@ u32 func_800E9AC0(s16 *arg0, void *arg1) {
     extern s32 D_80132DB4;
     typedef struct {
         s32 words[2];
-        u32 unused : 30;
+        BT_BITFIELD_ORDER(u32 unused : 30, u32 last : 1);
         u32 flag : 1;
-        u32 last : 1;
+        BT_BITFIELD_ORDER(u32 last : 1, u32 unused : 30);
     } Entry;
     u32 sp24;
     s32 index;

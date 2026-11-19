@@ -150,8 +150,8 @@ void func_808003B4_chphlegm(Actor *arg0) {
         Actor actor;
         struct {
             u32 prefix[25];
-            u32 unk64_31 : 1;
-            u32 unk64_30 : 1;
+            BT_BITFIELD_ORDER(u32 unk64_31 : 1, u32 : 30);
+            BT_BITFIELD_ORDER(u32 unk64_30 : 1, u32 unk64_30 : 1; u32 unk64_31 : 1);
         } flags;
     } PhlegmActor;
     f32 sp8C[3];

@@ -44,9 +44,9 @@ void func_80106EE0(void *arg0) {
     extern s32 D_80136F00;
     struct {
         u8 pad[0x94];
-        u32 unk94_0 : 2;
+        BT_BITFIELD_ORDER(u32 unk94_0 : 2, u32 unk94_12 : 20);
         u32 index : 10;
-        u32 unk94_12 : 20;
+        BT_BITFIELD_ORDER(u32 unk94_12 : 20, u32 unk94_0 : 2);
     } *entry = arg0;
 
     if (entry->index != 0) {
@@ -62,9 +62,9 @@ void *func_80106F30(void *arg0) {
     void * freelist_at(void *list, s32 index);
     struct {
         u8 pad[0x94];
-        u32 unk94_0 : 2;
+        BT_BITFIELD_ORDER(u32 unk94_0 : 2, u32 unk94_12 : 20);
         u32 index : 10;
-        u32 unk94_12 : 20;
+        BT_BITFIELD_ORDER(u32 unk94_12 : 20, u32 unk94_0 : 2);
     } *entry = arg0;
     if (entry->index == 0) {
         return NULL;
@@ -177,9 +177,9 @@ void func_80107200(void *arg0) {
         f32 timer;
         s16 position[3];
         s16 state;
-        u32 flags : 12;
+        BT_BITFIELD_ORDER(u32 flags : 12, u32 pad : 8);
         u32 value : 12;
-        u32 pad : 8;
+        BT_BITFIELD_ORDER(u32 pad : 8, u32 flags : 12);
         s16 unk10;
         s16 rotation;
     } *entry;
@@ -189,10 +189,10 @@ void func_80107200(void *arg0) {
         u8 pad10[0x34];
         f32 rotation[3];
         u8 pad50[0x20];
-        u32 flags : 7;
-        u32 pad70 : 15;
-        u32 value : 6;
-        u32 pad73 : 4;
+        BT_BITFIELD_ORDER(u32 flags : 7, u32 pad73 : 4);
+        BT_BITFIELD_ORDER(u32 pad70 : 15, u32 value : 6);
+        BT_BITFIELD_ORDER(u32 value : 6, u32 pad70 : 15);
+        BT_BITFIELD_ORDER(u32 pad73 : 4, u32 flags : 7);
     } *actor = arg0;
 
     entry = func_80106F30(arg0);
@@ -233,9 +233,9 @@ s32 func_801072E4(void *arg0) {
 BtIntPtr func_80107320(Actor *arg0) {
     struct IndexField {
         u8 pad[0x94];
-        u16 upper : 2;
+        BT_BITFIELD_ORDER(u16 upper : 2, u16 lower : 4);
         u16 index : 10;
-        u16 lower : 4;
+        BT_BITFIELD_ORDER(u16 lower : 4, u16 upper : 2);
     };
     extern s32 D_80136F00;
     s32 sp1C;
@@ -283,28 +283,28 @@ void func_80107448(void *arg0, f32 *arg1) {
         u8 pad0[0x5C];
         u8 colors[3];
         u8 pad5F[5];
-        u32 flag31 : 1;
-        u32 flag30 : 1;
-        u32 pad64_25 : 5;
+        BT_BITFIELD_ORDER(u32 flag31 : 1, u32 pad64_0 : 16);
+        BT_BITFIELD_ORDER(u32 flag30 : 1, u32 flag16 : 1);
+        BT_BITFIELD_ORDER(u32 pad64_25 : 5, u32 pad64_17 : 7);
         u32 flag24 : 1;
-        u32 pad64_17 : 7;
-        u32 flag16 : 1;
-        u32 pad64_0 : 16;
+        BT_BITFIELD_ORDER(u32 pad64_17 : 7, u32 pad64_25 : 5);
+        BT_BITFIELD_ORDER(u32 flag16 : 1, u32 flag30 : 1);
+        BT_BITFIELD_ORDER(u32 pad64_0 : 16, u32 flag31 : 1);
         u8 pad68[8];
-        u32 pad70_17 : 15;
+        BT_BITFIELD_ORDER(u32 pad70_17 : 15, u32 pad70_0 : 16);
         u32 flag70_16 : 1;
-        u32 pad70_0 : 16;
-        u32 pad74_25 : 7;
-        u32 flag74_24 : 1;
-        u32 pad74_21 : 3;
-        u32 flag74_20 : 1;
-        u32 pad74_0 : 20;
+        BT_BITFIELD_ORDER(u32 pad70_0 : 16, u32 pad70_17 : 15);
+        BT_BITFIELD_ORDER(u32 pad74_25 : 7, char : 0);
+        BT_BITFIELD_ORDER(u32 flag74_24 : 1, u32 pad74_0 : 20);
+        BT_BITFIELD_ORDER(u32 pad74_21 : 3, u32 flag74_20 : 1);
+        BT_BITFIELD_ORDER(u32 flag74_20 : 1, u32 pad74_21 : 3);
+        BT_BITFIELD_ORDER(u32 pad74_0 : 20, u32 flag74_24 : 1; u32 pad74_25 : 7);
         u8 pad78;
         u8 flags79;
         u8 pad7A[2];
-        u32 pad7C_13 : 19;
+        BT_BITFIELD_ORDER(u32 pad7C_13 : 19, u32 pad7C_0 : 12);
         u32 flag7C_12 : 1;
-        u32 pad7C_0 : 12;
+        BT_BITFIELD_ORDER(u32 pad7C_0 : 12, u32 pad7C_13 : 19);
     } *actor = arg0;
     s32 i;
 
@@ -336,18 +336,18 @@ void func_8010754C(void *arg0, void *arg1) {
         u8 pad10[0x38];
         f32 rotation;
         u8 pad4C[0x24];
-        u32 flags : 7;
-        u32 pad70 : 15;
-        u32 index : 6;
-        u32 pad73 : 4;
+        BT_BITFIELD_ORDER(u32 flags : 7, u32 pad73 : 4);
+        BT_BITFIELD_ORDER(u32 pad70 : 15, u32 index : 6);
+        BT_BITFIELD_ORDER(u32 index : 6, u32 pad70 : 15);
+        BT_BITFIELD_ORDER(u32 pad73 : 4, u32 flags : 7);
     };
     struct EntryFields {
         u8 pad0[4];
         s16 position[3];
         u16 padA;
-        u32 flags : 12;
+        BT_BITFIELD_ORDER(u32 flags : 12, u32 padF : 8);
         u32 index : 12;
-        u32 padF : 8;
+        BT_BITFIELD_ORDER(u32 padF : 8, u32 flags : 12);
         s16 pad10;
         s16 rotation;
     };
@@ -366,16 +366,16 @@ void func_8010754C(void *arg0, void *arg1) {
 void func_801075E4(Actor *arg0, void *arg1) {
     struct ActorFlags {
         u8 pad0[0x64];
-        u32 flag31 : 1;
+        BT_BITFIELD_ORDER(u32 flag31 : 1, u32 pad29 : 30);
         u32 flag30 : 1;
-        u32 pad29 : 30;
+        BT_BITFIELD_ORDER(u32 pad29 : 30, u32 flag31 : 1);
         u8 pad68[8];
-        u32 pad70 : 15;
+        BT_BITFIELD_ORDER(u32 pad70 : 15, u32 pad71 : 16);
         u32 flag16 : 1;
-        u32 pad71 : 16;
-        u32 pad74 : 11;
-        u32 flag20 : 1;
-        u32 pad75 : 20;
+        BT_BITFIELD_ORDER(u32 pad71 : 16, u32 pad70 : 15);
+        BT_BITFIELD_ORDER(u32 pad74 : 11, char : 0);
+        BT_BITFIELD_ORDER(u32 flag20 : 1, u32 pad75 : 20);
+        BT_BITFIELD_ORDER(u32 pad75 : 20, u32 flag20 : 1; u32 pad74 : 11);
     };
     struct Settings {
         u8 pad0[0x1C];

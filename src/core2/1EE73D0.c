@@ -5,8 +5,8 @@
 
 typedef struct {
     f32 duration;
-    u16 unk4_2 : 14;
-    u16 type : 2;
+    BT_BITFIELD_ORDER(u16 unk4_2 : 14, u16 type : 2);
+    BT_BITFIELD_ORDER(u16 type : 2, u16 unk4_2 : 14);
     u16 unk6;
 } AnimationEntry;
 
@@ -107,9 +107,9 @@ void func_8010DCB4(s32 arg0) {
 void func_8010DD20(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
     typedef struct {
         u8 pad0[0x74];
-        u32 pad74_28 : 4;
+        BT_BITFIELD_ORDER(u32 pad74_28 : 4, u32 pad74_0 : 27);
         u32 render : 1;
-        u32 pad74_0 : 27;
+        BT_BITFIELD_ORDER(u32 pad74_0 : 27, u32 pad74_28 : 4);
     } RenderActor;
     typedef struct {
         s16 unk0, unk2;

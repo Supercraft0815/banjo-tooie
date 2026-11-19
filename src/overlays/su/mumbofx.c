@@ -109,8 +109,8 @@ void sumumbofx_entrypoint_3(u8 *arg0, f32 arg1)
 
 void sumumbofx_entrypoint_4(u8 *arg0) {
     struct FlagByte {
-        u8 unused : 7;
-        u8 flag : 1;
+        BT_BITFIELD_ORDER(u8 unused : 7, u8 flag : 1);
+        BT_BITFIELD_ORDER(u8 flag : 1, u8 unused : 7);
     };
     s32 var_v1;
     u8 *var_v0;
@@ -477,7 +477,7 @@ void sumumbofx_entrypoint_14(u8 *arg0) {
     void func_800F5A00(BtIntPtr, f32 *);
     void func_800FCAE0(u32, u32, u32);
     f32 sumumbofx_entrypoint_26(void *);
-    struct Flags { u8 pad[0x60]; unsigned char mode:7; unsigned char changed:1; };
+    struct Flags { u8 pad[0x60]; BT_BITFIELD_ORDER(unsigned char mode:7, unsigned char changed : 1); BT_BITFIELD_ORDER(unsigned char changed:1, unsigned char mode : 7); };
     f32 value;
     f32 distance;
     f32 minimum;

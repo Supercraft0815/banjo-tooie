@@ -49,11 +49,11 @@ void subaddiefade_entrypoint_7(Actor *arg0) {
     s32 func_80107070(Actor *, s32);
     struct FadeFlags {
         u8 padding[0x74];
-        u32 upper : 27;
+        BT_BITFIELD_ORDER(u32 upper : 27, u32 lower : 4);
         u32 timed : 1;
-        u32 lower : 4;
-        u16 upper78 : 14;
-        u16 state : 2;
+        BT_BITFIELD_ORDER(u32 lower : 4, u32 upper : 27);
+        BT_BITFIELD_ORDER(u16 upper78 : 14, char : 0);
+        BT_BITFIELD_ORDER(u16 state : 2, u16 state : 2; u16 upper78 : 14);
     };
     f32 dt;
     s32 alpha;
@@ -153,9 +153,9 @@ void subaddiefade_entrypoint_11(u8 *arg0, u8 *arg1) {
     void func_80800450_subaddiefade();
     struct Flags {
         u8 padding[0x70];
-        u32 upper : 29;
+        BT_BITFIELD_ORDER(u32 upper : 29, u32 lower : 2);
         u32 flag : 1;
-        u32 lower : 2;
+        BT_BITFIELD_ORDER(u32 lower : 2, u32 upper : 29);
     };
     s32 sp1C[3];
 
@@ -185,9 +185,9 @@ void subaddiefade_entrypoint_13(u8 *arg0, u8 *arg1) {
     void func_80800450_subaddiefade();
     struct Flags {
         u8 padding[0x70];
-        u32 upper : 29;
+        BT_BITFIELD_ORDER(u32 upper : 29, u32 lower : 2);
         u32 flag : 1;
-        u32 lower : 2;
+        BT_BITFIELD_ORDER(u32 lower : 2, u32 upper : 29);
     };
     s32 sp1C[3];
 

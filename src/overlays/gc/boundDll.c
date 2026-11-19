@@ -73,10 +73,10 @@ void func_808001A8_gcboundDll(BtIntPtr arg0, BtIntPtr arg1, s16 *arg2, s32 arg3,
         s16 value;
         s16 radius;
         u8 pad10[4];
-        u16 index : 11;
-        u16 flag7 : 1;
-        u16 kind : 3;
-        u16 flag6 : 1;
+        BT_BITFIELD_ORDER(u16 index : 11, u16 flag6 : 1);
+        BT_BITFIELD_ORDER(u16 flag7 : 1, u16 kind : 3);
+        BT_BITFIELD_ORDER(u16 kind : 3, u16 flag7 : 1);
+        BT_BITFIELD_ORDER(u16 flag6 : 1, u16 index : 11);
     } *entry;
 
     entry = (struct BoundData *)func_800B3CDC((s32 *)(arg0 + 0xE0), arg1 + 0x18);
@@ -95,9 +95,9 @@ void *func_80800280_gcboundDll(s32 *arg0, void **arg1, s32 arg2) {
     void func_800B4290(void *);
     void *heap_realloc(void *, BtIntPtr);
     struct BoundEntry {
-        u32 index : 23;
+        BT_BITFIELD_ORDER(u32 index : 23, u8 count : 8);
         u32 active : 1;
-        u8 count : 8;
+        BT_BITFIELD_ORDER(u8 count : 8, u32 index : 23);
         u8 data[16];
         s32 value;
         u8 tail[4];
@@ -229,9 +229,9 @@ void gcboundDll_entrypoint_6(u8 *arg0) {
     void func_80800EBC_gcboundDll(u8 *, s16 *);
     struct BoundEntry {
         u8 data[0x14];
-        u32 : 11;
+        BT_BITFIELD_ORDER(u32 : 11, u32  : 20);
         u32 flag : 1;
-        u32 : 20;
+        BT_BITFIELD_ORDER(u32 : 20, u32  : 11);
     };
     s16 *var_s5;
     s32 temp_fp;
@@ -352,8 +352,8 @@ void func_808008D8_gcboundDll(void *arg0, s32 arg1, s32 arg2) {
 }
 
 struct BoundHeader {
-    u32 count : 23;
-    u32 rest : 9;
+    BT_BITFIELD_ORDER(u32 count : 23, u32 rest : 9);
+    BT_BITFIELD_ORDER(u32 rest : 9, u32 count : 23);
     u32 unused[4];
     s32 key;
     s16 start;
@@ -439,7 +439,7 @@ void gcboundDll_entrypoint_8(void *arg0) { void func_808008D8_gcboundDll(void *,
 
 void func_80800E6C_gcboundDll(u8 *arg0, u8 *arg1) { void rare_memcpy(void *, void *, int); u8 sp18[0x18]; rare_memcpy(sp18, arg0, 0x18); rare_memcpy(arg0, arg1, 0x18); rare_memcpy(arg1, sp18, 0x18); }
 
-void func_80800EBC_gcboundDll(u8 *arg0, s16 *arg1) {     struct BoundEntry {         u32 unused[5];         u32 pad : 11;         u32 flag : 1;         u32 rest : 20;     };     BtIntPtr start;     struct BoundEntry *end;     int n;     struct BoundEntry *entry;     u32 old;      n = 0;     start = func_80800630_gcboundDll(arg0, arg1);     end = (struct BoundEntry *)func_80800654_gcboundDll(arg0, arg1) - 1;     entry = end;     if ((BtUIntPtr)end >= (u32)start) {         if (end->flag) {         do {             entry--;             n++;         } while ((BtUIntPtr)entry >= (u32)start && entry->flag);         }     }     old = *(u32 *)arg1;     *(u32 *)arg1 = (((((arg1[13] - n) & 0x7FFFFF) ^ (old >> 9)) << 9) ^ old);     ((s8 *)arg1)[3] = n; } 
+void func_80800EBC_gcboundDll(u8 *arg0, s16 *arg1) {     struct BoundEntry {         u32 unused[5];         BT_BITFIELD_ORDER(u32 pad : 11, u32 rest : 20);         u32 flag : 1;         BT_BITFIELD_ORDER(u32 rest : 20, u32 pad : 11);     };     BtIntPtr start;     struct BoundEntry *end;     int n;     struct BoundEntry *entry;     u32 old;      n = 0;     start = func_80800630_gcboundDll(arg0, arg1);     end = (struct BoundEntry *)func_80800654_gcboundDll(arg0, arg1) - 1;     entry = end;     if ((BtUIntPtr)end >= (u32)start) {         if (end->flag) {         do {             entry--;             n++;         } while ((BtUIntPtr)entry >= (u32)start && entry->flag);         }     }     old = *(u32 *)arg1;     *(u32 *)arg1 = (((((arg1[13] - n) & 0x7FFFFF) ^ (old >> 9)) << 9) ^ old);     ((s8 *)arg1)[3] = n; }
 void func_80800F6C_gcboundDll(BtIntPtr arg0, s32 *pCount, struct BoundHeader **pList) {
     BtIntPtr func_800B3CDC(s32 *, BtIntPtr);
     void func_800B422C(BtIntPtr, BtIntPtr);

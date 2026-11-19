@@ -147,14 +147,14 @@ s32 func_800CD544(s32 arg0, f32 arg1, s32 arg2, s32 arg3) {
 #else
 s32 func_800CD6B4(u8 *arg0, f32 *arg1, f32 arg2, f32 *arg3, s32 arg4) {
     typedef struct {
-        u32 unused:27;
+        BT_BITFIELD_ORDER(u32 unused:27, u32 rest : 1);
         u32 value:4;
-        u32 rest:1;
+        BT_BITFIELD_ORDER(u32 rest:1, u32 unused : 27);
     } QueryFlags;
     typedef struct {
-        u32 unused:11;
+        BT_BITFIELD_ORDER(u32 unused:11, u32 rest : 17);
         u32 value:4;
-        u32 rest:17;
+        BT_BITFIELD_ORDER(u32 rest:17, u32 unused : 11);
     } ResultFlags;
     typedef struct {
         u32 unused[3];
@@ -203,22 +203,22 @@ s32 func_800CD6B4(u8 *arg0, f32 *arg1, f32 arg2, f32 *arg3, s32 arg4) {
 typedef struct {
     u8 *marker;
     s32 unk4;
-    u32 unk8:27;
-    u32 active:1;
-    u32 unk9:3;
-    u32 isMarker:1;
+    BT_BITFIELD_ORDER(u32 unk8:27, u32 isMarker : 1);
+    BT_BITFIELD_ORDER(u32 active:1, u32 unk9 : 3);
+    BT_BITFIELD_ORDER(u32 unk9:3, u32 active : 1);
+    BT_BITFIELD_ORDER(u32 isMarker:1, u32 unk8 : 27);
 } HitProp;
 
 u8 *func_800CD820(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
     typedef struct {
-        u32 unused:22;
+        BT_BITFIELD_ORDER(u32 unused:22, u32 rest : 9);
         u32 enabled:1;
-        u32 rest:9;
+        BT_BITFIELD_ORDER(u32 rest:9, u32 unused : 22);
     } MarkerFlags;
     typedef struct {
-        u32 unused:14;
+        BT_BITFIELD_ORDER(u32 unused:14, u32 rest : 17);
         u32 disabled:1;
-        u32 rest:17;
+        BT_BITFIELD_ORDER(u32 rest:17, u32 unused : 14);
     } ActorFlags;
     f32 _subaddiecustomhits_entrypoint_5(void *, f32 *);
     s32 *func_800BE444(f32 *);
@@ -332,14 +332,14 @@ u8 *func_800CD820(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
 
 s32 func_800CDBA8(u8 *arg0, f32 *volatile arg1, f32 *arg2, s32 arg3) {
     typedef struct {
-        u32 unused:22;
+        BT_BITFIELD_ORDER(u32 unused:22, u32 rest : 9);
         u32 enabled:1;
-        u32 rest:9;
+        BT_BITFIELD_ORDER(u32 rest:9, u32 unused : 22);
     } MarkerFlags;
     typedef union {
         struct { u16 collision; u16 other; } halves;
-        struct { u32 unused:27; u32 value:4; u32 rest:1; } query;
-        struct { u32 unused:11; u32 value:4; u32 rest:17; } result;
+        struct { BT_BITFIELD_ORDER(u32 unused:27, u32 rest : 1); u32 value:4; BT_BITFIELD_ORDER(u32 rest:1, u32 unused : 27); } query;
+        struct { BT_BITFIELD_ORDER(u32 unused:11, u32 rest : 17); u32 value:4; BT_BITFIELD_ORDER(u32 rest:17, u32 unused : 11); } result;
     } HitFlags;
     typedef struct {
         u32 unused[3];
@@ -351,9 +351,9 @@ s32 func_800CDBA8(u8 *arg0, f32 *volatile arg1, f32 *arg2, s32 arg3) {
         u32 unk1C;
         u32 unk20;
         u32 unk24;
-        u32 stateUnused:22;
+        BT_BITFIELD_ORDER(u32 stateUnused:22, u32 stateRest : 9);
         u32 enabled:1;
-        u32 stateRest:9;
+        BT_BITFIELD_ORDER(u32 stateRest:9, u32 stateUnused : 22);
     } Marker;
     typedef struct {
         u32 unused[3];

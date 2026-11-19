@@ -955,7 +955,7 @@ void func_80801C20_chtntmineshoot(u8 *arg0) {
     BtUIntPtr func_800F54E4(void);
     void func_80101FDC(Actor *, u32);
     extern s32 _bsfirstp_entrypoint_18;
-    typedef struct { u32 pad[29]; u32 pad74_19 : 13; u32 active : 1; u32 pad74_0 : 18; } ActorFlags;
+    typedef struct { u32 pad[29]; BT_BITFIELD_ORDER(u32 pad74_19 : 13, u32 pad74_0 : 18); u32 active : 1; BT_BITFIELD_ORDER(u32 pad74_0 : 18, u32 pad74_19 : 13); } ActorFlags;
     s32 temp_v0;
 
     if (!((ActorFlags *)arg0)->active && (((ActorFlags *)arg0)->active = 1, ((Actor *)arg0)->unk70_10 != 3)) {

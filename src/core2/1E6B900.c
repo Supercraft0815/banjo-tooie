@@ -1156,7 +1156,7 @@ void func_80093AB8(void *arg0, Gfx **arg1) {
     s32 sp40;
     f32 sp34[3];
     s32 count;
-    struct ZoneCount { u8 pad[0xA4]; unsigned int count : 8; };
+    struct ZoneCount { u8 pad[0xA4]; BT_BITFIELD_ORDER(unsigned int count : 8, unsigned int : 24; unsigned int count : 8); };
     s32 sp2C;
 
     if ((*(u8 **)((u8 *)arg0 + 0x50))[0x17] != 0) {

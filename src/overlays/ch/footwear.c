@@ -130,11 +130,11 @@ void func_808000B8_chfootwear(Actor *arg0) {
 s32 func_80800364_chfootwear(Actor *arg0, s32 arg1, void *volatile arg2) {
     typedef struct {
         u8 pad0[0x1A];
-        u16 unk1A_5 : 11;
-        u16 unk1A_0 : 5;
+        BT_BITFIELD_ORDER(u16 unk1A_5 : 11, u16 unk1A_0 : 5);
+        BT_BITFIELD_ORDER(u16 unk1A_0 : 5, u16 unk1A_5 : 11);
         u32 pad1C[2];
-        u32 unk24_22 : 10;
-        u32 unk24_0 : 22;
+        BT_BITFIELD_ORDER(u32 unk24_22 : 10, u32 unk24_0 : 22);
+        BT_BITFIELD_ORDER(u32 unk24_0 : 22, u32 unk24_22 : 10);
     } FootwearContact;
     FootwearContact *contact;
     s32 func_800DA298(s32);

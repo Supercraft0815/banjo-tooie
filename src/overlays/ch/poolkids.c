@@ -70,8 +70,8 @@ void func_80800058_chpoolkids(Actor *arg0) {
         u32 flags64;
         s32 pad68;
         u32 flags6C, flags70;
-        u32 flags74 : 28;
-        u32 mode : 4;
+        BT_BITFIELD_ORDER(u32 flags74 : 28, u32 mode : 4);
+        BT_BITFIELD_ORDER(u32 mode : 4, u32 flags74 : 28);
     } PoolKidsActor;
     f32 *position;
 

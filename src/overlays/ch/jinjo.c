@@ -131,12 +131,12 @@ loop_3:
 void func_808002E0_chjinjo(Actor *arg0) {
     typedef struct {
         u8 pad0[0x70];
-        u32 pad70_4 : 28;
+        BT_BITFIELD_ORDER(u32 pad70_4 : 28, u32 pad70_0 : 3);
         u32 unk70_3 : 1;
-        u32 pad70_0 : 3;
-        u32 pad74_21 : 11;
-        u32 unk74_20 : 1;
-        u32 pad74_0 : 20;
+        BT_BITFIELD_ORDER(u32 pad70_0 : 3, u32 pad70_4 : 28);
+        BT_BITFIELD_ORDER(u32 pad74_21 : 11, char : 0);
+        BT_BITFIELD_ORDER(u32 unk74_20 : 1, u32 pad74_0 : 20);
+        BT_BITFIELD_ORDER(u32 pad74_0 : 20, u32 unk74_20 : 1; u32 pad74_21 : 11);
     } JinjoFlags;
     void _fxtwinkle_entrypoint_0(f32 *);
     void _glcutDll_entrypoint_6(u32 arg0, u32 arg1);
@@ -359,9 +359,9 @@ void chjinjo_entrypoint_4(s32 arg0, s32 arg1, s32 arg2) {
 s32 func_80800C10_chjinjo(Actor *arg0, s32 arg1, void *volatile arg2) {
     typedef struct {
         u8 pad0[0x18];
-        u32 pad18_16 : 16;
+        BT_BITFIELD_ORDER(u32 pad18_16 : 16, u32 pad18_0 : 5);
         u32 unk18_5 : 11;
-        u32 pad18_0 : 5;
+        BT_BITFIELD_ORDER(u32 pad18_0 : 5, u32 pad18_16 : 16);
     } JinjoEvent;
     void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);

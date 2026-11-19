@@ -277,7 +277,7 @@ void func_8080059C_chchuffy(Actor *actor) {
 }
 
 void func_80800818_chchuffy(u8 *arg0, u32 arg1, s32 arg2) {
-    struct Flags { u8 pad[0x74]; u8 high : 1; u8 flag : 1; u8 low : 6; };
+    struct Flags { u8 pad[0x74]; BT_BITFIELD_ORDER(u8 high : 1, u8 low : 6); u8 flag : 1; BT_BITFIELD_ORDER(u8 low : 6, u8 high : 1); };
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     arg2 |= 4;
     _subaddiedialog_entrypoint_11((((Actor *)arg0)->unk0), arg1, arg2, arg0 + 4, 0x6FU);

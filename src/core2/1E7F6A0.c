@@ -483,8 +483,8 @@ void func_800A70D0(Unk80132ED0 *arg0, s32 arg1) {
     Actor *func_80106790(Unk80132ED0 *);
     struct Fields {
         u8 pad[0x76];
-        u16 value : 9;
-        u16 low : 7;
+        BT_BITFIELD_ORDER(u16 value : 9, u16 low : 7);
+        BT_BITFIELD_ORDER(u16 low : 7, u16 value : 9);
     };
     struct Fields *actor;
 
@@ -499,7 +499,7 @@ void func_800A7108(Unk80132ED0 *arg0, f32 arg1) {
 
 void func_800A7130(Unk80132ED0 *arg0, s32 arg1) {
     Actor *func_80106790(Unk80132ED0 *);
-    struct Fields { u8 pad[0x65]; u8 other : 7; u8 bit : 1; } *actor;
+    struct Fields { u8 pad[0x65]; BT_BITFIELD_ORDER(u8 other : 7, u8 bit : 1); BT_BITFIELD_ORDER(u8 bit : 1, u8 other : 7); } *actor;
     actor = (struct Fields *)func_80106790(arg0);
     actor->bit = arg1;
 }

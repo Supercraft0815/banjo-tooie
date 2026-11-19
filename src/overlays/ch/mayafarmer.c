@@ -51,7 +51,7 @@ void func_80800138_chmayafarmer(void *arg0) {
 }
 
 void func_80800180_chmayafarmer(u8 *arg0, u32 arg1, s32 arg2) {
-    struct Flags { u8 pad[0x74]; u8 high : 1; u8 flag : 1; u8 low : 6; };
+    struct Flags { u8 pad[0x74]; BT_BITFIELD_ORDER(u8 high : 1, u8 low : 6); u8 flag : 1; BT_BITFIELD_ORDER(u8 low : 6, u8 high : 1); };
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     arg2 |= 4;
     _subaddiedialog_entrypoint_11((((Actor *)arg0)->unk0), arg1, arg2, arg0 + 4, 0x2AU);
@@ -73,9 +73,9 @@ void func_808001CC_chmayafarmer(u8 *arg0, s32 arg1) {
 s32 func_80800228_chmayafarmer(u8 *arg0, s32 arg1, s32 arg2) {
     struct FarmerState {
         u8 pad[0x74];
-        u32 flags : 16;
+        BT_BITFIELD_ORDER(u32 flags : 16, u32 other : 7);
         u32 count : 9;
-        u32 other : 7;
+        BT_BITFIELD_ORDER(u32 other : 7, u32 flags : 16);
     };
     s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
     s32 _suexpression_entrypoint_12(void *, s32, s32);
@@ -299,10 +299,10 @@ typedef union {
     Actor actor;
     struct {
         u8 padding[0x70];
-        u32 group : 7;
-        u32 unused : 15;
-        u32 point : 6;
-        u32 unusedLow : 4;
+        BT_BITFIELD_ORDER(u32 group : 7, u32 unusedLow : 4);
+        BT_BITFIELD_ORDER(u32 unused : 15, u32 point : 6);
+        BT_BITFIELD_ORDER(u32 point : 6, u32 unused : 15);
+        BT_BITFIELD_ORDER(u32 unusedLow : 4, u32 group : 7);
     } path;
 } MayaFarmerActor;
 

@@ -134,9 +134,9 @@ void func_80800298_chbadbeehive(Actor *arg0) {
         f32 position[3];
     } *sp3C;
     struct BeehiveFlags {
-        u32 pad : 29;
+        BT_BITFIELD_ORDER(u32 pad : 29, u32 rest : 2);
         u32 inactive : 1;
-        u32 rest : 2;
+        BT_BITFIELD_ORDER(u32 rest : 2, u32 pad : 29);
     };
     f32 sp38;
     f32 sp34;

@@ -45,7 +45,7 @@ void func_80800098_chjadestatue(Actor *arg0) {
 }
 
 void func_80800104_chjadestatue(Actor *arg0, u8 *arg1) {
-    struct Flags { u32 pad : 19; u32 active : 1; u32 rest : 12; };
+    struct Flags { BT_BITFIELD_ORDER(u32 pad : 19, u32 rest : 12); u32 active : 1; BT_BITFIELD_ORDER(u32 rest : 12, u32 pad : 19); };
     void func_80101870(Actor* arg0, void* arg1);
     void func_80103110(Actor *, u32);
     func_80101870(arg0, arg1);

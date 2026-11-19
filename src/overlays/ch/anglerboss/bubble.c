@@ -92,11 +92,11 @@ s32 func_80800200_changlerbossbubble(Actor *arg0, s32 arg1, void *arg2) {
     typedef struct {
         u8 pad0[0x18];
         u16 pad18;
-        u16 id : 11;
-        u16 rest : 5;
+        BT_BITFIELD_ORDER(u16 id : 11, u16 rest : 5);
+        BT_BITFIELD_ORDER(u16 rest : 5, u16 id : 11);
         u8 pad1C[8];
-        u32 busy : 10;
-        u32 rest2 : 22;
+        BT_BITFIELD_ORDER(u32 busy : 10, u32 rest2 : 22);
+        BT_BITFIELD_ORDER(u32 rest2 : 22, u32 busy : 10);
     } Other;
     s32 func_800F7BC8(BtIntPtr, s32, Unk80132ED0 *);
     f32 func_800F5BF0();

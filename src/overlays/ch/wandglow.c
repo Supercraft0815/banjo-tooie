@@ -34,8 +34,8 @@ BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s32) func_8080011C_chwandglow(BtIntPtr arg0, s32
     f32 temp;
     struct StateBits {
         u8 pad[0x72];
-        u8 state : 6;
-        u8 other : 2;
+        BT_BITFIELD_ORDER(u8 state : 6, u8 other : 2);
+        BT_BITFIELD_ORDER(u8 other : 2, u8 state : 6);
     };
 
     switch (arg1) {
@@ -68,8 +68,8 @@ void func_80800218_chwandglow(BtIntPtr arg0) {
     int func_800FFA88();
     struct StateBits {
         u8 pad[0x72];
-        u16 state : 6;
-        u16 other : 10;
+        BT_BITFIELD_ORDER(u16 state : 6, u16 other : 10);
+        BT_BITFIELD_ORDER(u16 other : 10, u16 state : 6);
     };
 
     switch (((struct StateBits *)arg0)->state) {

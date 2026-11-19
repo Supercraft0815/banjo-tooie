@@ -202,14 +202,14 @@ void func_8080059C_chbadjinjo(Actor *arg0) {
     } JinjoRoute;
     typedef struct {
         u8 pad0[0x24];
-        u32 id : 10;
-        u32 flags : 22;
+        BT_BITFIELD_ORDER(u32 id : 10, u32 flags : 22);
+        BT_BITFIELD_ORDER(u32 flags : 22, u32 id : 10);
     } JinjoMarker;
     typedef struct {
         u8 pad0[0x78];
-        u32 pad78 : 29;
+        BT_BITFIELD_ORDER(u32 pad78 : 29, u32 pad78_0 : 2);
         u32 inactive : 1;
-        u32 pad78_0 : 2;
+        BT_BITFIELD_ORDER(u32 pad78_0 : 2, u32 pad78 : 29);
         u8 pad7C[0x10];
         s16 animation;
     } JinjoFlags;
@@ -459,15 +459,15 @@ void func_80800E28_chbadjinjo(Actor *arg0, s32 arg1) {
     extern s32 D_808012F8_chbadjinjo[4];
     typedef struct {
         u8 pad0[0x64];
-        u32 flag31 : 1;
+        BT_BITFIELD_ORDER(u32 flag31 : 1, u32 pad64 : 30);
         u32 flag30 : 1;
-        u32 pad64 : 30;
+        BT_BITFIELD_ORDER(u32 pad64 : 30, u32 flag31 : 1);
         u32 pad68;
         u32 pad6C;
-        u32 state : 7;
-        u32 pad70 : 15;
-        u32 previousState : 6;
-        u32 pad73 : 4;
+        BT_BITFIELD_ORDER(u32 state : 7, u32 pad73 : 4);
+        BT_BITFIELD_ORDER(u32 pad70 : 15, u32 previousState : 6);
+        BT_BITFIELD_ORDER(u32 previousState : 6, u32 pad70 : 15);
+        BT_BITFIELD_ORDER(u32 pad73 : 4, u32 state : 7);
     } JinjoFlags;
     void *sp2C;
 

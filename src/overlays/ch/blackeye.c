@@ -223,9 +223,9 @@ void func_80800838_chblackeye(Actor *arg0) {
         Actor actor;
         struct {
             u8 pad[0x70];
-            u32 pad70_4 : 28;
+            BT_BITFIELD_ORDER(u32 pad70_4 : 28, u32 pad70_0 : 3);
             u32 active : 1;
-            u32 pad70_0 : 3;
+            BT_BITFIELD_ORDER(u32 pad70_0 : 3, u32 pad70_4 : 28);
         } flags;
     } BlackeyeActor;
     s32 _subaddiedialog_entrypoint_4(f32 *, s32, s32);

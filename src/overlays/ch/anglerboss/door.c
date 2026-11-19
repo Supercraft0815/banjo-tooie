@@ -22,8 +22,8 @@ void func_8080000C_changlerbossdoor(Actor *arg0) {
         Actor actor;
         struct {
             u8 pad0[0x70];
-            u32 pad70_1 : 31;
-            u32 enabled : 1;
+            BT_BITFIELD_ORDER(u32 pad70_1 : 31, u32 enabled : 1);
+            BT_BITFIELD_ORDER(u32 enabled : 1, u32 pad70_1 : 31);
         } flags;
     };
     f32 sp3C[3];

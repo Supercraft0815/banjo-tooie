@@ -5,9 +5,9 @@
 s32 subaddiesect_entrypoint_0(Actor *arg0, s32 arg1, s32 arg2) {
     struct SectFlags {
         u8 pad0[0x70];
-        u32 pad70_4 : 28;
+        BT_BITFIELD_ORDER(u32 pad70_4 : 28, u32 pad70_0 : 3);
         u32 unk70_3 : 1;
-        u32 pad70_0 : 3;
+        BT_BITFIELD_ORDER(u32 pad70_0 : 3, u32 pad70_4 : 28);
     };
     s32 _gcmapsects_entrypoint_5(s32);
     void _subaddiefade_entrypoint_2(void *arg0);

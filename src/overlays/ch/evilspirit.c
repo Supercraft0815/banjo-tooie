@@ -259,8 +259,8 @@ void func_80800718_chevilspirit(Actor *arg0, s32 arg1) {
     s32 state;
     Unk80132ED0 *marker;
     struct Flags {
-        u32 other : 31;
-        u32 enabled : 1;
+        BT_BITFIELD_ORDER(u32 other : 31, u32 enabled : 1);
+        BT_BITFIELD_ORDER(u32 enabled : 1, u32 other : 31);
     };
 
     state = func_800EB854();
@@ -469,10 +469,10 @@ s32 func_8080104C_chevilspirit(Actor *arg0, s32 arg1) {
         u32 flags;
     } SpiritProp;
     typedef struct {
-        u16 unused : 15;
-        u16 active : 1;
-        u16 id : 11;
-        u16 rest : 5;
+        BT_BITFIELD_ORDER(u16 unused : 15, u16 active : 1);
+        BT_BITFIELD_ORDER(u16 active : 1, u16 unused : 15);
+        BT_BITFIELD_ORDER(u16 id : 11, char : 0);
+        BT_BITFIELD_ORDER(u16 rest : 5, u16 rest : 5; u16 id : 11);
     } MarkerFlags;
     typedef struct {
         s32 unk0[2];
@@ -790,10 +790,10 @@ s32 func_80801988_chevilspirit(Actor *arg0, Unk80132ED0 *arg1, s32 arg2) {
     extern s32 D_808021E0_chevilspirit;
     struct SpiritFlags {
         u8 pad[0x64];
-        u8 pad64_30 : 2;
-        u8 unk64_29 : 1;
-        u8 unk64_27 : 2;
-        u8 pad64_24 : 3;
+        BT_BITFIELD_ORDER(u8 pad64_30 : 2, u8 pad64_24 : 3);
+        BT_BITFIELD_ORDER(u8 unk64_29 : 1, u8 unk64_27 : 2);
+        BT_BITFIELD_ORDER(u8 unk64_27 : 2, u8 unk64_29 : 1);
+        BT_BITFIELD_ORDER(u8 pad64_24 : 3, u8 pad64_30 : 2);
     };
     Actor *other;
 

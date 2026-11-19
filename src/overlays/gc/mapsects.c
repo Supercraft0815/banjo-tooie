@@ -22,14 +22,14 @@ void gcmapsects_entrypoint_0(s16 arg0, s16 arg1, f32 *arg2, f32 *arg3, f32 *arg4
         u8 color[8];
         s16 id0, id1;
         s32 unk44, unk48;
-        u8 flag7 : 1;
-        u8 flag6 : 1;
-        u8 flag5 : 1;
-        u8 flag4 : 1;
-        u8 flag3 : 1;
-        u8 flag2 : 1;
-        u8 flag1 : 1;
-        u8 flag0 : 1;
+        BT_BITFIELD_ORDER(u8 flag7 : 1, u8 flag0 : 1);
+        BT_BITFIELD_ORDER(u8 flag6 : 1, u8 flag1 : 1);
+        BT_BITFIELD_ORDER(u8 flag5 : 1, u8 flag2 : 1);
+        BT_BITFIELD_ORDER(u8 flag4 : 1, u8 flag3 : 1);
+        BT_BITFIELD_ORDER(u8 flag3 : 1, u8 flag4 : 1);
+        BT_BITFIELD_ORDER(u8 flag2 : 1, u8 flag5 : 1);
+        BT_BITFIELD_ORDER(u8 flag1 : 1, u8 flag6 : 1);
+        BT_BITFIELD_ORDER(u8 flag0 : 1, u8 flag7 : 1);
         u8 pad4D[3];
         s32 unk50, unk54;
     };
@@ -147,11 +147,11 @@ void func_808003F4_gcmapsects(void *arg0, s32 arg1)
     u16 first;
     u16 second;
     s32 textures[2];
-    u32 flag80 : 1;
-    u32 flag40 : 1;
+    BT_BITFIELD_ORDER(u32 flag80 : 1, u32 rest : 28);
+    BT_BITFIELD_ORDER(u32 flag40 : 1, u32 flag10 : 1);
     u32 flag20 : 1;
-    u32 flag10 : 1;
-    u32 rest : 28;
+    BT_BITFIELD_ORDER(u32 flag10 : 1, u32 flag40 : 1);
+    BT_BITFIELD_ORDER(u32 rest : 28, u32 flag80 : 1);
     s32 objects[2];
   };
   struct Map
@@ -253,7 +253,7 @@ void func_808005D0_gcmapsects(void *arg0, s32 arg1, s32 arg2) {
 
 void gcmapsects_entrypoint_1(s16 arg0, s32 arg1) {
     void *func_800BF704(void);
-    struct { u8 pad[0x4C]; u8 other : 4; u8 flag : 1; u8 rest : 3; } *temp_v1;
+    struct { u8 pad[0x4C]; BT_BITFIELD_ORDER(u8 other : 4, u8 rest : 3); u8 flag : 1; BT_BITFIELD_ORDER(u8 rest : 3, u8 other : 4); } *temp_v1;
 
     temp_v1 = (*(s32 *)((s8 *)(func_800BF704()) + (0x68))) + (arg0 * 0x58);
     temp_v1->flag = arg1;
@@ -261,7 +261,7 @@ void gcmapsects_entrypoint_1(s16 arg0, s32 arg1) {
 
 void gcmapsects_entrypoint_2(s16 arg0, s32 arg1) {
     void *func_800BF704(void);
-    struct { u8 pad[0x4C]; u8 other : 7; u8 flag : 1; } *temp_v1;
+    struct { u8 pad[0x4C]; BT_BITFIELD_ORDER(u8 other : 7, u8 flag : 1); BT_BITFIELD_ORDER(u8 flag : 1, u8 other : 7); } *temp_v1;
 
     temp_v1 = (*(s32 *)((s8 *)(func_800BF704()) + (0x68))) + (arg0 * 0x58);
     temp_v1->flag = arg1;
@@ -304,11 +304,11 @@ void func_80800A08_gcmapsects(void *arg0, s32 arg1) {
     u16 temp_v0_2;
     struct Section {
         u8 pad[0x4C];
-        u32 flag0 : 1;
-        u32 flag1 : 1;
+        BT_BITFIELD_ORDER(u32 flag0 : 1, u32 rest : 28);
+        BT_BITFIELD_ORDER(u32 flag1 : 1, u32 loaded : 1);
         u32 active : 1;
-        u32 loaded : 1;
-        u32 rest : 28;
+        BT_BITFIELD_ORDER(u32 loaded : 1, u32 flag1 : 1);
+        BT_BITFIELD_ORDER(u32 rest : 28, u32 flag0 : 1);
     } *temp_v1, *temp_v1_2;
 
     var_s2 = 0;
@@ -353,11 +353,11 @@ void func_80800B58_gcmapsects(void *arg0) {
         u8 pad[0x40];
         u16 id;
         u8 pad42[0xA];
-        u32 flag0 : 1;
-        u32 flag1 : 1;
+        BT_BITFIELD_ORDER(u32 flag0 : 1, u32 rest : 28);
+        BT_BITFIELD_ORDER(u32 flag1 : 1, u32 loaded : 1);
         u32 active : 1;
-        u32 loaded : 1;
-        u32 rest : 28;
+        BT_BITFIELD_ORDER(u32 loaded : 1, u32 flag1 : 1);
+        BT_BITFIELD_ORDER(u32 rest : 28, u32 flag0 : 1);
     } *section;
     s32 var_s0;
     s32 var_s2;
@@ -466,14 +466,14 @@ s32 func_80800DC8_gcmapsects(void *arg0, s32 arg1, f32 *arg2) {
         u8 pad34[4];
         u8 adjacent[4];
         u8 pad3C[0x10];
-        u32 visible : 1;
-        u32 flag : 1;
-        u32 tested : 1;
-        u32 unused : 1;
-        u32 special : 1;
-        u32 unused2 : 2;
-        u32 special2 : 1;
-        u32 rest : 24;
+        BT_BITFIELD_ORDER(u32 visible : 1, u32 rest : 24);
+        BT_BITFIELD_ORDER(u32 flag : 1, u32 special2 : 1);
+        BT_BITFIELD_ORDER(u32 tested : 1, u32 unused2 : 2);
+        BT_BITFIELD_ORDER(u32 unused : 1, u32 special : 1);
+        BT_BITFIELD_ORDER(u32 special : 1, u32 unused : 1);
+        BT_BITFIELD_ORDER(u32 unused2 : 2, u32 tested : 1);
+        BT_BITFIELD_ORDER(u32 special2 : 1, u32 flag : 1);
+        BT_BITFIELD_ORDER(u32 rest : 24, u32 visible : 1);
         u8 pad50[8];
     };
     struct map {
@@ -577,14 +577,14 @@ s32 func_80801174_gcmapsects(void *arg0, s32 arg1) {
         u8 pad34[4];
         u8 adjacent[4];
         u8 pad3C[0x10];
-        u32 visible : 1;
-        u32 flag : 1;
-        u32 tested : 1;
-        u32 unused : 1;
-        u32 special : 1;
-        u32 unused2 : 2;
-        u32 special2 : 1;
-        u32 rest : 24;
+        BT_BITFIELD_ORDER(u32 visible : 1, u32 rest : 24);
+        BT_BITFIELD_ORDER(u32 flag : 1, u32 special2 : 1);
+        BT_BITFIELD_ORDER(u32 tested : 1, u32 unused2 : 2);
+        BT_BITFIELD_ORDER(u32 unused : 1, u32 special : 1);
+        BT_BITFIELD_ORDER(u32 special : 1, u32 unused : 1);
+        BT_BITFIELD_ORDER(u32 unused2 : 2, u32 tested : 1);
+        BT_BITFIELD_ORDER(u32 special2 : 1, u32 flag : 1);
+        BT_BITFIELD_ORDER(u32 rest : 24, u32 visible : 1);
         u8 pad50[8];
     };
     struct map {
@@ -632,10 +632,10 @@ s32 func_80801320_gcmapsects(void *arg0, s32 arg1, f32 arg2[3]) {
         f32 point[3];
         f32 radius;
         u8 pad34[0x18];
-        u32 high : 1;
-        u32 flag : 1;
-        u32 tested : 1;
-        u32 rest : 29;
+        BT_BITFIELD_ORDER(u32 high : 1, u32 rest : 29);
+        BT_BITFIELD_ORDER(u32 flag : 1, u32 tested : 1);
+        BT_BITFIELD_ORDER(u32 tested : 1, u32 flag : 1);
+        BT_BITFIELD_ORDER(u32 rest : 29, u32 high : 1);
         u8 pad50[8];
     };
     struct map {
@@ -660,9 +660,9 @@ void func_808013C0_gcmapsects(void *arg0, s32 arg1)
     u8 pad0[0x3C];
     u8 neighbors[4];
     u8 pad40[0xC];
-    u32 high : 1;
+    BT_BITFIELD_ORDER(u32 high : 1, u32 rest : 30);
     u32 flag : 1;
-    u32 rest : 30;
+    BT_BITFIELD_ORDER(u32 rest : 30, u32 high : 1);
     u8 pad50[8];
   };
   struct map
@@ -828,12 +828,12 @@ void gcmapsects_entrypoint_9(u8 *ptr) {
         u8 pad0[0x40];
         u16 id;
         u8 pad42[0xA];
-        unsigned int flag0 : 1;
-        unsigned int flag1 : 1;
-        unsigned int active : 1;
-        unsigned int unused : 2;
-        unsigned int previous : 1;
-        unsigned int remaining : 26;
+        BT_BITFIELD_ORDER(unsigned int flag0 : 1, unsigned int remaining : 26);
+        BT_BITFIELD_ORDER(unsigned int flag1 : 1, unsigned int previous : 1);
+        BT_BITFIELD_ORDER(unsigned int active : 1, unsigned int unused : 2);
+        BT_BITFIELD_ORDER(unsigned int unused : 2, unsigned int active : 1);
+        BT_BITFIELD_ORDER(unsigned int previous : 1, unsigned int flag1 : 1);
+        BT_BITFIELD_ORDER(unsigned int remaining : 26, unsigned int flag0 : 1);
         u8 pad50[8];
     } Section;
     s32 i;
@@ -941,11 +941,11 @@ void gcmapsects_entrypoint_15(void *arg0) {
     s32 offset;
     struct EntryFlags {
         u8 pad[0x4C];
-        u32 active : 1;
-        u32 enabled : 1;
-        u32 visible : 1;
-        u32 unused : 2;
-        u32 saved : 1;
+        BT_BITFIELD_ORDER(u32 active : 1, u32 : 26);
+        BT_BITFIELD_ORDER(u32 enabled : 1, u32 saved : 1);
+        BT_BITFIELD_ORDER(u32 visible : 1, u32 unused : 2);
+        BT_BITFIELD_ORDER(u32 unused : 2, u32 visible : 1);
+        BT_BITFIELD_ORDER(u32 saved : 1, u32 enabled : 1; u32 active : 1);
     } *entry;
 
     ((Objmapsects_arg0 *)arg0)->unk68 = 0;
@@ -1068,8 +1068,8 @@ void gcmapsects_entrypoint_18(u8 *arg0, s32 arg1) {
         u8 pad42[2];
         s32 textures;
         u8 pad48[4];
-        u32 flag : 1;
-        u32 rest : 31;
+        BT_BITFIELD_ORDER(u32 flag : 1, u32 rest : 31);
+        BT_BITFIELD_ORDER(u32 rest : 31, u32 flag : 1);
         u8 pad50[8];
     };
     s32 i;
@@ -1129,8 +1129,8 @@ void gcmapsects_entrypoint_19(u8 *arg0, s32 arg1) {
         u16 asset;
         u8 pad44[4];
         s32 textures;
-        u32 flag : 1;
-        u32 rest : 31;
+        BT_BITFIELD_ORDER(u32 flag : 1, u32 rest : 31);
+        BT_BITFIELD_ORDER(u32 rest : 31, u32 flag : 1);
         u8 pad50[8];
     };
     s32 i;
@@ -1175,9 +1175,9 @@ s32 gcmapsects_entrypoint_20(u8 *arg0, f32 *arg1, f32 *arg2, s16 (**arg3)[3], s3
         u8 pad0[0x40];
         u16 asset;
         u8 pad42[0xA];
-        u32 unused : 1;
+        BT_BITFIELD_ORDER(u32 unused : 1, u32 rest : 30);
         u32 flag : 1;
-        u32 rest : 30;
+        BT_BITFIELD_ORDER(u32 rest : 30, u32 unused : 1);
         u8 pad50[8];
     };
     s32 sp3C;
@@ -1224,9 +1224,9 @@ s32 gcmapsects_entrypoint_21(u8 *arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 arg4
         u8 pad0[0x40];
         u16 asset;
         u8 pad42[0xA];
-        u32 unused : 1;
+        BT_BITFIELD_ORDER(u32 unused : 1, u32 rest : 30);
         u32 flag : 1;
-        u32 rest : 30;
+        BT_BITFIELD_ORDER(u32 rest : 30, u32 unused : 1);
         u8 pad50[8];
     };
     s32 sp3C;
@@ -1274,9 +1274,9 @@ s32 gcmapsects_entrypoint_22(u8 *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s32 arg4
         u16 asset;
         u16 alternate;
         u8 pad44[8];
-        u32 unused : 1;
+        BT_BITFIELD_ORDER(u32 unused : 1, u32 rest : 30);
         u32 flag : 1;
-        u32 rest : 30;
+        BT_BITFIELD_ORDER(u32 rest : 30, u32 unused : 1);
     } *section;
     s32 result = 0;
     s32 asset;
@@ -1332,9 +1332,9 @@ s32 gcmapsects_entrypoint_23(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4
         u8 pad0[0x40];
         u16 asset;
         u8 pad42[0xA];
-        u32 unused : 1;
+        BT_BITFIELD_ORDER(u32 unused : 1, u32 rest : 30);
         u32 flag : 1;
-        u32 rest : 30;
+        BT_BITFIELD_ORDER(u32 rest : 30, u32 unused : 1);
     } *section;
     s32 result = 0;
     s32 list;
@@ -1381,8 +1381,8 @@ s32 gcmapsects_entrypoint_25(u8 *arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 *arg4
     struct Section {
         f32 position[3];
         u8 pad0C[0x34];
-        u32 asset : 16;
-        u32 secondary : 16;
+        BT_BITFIELD_ORDER(u32 asset : 16, u32 secondary : 16);
+        BT_BITFIELD_ORDER(u32 secondary : 16, u32 asset : 16);
         u8 pad44[0x14];
     };
     s32 result;
@@ -1437,9 +1437,9 @@ void *gcmapsects_entrypoint_26(u8 *arg0, f32 *arg1, f32 arg2, f32 *arg3, u32 arg
         u8 pad0[0x40];
         u16 asset;
         u8 pad42[0xA];
-        u32 unused : 1;
+        BT_BITFIELD_ORDER(u32 unused : 1, u32 rest : 30);
         u32 flag : 1;
-        u32 rest : 30;
+        BT_BITFIELD_ORDER(u32 rest : 30, u32 unused : 1);
     } *section;
     void *result = 0;
     void *list;

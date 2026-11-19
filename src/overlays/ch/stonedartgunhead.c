@@ -18,9 +18,9 @@ void func_80800000_chstonedartgunhead(Actor *arg0)
   struct StoneDartGunHeadMarker
   {
     u32 pad[10];
-    u32 pad28_14 : 18;
+    BT_BITFIELD_ORDER(u32 pad28_14 : 18, u32 pad28_0 : 13);
     u32 unk28_13 : 1;
-    u32 pad28_0 : 13;
+    BT_BITFIELD_ORDER(u32 pad28_0 : 13, u32 pad28_14 : 18);
   };
   Prop *sp34;
   f32 sp28[3];
@@ -153,15 +153,15 @@ void func_80800364_chstonedartgunhead(Actor *arg0) {
     extern s32 D_80800EAC_chstonedartgunhead[4];
     typedef struct {
         u8 pad[0x2A];
-        u8 pad2A:2;
+        BT_BITFIELD_ORDER(u8 pad2A:2, u8 pad2B : 5);
         u8 enabled:1;
-        u8 pad2B:5;
+        BT_BITFIELD_ORDER(u8 pad2B:5, u8 pad2A : 2);
     } HeadMarker;
     typedef struct {
-        u32 pad:2;
-        u32 controlled:1;
-        u32 player:2;
-        u32 rest:27;
+        BT_BITFIELD_ORDER(u32 pad:2, u32 rest : 27);
+        BT_BITFIELD_ORDER(u32 controlled:1, u32 player : 2);
+        BT_BITFIELD_ORDER(u32 player:2, u32 controlled : 1);
+        BT_BITFIELD_ORDER(u32 rest:27, u32 pad : 2);
     } HeadFlags;
     typedef struct {
         f32 yaw;

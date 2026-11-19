@@ -41,9 +41,9 @@ s32 func_808000B0_chswappy(void *arg0, s32 arg1) {
 void func_80800108_chswappy(Actor *arg0) {
     struct SwappyFlags {
         u8 pad0[0x7E];
-        u8 pad7E_7 : 1;
+        BT_BITFIELD_ORDER(u8 pad7E_7 : 1, u8 pad7E_0 : 6);
         u8 active : 1;
-        u8 pad7E_0 : 6;
+        BT_BITFIELD_ORDER(u8 pad7E_0 : 6, u8 pad7E_7 : 1);
     };
     s32 _plsu_entrypoint_1(s32);
     s32 _sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4);
@@ -148,11 +148,11 @@ void func_808003DC_chswappy(Actor *arg0, s32 arg1) {
         Actor actor;
         struct {
             u8 padding[0x7C];
-            u32 pad7C_15 : 17;
-            u32 unk7C_14 : 1;
+            BT_BITFIELD_ORDER(u32 pad7C_15 : 17, u32 unk7C_0 : 12);
+            BT_BITFIELD_ORDER(u32 unk7C_14 : 1, u32 unk7C_12 : 1);
             u32 pad7C_13 : 1;
-            u32 unk7C_12 : 1;
-            u32 unk7C_0 : 12;
+            BT_BITFIELD_ORDER(u32 unk7C_12 : 1, u32 unk7C_14 : 1);
+            BT_BITFIELD_ORDER(u32 unk7C_0 : 12, u32 pad7C_15 : 17);
         } flags;
     };
     void func_800E3980(f32 *);

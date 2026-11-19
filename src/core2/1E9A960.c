@@ -40,17 +40,17 @@ typedef struct sfx_source_s {
     /* 0x6C */ f32 pitch;
     /* 0x70 */ f32 unk70;
     /* 0x74 */ f32 unk74;
-    /* 0x78 */ u32 busy : 8;
-    /* 0x79 */ u32 handle : 8;
-    /* 0x7A */ u32 mode : 3;
-    u32 state : 3;
-    u32 pitch_mode : 4;
+    /* 0x78 */ BT_BITFIELD_ORDER(u32 busy : 8, u32 unk7B0 : 1);
+    /* 0x79 */ BT_BITFIELD_ORDER(u32 handle : 8, u32 free_on_end : 1);
+    /* 0x7A */ BT_BITFIELD_ORDER(u32 mode : 3, u32 unk7B2 : 1);
+    BT_BITFIELD_ORDER(u32 state : 3, u32 envelope : 1);
+    BT_BITFIELD_ORDER(u32 pitch_mode : 4, u32 expiring : 1);
     u32 fading : 1;
-    u32 expiring : 1;
-    u32 envelope : 1;
-    u32 unk7B2 : 1;
-    u32 free_on_end : 1;
-    u32 unk7B0 : 1;
+    BT_BITFIELD_ORDER(u32 expiring : 1, u32 pitch_mode : 4);
+    BT_BITFIELD_ORDER(u32 envelope : 1, u32 state : 3);
+    BT_BITFIELD_ORDER(u32 unk7B2 : 1, u32 mode : 3);
+    BT_BITFIELD_ORDER(u32 free_on_end : 1, u32 handle : 8);
+    BT_BITFIELD_ORDER(u32 unk7B0 : 1, u32 busy : 8);
     /* 0x7C */ u16 flags;
 } SfxSource;
 

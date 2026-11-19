@@ -92,9 +92,9 @@ void func_8080000C_chboggyboy(Actor *arg0) {
         u8 pad0[8];
         u8 route[12];
         s16 timer;
-        u8 pad16 : 1;
+        BT_BITFIELD_ORDER(u8 pad16 : 1, u8 pad16_0 : 6);
         u8 active : 1;
-        u8 pad16_0 : 6;
+        BT_BITFIELD_ORDER(u8 pad16_0 : 6, u8 pad16 : 1);
     } *temp_s1;
 
     temp_s1 = func_80100094(arg0, 0U);
@@ -158,11 +158,11 @@ void func_808000B8_chboggyboy(Actor *arg0) {
                 s16 flags;
             } halves;
             struct {
-                u32 high : 16;
-                u32 active : 1;
+                BT_BITFIELD_ORDER(u32 high : 16, u32 low : 13);
+                BT_BITFIELD_ORDER(u32 active : 1, u32 flag : 1);
                 u32 middle : 1;
-                u32 flag : 1;
-                u32 low : 13;
+                BT_BITFIELD_ORDER(u32 flag : 1, u32 active : 1);
+                BT_BITFIELD_ORDER(u32 low : 13, u32 high : 16);
             } bits;
         } state;
         u8 fx[8];
@@ -314,10 +314,10 @@ void func_808006C4_chboggyboy(Actor *arg0, s32 arg1, s32 arg2) {
         u8 pad0[8];
         u8 route[12];
         s16 timer;
-        u8 pad16 : 1;
-        u8 active : 1;
-        u8 dialog : 1;
-        u8 pad16_0 : 5;
+        BT_BITFIELD_ORDER(u8 pad16 : 1, u8 pad16_0 : 5);
+        BT_BITFIELD_ORDER(u8 active : 1, u8 dialog : 1);
+        BT_BITFIELD_ORDER(u8 dialog : 1, u8 active : 1);
+        BT_BITFIELD_ORDER(u8 pad16_0 : 5, u8 pad16 : 1);
     } *sp24;
 
     sp24 = func_80100094(arg0, 0U);
@@ -379,11 +379,11 @@ void func_8080086C_chboggyboy(Actor *arg0) {
     s32 func_80105A5C(Actor *);
     struct Data {
         u8 pad[0x14];
-        u32 high : 16;
-        u32 active : 1;
+        BT_BITFIELD_ORDER(u32 high : 16, u32 low : 13);
+        BT_BITFIELD_ORDER(u32 active : 1, u32 flag : 1);
         u32 middle : 1;
-        u32 flag : 1;
-        u32 low : 13;
+        BT_BITFIELD_ORDER(u32 flag : 1, u32 active : 1);
+        BT_BITFIELD_ORDER(u32 low : 13, u32 high : 16);
         u8 pad18[8];
         f32 timer[1];
     };
@@ -416,7 +416,7 @@ void func_80800978_chboggyboy(Actor *arg0, s32 arg1) {
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void func_80102424(Actor *, s32);
     void *sp2C;
-    struct Flags { u8 pad[0x16]; u8 high : 1; u8 flag : 1; u8 low : 6; };
+    struct Flags { u8 pad[0x16]; BT_BITFIELD_ORDER(u8 high : 1, u8 low : 6); u8 flag : 1; BT_BITFIELD_ORDER(u8 low : 6, u8 high : 1); };
 
     sp2C = func_80100094(arg0, 0);
     _subaddiedialog_entrypoint_11(arg0->unk0, 0x108A, 0xE, &arg0->position[0], 0x3B);
@@ -429,7 +429,7 @@ void func_80800978_chboggyboy(Actor *arg0, s32 arg1) {
 void func_808009F4_chboggyboy(Actor *arg0) {
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800DA980(s32, s32);
-    struct Flags { u8 pad[0x16]; u8 high : 2; u8 flag : 1; u8 low : 5; };
+    struct Flags { u8 pad[0x16]; BT_BITFIELD_ORDER(u8 high : 2, u8 low : 5); u8 flag : 1; BT_BITFIELD_ORDER(u8 low : 5, u8 high : 2); };
     struct Flags *data;
     s32 dialog;
 

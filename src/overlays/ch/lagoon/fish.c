@@ -85,10 +85,10 @@ typedef union {
     Actor actor;
     struct {
         u8 pad0[0x70];
-        u32 unk70_25 : 7;
-        u32 pad70_10 : 15;
-        u32 unk70_4 : 6;
-        u32 pad70_0 : 4;
+        BT_BITFIELD_ORDER(u32 unk70_25 : 7, u32 pad70_0 : 4);
+        BT_BITFIELD_ORDER(u32 pad70_10 : 15, u32 unk70_4 : 6);
+        BT_BITFIELD_ORDER(u32 unk70_4 : 6, u32 pad70_10 : 15);
+        BT_BITFIELD_ORDER(u32 pad70_0 : 4, u32 unk70_25 : 7);
     } fish;
 } LagoonFishActor;
 

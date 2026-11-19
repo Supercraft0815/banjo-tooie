@@ -15,7 +15,7 @@ OSThread *chtntbox_entrypoint_1(void)
 }    typedef struct { u8 pad0[0x95]; u8 unk95; } Objbox_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 void func_80800018_chtntbox(u8 *arg0) {
-    struct TntBoxData { u8 pad[0x76]; unsigned short index : 9; unsigned short rest : 7; };
+    struct TntBoxData { u8 pad[0x76]; BT_BITFIELD_ORDER(unsigned short index : 9, unsigned short rest : 7); BT_BITFIELD_ORDER(unsigned short rest : 7, unsigned short index : 9); };
 
     *(s16 *)(arg0 + 0x7C) = (((struct TntBoxData *)arg0)->index * 10) + 0x320;
     (((Objbox_arg0 *)arg0)->unk95) = (u8) (((((Objbox_arg0 *)arg0)->unk95) & 0xFFFE) | 1);

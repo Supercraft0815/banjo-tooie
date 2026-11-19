@@ -42,13 +42,13 @@ void gcnewoption_entrypoint_0(void *arg0) {
         s32 unkC;
         f32 timer;
         u8 unk14[8];
-        u32 flag80 : 1;
-        u32 flag40 : 1;
-        u32 flag20 : 1;
+        BT_BITFIELD_ORDER(u32 flag80 : 1, u32 flagsRest : 24);
+        BT_BITFIELD_ORDER(u32 flag40 : 1, u32 kind : 3);
+        BT_BITFIELD_ORDER(u32 flag20 : 1, u32 flag08 : 1);
         u32 flag10 : 1;
-        u32 flag08 : 1;
-        u32 kind : 3;
-        u32 flagsRest : 24;
+        BT_BITFIELD_ORDER(u32 flag08 : 1, u32 flag20 : 1);
+        BT_BITFIELD_ORDER(u32 kind : 3, u32 flag40 : 1);
+        BT_BITFIELD_ORDER(u32 flagsRest : 24, u32 flag80 : 1);
         u8 *box;
         u8 boxState;
         u8 unk25[0x17];
@@ -433,20 +433,20 @@ void gcnewoption_entrypoint_5(void *arg0, BtIntPtr arg1, BtIntPtr arg2, s32 arg3
         s16 dialog;
         u8 padE[10];
         f32 timer;
-        u8 flag80 : 1;
-        u8 flag40 : 1;
-        u8 flag20 : 1;
-        u8 flag10 : 1;
-        u8 flag08 : 1;
-        u8 kind : 3;
-        u8 flag180 : 1;
-        u8 flag140 : 1;
-        u8 flag120 : 1;
-        u8 flag110 : 1;
+        BT_BITFIELD_ORDER(u8 flag80 : 1, u8 kind : 3);
+        BT_BITFIELD_ORDER(u8 flag40 : 1, u8 flag08 : 1);
+        BT_BITFIELD_ORDER(u8 flag20 : 1, u8 flag10 : 1);
+        BT_BITFIELD_ORDER(u8 flag10 : 1, u8 flag20 : 1);
+        BT_BITFIELD_ORDER(u8 flag08 : 1, u8 flag40 : 1);
+        BT_BITFIELD_ORDER(u8 kind : 3, u8 flag80 : 1);
+        BT_BITFIELD_ORDER(u8 flag180 : 1, char : 0);
+        BT_BITFIELD_ORDER(u8 flag140 : 1, u8 flag101 : 1);
+        BT_BITFIELD_ORDER(u8 flag120 : 1, u8 flag102 : 1);
+        BT_BITFIELD_ORDER(u8 flag110 : 1, u8 flag104 : 1);
         u8 flag108 : 1;
-        u8 flag104 : 1;
-        u8 flag102 : 1;
-        u8 flag101 : 1;
+        BT_BITFIELD_ORDER(u8 flag104 : 1, u8 flag110 : 1);
+        BT_BITFIELD_ORDER(u8 flag102 : 1, u8 flag120 : 1);
+        BT_BITFIELD_ORDER(u8 flag101 : 1, u8 flag140 : 1; u8 flag180 : 1);
         u16 rest;
         u8 pad20[0x90];
         s16 values[30];
@@ -558,8 +558,8 @@ void gcnewoption_entrypoint_9(s16 *arg0, s32 arg1) {
 void gcnewoption_entrypoint_10(void *arg0, s32 arg1) {
     struct Fields {
         u8 padding[0x1C];
-        u8 upper : 5;
-        u8 value : 3;
+        BT_BITFIELD_ORDER(u8 upper : 5, u8 value : 3);
+        BT_BITFIELD_ORDER(u8 value : 3, u8 upper : 5);
     };
     ((struct Fields *)arg0)->value = arg1;
 }
@@ -589,26 +589,26 @@ void func_80800D28_gcnewoption(void *data)
   struct Fb
   {
     u8 pad[0x1C];
-    u8 hi : 2;
+    BT_BITFIELD_ORDER(u8 hi : 2, u8 rest : 5);
     u8 clr : 1;
-    u8 rest : 5;
+    BT_BITFIELD_ORDER(u8 rest : 5, u8 hi : 2);
   };
   struct Flags
   {
     u8 pad[0x1C];
-    unsigned int a : 3;
-    unsigned int hide : 1;
-    unsigned int b : 2;
-    unsigned int clear : 1;
-    unsigned int c : 2;
-    unsigned int d : 1;
+    BT_BITFIELD_ORDER(unsigned int a : 3, unsigned int g : 16);
+    BT_BITFIELD_ORDER(unsigned int hide : 1, unsigned int f : 1);
+    BT_BITFIELD_ORDER(unsigned int b : 2, unsigned int option : 1);
+    BT_BITFIELD_ORDER(unsigned int clear : 1, unsigned int text : 1);
+    BT_BITFIELD_ORDER(unsigned int c : 2, unsigned int e : 1);
+    BT_BITFIELD_ORDER(unsigned int d : 1, unsigned int no_text : 1);
     unsigned int fast : 1;
-    unsigned int no_text : 1;
-    unsigned int e : 1;
-    unsigned int text : 1;
-    unsigned int option : 1;
-    unsigned int f : 1;
-    unsigned int g : 16;
+    BT_BITFIELD_ORDER(unsigned int no_text : 1, unsigned int d : 1);
+    BT_BITFIELD_ORDER(unsigned int e : 1, unsigned int c : 2);
+    BT_BITFIELD_ORDER(unsigned int text : 1, unsigned int clear : 1);
+    BT_BITFIELD_ORDER(unsigned int option : 1, unsigned int b : 2);
+    BT_BITFIELD_ORDER(unsigned int f : 1, unsigned int hide : 1);
+    BT_BITFIELD_ORDER(unsigned int g : 16, unsigned int a : 3);
   };
 struct Sc2 { u8 pad[0x256]; s16 w; };
   u8 *arg0 = data;
@@ -895,9 +895,9 @@ void gcnewoption_entrypoint_24(BtIntPtr arg0, s32 arg1, s32 arg2) {
 void gcnewoption_entrypoint_25(void *arg0, s32 arg1) {
     struct Flags {
         u8 padding[0x1D];
-        u8 upper : 1;
+        BT_BITFIELD_ORDER(u8 upper : 1, u8 lower : 6);
         u8 flag : 1;
-        u8 lower : 6;
+        BT_BITFIELD_ORDER(u8 lower : 6, u8 upper : 1);
     };
     if (arg1 != 0) {
         ((struct Flags *)arg0)->flag = 0;
@@ -911,8 +911,8 @@ void gcnewoption_entrypoint_25(void *arg0, s32 arg1) {
 void gcnewoption_entrypoint_26(u8 *arg0, s32 arg1) {
     struct Flags {
         u8 padding[0x1D];
-        u8 flag : 1;
-        u8 lower : 7;
+        BT_BITFIELD_ORDER(u8 flag : 1, u8 lower : 7);
+        BT_BITFIELD_ORDER(u8 lower : 7, u8 flag : 1);
     };
     void _gczoombox_entrypoint_44(void *arg0, s32 arg1);
     s32 func_80800000_gcnewoption(u8 *, s32);
@@ -988,9 +988,9 @@ void gcnewoption_entrypoint_28(void *arg0) {
     void _gczoombox_entrypoint_20(void *arg0, f32 arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5, s32 arg6);
     struct Flags28 {
         u8 padding[0x1D];
-        u8 upper : 2;
+        BT_BITFIELD_ORDER(u8 upper : 2, u8 lower : 5);
         u8 flag : 1;
-        u8 lower : 5;
+        BT_BITFIELD_ORDER(u8 lower : 5, u8 upper : 2);
     };
     BtIntPtr temp_a0;
     s32 i;
@@ -1019,9 +1019,9 @@ void gcnewoption_entrypoint_28(void *arg0) {
 void gcnewoption_entrypoint_29(void *arg0, s32 arg1) {
     struct Flags {
         u8 padding[0x1D];
-        u8 upper : 4;
+        BT_BITFIELD_ORDER(u8 upper : 4, u8 lower : 3);
         u8 flag : 1;
-        u8 lower : 3;
+        BT_BITFIELD_ORDER(u8 lower : 3, u8 upper : 4);
     };
     ((struct Flags *)arg0)->flag = arg1;
 }
@@ -1133,9 +1133,9 @@ void gcnewoption_entrypoint_33(void *arg0) {
 void gcnewoption_entrypoint_34(void *arg0, s16 arg1) {
     struct Flags {
         u8 pad[0x1D];
-        u8 unused : 5;
+        BT_BITFIELD_ORDER(u8 unused : 5, u8 rest : 2);
         u8 active : 1;
-        u8 rest : 2;
+        BT_BITFIELD_ORDER(u8 rest : 2, u8 unused : 5);
     };
     int _gczoombox_entrypoint_32();
     int _gczoombox_entrypoint_8();
@@ -1156,11 +1156,11 @@ void gcnewoption_entrypoint_34(void *arg0, s16 arg1) {
 void func_808019D0_gcnewoption(void *option) {
     struct Flags {
         u8 pad[0x1C];
-        u32 unused : 9;
-        u32 disabled : 1;
+        BT_BITFIELD_ORDER(u32 unused : 9, u32 rest : 19);
+        BT_BITFIELD_ORDER(u32 disabled : 1, u32 selected : 1);
         u32 gap : 2;
-        u32 selected : 1;
-        u32 rest : 19;
+        BT_BITFIELD_ORDER(u32 selected : 1, u32 disabled : 1);
+        BT_BITFIELD_ORDER(u32 rest : 19, u32 unused : 9);
     };
     struct Boxes {
         u8 pad[0x3C];
@@ -1228,8 +1228,8 @@ void func_808019D0_gcnewoption(void *option) {
 void func_80801B5C_gcnewoption(void *arg0) {
     struct Flags {
         u8 pad[0x1C];
-        u8 moving : 1;
-        u8 rest : 7;
+        BT_BITFIELD_ORDER(u8 moving : 1, u8 rest : 7);
+        BT_BITFIELD_ORDER(u8 rest : 7, u8 moving : 1);
     };
     void _gczoombox_entrypoint_28(s32, s16);
     s32 _gczoombox_entrypoint_29(s32);
@@ -1726,7 +1726,7 @@ void func_80802998_gcnewoption(void *arg0) {
     f32 func_800D8FF8(void);
     struct OptionDetails {
         u8 pad0[0x1D];
-        u8 flagsTop : 5; u8 active : 1; u8 flagsLow : 2;
+        BT_BITFIELD_ORDER(u8 flagsTop : 5, u8 flagsLow : 2); u8 active : 1; BT_BITFIELD_ORDER(u8 flagsLow : 2, u8 flagsTop : 5);
         u8 pad1E[2];
         u8 *box;
         u8 pad24[2];
@@ -1791,9 +1791,9 @@ void gcnewoption_entrypoint_35(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 void gcnewoption_entrypoint_36(void *arg0) {
     struct Flags {
         u8 pad[0x1C];
-        u8 upper : 3;
+        BT_BITFIELD_ORDER(u8 upper : 3, u8 lower : 4);
         u8 enabled : 1;
-        u8 lower : 4;
+        BT_BITFIELD_ORDER(u8 lower : 4, u8 upper : 3);
     };
     ((struct Flags *)arg0)->enabled = 1;
 }
@@ -1801,9 +1801,9 @@ void gcnewoption_entrypoint_36(void *arg0) {
 void func_80802B24_gcnewoption(void *arg0, s32 arg1) {
     struct Flags {
         u8 pad[0x1C];
-        u8 upper : 4;
+        BT_BITFIELD_ORDER(u8 upper : 4, u8 lower : 3);
         u8 enabled : 1;
-        u8 lower : 3;
+        BT_BITFIELD_ORDER(u8 lower : 3, u8 upper : 4);
     };
     if (arg1 != 0) {
         ((struct Flags *)arg0)->enabled = 1;
@@ -1818,9 +1818,9 @@ u32 gcnewoption_entrypoint_37(OptionState *a0, u32 a1) {
     s32 func_80802A9C_gcnewoption(u8 *);
     struct Flags {
         u8 pad[0x1C];
-        u8 upper : 2;
+        BT_BITFIELD_ORDER(u8 upper : 2, u8 lower : 5);
         u8 enabled : 1;
-        u8 lower : 5;
+        BT_BITFIELD_ORDER(u8 lower : 5, u8 upper : 2);
     };
     s16 temp_v0;
 
@@ -1936,12 +1936,12 @@ void gcnewoption_entrypoint_44(void *arg0, s32 arg1) {
     u32 *_gldbstring_entrypoint_1(u32 *, s16);
     struct Flags {
         u8 padding[0x1C];
-        u32 upper : 10;
-        u32 wide : 1;
-        u32 hidden : 1;
-        u32 middle : 1;
-        u32 initialized : 1;
-        u32 lower : 18;
+        BT_BITFIELD_ORDER(u32 upper : 10, u32 lower : 18);
+        BT_BITFIELD_ORDER(u32 wide : 1, u32 initialized : 1);
+        BT_BITFIELD_ORDER(u32 hidden : 1, u32 middle : 1);
+        BT_BITFIELD_ORDER(u32 middle : 1, u32 hidden : 1);
+        BT_BITFIELD_ORDER(u32 initialized : 1, u32 wide : 1);
+        BT_BITFIELD_ORDER(u32 lower : 18, u32 upper : 10);
     };
     ((struct Flags *)arg0)->hidden = arg1;
     if (arg1 != 0) {
@@ -1979,9 +1979,9 @@ int gcnewoption_entrypoint_48(s16 *arg0) {
 void gcnewoption_entrypoint_49(void *arg0, s32 arg1) {
     struct Flags {
         u8 padding[0x1D];
-        u8 upper : 6;
+        BT_BITFIELD_ORDER(u8 upper : 6, u8 lower : 1);
         u8 flag : 1;
-        u8 lower : 1;
+        BT_BITFIELD_ORDER(u8 lower : 1, u8 upper : 6);
     };
     ((struct Flags *)arg0)->flag = arg1;
 }

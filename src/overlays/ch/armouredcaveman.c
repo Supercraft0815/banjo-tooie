@@ -45,9 +45,9 @@ block_9:
 void func_808000EC_charmouredcaveman(Actor *arg0) {
     typedef struct {
         u8 prefix[0x74];
-        u32 pad74_21 : 11;
+        BT_BITFIELD_ORDER(u32 pad74_21 : 11, u32 pad74_0 : 20);
         u32 unk74_20 : 1;
-        u32 pad74_0 : 20;
+        BT_BITFIELD_ORDER(u32 pad74_0 : 20, u32 pad74_21 : 11);
     } ArmouredCavemanFlags;
     s32 _subaddiefade_entrypoint_0(Actor *);
     void _subaddiefade_entrypoint_5(void *arg0);
@@ -135,15 +135,15 @@ void func_808000EC_charmouredcaveman(Actor *arg0) {
 
 typedef struct {
     u8 pad0[0x18];
-    u32 pad18_21 : 11;
-    u32 state : 4;
+    BT_BITFIELD_ORDER(u32 pad18_21 : 11, u32 pad18_0 : 5);
+    BT_BITFIELD_ORDER(u32 state : 4, u32 index : 11);
     u32 pad18_16 : 1;
-    u32 index : 11;
-    u32 pad18_0 : 5;
+    BT_BITFIELD_ORDER(u32 index : 11, u32 state : 4);
+    BT_BITFIELD_ORDER(u32 pad18_0 : 5, u32 pad18_21 : 11);
     u32 unk1C;
     u32 unk20;
-    u32 id : 10;
-    u32 pad24_0 : 22;
+    BT_BITFIELD_ORDER(u32 id : 10, u32 pad24_0 : 22);
+    BT_BITFIELD_ORDER(u32 pad24_0 : 22, u32 id : 10);
 } ArmouredCavemanMarker;
 
 typedef union {

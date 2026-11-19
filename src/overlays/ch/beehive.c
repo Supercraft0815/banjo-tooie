@@ -22,9 +22,9 @@ void func_80800078_chbeehive(Actor *arg0) {
     s32 func_80800180_chbeehive(Actor *);
     u32 temp_a1;
     struct {
-        u32 upper : 29;
+        BT_BITFIELD_ORDER(u32 upper : 29, u32 lower : 2);
         u32 active : 1;
-        u32 lower : 2;
+        BT_BITFIELD_ORDER(u32 lower : 2, u32 upper : 29);
     } *flags = (void *)&arg0->unk78;
     if (!flags->active && ((temp_a1 = arg0->actorData[0], (temp_a1 == -1U)) || (_subaddiesect_entrypoint_0(arg0, temp_a1, 11) != 0))) {
         func_80800180_chbeehive(arg0);
@@ -70,8 +70,8 @@ s32 func_80800180_chbeehive(Actor *arg0) {
     extern f32 D_80800364_chbeehive[4];
     struct {
         u8 prefix[0x70];
-        u32 unused : 31;
-        u32 active : 1;
+        BT_BITFIELD_ORDER(u32 unused : 31, u32 active : 1);
+        BT_BITFIELD_ORDER(u32 active : 1, u32 unused : 31);
     } *flags = (void *)arg0;
     u8 index;
 

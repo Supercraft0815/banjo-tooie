@@ -32,9 +32,9 @@ s32 func_80800040_chonearmbandit(Actor *arg0) {
 
 void func_8080007C_chonearmbandit(u8 *arg0) {
     struct DisabledFlags {
-        unsigned int : 29;
+        BT_BITFIELD_ORDER(unsigned int : 29, unsigned int  : 2);
         unsigned int disabled : 1;
-        unsigned int : 2;
+        BT_BITFIELD_ORDER(unsigned int : 2, unsigned int  : 29);
     };
     struct InteractionFlags {
         unsigned int : 2;
@@ -234,9 +234,9 @@ void func_80800680_chonearmbandit(u8 *arg0, s32 arg1) {
 
 void func_808006F8_chonearmbandit(u8 *arg0, s32 arg1) {
     struct Flags {
-        unsigned int : 29;
+        BT_BITFIELD_ORDER(unsigned int : 29, unsigned int  : 2);
         unsigned int active : 1;
-        unsigned int : 2;
+        BT_BITFIELD_ORDER(unsigned int : 2, unsigned int  : 29);
     };
     void func_80800680_chonearmbandit(u8 *, s32);
     if (!((struct Flags *)(arg0 + 0x78))->active &&

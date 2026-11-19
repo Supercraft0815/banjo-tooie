@@ -101,9 +101,9 @@ void func_80800024_chjollyroger(Actor *arg0) {
     void func_8080056C_chjollyroger(void *arg0);
     s32 func_8080059C_chjollyroger(Actor *arg0, s32 *arg1, s32 arg2, s32 arg3);
     struct Flags94 {
-        unsigned int pad : 1;
+        BT_BITFIELD_ORDER(unsigned int pad : 1, unsigned int rest : 30);
         unsigned int enabled : 1;
-        unsigned int rest : 30;
+        BT_BITFIELD_ORDER(unsigned int rest : 30, unsigned int pad : 1);
     };
     void *sp44;
     f32 sp38[3];

@@ -176,9 +176,9 @@ s32 func_8080027C_chvolcanobits(Actor *arg0, s32 arg1, s32 arg2) {
 void func_8080061C_chvolcanobits(u8 *arg0) {
     struct Flags {
         u8 pad[0x64];
-        unsigned int : 11;
+        BT_BITFIELD_ORDER(unsigned int : 11, unsigned int  : 20);
         unsigned int active : 1;
-        unsigned int : 20;
+        BT_BITFIELD_ORDER(unsigned int : 20, unsigned int  : 11);
     };
     void func_800CF494(void);
     if (((struct Flags *)arg0)->active) {

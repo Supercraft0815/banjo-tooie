@@ -142,7 +142,7 @@ void func_80800220_chboggy(Actor *arg0) {
 }
 
 void func_80800504_chboggy(Actor *arg0, s32 arg1) {
-    struct Flags { u32 pad : 19; u32 active : 1; u32 rest : 12; };
+    struct Flags { BT_BITFIELD_ORDER(u32 pad : 19, u32 rest : 12); u32 active : 1; BT_BITFIELD_ORDER(u32 rest : 12, u32 pad : 19); };
     void func_800DBEFC(s32 *, s32, BtIntPtr);
     void func_801018A4(Actor *, BtIntPtr);
     OSThread * func_80104130(void);

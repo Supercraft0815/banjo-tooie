@@ -84,7 +84,7 @@ s32 func_808001A8_chfriendlystonehead(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80800238_chfriendlystonehead(Actor *arg0) {
-    struct { u8 pad[0x28]; u32 : 18; u32 flag : 1; u32 : 13; } *flags;
+    struct { u8 pad[0x28]; BT_BITFIELD_ORDER(u32 : 18, u32  : 13); u32 flag : 1; BT_BITFIELD_ORDER(u32 : 13, u32  : 18); } *flags;
     if (func_8010C9B0(&arg0->position[0], 0x1F4) != 0) {
         func_80102424(arg0, 2);
         flags = (void *) arg0->unk0;
@@ -288,7 +288,7 @@ void func_808006C4_chfriendlystonehead(Actor *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void func_80800830_chfriendlystonehead(Actor *arg0, s16 arg1) {
-    struct Flags { u8 pad[0x2A]; u8 low : 2; u8 flag : 1; u8 high : 5; };
+    struct Flags { u8 pad[0x2A]; BT_BITFIELD_ORDER(u8 low : 2, u8 high : 5); u8 flag : 1; BT_BITFIELD_ORDER(u8 high : 5, u8 low : 2); };
 
     _subaddiedialog_entrypoint_11(arg0->unk0, arg1, 0xE, &arg0->position[0], 0x35);
     func_80102424(arg0, 6);

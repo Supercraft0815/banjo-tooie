@@ -4,8 +4,8 @@ typedef union {
     Actor actor;
     struct {
         u8 pad0[0x70];
-        u32 pad70_1 : 31;
-        u32 flag : 1;
+        BT_BITFIELD_ORDER(u32 pad70_1 : 31, u32 flag : 1);
+        BT_BITFIELD_ORDER(u32 flag : 1, u32 pad70_1 : 31);
     } balloon;
 } BalloonBurstActor;
 

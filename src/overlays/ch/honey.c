@@ -108,9 +108,9 @@ void func_80800244_chhoney(Actor *arg0) {
 void func_80800328_chhoney(Actor *arg0, Unk80132ED0 *arg1) {
     struct HoneyPickupFlags {
         u8 pad74[0x74];
-        u32 :11;
+        BT_BITFIELD_ORDER(u32 :11, u32  : 20);
         u32 enabled:1;
-        u32 :20;
+        BT_BITFIELD_ORDER(u32 :20, u32  : 11);
     };
     void _fxsparkle_entrypoint_1(f32 *, u32);
     s32 _sudialog_entrypoint_0(s32 arg0, s32 arg1);
@@ -157,13 +157,13 @@ void func_80800328_chhoney(Actor *arg0, Unk80132ED0 *arg1) {
 s32 func_8080046C_chhoney(Actor *arg0, s32 arg1, Unk80132ED0 *arg2) {
     struct HoneyFlags {
         u8 pad[0x78];
-        u32 :14;
-        u32 state:2;
-        u32 :10;
+        BT_BITFIELD_ORDER(u32 :14, u32  : 3);
+        BT_BITFIELD_ORDER(u32 state:2, u32 flag3 : 1);
+        BT_BITFIELD_ORDER(u32 :10, u32  : 1);
         u32 flag5:1;
-        u32 :1;
-        u32 flag3:1;
-        u32 :3;
+        BT_BITFIELD_ORDER(u32 :1, u32  : 10);
+        BT_BITFIELD_ORDER(u32 flag3:1, u32 state : 2);
+        BT_BITFIELD_ORDER(u32 :3, u32  : 14);
     };
     void func_800DF744(s32, s32);
     void func_80109EEC(s16 *, s32);
@@ -361,23 +361,23 @@ void func_808009BC_chhoney(Actor *arg0) {
 void func_80800A5C_chhoney(u8 *arg0) {
     struct HoneyFlags {
         u8 pad64[0x64];
-        u32 :11;
-        u32 mode:1;
-        u32 valid:1;
-        u32 :19;
+        BT_BITFIELD_ORDER(u32 :11, u32  : 19);
+        BT_BITFIELD_ORDER(u32 mode:1, u32 valid : 1);
+        BT_BITFIELD_ORDER(u32 valid:1, u32 mode : 1);
+        BT_BITFIELD_ORDER(u32 :19, u32  : 11);
         u8 pad70[8];
-        u32 :16;
+        BT_BITFIELD_ORDER(u32 :16, u32  : 10);
         u32 state:6;
-        u32 :10;
+        BT_BITFIELD_ORDER(u32 :10, u32  : 16);
         u32 pad74;
-        u32 :28;
+        BT_BITFIELD_ORDER(u32 :28, u32  : 3);
         u32 active:1;
-        u32 :3;
+        BT_BITFIELD_ORDER(u32 :3, u32  : 28);
     };
     struct HoneyMarker {
         u8 pad24[0x24];
-        u32 id:10;
-        u32 :22;
+        BT_BITFIELD_ORDER(u32 id:10, u32  : 22);
+        BT_BITFIELD_ORDER(u32 :22, u32 id : 10);
     };
     s32 _subaddieaudioloop_entrypoint_4(u8 *, u8 *, s32, s32 *);
     s32 func_80016B30(s32, s32);

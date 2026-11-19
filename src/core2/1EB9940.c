@@ -11,7 +11,7 @@
 /* extern */
 
 typedef struct { f32 unk0; f32 unk4; f32 unk8; f32 unkC; f32 unk10; f32 unk14; f32 unk18; f32 unk1C; f32 unk20; } Obj1EB9940_arg3; /* offsets.py genstruct: fields from raw offsets on arg3; rename once understood */ typedef struct { s16 unk0; s16 unk2; s16 unk4; } Obj1EB9940_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_800E0050(s16 *arg0, f32 arg1, s32 arg2, f32 *arg3) {
-    struct Entry { u16 group : 12; u16 channel : 4; s16 count; };
+    struct Entry { BT_BITFIELD_ORDER(u16 group : 12, u16 channel : 4); BT_BITFIELD_ORDER(u16 channel : 4, u16 group : 12); s16 count; };
     f32 func_800E0414(s16 *, f32);
     f32 func_800E04C0(u8 *, f32, s32);
     f32 temp_f0;

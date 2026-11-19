@@ -3,9 +3,9 @@
 typedef struct {
     f32 freeTime;
     void *emitter;
-    u32 isActive : 1;
+    BT_BITFIELD_ORDER(u32 isActive : 1, u32 reserved : 21);
     u32 capacity : 10;
-    u32 reserved : 21;
+    BT_BITFIELD_ORDER(u32 reserved : 21, u32 isActive : 1);
 } EmitterData;
 
 void func_800B58D4(u8);

@@ -92,9 +92,9 @@ void gcmapsects_lagoontop_entrypoint_0(void) { void _gcmapsects_entrypoint_0(s32
 void gcmapsects_lagoontop_entrypoint_1(u8 *arg0) {
     typedef struct {
         u8 pad[0x4C];
-        u32 visible : 1;
+        BT_BITFIELD_ORDER(u32 visible : 1, u32 remaining : 30);
         u32 active : 1;
-        u32 remaining : 30;
+        BT_BITFIELD_ORDER(u32 remaining : 30, u32 visible : 1);
         u8 tail[8];
     } Section;
     f32 func_800136E4(f32);

@@ -46,8 +46,8 @@ void func_80800098_chbanjoctrl(Actor *arg0) {
     void func_80800684_chbanjoctrl(void *, f32, BtIntPtr, BtIntPtr);
     struct BanjoCtrlFlags {
         u8 pad0[0x70];
-        u8 unk70_1 : 7;
-        u8 pad70_0 : 1;
+        BT_BITFIELD_ORDER(u8 unk70_1 : 7, u8 pad70_0 : 1);
+        BT_BITFIELD_ORDER(u8 pad70_0 : 1, u8 unk70_1 : 7);
     } *flags = (void *) arg0;
 
     flags->unk70_1 = 0;

@@ -20,9 +20,9 @@ typedef union {
     Actor actor;
     struct {
         u8 pad0[0x74];
-        u32 pad74_7 : 25;
+        BT_BITFIELD_ORDER(u32 pad74_7 : 25, u32 pad74_0 : 6);
         u32 unk74_6 : 1;
-        u32 pad74_0 : 6;
+        BT_BITFIELD_ORDER(u32 pad74_0 : 6, u32 pad74_7 : 25);
     } flags;
 } ChFireFxActor;
 
@@ -390,9 +390,9 @@ void func_80800C18_chfirefx(Actor *arg0) {
         Actor actor;
         struct {
             u8 pad[0x74];
-            u32 pad74_6 : 26;
+            BT_BITFIELD_ORDER(u32 pad74_6 : 26, u32 pad74_0 : 5);
             u32 fixed : 1;
-            u32 pad74_0 : 5;
+            BT_BITFIELD_ORDER(u32 pad74_0 : 5, u32 pad74_6 : 26);
         } flags;
     } FireActor;
     s32 _chlightfader_entrypoint_1(s32, f32, s32);

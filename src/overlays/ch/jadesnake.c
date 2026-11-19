@@ -237,7 +237,7 @@ void func_80800770_chjadesnake(Actor *arg0, u8 *arg1) {
     void func_80101870(Actor* arg0, void* arg1);
     OSThread * func_80104130(void);
     func_80101870(arg0, arg1);
-    if (((struct { u32 unused : 19; u32 active : 1; u32 rest : 12; } *)((u8 *)arg0 + 0x7C))->active) {
+    if (((struct { BT_BITFIELD_ORDER(u32 unused : 19, u32 rest : 12); u32 active : 1; BT_BITFIELD_ORDER(u32 rest : 12, u32 unused : 19); } *)((u8 *)arg0 + 0x7C))->active) {
         func_800DBEFC(func_80104130(), 4, (BtIntPtr) arg0->actorData);
         func_800DBEFC(func_80104130(), 5, (BtIntPtr) &arg0->actorData[4]);
     }

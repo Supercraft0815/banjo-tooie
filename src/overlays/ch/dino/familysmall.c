@@ -50,9 +50,9 @@ void func_80800090_chdinofamilysmall(u8 *arg0) {
     f32 sp5C;
     f32 sp50[3];
     f32 sp4C;
-    struct StateBits { u32 unused:16; u32 state:6; u32 rest:10; };
-    struct SoundBits { u32 unused:11; u32 first:1; u32 second:1; u32 rest:19; };
-    struct LandingBits { u32 unused:1; u32 landed:1; u32 rest:30; };
+    struct StateBits { BT_BITFIELD_ORDER(u32 unused:16, u32 rest : 10); u32 state:6; BT_BITFIELD_ORDER(u32 rest:10, u32 unused : 16); };
+    struct SoundBits { BT_BITFIELD_ORDER(u32 unused:11, u32 rest : 19); BT_BITFIELD_ORDER(u32 first:1, u32 second : 1); BT_BITFIELD_ORDER(u32 second:1, u32 first : 1); BT_BITFIELD_ORDER(u32 rest:19, u32 unused : 11); };
+    struct LandingBits { BT_BITFIELD_ORDER(u32 unused:1, u32 rest : 30); u32 landed:1; BT_BITFIELD_ORDER(u32 rest:30, u32 unused : 1); };
 
     switch (((struct StateBits *)(arg0 + 0x70))->state) {
     case 1:
@@ -162,8 +162,8 @@ void func_80800090_chdinofamilysmall(u8 *arg0) {
 s32 func_808008B4_chdinofamilysmall(u8 *arg0, s32 arg1) {
     struct FamilySmallFlags {
         u8 actorFields[0x74];
-        u32 otherFlags : 28;
-        u32 state : 4;
+        BT_BITFIELD_ORDER(u32 otherFlags : 28, u32 state : 4);
+        BT_BITFIELD_ORDER(u32 state : 4, u32 otherFlags : 28);
     };
     s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     void _chglowbo_entrypoint_6(void);

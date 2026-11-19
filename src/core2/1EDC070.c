@@ -88,9 +88,9 @@ f32 func_80102A04(void *arg0, f32 arg1, f32 arg2, s32 arg3) {
     f32 func_80013728(f32);
     struct Flags {
         u8 pad[0x74];
-        u32 unused : 27;
+        BT_BITFIELD_ORDER(u32 unused : 27, u32 rest : 4);
         u32 snap : 1;
-        u32 rest : 4;
+        BT_BITFIELD_ORDER(u32 rest : 4, u32 unused : 27);
     };
     f32 delta;
     f32 temp_f0;

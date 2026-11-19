@@ -27,15 +27,15 @@ f32 func_80800050_gspropprop(BT_PARAM_OR_VOID(s32 bt_a0)) {
 
 f32 gspropprop_entrypoint_1(void *arg0) {
     typedef struct {
-        u32 pad0 : 22;
+        BT_BITFIELD_ORDER(u32 pad0 : 22, u32 pad3 : 2);
         u32 scale : 8;
-        u32 pad3 : 2;
+        BT_BITFIELD_ORDER(u32 pad3 : 2, u32 pad0 : 22);
         u8 pad4[4];
-        u32 pad8 : 16;
-        u32 scale2 : 8;
+        BT_BITFIELD_ORDER(u32 pad8 : 16, u32 padB2 : 1);
+        BT_BITFIELD_ORDER(u32 scale2 : 8, u32 flag : 1);
         u32 padB : 6;
-        u32 flag : 1;
-        u32 padB2 : 1;
+        BT_BITFIELD_ORDER(u32 flag : 1, u32 scale2 : 8);
+        BT_BITFIELD_ORDER(u32 padB2 : 1, u32 pad8 : 16);
     } Prop;
     Prop *prop = arg0;
 
@@ -51,24 +51,24 @@ void gspropprop_entrypoint_2(void *prop) {
         s16 frameCnt;
         u8 pad2[14];
         struct {
-            u32 bit31 : 4;
-            u32 bit27 : 3;
+            BT_BITFIELD_ORDER(u32 bit31 : 4, u32 unused : 21);
+            BT_BITFIELD_ORDER(u32 bit27 : 3, u32 bit22 : 2);
             u32 bit24 : 2;
-            u32 bit22 : 2;
-            u32 unused : 21;
+            BT_BITFIELD_ORDER(u32 bit22 : 2, u32 bit27 : 3);
+            BT_BITFIELD_ORDER(u32 unused : 21, u32 bit31 : 4);
         } unk10;
     } Sprite;
     typedef struct {
         u8 pad0[3];
-        u8 pad3 : 6;
+        BT_BITFIELD_ORDER(u8 pad3 : 6, u8 pad3b : 1);
         u8 isMirrored : 1;
-        u8 pad3b : 1;
+        BT_BITFIELD_ORDER(u8 pad3b : 1, u8 pad3 : 6);
         u8 pad4[6];
-        u8 frame : 5;
-        u8 padA : 3;
-        u8 padB : 2;
-        u8 actorMirrored : 1;
-        u8 padBb : 5;
+        BT_BITFIELD_ORDER(u8 frame : 5, u8 padA : 3);
+        BT_BITFIELD_ORDER(u8 padA : 3, u8 frame : 5);
+        BT_BITFIELD_ORDER(u8 padB : 2, char : 0);
+        BT_BITFIELD_ORDER(u8 actorMirrored : 1, u8 padBb : 5);
+        BT_BITFIELD_ORDER(u8 padBb : 5, u8 actorMirrored : 1; u8 padB : 2);
     } SpriteProp;
     s32 _gsproplookup_entrypoint_1();
     s32 func_8001211C();
@@ -159,9 +159,9 @@ void gspropprop_entrypoint_2(void *prop) {
 void gspropprop_entrypoint_3(void *arg0, BtIntPtr arg1) {
     typedef struct {
         u32 pad0[2];
-        u32 pad8 : 30;
+        BT_BITFIELD_ORDER(u32 pad8 : 30, u32 padB : 1);
         u32 isModel : 1;
-        u32 padB : 1;
+        BT_BITFIELD_ORDER(u32 padB : 1, u32 pad8 : 30);
     } Prop;
     s32 _gsproplookup_entrypoint_0();
     s32 _gsproplookup_entrypoint_1();

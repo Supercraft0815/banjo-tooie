@@ -53,10 +53,10 @@ BtFnWord D_80801098_chtransparentfish[] = {
 void func_80800000_chtransparentfish(Actor *arg0) {
     struct FishNodeIndices {
         u8 prefix[0x70];
-        u32 sector : 7;
-        u32 unused : 15;
-        u32 node : 6;
-        u32 flags : 4;
+        BT_BITFIELD_ORDER(u32 sector : 7, u32 flags : 4);
+        BT_BITFIELD_ORDER(u32 unused : 15, u32 node : 6);
+        BT_BITFIELD_ORDER(u32 node : 6, u32 unused : 15);
+        BT_BITFIELD_ORDER(u32 flags : 4, u32 sector : 7);
     };
     struct FishData {
         f32 unused[3];
@@ -176,8 +176,8 @@ void func_80800348_chtransparentfish(Actor *actor)
     f32 func_800F0DC0(f32, f32);
     f32 func_800F1FF0(f32, f32, f32, f32, f32);
     struct TransparentFishFlags {
-        u32 unused : 2;
-        u32 active : 1;
+        BT_BITFIELD_ORDER(u32 unused : 2, u32 : 29);
+        BT_BITFIELD_ORDER(u32 active : 1, u32 active : 1; u32 unused : 2);
     };
     s32 flag;
     f32 position[3];
@@ -259,18 +259,18 @@ s32 func_8080078C_chtransparentfish(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80800AC4_chtransparentfish(Actor *arg0, f32 *arg1, s32 arg2);
     struct FishFlags {
         u8 prefix[0x64];
-        u32 visible : 1;
-        u32 rest64 : 31;
+        BT_BITFIELD_ORDER(u32 visible : 1, u32 rest64 : 31);
+        BT_BITFIELD_ORDER(u32 rest64 : 31, u32 visible : 1);
         u32 word68;
         u32 word6C;
-        u32 upper70 : 15;
+        BT_BITFIELD_ORDER(u32 upper70 : 15, u32 lower70 : 16);
         u32 flag70_16 : 1;
-        u32 lower70 : 16;
-        u32 upper74 : 11;
-        u32 flag74_20 : 1;
-        u32 middle74 : 14;
-        u32 flag74_5 : 1;
-        u32 lower74 : 5;
+        BT_BITFIELD_ORDER(u32 lower70 : 16, u32 upper70 : 15);
+        BT_BITFIELD_ORDER(u32 upper74 : 11, char : 0);
+        BT_BITFIELD_ORDER(u32 flag74_20 : 1, u32 lower74 : 5);
+        BT_BITFIELD_ORDER(u32 middle74 : 14, u32 flag74_5 : 1);
+        BT_BITFIELD_ORDER(u32 flag74_5 : 1, u32 middle74 : 14);
+        BT_BITFIELD_ORDER(u32 lower74 : 5, u32 flag74_20 : 1; u32 upper74 : 11);
     };
     Actor *spawned;
     Unk80132ED0 *marker;
@@ -394,8 +394,8 @@ s32 func_80800B60_chtransparentfish(void) {
     s32 func_80800E10_chtransparentfish(s32);
     typedef struct {
         s32 header[4];
-        u32 id : 11;
-        u32 flags : 21;
+        BT_BITFIELD_ORDER(u32 id : 11, u32 flags : 21);
+        BT_BITFIELD_ORDER(u32 flags : 21, u32 id : 11);
     } FishProp;
     s32 count;
     s32 i;

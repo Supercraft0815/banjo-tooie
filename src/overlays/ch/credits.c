@@ -238,11 +238,11 @@ void func_80800800_chcredits(void *arg0) {
         u8 pad38[0x20];
         f32 timer2;
         u8 pad5C[0x12];
-        u16 flags6E : 7;
-        u16 alpha : 9;
-        unsigned int flags70 : 16;
-        unsigned int state : 6;
-        unsigned int flags72 : 10;
+        BT_BITFIELD_ORDER(u16 flags6E : 7, u16 alpha : 9);
+        BT_BITFIELD_ORDER(u16 alpha : 9, u16 flags6E : 7);
+        BT_BITFIELD_ORDER(unsigned int flags70 : 16, char : 0);
+        BT_BITFIELD_ORDER(unsigned int state : 6, unsigned int flags72 : 10);
+        BT_BITFIELD_ORDER(unsigned int flags72 : 10, unsigned int state : 6; unsigned int flags70 : 16);
     } CreditsActor;
     void chcredits_entrypoint_0(s32);
     void func_80015ECC(s32, void *);
@@ -346,7 +346,7 @@ void func_80800BD4_chcredits(s32 *arg0) {
         s32 marker;
         f32 position[3];
         u8 pad10[0x6A];
-        u8 flags7A : 2;
+        BT_BITFIELD_ORDER(u8 flags7A : 2, u8 : 6; u8 flags7A : 2);
     } *actor = (void *)arg0;
     s32 temp_v0;
     f32 zero = 0.0f;

@@ -65,9 +65,9 @@ void func_808001D0_chjigsaw(BtIntPtr arg0)
 }
 void func_808001F8_chjigsaw(Actor *arg0) {
     typedef struct {
-        u32 unused : 28;
+        BT_BITFIELD_ORDER(u32 unused : 28, u32 unused2 : 3);
         u32 attached : 1;
-        u32 unused2 : 3;
+        BT_BITFIELD_ORDER(u32 unused2 : 3, u32 unused : 28);
     } JigsawFlags;
     s32 *_fxgenlist_entrypoint_1(void);
     void _fxtwinkle_entrypoint_0(f32 *);

@@ -70,20 +70,20 @@ void func_80800164_chegggrenade(void *arg0) {
             u32 value;
             struct {
                 u8 pad38;
-                u8 flag : 1;
-                u8 rest : 7;
+                BT_BITFIELD_ORDER(u8 flag : 1, u8 rest : 7);
+                BT_BITFIELD_ORDER(u8 rest : 7, u8 flag : 1);
             } byte;
             struct {
-                u32 pad : 9;
+                BT_BITFIELD_ORDER(u32 pad : 9, u32 rest : 22);
                 u32 blocked : 1;
-                u32 rest : 22;
+                BT_BITFIELD_ORDER(u32 rest : 22, u32 pad : 9);
             } word;
         } flags;
     };
     struct FlagData {
         u8 pad[0x39];
-        u8 flag : 1;
-        u8 rest : 7;
+        BT_BITFIELD_ORDER(u8 flag : 1, u8 rest : 7);
+        BT_BITFIELD_ORDER(u8 rest : 7, u8 flag : 1);
     } *data[1];
 
     data[0] = func_80100094(arg0, 0);

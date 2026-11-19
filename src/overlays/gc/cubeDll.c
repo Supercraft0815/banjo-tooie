@@ -471,7 +471,7 @@ u32 gccubeDll_entrypoint_7(void) {
     void func_800BE52C(s32 *, s32 *);
     Prop *func_800E9D68(s16 *);
     u32 func_800E9D90(s16 *);
-    struct CubeProp { u8 pad[0x10]; u32 value : 11; u32 other : 21; };
+    struct CubeProp { u8 pad[0x10]; BT_BITFIELD_ORDER(u32 value : 11, u32 other : 21); BT_BITFIELD_ORDER(u32 other : 21, u32 value : 11); };
     u32 temp_t7;
     s32 sp30;
     s32 sp2C;

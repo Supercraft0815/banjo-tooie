@@ -185,15 +185,15 @@ void func_80800210_chnewmumbo(s32 *arg0) {
 void func_80800264_chnewmumbo(Actor *arg0, s32 arg1) {
     struct MumboFlags {
         u8 pad[0x70];
-        u32 : 9;
+        BT_BITFIELD_ORDER(u32 : 9, u32  : 22);
         u32 enabled : 1;
-        u32 : 22;
-        u32 : 28;
-        u32 mode : 4;
+        BT_BITFIELD_ORDER(u32 : 22, u32  : 9);
+        BT_BITFIELD_ORDER(u32 : 28, char : 0);
+        BT_BITFIELD_ORDER(u32 mode : 4, u32 mode : 4; u32  : 28);
         u16 pad78;
-        u16 : 2;
+        BT_BITFIELD_ORDER(u16 : 2, u16  : 12);
         u16 flags : 2;
-        u16 : 12;
+        BT_BITFIELD_ORDER(u16 : 12, u16  : 2);
     };
     s32 func_800DA298(s32);
     s32 func_800DA9E4(s32, s32);
@@ -363,7 +363,7 @@ void func_8080073C_chnewmumbo(Actor *arg0, s32 arg1) {
 }
 
 void func_808007B0_chnewmumbo(u8 *arg0) {
-    struct Flags { unsigned int : 12; unsigned int active : 1; unsigned int : 18; };
+    struct Flags { BT_BITFIELD_ORDER(unsigned int : 12, unsigned int : 1); BT_BITFIELD_ORDER(unsigned int active : 1, unsigned int  : 18); BT_BITFIELD_ORDER(unsigned int : 18, unsigned int active : 1; unsigned int  : 12); };
     BtUIntPtr func_800F54E4(void);
     void func_800F82D4(BtIntPtr, s32);
     if (((struct Flags *)(arg0 + 0x64))->active) {
@@ -461,12 +461,12 @@ void func_8080092C_chnewmumbo(Actor *arg0) {
     struct MumboData { u8 unk0, unk1, unk2, unk3; f32 position[3]; };
     struct MumboFlags {
         u8 prefix[0x74];
-        u32 pad74_4 : 28;
-        u32 animationMode : 4;
-        u32 pad78_14 : 18;
-        u32 eyeDirection : 2;
+        BT_BITFIELD_ORDER(u32 pad74_4 : 28, u32 animationMode : 4);
+        BT_BITFIELD_ORDER(u32 animationMode : 4, u32 pad74_4 : 28);
+        BT_BITFIELD_ORDER(u32 pad78_14 : 18, char : 0);
+        BT_BITFIELD_ORDER(u32 eyeDirection : 2, u32 pad78_0 : 9);
         u32 eyeFrame : 3;
-        u32 pad78_0 : 9;
+        BT_BITFIELD_ORDER(u32 pad78_0 : 9, u32 eyeDirection : 2; u32 pad78_14 : 18);
     };
     struct Vector sp6C = (*(struct Vector *)D_80801AD4_chnewmumbo);
     f32 sp60[3];

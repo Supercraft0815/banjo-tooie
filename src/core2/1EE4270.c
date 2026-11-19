@@ -485,10 +485,10 @@ typedef struct {
     s32 marker;
     f32 position[3];
     u8 pad10[0x60];
-    u32 path_index : 7;
-    u32 pad70_10 : 15;
-    u32 path_node : 6;
-    u32 pad70_0 : 4;
+    BT_BITFIELD_ORDER(u32 path_index : 7, u32 pad70_0 : 4);
+    BT_BITFIELD_ORDER(u32 pad70_10 : 15, u32 path_node : 6);
+    BT_BITFIELD_ORDER(u32 path_node : 6, u32 pad70_10 : 15);
+    BT_BITFIELD_ORDER(u32 pad70_0 : 4, u32 path_index : 7);
 } ActorPath;
 
 s32 func_8010B800(ActorPath *arg0, f32 arg1[3], s32 arg2, s32 arg3) {
@@ -660,12 +660,12 @@ s32 func_8010BCC8(Actor *arg0, BtIntPtr arg1, Actor *arg2) {
 s32 func_8010BDB0(Actor *actor, s32 arg1, s32 arg2, s32 arg3) {
     typedef struct {
         u8 pad[0x70];
-        u32 : 15;
+        BT_BITFIELD_ORDER(u32 : 15, u32  : 16);
         u32 collidable : 1;
-        u32 : 16;
-        u32 : 7;
-        u32 burning : 1;
-        u32 : 24;
+        BT_BITFIELD_ORDER(u32 : 16, u32  : 15);
+        BT_BITFIELD_ORDER(u32 : 7, char : 0);
+        BT_BITFIELD_ORDER(u32 burning : 1, u32  : 24);
+        BT_BITFIELD_ORDER(u32 : 24, u32 burning : 1; u32  : 7);
     } CollisionFlags;
     typedef struct {
         Unk80132ED0 *marker;
@@ -767,12 +767,12 @@ s32 func_8010BFA4(f32 *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
 s32 func_8010C100(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     typedef struct {
         u8 pad[0x70];
-        u32 : 15;
+        BT_BITFIELD_ORDER(u32 : 15, u32  : 16);
         u32 collidable : 1;
-        u32 : 16;
-        u32 : 7;
-        u32 burning : 1;
-        u32 : 24;
+        BT_BITFIELD_ORDER(u32 : 16, u32  : 15);
+        BT_BITFIELD_ORDER(u32 : 7, char : 0);
+        BT_BITFIELD_ORDER(u32 burning : 1, u32  : 24);
+        BT_BITFIELD_ORDER(u32 : 24, u32 burning : 1; u32  : 7);
     } CollisionFlags;
     typedef struct {
         Unk80132ED0 *marker;

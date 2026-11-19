@@ -542,10 +542,10 @@ void func_80800C7C_chfactoryempspell(Actor *arg0, void *arg1) {
         f32 x;
         f32 y;
         u8 pad8[8];
-        u32 first : 7;
-        u32 second : 7;
-        u32 flag : 1;
-        u32 rest : 17;
+        BT_BITFIELD_ORDER(u32 first : 7, u32 rest : 17);
+        BT_BITFIELD_ORDER(u32 second : 7, u32 flag : 1);
+        BT_BITFIELD_ORDER(u32 flag : 1, u32 second : 7);
+        BT_BITFIELD_ORDER(u32 rest : 17, u32 first : 7);
     } Effect;
     typedef struct {
         Effect effects[3];
@@ -746,10 +746,10 @@ void func_808016AC_chfactoryempspell(Actor *arg0) {
         u8 audio;
         u8 pad9[3];
         s32 handle;
-        u16 first : 7;
-        u16 second : 7;
-        u16 flag : 1;
-        u16 last : 1;
+        BT_BITFIELD_ORDER(u16 first : 7, u16 last : 1);
+        BT_BITFIELD_ORDER(u16 second : 7, u16 flag : 1);
+        BT_BITFIELD_ORDER(u16 flag : 1, u16 second : 7);
+        BT_BITFIELD_ORDER(u16 last : 1, u16 first : 7);
         u8 pad12[2];
     } *entry;
     s32 pad;
@@ -795,10 +795,10 @@ void func_80801844_chfactoryempspell(Actor *arg0) {
         u8 audio;
         u8 pad9[3];
         s32 handle;
-        u16 first : 7;
-        u16 second : 7;
-        u16 flag : 1;
-        u16 last : 1;
+        BT_BITFIELD_ORDER(u16 first : 7, u16 last : 1);
+        BT_BITFIELD_ORDER(u16 second : 7, u16 flag : 1);
+        BT_BITFIELD_ORDER(u16 flag : 1, u16 second : 7);
+        BT_BITFIELD_ORDER(u16 last : 1, u16 first : 7);
         u8 pad12[2];
     } *entry;
     s32 i;
@@ -836,8 +836,8 @@ void func_80801AB4_chfactoryempspell(Actor *arg0) {
         u8 audio;
         u8 pad9[3];
         s32 handle;
-        u8 active : 7;
-        u8 flag : 1;
+        BT_BITFIELD_ORDER(u8 active : 7, u8 flag : 1);
+        BT_BITFIELD_ORDER(u8 flag : 1, u8 active : 7);
         u8 pad11[3];
     } *entry;
     s32 i;
@@ -978,8 +978,8 @@ void func_80801E9C_chfactoryempspell(Actor *arg0, f32 arg1) {
         s32 pad[10];
         u8 sound;
         u8 pad29[0x47];
-        u32 pad70_1 : 31;
-        u32 active : 1;
+        BT_BITFIELD_ORDER(u32 pad70_1 : 31, u32 active : 1);
+        BT_BITFIELD_ORDER(u32 active : 1, u32 pad70_1 : 31);
     } EmpSpellData;
     s32 pad;
     volatile f32 volume;

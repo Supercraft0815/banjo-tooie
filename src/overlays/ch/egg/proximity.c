@@ -37,8 +37,8 @@ s32 func_808000A8_cheggproximity(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_80800718_cheggproximity(BtIntPtr, s32);
     struct ProximityData {
         u8 pad0[0x39];
-        u8 active : 1;
-        u8 unused : 7;
+        BT_BITFIELD_ORDER(u8 active : 1, u8 unused : 7);
+        BT_BITFIELD_ORDER(u8 unused : 7, u8 active : 1);
         u8 pad3A[0x6A];
         s32 triggered;
     } *data;
@@ -68,8 +68,8 @@ typedef union {
     Actor actor;
     struct {
         u8 prefix[0x78];
-        u16 unused : 14;
-        u16 flags : 2;
+        BT_BITFIELD_ORDER(u16 unused : 14, u16 flags : 2);
+        BT_BITFIELD_ORDER(u16 flags : 2, u16 unused : 14);
     } proximity;
 } ProximityActor;
 
@@ -148,10 +148,10 @@ void func_80800330_cheggproximity(Actor *arg0) {
 #endif
     struct ProximityFlags {
         u8 pad[0x38];
-        u32 unused31_24:8;
-        u32 flag23:1;
-        u32 flag22:1;
-        u32 unused21_0:22;
+        BT_BITFIELD_ORDER(u32 unused31_24:8, u32 unused21_0 : 22);
+        BT_BITFIELD_ORDER(u32 flag23:1, u32 flag22 : 1);
+        BT_BITFIELD_ORDER(u32 flag22:1, u32 flag23 : 1);
+        BT_BITFIELD_ORDER(u32 unused21_0:22, u32 unused31_24 : 8);
     };
     u8 *data;
 
@@ -225,7 +225,7 @@ void func_80800510_cheggproximity(BtIntPtr arg0, void *arg1) {
     func_808001CC_cheggproximity(arg0);
     _suegg_entrypoint_16(arg0);
     if (_suegg_entrypoint_14(arg0) != 0) {
-        ((struct { u8 pad[0x39]; u8 flag : 1; u8 : 7; } *)arg1)->flag = 1;
+        ((struct { u8 pad[0x39]; BT_BITFIELD_ORDER(u8 flag : 1, u8  : 7); BT_BITFIELD_ORDER(u8 : 7, u8 flag : 1); } *)arg1)->flag = 1;
     }
 }
 
@@ -279,8 +279,8 @@ void func_80800650_cheggproximity(BtIntPtr arg0, BtIntPtr arg1) {
 void func_808006A4_cheggproximity(Actor *arg0, u8 *arg1) {
     struct ProximityFlags {
         u8 pad[0x39];
-        u8 triggered : 1;
-        u8 other : 7;
+        BT_BITFIELD_ORDER(u8 triggered : 1, u8 other : 7);
+        BT_BITFIELD_ORDER(u8 other : 7, u8 triggered : 1);
     };
     void* func_80100094(Actor*, u32);
     s32 func_80800874_cheggproximity(BtIntPtr);

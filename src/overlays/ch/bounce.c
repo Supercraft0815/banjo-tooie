@@ -105,12 +105,12 @@ u32 *func_80800190_chbounce(Actor *arg0, BtUIntPtr arg1, BtUIntPtr arg2) {
     };
     struct BounceBits {
         u8 pad[0x24];
-        u8 flag24 : 1;
-        u8 type : 7;
-        u8 flag25 : 1;
+        BT_BITFIELD_ORDER(u8 flag24 : 1, u8 type : 7);
+        BT_BITFIELD_ORDER(u8 type : 7, u8 flag24 : 1);
+        BT_BITFIELD_ORDER(u8 flag25 : 1, char : 0);
         u8 state : 7;
-        u8 mode : 3;
-        u8 rest26 : 5;
+        BT_BITFIELD_ORDER(u8 mode : 3, u8 flag25 : 1);
+        BT_BITFIELD_ORDER(u8 rest26 : 5, char : 0; u8 rest26 : 5; u8 mode : 3);
     };
     f32 func_800DC178(f32, f32);
     void func_800EE7F8(f32 *, f32 *);
@@ -182,7 +182,7 @@ u32 *func_80800190_chbounce(Actor *arg0, BtUIntPtr arg1, BtUIntPtr arg2) {
                 func_80100074(actor, 2, 0x34);
                 data = func_80100094(actor, 2);
                 position = (u8 *) actor + 4;
-                ((struct { u8 pad[0x7B]; u8 a : 4; u8 f : 1; u8 b : 3; } *) actor)->f = 1;
+                ((struct { u8 pad[0x7B]; BT_BITFIELD_ORDER(u8 a : 4, u8 b : 3); u8 f : 1; BT_BITFIELD_ORDER(u8 b : 3, u8 a : 4); } *) actor)->f = 1;
                 ((struct BounceBits *) data)->type = type;
                 ((struct BounceBits *) data)->mode = 1;
                 ((struct BounceBits *) data)->state = 1;
@@ -318,10 +318,10 @@ BtIntPtr func_808007B8_chbounce(Actor *arg0, f32 *arg1, f32 *arg2, f32 *arg3, s3
     struct { u8 pad[0x32]; u16 flags; } *data;
     struct {
         u8 pad[0x70];
-        u32 sector : 7;
-        u32 reserved : 15;
-        u32 triangle : 6;
-        u32 flags : 4;
+        BT_BITFIELD_ORDER(u32 sector : 7, u32 flags : 4);
+        BT_BITFIELD_ORDER(u32 reserved : 15, u32 triangle : 6);
+        BT_BITFIELD_ORDER(u32 triangle : 6, u32 reserved : 15);
+        BT_BITFIELD_ORDER(u32 flags : 4, u32 sector : 7);
     } *collision = (void *)arg0;
 
     data = func_80100094(arg0, 2);
@@ -395,11 +395,11 @@ void chbounce_entrypoint_8(Actor *arg0) {
         f32 angle;
         f32 angularVelocity;
         f32 time;
-        u32 settled : 1;
-        u32 type : 7;
+        BT_BITFIELD_ORDER(u32 settled : 1, u32 reserved2 : 13);
+        BT_BITFIELD_ORDER(u32 type : 7, u32 state : 3);
         u32 reserved : 8;
-        u32 state : 3;
-        u32 reserved2 : 13;
+        BT_BITFIELD_ORDER(u32 state : 3, u32 type : 7);
+        BT_BITFIELD_ORDER(u32 reserved2 : 13, u32 settled : 1);
         s16 sound;
         s16 volume;
         f32 pitch;

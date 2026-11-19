@@ -511,7 +511,7 @@ void func_800B62CC(Gfx **arg0, u8 arg1, f32 *arg2, f32 *arg3, f32 arg4)
 }
 
 void func_800B7174(u8 *arg0) {
-    struct Input { union { struct { s16 value; u16 rest; } halves; struct { unsigned int pad : 16; unsigned int nibble : 4; unsigned int rest : 12; } nib; struct { unsigned int pad : 20; unsigned int flag11 : 1; unsigned int pad2 : 1; unsigned int flag9 : 1; unsigned int rest : 9; } bits; } data; };
+    struct Input { union { struct { s16 value; u16 rest; } halves; struct { BT_BITFIELD_ORDER(unsigned int pad : 16, unsigned int rest : 12); unsigned int nibble : 4; BT_BITFIELD_ORDER(unsigned int rest : 12, unsigned int pad : 16); } nib; struct { BT_BITFIELD_ORDER(unsigned int pad : 20, unsigned int rest : 9); BT_BITFIELD_ORDER(unsigned int flag11 : 1, unsigned int flag9 : 1); unsigned int pad2 : 1; BT_BITFIELD_ORDER(unsigned int flag9 : 1, unsigned int flag11 : 1); BT_BITFIELD_ORDER(unsigned int rest : 9, unsigned int pad : 20); } bits; } data; };
     struct Output { u8 pad[0x1C]; s8 f1c, f1d, f1e, f1f, f20, f21; s16 f22; u8 pad24[4]; s16 f28, f2a; };
     extern s32 D_801281A4;
     void func_800F2EBC(void *, void *);
@@ -586,7 +586,7 @@ void func_800B7448(Gfx **arg0) {
     BtUIntPtr vector_end(s32);
     s32 vector_size(s32);
     extern s32 D_8011A620;
-    struct FlagWord { u32 upper : 16; u32 font : 4; u32 bit11 : 1; u32 highlight : 1; u32 lower : 10; };
+    struct FlagWord { BT_BITFIELD_ORDER(u32 upper : 16, u32 lower : 10); BT_BITFIELD_ORDER(u32 font : 4, u32 highlight : 1); u32 bit11 : 1; BT_BITFIELD_ORDER(u32 highlight : 1, u32 font : 4); BT_BITFIELD_ORDER(u32 lower : 10, u32 upper : 16); };
     s32 var_s0;
     f32 sp88;
     f32 sp84;
@@ -646,11 +646,11 @@ void func_800B798C(s32 arg0, s32 arg1, u8 *arg2) {
     void *vector_push_back(void **);
     typedef struct {
         s16 x, y, z;
-        u8 upper : 4;
-        u8 flag18 : 1;
+        BT_BITFIELD_ORDER(u8 upper : 4, u8 unused : 1);
+        BT_BITFIELD_ORDER(u8 flag18 : 1, u8 flag19 : 1);
         u8 flag16 : 1;
-        u8 flag19 : 1;
-        u8 unused : 1;
+        BT_BITFIELD_ORDER(u8 flag19 : 1, u8 flag18 : 1);
+        BT_BITFIELD_ORDER(u8 unused : 1, u8 upper : 4);
         u8 pad;
         f32 scale;
         u8 *text;

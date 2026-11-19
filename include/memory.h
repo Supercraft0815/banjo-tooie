@@ -31,12 +31,12 @@ struct HeapHeader {
     struct HeapHeader* prev;
     struct HeapHeader* next;
     s32 unk8;
-    u32 allocation_overhead : 24;
-    u32 state : 2;
-    u32 unkC_26 : 2;
-    u32 unkC_28 : 1;
-    u32 unkC_29 : 1;
-    u32 unkC_30 : 2;
+    BT_BITFIELD_ORDER(u32 allocation_overhead : 24, u32 unkC_30 : 2);
+    BT_BITFIELD_ORDER(u32 state : 2, u32 unkC_29 : 1);
+    BT_BITFIELD_ORDER(u32 unkC_26 : 2, u32 unkC_28 : 1);
+    BT_BITFIELD_ORDER(u32 unkC_28 : 1, u32 unkC_26 : 2);
+    BT_BITFIELD_ORDER(u32 unkC_29 : 1, u32 state : 2);
+    BT_BITFIELD_ORDER(u32 unkC_30 : 2, u32 allocation_overhead : 24);
 };
 
 struct EmptyHeapBlock {

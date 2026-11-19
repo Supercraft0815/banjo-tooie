@@ -187,10 +187,10 @@ void func_80800508_chfactoryrobot(Actor *arg0) {
     void func_80107200(Actor *);
     struct RobotFlags {
         u8 pad0[0x70];
-        u32 flags25 : 7;
-        u32 pad10 : 15;
-        u32 flags4 : 6;
-        u32 pad0bits : 4;
+        BT_BITFIELD_ORDER(u32 flags25 : 7, u32 pad0bits : 4);
+        BT_BITFIELD_ORDER(u32 pad10 : 15, u32 flags4 : 6);
+        BT_BITFIELD_ORDER(u32 flags4 : 6, u32 pad10 : 15);
+        BT_BITFIELD_ORDER(u32 pad0bits : 4, u32 flags25 : 7);
     };
     Actor *sp24;
     u32 flags;
@@ -224,8 +224,8 @@ void func_808005D4_chfactoryrobot(Actor *arg0) {
     extern s32 D_80802A7C_chfactoryrobot[4];
     struct RobotRenderFlags {
         u8 pad0[0x70];
-        u32 pad70 : 31;
-        u32 enabled : 1;
+        BT_BITFIELD_ORDER(u32 pad70 : 31, u32 enabled : 1);
+        BT_BITFIELD_ORDER(u32 enabled : 1, u32 pad70 : 31);
     };
     f32 sp44[3];
     f32 sp38[3];
@@ -366,9 +366,9 @@ void func_80800920_chfactoryrobot(Actor *arg0) {
         u8 route[4];
     };
     struct RobotFlags {
-        u32 pad : 29;
+        BT_BITFIELD_ORDER(u32 pad : 29, u32 pad2 : 2);
         u32 disabled : 1;
-        u32 pad2 : 2;
+        BT_BITFIELD_ORDER(u32 pad2 : 2, u32 pad : 29);
     };
     struct RobotUpdateData *data;
     s32 electricFinished;
@@ -578,9 +578,9 @@ void func_80800FFC_chfactoryrobot(Actor *arg0, void *arg1) {
         u8 pad0[0x74];
         u8 flags74;
         u8 pad75[3];
-        u32 pad78_3 : 29;
+        BT_BITFIELD_ORDER(u32 pad78_3 : 29, u32 pad78_0 : 2);
         u32 flag78_2 : 1;
-        u32 pad78_0 : 2;
+        BT_BITFIELD_ORDER(u32 pad78_0 : 2, u32 pad78_3 : 29);
     } RobotFlags;
     void *func_80100094(Actor *, u32);
     s32 func_800DC128(s32, s32);
@@ -889,9 +889,9 @@ s32 func_80801A80_chfactoryrobot(Actor *arg0) {
     } RobotData;
     typedef struct {
         u8 pad0[0x64];
-        u32 pad64_30 : 2;
+        BT_BITFIELD_ORDER(u32 pad64_30 : 2, u32 pad64_0 : 29);
         u32 unk64_29 : 1;
-        u32 pad64_0 : 29;
+        BT_BITFIELD_ORDER(u32 pad64_0 : 29, u32 pad64_30 : 2);
     } RobotFlags;
     s32 _subaddiejoy_entrypoint_6(u8 *, s32);
     s32 func_800D9078(f32 *arg0);
@@ -929,9 +929,9 @@ s32 func_800D9078(f32 *arg0);
 s32 func_80801B3C_chfactoryrobot(Actor *arg0) {
     typedef struct {
         u8 pad0[0x64];
-        u32 pad64_30 : 2;
+        BT_BITFIELD_ORDER(u32 pad64_30 : 2, u32 pad64_0 : 29);
         u32 unk64_29 : 1;
-        u32 pad64_0 : 29;
+        BT_BITFIELD_ORDER(u32 pad64_0 : 29, u32 pad64_30 : 2);
     } RobotFlags;
     s32 _subaddiejoy_entrypoint_6(u8 *, s32);
     s32 func_80801160_chfactoryrobot(u8 *, s32);
@@ -953,9 +953,9 @@ s32 func_80801B3C_chfactoryrobot(Actor *arg0) {
 s32 func_80801BB0_chfactoryrobot(Actor *arg0) {
     typedef struct {
         u8 pad0[0x64];
-        u32 pad64_30 : 2;
+        BT_BITFIELD_ORDER(u32 pad64_30 : 2, u32 pad64_0 : 29);
         u32 unk64_29 : 1;
-        u32 pad64_0 : 29;
+        BT_BITFIELD_ORDER(u32 pad64_0 : 29, u32 pad64_30 : 2);
     } RobotFlags;
     typedef struct {
         u8 pad0[0x14];
@@ -995,8 +995,8 @@ s32 func_80801C50_chfactoryrobot(BtIntPtr arg0) {
 void func_80801C7C_chfactoryrobot(Actor *arg0) {
     typedef struct {
         u8 pad[0x70];
-        u32 index : 7;
-        u32 trailing : 25;
+        BT_BITFIELD_ORDER(u32 index : 7, u32 trailing : 25);
+        BT_BITFIELD_ORDER(u32 trailing : 25, u32 index : 7);
     } RobotFlags;
     typedef struct {
         s16 unk0;
@@ -1021,9 +1021,9 @@ void func_80801C7C_chfactoryrobot(Actor *arg0) {
 void func_80801D08_chfactoryrobot(Actor *arg0) {
     typedef struct {
         u8 pad[0x70];
-        u32 leading : 22;
+        BT_BITFIELD_ORDER(u32 leading : 22, u32 trailing : 4);
         u32 state : 6;
-        u32 trailing : 4;
+        BT_BITFIELD_ORDER(u32 trailing : 4, u32 leading : 22);
     } RobotState;
     s32 func_800EA05C(void);
     void *func_80100094(Actor *, u32);
@@ -1045,9 +1045,9 @@ void func_80801D08_chfactoryrobot(Actor *arg0) {
 void func_80801D7C_chfactoryrobot(Actor *arg0) {
     typedef struct {
         u8 pad[0x64];
-        u32 leading : 11;
+        BT_BITFIELD_ORDER(u32 leading : 11, u32 trailing : 20);
         u32 sounded : 1;
-        u32 trailing : 20;
+        BT_BITFIELD_ORDER(u32 trailing : 20, u32 leading : 11);
     } RobotFlags;
     s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
     void _chmrtannoy_entrypoint_0(void);
@@ -1272,8 +1272,8 @@ s32 func_80802398_chfactoryrobot(Actor *arg0) {
     s32 func_808025D4_chfactoryrobot(Actor *);
     struct RobotFlags {
         u8 pad[0x7E];
-        u16 initialized : 1;
-        u16 remaining : 15;
+        BT_BITFIELD_ORDER(u16 initialized : 1, u16 remaining : 15);
+        BT_BITFIELD_ORDER(u16 remaining : 15, u16 initialized : 1);
     };
     struct RobotData {
         Unk80132ED0 *markers[4];

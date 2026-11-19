@@ -120,8 +120,8 @@ void func_80800404_chsunlightspell(Actor *arg0, s32 arg1) {
     struct SunlightActorFlags {
         u8 unk78;
         u8 unk79;
-        u8 mode : 2;
-        u8 remaining : 6;
+        BT_BITFIELD_ORDER(u8 mode : 2, u8 remaining : 6);
+        BT_BITFIELD_ORDER(u8 remaining : 6, u8 mode : 2);
     };
 
     switch (arg1) {

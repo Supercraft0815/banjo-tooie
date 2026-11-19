@@ -2196,3 +2196,37 @@ ROM-Abbilder. Zwei neue Prüfwerkzeuge schlagen weitere Audio- und
 Callback-Tabellen zur Sichtung vor. Belege stehen unter
 `build/acceptance/n1-2026-11-18/proof/dispatch6-summary.json` und
 `logs/root-dispatch6-*`.
+
+## 2026-11-19 — N2, Bitfelder direkt aus C kompilieren
+
+894 Bitfeldgruppen in 239 Quelldateien enthalten jetzt die für N64 und
+ILP32 benötigten Anordnungen. Der Gast-Build kompiliert die Quellen direkt.
+Der separate Codemod prüft die Feldpositionen mit Clang und arbeitet
+standardmäßig lesend. Beim zweiten Durchlauf ergaben sich keine Änderungen.
+
+Mit allen 70 noch offenen Datenmodulen waren das verlinkte LLVM-Bitcode-Modul
+(8.830.676 Bytes) und das WebAssembly-Modul (9.502.260 Bytes) vor und nach
+der Umstellung bytegleich. Original-IDO kompilierte sämtliche 1.114
+C-Objekte neu. Alle 16.401 Funktionen stimmen in Code, Lage und Größe
+überein. Bei 31 Objekten änderte sich nur die Debugsektion `.mdebug`.
+`make check`, beide vollständigen ROM-Vergleiche, zehn Testprogramme und
+alle 56 Spielabläufe mit 315.790 Retraces bestanden. Belege liegen unter
+`build/acceptance/n2-2026-11-18/bitfield-tools/`.
+
+Der Fremdsymbolbericht des 56er-Korpus auf dem zuvor eingefrorenen Stand
+mit 76 Datenmodulen erfasste 1.801 von 6.103 instrumentierten Stellen
+in 452 Funktionen. Die 1.872 beobachteten Paare aus Zugriff und Ziel
+betreffen 127 Symbolgruppen. Herkunft und Prüfsummen der beiden Tabellen
+stehen in `build/acceptance/q2-followup-2026-11-18/worklist-source.json`.
+
+## 2026-11-19 — A3, Intro auf Mesa und unter Wine
+
+Mit Linux ARM64 und llvmpipe lagen 2.676 von 2.694 Intro-Bildern über
+der festgelegten Pixeltoleranz, unter Wine mit dem Windows-x64-Build
+1.854. Bei beiden begann die Abweichung mit Bild 22. Zwei Änderungen
+an der homogenen Clip-Koordinate verschlechterten den vollständigen Lauf.
+Ein Versuch, das betroffene Himmelsdreieck per Software zu zeichnen, half
+bei Bild 22. Ab Bild 25 überschritten weitere Bilder die Schwelle, insgesamt
+2.673. Die größte Abweichung lag weiterhin bei 18,95 Prozent der Pixel.
+Die Versuche und Bilder stehen im isolierten Testcheckout unter
+`build/acceptance/a3-current-2026-11-18/PORTABILITY-RESULTS.md`.

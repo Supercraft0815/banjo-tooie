@@ -31,7 +31,7 @@ void func_800CDFD0(void **arg0) {
     BtUIntPtr prop;
     s16 shortPosition[3];
     u32 *cells;
-    struct PropFlags { u8 padding[19]; u8 flag : 1; u8 rest : 7; };
+    struct PropFlags { u8 padding[19]; BT_BITFIELD_ORDER(u8 flag : 1, u8 rest : 7); BT_BITFIELD_ORDER(u8 rest : 7, u8 flag : 1); };
     s32 id;
     s32 radius;
     s32 cell;

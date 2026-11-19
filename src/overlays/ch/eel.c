@@ -40,8 +40,8 @@ void func_808000B4_cheel(Actor *arg0) {
             f32 unk28[3];
             f32 unk34;
             u8 pad38[0x3B];
-            u8 pad73 : 7;
-            u8 unk73_0 : 1;
+            BT_BITFIELD_ORDER(u8 pad73 : 7, u8 unk73_0 : 1);
+            BT_BITFIELD_ORDER(u8 unk73_0 : 1, u8 pad73 : 7);
         } eel;
     } *data = (void *)arg0;
 
@@ -77,9 +77,9 @@ void func_80800168_cheel(Actor *arg0) {
         Actor actor;
         struct {
             u8 pad0[0x64];
-            u32 pad64_30 : 2;
+            BT_BITFIELD_ORDER(u32 pad64_30 : 2, u32 pad64_0 : 29);
             u32 unk64_29 : 1;
-            u32 pad64_0 : 29;
+            BT_BITFIELD_ORDER(u32 pad64_0 : 29, u32 pad64_30 : 2);
         } eel;
     } *data = (void *)arg0;
 
@@ -101,10 +101,10 @@ typedef union {
     Actor actor;
     struct {
         u8 pad0[0x70];
-        u32 unk70_25 : 7;
-        u32 pad70_10 : 15;
-        u32 unk70_4 : 6;
-        u32 pad70_0 : 4;
+        BT_BITFIELD_ORDER(u32 unk70_25 : 7, u32 pad70_0 : 4);
+        BT_BITFIELD_ORDER(u32 pad70_10 : 15, u32 unk70_4 : 6);
+        BT_BITFIELD_ORDER(u32 unk70_4 : 6, u32 pad70_10 : 15);
+        BT_BITFIELD_ORDER(u32 pad70_0 : 4, u32 unk70_25 : 7);
     } eel;
 } EelActor;
 
@@ -493,10 +493,10 @@ void func_80801120_cheel(Actor *arg0) {
         Actor actor;
         struct {
             u32 prefix[28];
-            u32 regionGroup : 7;
-            u32 unused : 15;
-            u32 regionIndex : 6;
-            u32 remaining : 4;
+            BT_BITFIELD_ORDER(u32 regionGroup : 7, u32 remaining : 4);
+            BT_BITFIELD_ORDER(u32 unused : 15, u32 regionIndex : 6);
+            BT_BITFIELD_ORDER(u32 regionIndex : 6, u32 unused : 15);
+            BT_BITFIELD_ORDER(u32 remaining : 4, u32 regionGroup : 7);
         } regions;
     } *eel = (void *)arg0;
 

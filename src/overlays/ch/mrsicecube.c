@@ -234,11 +234,11 @@ Unk80132ED0 *func_80800508_chmrsicecube(Actor *arg0) {
     s32 id;
     struct MrsIceCubeFlags {
         u8 pad[0x74];
-        u32 pad74_21 : 11;
-        u32 unk74_20 : 1;
+        BT_BITFIELD_ORDER(u32 pad74_21 : 11, u32 pad74_0 : 5);
+        BT_BITFIELD_ORDER(u32 unk74_20 : 1, u32 unk74_5 : 1);
         u32 pad74_6 : 14;
-        u32 unk74_5 : 1;
-        u32 pad74_0 : 5;
+        BT_BITFIELD_ORDER(u32 unk74_5 : 1, u32 unk74_20 : 1);
+        BT_BITFIELD_ORDER(u32 pad74_0 : 5, u32 pad74_21 : 11);
     };
 
     index = arg0->actorData[4];
@@ -301,9 +301,9 @@ void func_808006C4_chmrsicecube(Actor *arg0) {
     struct MrsIceCubeLinkData { s32 unk0; s32 unk4; s32 unk8; } *sp2C;
     struct MrsIceCubeFlags {
         u8 pad[0x74];
-        u32 pad74_21 : 11;
+        BT_BITFIELD_ORDER(u32 pad74_21 : 11, u32 pad74_0 : 20);
         u32 unk74_20 : 1;
-        u32 pad74_0 : 20;
+        BT_BITFIELD_ORDER(u32 pad74_0 : 20, u32 pad74_21 : 11);
     };
     Actor *temp_s0;
     s32 temp_v1;

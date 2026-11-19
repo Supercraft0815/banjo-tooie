@@ -928,11 +928,11 @@ void func_808012B4_chdragonbrothers(u8 *arg0, s32 arg1) {
     void func_80800B9C_chdragonbrothers(u8 *, s32, f32 *);
     void func_80800D20_chdragonbrothers(u8 *, s16, s32);
     f32 func_808011C0_chdragonbrothers(u8 *, s32);
-    struct Flags { u32 pad : 12; u32 flag : 1; u32 rest : 19; };
-    struct State { u16 state : 6; u16 rest : 10; };
-    struct Count { u8 count : 4; u8 rest : 4; };
-    struct Mode { u16 rest : 7; u16 mode : 9; };
-    struct ByteFlags { u8 upper : 3; u8 flag4 : 1; u8 middle : 3; u8 flag0 : 1; };
+    struct Flags { BT_BITFIELD_ORDER(u32 pad : 12, u32 rest : 19); u32 flag : 1; BT_BITFIELD_ORDER(u32 rest : 19, u32 pad : 12); };
+    struct State { BT_BITFIELD_ORDER(u16 state : 6, u16 rest : 10); BT_BITFIELD_ORDER(u16 rest : 10, u16 state : 6); };
+    struct Count { BT_BITFIELD_ORDER(u8 count : 4, u8 rest : 4); BT_BITFIELD_ORDER(u8 rest : 4, u8 count : 4); };
+    struct Mode { BT_BITFIELD_ORDER(u16 rest : 7, u16 mode : 9); BT_BITFIELD_ORDER(u16 mode : 9, u16 rest : 7); };
+    struct ByteFlags { BT_BITFIELD_ORDER(u8 upper : 3, u8 flag0 : 1); BT_BITFIELD_ORDER(u8 flag4 : 1, u8 middle : 3); BT_BITFIELD_ORDER(u8 middle : 3, u8 flag4 : 1); BT_BITFIELD_ORDER(u8 flag0 : 1, u8 upper : 3); };
     u8 *data;
     s32 flag;
     f32 vec[3];
@@ -2293,9 +2293,9 @@ void func_8080449C_chdragonbrothers(Actor *arg0) {
         f32 rotation[3];
     } DragonData;
     typedef struct {
-        u32 pad : 21;
+        BT_BITFIELD_ORDER(u32 pad : 21, u32 rest : 10);
         u32 flag : 1;
-        u32 rest : 10;
+        BT_BITFIELD_ORDER(u32 rest : 10, u32 pad : 21);
     } MarkerFlags;
     Actor *sp2C;
     struct {
@@ -2347,8 +2347,8 @@ void func_80804610_chdragonbrothers(Actor *arg0) {
     } *sp1C;
     struct {
         u8 unk0[10];
-        u8 frame : 5;
-        u8 unkA_5 : 3;
+        BT_BITFIELD_ORDER(u8 frame : 5, u8 unkA_5 : 3);
+        BT_BITFIELD_ORDER(u8 unkA_5 : 3, u8 frame : 5);
     } *temp_v0;
     f32 temp_f0;
 

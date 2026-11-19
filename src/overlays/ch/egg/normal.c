@@ -18,9 +18,9 @@ void func_80800000_cheggnormal(void *arg0) {
         f32 unk2C;
         f32 duration;
         u32 unk34;
-        u32 pad38 : 11;
+        BT_BITFIELD_ORDER(u32 pad38 : 11, u32 rest : 20);
         u32 flag : 1;
-        u32 rest : 20;
+        BT_BITFIELD_ORDER(u32 rest : 20, u32 pad38 : 11);
     } *data;
     f32 position[3];
     f32 velocity[3];
@@ -65,8 +65,8 @@ void func_80800194_cheggnormal(void *arg0) {
     void func_80800000_cheggnormal(void *);
     struct FireData {
         u8 pad[0x39];
-        u8 flag : 1;
-        u8 rest : 7;
+        BT_BITFIELD_ORDER(u8 flag : 1, u8 rest : 7);
+        BT_BITFIELD_ORDER(u8 rest : 7, u8 flag : 1);
     } *data;
 
     data = func_80100094(arg0, 0);
@@ -125,9 +125,9 @@ void *cheggnormal_entrypoint_1(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
     struct NormalData {
         u8 pad[0x38];
         u8 unk38;
-        u8 pad39_5 : 3;
+        BT_BITFIELD_ORDER(u8 pad39_5 : 3, u8 pad39_0 : 4);
         u8 unk39_4 : 1;
-        u8 pad39_0 : 4;
+        BT_BITFIELD_ORDER(u8 pad39_0 : 4, u8 pad39_5 : 3);
     } *data;
 
     _sueggmove_entrypoint_10(arg0);
@@ -157,9 +157,9 @@ void *cheggnormal_entrypoint_2(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
     struct NormalData {
         u8 pad[0x38];
         u8 unk38;
-        u8 pad39_5 : 3;
+        BT_BITFIELD_ORDER(u8 pad39_5 : 3, u8 pad39_0 : 4);
         u8 unk39_4 : 1;
-        u8 pad39_0 : 4;
+        BT_BITFIELD_ORDER(u8 pad39_0 : 4, u8 pad39_5 : 3);
     } *data;
 
     _sueggmove_entrypoint_10(arg0);

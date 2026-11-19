@@ -606,9 +606,9 @@ Actor *func_800D0CE0(s32 arg0, f32 *arg1, s32 arg2, s32 *arg3) {
 
 typedef struct {
     u32 fields[6];
-    u32 reserved : 15;
+    BT_BITFIELD_ORDER(u32 reserved : 15, u32 remaining : 16);
     u32 enabled : 1;
-    u32 remaining : 16;
+    BT_BITFIELD_ORDER(u32 remaining : 16, u32 reserved : 15);
 } SpawnMarker;
 
 BtIntPtr func_800D0DAC(s32 arg0, f32 *arg1, s32 arg2, SpawnMarker *arg3) {

@@ -89,9 +89,9 @@ void func_808001DC_gcdialogexec(u8 *arg0) {
     void func_800F82D4(BtIntPtr, s32);
     void func_800FECB8(u32);
     struct DialogFlags {
-        u32 : 20;
+        BT_BITFIELD_ORDER(u32 : 20, u32  : 11);
         u32 suppress : 1;
-        u32 : 11;
+        BT_BITFIELD_ORDER(u32 : 11, u32  : 20);
     };
     s32 (*temp_v0)(void *, s16, s8);
     s16 temp_a1;
@@ -248,9 +248,9 @@ int func_8080064C_gcdialogexec(u8 *arg0) {
         u8 *text;
     } Entry;
     typedef struct {
-        u8 mode:2;
+        BT_BITFIELD_ORDER(u8 mode:2, u8 rest : 4);
         u8 state:2;
-        u8 rest:4;
+        BT_BITFIELD_ORDER(u8 rest:4, u8 mode : 2);
     } Flags;
     typedef struct {
         u8 pad0[0x104];
@@ -265,9 +265,9 @@ int func_8080064C_gcdialogexec(u8 *arg0) {
         u8 pad128[0x30];
         u8 value;
         u8 pad159[5];
-        u16 active:1;
+        BT_BITFIELD_ORDER(u16 active:1, u16 rest : 14);
         u16 changed:1;
-        u16 rest:14;
+        BT_BITFIELD_ORDER(u16 rest:14, u16 active : 1);
     } Dialog;
     typedef struct { u8 pad[0x116]; u8 index[2]; } Indices;
     typedef struct { u8 pad[0x11C]; Flags flags[2]; } FlagArray;
@@ -344,12 +344,12 @@ void func_80800A50_gcdialogexec(u8 *dialog, s32 state) {
     int _gczoombox_entrypoint_33(u8 *);
     struct DialogState {
         u8 pad[0x15C];
-        u32 unused : 30;
-        u32 remaining : 2;
+        BT_BITFIELD_ORDER(u32 unused : 30, u32 remaining : 2);
+        BT_BITFIELD_ORDER(u32 remaining : 2, u32 unused : 30);
     };
     typedef struct {
-        u8 state : 2;
-        u8 rest : 6;
+        BT_BITFIELD_ORDER(u8 state : 2, u8 rest : 6);
+        BT_BITFIELD_ORDER(u8 rest : 6, u8 state : 2);
     } BoxFlags;
     typedef struct {
         u8 prefix[0x11C];
@@ -361,9 +361,9 @@ void func_80800A50_gcdialogexec(u8 *dialog, s32 state) {
     } DialogBoxes;
     struct DialogActions {
         u8 prefix[0x15E];
-        u8 unused : 5;
+        BT_BITFIELD_ORDER(u8 unused : 5, u8 rest : 2);
         u8 finishing : 1;
-        u8 rest : 2;
+        BT_BITFIELD_ORDER(u8 rest : 2, u8 unused : 5);
     };
     s32 i;
     s32 result;
@@ -456,11 +456,11 @@ int func_80800D30_gcdialogexec(arg0, arg1, arg2) {
         u8 pad[0x15C];
         u8 state;
         u8 count;
-        u32 unused:8;
-        u32 opened:2;
+        BT_BITFIELD_ORDER(u32 unused:8, u32 remaining : 2);
+        BT_BITFIELD_ORDER(u32 opened:2, u32 finished : 2);
         u32 closed:2;
-        u32 finished:2;
-        u32 remaining:2;
+        BT_BITFIELD_ORDER(u32 finished:2, u32 opened : 2);
+        BT_BITFIELD_ORDER(u32 remaining:2, u32 unused : 8);
     } DialogCallback;
     void func_80800A50_gcdialogexec(u8 *, s32);
     u8 *dialog = (u8 *)arg0;
@@ -641,15 +641,15 @@ void func_80801268_gcdialogexec(void *arg0, s32 arg1, s32 arg2, void *arg3, BtIn
   } Text;
   typedef struct 
   {
-    u8 state : 2;
+    BT_BITFIELD_ORDER(u8 state : 2, u8 rest : 4);
     u8 unused : 2;
-    u8 rest : 4;
+    BT_BITFIELD_ORDER(u8 rest : 4, u8 state : 2);
   } BoxFlags;
   typedef struct 
   {
     u8 pad[0x12];
-    u16 id : 15;
-    u16 flag : 1;
+    BT_BITFIELD_ORDER(u16 id : 15, u16 flag : 1);
+    BT_BITFIELD_ORDER(u16 flag : 1, u16 id : 15);
   } Marker;
   typedef struct 
   {
@@ -665,18 +665,18 @@ void func_80801268_gcdialogexec(void *arg0, s32 arg1, s32 arg2, void *arg3, BtIn
     s16 y[2];
     u8 pad12c[0x2e];
     s16 flags;
-    u32 unused15c : 8;
-    u32 numBoxes : 8;
-    u32 top : 1;
-    u32 active : 1;
-    u32 unused1 : 2;
-    u32 fast : 1;
-    u32 unused2 : 1;
-    u32 low : 2;
-    u32 opened : 2;
-    u32 cleared : 2;
-    u32 pending : 2;
-    u32 other : 2;
+    BT_BITFIELD_ORDER(u32 unused15c : 8, u32 other : 2);
+    BT_BITFIELD_ORDER(u32 numBoxes : 8, u32 pending : 2);
+    BT_BITFIELD_ORDER(u32 top : 1, u32 cleared : 2);
+    BT_BITFIELD_ORDER(u32 active : 1, u32 opened : 2);
+    BT_BITFIELD_ORDER(u32 unused1 : 2, u32 low : 2);
+    BT_BITFIELD_ORDER(u32 fast : 1, u32 unused2 : 1);
+    BT_BITFIELD_ORDER(u32 unused2 : 1, u32 fast : 1);
+    BT_BITFIELD_ORDER(u32 low : 2, u32 unused1 : 2);
+    BT_BITFIELD_ORDER(u32 opened : 2, u32 active : 1);
+    BT_BITFIELD_ORDER(u32 cleared : 2, u32 top : 1);
+    BT_BITFIELD_ORDER(u32 pending : 2, u32 numBoxes : 8);
+    BT_BITFIELD_ORDER(u32 other : 2, u32 unused15c : 8);
     s8 speed;
     u8 pad161;
     s16 textId;
@@ -832,12 +832,12 @@ s32 gcdialogexec_entrypoint_0(void *dialog, s32 text, s32 flags, f32 *position, 
         s16 id;
         u8 pad11C[0x3E];
         u16 flags;
-        u32 unused : 20;
+        BT_BITFIELD_ORDER(u32 unused : 20, u32 rest : 11);
         u32 suppress : 1;
-        u32 rest : 11;
-        u16 speed : 8;
-        u16 count : 4;
-        u16 index : 4;
+        BT_BITFIELD_ORDER(u32 rest : 11, u32 unused : 20);
+        BT_BITFIELD_ORDER(u16 speed : 8, char : 0);
+        BT_BITFIELD_ORDER(u16 count : 4, u16 index : 4);
+        BT_BITFIELD_ORDER(u16 index : 4, u16 count : 4; u16 speed : 8);
         u8 pad162[0x1A];
         s32 camera;
         s32 pad180;
@@ -845,8 +845,8 @@ s32 gcdialogexec_entrypoint_0(void *dialog, s32 text, s32 flags, f32 *position, 
     } Dialog;
     typedef struct {
         u8 pad[0x12];
-        u16 id : 15;
-        u16 flag : 1;
+        BT_BITFIELD_ORDER(u16 id : 15, u16 flag : 1);
+        BT_BITFIELD_ORDER(u16 flag : 1, u16 id : 15);
     } Marker;
     s32 func_800A9C98(void);
     s32 func_800C0638(void);
@@ -937,12 +937,12 @@ void gcdialogexec_entrypoint_1(u8 *arg0) {
     } Request;
     typedef struct {
         u8 pad[0x15C];
-        u32 unused : 20;
+        BT_BITFIELD_ORDER(u32 unused : 20, u32 rest : 11);
         u32 suppress : 1;
-        u32 rest : 11;
-        u16 speed : 8;
-        u16 count : 4;
-        u16 index : 4;
+        BT_BITFIELD_ORDER(u32 rest : 11, u32 unused : 20);
+        BT_BITFIELD_ORDER(u16 speed : 8, char : 0);
+        BT_BITFIELD_ORDER(u16 count : 4, u16 index : 4);
+        BT_BITFIELD_ORDER(u16 index : 4, u16 count : 4; u16 speed : 8);
     } Dialog;
     s32 func_800A9C98(void);
     int func_800EEEA8(f32 vec[3]);
@@ -979,8 +979,8 @@ void gcdialogexec_entrypoint_1(u8 *arg0) {
 
 void gcdialogexec_entrypoint_2(u8 *arg0) {
     typedef struct {
-        u8 state : 2;
-        u8 rest : 6;
+        BT_BITFIELD_ORDER(u8 state : 2, u8 rest : 6);
+        BT_BITFIELD_ORDER(u8 rest : 6, u8 state : 2);
     } BoxFlags;
     typedef struct {
         u8 pad[0x11C];
@@ -988,11 +988,11 @@ void gcdialogexec_entrypoint_2(u8 *arg0) {
         u8 pad11E[2];
         u8 *boxes[2];
         u8 pad128[0x34];
-        u32 unused : 30;
-        u32 pending : 2;
+        BT_BITFIELD_ORDER(u32 unused : 30, u32 pending : 2);
+        BT_BITFIELD_ORDER(u32 pending : 2, u32 unused : 30);
         u8 speed;
-        u8 middle : 4;
-        u8 low : 4;
+        BT_BITFIELD_ORDER(u8 middle : 4, u8 low : 4);
+        BT_BITFIELD_ORDER(u8 low : 4, u8 middle : 4);
     } Dialog;
     int _gczoombox_entrypoint_33(u8 *);
     s32 func_800C0638(void);
@@ -1075,8 +1075,8 @@ int func_80801DB4_gcdialogexec(u8 *arg0) {
         u8 pad10C[0xA];
         u8 index[2];
         u8 pad118[0x46];
-        u16 current : 1;
-        u16 unused : 15;
+        BT_BITFIELD_ORDER(u16 current : 1, u16 unused : 15);
+        BT_BITFIELD_ORDER(u16 unused : 15, u16 current : 1);
         u8 pad160[2];
         s16 dialogId;
         u8 pad164[4];
@@ -1145,10 +1145,10 @@ int func_80802020_gcdialogexec(u8 *arg0) {
         u8 pad10C[0xA];
         u8 index[2];
         u8 pad118[0x46];
-        u16 current : 1;
-        u16 unused : 5;
-        u16 sequence : 2;
-        u16 rest : 8;
+        BT_BITFIELD_ORDER(u16 current : 1, u16 rest : 8);
+        BT_BITFIELD_ORDER(u16 unused : 5, u16 sequence : 2);
+        BT_BITFIELD_ORDER(u16 sequence : 2, u16 unused : 5);
+        BT_BITFIELD_ORDER(u16 rest : 8, u16 current : 1);
         u8 pad160[2];
         s16 dialogId;
         u8 pad164[4];
@@ -1219,9 +1219,9 @@ void gcdialogexec_entrypoint_10(void *arg0) {
         void *text;
     } DialogEntry;
     typedef struct {
-        u8 mode : 2;
+        BT_BITFIELD_ORDER(u8 mode : 2, u8 unused : 4);
         u8 busy : 2;
-        u8 unused : 4;
+        BT_BITFIELD_ORDER(u8 unused : 4, u8 mode : 2);
     } BoxFlags;
     typedef struct {
         u8 pad0[0x104];
@@ -1239,12 +1239,12 @@ void gcdialogexec_entrypoint_10(void *arg0) {
         u16 flags;
         u8 state;
         u8 count;
-        u16 current : 1;
-        u16 pending : 1;
-        u16 unused15E : 6;
-        u32 opened : 2;
-        u32 skipped : 2;
-        u32 unused15F : 4;
+        BT_BITFIELD_ORDER(u16 current : 1, u32 unused15F : 4);
+        BT_BITFIELD_ORDER(u16 pending : 1, u32 skipped : 2);
+        BT_BITFIELD_ORDER(u16 unused15E : 6, u32 opened : 2);
+        BT_BITFIELD_ORDER(u32 opened : 2, u16 unused15E : 6);
+        BT_BITFIELD_ORDER(u32 skipped : 2, u16 pending : 1);
+        BT_BITFIELD_ORDER(u32 unused15F : 4, u16 current : 1);
         s8 answer;
         u8 pad161;
         s16 dialogId;

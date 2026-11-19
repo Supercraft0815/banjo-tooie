@@ -197,12 +197,12 @@ void func_80104780(BtIntPtr arg0) {
     void func_80104E24(s32 *, s32 *);
     void func_80105390(u8 *, u8 *);
     struct Flags {
-        u32 high:26;
-        u32 bit5:1;
-        u32 middle:2;
-        u32 bit2:1;
-        u32 bit1:1;
-        u32 bit0:1;
+        BT_BITFIELD_ORDER(u32 high:26, u32 bit0 : 1);
+        BT_BITFIELD_ORDER(u32 bit5:1, u32 bit1 : 1);
+        BT_BITFIELD_ORDER(u32 middle:2, u32 bit2 : 1);
+        BT_BITFIELD_ORDER(u32 bit2:1, u32 middle : 2);
+        BT_BITFIELD_ORDER(u32 bit1:1, u32 bit5 : 1);
+        BT_BITFIELD_ORDER(u32 bit0:1, u32 high : 26);
     };
     u8 *data;
     s32 sp38[3];

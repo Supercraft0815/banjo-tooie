@@ -1,7 +1,7 @@
 #include "common.h"
 
 void func_80800000_chlavagargoyle(Actor *arg0) {
-    struct { u8 pad[0x64]; u8 : 7; u8 flag : 1; } *flags = (void *)arg0;
+    struct { u8 pad[0x64]; BT_BITFIELD_ORDER(u8 : 7, u8 flag : 1); BT_BITFIELD_ORDER(u8 flag : 1, u8  : 7); } *flags = (void *)arg0;
     f32 func_800DC178(f32, f32);
     s32 func_80105010();
     flags->flag = 1;
@@ -13,13 +13,13 @@ void func_80800000_chlavagargoyle(Actor *arg0) {
 void func_80800054_chlavagargoyle(Actor *arg0) {
     struct GargoyleFlags {
         u8 pad0[0x64];
-        u32 : 2;
+        BT_BITFIELD_ORDER(u32 : 2, u32  : 29);
         u32 flag64 : 1;
-        u32 : 29;
+        BT_BITFIELD_ORDER(u32 : 29, u32  : 2);
         u8 pad68[0x10];
-        u32 : 29;
+        BT_BITFIELD_ORDER(u32 : 29, u32  : 2);
         u32 flag78 : 1;
-        u32 : 2;
+        BT_BITFIELD_ORDER(u32 : 2, u32  : 29);
     };
     void _subaddieaudioloop_entrypoint_0(Actor *, f32);
     void _subaddieaudioloop_entrypoint_2(Actor *);

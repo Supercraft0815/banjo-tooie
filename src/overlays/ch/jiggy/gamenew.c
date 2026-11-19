@@ -1003,9 +1003,9 @@ void func_80802030_chjiggygamenew(u8 *arg0) {
     void func_80102424(Actor *actor,s32 state);
     void func_80801CE8_chjiggygamenew(Actor *arg0);
     struct GameFlags {
-        u32 unused : 11;
+        BT_BITFIELD_ORDER(u32 unused : 11, u32 rest : 20);
         u32 paused : 1;
-        u32 rest : 20;
+        BT_BITFIELD_ORDER(u32 rest : 20, u32 unused : 11);
     };
     f32 dt;
     s32 now;
@@ -1216,8 +1216,8 @@ s32 func_80802858_chjiggygamenew(void *arg0, s32 arg1, s32 arg2) {
         s32 state;
         s32 count;
         u8 pad30[0x3C];
-        u32 unused : 23;
-        u32 jiggy : 9;
+        BT_BITFIELD_ORDER(u32 unused : 23, u32 jiggy : 9);
+        BT_BITFIELD_ORDER(u32 jiggy : 9, u32 unused : 23);
     } JiggyGame;
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 _sujiggy_entrypoint_19(void);

@@ -1398,8 +1398,8 @@ void func_80802434_chquiz(Actor *arg0, s32 arg1) {
 void func_80802628_chquiz(Actor *arg0) {
     void func_80108B04(Actor *, u32);
     struct QuizField {
-        u16 upper : 9;
-        u16 lower : 7;
+        BT_BITFIELD_ORDER(u16 upper : 9, u16 lower : 7);
+        BT_BITFIELD_ORDER(u16 lower : 7, u16 upper : 9);
     };
 
     ((struct QuizField *)((u8 *)arg0 + 0x76))->upper -= 50;
@@ -1419,17 +1419,17 @@ void func_80802664_chquiz(Actor *arg0) {
     Actor *func_80106790(Unk80132ED0 *);
     void func_80802434_chquiz(Actor *, s32);
     struct QuizFlags {
-        u32 upper : 28;
+        BT_BITFIELD_ORDER(u32 upper : 28, u32 lower : 3);
         u32 active : 1;
-        u32 lower : 3;
+        BT_BITFIELD_ORDER(u32 lower : 3, u32 upper : 28);
     };
     struct QuizState {
-        u16 state : 6;
-        u16 lower : 10;
+        BT_BITFIELD_ORDER(u16 state : 6, u16 lower : 10);
+        BT_BITFIELD_ORDER(u16 lower : 10, u16 state : 6);
     };
     struct QuizId {
-        u16 id : 9;
-        u16 lower : 7;
+        BT_BITFIELD_ORDER(u16 id : 9, u16 lower : 7);
+        BT_BITFIELD_ORDER(u16 lower : 7, u16 id : 9);
     };
     void *temp_v0;
 
@@ -2778,9 +2778,9 @@ void func_80805404_chquiz(Actor *arg0) {
     s32 func_80801170_chquiz(s32 *, void *);
     struct QuizExpressionFlags {
         u8 pad0[0x70];
-        u32 upper : 28;
+        BT_BITFIELD_ORDER(u32 upper : 28, u32 lower : 3);
         u32 active : 1;
-        u32 lower : 3;
+        BT_BITFIELD_ORDER(u32 lower : 3, u32 upper : 28);
     };
     QuizCamera *sp2C;
     s32 sp28;
@@ -2930,9 +2930,9 @@ void func_80805878_chquiz(Actor *arg0) {
 
     struct QuizActorFlags {
         u8 pad0[0x74];
-        u32 pad74_22 : 10;
+        BT_BITFIELD_ORDER(u32 pad74_22 : 10, u32 pad74_0 : 21);
         u32 quizActive : 1;
-        u32 pad74_0 : 21;
+        BT_BITFIELD_ORDER(u32 pad74_0 : 21, u32 pad74_22 : 10);
     } *flags = (void *)arg0;
 
     if (!flags->quizActive) {

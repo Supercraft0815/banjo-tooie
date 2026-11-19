@@ -562,8 +562,8 @@ void func_808009DC_chflysaucer(Actor *arg0, s32 arg1) {
     } *data;
     struct FlysaucerFlags {
         u8 pad[0x74];
-        u32 before : 11;
-        u32 active : 1;
+        BT_BITFIELD_ORDER(u32 before : 11, u32 : 20);
+        BT_BITFIELD_ORDER(u32 active : 1, u32 active : 1; u32 before : 11);
     };
     s32 pad;
     struct anctrl_s *control;
@@ -1130,7 +1130,7 @@ s32 func_8080185C_chflysaucer(Actor *arg0, s32 arg1, union PackedArg arg2) {
     void func_808012A4_chflysaucer(Actor *, s32);
     struct SaucerData { u8 pad[0x24]; u8 camera; u8 state; u8 mode; };
     struct SaucerData *data;
-    struct PackedDialog { s32 id : 16; s32 choice : 16; };
+    struct PackedDialog { BT_BITFIELD_ORDER(s32 id : 16, s32 choice : 16); BT_BITFIELD_ORDER(s32 choice : 16, s32 id : 16); };
     s16 *result;
     s32 value;
     data = func_80100094(arg0, 0);
@@ -1921,8 +1921,8 @@ typedef union FlySaucerRenderActor {
     Actor actor;
     struct {
         u8 pad0[0x7A];
-        u16 renderMode : 2;
-        u16 remainingFlags : 14;
+        BT_BITFIELD_ORDER(u16 renderMode : 2, u16 remainingFlags : 14);
+        BT_BITFIELD_ORDER(u16 remainingFlags : 14, u16 renderMode : 2);
     } flags;
 } FlySaucerRenderActor;
 

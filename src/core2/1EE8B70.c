@@ -122,7 +122,7 @@ void func_8010F68C(s32 arg0, s32 arg1) {
     extern s32 D_80137244;
     extern u32 D_80137248;
     extern s32 D_80137250;
-    struct header { u8 pad[22]; u16 other : 15; u16 active : 1; };
+    struct header { u8 pad[22]; BT_BITFIELD_ORDER(u16 other : 15, u16 active : 1); BT_BITFIELD_ORDER(u16 active : 1, u16 other : 15); };
     struct header *model;
     u32 end[1];
     s32 *light;

@@ -882,12 +882,12 @@ s32 func_808014CC_chweldarboss(Actor *arg0, s32 arg1, s32 arg2) {
     } WeldarData;
     typedef struct {
         u8 pad0[0x18];
-        u32 pad18_16 : 16;
+        BT_BITFIELD_ORDER(u32 pad18_16 : 16, u32 pad18_0 : 5);
         u32 id : 11;
-        u32 pad18_0 : 5;
+        BT_BITFIELD_ORDER(u32 pad18_0 : 5, u32 pad18_16 : 16);
         u8 pad1C[8];
-        u32 unk24_22 : 10;
-        u32 pad24_0 : 22;
+        BT_BITFIELD_ORDER(u32 unk24_22 : 10, u32 pad24_0 : 22);
+        BT_BITFIELD_ORDER(u32 pad24_0 : 22, u32 unk24_22 : 10);
     } HitData;
 
     void *func_80100094(Actor *, u32);

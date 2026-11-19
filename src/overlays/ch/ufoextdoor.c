@@ -15,8 +15,8 @@ s32 func_80800000_chufoextdoor(Actor *arg0, s32 arg1, s32 arg2) {
         u8 pad0[0x1A];
         u16 id;
         u8 pad1C[8];
-        u32 flags : 10;
-        u32 rest : 22;
+        BT_BITFIELD_ORDER(u32 flags : 10, u32 rest : 22);
+        BT_BITFIELD_ORDER(u32 rest : 22, u32 flags : 10);
     } *temp;
     struct {
         f32 *source;

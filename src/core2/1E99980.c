@@ -8,7 +8,7 @@ extern s32 D_801288B0;
 extern s32 D_80128AF4;
 
 int func_800C0090(void *caller, s32 arg1) {
-    typedef struct { u8 pad[0x12]; u16 unk12_15:15; u16 unk12_0:1; } Marker;
+    typedef struct { u8 pad[0x12]; BT_BITFIELD_ORDER(u16 unk12_15:15, u16 unk12_0 : 1); BT_BITFIELD_ORDER(u16 unk12_0:1, u16 unk12_15 : 15); } Marker;
     return (arg1 == -1) ? 0 : ((Marker *)caller)->unk12_15 == arg1;
 }
 
@@ -105,10 +105,10 @@ void func_800C0308(void) {
     s32 _gczoombox_entrypoint_38(s32, s16);
     extern s8 D_8011A7C0[];
     struct DialogFlags {
-        u32 unused:18;
-        u32 queued:1;
-        u32 decremented:1;
-        u32 rest:12;
+        BT_BITFIELD_ORDER(u32 unused:18, u32 rest : 12);
+        BT_BITFIELD_ORDER(u32 queued:1, u32 decremented : 1);
+        BT_BITFIELD_ORDER(u32 decremented:1, u32 queued : 1);
+        BT_BITFIELD_ORDER(u32 rest:12, u32 unused : 18);
     };
     s32 y_position_change;
 
@@ -150,10 +150,10 @@ void func_800C0438(void) {
     extern s32 D_80128A0C;
     extern u8 D_80128A11;
     struct DialogFlags {
-        u32 unused:18;
-        u32 queued:1;
-        u32 decremented:1;
-        u32 rest:12;
+        BT_BITFIELD_ORDER(u32 unused:18, u32 rest : 12);
+        BT_BITFIELD_ORDER(u32 queued:1, u32 decremented : 1);
+        BT_BITFIELD_ORDER(u32 decremented:1, u32 queued : 1);
+        BT_BITFIELD_ORDER(u32 rest:12, u32 unused : 18);
     };
     if (((struct DialogFlags *)&D_80128A0C)->queued) {
         func_800C0308();
@@ -234,10 +234,10 @@ s32 func_800C067C(s32 arg0) {
 void func_800C06C4(void) {
     typedef struct {
         u8 pad0[0x15E];
-        u8 reserved : 2;
-        u8 queue : 1;
-        u8 decrement : 1;
-        u8 flags : 4;
+        BT_BITFIELD_ORDER(u8 reserved : 2, u8 flags : 4);
+        BT_BITFIELD_ORDER(u8 queue : 1, u8 decrement : 1);
+        BT_BITFIELD_ORDER(u8 decrement : 1, u8 queue : 1);
+        BT_BITFIELD_ORDER(u8 flags : 4, u8 reserved : 2);
         u8 pad15F[7];
         s8 index;
     } DialogFlags;
@@ -252,10 +252,10 @@ void func_800C06C4(void) {
 void func_800C0710(void) {
     typedef struct {
         u8 pad0[0x15E];
-        u8 reserved : 2;
-        u8 queue : 1;
-        u8 decrement : 1;
-        u8 flags : 4;
+        BT_BITFIELD_ORDER(u8 reserved : 2, u8 flags : 4);
+        BT_BITFIELD_ORDER(u8 queue : 1, u8 decrement : 1);
+        BT_BITFIELD_ORDER(u8 decrement : 1, u8 queue : 1);
+        BT_BITFIELD_ORDER(u8 flags : 4, u8 reserved : 2);
         u8 pad15F[7];
         s8 index;
     } DialogFlags;
@@ -283,9 +283,9 @@ void func_800C0808()
 void func_800C082C(s32 arg0) {
     struct Flags {
         u8 pad[0x15E];
-        u8 upper : 4;
+        BT_BITFIELD_ORDER(u8 upper : 4, u8 lower : 3);
         u8 enabled : 1;
-        u8 lower : 3;
+        BT_BITFIELD_ORDER(u8 lower : 3, u8 upper : 4);
     };
     ((struct Flags *)&D_801288B0)->enabled = arg0;
 }

@@ -152,10 +152,10 @@ void subaddiejoy_entrypoint_10(u8 *arg0, f32 arg1, f32 arg2) {
     union {
         s32 word;
         struct {
-            u32 unused : 2;
-            u32 enabled : 1;
-            u32 controller : 2;
-            u32 remaining : 27;
+            BT_BITFIELD_ORDER(u32 unused : 2, u32 remaining : 27);
+            BT_BITFIELD_ORDER(u32 enabled : 1, u32 controller : 2);
+            BT_BITFIELD_ORDER(u32 controller : 2, u32 enabled : 1);
+            BT_BITFIELD_ORDER(u32 remaining : 27, u32 unused : 2);
         } bits;
     } flags;
 

@@ -11,8 +11,8 @@ typedef union {
     Actor actor;
     struct {
         u8 reserved[0x7A];
-        u8 shadowState : 2;
-        u8 otherFlags : 6;
+        BT_BITFIELD_ORDER(u8 shadowState : 2, u8 otherFlags : 6);
+        BT_BITFIELD_ORDER(u8 otherFlags : 6, u8 shadowState : 2);
     } shadow;
 } ShadActor;
 
@@ -59,12 +59,12 @@ void func_808000E0_chbadshad(Actor *arg0, s32 arg1) {
         Actor actor;
         struct {
             u8 reserved74[0x74];
-            u32 flags74 : 5;
+            BT_BITFIELD_ORDER(u32 flags74 : 5, u32 other74 : 26);
             u32 halfScale : 1;
-            u32 other74 : 26;
+            BT_BITFIELD_ORDER(u32 other74 : 26, u32 flags74 : 5);
             u16 reserved78;
-            u16 state : 2;
-            u16 other7A : 14;
+            BT_BITFIELD_ORDER(u16 state : 2, u16 other7A : 14);
+            BT_BITFIELD_ORDER(u16 other7A : 14, u16 state : 2);
         } shadow;
     } ShadowRenderActor;
     f32 scale[1];
@@ -118,25 +118,25 @@ f32 func_8080028C_chbadshad(Actor *arg0, Actor *arg1, f32 *arg2) {
     s32 func_8080086C_chbadshad();
     struct MovementFlags {
     u8 reserved[0x70];
-    u32 upper : 12;
+    BT_BITFIELD_ORDER(u32 upper : 12, u32 lower : 19);
     u32 direct : 1;
-    u32 lower : 19;
+    BT_BITFIELD_ORDER(u32 lower : 19, u32 upper : 12);
     u32 reserved74;
-    u32 upper78 : 28;
+    BT_BITFIELD_ORDER(u32 upper78 : 28, u32 lower78 : 3);
     u32 changed : 1;
-    u32 lower78 : 3;
+    BT_BITFIELD_ORDER(u32 lower78 : 3, u32 upper78 : 28);
     };
     struct PositionFlags {
-    u32 upper : 28;
+    BT_BITFIELD_ORDER(u32 upper : 28, u32 lower : 3);
     u32 changed : 1;
-    u32 lower : 3;
+    BT_BITFIELD_ORDER(u32 lower : 3, u32 upper : 28);
     s16 reserved7C;
-    s16 floor : 1;
-    u16 rest : 15;
+    BT_BITFIELD_ORDER(s16 floor : 1, u16 rest : 15);
+    BT_BITFIELD_ORDER(u16 rest : 15, s16 floor : 1);
     };
     struct SurfaceFlags {
-    u32 hidden : 1;
-    u32 other : 31;
+    BT_BITFIELD_ORDER(u32 hidden : 1, u32 other : 31);
+    BT_BITFIELD_ORDER(u32 other : 31, u32 hidden : 1);
     };
     f32 sp34[3];
     f32 sp30;
@@ -297,16 +297,16 @@ int func_8080078C_chbadshad(Actor *arg0, BtIntPtr arg1) {
     struct ShadowFlags {
         u8 unk78;
         u8 unk79;
-        u16 unk7A_14 : 2;
-        u16 unk7A_0 : 14;
+        BT_BITFIELD_ORDER(u16 unk7A_14 : 2, u16 unk7A_0 : 14);
+        BT_BITFIELD_ORDER(u16 unk7A_0 : 14, u16 unk7A_14 : 2);
         u16 unk7C;
-        u16 unk7E_15 : 1;
-        u16 unk7E_0 : 15;
+        BT_BITFIELD_ORDER(u16 unk7E_15 : 1, u16 unk7E_0 : 15);
+        BT_BITFIELD_ORDER(u16 unk7E_0 : 15, u16 unk7E_15 : 1);
     };
     struct ShadowMarkerBits {
         u16 unk18;
-        u16 unk1A_5 : 11;
-        u16 unk1A_0 : 5;
+        BT_BITFIELD_ORDER(u16 unk1A_5 : 11, u16 unk1A_0 : 5);
+        BT_BITFIELD_ORDER(u16 unk1A_0 : 5, u16 unk1A_5 : 11);
     };
     int func_800DB9B0();
     int func_80104544();

@@ -42,8 +42,8 @@ s32 func_808000B0_chintroticker(u8 *arg0, s32 arg1) {
     extern s32 D_808008A8_chintroticker[];
     struct TickerState {
         u8 padding[0x79];
-        u8 state : 4;
-        u8 other : 4;
+        BT_BITFIELD_ORDER(u8 state : 4, u8 other : 4);
+        BT_BITFIELD_ORDER(u8 other : 4, u8 state : 4);
     };
     s32 state = 0;
     s32 value;

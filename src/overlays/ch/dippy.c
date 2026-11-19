@@ -17,12 +17,12 @@ OSThread *chdippy_entrypoint_1(void)
 void func_80800018_chdippy(Actor *actor) {
     struct DippyFlags {
         u8 pad[0x70];
-        u8 index : 7;
-        u8 pad70 : 1;
+        BT_BITFIELD_ORDER(u8 index : 7, u8 pad70 : 1);
+        BT_BITFIELD_ORDER(u8 pad70 : 1, u8 index : 7);
         u8 pad71;
-        u16 pad72 : 6;
+        BT_BITFIELD_ORDER(u16 pad72 : 6, u16 pad73 : 4);
         u16 state : 6;
-        u16 pad73 : 4;
+        BT_BITFIELD_ORDER(u16 pad73 : 4, u16 pad72 : 6);
     };
     s32 _chcredits_entrypoint_1(void);
     s32 _gccubesearch_entrypoint_3(s32, f32[3]);
@@ -440,9 +440,9 @@ void func_80800CBC_chdippy(Actor *arg0, s32 arg1, s32 arg2) {
 void func_80800D44_chdippy(u8 *arg0) {
     struct Flags {
         u8 pad[0x64];
-        unsigned int : 11;
+        BT_BITFIELD_ORDER(unsigned int : 11, unsigned int  : 20);
         unsigned int active : 1;
-        unsigned int : 20;
+        BT_BITFIELD_ORDER(unsigned int : 20, unsigned int  : 11);
     };
     s32 _capod_entrypoint_14(void);
     if (((struct Flags *)arg0)->active) {
@@ -470,13 +470,13 @@ void func_80800D9C_chdippy(void *self) {
         u8 pad5C[9];
         u8 flags;
         u8 pad66[0xA];
-        unsigned int : 16;
+        BT_BITFIELD_ORDER(unsigned int : 16, unsigned int  : 10);
         unsigned int state : 6;
-        unsigned int : 10;
+        BT_BITFIELD_ORDER(unsigned int : 10, unsigned int  : 16);
         u8 pad74[4];
-        unsigned int : 8;
+        BT_BITFIELD_ORDER(unsigned int : 8, unsigned int  : 20);
         unsigned int counter : 4;
-        unsigned int : 20;
+        BT_BITFIELD_ORDER(unsigned int : 20, unsigned int  : 8);
         u8 pad7C[0x1C];
         u8 pad98[3];
         u8 alpha;

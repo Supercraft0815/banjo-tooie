@@ -140,10 +140,10 @@ s32 func_808002FC_chexploder(Actor *arg0) {
     struct Part {
         f32 position[3], pivot[3], velocity[3], rotation[3];
         s16 spinX, spinZ, gravity;
-        u32 noCollision:1;
-        u32 active:1;
-        u32 bounce:1;
-        u32 unused:13;
+        BT_BITFIELD_ORDER(u32 noCollision:1, u32 unused : 13);
+        BT_BITFIELD_ORDER(u32 active:1, u32 bounce : 1);
+        BT_BITFIELD_ORDER(u32 bounce:1, u32 active : 1);
+        BT_BITFIELD_ORDER(u32 unused:13, u32 noCollision : 1);
         u8 hits, index;
         u8 pad3A[2];
     };
@@ -382,10 +382,10 @@ BtIntPtr func_80800AC8_chexploder(u8 *arg0, void *arg1, u8 *arg2, s32 arg3) {
     struct {
         f32 unk0[3], unkC[3], unk18[3], unk24[3];
         s16 unk30, unk32;
-        u32 pad34 : 16;
-        u32 flag80 : 1;
-        u32 flag40 : 1;
-        u32 rest : 14;
+        BT_BITFIELD_ORDER(u32 pad34 : 16, u32 rest : 14);
+        BT_BITFIELD_ORDER(u32 flag80 : 1, u32 flag40 : 1);
+        BT_BITFIELD_ORDER(u32 flag40 : 1, u32 flag80 : 1);
+        BT_BITFIELD_ORDER(u32 rest : 14, u32 pad34 : 16);
         u8 unk38, bone, unk3A, unk3B;
     } *part;
     u8 *skeleton;
@@ -458,10 +458,10 @@ void func_80800D7C_chexploder(Actor *arg0, BtIntPtr arg1, f32 *arg2, s32 arg3) {
     struct {
         f32 unk0[3], unkC[3], unk18[3], unk24[3];
         s16 unk30, unk32;
-        u32 pad34 : 16;
-        u32 flag80 : 1;
-        u32 flag40 : 1;
-        u32 rest : 14;
+        BT_BITFIELD_ORDER(u32 pad34 : 16, u32 rest : 14);
+        BT_BITFIELD_ORDER(u32 flag80 : 1, u32 flag40 : 1);
+        BT_BITFIELD_ORDER(u32 flag40 : 1, u32 flag80 : 1);
+        BT_BITFIELD_ORDER(u32 rest : 14, u32 pad34 : 16);
         u8 unk38, bone, unk3A, unk3B;
     } *part;
     u8 *skeleton;
@@ -517,9 +517,9 @@ void func_80800F74_chexploder(Actor *arg0, BtIntPtr arg1) {
         union {
             s16 unk34;
             struct {
-                u32 pad : 17;
+                BT_BITFIELD_ORDER(u32 pad : 17, u32 rest : 14);
                 u32 active : 1;
-                u32 rest : 14;
+                BT_BITFIELD_ORDER(u32 rest : 14, u32 pad : 17);
             } bits;
         } flags;
         s32 unk38;
@@ -633,9 +633,9 @@ void chexploder_entrypoint_1(s32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
 void chexploder_entrypoint_2(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
     struct ExploderFlags {
         u8 pad0[0x74];
-        u8 pad74_7 : 6;
+        BT_BITFIELD_ORDER(u8 pad74_7 : 6, u8 pad74_0 : 1);
         u8 flag74_1 : 1;
-        u8 pad74_0 : 1;
+        BT_BITFIELD_ORDER(u8 pad74_0 : 1, u8 pad74_7 : 6);
     };
     s32 func_8010108C(void *, s32, BtIntPtr);
     void func_800EE7F8(f32 *, f32 *);
@@ -817,9 +817,9 @@ void chexploder_entrypoint_10(Actor *arg0, s16 *arg1) {
     s32 var_t0;
     struct {
         u8 pad0[0x36];
-        u8 unk36_7 : 1;
+        BT_BITFIELD_ORDER(u8 unk36_7 : 1, u8 unk36_0 : 6);
         u8 unk36_6 : 1;
-        u8 unk36_0 : 6;
+        BT_BITFIELD_ORDER(u8 unk36_0 : 6, u8 unk36_7 : 1);
         u8 pad37[2];
         u8 unk39;
         u8 pad3A[2];

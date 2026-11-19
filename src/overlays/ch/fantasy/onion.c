@@ -38,9 +38,9 @@ void func_808000BC_chfantasyonion(Actor *arg0) {
     int func_8010568C(Actor *, s32);
     typedef struct {
         u8 actorPrefix[0x74];
-        u32 upperFlags : 27;
+        BT_BITFIELD_ORDER(u32 upperFlags : 27, u32 lowerFlags : 4);
         u32 unk74_4 : 1;
-        u32 lowerFlags : 4;
+        BT_BITFIELD_ORDER(u32 lowerFlags : 4, u32 upperFlags : 27);
     } OnionFlags;
     f32 sp44[3];
     f32 sp38[3];
@@ -98,20 +98,20 @@ void func_80800254_chfantasyonion(u8 *arg0) {
     f32 func_80800000_chfantasyonion(Actor *);
     typedef struct {
         u8 pad[0x64];
-        u32 : 11;
-        u32 direction : 1;
-        u32 locked : 1;
-        u32 : 19;
+        BT_BITFIELD_ORDER(u32 : 11, u32  : 19);
+        BT_BITFIELD_ORDER(u32 direction : 1, u32 locked : 1);
+        BT_BITFIELD_ORDER(u32 locked : 1, u32 direction : 1);
+        BT_BITFIELD_ORDER(u32 : 19, u32  : 11);
         u8 pad68[8];
-        u32 : 16;
+        BT_BITFIELD_ORDER(u32 : 16, u32  : 10);
         u32 state : 6;
-        u32 : 10;
-        u32 : 16;
-        u32 duration : 9;
-        u32 : 7;
-        u32 : 8;
-        u32 saved : 4;
-        u32 : 20;
+        BT_BITFIELD_ORDER(u32 : 10, u32  : 16);
+        BT_BITFIELD_ORDER(u32 : 16, char : 0);
+        BT_BITFIELD_ORDER(u32 duration : 9, u32  : 7);
+        BT_BITFIELD_ORDER(u32 : 7, u32 duration : 9);
+        BT_BITFIELD_ORDER(u32 : 8, u32  : 16);
+        BT_BITFIELD_ORDER(u32 saved : 4, char : 0);
+        BT_BITFIELD_ORDER(u32 : 20, u32  : 20; u32 saved : 4; u32  : 8);
     } OnionBits;
     s32 sp6C;
     f32 sp60[3];

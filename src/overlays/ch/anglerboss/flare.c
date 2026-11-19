@@ -12,8 +12,8 @@ void func_8080000C_changlerbossflare(Actor *arg0) {
         u8 pad0[0x54];
         s32 unk54;
         u8 pad58[0x18];
-        u32 pad70:31;
-        u32 initialized:1;
+        BT_BITFIELD_ORDER(u32 pad70:31, u32 initialized : 1);
+        BT_BITFIELD_ORDER(u32 initialized:1, u32 pad70 : 31);
     } *self = (void *)arg0;
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     s32 func_800C8A98(void);

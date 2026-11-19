@@ -31,9 +31,9 @@ s32 func_80800084_chjigsawbitcont(Actor *arg0, s32 arg1, s32 arg2) {
     } BitConfig;
     typedef struct {
         u8 pad0[0x74];
-        u32 pad74_22 : 10;
+        BT_BITFIELD_ORDER(u32 pad74_22 : 10, u32 pad74_0 : 21);
         u32 initialized : 1;
-        u32 pad74_0 : 21;
+        BT_BITFIELD_ORDER(u32 pad74_0 : 21, u32 pad74_22 : 10);
     } BitController;
     s32 i;
     struct {

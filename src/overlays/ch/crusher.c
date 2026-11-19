@@ -29,7 +29,7 @@ void func_80800068_chcrusher(Actor *arg0, u8 *arg1) {
     void func_80101870(Actor* arg0, void* arg1);
     OSThread * func_80104130(void);
     func_80101870(arg0, arg1);
-    if (((struct { u32 unused : 19; u32 active : 1; u32 rest : 12; } *)((u8 *)arg0 + 0x7C))->active) {
+    if (((struct { BT_BITFIELD_ORDER(u32 unused : 19, u32 rest : 12); u32 active : 1; BT_BITFIELD_ORDER(u32 rest : 12, u32 unused : 19); } *)((u8 *)arg0 + 0x7C))->active) {
         func_800DBEFC(func_80104130(), 6, (BtIntPtr) arg0->actorData);
         func_800DBEFC(func_80104130(), 4, (BtIntPtr) &arg0->actorData[4]);
     }
@@ -113,9 +113,9 @@ void func_80800394_chcrusher(u8 *arg0) {
 void func_808003E4_chcrusher(void *arg0) {
     struct CrusherFlags {
         u8 pad[0x65];
-        u8 unused : 3;
+        BT_BITFIELD_ORDER(u8 unused : 3, u8 remaining : 4);
         u8 active : 1;
-        u8 remaining : 4;
+        BT_BITFIELD_ORDER(u8 remaining : 4, u8 unused : 3);
     };
     void func_8008FE94(s32, f32 *);
     s32 func_80090150(void);
@@ -297,8 +297,8 @@ void func_808008FC_chcrusher(Actor *arg0) {
     extern u32 D_80800D10_chcrusher[];
     struct CrusherFlags {
         u8 pad0[0x74];
-        u32 pad74_28 : 4;
-        u32 enabled : 1;
+        BT_BITFIELD_ORDER(u32 pad74_28 : 4, u32 : 27);
+        BT_BITFIELD_ORDER(u32 enabled : 1, u32 enabled : 1; u32 pad74_28 : 4);
     };
     s32 active;
     f32 position[3];

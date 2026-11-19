@@ -278,9 +278,9 @@ void func_808007C8_chnests(Actor *arg0) {
         Actor actor;
         struct {
             u32 prefix[29];
-            u32 pad74_28 : 4;
+            BT_BITFIELD_ORDER(u32 pad74_28 : 4, u32 pad74_0 : 27);
             u32 active : 1;
-            u32 pad74_0 : 27;
+            BT_BITFIELD_ORDER(u32 pad74_0 : 27, u32 pad74_28 : 4);
         } flags;
     } *view = (union NestActorView *)arg0;
     f32 func_800D8FF8(void);
@@ -417,14 +417,14 @@ void func_80800B4C_chnests(void *arg0) {
 }
 
 void func_80800B80_chnests(void *arg0) {
-    struct Flags { u32 unused : 11; u32 enabled : 1; u32 remaining : 20; };
+    struct Flags { BT_BITFIELD_ORDER(u32 unused : 11, u32 remaining : 20); u32 enabled : 1; BT_BITFIELD_ORDER(u32 remaining : 20, u32 unused : 11); };
     if (((struct Flags *)((s8 *)arg0 + 0x64))->enabled) {
         (*(s32 *)((s8 *)(arg0) + (0x30))) = 2;
     }
 }
 
 void func_80800BA0_chnests(void *arg0, s32 arg1) {
-    struct Flags { u16 value : 10; u16 rest : 6; };
+    struct Flags { BT_BITFIELD_ORDER(u16 value : 10, u16 rest : 6); BT_BITFIELD_ORDER(u16 rest : 6, u16 value : 10); };
     void *ptr;
 
     ptr = *(void **)arg0;
@@ -434,10 +434,10 @@ void func_80800BA0_chnests(void *arg0, s32 arg1) {
 
 /* extern */
 
-void func_80800BD8_chnests(Actor *arg0, s32 arg1, f32 arg2, f32 arg3) { struct Flags { u16 value : 10; u16 rest : 6; }; ((struct Flags *)((s8 *)arg0->unk0 + 0x24))->value = arg1; func_80800000_chnests(arg0); arg0->unk64_20 = 1; ((f32 *)arg0->actorData)[4] = arg2; ((f32 *)arg0->actorData)[5] = arg3; func_80800B4C_chnests(arg0); }
+void func_80800BD8_chnests(Actor *arg0, s32 arg1, f32 arg2, f32 arg3) { struct Flags { BT_BITFIELD_ORDER(u16 value : 10, u16 rest : 6); BT_BITFIELD_ORDER(u16 rest : 6, u16 value : 10); }; ((struct Flags *)((s8 *)arg0->unk0 + 0x24))->value = arg1; func_80800000_chnests(arg0); arg0->unk64_20 = 1; ((f32 *)arg0->actorData)[4] = arg2; ((f32 *)arg0->actorData)[5] = arg3; func_80800B4C_chnests(arg0); }
 
 void func_80800C3C_chnests(Actor *arg0) {
-    struct Flags { u16 rest : 14; u16 mode : 2; };
+    struct Flags { BT_BITFIELD_ORDER(u16 rest : 14, u16 mode : 2); BT_BITFIELD_ORDER(u16 mode : 2, u16 rest : 14); };
     s32 _subaddiefade_entrypoint_2();
     void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     void func_8010A590(Actor *arg0);
@@ -477,7 +477,7 @@ void func_80800C3C_chnests(Actor *arg0) {
 }
 
 void func_80800D8C_chnests(Actor *arg0, s32 arg1) {
-    struct Flags { u8 pad[0x7A]; u16 mode : 2; u16 rest : 14; };
+    struct Flags { u8 pad[0x7A]; BT_BITFIELD_ORDER(u16 mode : 2, u16 rest : 14); BT_BITFIELD_ORDER(u16 rest : 14, u16 mode : 2); };
     void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     void func_800DF3E0(void);
     void func_800DF744(s32, s32);

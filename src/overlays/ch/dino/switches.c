@@ -95,9 +95,9 @@ void func_80800270_chdinoswitches(void *arg0) {
 s32 func_808002B0_chdinoswitches(Actor *arg0, s32 arg1, s32 arg2) {
     typedef struct {
         u32 pad0[29];
-        u32 pad74_31 : 10;
+        BT_BITFIELD_ORDER(u32 pad74_31 : 10, u32 pad74_0 : 21);
         u32 unk74_21 : 1;
-        u32 pad74_0 : 21;
+        BT_BITFIELD_ORDER(u32 pad74_0 : 21, u32 pad74_31 : 10);
     } ActorFlags;
     s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     void func_80101074(void *);

@@ -26,9 +26,9 @@ void func_80800018_chgobihailfire(Actor *arg0) {
     void func_8010573C(Actor *, f32);
     void func_80105A9C(Actor *, f32);
     struct {
-        u32 unused : 15;
+        BT_BITFIELD_ORDER(u32 unused : 15, u32 unused2 : 16);
         u32 enabled : 1;
-        u32 unused2 : 16;
+        BT_BITFIELD_ORDER(u32 unused2 : 16, u32 unused : 15);
     } *flags;
     if (_glcutDll_entrypoint_20() != 0) {
         if (func_800EA05C() != 0x129) {

@@ -9,8 +9,8 @@ void subaddieDll_entrypoint_0(void *arg0) {
     s32 sp1C;
     struct Flags {
         u8 pad[0x10];
-        u32 upper : 31;
-        u32 enabled : 1;
+        BT_BITFIELD_ORDER(u32 upper : 31, u32 enabled : 1);
+        BT_BITFIELD_ORDER(u32 enabled : 1, u32 upper : 31);
     } *flags;
 
     if (!(((Actor *)arg0)->unk0->unk10 & 1)) {
@@ -36,10 +36,10 @@ s32 subaddieDll_entrypoint_2(Actor *arg0, f32 (*arg1)[3]) {
     s32 func_800CC338(f32 (*)[3], s32, s32);
     struct BaddieFlags {
         u8 pad[0x70];
-        u32 index : 7;
-        u32 unused : 15;
-        u32 value : 6;
-        u32 lower : 4;
+        BT_BITFIELD_ORDER(u32 index : 7, u32 lower : 4);
+        BT_BITFIELD_ORDER(u32 unused : 15, u32 value : 6);
+        BT_BITFIELD_ORDER(u32 value : 6, u32 unused : 15);
+        BT_BITFIELD_ORDER(u32 lower : 4, u32 index : 7);
     } *flags = (void *)arg0;
 
     flags->index = func_800CBC3C(arg1) + 1;
@@ -56,10 +56,10 @@ s32 subaddieDll_entrypoint_3(Actor *arg0) {
     s32 func_800CC338(f32 (*)[3], s32, s32);
     struct BaddieFlags {
         u8 pad[0x70];
-        u32 index : 7;
-        u32 unused : 15;
-        u32 value : 6;
-        u32 lower : 4;
+        BT_BITFIELD_ORDER(u32 index : 7, u32 lower : 4);
+        BT_BITFIELD_ORDER(u32 unused : 15, u32 value : 6);
+        BT_BITFIELD_ORDER(u32 value : 6, u32 unused : 15);
+        BT_BITFIELD_ORDER(u32 lower : 4, u32 index : 7);
     } *flags = (void *)arg0;
     s32 value;
     s32 result;
@@ -200,10 +200,10 @@ s32 subaddieDll_entrypoint_11(Actor *arg0, s32 arg1, s32 arg2) {
     void func_800EF1B8(f32 *, f32, f32);
     struct BaddieFlags {
         u8 pad[0x70];
-        u32 index : 7;
-        u32 unused : 15;
-        u32 value : 6;
-        u32 lower : 4;
+        BT_BITFIELD_ORDER(u32 index : 7, u32 lower : 4);
+        BT_BITFIELD_ORDER(u32 unused : 15, u32 value : 6);
+        BT_BITFIELD_ORDER(u32 value : 6, u32 unused : 15);
+        BT_BITFIELD_ORDER(u32 lower : 4, u32 index : 7);
     };
     f32 sp1C[3];
     s32 pad;

@@ -16,8 +16,8 @@ s32 sucoasterfly_entrypoint_1(Actor *arg0, s32 arg1) {
         f32 position[3];
         f32 unkC;
         u8 unk10;
-        u8 variant : 4;
-        u8 flags : 4;
+        BT_BITFIELD_ORDER(u8 variant : 4, u8 flags : 4);
+        BT_BITFIELD_ORDER(u8 flags : 4, u8 variant : 4);
         s16 unk12;
         s32 unk14;
         s16 height;
@@ -96,9 +96,9 @@ void sucoasterfly_entrypoint_3(Actor *arg0) {
         } path;
         f32 unkC;
         u8 unk10;
-        u8 variant : 4;
+        BT_BITFIELD_ORDER(u8 variant : 4, u8 flags : 3);
         u8 returning : 1;
-        u8 flags : 3;
+        BT_BITFIELD_ORDER(u8 flags : 3, u8 variant : 4);
         s16 origin[3];
         s16 height;
         s16 unk1A;
@@ -357,15 +357,15 @@ s32 sucoasterfly_entrypoint_4(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80802080_sucoasterfly(Actor *);
     struct CoasterFlyActorFlags {
         u8 unused[0x74];
-        u32 other : 28;
-        u32 mode : 4;
+        BT_BITFIELD_ORDER(u32 other : 28, u32 mode : 4);
+        BT_BITFIELD_ORDER(u32 mode : 4, u32 other : 28);
     };
     struct CoasterFlyData {
         f32 position[3];
         f32 unkC;
         u8 unk10;
-        u8 variant : 4;
-        u8 flags : 4;
+        BT_BITFIELD_ORDER(u8 variant : 4, u8 flags : 4);
+        BT_BITFIELD_ORDER(u8 flags : 4, u8 variant : 4);
         s16 unk12;
         s32 unk14;
         s16 height;
@@ -634,9 +634,9 @@ s32 func_808014AC_sucoasterfly(Actor *arg0, s32 arg1) {
         f32 position[3];
         f32 speed;
         u8 unk10;
-        u8 type : 4;
+        BT_BITFIELD_ORDER(u8 type : 4, u8 rest : 3);
         u8 active : 1;
-        u8 rest : 3;
+        BT_BITFIELD_ORDER(u8 rest : 3, u8 type : 4);
         s16 destination[3];
     };
     struct CoasterFlyParameters {
@@ -646,18 +646,18 @@ s32 func_808014AC_sucoasterfly(Actor *arg0, s32 arg1) {
     };
     struct CoasterFlyFlags {
         u8 pad0[0x64];
-        u32 b7 : 1;
+        BT_BITFIELD_ORDER(u32 b7 : 1, u32 pad64 : 30);
         u32 b6 : 1;
-        u32 pad64 : 30;
+        BT_BITFIELD_ORDER(u32 pad64 : 30, u32 b7 : 1);
         u32 pad68[2];
-        u32 top : 1;
-        u32 flags : 6;
-        u32 pad70 : 9;
-        u32 state : 6;
-        u32 mode : 6;
-        u32 low : 4;
-        u32 pad74 : 28;
-        u32 type : 4;
+        BT_BITFIELD_ORDER(u32 top : 1, u32 low : 4);
+        BT_BITFIELD_ORDER(u32 flags : 6, u32 mode : 6);
+        BT_BITFIELD_ORDER(u32 pad70 : 9, u32 state : 6);
+        BT_BITFIELD_ORDER(u32 state : 6, u32 pad70 : 9);
+        BT_BITFIELD_ORDER(u32 mode : 6, u32 flags : 6);
+        BT_BITFIELD_ORDER(u32 low : 4, u32 top : 1);
+        BT_BITFIELD_ORDER(u32 pad74 : 28, char : 0);
+        BT_BITFIELD_ORDER(u32 type : 4, u32 type : 4; u32 pad74 : 28);
     };
     struct CoasterFlyData *temp_v0;
     struct CoasterFlyParameters *sp48;
@@ -775,9 +775,9 @@ void func_808018BC_sucoasterfly(Actor *arg0) {
     f32 func_80107C00(void);
     struct CoasterFlyActorFlags {
         u8 pad0[0x64];
-        u32 pad64 : 2;
+        BT_BITFIELD_ORDER(u32 pad64 : 2, u32 remaining64 : 29);
         u32 disabled : 1;
-        u32 remaining64 : 29;
+        BT_BITFIELD_ORDER(u32 remaining64 : 29, u32 pad64 : 2);
     };
     f32 *sp2C;
     volatile f32 sp28;
@@ -847,18 +847,18 @@ s32 func_80801AB0_sucoasterfly(Actor *arg0) {
     union {
         u32 word;
         struct {
-            u32 pad : 28;
+            BT_BITFIELD_ORDER(u32 pad : 28, u32 rest : 3);
             u32 blocked : 1;
-            u32 rest : 3;
+            BT_BITFIELD_ORDER(u32 rest : 3, u32 pad : 28);
         } bits;
     } state;
     union {
         u32 word;
         struct {
-            u32 unused : 1;
-            u32 enabled : 1;
-            u32 active : 1;
-            u32 rest : 29;
+            BT_BITFIELD_ORDER(u32 unused : 1, u32 rest : 29);
+            BT_BITFIELD_ORDER(u32 enabled : 1, u32 active : 1);
+            BT_BITFIELD_ORDER(u32 active : 1, u32 enabled : 1);
+            BT_BITFIELD_ORDER(u32 rest : 29, u32 unused : 1);
         } bits;
     } flags;
 
@@ -898,16 +898,16 @@ s32 func_80801B90_sucoasterfly(Actor *arg0) {
     s32 func_808014AC_sucoasterfly(Actor *, s32);
     struct CoasterFlyActorFlags {
         u8 pad0[0x64];
-        u32 pad64 : 2;
+        BT_BITFIELD_ORDER(u32 pad64 : 2, u32 remaining64 : 29);
         u32 disabled : 1;
-        u32 remaining64 : 29;
+        BT_BITFIELD_ORDER(u32 remaining64 : 29, u32 pad64 : 2);
     };
     s32 var_v1 = 0;
     struct {
         u32 unk0[4];
-        u32 pad10 : 12;
+        BT_BITFIELD_ORDER(u32 pad10 : 12, u32 unk10_0 : 19);
         u32 unk10_19 : 1;
-        u32 unk10_0 : 19;
+        BT_BITFIELD_ORDER(u32 unk10_0 : 19, u32 pad10 : 12);
     } *data;
 
     if (((struct CoasterFlyActorFlags *)arg0)->disabled) {
@@ -1022,17 +1022,17 @@ f32 func_80801E5C_sucoasterfly(Actor *arg0) {
     s32 func_80801FE4_sucoasterfly(Actor *, f32 *, f32, f32);
     struct CoasterFlyActorFlags {
         u8 pad0[0x70];
-        u32 section : 7;
-        u32 pad70 : 15;
-        u32 track : 6;
-        u32 pad74 : 4;
+        BT_BITFIELD_ORDER(u32 section : 7, u32 pad74 : 4);
+        BT_BITFIELD_ORDER(u32 pad70 : 15, u32 track : 6);
+        BT_BITFIELD_ORDER(u32 track : 6, u32 pad70 : 15);
+        BT_BITFIELD_ORDER(u32 pad74 : 4, u32 section : 7);
     };
     struct CoasterFlyData {
         f32 position[3];
         f32 unkC;
         u8 unk10;
-        u8 variant : 4;
-        u8 flags : 4;
+        BT_BITFIELD_ORDER(u8 variant : 4, u8 flags : 4);
+        BT_BITFIELD_ORDER(u8 flags : 4, u8 variant : 4);
         s16 unk12;
         s32 unk14;
         s16 height;

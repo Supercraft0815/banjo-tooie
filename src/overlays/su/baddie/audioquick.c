@@ -5,7 +5,7 @@
 void subaddieaudioquick_entrypoint_0(u8 arg0, s32 arg1) { void func_800C32C4(u8, s32); void func_800C3418(u8, s32); if (arg1 != 0) { func_800C3418(arg0, 1); func_800C32C4(arg0, 0x40); } else { func_800C3418(arg0, 2); } }
 
 u8 subaddieaudioquick_entrypoint_1(Actor *arg0, f32 *arg1) {
-    typedef struct { u8 pad[0x70]; u32 unused : 31; u32 active : 1; } Flags;
+    typedef struct { u8 pad[0x70]; BT_BITFIELD_ORDER(u32 unused : 31, u32 active : 1); BT_BITFIELD_ORDER(u32 active : 1, u32 unused : 31); } Flags;
     u8 func_800C4350(s32, f32 *, s32 *);
     extern s32 D_808001D0_subaddieaudioquick[4];
     u8 saved;

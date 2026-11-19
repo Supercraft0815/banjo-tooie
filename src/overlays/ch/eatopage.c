@@ -73,9 +73,9 @@ void func_80800194_chcheatopage(Actor *arg0, BtIntPtr arg1) {
     int func_808002F0_chcheatopage(Actor *);
     struct PageFlags {
         u8 pad[0x74];
-        u32 : 11;
+        BT_BITFIELD_ORDER(u32 : 11, u32  : 20);
         u32 collected : 1;
-        u32 : 20;
+        BT_BITFIELD_ORDER(u32 : 20, u32  : 11);
     };
     if (func_8010A6B0(arg0, (u32)((u16 *)arg1)[13] >> 5) != 0) {
         _fxsparkle_entrypoint_1(arg0->position, 0x14);
@@ -105,7 +105,7 @@ void func_808002A0_chcheatopage(void *arg0 BT_PASS2(, s32 bt_a1)) {
     s32 func_80101870();
     void func_80103110(void *, s32);
     func_80101870();
-    if ((((struct { unsigned int : 19; unsigned int active : 1; unsigned int : 12; } *)((s8 *)arg0 + 0x7C))->active) && (((u32) (((Objeatopage_arg0 *)arg0)->unk72) >> 0xA) == 1)) {
+    if ((((struct { BT_BITFIELD_ORDER(unsigned int : 19, unsigned int  : 12); unsigned int active : 1; BT_BITFIELD_ORDER(unsigned int : 12, unsigned int  : 19); } *)((s8 *)arg0 + 0x7C))->active) && (((u32) (((Objeatopage_arg0 *)arg0)->unk72) >> 0xA) == 1)) {
         func_80103110(arg0, 1);
     }
 }

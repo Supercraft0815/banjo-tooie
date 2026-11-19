@@ -48,12 +48,12 @@ void func_808000CC_chjigsawcollect(Actor *arg0) {
         u8 unk10[0x38];
         f32 yaw;
         u8 unk4C[0x18];
-        u32 unk64_0 : 11;
+        BT_BITFIELD_ORDER(u32 unk64_0 : 11, u32 unk64_12 : 20);
         u32 music : 1;
-        u32 unk64_12 : 20;
+        BT_BITFIELD_ORDER(u32 unk64_12 : 20, u32 unk64_0 : 11);
         u8 unk68[0xA];
-        u16 state : 6;
-        u16 unk72_6 : 10;
+        BT_BITFIELD_ORDER(u16 state : 6, u16 unk72_6 : 10);
+        BT_BITFIELD_ORDER(u16 unk72_6 : 10, u16 state : 6);
     } CollectActor;
     typedef struct {
         f32 angle;
@@ -207,8 +207,8 @@ void func_808005B8_chjigsawcollect(BtIntPtr arg0, BtIntPtr arg1) {
 void chjigsawcollect_entrypoint_1(Actor **arg0, s32 arg1, s32 arg2) {
     typedef struct {
         u8 pad0[0x73];
-        u8 pad73_1 : 7;
-        u8 unk73_0 : 1;
+        BT_BITFIELD_ORDER(u8 pad73_1 : 7, u8 unk73_0 : 1);
+        BT_BITFIELD_ORDER(u8 unk73_0 : 1, u8 pad73_1 : 7);
     } CollectActor;
     typedef struct {
         s32 unk0[3];

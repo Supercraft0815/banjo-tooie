@@ -361,8 +361,8 @@ void func_80800838_chlakemonster(Actor *arg0) {
     u8 *sp30;
     struct {
         u8 pad[0x17];
-        u8 unused : 7;
-        u8 active : 1;
+        BT_BITFIELD_ORDER(u8 unused : 7, u8 active : 1);
+        BT_BITFIELD_ORDER(u8 active : 1, u8 unused : 7);
     } *sp2C;
     BtIntPtr sp28;
 
@@ -728,7 +728,7 @@ void func_808013E8_chlakemonster(s32 *arg0) {
 }
 
 void func_80801448_chlakemonster(u8 *arg0, u32 arg1, s32 arg2) {
-    struct Flags { u8 pad[0x74]; u8 high : 1; u8 flag : 1; u8 low : 6; };
+    struct Flags { u8 pad[0x74]; BT_BITFIELD_ORDER(u8 high : 1, u8 low : 6); u8 flag : 1; BT_BITFIELD_ORDER(u8 low : 6, u8 high : 1); };
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     arg2 |= 7;
     _subaddiedialog_entrypoint_11((((Actor *)arg0)->unk0), arg1, arg2, (f32 *)(arg0 + 4), 0xB3U);
@@ -854,7 +854,7 @@ OSThread *chlakemonster_entrypoint_0(void)
 
 void func_80801790_chlakemonster();
 void func_80801790_chlakemonster(Actor *arg0, u32 arg1) {
-    struct Flags { u8 pad[0x7E]; u8 high : 1; u8 flag : 1; u8 low : 6; };
+    struct Flags { u8 pad[0x7E]; BT_BITFIELD_ORDER(u8 high : 1, u8 low : 6); u8 flag : 1; BT_BITFIELD_ORDER(u8 low : 6, u8 high : 1); };
     void func_80101FDC(Actor *, u32);
     s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
 

@@ -109,12 +109,12 @@ void func_800D61B4(u8 *arg0) {
     int remaining;
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     struct Entry {
-        u32 unused0 : 27;
+        BT_BITFIELD_ORDER(u32 unused0 : 27, u32 unused1 : 1);
         u32 type : 4;
-        u32 unused1 : 1;
+        BT_BITFIELD_ORDER(u32 unused1 : 1, u32 unused0 : 27);
         u32 unused4;
-        u16 id : 14;
-        u16 unused8 : 2;
+        BT_BITFIELD_ORDER(u16 id : 14, u16 unused8 : 2);
+        BT_BITFIELD_ORDER(u16 unused8 : 2, u16 id : 14);
         u16 unusedA;
     };
 #endif
@@ -154,14 +154,14 @@ void func_800D62E4(s32 arg0) {
     extern s16 D_8012BE64;
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     struct Entry {
-        u32 unused : 27;
+        BT_BITFIELD_ORDER(u32 unused : 27, u32 low : 1);
         u32 type : 4;
-        u32 low : 1;
+        BT_BITFIELD_ORDER(u32 low : 1, u32 unused : 27);
         s32 image;
-        u32 id : 14;
-        u32 used : 1;
-        u32 twice : 1;
-        u32 tail : 16;
+        BT_BITFIELD_ORDER(u32 id : 14, u32 tail : 16);
+        BT_BITFIELD_ORDER(u32 used : 1, u32 twice : 1);
+        BT_BITFIELD_ORDER(u32 twice : 1, u32 used : 1);
+        BT_BITFIELD_ORDER(u32 tail : 16, u32 id : 14);
     };
 #endif
     struct Entry *ptr;
@@ -182,9 +182,9 @@ s32 func_800D6378(u8 *arg0) {
     int handle;
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     struct Entry {
-        u32 unused : 27;
+        BT_BITFIELD_ORDER(u32 unused : 27, u32 low : 1);
         u32 type : 4;
-        u32 low : 1;
+        BT_BITFIELD_ORDER(u32 low : 1, u32 unused : 27);
         void *image;
         u8 unused2[3];
         u8 handle;
@@ -227,13 +227,13 @@ s32 func_800D6408(void *arg0) {
     s32 result BT_NATIVE_ONLY(= 0);
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     struct ReleaseEntry {
-        u32 frame : 27;
+        BT_BITFIELD_ORDER(u32 frame : 27, u32 low : 1);
         u32 type : 4;
-        u32 low : 1;
+        BT_BITFIELD_ORDER(u32 low : 1, u32 frame : 27);
         void *image;
-        u32 id : 14;
+        BT_BITFIELD_ORDER(u32 id : 14, u32 twice : 1);
         u32 used : 1;
-        u32 twice : 1;
+        BT_BITFIELD_ORDER(u32 twice : 1, u32 id : 14);
         u8 unused;
         u8 handle;
     };
@@ -285,14 +285,14 @@ s32 func_800D6550(void *arg0) {
     void *func_800D5804(void *, s32);
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     struct Entry {
-        u32 frame : 27;
+        BT_BITFIELD_ORDER(u32 frame : 27, u32 low : 1);
         u32 type : 4;
-        u32 low : 1;
+        BT_BITFIELD_ORDER(u32 low : 1, u32 frame : 27);
         void *image;
-        u32 id : 14;
-        u32 used : 1;
-        u32 twice : 1;
-        u32 tail : 16;
+        BT_BITFIELD_ORDER(u32 id : 14, u32 tail : 16);
+        BT_BITFIELD_ORDER(u32 used : 1, u32 twice : 1);
+        BT_BITFIELD_ORDER(u32 twice : 1, u32 used : 1);
+        BT_BITFIELD_ORDER(u32 tail : 16, u32 id : 14);
     };
 #endif
     struct Entry *ptr = arg0;
@@ -339,12 +339,12 @@ void func_800D66AC(void) {
     extern s16 D_8012BE62;
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     struct Entry {
-        u32 unused : 27;
+        BT_BITFIELD_ORDER(u32 unused : 27, u32 low : 1);
         u32 type : 4;
-        u32 low : 1;
+        BT_BITFIELD_ORDER(u32 low : 1, u32 unused : 27);
         s32 image;
-        u16 id : 14;
-        u16 low2 : 2;
+        BT_BITFIELD_ORDER(u16 id : 14, u16 low2 : 2);
+        BT_BITFIELD_ORDER(u16 low2 : 2, u16 id : 14);
         s16 tail;
     };
 #endif
@@ -374,16 +374,16 @@ ImageStruct *func_800D674C(s32 a0) {
     void func_800DBBF8(u8, void *);
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     struct Entry {
-        u32 frame : 27;
+        BT_BITFIELD_ORDER(u32 frame : 27, u32 low : 1);
         u32 type : 4;
-        u32 low : 1;
+        BT_BITFIELD_ORDER(u32 low : 1, u32 frame : 27);
         ImageStruct *image;
-        u32 id : 14;
-        u32 used : 1;
-        u32 twice : 1;
-        u32 hi : 4;
-        u32 lo : 4;
-        u32 handle : 8;
+        BT_BITFIELD_ORDER(u32 id : 14, u32 handle : 8);
+        BT_BITFIELD_ORDER(u32 used : 1, u32 lo : 4);
+        BT_BITFIELD_ORDER(u32 twice : 1, u32 hi : 4);
+        BT_BITFIELD_ORDER(u32 hi : 4, u32 twice : 1);
+        BT_BITFIELD_ORDER(u32 lo : 4, u32 used : 1);
+        BT_BITFIELD_ORDER(u32 handle : 8, u32 id : 14);
     };
 #endif
     s32 index;
@@ -477,14 +477,14 @@ void *func_800D6B0C(s32 original) {
     extern s16 D_8012BE64;
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     struct Entry {
-        u32 frame : 27;
+        BT_BITFIELD_ORDER(u32 frame : 27, u32 low : 1);
         u32 type : 4;
-        u32 low : 1;
+        BT_BITFIELD_ORDER(u32 low : 1, u32 frame : 27);
         void *image;
-        u32 id : 14;
-        u32 used : 1;
-        u32 twice : 1;
-        u32 tail : 16;
+        BT_BITFIELD_ORDER(u32 id : 14, u32 tail : 16);
+        BT_BITFIELD_ORDER(u32 used : 1, u32 twice : 1);
+        BT_BITFIELD_ORDER(u32 twice : 1, u32 used : 1);
+        BT_BITFIELD_ORDER(u32 tail : 16, u32 id : 14);
     };
 #endif
     s32 index;
@@ -526,8 +526,8 @@ void func_800D6C64(void) {
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     struct Entry {
         u32 pad[2];
-        u32 id : 14;
-        u32 rest : 18;
+        BT_BITFIELD_ORDER(u32 id : 14, u32 rest : 18);
+        BT_BITFIELD_ORDER(u32 rest : 18, u32 id : 14);
     };
 #endif
     struct Entry *ptr;
@@ -553,8 +553,8 @@ s32 func_800D6CEC(s32 arg0) {
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     struct Entry {
         u8 pad[10];
-        u16 hi : 4;
-        u16 rest : 12;
+        BT_BITFIELD_ORDER(u16 hi : 4, u16 rest : 12);
+        BT_BITFIELD_ORDER(u16 rest : 12, u16 hi : 4);
     };
 #endif
     s32 index;
@@ -577,11 +577,11 @@ void func_800D6D68(void) {
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     struct Entry {
         u32 pad[2];
-        u32 id : 14;
-        u32 unused : 2;
+        BT_BITFIELD_ORDER(u32 id : 14, u32 rest : 8);
+        BT_BITFIELD_ORDER(u32 unused : 2, u32 lo : 4);
         u32 hi : 4;
-        u32 lo : 4;
-        u32 rest : 8;
+        BT_BITFIELD_ORDER(u32 lo : 4, u32 unused : 2);
+        BT_BITFIELD_ORDER(u32 rest : 8, u32 id : 14);
     };
 #endif
     s32 i = 0;
@@ -612,14 +612,14 @@ void func_800D6E54(s32 arg0) {
     extern s16 D_8012BE62;
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     struct Entry {
-        u32 frame : 27;
+        BT_BITFIELD_ORDER(u32 frame : 27, u32 low : 1);
         u32 type : 4;
-        u32 low : 1;
+        BT_BITFIELD_ORDER(u32 low : 1, u32 frame : 27);
         void *image;
-        u16 id : 14;
-        u16 unused : 2;
-        u16 hi : 4;
-        u16 rest : 12;
+        BT_BITFIELD_ORDER(u16 id : 14, u16 unused : 2);
+        BT_BITFIELD_ORDER(u16 unused : 2, u16 id : 14);
+        BT_BITFIELD_ORDER(u16 hi : 4, char : 0);
+        BT_BITFIELD_ORDER(u16 rest : 12, u16 rest : 12; u16 hi : 4);
     };
 #endif
     s32 i;
@@ -661,8 +661,8 @@ uintptr_t func_800D7050(s32 arg0, s32 arg1) {
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     struct Entry {
         u8 pad[10];
-        u16 hi : 4;
-        u16 rest : 12;
+        BT_BITFIELD_ORDER(u16 hi : 4, u16 rest : 12);
+        BT_BITFIELD_ORDER(u16 rest : 12, u16 hi : 4);
     };
 #endif
     struct Entry *temp_v0;
@@ -723,8 +723,8 @@ uintptr_t func_800D7184(s32 arg0, s32 arg1) {
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     struct Entry {
         u8 pad[10];
-        u8 hi : 4;
-        u8 lo : 4;
+        BT_BITFIELD_ORDER(u8 hi : 4, u8 lo : 4);
+        BT_BITFIELD_ORDER(u8 lo : 4, u8 hi : 4);
         u8 tail;
     };
 #endif
@@ -766,8 +766,8 @@ void *func_800D725C(s32 arg0) {
     s32 func_800D5EB4(s32, u8 *, s32);
 #if !defined(BT_NATIVE) || defined(BT_ILP32)
     struct CacheEntry {
-        u32 frame : 27;
-        u32 type : 5;
+        BT_BITFIELD_ORDER(u32 frame : 27, u32 type : 5);
+        BT_BITFIELD_ORDER(u32 type : 5, u32 frame : 27);
         void *image;
         u32 info;
     };

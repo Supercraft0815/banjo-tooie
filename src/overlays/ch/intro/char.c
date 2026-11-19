@@ -50,22 +50,22 @@ s32 func_808000FC_chintrochar(Actor *arg0) {
     extern u16 D_80804790_chintrochar[][16];
     struct IntroFlags {
         u8 pad0[0x70];
-        u8 pad70 : 7;
-        u8 flag70 : 1;
-        u8 pad71 : 2;
-        u8 flag71 : 1;
-        u8 pad71low : 5;
+        BT_BITFIELD_ORDER(u8 pad70 : 7, u8 flag70 : 1);
+        BT_BITFIELD_ORDER(u8 flag70 : 1, u8 pad70 : 7);
+        BT_BITFIELD_ORDER(u8 pad71 : 2, char : 0);
+        BT_BITFIELD_ORDER(u8 flag71 : 1, u8 pad71low : 5);
+        BT_BITFIELD_ORDER(u8 pad71low : 5, u8 flag71 : 1; u8 pad71 : 2);
         u8 pad72[5];
-        u8 pad77 : 4;
-        u8 mode : 4;
+        BT_BITFIELD_ORDER(u8 pad77 : 4, u8 mode : 4);
+        BT_BITFIELD_ORDER(u8 mode : 4, u8 pad77 : 4);
         u8 pad78[3];
-        u8 pad7B : 6;
+        BT_BITFIELD_ORDER(u8 pad7B : 6, u8 pad7B0 : 1);
         u8 flag7B : 1;
-        u8 pad7B0 : 1;
+        BT_BITFIELD_ORDER(u8 pad7B0 : 1, u8 pad7B : 6);
         u8 pad7C[0x18];
-        u8 pad94 : 1;
+        BT_BITFIELD_ORDER(u8 pad94 : 1, u8 pad94low : 6);
         u8 flag94 : 1;
-        u8 pad94low : 6;
+        BT_BITFIELD_ORDER(u8 pad94low : 6, u8 pad94 : 1);
     };
     s32 flags;
     s32 flags2;
@@ -1217,7 +1217,7 @@ void func_80803A78_chintrochar(Actor *arg0, Gfx **arg1) {
             }
         }
     } else {
-        struct IntroRenderFlags { u32 unused : 1; u32 flag : 1; };
+        struct IntroRenderFlags { BT_BITFIELD_ORDER(u32 unused : 1, u32 : 30); BT_BITFIELD_ORDER(u32 flag : 1, u32 flag : 1; u32 unused : 1); };
         struct IntroRenderFlags *renderFlags = (void *)&arg0->pad94;
         if (renderFlags->flag) {
             func_800DF440(0);

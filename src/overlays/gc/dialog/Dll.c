@@ -8,7 +8,7 @@ typedef struct {
     s8 unk114[2];
     s8 unk116[2];
     s16 unk118[2];
-    struct { u8 a:2; u8 b:2; u8 c:4; } unk11C[2];
+    struct { BT_BITFIELD_ORDER(u8 a:2, u8 c : 4); u8 b:2; BT_BITFIELD_ORDER(u8 c:4, u8 a : 2); } unk11C[2];
     u8 pad11E[2];
     s32 unk120[2];
     u8 pad128[0x30];

@@ -42,7 +42,7 @@ void func_8080000C_chdoubloon(BtIntPtr arg0) {
 }
 
 void chdoubloon_entrypoint_0(Actor *arg0, u8 *arg1) {
-    struct Flags { u32 pad : 19; u32 active : 1; u32 rest : 12; };
+    struct Flags { BT_BITFIELD_ORDER(u32 pad : 19, u32 rest : 12); u32 active : 1; BT_BITFIELD_ORDER(u32 rest : 12, u32 pad : 19); };
     void func_80101870(Actor* arg0, void* arg1);
     void func_80103110(void *arg0, s32 arg1);
     func_80101870(arg0, arg1);

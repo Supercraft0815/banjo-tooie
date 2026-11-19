@@ -25,10 +25,10 @@ void func_8080000C_chmineproplight(Actor *arg0) {
         u8 pitch;
         s16 position[3];
         u8 scale;
-        u8 pad : 2;
-        u8 enabled : 1;
-        u8 hidden : 1;
-        u8 rest : 4;
+        BT_BITFIELD_ORDER(u8 pad : 2, u8 rest : 4);
+        BT_BITFIELD_ORDER(u8 enabled : 1, u8 hidden : 1);
+        BT_BITFIELD_ORDER(u8 hidden : 1, u8 enabled : 1);
+        BT_BITFIELD_ORDER(u8 rest : 4, u8 pad : 2);
     };
     s32 sp44;
     s16 *sp40;

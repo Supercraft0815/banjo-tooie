@@ -40,7 +40,7 @@ s32 func_80800000_chsilo(s32 arg0) {
 }
 
 void func_80800104_chsilo(Actor *arg0, s32 arg1, s32 arg2) {
-    struct Flags { u8 pad[0x74]; u8 high : 1; u8 flag : 1; u8 low : 6; };
+    struct Flags { u8 pad[0x74]; BT_BITFIELD_ORDER(u8 high : 1, u8 low : 6); u8 flag : 1; BT_BITFIELD_ORDER(u8 low : 6, u8 high : 1); };
     if (!arg0->unk74_30) {
         arg2 |= 6;
         _subaddiedialog_entrypoint_11(arg0->unk0, arg1, arg2, arg0->position, 0x6F);
@@ -197,7 +197,7 @@ s32 func_808004C0_chsilo(u8 *arg0, s32 arg1) {
     BtIntPtr camera;
     s32 count;
     BtIntPtr option;
-    struct SiloFlag { u8 high : 3; u8 active : 1; u8 low : 4; };
+    struct SiloFlag { BT_BITFIELD_ORDER(u8 high : 3, u8 low : 4); u8 active : 1; BT_BITFIELD_ORDER(u8 low : 4, u8 high : 3); };
 
     switch ((u32)*(u16 *)(arg0 + 0x72) >> 10) {
         case 1:

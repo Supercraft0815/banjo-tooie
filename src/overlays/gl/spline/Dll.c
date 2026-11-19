@@ -38,20 +38,20 @@ void glsplineDll_entrypoint_0(void *arg0) {
     typedef struct {
         s16 next;
         s16 pos[3];
-        u16 hasPrev : 1;
-        u16 visited : 1;
-        u16 isEvent : 1;
+        BT_BITFIELD_ORDER(u16 hasPrev : 1, u16 flag0 : 1);
+        BT_BITFIELD_ORDER(u16 visited : 1, u16 flag1 : 1);
+        BT_BITFIELD_ORDER(u16 isEvent : 1, u16 flag2 : 1);
         u16 value : 10;
-        u16 flag2 : 1;
-        u16 flag1 : 1;
-        u16 flag0 : 1;
+        BT_BITFIELD_ORDER(u16 flag2 : 1, u16 isEvent : 1);
+        BT_BITFIELD_ORDER(u16 flag1 : 1, u16 visited : 1);
+        BT_BITFIELD_ORDER(u16 flag0 : 1, u16 hasPrev : 1);
         s16 id;
-        u16 type : 6;
+        BT_BITFIELD_ORDER(u16 type : 6, u16 unused0 : 1);
         u16 value2 : 9;
-        u16 unused0 : 1;
-        u16 value3 : 9;
-        u16 value4 : 5;
-        u16 unused1 : 2;
+        BT_BITFIELD_ORDER(u16 unused0 : 1, u16 type : 6);
+        BT_BITFIELD_ORDER(u16 value3 : 9, char : 0);
+        BT_BITFIELD_ORDER(u16 value4 : 5, u16 unused1 : 2);
+        BT_BITFIELD_ORDER(u16 unused1 : 2, u16 value4 : 5; u16 value3 : 9);
     } Node;
     typedef struct {
         f32 time;
@@ -76,8 +76,8 @@ void glsplineDll_entrypoint_0(void *arg0) {
     typedef NativeSplineContext Context;
 #else
     typedef struct {
-        s8 used : 1;
-        s8 unused : 7;
+        BT_BITFIELD_ORDER(s8 used : 1, s8 unused : 7);
+        BT_BITFIELD_ORDER(s8 unused : 7, s8 used : 1);
         u8 data[11];
     } Cache;
     typedef struct {

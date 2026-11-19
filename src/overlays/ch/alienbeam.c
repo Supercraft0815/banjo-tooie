@@ -15,8 +15,8 @@ void func_8080000C_chalienbeam(Actor *arg0) {
     struct BeamFlags {
         u8 unk78;
         u8 unk79;
-        u8 state : 2;
-        u8 rest : 6;
+        BT_BITFIELD_ORDER(u8 state : 2, u8 rest : 6);
+        BT_BITFIELD_ORDER(u8 rest : 6, u8 state : 2);
     };
 
     func_800EE7F8((f32 *)&arg0->actorData[0], arg0->position);

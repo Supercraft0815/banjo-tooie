@@ -116,10 +116,10 @@ s32 func_80800000_chfactorydrums(Actor *arg0) {
         Actor actor;
         struct {
             u8 pad[0x70];
-            u32 group : 7;
-            u32 unused : 15;
-            u32 point : 6;
-            u32 rest : 4;
+            BT_BITFIELD_ORDER(u32 group : 7, u32 rest : 4);
+            BT_BITFIELD_ORDER(u32 unused : 15, u32 point : 6);
+            BT_BITFIELD_ORDER(u32 point : 6, u32 unused : 15);
+            BT_BITFIELD_ORDER(u32 rest : 4, u32 group : 7);
         } path;
         struct {
             Unk80132ED0 *unk0;
@@ -202,8 +202,8 @@ void func_808002B8_chfactorydrums(Actor *arg0) {
         Actor actor;
         struct {
             u8 pad[0x64];
-            u32 pad64_30 : 2;
-            u32 unk64_29 : 1;
+            BT_BITFIELD_ORDER(u32 pad64_30 : 2, u32 : 29);
+            BT_BITFIELD_ORDER(u32 unk64_29 : 1, u32 unk64_29 : 1; u32 pad64_30 : 2);
         } flags;
     };
     union FactoryDrumsActor *drum = (union FactoryDrumsActor *)arg0;
@@ -280,9 +280,9 @@ void func_808003DC_chfactorydrums(Actor *arg0) {
         } particles;
         struct {
             u8 pad[0x78];
-            u32 unused : 29;
+            BT_BITFIELD_ORDER(u32 unused : 29, u32 rest : 2);
             u32 inactive : 1;
-            u32 rest : 2;
+            BT_BITFIELD_ORDER(u32 rest : 2, u32 unused : 29);
         } flags;
     };
     struct DrumRoute {
@@ -464,9 +464,9 @@ s32 func_80800D90_chfactorydrums(Actor *arg0, s32 arg1, s32 arg2) {
         Actor actor;
         struct {
             u8 pad[0x78];
-            u32 unused : 29;
+            BT_BITFIELD_ORDER(u32 unused : 29, u32 rest : 2);
             u32 flag : 1;
-            u32 rest : 2;
+            BT_BITFIELD_ORDER(u32 rest : 2, u32 unused : 29);
         } flags;
     };
     Actor *sp1C;

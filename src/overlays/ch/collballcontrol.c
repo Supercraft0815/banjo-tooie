@@ -355,15 +355,15 @@ s32 func_808002B8_chcollballcontrol(Unk80132ED0 **arg0, s32 arg1, Unk80132ED0 *a
     void func_80801500_chcollballcontrol(Actor *, s32);
     struct Flags {
         u8 pad0[0x65];
-        u8 unused0 : 3;
+        BT_BITFIELD_ORDER(u8 unused0 : 3, u8 unused1 : 4);
         u8 dialog : 1;
-        u8 unused1 : 4;
+        BT_BITFIELD_ORDER(u8 unused1 : 4, u8 unused0 : 3);
         u8 pad1[0xC];
-        u8 state : 6;
-        u8 unused2 : 2;
+        BT_BITFIELD_ORDER(u8 state : 6, u8 unused2 : 2);
+        BT_BITFIELD_ORDER(u8 unused2 : 2, u8 state : 6);
         u8 pad2[6];
-        u8 mode : 4;
-        u8 unused3 : 4;
+        BT_BITFIELD_ORDER(u8 mode : 4, u8 unused3 : 4);
+        BT_BITFIELD_ORDER(u8 unused3 : 4, u8 mode : 4);
     };
     struct DialogEvent {
         s16 id;
@@ -851,11 +851,11 @@ void func_80801038_chcollballcontrol(Actor *arg0) {
 void func_808010B8_chcollballcontrol(void *arg0, s32 arg1) {
     struct Fields {
         u8 pad0[0x64];
-        u8 unused : 7;
-        u8 active : 1;
+        BT_BITFIELD_ORDER(u8 unused : 7, u8 active : 1);
+        BT_BITFIELD_ORDER(u8 active : 1, u8 unused : 7);
         u8 pad1[9];
-        u16 high : 7;
-        u16 state : 9;
+        BT_BITFIELD_ORDER(u16 high : 7, u16 state : 9);
+        BT_BITFIELD_ORDER(u16 state : 9, u16 high : 7);
     };
     struct Fields *p = arg0;
     p->state = arg1;
@@ -944,7 +944,7 @@ void func_808011E8_chcollballcontrol(Actor *arg0) {
 }
 
 void func_80801350_chcollballcontrol(Actor *arg0, s32 *arg1) {
-    typedef struct { u8 pad[0x1A]; u16 index; u8 pad1[8]; u32 id:10; u32 flags:22; } Marker;
+    typedef struct { u8 pad[0x1A]; u16 index; u8 pad1[8]; BT_BITFIELD_ORDER(u32 id:10, u32 flags : 22); BT_BITFIELD_ORDER(u32 flags:22, u32 id : 10); } Marker;
     typedef struct { Marker *marker; s32 unk4; u32 flags; } Entry;
     s32 *func_800BE444(f32 *);
     BtIntPtr func_800E9E88(BtIntPtr);
@@ -1479,7 +1479,7 @@ s32 func_808023FC_chcollballcontrol(void *ptr, s32 arg1) {
 }
 
 void func_80802764_chcollballcontrol(s32 *arg0) {
-    typedef struct { u8 pad[0x1A]; u16 index; u8 pad1[8]; u32 id:10; u32 flags:22; } Marker;
+    typedef struct { u8 pad[0x1A]; u16 index; u8 pad1[8]; BT_BITFIELD_ORDER(u32 id:10, u32 flags : 22); BT_BITFIELD_ORDER(u32 flags:22, u32 id : 10); } Marker;
     typedef struct { Marker *marker; s32 unk4; u32 flags; } Entry;
     s32 *func_800BE3F8(void *);
     BtIntPtr func_800E9E88(BtIntPtr);
@@ -1644,8 +1644,8 @@ void func_80802CE0_chcollballcontrol(u8 *arg0) {
     typedef struct { f32 v[3]; } Position;
     typedef struct { f32 timer; u8 pad[0x1C]; u8 owner; } BallData;
     typedef struct { u8 pad[0x3A]; u8 count; } ParentData;
-    typedef struct { u8 pad[0x24]; u32 id:10; u32 flags:22; } MarkerState;
-    typedef struct { u8 pad[0x70]; u32 upper:16; u32 state:6; u32 flags:10; } ActorState;
+    typedef struct { u8 pad[0x24]; BT_BITFIELD_ORDER(u32 id:10, u32 flags : 22); BT_BITFIELD_ORDER(u32 flags:22, u32 id : 10); } MarkerState;
+    typedef struct { u8 pad[0x70]; BT_BITFIELD_ORDER(u32 upper:16, u32 flags : 10); u32 state:6; BT_BITFIELD_ORDER(u32 flags:10, u32 upper : 16); } ActorState;
 
 
 #ifndef BT_NATIVE
@@ -1871,8 +1871,8 @@ void func_808032CC_chcollballcontrol(u8 *arg0, BtIntPtr arg1) {
 s32 func_80803420_chcollballcontrol(Actor *arg0, s32 arg1, s32 arg2) {
     typedef struct {
         u8 pad[0x64];
-        u32 : 3;
-        u32 controller_index : 2;
+        BT_BITFIELD_ORDER(u32 : 3, u32 : 27);
+        BT_BITFIELD_ORDER(u32 controller_index : 2, u32 controller_index : 2; u32  : 3);
     } BallFlags;
     void *func_80100094(Actor *, u32);
     void func_800BD268();
@@ -2205,9 +2205,9 @@ void func_8080405C_chcollballcontrol(u8 *arg0) {
     typedef struct { f32 v[3]; } Vec3;
     typedef struct {
         u8 pad[0x65];
-        u8 : 3;
+        BT_BITFIELD_ORDER(u8 : 3, u8  : 4);
         u8 hit : 1;
-        u8 : 4;
+        BT_BITFIELD_ORDER(u8 : 4, u8  : 3);
     } BallFlags;
 
     Actor *func_80106790(Unk80132ED0 *);
@@ -2317,10 +2317,10 @@ void func_80804420_chcollballcontrol(Actor *arg0) {
     } BallData;
     typedef struct {
         u8 pad[0x64];
-        u32 active : 1;
-        u32 : 1;
+        BT_BITFIELD_ORDER(u32 active : 1, u32 : 27);
+        BT_BITFIELD_ORDER(u32 : 1, u32 controller_index : 2);
         u32 controlled : 1;
-        u32 controller_index : 2;
+        BT_BITFIELD_ORDER(u32 controller_index : 2, u32  : 1; u32 active : 1);
     } BallFlags;
     void *func_80100094(Actor *, u32);
     void func_8010A590(Actor *);

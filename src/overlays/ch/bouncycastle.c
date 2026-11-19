@@ -45,11 +45,11 @@ void chbouncycastle_entrypoint_4(Actor *arg0) {
     struct anctrl_s *func_80104248(void *);
     struct RenderFlags {
         u8 pad0[0x70];
-        u32 pad70_25 : 7;
-        u32 flag24 : 1;
+        BT_BITFIELD_ORDER(u32 pad70_25 : 7, u32 pad70_0 : 21);
+        BT_BITFIELD_ORDER(u32 flag24 : 1, u32 flag21 : 1);
         u32 pad70_22 : 2;
-        u32 flag21 : 1;
-        u32 pad70_0 : 21;
+        BT_BITFIELD_ORDER(u32 flag21 : 1, u32 flag24 : 1);
+        BT_BITFIELD_ORDER(u32 pad70_0 : 21, u32 pad70_25 : 7);
     };
     s32 pad;
     Unk80132ED0 *sp28;
@@ -118,9 +118,9 @@ typedef union {
     Actor actor;
     struct {
         u8 pad[0x75];
-        u8 pad75_7 : 1;
+        BT_BITFIELD_ORDER(u8 pad75_7 : 1, u8 pad75_0 : 6);
         u8 unk75_6 : 1;
-        u8 pad75_0 : 6;
+        BT_BITFIELD_ORDER(u8 pad75_0 : 6, u8 pad75_7 : 1);
     } flags;
 } BouncyCastleActor;
 

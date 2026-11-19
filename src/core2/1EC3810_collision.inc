@@ -21,19 +21,19 @@ s32 func_800EA628(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
         } data;
         s16 x;
         s16 y;
-        s32 z : 16;
-        u32 scale : 8;
-        u32 unused : 3;
-        u32 active : 1;
-        u32 collidable : 1;
-        u32 flag2 : 1;
-        u32 isModel : 1;
-        u32 isActor : 1;
+        BT_BITFIELD_ORDER(s32 z : 16, u32 isActor : 1);
+        BT_BITFIELD_ORDER(u32 scale : 8, u32 isModel : 1);
+        BT_BITFIELD_ORDER(u32 unused : 3, u32 flag2 : 1);
+        BT_BITFIELD_ORDER(u32 active : 1, u32 collidable : 1);
+        BT_BITFIELD_ORDER(u32 collidable : 1, u32 active : 1);
+        BT_BITFIELD_ORDER(u32 flag2 : 1, u32 unused : 3);
+        BT_BITFIELD_ORDER(u32 isModel : 1, u32 scale : 8);
+        BT_BITFIELD_ORDER(u32 isActor : 1, s32 z : 16);
     } Prop;
     typedef s32 (*CollisionCallback)(u8 *, s32, s32, s32, s32);
     typedef struct { CollisionCallback collide; } CollisionTable;
     typedef CollisionTable *(*GetCollisionTable)(void);
-    typedef struct { u32 upper : 14; u32 excluded : 1; u32 lower : 17; } ActorFlags;
+    typedef struct { BT_BITFIELD_ORDER(u32 upper : 14, u32 lower : 17); u32 excluded : 1; BT_BITFIELD_ORDER(u32 lower : 17, u32 upper : 14); } ActorFlags;
     s32 _gsproplookup_entrypoint_0();
     s32 func_800AAEF4(f32 *, f32, f32 *, f32 *);
     s32 func_800AB868(u8 *, s32, f32 *, f32 *, f32, s32, s32, s32, s32);
@@ -177,17 +177,17 @@ s32 func_800EAA2C(s32 arg0, volatile s32 arg1, s32 arg2, f32 arg3, f32 *arg4, vo
         CollisionFunc collide;
     } CollisionMethods;
     typedef struct {
-        u32 unused:27;
-        u32 collide:1;
-        u32 enabled:1;
-        u32 unused2:1;
-        u32 model:1;
-        u32 actor:1;
+        BT_BITFIELD_ORDER(u32 unused:27, u32 actor : 1);
+        BT_BITFIELD_ORDER(u32 collide:1, u32 model : 1);
+        BT_BITFIELD_ORDER(u32 enabled:1, u32 unused2 : 1);
+        BT_BITFIELD_ORDER(u32 unused2:1, u32 enabled : 1);
+        BT_BITFIELD_ORDER(u32 model:1, u32 collide : 1);
+        BT_BITFIELD_ORDER(u32 actor:1, u32 unused : 27);
     } PropFlags;
     typedef struct {
-        u32 unused:14;
+        BT_BITFIELD_ORDER(u32 unused:14, u32 unused2 : 17);
         u32 skip:1;
-        u32 unused2:17;
+        BT_BITFIELD_ORDER(u32 unused2:17, u32 unused : 14);
     } ActorFlags;
     u8 *actor;
     s32 propId;
@@ -279,12 +279,12 @@ s32 func_800EAA2C(s32 arg0, volatile s32 arg1, s32 arg2, f32 arg3, f32 *arg4, vo
 s32 func_800EADFC(s32 arg0, s32 arg1, f32 arg2, f32 *arg3, u32 arg4) {
     typedef struct {
         u8 data[8];
-        u32 unused:27;
-        u32 enabled:1;
-        u32 active:1;
-        u32 unused2:1;
-        u32 model:1;
-        u32 actor:1;
+        BT_BITFIELD_ORDER(u32 unused:27, u32 actor : 1);
+        BT_BITFIELD_ORDER(u32 enabled:1, u32 model : 1);
+        BT_BITFIELD_ORDER(u32 active:1, u32 unused2 : 1);
+        BT_BITFIELD_ORDER(u32 unused2:1, u32 active : 1);
+        BT_BITFIELD_ORDER(u32 model:1, u32 enabled : 1);
+        BT_BITFIELD_ORDER(u32 actor:1, u32 unused : 27);
     } Prop;
     typedef struct {
         s32 data[2];
@@ -300,9 +300,9 @@ s32 func_800EADFC(s32 arg0, s32 arg1, f32 arg2, f32 *arg3, u32 arg4) {
     } Marker;
     typedef struct {
         u8 data[0x64];
-        u32 unused:14;
+        BT_BITFIELD_ORDER(u32 unused:14, u32 unused2 : 17);
         u32 disabled:1;
-        u32 unused2:17;
+        BT_BITFIELD_ORDER(u32 unused2:17, u32 unused : 14);
     } ActorFlags;
     s32 _gsproplookup_entrypoint_0(u8 *);
     s32 func_800AD1AC(s32, s32, f32 *, f32 *, f32, s32, f32, f32 *, u32);

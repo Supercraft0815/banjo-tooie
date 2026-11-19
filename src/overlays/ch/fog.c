@@ -146,9 +146,9 @@ void func_8080032C_chfog(f32 *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     struct FogFlags {
-        u32 unused : 12;
+        BT_BITFIELD_ORDER(u32 unused : 12, u32 rest : 19);
         u32 fading : 1;
-        u32 rest : 19;
+        BT_BITFIELD_ORDER(u32 rest : 19, u32 unused : 12);
     };
     f32 roll;
     f32 pitch;

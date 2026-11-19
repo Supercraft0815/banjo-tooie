@@ -16,8 +16,8 @@ typedef struct particle_s {
     /* 0x34 */ s16 scale_delta;
     /* 0x36 */ s16 lifetime;
     /* 0x38 */ s8 unk38;
-    /* 0x39 */ u8 active:1;
-    u8 unk39:7;
+    /* 0x39 */ BT_BITFIELD_ORDER(u8 active:1, u8 unk39 : 7);
+    BT_BITFIELD_ORDER(u8 unk39:7, u8 active : 1);
 } Particle;
 
 /* Particle emitter; the particle array follows the header (see func_800BA2E8). Ranges are {min, max}. */

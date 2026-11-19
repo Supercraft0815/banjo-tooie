@@ -49,9 +49,9 @@ s32 func_8010108C(Actor *arg0, s32 arg1, s32 arg2) {
     } ActorCallbacks;
     typedef struct {
         u32 pad0[29];
-        u32 pad74_31 : 3;
+        BT_BITFIELD_ORDER(u32 pad74_31 : 3, u32 pad74_0 : 28);
         u32 unk74_28 : 1;
-        u32 pad74_0 : 28;
+        BT_BITFIELD_ORDER(u32 pad74_0 : 28, u32 pad74_31 : 3);
     } ActorFlags;
     void func_800819B4(void *);
     s32 func_80081D34(s32);

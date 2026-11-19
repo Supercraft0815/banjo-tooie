@@ -188,12 +188,12 @@ s32 func_8011458C(f32 *arg0, f32 *arg1, f32 *arg2) {
     typedef struct {
         Unk80132ED0 *actor;
         s32 unknown;
-        unsigned int unused : 27;
-        unsigned int active : 1;
-        unsigned int group : 1;
-        unsigned int unknown2 : 1;
-        unsigned int ready : 1;
-        unsigned int is_actor : 1;
+        BT_BITFIELD_ORDER(unsigned int unused : 27, unsigned int is_actor : 1);
+        BT_BITFIELD_ORDER(unsigned int active : 1, unsigned int ready : 1);
+        BT_BITFIELD_ORDER(unsigned int group : 1, unsigned int unknown2 : 1);
+        BT_BITFIELD_ORDER(unsigned int unknown2 : 1, unsigned int group : 1);
+        BT_BITFIELD_ORDER(unsigned int ready : 1, unsigned int active : 1);
+        BT_BITFIELD_ORDER(unsigned int is_actor : 1, unsigned int unused : 27);
     } Prop;
     s32 *func_800BE444(f32 *);
     BtIntPtr func_800E9E88(BtIntPtr);
@@ -209,7 +209,7 @@ s32 func_8011458C(f32 *arg0, f32 *arg1, f32 *arg2) {
     f32 sp60[3];
     Actor *actor;
     s32 hit;
-    typedef struct { unsigned int unused : 17; unsigned int enabled : 1; unsigned int rest : 14; } Flags;
+    typedef struct { BT_BITFIELD_ORDER(unsigned int unused : 17, unsigned int rest : 14); unsigned int enabled : 1; BT_BITFIELD_ORDER(unsigned int rest : 14, unsigned int unused : 17); } Flags;
 
     list = func_800BE444(arg1);
     hit = 0;

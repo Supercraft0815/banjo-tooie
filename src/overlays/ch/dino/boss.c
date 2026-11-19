@@ -706,11 +706,11 @@ void func_80800F70_chdinoboss(Actor *arg0, s32 arg1) {
         s16 unk11E;
         s32 unk120;
         f32 unk124;
-        u32 initialized : 1;
-        u32 dialog12 : 1;
+        BT_BITFIELD_ORDER(u32 initialized : 1, u32 pad128_16 : 11);
+        BT_BITFIELD_ORDER(u32 dialog12 : 1, u32 dialog15 : 1);
         u32 pad128_28 : 2;
-        u32 dialog15 : 1;
-        u32 pad128_16 : 11;
+        BT_BITFIELD_ORDER(u32 dialog15 : 1, u32 dialog12 : 1);
+        BT_BITFIELD_ORDER(u32 pad128_16 : 11, u32 initialized : 1);
         u8 unk12A;
         u8 pad12B;
         f32 unk12C;
@@ -933,8 +933,8 @@ void func_808015AC_chdinoboss(Actor *arg0) {
         f32 position[3];
         u8 pad11C[8];
         f32 unk124;
-        u32 initialized : 1;
-        u32 pad128 : 31;
+        BT_BITFIELD_ORDER(u32 initialized : 1, u32 pad128 : 31);
+        BT_BITFIELD_ORDER(u32 pad128 : 31, u32 initialized : 1);
         f32 unk12C;
         f32 unk130;
         f32 unk134;

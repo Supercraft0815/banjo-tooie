@@ -56,9 +56,9 @@ void func_80800018_chcablecar(Actor *arg0) {
     } CablecarUpdateMemory;
     typedef struct {
         u8 pad[0x28];
-        u32 upper : 19;
+        BT_BITFIELD_ORDER(u32 upper : 19, u32 lower : 12);
         u32 flag : 1;
-        u32 lower : 12;
+        BT_BITFIELD_ORDER(u32 lower : 12, u32 upper : 19);
     } CablecarUpdateFlags;
     CablecarUpdateMemory *sp44;
     f32 sp40;
@@ -151,9 +151,9 @@ void func_808002E0_chcablecar(Actor *arg0) {
     } CablecarInitMemory;
     typedef struct {
         u8 pad[0x7C];
-        u32 upper : 17;
+        BT_BITFIELD_ORDER(u32 upper : 17, u32 lower : 14);
         u32 flag : 1;
-        u32 lower : 14;
+        BT_BITFIELD_ORDER(u32 lower : 14, u32 upper : 17);
     } CablecarInitFlags;
     s32 temp;
     s32 sp20;
@@ -193,9 +193,9 @@ s32 func_80800424_chcablecar(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80800B74_chcablecar(BtIntPtr, s32, s32);
     void func_80800DC8_chcablecar(Actor *);
     typedef struct {
-        u32 upper : 19;
+        BT_BITFIELD_ORDER(u32 upper : 19, u32 lower : 12);
         u32 flag : 1;
-        u32 lower : 12;
+        BT_BITFIELD_ORDER(u32 lower : 12, u32 upper : 19);
     } CablecarEventFlags;
 
     switch (arg1) {
@@ -331,9 +331,9 @@ void func_808007C8_chcablecar(Actor *arg0, u32 arg1, u32 arg2) {
     u8 *func_801039E4(Unk80132ED0 *);
     void func_80103D48(void **);
     typedef struct {
-        u32 upper : 18;
+        BT_BITFIELD_ORDER(u32 upper : 18, u32 lower : 13);
         u32 active : 1;
-        u32 lower : 13;
+        BT_BITFIELD_ORDER(u32 lower : 13, u32 upper : 18);
     } CablecarFlags;
     u8 *data;
     s32 game;
@@ -426,9 +426,9 @@ void func_80800AF4_chcablecar(Actor *arg0, u32 arg1) {
     void func_80101FDC(Actor *, u32);
     s32 func_80103D70(void **);
     typedef struct {
-        u32 upper : 18;
+        BT_BITFIELD_ORDER(u32 upper : 18, u32 lower : 13);
         u32 active : 1;
-        u32 lower : 13;
+        BT_BITFIELD_ORDER(u32 lower : 13, u32 upper : 18);
     } CablecarFlags;
 
     _subaddieDll_entrypoint_4(arg0, 0);
@@ -469,9 +469,9 @@ s32 func_80800BD0_chcablecar(Actor *arg0) {
     s32 func_800F6C5C(BtIntPtr);
     void func_80101FDC(Actor *, u32);
     typedef struct {
-        u32 upper : 19;
+        BT_BITFIELD_ORDER(u32 upper : 19, u32 lower : 12);
         u32 active : 1;
-        u32 lower : 12;
+        BT_BITFIELD_ORDER(u32 lower : 12, u32 upper : 19);
     } CablecarFlags;
     BtUIntPtr sp24;
 

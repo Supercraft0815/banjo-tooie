@@ -100,7 +100,8 @@ def native_lines(path, cache):
         return cache[path]
     gated, stack = set(), []
     try:
-        lines = open(path, errors='replace').read().split('\n')
+        with open(path, errors='replace') as source:
+            lines = source.read().split('\n')
     except OSError:
         lines = []
     # a conditional that names BT_ILP32 switches ILP32 to the original code, so its active branch is not gated
@@ -113,7 +114,7 @@ def native_lines(path, cache):
             stack[-1] = stack[-1] or native(s)
         elif re.match(r'#\s*endif', s) and stack:
             stack.pop()
-        if any(stack):
+        if any(stack) or 'BT_BITFIELD_ORDER(' in line:
             gated.add(i)
     cache[path] = gated
     return gated
@@ -266,7 +267,7 @@ def emit_run(items, cursor):
     return ' '.join(o for o in out if o)
 
 
-def mirror(text, dump, roots, skip=()):
+def mirror(text, dump, roots, skip=(), source_runs=None):
     """Rewritten .i text and notes about records left as they were."""
     records = parse_dump(dump)
     origins = line_origins(text)
@@ -351,7 +352,15 @@ def mirror(text, dump, roots, skip=()):
             cursor = rec['fields'][i][2] * 8 + rec['fields'][i][3]
             span_s, span_e = members[i][3], members[j - 1][4] + 1
             old = text[span_s:span_e]
-            edits.append((span_s, span_e, emit_run(items, cursor) + '\n' * old.count('\n')))
+            native = emit_run(items, cursor)
+            if source_runs is not None:
+                first = re.compile(r'\s*').match(text, span_s).end()
+                path, first_line = origin(first)
+                last_path, last_line = origin(span_e - 1)
+                if path != last_path:
+                    raise ValueError(f'bitfield declarations cross files at {path}:{first_line}')
+                source_runs.append((path, first_line, last_line, text[first:span_e], native))
+            edits.append((span_s, span_e, native + '\n' * old.count('\n')))
             i = j
     for s, e, new in sorted(edits, reverse=True):
         text = text[:s] + new + text[e:]
@@ -386,22 +395,27 @@ def check(old_dump, new_dump):
     return problems
 
 
-def rewrite(text, dump_fn, roots):
+def rewrite(text, dump_fn, roots, source_runs=None):
     """mirror() plus the layout check; records that fail it keep their original declaration."""
     d0 = dump_fn(text)
     if '*** Dumping' not in d0:
         return text, ['layout dump failed']
-    new, notes = mirror(text, d0, roots)
+    selected = [] if source_runs is not None else None
+    new, notes = mirror(text, d0, roots, source_runs=selected)
     probs = check(d0, dump_fn(new))
     if probs:
         bad = {rid for rid, _ in probs}
         notes += ['%s (left as is)' % msg for _, msg in probs]
         if -1 in bad:
             return text, notes
-        new, more = mirror(text, d0, roots, bad)
+        if selected is not None:
+            selected.clear()
+        new, _ = mirror(text, d0, roots, bad, selected)
         left = check(d0, dump_fn(new))
         if left:
             return text, notes + ['still wrong after fallback: %s (file left as is)' % left[0][1]]
+    if source_runs is not None:
+        source_runs.extend(selected)
     return new, notes
 
 

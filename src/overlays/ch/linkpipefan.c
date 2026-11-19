@@ -42,8 +42,8 @@ void func_80800080_chlinkpipefan(u8 *arg0) {
     extern s32 _chlinkpipefan_entrypoint_0;
 #endif
     struct counter {
-        u32 : 23;
-        u32 value : 9;
+        BT_BITFIELD_ORDER(u32 : 23, u32 value : 9);
+        BT_BITFIELD_ORDER(u32 value : 9, u32  : 23);
     };
 
     switch ((u32)*(u16 *)(arg0 + 0x72) >> 10) {

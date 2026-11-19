@@ -10,11 +10,11 @@ f32 func_80107C00(void);
         s16 scale;
         u8 padE[9];
         s8 sector;
-        u32 track : 4;
-        u32 pad18_24 : 4;
+        BT_BITFIELD_ORDER(u32 track : 4, u32 pad18_0 : 22);
+        BT_BITFIELD_ORDER(u32 pad18_24 : 4, u32 active : 1);
         u32 route : 1;
-        u32 active : 1;
-        u32 pad18_0 : 22;
+        BT_BITFIELD_ORDER(u32 active : 1, u32 pad18_24 : 4);
+        BT_BITFIELD_ORDER(u32 pad18_0 : 22, u32 track : 4);
     } CoasterData;
     void _subaddierouteDll_entrypoint_3(BtIntPtr arg0, void *arg1, f32 *arg2);
     s32 _subaddiesect_entrypoint_1(Actor *);
@@ -56,9 +56,9 @@ void sucoaster_entrypoint_2(Actor *arg0) {
         u8 pad0[0x74];
         u8 flags;
         u8 pad75[3];
-        u32 pad78_3 : 29;
+        BT_BITFIELD_ORDER(u32 pad78_3 : 29, u32 pad78_0 : 2);
         u32 busy : 1;
-        u32 pad78_0 : 2;
+        BT_BITFIELD_ORDER(u32 pad78_0 : 2, u32 pad78_3 : 29);
     } ActorFlags;
     void *func_80100094(Actor *, u32);
     s32 _subaddiesect_entrypoint_0(Actor *, s32, s32);
@@ -122,20 +122,20 @@ void func_8080027C_sucoaster(Actor *arg0, void *arg1) {
         u8 pad14[2];
         u8 counter;
         u8 pad17;
-        u32 track : 4;
-        u32 pad18_26 : 2;
-        u32 alternate : 1;
-        u32 direction : 1;
-        u32 route : 1;
-        u32 pad18_22 : 1;
-        u32 hit : 1;
-        u32 pad18_0 : 21;
+        BT_BITFIELD_ORDER(u32 track : 4, u32 pad18_0 : 21);
+        BT_BITFIELD_ORDER(u32 pad18_26 : 2, u32 hit : 1);
+        BT_BITFIELD_ORDER(u32 alternate : 1, u32 pad18_22 : 1);
+        BT_BITFIELD_ORDER(u32 direction : 1, u32 route : 1);
+        BT_BITFIELD_ORDER(u32 route : 1, u32 direction : 1);
+        BT_BITFIELD_ORDER(u32 pad18_22 : 1, u32 alternate : 1);
+        BT_BITFIELD_ORDER(u32 hit : 1, u32 pad18_26 : 2);
+        BT_BITFIELD_ORDER(u32 pad18_0 : 21, u32 track : 4);
     } CoasterData;
     typedef struct {
         u8 pad0[0x78];
-        u32 pad78_4 : 28;
+        BT_BITFIELD_ORDER(u32 pad78_4 : 28, u32 pad78_0 : 3);
         u32 busy : 1;
-        u32 pad78_0 : 3;
+        BT_BITFIELD_ORDER(u32 pad78_0 : 3, u32 pad78_4 : 28);
     } ActorFlags;
     void _subaddiefade_entrypoint_3(Actor *);
     s32 _subaddierouteDll_entrypoint_4(Actor *);
@@ -367,9 +367,9 @@ void sucoaster_entrypoint_5(Actor *arg0) {
     void* func_80100094(Actor*, u32);
     struct {
         u8 pad[0x19];
-        u8 low : 4;
+        BT_BITFIELD_ORDER(u8 low : 4, u8 high : 3);
         u8 flag : 1;
-        u8 high : 3;
+        BT_BITFIELD_ORDER(u8 high : 3, u8 low : 4);
     } *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0U);
@@ -407,14 +407,14 @@ s32 sucoaster_entrypoint_7(Actor *arg0, s32 arg1, f32 arg2) {
         u8 pad8[14];
         u8 previous;
         u8 sector;
-        u32 track : 4;
-        u32 pad18_26 : 2;
-        u32 alternate : 1;
-        u32 direction : 1;
-        u32 route : 1;
-        u32 pad18_20 : 3;
-        u32 disabled : 1;
-        u32 pad18_0 : 19;
+        BT_BITFIELD_ORDER(u32 track : 4, u32 pad18_0 : 19);
+        BT_BITFIELD_ORDER(u32 pad18_26 : 2, u32 disabled : 1);
+        BT_BITFIELD_ORDER(u32 alternate : 1, u32 pad18_20 : 3);
+        BT_BITFIELD_ORDER(u32 direction : 1, u32 route : 1);
+        BT_BITFIELD_ORDER(u32 route : 1, u32 direction : 1);
+        BT_BITFIELD_ORDER(u32 pad18_20 : 3, u32 alternate : 1);
+        BT_BITFIELD_ORDER(u32 disabled : 1, u32 pad18_26 : 2);
+        BT_BITFIELD_ORDER(u32 pad18_0 : 19, u32 track : 4);
     } CoasterData;
     typedef struct {
         u8 pad0[0x3C];
@@ -517,15 +517,15 @@ s32 sucoaster_entrypoint_10(Actor *arg0, s32 arg1) {
         u8 pad15;
         u8 counter;
         u8 pad17;
-        u32 track : 4;
-        u32 pad18_27 : 1;
-        u32 alternate : 1;
-        u32 slow : 1;
+        BT_BITFIELD_ORDER(u32 track : 4, u32 pad18_0 : 21);
+        BT_BITFIELD_ORDER(u32 pad18_27 : 1, u32 hit : 1);
+        BT_BITFIELD_ORDER(u32 alternate : 1, u32 active : 1);
+        BT_BITFIELD_ORDER(u32 slow : 1, u32 route : 1);
         u32 direction : 1;
-        u32 route : 1;
-        u32 active : 1;
-        u32 hit : 1;
-        u32 pad18_0 : 21;
+        BT_BITFIELD_ORDER(u32 route : 1, u32 slow : 1);
+        BT_BITFIELD_ORDER(u32 active : 1, u32 alternate : 1);
+        BT_BITFIELD_ORDER(u32 hit : 1, u32 pad18_27 : 1);
+        BT_BITFIELD_ORDER(u32 pad18_0 : 21, u32 track : 4);
     } CoasterData;
     void _subaddiefade_entrypoint_5(void *arg0);
     s32 _sucoasterdata_entrypoint_2(u32);
@@ -660,9 +660,9 @@ s32 sucoaster_entrypoint_12(Actor *arg0) {
         u8 pad0[0x10];
         s16 radius;
         u8 pad12[6];
-        u32 pad18_24 : 8;
+        BT_BITFIELD_ORDER(u32 pad18_24 : 8, u32 pad18_0 : 23);
         u32 route : 1;
-        u32 pad18_0 : 23;
+        BT_BITFIELD_ORDER(u32 pad18_0 : 23, u32 pad18_24 : 8);
     } CoasterData;
     void *func_80100094(Actor *, u32);
     s32 _subaddierouteDll_entrypoint_4(Actor *);
@@ -687,10 +687,10 @@ s32 func_808015F8_sucoaster(Actor *arg0, void *arg1) {
     } CoasterState;
     typedef struct {
         u8 pad0[0x70];
-        u32 route : 7;
-        u32 pad70_7 : 15;
-        u32 index : 6;
-        u32 pad70_0 : 4;
+        BT_BITFIELD_ORDER(u32 route : 7, u32 pad70_0 : 4);
+        BT_BITFIELD_ORDER(u32 pad70_7 : 15, u32 index : 6);
+        BT_BITFIELD_ORDER(u32 index : 6, u32 pad70_7 : 15);
+        BT_BITFIELD_ORDER(u32 pad70_0 : 4, u32 route : 7);
     } CoasterActor;
     BtIntPtr func_80802760_sucoaster(BtIntPtr);
     void func_800F5A00(BtIntPtr, f32 *);
@@ -814,8 +814,8 @@ void sucoaster_entrypoint_15(Actor *arg0) {
 s32 sucoaster_entrypoint_16(Actor *arg0, s32 arg1) {
     typedef struct {
         u8 pad0[0x18];
-        u32 track : 4;
-        u32 pad18_0 : 28;
+        BT_BITFIELD_ORDER(u32 track : 4, u32 pad18_0 : 28);
+        BT_BITFIELD_ORDER(u32 pad18_0 : 28, u32 track : 4);
     } CoasterData;
     typedef struct {
         u8 pad0[4];
@@ -847,8 +847,8 @@ s32 sucoaster_entrypoint_16(Actor *arg0, s32 arg1) {
 s32 sucoaster_entrypoint_17(Actor *arg0, s32 arg1) {
     typedef struct {
         u8 pad0[0x18];
-        u32 track : 4;
-        u32 pad18_0 : 28;
+        BT_BITFIELD_ORDER(u32 track : 4, u32 pad18_0 : 28);
+        BT_BITFIELD_ORDER(u32 pad18_0 : 28, u32 track : 4);
     } CoasterData;
     typedef struct {
         u8 pad0[4];
@@ -906,26 +906,26 @@ void sucoaster_entrypoint_20(BT_PASS2(s32 bt_a0, s32 bt_a1))
 s32 sucoaster_entrypoint_21(Actor *arg0, s32 arg1, s32 arg2) {
     typedef struct {
         u8 pad0[0x64];
-        u32 pad64_31 : 1;
-        u32 enabled : 1;
+        BT_BITFIELD_ORDER(u32 pad64_31 : 1, u32 pad64_0 : 24);
+        BT_BITFIELD_ORDER(u32 enabled : 1, u32 active : 1);
         u32 pad64_25 : 5;
-        u32 active : 1;
-        u32 pad64_0 : 24;
+        BT_BITFIELD_ORDER(u32 active : 1, u32 enabled : 1);
+        BT_BITFIELD_ORDER(u32 pad64_0 : 24, u32 pad64_31 : 1);
         u8 pad68[0xC];
-        u32 pad74_4 : 28;
-        u32 mode : 4;
-        u32 pad78_3 : 29;
-        u32 player : 1;
-        u32 pad78_0 : 2;
+        BT_BITFIELD_ORDER(u32 pad74_4 : 28, u32 mode : 4);
+        BT_BITFIELD_ORDER(u32 mode : 4, u32 pad74_4 : 28);
+        BT_BITFIELD_ORDER(u32 pad78_3 : 29, char : 0);
+        BT_BITFIELD_ORDER(u32 player : 1, u32 pad78_0 : 2);
+        BT_BITFIELD_ORDER(u32 pad78_0 : 2, u32 player : 1; u32 pad78_3 : 29);
     } CoasterFlags;
     typedef struct {
         u8 pad0[0x13];
         s8 speed;
         u8 pad14[4];
-        u32 track : 4;
-        u32 pad18_22 : 6;
-        u32 ready : 1;
-        u32 pad18_0 : 21;
+        BT_BITFIELD_ORDER(u32 track : 4, u32 pad18_0 : 21);
+        BT_BITFIELD_ORDER(u32 pad18_22 : 6, u32 ready : 1);
+        BT_BITFIELD_ORDER(u32 ready : 1, u32 pad18_22 : 6);
+        BT_BITFIELD_ORDER(u32 pad18_0 : 21, u32 track : 4);
     } CoasterData;
     void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     void _subaddierouteDll_entrypoint_1(Actor *);
@@ -1051,8 +1051,8 @@ void sucoaster_entrypoint_22(void *arg0) {
         u8 pad0[0xC];
         s16 scale;
         u8 padE[0xA];
-        u32 track : 4;
-        u32 pad18_0 : 28;
+        BT_BITFIELD_ORDER(u32 track : 4, u32 pad18_0 : 28);
+        BT_BITFIELD_ORDER(u32 pad18_0 : 28, u32 track : 4);
     } CoasterData;
     typedef struct {
         u8 pad0[0x54];
@@ -1084,9 +1084,9 @@ void sucoaster_entrypoint_22(void *arg0) {
 s32 func_8080202C_sucoaster(Actor *arg0, BtIntPtr arg1) {
     typedef struct {
         u8 pad0[0x18];
-        u32 pad18_23 : 9;
+        BT_BITFIELD_ORDER(u32 pad18_23 : 9, u32 pad18_0 : 22);
         u32 flag : 1;
-        u32 pad18_0 : 22;
+        BT_BITFIELD_ORDER(u32 pad18_0 : 22, u32 pad18_23 : 9);
     } CoasterData;
     BtIntPtr func_80802760_sucoaster(BtIntPtr);
     s32 func_800F6478(BtIntPtr);
@@ -1114,8 +1114,8 @@ s32 func_8080202C_sucoaster(Actor *arg0, BtIntPtr arg1) {
 void func_808020B8_sucoaster(Actor *arg0, void *arg1, f32 arg2) {
     typedef struct {
         u8 pad0[0x18];
-        u32 track : 4;
-        u32 pad18 : 28;
+        BT_BITFIELD_ORDER(u32 track : 4, u32 pad18 : 28);
+        BT_BITFIELD_ORDER(u32 pad18 : 28, u32 track : 4);
     } CoasterData;
     typedef struct {
         u8 pad0[0x4C];
@@ -1136,9 +1136,9 @@ void func_80802130_sucoaster(Actor *arg0, void *arg1, s16 arg2) {
         u8 pad0[0x10];
         s16 value;
         u8 pad12[7];
-        u8 pad19_5 : 3;
+        BT_BITFIELD_ORDER(u8 pad19_5 : 3, u8 pad19_0 : 4);
         u8 flag : 1;
-        u8 pad19_0 : 4;
+        BT_BITFIELD_ORDER(u8 pad19_0 : 4, u8 pad19_5 : 3);
     } CoasterData;
     CoasterData *data = arg1;
     u32 temp_t1;
@@ -1164,10 +1164,10 @@ f32 func_808021A8_sucoaster(Actor *arg0, void *arg1, s32 arg2) {
         s16 distance;
         s16 value;
         u8 pad12[6];
-        u32 track : 4;
-        u32 pad18 : 7;
-        u32 flag : 1;
-        u32 pad19 : 20;
+        BT_BITFIELD_ORDER(u32 track : 4, u32 pad19 : 20);
+        BT_BITFIELD_ORDER(u32 pad18 : 7, u32 flag : 1);
+        BT_BITFIELD_ORDER(u32 flag : 1, u32 pad18 : 7);
+        BT_BITFIELD_ORDER(u32 pad19 : 20, u32 track : 4);
     } CoasterData;
     s32 _sucoasterdata_entrypoint_4(u32);
     f32 func_800F0E00(f32, f32);
@@ -1187,16 +1187,16 @@ f32 func_808021A8_sucoaster(Actor *arg0, void *arg1, s32 arg2) {
 void func_80802260_sucoaster(Actor *arg0, BtIntPtr arg1) {
     typedef struct {
         u8 pad0[0x64];
-        u32 flag31 : 1;
+        BT_BITFIELD_ORDER(u32 flag31 : 1, u32 pad64 : 30);
         u32 flag30 : 1;
-        u32 pad64 : 30;
+        BT_BITFIELD_ORDER(u32 pad64 : 30, u32 flag31 : 1);
         u8 pad68[8];
-        u32 upper : 7;
-        u32 pad70 : 15;
-        u32 lower : 6;
-        u32 pad73 : 4;
-        u32 pad74 : 28;
-        u32 mode : 4;
+        BT_BITFIELD_ORDER(u32 upper : 7, u32 pad73 : 4);
+        BT_BITFIELD_ORDER(u32 pad70 : 15, u32 lower : 6);
+        BT_BITFIELD_ORDER(u32 lower : 6, u32 pad70 : 15);
+        BT_BITFIELD_ORDER(u32 pad73 : 4, u32 upper : 7);
+        BT_BITFIELD_ORDER(u32 pad74 : 28, char : 0);
+        BT_BITFIELD_ORDER(u32 mode : 4, u32 mode : 4; u32 pad74 : 28);
     } CoasterFlags;
     void func_8010A570(Actor *);
     CoasterFlags *flags = (void *)arg0;
@@ -1340,8 +1340,8 @@ f32 func_8080264C_sucoaster(void *arg0, BtIntPtr arg1) {
 void func_80802690_sucoaster(Actor *arg0, u8 *arg1) {
     typedef struct {
         u8 pad0[0x18];
-        u32 track : 4;
-        u32 pad18 : 28;
+        BT_BITFIELD_ORDER(u32 track : 4, u32 pad18 : 28);
+        BT_BITFIELD_ORDER(u32 pad18 : 28, u32 track : 4);
     } CoasterData;
     typedef struct {
         u8 pad0[2];
@@ -1377,10 +1377,10 @@ void func_80802728_sucoaster(Actor *arg0, u8 * volatile arg1) {
 BtIntPtr func_80802760_sucoaster(BtIntPtr arg0) {
     typedef struct {
         u8 pad0[0x18];
-        u32 track : 4;
-        u32 pad18_20 : 8;
-        u32 flag : 1;
-        u32 pad18_0 : 19;
+        BT_BITFIELD_ORDER(u32 track : 4, u32 pad18_0 : 19);
+        BT_BITFIELD_ORDER(u32 pad18_20 : 8, u32 flag : 1);
+        BT_BITFIELD_ORDER(u32 flag : 1, u32 pad18_20 : 8);
+        BT_BITFIELD_ORDER(u32 pad18_0 : 19, u32 track : 4);
     } CoasterData;
     BtUIntPtr func_800F54E4(void);
     BtIntPtr func_8010D290(s32);

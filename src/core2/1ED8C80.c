@@ -63,11 +63,11 @@ void func_800FF44C(void) {
 void func_800FF4A4(Actor *arg0) {
     typedef struct {
         u32 pad0[9];
-        u32 pad24_14 : 18;
-        u32 player : 1;
+        BT_BITFIELD_ORDER(u32 pad24_14 : 18, u32 pad24_0 : 6);
+        BT_BITFIELD_ORDER(u32 player : 1, u32 target : 3);
         u32 pad24_9 : 4;
-        u32 target : 3;
-        u32 pad24_0 : 6;
+        BT_BITFIELD_ORDER(u32 target : 3, u32 player : 1);
+        BT_BITFIELD_ORDER(u32 pad24_0 : 6, u32 pad24_14 : 18);
     } PathState;
     void _subaddieaudioloop_entrypoint_2(Actor *);
     void func_800D8808(s32);
@@ -145,27 +145,27 @@ s32 func_800FF564(void) {
 void func_800FF62C(void) {
     typedef struct {
         u8 prefix[0x74];
-        u32 pad0 : 4;
-        u32 animate : 1;
-        u32 pad1 : 21;
-        u32 directRotation : 1;
-        u32 alternateUpdate : 1;
-        u32 pad2 : 4;
+        BT_BITFIELD_ORDER(u32 pad0 : 4, u32 pad2 : 4);
+        BT_BITFIELD_ORDER(u32 animate : 1, u32 alternateUpdate : 1);
+        BT_BITFIELD_ORDER(u32 pad1 : 21, u32 directRotation : 1);
+        BT_BITFIELD_ORDER(u32 directRotation : 1, u32 pad1 : 21);
+        BT_BITFIELD_ORDER(u32 alternateUpdate : 1, u32 animate : 1);
+        BT_BITFIELD_ORDER(u32 pad2 : 4, u32 pad0 : 4);
     } UpdateFlags;
     typedef struct {
         u8 prefix[0x78];
-        u32 pad : 28;
+        BT_BITFIELD_ORDER(u32 pad : 28, u32 tail : 3);
         u32 bounce : 1;
-        u32 tail : 3;
+        BT_BITFIELD_ORDER(u32 tail : 3, u32 pad : 28);
     } BounceFlags;
     typedef struct {
         u8 pad[0x24];
-        u32 pad24 : 16;
+        BT_BITFIELD_ORDER(u32 pad24 : 16, u32 pad26 : 7);
         u32 pitch : 9;
-        u32 pad26 : 7;
-        u32 yaw : 9;
-        u32 roll : 9;
-        u32 pad28 : 14;
+        BT_BITFIELD_ORDER(u32 pad26 : 7, u32 pad24 : 16);
+        BT_BITFIELD_ORDER(u32 yaw : 9, char : 0);
+        BT_BITFIELD_ORDER(u32 roll : 9, u32 pad28 : 14);
+        BT_BITFIELD_ORDER(u32 pad28 : 14, u32 roll : 9; u32 yaw : 9);
     } MarkerRotation;
     typedef struct {
         u8 pad[0xC];
@@ -293,12 +293,12 @@ void func_800FFAB0(Actor *arg0) {
     s32 temp_a2;
     struct ActorFlags {
         u8 prefix[0x74];
-        u32 pad74_25 : 7;
+        BT_BITFIELD_ORDER(u32 pad74_25 : 7, u32 pad74_0 : 24);
         u32 flag74_24 : 1;
-        u32 pad74_0 : 24;
-        u32 pad78_3 : 29;
-        u32 flag78_2 : 1;
-        u32 pad78_0 : 2;
+        BT_BITFIELD_ORDER(u32 pad74_0 : 24, u32 pad74_25 : 7);
+        BT_BITFIELD_ORDER(u32 pad78_3 : 29, char : 0);
+        BT_BITFIELD_ORDER(u32 flag78_2 : 1, u32 pad78_0 : 2);
+        BT_BITFIELD_ORDER(u32 pad78_0 : 2, u32 flag78_2 : 1; u32 pad78_3 : 29);
     } *flags = (void *)arg0;
 
     arg0->unk64_17 = 1;
@@ -371,14 +371,14 @@ void func_800FFC90(void) {
     s32 func_8010682C(s32 *);
     struct ActorFlags {
         u8 pad0[0x70];
-        u8 pad70 : 7;
-        u8 active : 1;
-        u8 toggle : 1;
-        u8 pad71 : 7;
+        BT_BITFIELD_ORDER(u8 pad70 : 7, u8 active : 1);
+        BT_BITFIELD_ORDER(u8 active : 1, u8 pad70 : 7);
+        BT_BITFIELD_ORDER(u8 toggle : 1, char : 0);
+        BT_BITFIELD_ORDER(u8 pad71 : 7, u8 pad71 : 7; u8 toggle : 1);
         u8 pad72[10];
-        u32 pad7C : 19;
+        BT_BITFIELD_ORDER(u32 pad7C : 19, u32 pad7C_0 : 12);
         u32 unk7C_12 : 1;
-        u32 pad7C_0 : 12;
+        BT_BITFIELD_ORDER(u32 pad7C_0 : 12, u32 pad7C : 19);
     } *var_v0;
     s32 sp20;
 
@@ -402,9 +402,9 @@ void func_800FFD10(s32 arg0) {
     extern s32 D_80124390;
     struct ActorFlags {
         u8 pad0[0x70];
-        u32 pad70 : 28;
+        BT_BITFIELD_ORDER(u32 pad70 : 28, u32 pad70_0 : 3);
         u32 active : 1;
-        u32 pad70_0 : 3;
+        BT_BITFIELD_ORDER(u32 pad70_0 : 3, u32 pad70 : 28);
     };
     s32 var_s1;
     Actor *var_s0;
@@ -558,17 +558,17 @@ void func_80100120(Actor *arg0) {
     } ActorCallbacks;
     typedef struct {
         u8 padding[0x70];
-        u32 pad70 : 28;
+        BT_BITFIELD_ORDER(u32 pad70 : 28, u32 pad70_0 : 3);
         u32 flag70 : 1;
-        u32 pad70_0 : 3;
-        u32 pad74 : 10;
-        u32 flag74 : 1;
-        u32 pad74_0 : 21;
+        BT_BITFIELD_ORDER(u32 pad70_0 : 3, u32 pad70 : 28);
+        BT_BITFIELD_ORDER(u32 pad74 : 10, char : 0);
+        BT_BITFIELD_ORDER(u32 flag74 : 1, u32 pad74_0 : 21);
+        BT_BITFIELD_ORDER(u32 pad74_0 : 21, u32 flag74 : 1; u32 pad74 : 10);
         u32 pad78;
-        u32 pad7C : 16;
-        u32 initialized : 1;
-        u32 enabled : 1;
-        u32 pad7C_0 : 14;
+        BT_BITFIELD_ORDER(u32 pad7C : 16, u32 pad7C_0 : 14);
+        BT_BITFIELD_ORDER(u32 initialized : 1, u32 enabled : 1);
+        BT_BITFIELD_ORDER(u32 enabled : 1, u32 initialized : 1);
+        BT_BITFIELD_ORDER(u32 pad7C_0 : 14, u32 pad7C : 16);
     } ActorFlags;
     void *func_80100368(void *);
     s32 func_80102F74(Unk80132ED0 *, s32);
@@ -615,10 +615,10 @@ int func_80100230(Actor *arg0, f32 *arg1) {
     f32 func_800EEB40(f32 *, f32 *);
     struct {
         u8 padding[0x7C];
-        u32 radius : 16;
-        u32 pad7E_15 : 1;
-        u32 enabled : 1;
-        u32 pad7E_0 : 14;
+        BT_BITFIELD_ORDER(u32 radius : 16, u32 pad7E_0 : 14);
+        BT_BITFIELD_ORDER(u32 pad7E_15 : 1, u32 enabled : 1);
+        BT_BITFIELD_ORDER(u32 enabled : 1, u32 pad7E_15 : 1);
+        BT_BITFIELD_ORDER(u32 pad7E_0 : 14, u32 radius : 16);
     } *range;
     void *data;
     f32 distance;
@@ -670,12 +670,12 @@ s32 func_8010038C(Actor *arg0, f32 *arg1) {
     s32 func_8010108C();
     struct {
         u8 padding[0x7C];
-        u32 radius : 16;
-        u32 initialized : 1;
-        u32 enabled : 1;
-        u32 flag13 : 1;
-        u32 flag12 : 1;
-        u32 padding0 : 12;
+        BT_BITFIELD_ORDER(u32 radius : 16, u32 padding0 : 12);
+        BT_BITFIELD_ORDER(u32 initialized : 1, u32 flag12 : 1);
+        BT_BITFIELD_ORDER(u32 enabled : 1, u32 flag13 : 1);
+        BT_BITFIELD_ORDER(u32 flag13 : 1, u32 enabled : 1);
+        BT_BITFIELD_ORDER(u32 flag12 : 1, u32 initialized : 1);
+        BT_BITFIELD_ORDER(u32 padding0 : 12, u32 radius : 16);
     } *range;
     void *data;
 

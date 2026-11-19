@@ -81,9 +81,9 @@ void func_80800080_chnutsnbolts(Actor *arg0 BT_PASS2(, s32 bt_a1) BT_PASS2(, s32
     extern u8 D_80800F00_chnutsnbolts[];
     extern u8 D_80800F14_chnutsnbolts[];
     struct NutsFlags {
-        u32 pad : 29;
+        BT_BITFIELD_ORDER(u32 pad : 29, u32 tail : 2);
         u32 disabled : 1;
-        u32 tail : 2;
+        BT_BITFIELD_ORDER(u32 tail : 2, u32 pad : 29);
     };
     struct NutsData {
         u8 effects[8];
@@ -227,19 +227,19 @@ s32 func_808005D0_chnutsnbolts(Actor *arg0, s32 arg1, s32 arg2) {
     extern u8 D_80800E10_chnutsnbolts[];
     struct NutsFlags {
         u8 pad[0x64];
-        u32 enabled : 1;
-        u32 pad64_25 : 6;
-        u32 visible : 1;
-        u32 pad64_0 : 24;
+        BT_BITFIELD_ORDER(u32 enabled : 1, u32 pad64_0 : 24);
+        BT_BITFIELD_ORDER(u32 pad64_25 : 6, u32 visible : 1);
+        BT_BITFIELD_ORDER(u32 visible : 1, u32 pad64_25 : 6);
+        BT_BITFIELD_ORDER(u32 pad64_0 : 24, u32 enabled : 1);
         u32 pad68;
         u32 pad6C;
-        u32 pad70_17 : 15;
+        BT_BITFIELD_ORDER(u32 pad70_17 : 15, u32 pad70_0 : 16);
         u32 active : 1;
-        u32 pad70_0 : 16;
+        BT_BITFIELD_ORDER(u32 pad70_0 : 16, u32 pad70_17 : 15);
         u32 pad74;
-        u32 pad78_3 : 29;
+        BT_BITFIELD_ORDER(u32 pad78_3 : 29, u32 pad78_0 : 2);
         u32 blocked : 1;
-        u32 pad78_0 : 2;
+        BT_BITFIELD_ORDER(u32 pad78_0 : 2, u32 pad78_3 : 29);
     };
     struct NutsData {
         u8 effects[8];
@@ -360,18 +360,18 @@ s32 func_8080092C_chnutsnbolts(Actor *arg0, s32 arg1) {
     } *data;
     struct NutsActorFlags {
         u8 pad[0x64];
-        u32 flag31 : 1;
-        u32 pad64 : 6;
-        u32 flag24 : 1;
-        u32 tail64 : 24;
+        BT_BITFIELD_ORDER(u32 flag31 : 1, u32 tail64 : 24);
+        BT_BITFIELD_ORDER(u32 pad64 : 6, u32 flag24 : 1);
+        BT_BITFIELD_ORDER(u32 flag24 : 1, u32 pad64 : 6);
+        BT_BITFIELD_ORDER(u32 tail64 : 24, u32 flag31 : 1);
         u32 pad68;
         u32 pad6C;
-        u32 savedState : 7;
-        u32 pad70 : 8;
-        u32 flag16 : 1;
-        u32 pad72 : 6;
-        u32 state : 6;
-        u32 pad73 : 4;
+        BT_BITFIELD_ORDER(u32 savedState : 7, u32 pad73 : 4);
+        BT_BITFIELD_ORDER(u32 pad70 : 8, u32 state : 6);
+        BT_BITFIELD_ORDER(u32 flag16 : 1, u32 pad72 : 6);
+        BT_BITFIELD_ORDER(u32 pad72 : 6, u32 flag16 : 1);
+        BT_BITFIELD_ORDER(u32 state : 6, u32 pad70 : 8);
+        BT_BITFIELD_ORDER(u32 pad73 : 4, u32 savedState : 7);
     };
 
     data = func_80100094(arg0, 0U);

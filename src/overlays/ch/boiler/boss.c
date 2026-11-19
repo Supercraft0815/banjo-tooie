@@ -102,11 +102,11 @@ void func_80800030_chboilerboss(Actor *arg0) {
     union BoilerFlags {
         u32 word;
         struct {
-            u32 pad:18;
-            u32 bit13:1;
+            BT_BITFIELD_ORDER(u32 pad:18, u32 rest : 11);
+            BT_BITFIELD_ORDER(u32 bit13:1, u32 bit11 : 1);
             u32 bit12:1;
-            u32 bit11:1;
-            u32 rest:11;
+            BT_BITFIELD_ORDER(u32 bit11:1, u32 bit13 : 1);
+            BT_BITFIELD_ORDER(u32 rest:11, u32 pad : 18);
         } bits;
     };
 
@@ -645,9 +645,9 @@ void func_808010F4_chboilerboss(Actor *arg0) {
     union BoilerFlags {
         u32 word;
         struct {
-            u32 pad:20;
+            BT_BITFIELD_ORDER(u32 pad:20, u32 rest : 11);
             u32 bit11:1;
-            u32 rest:11;
+            BT_BITFIELD_ORDER(u32 rest:11, u32 pad : 20);
         } bits;
     } flags;
     u8 *mesh;
@@ -707,11 +707,11 @@ void func_808012C8_chboilerboss(Actor *arg0) {
     union {
         u32 word;
         struct {
-            u32 pad:18;
-            u32 bit13:1;
+            BT_BITFIELD_ORDER(u32 pad:18, u32 rest : 11);
+            BT_BITFIELD_ORDER(u32 bit13:1, u32 bit11 : 1);
             u32 bit12:1;
-            u32 bit11:1;
-            u32 rest:11;
+            BT_BITFIELD_ORDER(u32 bit11:1, u32 bit13 : 1);
+            BT_BITFIELD_ORDER(u32 rest:11, u32 pad : 18);
         } bits;
     } state;
     u8 health;
@@ -1077,15 +1077,15 @@ void func_80801F44_chboilerboss(Actor *arg0) {
     void func_80802098_chboilerboss(Actor *);
     struct BoilerMarker {
         u8 pad0[0x18];
-        u32 pad18_5 : 27;
+        BT_BITFIELD_ORDER(u32 pad18_5 : 27, u32 pad18_0 : 1);
         u32 unk18_1 : 4;
-        u32 pad18_0 : 1;
+        BT_BITFIELD_ORDER(u32 pad18_0 : 1, u32 pad18_5 : 27);
         u8 pad1C[0xC];
-        u32 pad28_14 : 18;
-        u32 unk28_13 : 1;
+        BT_BITFIELD_ORDER(u32 pad28_14 : 18, u32 pad28_0 : 11);
+        BT_BITFIELD_ORDER(u32 unk28_13 : 1, u32 unk28_11 : 1);
         u32 unk28_12 : 1;
-        u32 unk28_11 : 1;
-        u32 pad28_0 : 11;
+        BT_BITFIELD_ORDER(u32 unk28_11 : 1, u32 unk28_13 : 1);
+        BT_BITFIELD_ORDER(u32 pad28_0 : 11, u32 pad28_14 : 18);
     };
     Actor *actor;
 

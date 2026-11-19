@@ -19,9 +19,9 @@ void func_8008E530(PlayerState *self, Unk80132ED0 *marker) {
     };
     struct ActorFlags {
         u8 pad0[0x78];
-        u32 high : 28;
+        BT_BITFIELD_ORDER(u32 high : 28, u32 low : 3);
         u32 bounce : 1;
-        u32 low : 3;
+        BT_BITFIELD_ORDER(u32 low : 3, u32 high : 28);
     };
     Actor *func_80106790(Unk80132ED0 *);
     s32 _chbounce_entrypoint_10(Actor *);
@@ -51,12 +51,12 @@ void func_8008E618(PlayerState *self) {
         u8 pad0[8];
         u8 *(*callback)(void);
         u8 padC[14];
-        u16 player : 11;
-        u16 low1A : 5;
+        BT_BITFIELD_ORDER(u16 player : 11, u16 low1A : 5);
+        BT_BITFIELD_ORDER(u16 low1A : 5, u16 player : 11);
         u8 pad1C[14];
-        u8 high2A : 5;
+        BT_BITFIELD_ORDER(u8 high2A : 5, u8 low2A : 2);
         u8 flag : 1;
-        u8 low2A : 2;
+        BT_BITFIELD_ORDER(u8 low2A : 2, u8 high2A : 5);
     };
     void func_8009C128(PlayerState *, f32[3]);
     void *func_800EBFD4(f32 *, s32, u32);
@@ -84,9 +84,9 @@ void func_8008E6BC(void *arg0) {
 void func_8008E6F0(PlayerState *arg0) {
     struct Flags {
         u8 pad[0x28];
-        unsigned int upper : 22;
+        BT_BITFIELD_ORDER(unsigned int upper : 22, unsigned int rest : 9);
         unsigned int flag : 1;
-        unsigned int rest : 9;
+        BT_BITFIELD_ORDER(unsigned int rest : 9, unsigned int upper : 22);
     };
     void func_8009C128(PlayerState *, f32[3]);
     void func_800EC0EC(f32 *, void **);
@@ -183,9 +183,9 @@ void func_8008E944(PlayerState *arg0) {
 void func_8008E95C(PlayerState *arg0) {
     struct Flags {
         u8 pad[0x28];
-        unsigned int upper : 22;
+        BT_BITFIELD_ORDER(unsigned int upper : 22, unsigned int rest : 9);
         unsigned int flag : 1;
-        unsigned int rest : 9;
+        BT_BITFIELD_ORDER(unsigned int rest : 9, unsigned int upper : 22);
     } *flags;
 
     flags = *(void **) *(void **)((u8 *)arg0 + 0xC);
@@ -193,7 +193,7 @@ void func_8008E95C(PlayerState *arg0) {
 }
 
 s32 func_8008E974(u8 *arg0) {
-    struct Flags { unsigned int pad : 22; signed int flag : 1; unsigned int rest : 9; };
+    struct Flags { BT_BITFIELD_ORDER(unsigned int pad : 22, unsigned int rest : 9); signed int flag : 1; BT_BITFIELD_ORDER(unsigned int rest : 9, unsigned int pad : 22); };
     return ((struct Flags *)((u8 *)**(u8 ***)((u8 *)arg0 + 0xC) + 0x28))->flag ? 1 : 0;
 }
 

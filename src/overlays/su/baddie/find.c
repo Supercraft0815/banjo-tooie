@@ -308,8 +308,8 @@ Actor **subaddiefind_entrypoint_13(u8 *arg0) {
     typedef struct {
         Unk80132ED0 *marker;
         s32 unk4;
-        u32 unk8:31;
-        u32 isMarker:1;
+        BT_BITFIELD_ORDER(u32 unk8:31, u32 isMarker : 1);
+        BT_BITFIELD_ORDER(u32 isMarker:1, u32 unk8 : 31);
     } HitProp;
     typedef struct {
         u8 pad0[0x18];

@@ -78,8 +78,8 @@ void func_801066C0(s32 arg0) {
 #endif
     struct Entry {
         u8 pad[0x1A];
-        u16 index : 11;
-        u16 flags : 5;
+        BT_BITFIELD_ORDER(u16 index : 11, u16 flags : 5);
+        BT_BITFIELD_ORDER(u16 flags : 5, u16 index : 11);
     } *entry;
 
 #ifdef BT_NATIVE // ILP32 too: guard or init the original lacks

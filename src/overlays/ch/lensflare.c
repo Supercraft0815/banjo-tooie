@@ -73,9 +73,9 @@ void func_808000FC_chlensflare(void *arg0, s32 arg1) {
     } FlareSet;
     typedef struct {
         u8 pad[0x64];
-        u32 unused : 11;
+        BT_BITFIELD_ORDER(u32 unused : 11, u32 rest : 20);
         u32 forced : 1;
-        u32 rest : 20;
+        BT_BITFIELD_ORDER(u32 rest : 20, u32 unused : 11);
     } FlareActor;
     extern FlareSet D_808008F4_chlensflare[];
     s32 func_800BFFB4(s32, s32, f32 *);

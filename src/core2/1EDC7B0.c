@@ -8,10 +8,10 @@
 
 typedef struct {
     u8 pad0[0x70];
-    u32 index : 7;
-    u32 reserved : 15;
-    u32 value : 6;
-    u32 flags : 4;
+    BT_BITFIELD_ORDER(u32 index : 7, u32 flags : 4);
+    BT_BITFIELD_ORDER(u32 reserved : 15, u32 value : 6);
+    BT_BITFIELD_ORDER(u32 value : 6, u32 reserved : 15);
+    BT_BITFIELD_ORDER(u32 flags : 4, u32 index : 7);
 } ActorPathView;
 
 void func_80102EC0(s32 arg0) 
@@ -40,9 +40,9 @@ s32 func_80102F14(void *arg0) {
 #else
     struct Flags {
         u8 pad[0x74];
-        u32 : 13;
+        BT_BITFIELD_ORDER(u32 : 13, u32  : 18);
         u32 flag : 1;
-        u32 : 18;
+        BT_BITFIELD_ORDER(u32 : 18, u32  : 13);
     };
     struct Flags *flags = arg0;
 
@@ -63,9 +63,9 @@ s32 func_80102F44(void *arg0) {
 #else
     struct Flags {
         u8 pad[0x78];
-        u32 : 13;
+        BT_BITFIELD_ORDER(u32 : 13, u32  : 18);
         u32 flag : 1;
-        u32 : 18;
+        BT_BITFIELD_ORDER(u32 : 18, u32  : 13);
     };
     struct Flags *flags = arg0;
     if (flags->flag) {
@@ -131,9 +131,9 @@ void func_80102FE8(void *arg0, s32 arg1) {
 #else
     struct Flags {
         u8 pad[0x77];
-        u8 upper : 2;
+        BT_BITFIELD_ORDER(u8 upper : 2, u8 lower : 5);
         u8 flag : 1;
-        u8 lower : 5;
+        BT_BITFIELD_ORDER(u8 lower : 5, u8 upper : 2);
     };
     if (arg1 != 0) {
         ((struct Flags *)arg0)->flag = 1;
@@ -159,9 +159,9 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80103014(u8 *arg0) {
 void func_80103040(Actor *arg0) {
     struct ShadowFlags {
         u8 pad0[0x74];
-        u32 : 11;
+        BT_BITFIELD_ORDER(u32 : 11, u32  : 20);
         u32 enabled : 1;
-        u32 : 20;
+        BT_BITFIELD_ORDER(u32 : 20, u32  : 11);
     };
     typedef struct {
         u8 pad0[0x1C];
@@ -209,9 +209,9 @@ void func_80103110(void *arg0, s32 arg1) {
 #else
     struct Flags {
         u8 padding[0x7E];
-        u8 unused : 1;
+        BT_BITFIELD_ORDER(u8 unused : 1, u8 rest : 6);
         u8 flag : 1;
-        u8 rest : 6;
+        BT_BITFIELD_ORDER(u8 rest : 6, u8 unused : 1);
     };
     if (arg1 != 0) {
         ((struct Flags *)arg0)->flag = 1;

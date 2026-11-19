@@ -781,7 +781,7 @@ void func_80801604_chnicecavemen(Actor *arg0) {
 /* extern */
 
 s32 func_808016E8_chnicecavemen(Actor *arg0, s32 arg1, volatile s32 arg2) {
-    typedef struct { u8 pad[0x18]; u16 unused : 15; u16 flags : 1; } CavemanEvent;
+    typedef struct { u8 pad[0x18]; BT_BITFIELD_ORDER(u16 unused : 15, u16 flags : 1); BT_BITFIELD_ORDER(u16 flags : 1, u16 unused : 15); } CavemanEvent;
     s32 _chfirefx_entrypoint_5(Actor *, s32, s32);
     void func_800DA544(s32);
     void func_800FC6B0(u32);

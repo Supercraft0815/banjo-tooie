@@ -2,10 +2,10 @@
 
 typedef struct { u8 pad0[0x38]; f32 unk38; u8 pad3C[0x18]; f32 unk54; } Objhand_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_chlavahand(void *arg0) {
     struct Flags {
-        u8 pad0 : 7;
-        u8 flag0 : 1;
-        u8 pad1 : 7;
-        u8 flag1 : 1;
+        BT_BITFIELD_ORDER(u8 pad0 : 7, u8 flag0 : 1);
+        BT_BITFIELD_ORDER(u8 flag0 : 1, u8 pad0 : 7);
+        BT_BITFIELD_ORDER(u8 pad1 : 7, char : 0);
+        BT_BITFIELD_ORDER(u8 flag1 : 1, u8 flag1 : 1; u8 pad1 : 7);
     };
     ((struct Flags *)((u8 *)arg0 + 0x64))->flag0 = 1;
     ((struct Flags *)((u8 *)arg0 + 0x64))->flag1 = 0;
@@ -21,8 +21,8 @@ void func_80800024_chlavahand(Actor *arg0) {
     void func_8010A590(Actor *);
     struct HandFlags {
         u8 pad[0x7A];
-        u8 mode : 2;
-        u8 rest : 6;
+        BT_BITFIELD_ORDER(u8 mode : 2, u8 rest : 6);
+        BT_BITFIELD_ORDER(u8 rest : 6, u8 mode : 2);
     };
     f32 sp2C[3];
     f32 angle;
@@ -67,9 +67,9 @@ void func_80800124_chlavahand(u8 *arg0) {
     void func_80800A30_chlavahand(Actor *);
     extern u32 D_80801324_chlavahand[3];
     struct Flags {
-        u32 pad : 2;
+        BT_BITFIELD_ORDER(u32 pad : 2, u32 rest : 29);
         u32 active : 1;
-        u32 rest : 29;
+        BT_BITFIELD_ORDER(u32 rest : 29, u32 pad : 2);
     };
     f32 sp4C;
     s32 sp48;
@@ -226,8 +226,8 @@ s32 func_80800AAC_chlavahand(Actor *arg0, s32 arg1, s32 arg2) {
     Actor *func_80108528(s32, f32[3], s32, Actor **);
     void func_80108B04(Actor *, u32);
     void func_8010A570(Actor *);
-    struct MarkerId { u32 pad : 16; u32 id : 15; u32 flag : 1; };
-    struct HandFields { u16 pad; u8 mode : 2; u8 rest : 6; u8 pad3; u16 count; };
+    struct MarkerId { BT_BITFIELD_ORDER(u32 pad : 16, u32 flag : 1); u32 id : 15; BT_BITFIELD_ORDER(u32 flag : 1, u32 pad : 16); };
+    struct HandFields { u16 pad; BT_BITFIELD_ORDER(u8 mode : 2, u8 rest : 6); BT_BITFIELD_ORDER(u8 rest : 6, u8 mode : 2); u8 pad3; u16 count; };
     Actor *child;
     f32 position[3];
     f32 distance;
@@ -308,8 +308,8 @@ void func_80800E0C_chlavahand(Actor *arg0) {
     void func_800FFA88(Unk80132ED0 *);
     f32 func_80101F24(u8 *);
     Actor *func_80106790(Unk80132ED0 *);
-    struct MarkerId { u32 pad : 16; u32 id : 15; u32 flag : 1; };
-    struct ActorFlags { u32 pad : 29; u32 hidden : 1; u32 rest : 2; };
+    struct MarkerId { BT_BITFIELD_ORDER(u32 pad : 16, u32 flag : 1); u32 id : 15; BT_BITFIELD_ORDER(u32 flag : 1, u32 pad : 16); };
+    struct ActorFlags { BT_BITFIELD_ORDER(u32 pad : 29, u32 rest : 2); u32 hidden : 1; BT_BITFIELD_ORDER(u32 rest : 2, u32 pad : 29); };
     Unk80132ED0 *marker;
     Actor *parent;
     f32 value;
@@ -356,7 +356,7 @@ void func_80800FB4_chlavahand(Actor *arg0, BtIntPtr arg1) {
     s32 func_801015D0(Actor *);
     void func_808011BC_chlavahand(Actor *, BtIntPtr, s32, s32, f32, s32, s32);
     union { struct ImageStruct *ptr; s32 bits; } image;
-    struct HandFlags { u8 pad[0x7A]; u16 mode : 2; u16 rest : 14; };
+    struct HandFlags { u8 pad[0x7A]; BT_BITFIELD_ORDER(u16 mode : 2, u16 rest : 14); BT_BITFIELD_ORDER(u16 rest : 14, u16 mode : 2); };
     Actor *parent;
 
     image.ptr = func_800D674C(arg0->unk0->unk14);

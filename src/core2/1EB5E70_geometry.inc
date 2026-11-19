@@ -971,7 +971,7 @@ void func_800DDFA0(volatile s32 arg0, u8 *arg1) {
 }
 
 void func_800DE03C(s32 arg0, u8 *arg1) {
-    struct camera_command { u8 pad[12]; unsigned int zone : 8; };
+    struct camera_command { u8 pad[12]; BT_BITFIELD_ORDER(unsigned int zone : 8, unsigned int : 24; unsigned int zone : 8); };
     void func_800DE2A4(s32, u8 *);
     s32 _dbzone_entrypoint_0(s32, u8 *, u8, u8 *);
     s32 _glzone_entrypoint_3(s32, s32);

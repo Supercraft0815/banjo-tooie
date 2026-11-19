@@ -36,7 +36,7 @@ void func_80800068_chlighthalo(u8 *arg0, s32 arg1) {
     void func_800E257C(s32);
     BtIntPtr func_800D674C(s32);
     void func_800E2AA4(BtIntPtr, BtIntPtr, s32, s32, void *, f32 *);
-    struct HaloFlags { u32 unused:11; u32 edge:1; u32 rest:20; };
+    struct HaloFlags { BT_BITFIELD_ORDER(u32 unused:11, u32 rest : 20); u32 edge:1; BT_BITFIELD_ORDER(u32 rest:20, u32 unused : 11); };
     struct HaloScale { u8 unused[0x38]; f32 value; };
     f32 screen[2];
     s32 alpha = 0;

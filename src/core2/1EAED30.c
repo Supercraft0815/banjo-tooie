@@ -258,9 +258,9 @@ s32 func_800D59C0(s32 index) {
     return (native_asset_flags(index) >> 4) & 1;
 #else
     typedef struct {
-        u32 reserved : 26;
+        BT_BITFIELD_ORDER(u32 reserved : 26, u32 flags : 4);
         u32 encoding : 2;
-        u32 flags : 4;
+        BT_BITFIELD_ORDER(u32 flags : 4, u32 reserved : 26);
     } AssetEncoding;
     extern s32 D_8011B900;
     extern u32 D_8012B440;

@@ -145,9 +145,9 @@ void chcrate_entrypoint_3(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     if (actor != NULL) {
         struct CrateFlags {
             u8 pad[0x70];
-            u32 pad70_18 : 14;
+            BT_BITFIELD_ORDER(u32 pad70_18 : 14, u32 pad70_0 : 17);
             u32 unk70_17 : 1;
-            u32 pad70_0 : 17;
+            BT_BITFIELD_ORDER(u32 pad70_0 : 17, u32 pad70_18 : 14);
         };
         struct CrateFlags *flags = (void *)actor;
         flags->unk70_17 = 1;
@@ -155,7 +155,7 @@ void chcrate_entrypoint_3(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
 }
 
 s32 func_80800380_chcrate(u8 *arg0) {
-    struct CrateData { u8 pad[0x76]; unsigned short index : 9; unsigned short rest : 7; };
+    struct CrateData { u8 pad[0x76]; BT_BITFIELD_ORDER(unsigned short index : 9, unsigned short rest : 7); BT_BITFIELD_ORDER(unsigned short rest : 7, unsigned short index : 9); };
     s32 ret = 0;
     s32 temp;
 

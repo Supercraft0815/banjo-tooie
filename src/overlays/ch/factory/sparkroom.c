@@ -16,8 +16,8 @@ void func_80800000_chfactorysparkroom(Actor *arg0) {
         u8 pad0[0x38];
         u8 audio;
         u8 pad39[0x1F];
-        u32 pad58 : 31;
-        u32 active : 1;
+        BT_BITFIELD_ORDER(u32 pad58 : 31, u32 active : 1);
+        BT_BITFIELD_ORDER(u32 active : 1, u32 pad58 : 31);
     };
     struct SparkRoomEntry {
         f32 unk0[4];

@@ -63,9 +63,9 @@ void func_808000D8_chfantasyeyeball(Actor *arg0 BT_PASS2(, s32 bt_a1) BT_PASS2(,
     Actor *sp44;
     f32 sp40;
     typedef struct {
-        u32 unused : 29;
+        BT_BITFIELD_ORDER(u32 unused : 29, u32 remaining : 2);
         u32 disabled : 1;
-        u32 remaining : 2;
+        BT_BITFIELD_ORDER(u32 remaining : 2, u32 unused : 29);
     } EyeballUpdateFlags;
 
     _sudeflect_entrypoint_0(arg0->position, arg0->scale * 456.0f, arg0->scale * 224.0f, 0xE);
@@ -268,12 +268,12 @@ s32 func_80800950_chfantasyeyeball(Actor *arg0, s32 arg1, Actor *arg2, Actor *ar
 s32 func_80800B68_chfantasyeyeball(Actor *arg0, s32 arg1, s32 arg2 BT_PASS2(, s32 bt_a3)) {
     typedef struct {
         u8 actorFields[0x74];
-        u32 pad74_6 : 26;
+        BT_BITFIELD_ORDER(u32 pad74_6 : 26, u32 pad74_0 : 5);
         u32 unk74_5 : 1;
-        u32 pad74_0 : 5;
-        u32 pad78_3 : 29;
-        u32 unk78_2 : 1;
-        u32 pad78_0 : 2;
+        BT_BITFIELD_ORDER(u32 pad74_0 : 5, u32 pad74_6 : 26);
+        BT_BITFIELD_ORDER(u32 pad78_3 : 29, char : 0);
+        BT_BITFIELD_ORDER(u32 unk78_2 : 1, u32 pad78_0 : 2);
+        BT_BITFIELD_ORDER(u32 pad78_0 : 2, u32 unk78_2 : 1; u32 pad78_3 : 29);
     } FantasyEyeballFlags;
     void _chskeletonexplode_entrypoint_3(Actor *, s32, s32);
     void _chskeletonexplode_entrypoint_4(Actor *, s32);

@@ -98,8 +98,8 @@ void func_80800024_chhoopswoop(void *arg0) {
 
 s32 func_80800094_chhoopswoop(void *arg0) {
     typedef struct {
-        s16 rotation : 15;
-        u16 active : 1;
+        BT_BITFIELD_ORDER(s16 rotation : 15, u16 active : 1);
+        BT_BITFIELD_ORDER(u16 active : 1, s16 rotation : 15);
         s16 position[3];
         f32 time;
     } Hoop;
@@ -140,8 +140,8 @@ s32 func_80800094_chhoopswoop(void *arg0) {
 
 void func_8080016C_chhoopswoop(Actor *arg0) {
     typedef struct {
-        s16 rotation : 15;
-        u16 active : 1;
+        BT_BITFIELD_ORDER(s16 rotation : 15, u16 active : 1);
+        BT_BITFIELD_ORDER(u16 active : 1, s16 rotation : 15);
         s16 position[3];
         f32 time;
     } UpdateHoop;
@@ -311,8 +311,8 @@ void func_80800620_chhoopswoop(Actor *arg0) {
 
 void func_808006A0_chhoopswoop(Actor *arg0) {
     typedef struct {
-        s16 rotation : 15;
-        u16 active : 1;
+        BT_BITFIELD_ORDER(s16 rotation : 15, u16 active : 1);
+        BT_BITFIELD_ORDER(u16 active : 1, s16 rotation : 15);
         s16 position[3];
         f32 time;
     } Hoop;
@@ -530,8 +530,8 @@ void func_80800C9C_chhoopswoop(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_80800D28_chhoopswoop(void *arg0, s32 arg1) {
     typedef struct {
-        s32 kind : 15;
-        u32 used : 1;
+        BT_BITFIELD_ORDER(s32 kind : 15, u32 used : 1);
+        BT_BITFIELD_ORDER(u32 used : 1, s32 kind : 15);
         s16 position[3];
         f32 timer;
     } Hoop;
@@ -551,8 +551,8 @@ void func_80800D28_chhoopswoop(void *arg0, s32 arg1) {
         u8 pad40[24];
         f32 scale;
         u8 pad5C[16];
-        u32 flags : 23;
-        u32 id : 9;
+        BT_BITFIELD_ORDER(u32 flags : 23, u32 id : 9);
+        BT_BITFIELD_ORDER(u32 id : 9, u32 flags : 23);
     } HoopActor;
     s32 func_800DA298(s32);
     void *func_80100094(Actor *, u32);
@@ -684,8 +684,8 @@ void func_80801130_chhoopswoop(Actor *arg0) {
 
 void func_808011DC_chhoopswoop(Actor *arg0) {
     typedef struct {
-        s16 rotation : 15;
-        u16 active : 1;
+        BT_BITFIELD_ORDER(s16 rotation : 15, u16 active : 1);
+        BT_BITFIELD_ORDER(u16 active : 1, s16 rotation : 15);
         s16 position[3];
         f32 time;
     } Hoop;
@@ -1086,8 +1086,8 @@ void func_80801D8C_chhoopswoop(u8 *arg0) {
 
 void func_80801DCC_chhoopswoop(Actor *arg0) {
     typedef struct {
-        s32 kind : 15;
-        u32 used : 1;
+        BT_BITFIELD_ORDER(s32 kind : 15, u32 used : 1);
+        BT_BITFIELD_ORDER(u32 used : 1, s32 kind : 15);
         s16 position[3];
         f32 timer;
     } Hoop;

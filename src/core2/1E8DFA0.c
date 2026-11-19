@@ -57,10 +57,10 @@ s32 func_800B4790(BtIntPtr arg0) {
         s16 initialScale;
         s16 scaleChange;
         s16 lifetime;
-        unsigned int bounces : 8;
-        unsigned int touched : 1;
-        unsigned int flags : 7;
-        unsigned int : 16;
+        BT_BITFIELD_ORDER(unsigned int bounces : 8, unsigned int  : 16);
+        BT_BITFIELD_ORDER(unsigned int touched : 1, unsigned int flags : 7);
+        BT_BITFIELD_ORDER(unsigned int flags : 7, unsigned int touched : 1);
+        BT_BITFIELD_ORDER(unsigned int : 16, unsigned int bounces : 8);
     } UpdateParticle;
     typedef struct UpdateEmitter {
         u16 flags;

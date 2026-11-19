@@ -96,9 +96,9 @@ void func_80800140_chmumbopad(void *arg0) {
         Unk80132ED0 *marker;
         f32 position[3];
         u8 pad10[0x5C];
-        u32 id : 11;
+        BT_BITFIELD_ORDER(u32 id : 11, u32 spell : 9);
         u32 : 12;
-        u32 spell : 9;
+        BT_BITFIELD_ORDER(u32 spell : 9, u32 id : 11);
     } MumboPad;
     void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
     s32 func_800DA298(s32);
@@ -221,9 +221,9 @@ void func_8080044C_chmumbopad(Actor *arg0) {
 s32 func_80800514_chmumbopad(Actor *arg0, s32 arg1, s32 arg2) {
     typedef struct {
         u8 pad[0x28];
-        u32 : 18;
+        BT_BITFIELD_ORDER(u32 : 18, u32  : 13);
         u32 enabled : 1;
-        u32 : 13;
+        BT_BITFIELD_ORDER(u32 : 13, u32  : 18);
     } PadMarker;
     void _chintrotext_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
     void func_80103110(void *, s32);
@@ -268,9 +268,9 @@ void func_8080063C_chmumbopad(s32 *arg0, s32 arg1) {
 void func_80800674_chmumbopad(Actor *arg0, s32 arg1) {
     typedef struct {
         u8 pad[0x28];
-        u32 : 18;
+        BT_BITFIELD_ORDER(u32 : 18, u32  : 13);
         u32 enabled : 1;
-        u32 : 13;
+        BT_BITFIELD_ORDER(u32 : 13, u32  : 18);
     } PadMarker;
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     s32 func_800C067C(s32);
@@ -348,17 +348,17 @@ void func_808008CC_chmumbopad(void *arg0, s32 arg1) {
         Unk80132ED0 *marker;
         f32 position[3];
         u8 pad10[0x54];
-        u32 : 11;
+        BT_BITFIELD_ORDER(u32 : 11, u32  : 20);
         u32 blocked : 1;
-        u32 : 20;
+        BT_BITFIELD_ORDER(u32 : 20, u32  : 11);
         u32 unk68;
-        u32 : 23;
-        u32 spell : 9;
+        BT_BITFIELD_ORDER(u32 : 23, u32 spell : 9);
+        BT_BITFIELD_ORDER(u32 spell : 9, u32  : 23);
         u32 unk70;
-        u32 : 1;
-        u32 warned : 1;
-        u32 touched : 1;
-        u32 : 29;
+        BT_BITFIELD_ORDER(u32 : 1, u32  : 29);
+        BT_BITFIELD_ORDER(u32 warned : 1, u32 touched : 1);
+        BT_BITFIELD_ORDER(u32 touched : 1, u32 warned : 1);
+        BT_BITFIELD_ORDER(u32 : 29, u32  : 1);
     } MumboPad;
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void func_80015E80(s32, void *);

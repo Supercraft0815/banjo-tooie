@@ -6,8 +6,8 @@
 
 
 typedef struct {
-    u32 timestamp : 31;
-    u32 pressed : 1;
+    BT_BITFIELD_ORDER(u32 timestamp : 31, u32 pressed : 1);
+    BT_BITFIELD_ORDER(u32 pressed : 1, u32 timestamp : 31);
 } ButtonState;
 
 typedef struct {

@@ -33,17 +33,17 @@ void func_808000A8_suchase(s32 *arg0, s32 *arg1) {
     typedef struct {
         Unk80132ED0 *marker;
         s32 unk4;
-        u32 unk8:27;
-        u32 active:1;
-        u32 unk9:3;
-        u32 isMarker:1;
+        BT_BITFIELD_ORDER(u32 unk8:27, u32 isMarker : 1);
+        BT_BITFIELD_ORDER(u32 active:1, u32 unk9 : 3);
+        BT_BITFIELD_ORDER(u32 unk9:3, u32 active : 1);
+        BT_BITFIELD_ORDER(u32 isMarker:1, u32 unk8 : 27);
     } HitProp;
     typedef struct {
         u8 pad0[0x64];
-        u32 pad64_31:1;
-        u32 unk64_30:1;
-        u32 unk64_29:1;
-        u32 rest:29;
+        BT_BITFIELD_ORDER(u32 pad64_31:1, u32 rest : 29);
+        BT_BITFIELD_ORDER(u32 unk64_30:1, u32 unk64_29 : 1);
+        BT_BITFIELD_ORDER(u32 unk64_29:1, u32 unk64_30 : 1);
+        BT_BITFIELD_ORDER(u32 rest:29, u32 pad64_31 : 1);
     } ChaseActorFlags;
     s32 *func_800BE444(f32 *);
     BtIntPtr func_800E9E88(BtIntPtr);

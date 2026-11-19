@@ -756,14 +756,14 @@ void func_8080129C_chevilmumbo(Actor *arg0) {
     extern u32 D_808043C4_chevilmumbo[], D_808043D4_chevilmumbo[];
     struct MumboFlags {
         u8 pad0[0x70];
-        u32 pad70_23 : 9;
+        BT_BITFIELD_ORDER(u32 pad70_23 : 9, u32 pad70_0 : 22);
         u32 unk70_22 : 1;
-        u32 pad70_0 : 22;
-        u32 pad74_4 : 28;
+        BT_BITFIELD_ORDER(u32 pad70_0 : 22, u32 pad70_23 : 9);
+        BT_BITFIELD_ORDER(u32 pad74_4 : 28, char : 0);
         u32 unk74_0 : 4;
-        u32 pad78_14 : 18;
-        u32 unk78_12 : 2;
-        u32 pad78_0 : 12;
+        BT_BITFIELD_ORDER(u32 pad78_14 : 18, u32 pad74_4 : 28);
+        BT_BITFIELD_ORDER(u32 unk78_12 : 2, char : 0);
+        BT_BITFIELD_ORDER(u32 pad78_0 : 12, u32 pad78_0 : 12; u32 unk78_12 : 2; u32 pad78_14 : 18);
     };
     f32 dt;
     struct {
@@ -1811,8 +1811,8 @@ void func_8080398C_chevilmumbo(Actor *arg0, s32 arg1) {
 void func_80803A24_chevilmumbo(BtIntPtr arg0, s32 arg1) {
     struct State {
         u8 pad[0x72];
-        u8 state : 6;
-        u8 other : 2;
+        BT_BITFIELD_ORDER(u8 state : 6, u8 other : 2);
+        BT_BITFIELD_ORDER(u8 other : 2, u8 state : 6);
     };
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 temp;

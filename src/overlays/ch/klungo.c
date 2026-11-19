@@ -90,8 +90,8 @@ void func_8080000C_chklungo(Actor *arg0) {
     } *data;
     struct KlungoActorFlags {
         u8 pad[0x70];
-        u8 pad70:7;
-        u8 flag70:1;
+        BT_BITFIELD_ORDER(u8 pad70:7, u8 flag70 : 1);
+        BT_BITFIELD_ORDER(u8 flag70:1, u8 pad70 : 7);
     };
     BtIntPtr camera;
 
@@ -1839,10 +1839,10 @@ void func_8080322C_chklungo(Actor *arg0, f32 arg1) {
     void func_80803464_chklungo(BtIntPtr, void *, f32 *, f32 *);
     struct KlungoNavigation {
         u32 reserved[28];
-        u32 region : 7;
-        u32 reserved70 : 15;
-        u32 area : 6;
-        u32 reserved73 : 4;
+        BT_BITFIELD_ORDER(u32 region : 7, u32 reserved73 : 4);
+        BT_BITFIELD_ORDER(u32 reserved70 : 15, u32 area : 6);
+        BT_BITFIELD_ORDER(u32 area : 6, u32 reserved70 : 15);
+        BT_BITFIELD_ORDER(u32 reserved73 : 4, u32 region : 7);
     };
     f32 sp2C[3];
     register f32 *sp20;

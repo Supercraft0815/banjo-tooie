@@ -94,8 +94,8 @@ void func_800CBB80(s32 arg0, s32 arg1) {
     extern s32 D_8012AE8C;
     struct Entry {
         u16 prefix;
-        u8 other : 7;
-        u8 flag : 1;
+        BT_BITFIELD_ORDER(u8 other : 7, u8 flag : 1);
+        BT_BITFIELD_ORDER(u8 flag : 1, u8 other : 7);
         u8 rest[25];
     } *entry;
 
@@ -189,9 +189,9 @@ s32 func_800CBDD4(BtIntPtr positionAddress, s32 arg1, s32 arg2) {
         s16 pad;
         s16 extent;
         f32 radius;
-        u32 unused : 12;
+        BT_BITFIELD_ORDER(u32 unused : 12, u32 rest : 17);
         u32 flags : 3;
-        u32 rest : 17;
+        BT_BITFIELD_ORDER(u32 rest : 17, u32 unused : 12);
     };
     struct Table {
         s32 pad[2];
@@ -262,9 +262,9 @@ s32 func_800CC078(BtIntPtr positionAddress) {
         s16 pad;
         s16 extent;
         f32 radius;
-        u32 unused : 12;
+        BT_BITFIELD_ORDER(u32 unused : 12, u32 rest : 17);
         u32 flags : 3;
-        u32 rest : 17;
+        BT_BITFIELD_ORDER(u32 rest : 17, u32 unused : 12);
     };
     struct Table {
         s32 pad[4];
@@ -425,9 +425,9 @@ s32 func_800CC6F4(BtIntPtr arg0, s32 arg1, s32 arg2) {
         s16 unkC;
         s16 height;
         f32 radius;
-        u32 unk14 : 12;
+        BT_BITFIELD_ORDER(u32 unk14 : 12, u32 unk14_15 : 17);
         u32 type : 3;
-        u32 unk14_15 : 17;
+        BT_BITFIELD_ORDER(u32 unk14_15 : 17, u32 unk14 : 12);
     } Region;
     extern s32 D_8012AE94;
     f32 func_800EFC7C(void *, void *);
@@ -504,9 +504,9 @@ s32 func_800CCAB0(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
         s16 unkC;
         s16 height;
         f32 radius_squared;
-        u32 unk14 : 12;
+        BT_BITFIELD_ORDER(u32 unk14 : 12, u32 unk16 : 17);
         u32 flags : 3;
-        u32 unk16 : 17;
+        BT_BITFIELD_ORDER(u32 unk16 : 17, u32 unk14 : 12);
     } Entry;
     typedef struct {
         s32 pad0[3];

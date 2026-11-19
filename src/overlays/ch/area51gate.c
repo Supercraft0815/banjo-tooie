@@ -39,11 +39,11 @@ s32 func_808000A0_charea51gate(Actor *arg0, s32 arg1, s32 *volatile arg2) {
     void func_80800228_charea51gate(BtIntPtr);
     struct GateMarker {
         u8 pad0[0x1A];
-        u16 flagIndex : 11;
-        u16 pad1A : 5;
+        BT_BITFIELD_ORDER(u16 flagIndex : 11, u16 pad1A : 5);
+        BT_BITFIELD_ORDER(u16 pad1A : 5, u16 flagIndex : 11);
         u32 pad1C[2];
-        u32 kind : 10;
-        u32 pad24 : 22;
+        BT_BITFIELD_ORDER(u32 kind : 10, u32 pad24 : 22);
+        BT_BITFIELD_ORDER(u32 pad24 : 22, u32 kind : 10);
     } *marker;
     f32 position[3];
     s32 enabled;

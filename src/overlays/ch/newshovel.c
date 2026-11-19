@@ -20,9 +20,9 @@ void func_8080000C_chnewshovel(Actor *arg0) {
 void func_8080004C_chnewshovel(Actor *arg0) {
     typedef struct {
         u32 preceding[30];
-        u32 precedingFlags : 29;
+        BT_BITFIELD_ORDER(u32 precedingFlags : 29, u32 remainingFlags : 2);
         u32 inactive : 1;
-        u32 remainingFlags : 2;
+        BT_BITFIELD_ORDER(u32 remainingFlags : 2, u32 precedingFlags : 29);
     } ShovelFlags;
     typedef struct {
         f32 unk18[3];
@@ -406,8 +406,8 @@ s32 func_80800A50_chnewshovel(Actor *arg0) {
         Actor actor;
         struct {
             u32 header[25];
-            u32 pad64_30 : 2;
-            u32 unk64_29 : 1;
+            BT_BITFIELD_ORDER(u32 pad64_30 : 2, u32 : 29);
+            BT_BITFIELD_ORDER(u32 unk64_29 : 1, u32 unk64_29 : 1; u32 pad64_30 : 2);
         } flags;
     } NewShovelActor;
     void *func_80100094(Actor *, u32);
@@ -461,8 +461,8 @@ s32 func_80800BC0_chnewshovel(Actor *arg0) {
         Actor actor;
         struct {
             u32 header[25];
-            u32 pad64_30 : 2;
-            u32 unk64_29 : 1;
+            BT_BITFIELD_ORDER(u32 pad64_30 : 2, u32 : 29);
+            BT_BITFIELD_ORDER(u32 unk64_29 : 1, u32 unk64_29 : 1; u32 pad64_30 : 2);
         } flags;
     } NewShovelActor;
     typedef struct {
@@ -493,8 +493,8 @@ int func_80800C58_chnewshovel(Actor *arg0) {
         Actor actor;
         struct {
             u32 header[25];
-            u32 pad64_30 : 2;
-            u32 unk64_29 : 1;
+            BT_BITFIELD_ORDER(u32 pad64_30 : 2, u32 : 29);
+            BT_BITFIELD_ORDER(u32 unk64_29 : 1, u32 unk64_29 : 1; u32 pad64_30 : 2);
         } flags;
     } NewShovelActor;
     f32 func_800EEB40(f32 *, f32 *);

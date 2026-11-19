@@ -411,7 +411,7 @@ void func_800EB210(void *arg0, void *arg1, s32 arg2) {
 /* extern */
 
 void func_800EB2DC(void *arg0, BtIntPtr arg1, s32 arg2) {
-    struct Flags { u32 pad[10]; unsigned int :22; unsigned int enabled:1; unsigned int :9; };
+    struct Flags { u32 pad[10]; BT_BITFIELD_ORDER(unsigned int :22, unsigned int  : 9); unsigned int enabled:1; BT_BITFIELD_ORDER(unsigned int :9, unsigned int  : 22); };
     s32 func_800EB15C(void *);
     void *func_800EC3C4(void *);
     void *temp_v0;

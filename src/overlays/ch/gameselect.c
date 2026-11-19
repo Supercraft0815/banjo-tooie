@@ -587,20 +587,20 @@ void func_80800E24_chgameselect(void *arg0) {
         u8 pad40[0x18];
         f32 timer;
         u8 pad5C[8];
-        u32 pad64 : 11;
-        u32 flag20 : 1;
-        u32 flag19 : 1;
-        u32 pad64low : 19;
+        BT_BITFIELD_ORDER(u32 pad64 : 11, u32 pad64low : 19);
+        BT_BITFIELD_ORDER(u32 flag20 : 1, u32 flag19 : 1);
+        BT_BITFIELD_ORDER(u32 flag19 : 1, u32 flag20 : 1);
+        BT_BITFIELD_ORDER(u32 pad64low : 19, u32 pad64 : 11);
         u32 pad68;
-        u32 pad6C : 23;
-        u32 state : 9;
+        BT_BITFIELD_ORDER(u32 pad6C : 23, u32 state : 9);
+        BT_BITFIELD_ORDER(u32 state : 9, u32 pad6C : 23);
         u8 pad70[9];
-        u8 selection : 4;
-        u8 pad79 : 4;
+        BT_BITFIELD_ORDER(u8 selection : 4, u8 pad79 : 4);
+        BT_BITFIELD_ORDER(u8 pad79 : 4, u8 selection : 4);
         u8 pad7A[2];
-        u32 pad7C : 19;
+        BT_BITFIELD_ORDER(u32 pad7C : 19, u32 pad7Clow : 12);
         u32 flag12 : 1;
-        u32 pad7Clow : 12;
+        BT_BITFIELD_ORDER(u32 pad7Clow : 12, u32 pad7C : 19);
     } SelectActor;
     typedef struct {
         u8 pad0[0x60];
@@ -683,9 +683,9 @@ void func_80800E24_chgameselect(void *arg0) {
 s32 func_808011B4_chgameselect(void *arg0, s32 arg1, s32 arg2) {
     typedef struct {
         u8 pad0[0x74];
-        u32 pad74 : 10;
+        BT_BITFIELD_ORDER(u32 pad74 : 10, u32 pad74low : 21);
         u32 flag21 : 1;
-        u32 pad74low : 21;
+        BT_BITFIELD_ORDER(u32 pad74low : 21, u32 pad74 : 10);
     } SelectEventActor;
     typedef struct {
         f32 positions[8][3];
@@ -855,7 +855,7 @@ void func_808015DC_chgameselect(Unk80132ED0 *arg0, s32 arg1) {
  s32 func_80801658_chgameselect(BtIntPtr arg0, s32 arg1) {
     Actor *func_80106790(Unk80132ED0 *);
     Actor *actor;
-    struct Fields { u8 pad[0x65]; u8 rest : 4; u8 bit : 1; u8 low : 3; };
+    struct Fields { u8 pad[0x65]; BT_BITFIELD_ORDER(u8 rest : 4, u8 low : 3); u8 bit : 1; BT_BITFIELD_ORDER(u8 low : 3, u8 rest : 4); };
     actor = func_80106790((Unk80132ED0 *)arg0);
     if (arg1 != 0) {
         ((struct Fields *)actor)->bit = 1;
@@ -867,7 +867,7 @@ BT_NATIVE_ONLY(return 0;) }
 s32 func_808016A0_chgameselect(BtIntPtr arg0, s32 arg1) {
     Actor *func_80106790(Unk80132ED0 *);
     Actor *actor;
-    struct Fields { u8 pad[0x65]; u8 rest : 3; u8 bit : 1; u8 low : 4; };
+    struct Fields { u8 pad[0x65]; BT_BITFIELD_ORDER(u8 rest : 3, u8 low : 4); u8 bit : 1; BT_BITFIELD_ORDER(u8 low : 4, u8 rest : 3); };
     actor = func_80106790((Unk80132ED0 *)arg0);
     if (arg1 != 0) {
         ((struct Fields *)actor)->bit = 1;
@@ -1040,16 +1040,16 @@ void func_80801D74_chgameselect(Actor *arg0, u8 *arg1) {
         s16 unk12;
         u16 texture;
         u16 unk16;
-        u16 radius : 11;
-        u16 flags : 5;
+        BT_BITFIELD_ORDER(u16 radius : 11, u16 flags : 5);
+        BT_BITFIELD_ORDER(u16 flags : 5, u16 radius : 11);
         s16 unk1A;
         s16 unk1C;
         s16 center[3];
     } GameSelectRenderData;
     typedef struct {
         u8 pad[0x7A];
-        u16 renderMode : 2;
-        u16 flags : 14;
+        BT_BITFIELD_ORDER(u16 renderMode : 2, u16 flags : 14);
+        BT_BITFIELD_ORDER(u16 flags : 14, u16 renderMode : 2);
     } GameSelectRenderFlags;
     u32 _subaddiefade_entrypoint_0(u8 *);
     u8 * func_800B27E0(u8 *arg0);
@@ -1373,8 +1373,8 @@ void func_808025CC_chgameselect(BT_IDO_ONLY(void *arg0) BT_PASS2(void *arg0, s32
 s32 func_808025EC_chgameselect(void *arg0, s32 arg1, s32 arg2) {
     struct Fields {
         u8 pad[0x79];
-        u8 high : 4;
-        u8 low : 4;
+        BT_BITFIELD_ORDER(u8 high : 4, u8 low : 4);
+        BT_BITFIELD_ORDER(u8 low : 4, u8 high : 4);
     };
     s32 result = 1;
     if (arg1 == 0xA) {
@@ -1450,7 +1450,7 @@ void func_80802730_chgameselect(Unk80132ED0 *arg0, BtIntPtr arg1) {
 s32 func_80802780_chgameselect(BtIntPtr arg0, s32 arg1) {
     Actor *func_80106790(Unk80132ED0 *);
     Actor *actor;
-    struct Fields { u8 pad[0x65]; u8 rest : 3; u8 bit : 1; u8 low : 4; };
+    struct Fields { u8 pad[0x65]; BT_BITFIELD_ORDER(u8 rest : 3, u8 low : 4); u8 bit : 1; BT_BITFIELD_ORDER(u8 low : 4, u8 rest : 3); };
     actor = func_80106790((Unk80132ED0 *)arg0);
     if (arg1 != 0) {
         ((struct Fields *)actor)->bit = 1;

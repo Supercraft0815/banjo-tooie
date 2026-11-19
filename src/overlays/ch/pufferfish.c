@@ -116,10 +116,10 @@ void func_80800274_chpufferfish(Actor *arg0, s32 arg1) {
 s32 func_808003C8_chpufferfish(Actor *arg0, s32 arg1, s32 arg2) {
     struct PufferRoute {
         u8 pad[0x70];
-        u32 region : 7;
-        u32 : 15;
-        u32 node : 6;
-        u32 : 4;
+        BT_BITFIELD_ORDER(u32 region : 7, u32  : 4);
+        BT_BITFIELD_ORDER(u32 : 15, u32 node : 6);
+        BT_BITFIELD_ORDER(u32 node : 6, u32  : 15);
+        BT_BITFIELD_ORDER(u32 : 4, u32 region : 7);
     };
     BtIntPtr func_800CC63C(s32, s32);
     void func_80102924(void *, f32);
@@ -165,9 +165,9 @@ s32 func_808003C8_chpufferfish(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_80800518_chpufferfish(Actor *arg0) {
     struct PufferFlags {
-        u32 : 2;
+        BT_BITFIELD_ORDER(u32 : 2, u32  : 29);
         u32 active : 1;
-        u32 : 29;
+        BT_BITFIELD_ORDER(u32 : 29, u32  : 2);
     };
     void _subaddieaudioloop_entrypoint_0(Actor *, f32);
     void _subaddieaudioloop_entrypoint_2(Actor *);

@@ -111,16 +111,16 @@ void func_80800274_chmoley(Actor *arg0) {
         u8 pad10[0x2C];
         Unk80132ED0 *hill;
         u8 pad40[0x25];
-        u8 pad65 : 3;
-        u8 flag10 : 1;
-        u8 flag8 : 1;
-        u8 rest65 : 3;
+        BT_BITFIELD_ORDER(u8 pad65 : 3, u8 rest65 : 3);
+        BT_BITFIELD_ORDER(u8 flag10 : 1, u8 flag8 : 1);
+        BT_BITFIELD_ORDER(u8 flag8 : 1, u8 flag10 : 1);
+        BT_BITFIELD_ORDER(u8 rest65 : 3, u8 pad65 : 3);
         u8 pad66[0xC];
-        u16 state : 6;
-        u16 rest72 : 10;
+        BT_BITFIELD_ORDER(u16 state : 6, u16 rest72 : 10);
+        BT_BITFIELD_ORDER(u16 rest72 : 10, u16 state : 6);
         u8 pad74[5];
-        u8 upper : 4;
-        u8 lower : 4;
+        BT_BITFIELD_ORDER(u8 upper : 4, u8 lower : 4);
+        BT_BITFIELD_ORDER(u8 lower : 4, u8 upper : 4);
     };
     struct Times { f32 values[4]; };
     void _chmolehill_entrypoint_1(Actor *, s32);
@@ -297,8 +297,8 @@ void func_808008C0_chmoley(Actor *arg0) { void _suexpression_entrypoint_12(void 
 void chmoley_entrypoint_0(void *arg0, s32 arg1) {
     struct Fields {
         u8 pad[0x79];
-        u8 upper : 4;
-        u8 lower : 4;
+        BT_BITFIELD_ORDER(u8 upper : 4, u8 lower : 4);
+        BT_BITFIELD_ORDER(u8 lower : 4, u8 upper : 4);
     };
     ((struct Fields *)arg0)->upper = arg1;
 }

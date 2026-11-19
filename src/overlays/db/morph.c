@@ -35,8 +35,8 @@ u8 dbmorph_entrypoint_2(BT_PARAM_OR_VOID(s16 *bt_a0) BT_PASS2(, s32 bt_a1)) {
 
 typedef struct {
     u8 pad[0x16];
-    u16 other : 15;
-    u16 dirty : 1;
+    BT_BITFIELD_ORDER(u16 other : 15, u16 dirty : 1);
+    BT_BITFIELD_ORDER(u16 dirty : 1, u16 other : 15);
 } MorphTarget;
 
 typedef struct {

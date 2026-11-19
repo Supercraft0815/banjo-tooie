@@ -220,10 +220,10 @@ void func_808002E0_changlerboss(Actor *arg0) {
     extern u32 D_80802F60_changlerboss[];
     struct AnglerBossActorFlags {
         u8 pad0[0x7A];
-        u8 pad7A_15 : 2;
-        u8 unk7A_13 : 2;
-        u8 unk7A_11 : 3;
-        u8 unk7A_8 : 1;
+        BT_BITFIELD_ORDER(u8 pad7A_15 : 2, u8 unk7A_8 : 1);
+        BT_BITFIELD_ORDER(u8 unk7A_13 : 2, u8 unk7A_11 : 3);
+        BT_BITFIELD_ORDER(u8 unk7A_11 : 3, u8 unk7A_13 : 2);
+        BT_BITFIELD_ORDER(u8 unk7A_8 : 1, u8 pad7A_15 : 2);
     };
     struct AnglerBossUpdateData {
         u8 pad0[0x94];
@@ -1276,8 +1276,8 @@ void func_80802108_changlerboss(Actor *arg0) {
     f32 *sp2C;
     struct AnglerBossFlagData {
         u8 pad0[0x73];
-        u8 pad73_1 : 7;
-        u8 flag : 1;
+        BT_BITFIELD_ORDER(u8 pad73_1 : 7, u8 flag : 1);
+        BT_BITFIELD_ORDER(u8 flag : 1, u8 pad73_1 : 7);
     };
     Actor *temp_v0;
 
@@ -1511,8 +1511,8 @@ void func_80802844_changlerboss(void *arg0) {
         s32 unk54;
         f32 unk58;
         u8 pad5C[0x1E];
-        u8 unk7A_7 : 2;
-        u8 pad7A_5 : 6;
+        BT_BITFIELD_ORDER(u8 unk7A_7 : 2, u8 pad7A_5 : 6);
+        BT_BITFIELD_ORDER(u8 pad7A_5 : 6, u8 unk7A_7 : 2);
     } *self = arg0;
     self->unk58 = 0.4f;
     self->unk7A_7 = 2;

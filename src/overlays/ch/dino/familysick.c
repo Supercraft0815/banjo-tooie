@@ -249,8 +249,8 @@ void func_80800768_chdinofamilysick(Actor *arg0) {
     void func_80800A1C_chdinofamilysick(Actor *);
     struct StateFlags {
         u8 pad0[0x74];
-        u32 pad74_4 : 28;
-        u32 unk74_0 : 4;
+        BT_BITFIELD_ORDER(u32 pad74_4 : 28, u32 unk74_0 : 4);
+        BT_BITFIELD_ORDER(u32 unk74_0 : 4, u32 pad74_4 : 28);
     };
     u32 rgb[3];
 
@@ -351,8 +351,8 @@ s32 func_80800AB0_chdinofamilysick(Actor *arg0, s32 arg1, s32 arg2) {
     extern f32 D_80800F68_chdinofamilysick[4];
     struct DinoFamilySickFlags {
         u8 pad0[0x74];
-        u32 pad74_4 : 28;
-        u32 unk74_0 : 4;
+        BT_BITFIELD_ORDER(u32 pad74_4 : 28, u32 unk74_0 : 4);
+        BT_BITFIELD_ORDER(u32 unk74_0 : 4, u32 pad74_4 : 28);
     };
     f32 sp2C[3];
 

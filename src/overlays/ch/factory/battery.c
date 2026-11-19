@@ -79,15 +79,15 @@ s32 func_808001F8_chfactorybattery(Actor *arg0) {
 
     struct BatteryCollisionFlags {
         u8 prefix[0x64];
-        u32 upper : 3;
+        BT_BITFIELD_ORDER(u32 upper : 3, u32 lower : 27);
         u32 flags : 2;
-        u32 lower : 27;
+        BT_BITFIELD_ORDER(u32 lower : 27, u32 upper : 3);
     };
     struct BatteryRouteFlags {
         u8 prefix[0x70];
-        u32 upper : 22;
+        BT_BITFIELD_ORDER(u32 upper : 22, u32 lower : 4);
         u32 route : 6;
-        u32 lower : 4;
+        BT_BITFIELD_ORDER(u32 lower : 4, u32 upper : 22);
     };
 
     func_80102FDC(arg0, 0.45f);
@@ -400,10 +400,10 @@ void func_80800AB8_chfactorybattery(Actor *arg0) {
     struct Route { u16 pad[3]; u16 node; };
     struct BatteryActorFlags {
         u8 pad[0x70];
-        u32 unk70_25 : 7;
-        u32 pad70_10 : 15;
-        u32 unk70_4 : 6;
-        u32 pad70_0 : 4;
+        BT_BITFIELD_ORDER(u32 unk70_25 : 7, u32 pad70_0 : 4);
+        BT_BITFIELD_ORDER(u32 pad70_10 : 15, u32 unk70_4 : 6);
+        BT_BITFIELD_ORDER(u32 unk70_4 : 6, u32 pad70_10 : 15);
+        BT_BITFIELD_ORDER(u32 pad70_0 : 4, u32 unk70_25 : 7);
     };
 
     f32 sp4C;

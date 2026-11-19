@@ -571,8 +571,8 @@ void func_800FC74C(u32 track_id) {
 void func_800FC788(s32 track_id, s32 state) {
     typedef struct {
         u8 pad0[0x30];
-        u8 state : 4;
-        u8 flags : 4;
+        BT_BITFIELD_ORDER(u8 state : 4, u8 flags : 4);
+        BT_BITFIELD_ORDER(u8 flags : 4, u8 state : 4);
     } MusicFlags;
     void *func_800FB5F8(s32);
     MusicFlags *track = func_800FB5F8(track_id);

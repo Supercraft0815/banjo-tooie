@@ -139,20 +139,20 @@ u32 pad24 : 26;
 void *func_8010556C(Actor *arg0) {
     typedef struct {
         s16 unk0;
-        s16 pad2_11 : 5;
+        BT_BITFIELD_ORDER(s16 pad2_11 : 5, s16 pad2_0 : 1);
         s16 unk2_1 : 10;
-        s16 pad2_0 : 1;
+        BT_BITFIELD_ORDER(s16 pad2_0 : 1, s16 pad2_11 : 5);
         u8 pad4[0x10];
         f32 unk14;
-        u8 unk18_7 : 1;
+        BT_BITFIELD_ORDER(u8 unk18_7 : 1, u8 unk18_0 : 6);
         u8 unk18_6 : 1;
-        u8 unk18_0 : 6;
+        BT_BITFIELD_ORDER(u8 unk18_0 : 6, u8 unk18_7 : 1);
         u8 pad19[0xE];
-        u8 pad27_6 : 2;
+        BT_BITFIELD_ORDER(u8 pad27_6 : 2, u8 pad27_0 : 5);
         u8 unk27_5 : 1;
-        u8 pad27_0 : 5;
-        u8 unk28_5 : 3;
-        u8 pad28_0 : 5;
+        BT_BITFIELD_ORDER(u8 pad27_0 : 5, u8 pad27_6 : 2);
+        BT_BITFIELD_ORDER(u8 unk28_5 : 3, char : 0);
+        BT_BITFIELD_ORDER(u8 pad28_0 : 5, u8 pad28_0 : 5; u8 unk28_5 : 3);
     } Entry;
     void *freelist_next(FreeList **, s32 *);
     void rare_memset(void *, u8, int);
@@ -452,8 +452,8 @@ void func_80105BAC(Actor *arg0) {
     void *func_80105494(Actor *);
     struct {
         u8 pad[0x18];
-        u8 flag : 1;
-        u8 rest : 7;
+        BT_BITFIELD_ORDER(u8 flag : 1, u8 rest : 7);
+        BT_BITFIELD_ORDER(u8 rest : 7, u8 flag : 1);
     } *temp_v0;
 
     temp_v0 = func_80105494(arg0);
@@ -472,9 +472,9 @@ void func_80105BE0(Actor *arg0, s32 arg1) {
     void *func_80105494(Actor *);
     struct {
         u8 pad[0x27];
-        u8 high : 2;
+        BT_BITFIELD_ORDER(u8 high : 2, u8 low : 5);
         u8 flag : 1;
-        u8 low : 5;
+        BT_BITFIELD_ORDER(u8 low : 5, u8 high : 2);
     } *temp_v0;
     temp_v0 = func_80105494(arg0);
     if (temp_v0 != NULL) {
@@ -738,14 +738,14 @@ void func_80106138(void *arg0) {
 void func_801061D8(Actor *arg0) {
     typedef struct {
         u8 pad[0x70];
-        u32 pad70_25 : 7;
-        u32 flag70_24 : 1;
+        BT_BITFIELD_ORDER(u32 pad70_25 : 7, u32 pad70_0 : 3);
+        BT_BITFIELD_ORDER(u32 flag70_24 : 1, u32 flag70_3 : 1);
         u32 pad70_4 : 20;
-        u32 flag70_3 : 1;
-        u32 pad70_0 : 3;
-        u32 pad74_23 : 9;
-        u32 flag74_22 : 1;
-        u32 pad74_0 : 22;
+        BT_BITFIELD_ORDER(u32 flag70_3 : 1, u32 flag70_24 : 1);
+        BT_BITFIELD_ORDER(u32 pad70_0 : 3, u32 pad70_25 : 7);
+        BT_BITFIELD_ORDER(u32 pad74_23 : 9, char : 0);
+        BT_BITFIELD_ORDER(u32 flag74_22 : 1, u32 pad74_0 : 22);
+        BT_BITFIELD_ORDER(u32 pad74_0 : 22, u32 flag74_22 : 1; u32 pad74_23 : 9);
     } ActorFlags;
     void *func_801063C0(void *);
     void func_800D62E4(s32);

@@ -34,8 +34,8 @@ void func_80800064_suegg(Actor *arg0) {
     f32 temp_f0;
     struct {
         u8 unk0[10];
-        u8 frame : 5;
-        u8 unkA_5 : 3;
+        BT_BITFIELD_ORDER(u8 frame : 5, u8 unkA_5 : 3);
+        BT_BITFIELD_ORDER(u8 unkA_5 : 3, u8 frame : 5);
     } *temp_v0;
 
     sp1C = func_80100094(arg0, 0U);
@@ -57,9 +57,9 @@ void suegg_entrypoint_2(Actor *arg0) {
     void suegg_entrypoint_15(BtIntPtr);
     struct {
         u32 pad[14];
-        u32 unk38_0 : 10;
+        BT_BITFIELD_ORDER(u32 unk38_0 : 10, u32 unk38_11 : 21);
         u32 unk38_10 : 1;
-        u32 unk38_11 : 21;
+        BT_BITFIELD_ORDER(u32 unk38_11 : 21, u32 unk38_0 : 10);
         s32 unk3C;
     } *data;
 
@@ -93,10 +93,10 @@ void suegg_entrypoint_4(Actor *arg0, s32 arg1) {
     s32 flag;
     struct {
         u32 pad[14];
-        u32 pad38 : 8;
-        u32 flag23 : 1;
-        u32 flag22 : 1;
-        u32 rest38 : 22;
+        BT_BITFIELD_ORDER(u32 pad38 : 8, u32 rest38 : 22);
+        BT_BITFIELD_ORDER(u32 flag23 : 1, u32 flag22 : 1);
+        BT_BITFIELD_ORDER(u32 flag22 : 1, u32 flag23 : 1);
+        BT_BITFIELD_ORDER(u32 rest38 : 22, u32 pad38 : 8);
     } *data;
 
     data = func_80100094(arg0, 0);
@@ -212,8 +212,8 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(int) suegg_entrypoint_8(s32 arg0)
 int suegg_entrypoint_9(Actor *arg0, s32 arg1) {
     struct Flags {
         u8 pad[0x39];
-        u8 active : 1;
-        u8 rest : 7;
+        BT_BITFIELD_ORDER(u8 active : 1, u8 rest : 7);
+        BT_BITFIELD_ORDER(u8 rest : 7, u8 active : 1);
     };
     s32 _glhittableDll_entrypoint_1(BtIntPtr arg0, BtIntPtr arg1);
     void func_800CB840(s32, BtIntPtr);
@@ -274,8 +274,8 @@ int suegg_entrypoint_9(Actor *arg0, s32 arg1) {
 void suegg_entrypoint_10(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
     struct Flags {
         u8 pad[0x39];
-        u8 active : 1;
-        u8 rest : 7;
+        BT_BITFIELD_ORDER(u8 active : 1, u8 rest : 7);
+        BT_BITFIELD_ORDER(u8 rest : 7, u8 active : 1);
     };
     s32 _glhittableDll_entrypoint_6(s32);
     s32 _glhittableDll_entrypoint_9(s32);
@@ -429,10 +429,10 @@ s32 suegg_entrypoint_17(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_80800DC0_suegg(Actor *, s32);
     struct SueggEventData {
         u8 pad[0x39];
-        u8 flag80 : 1;
-        u8 flag40 : 1;
-        u8 flag20 : 1;
-        u8 rest : 5;
+        BT_BITFIELD_ORDER(u8 flag80 : 1, u8 rest : 5);
+        BT_BITFIELD_ORDER(u8 flag40 : 1, u8 flag20 : 1);
+        BT_BITFIELD_ORDER(u8 flag20 : 1, u8 flag40 : 1);
+        BT_BITFIELD_ORDER(u8 rest : 5, u8 flag80 : 1);
     } *data;
 
     data = func_80100094(arg0, 0);
@@ -532,9 +532,9 @@ s32 func_80800DC0_suegg(Actor *arg0, s32 arg1) {
     s32 func_800F6CC8(BtIntPtr);
     struct {
         u8 pad[0x39];
-        u8 : 1;
+        BT_BITFIELD_ORDER(u8 : 1, u8  : 6);
         u8 active : 1;
-        u8 : 6;
+        BT_BITFIELD_ORDER(u8 : 6, u8  : 1);
     } *temp_v0;
     if ((func_800D3948() == 0) && (func_800F6CC8(arg1) != 0)) {
         temp_v0 = func_80100094(arg0, 0);

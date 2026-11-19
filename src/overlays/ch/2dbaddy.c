@@ -53,9 +53,9 @@ void func_808000A0_ch2dbaddy(Actor *arg0) {
     void func_80800820_ch2dbaddy(Actor *);
     struct ActorFlags {
         u8 pad[0x78];
-        u32 : 29;
+        BT_BITFIELD_ORDER(u32 : 29, u32  : 2);
         u32 flag : 1;
-        u32 : 2;
+        BT_BITFIELD_ORDER(u32 : 2, u32  : 29);
     };
     f32 sp24[3];
 
@@ -125,9 +125,9 @@ s32 func_808002A8_ch2dbaddy(Actor *arg0, s32 arg1, s32 arg2) {
     extern u8 D_80800A3C_ch2dbaddy[];
     struct ActorFlags {
         u8 pad[0x78];
-        u32 : 29;
+        BT_BITFIELD_ORDER(u32 : 29, u32  : 2);
         u32 flag : 1;
-        u32 : 2;
+        BT_BITFIELD_ORDER(u32 : 2, u32  : 29);
     };
     s32 result;
 
@@ -180,9 +180,9 @@ s32 func_8080041C_ch2dbaddy(u8 *arg0) {
     s32 _sucoaster_entrypoint_13();
     struct Flags {
         u8 pad[0x64];
-        u32 : 2;
+        BT_BITFIELD_ORDER(u32 : 2, u32  : 29);
         u32 flag : 1;
-        u32 : 29;
+        BT_BITFIELD_ORDER(u32 : 29, u32  : 2);
     };
     if (((struct Flags *)arg0)->flag) {
         return _subaddiejoy_entrypoint_6(arg0, 0) == 1;
@@ -196,9 +196,9 @@ s32 func_80800468_ch2dbaddy(u8 *arg0) {
     s32 _subaddiejoy_entrypoint_6(u8 *, s32);
     struct Flags {
         u8 pad[0x64];
-        u32 : 2;
+        BT_BITFIELD_ORDER(u32 : 2, u32  : 29);
         u32 flag : 1;
-        u32 : 29;
+        BT_BITFIELD_ORDER(u32 : 29, u32  : 2);
     };
 
     if (((struct Flags *)arg0)->flag) {

@@ -120,16 +120,16 @@ f32 unk2C;
 #endif
 } SplineCSState;
 
-typedef struct { u8 pad:4; u8 mode:4; } SplineCSActorMode;
-typedef struct { u8 pad:6; u8 direction:2; } SplineCSActorDirection;
+typedef struct { BT_BITFIELD_ORDER(u8 pad:4, u8 mode : 4); BT_BITFIELD_ORDER(u8 mode:4, u8 pad : 4); } SplineCSActorMode;
+typedef struct { BT_BITFIELD_ORDER(u8 pad:6, u8 direction : 2); BT_BITFIELD_ORDER(u8 direction:2, u8 pad : 6); } SplineCSActorDirection;
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
 typedef NativeSplineTarget SplineCSTarget;
 _Static_assert(sizeof(SplineCSState) == 0x48, "script path-state layout");
 #else
 typedef struct {
-    s32 used:1;
+    BT_BITFIELD_ORDER(s32 used:1, u32 pad : 14);
     s32 kind:1;
-    u32 pad:14;
+    BT_BITFIELD_ORDER(u32 pad:14, s32 used : 1);
     s16 position[3];
     void *object;
 } SplineCSTarget;

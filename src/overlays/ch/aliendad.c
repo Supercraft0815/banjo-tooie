@@ -657,10 +657,10 @@ void func_80801324_chaliendad(Actor *arg0, s32 arg1) {
     } *data;
     struct {
         u8 pad0[0x78];
-        u32 pad78 : 18;
-        u32 blinkState : 2;
-        u32 blinkFrame : 3;
-        u32 pad7B : 9;
+        BT_BITFIELD_ORDER(u32 pad78 : 18, u32 pad7B : 9);
+        BT_BITFIELD_ORDER(u32 blinkState : 2, u32 blinkFrame : 3);
+        BT_BITFIELD_ORDER(u32 blinkFrame : 3, u32 blinkState : 2);
+        BT_BITFIELD_ORDER(u32 pad7B : 9, u32 pad78 : 18);
     } *actor = (void *)arg0;
 
     data = func_80100094(arg0, 0U);
@@ -696,10 +696,10 @@ void func_8080142C_chaliendad(void *arg0) {
     f32 func_800DC0C0(void);
     struct {
         u8 pad0[0x78];
-        u32 pad78 : 18;
-        u32 blinkState : 2;
-        u32 blinkFrame : 3;
-        u32 pad7B : 9;
+        BT_BITFIELD_ORDER(u32 pad78 : 18, u32 pad7B : 9);
+        BT_BITFIELD_ORDER(u32 blinkState : 2, u32 blinkFrame : 3);
+        BT_BITFIELD_ORDER(u32 blinkFrame : 3, u32 blinkState : 2);
+        BT_BITFIELD_ORDER(u32 pad7B : 9, u32 pad78 : 18);
     } *actor = arg0;
 
     switch (actor->blinkState) {
@@ -741,10 +741,10 @@ void func_8080152C_chaliendad(Actor *arg0) {
     } *data;
     struct {
         u8 pad0[0x78];
-        u32 pad78 : 18;
-        u32 blinkState : 2;
-        u32 blinkFrame : 3;
-        u32 pad7B : 9;
+        BT_BITFIELD_ORDER(u32 pad78 : 18, u32 pad7B : 9);
+        BT_BITFIELD_ORDER(u32 blinkState : 2, u32 blinkFrame : 3);
+        BT_BITFIELD_ORDER(u32 blinkFrame : 3, u32 blinkState : 2);
+        BT_BITFIELD_ORDER(u32 pad7B : 9, u32 pad78 : 18);
     } *actor = (void *)arg0;
     f32 duration;
     s32 frame;
@@ -818,10 +818,10 @@ void func_80801868_chaliendad(Actor *arg0) {
     } *data;
     struct {
         u8 pad0[0x78];
-        u32 pad78 : 18;
-        u32 blinkState : 2;
-        u32 blinkFrame : 3;
-        u32 pad7B : 9;
+        BT_BITFIELD_ORDER(u32 pad78 : 18, u32 pad7B : 9);
+        BT_BITFIELD_ORDER(u32 blinkState : 2, u32 blinkFrame : 3);
+        BT_BITFIELD_ORDER(u32 blinkFrame : 3, u32 blinkState : 2);
+        BT_BITFIELD_ORDER(u32 pad7B : 9, u32 pad78 : 18);
     } *actor = (void *)arg0;
     f32 duration;
     s32 frame;

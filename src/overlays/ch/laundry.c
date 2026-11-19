@@ -50,8 +50,8 @@ void func_80800058_chlaundry(Actor *arg0, f32 arg1) {
     };
     struct LaundryProp {
         u8 pad[10];
-        u8 frame : 5;
-        u8 flags : 3;
+        BT_BITFIELD_ORDER(u8 frame : 5, u8 flags : 3);
+        BT_BITFIELD_ORDER(u8 flags : 3, u8 frame : 5);
     };
     struct LaundryMarker {
         u32 pad[8];

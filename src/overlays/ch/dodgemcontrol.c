@@ -342,8 +342,8 @@ s32 func_808008EC_chdodgemcontrol(Actor *arg0) { switch (arg0->unk79_4) { case 0
 s32 func_80800938_chdodgemcontrol(u8 *arg0, s32 arg1, s32 arg2) {
     struct Control {
         u8 padding[0x79];
-        u8 state : 4;
-        u8 other : 4;
+        BT_BITFIELD_ORDER(u8 state : 4, u8 other : 4);
+        BT_BITFIELD_ORDER(u8 other : 4, u8 state : 4);
     };
     s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
     s32 _capod_entrypoint_17(f32);
@@ -800,17 +800,17 @@ void func_8080160C_chdodgemcontrol(Actor *arg0) {
 
 typedef struct {
     u8 pad0[0x64];
-    u32 pad64_30 : 2;
-    u32 unk64_29 : 1;
-    u32 unk64_27 : 2;
+    BT_BITFIELD_ORDER(u32 pad64_30 : 2, u32 pad64_0 : 24);
+    BT_BITFIELD_ORDER(u32 unk64_29 : 1, u32 unk64_24 : 1);
+    BT_BITFIELD_ORDER(u32 unk64_27 : 2, u32 unk64_25 : 1);
     u32 unk64_26 : 1;
-    u32 unk64_25 : 1;
-    u32 unk64_24 : 1;
-    u32 pad64_0 : 24;
+    BT_BITFIELD_ORDER(u32 unk64_25 : 1, u32 unk64_27 : 2);
+    BT_BITFIELD_ORDER(u32 unk64_24 : 1, u32 unk64_29 : 1);
+    BT_BITFIELD_ORDER(u32 pad64_0 : 24, u32 pad64_30 : 2);
     s32 pad68;
-    u32 pad6C_21 : 11;
+    BT_BITFIELD_ORDER(u32 pad6C_21 : 11, u32 unk6C_0 : 9);
     u32 unk6C_9 : 12;
-    u32 unk6C_0 : 9;
+    BT_BITFIELD_ORDER(u32 unk6C_0 : 9, u32 pad6C_21 : 11);
 } DodgemControlActor;
 
 void func_80801744_chdodgemcontrol(Actor *arg0, DodgemControlActor *arg1) {
@@ -1351,9 +1351,9 @@ void func_80802764_chdodgemcontrol(Actor *arg0) {
 void func_808027C4_chdodgemcontrol(BtIntPtr arg0) {
     struct Flags {
         u8 pad[0x64];
-        u32 : 11;
+        BT_BITFIELD_ORDER(u32 : 11, u32  : 20);
         u32 active : 1;
-        u32 : 20;
+        BT_BITFIELD_ORDER(u32 : 20, u32  : 11);
     };
     s32 anctrl_setIndex(BtIntPtr, s32);
     s32 func_80101CDC(BtIntPtr, s32);
@@ -1402,9 +1402,9 @@ void func_80802884_chdodgemcontrol(Actor *arg0) {
 void func_808028E4_chdodgemcontrol(BtIntPtr arg0) {
     struct Flags {
         u8 pad[0x64];
-        u32 : 11;
+        BT_BITFIELD_ORDER(u32 : 11, u32  : 20);
         u32 active : 1;
-        u32 : 20;
+        BT_BITFIELD_ORDER(u32 : 20, u32  : 11);
     };
     s32 anctrl_isStopped(BtIntPtr);
     s32 anctrl_setIndex(BtIntPtr, s32);
@@ -2076,9 +2076,9 @@ void func_8080440C_chdodgemcontrol(Actor *arg0) {
 void func_8080455C_chdodgemcontrol(void *arg0) {
     struct Flags {
         u8 pad[0x64];
-        u32 : 11;
+        BT_BITFIELD_ORDER(u32 : 11, u32  : 20);
         u32 active : 1;
-        u32 : 20;
+        BT_BITFIELD_ORDER(u32 : 20, u32  : 11);
     };
     void func_800904C8(s32);
     if (((struct Flags *)arg0)->active) {

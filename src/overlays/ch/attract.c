@@ -21,8 +21,8 @@ void func_80800014_chattract(Actor *arg0) {
     void func_80102424(Actor *, s32);
     struct AttractState {
         u8 pad[0x78];
-        u16 rest : 14;
-        u16 state : 2;
+        BT_BITFIELD_ORDER(u16 rest : 14, u16 state : 2);
+        BT_BITFIELD_ORDER(u16 state : 2, u16 rest : 14);
     };
     struct AttractEntry {
         u16 animation;
@@ -98,8 +98,8 @@ s32 func_808002AC_chattract(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_80103140(Actor *, u32, u16);
     struct AttractFlags {
         u8 pad[0x7A];
-        u8 value : 2;
-        u8 rest : 6;
+        BT_BITFIELD_ORDER(u8 value : 2, u8 rest : 6);
+        BT_BITFIELD_ORDER(u8 rest : 6, u8 value : 2);
     };
     struct AttractEntry {
         u16 animation;

@@ -3,9 +3,9 @@
 void subaddiedraw25d_entrypoint_0(void *arg0) {
     struct Flags {
         u8 pad[0x7E];
-        u8 high : 3;
+        BT_BITFIELD_ORDER(u8 high : 3, u8 low : 4);
         u8 enabled : 1;
-        u8 low : 4;
+        BT_BITFIELD_ORDER(u8 low : 4, u8 high : 3);
     };
     ((struct Flags *)arg0)->enabled = 1;
 }
@@ -15,23 +15,23 @@ void subaddiedraw25d_entrypoint_1(Actor *arg0, BtIntPtr arg1) {
         u8 pad[0x78];
         union {
             struct {
-                u16 upper : 14;
-                u16 flags : 2;
+                BT_BITFIELD_ORDER(u16 upper : 14, u16 flags : 2);
+                BT_BITFIELD_ORDER(u16 flags : 2, u16 upper : 14);
             } half;
             struct {
-                u32 next : 30;
+                BT_BITFIELD_ORDER(u32 next : 30, u32 low : 1);
                 u32 tinted : 1;
-                u32 low : 1;
+                BT_BITFIELD_ORDER(u32 low : 1, u32 next : 30);
             } word;
         } bits;
     };
     struct ModelFlags {
         u8 pad[8];
-        u32 upper : 16;
-        u32 index : 5;
+        BT_BITFIELD_ORDER(u32 upper : 16, u32 low : 5);
+        BT_BITFIELD_ORDER(u32 index : 5, u32 flag : 1);
         u32 middle : 5;
-        u32 flag : 1;
-        u32 low : 5;
+        BT_BITFIELD_ORDER(u32 flag : 1, u32 index : 5);
+        BT_BITFIELD_ORDER(u32 low : 5, u32 upper : 16);
     };
     s32 func_800AF5A8(s16 *);
     void func_800E24E4(BtIntPtr, BtIntPtr);
@@ -75,23 +75,23 @@ void subaddiedraw25d_entrypoint_2(Actor *arg0, s32 arg1) {
         u8 pad[0x78];
         union {
             struct {
-                u16 upper : 14;
-                u16 flags : 2;
+                BT_BITFIELD_ORDER(u16 upper : 14, u16 flags : 2);
+                BT_BITFIELD_ORDER(u16 flags : 2, u16 upper : 14);
             } half;
             struct {
-                u32 next : 30;
+                BT_BITFIELD_ORDER(u32 next : 30, u32 low : 1);
                 u32 tinted : 1;
-                u32 low : 1;
+                BT_BITFIELD_ORDER(u32 low : 1, u32 next : 30);
             } word;
         } bits;
     };
     struct ModelFlags {
         u8 pad[8];
-        u32 upper : 16;
-        u32 index : 5;
+        BT_BITFIELD_ORDER(u32 upper : 16, u32 low : 5);
+        BT_BITFIELD_ORDER(u32 index : 5, u32 flag : 1);
         u32 middle : 5;
-        u32 flag : 1;
-        u32 low : 5;
+        BT_BITFIELD_ORDER(u32 flag : 1, u32 index : 5);
+        BT_BITFIELD_ORDER(u32 low : 5, u32 upper : 16);
     };
     s32 func_800AF5A8(s16 *);
     void func_800E24E4(BtIntPtr, BtIntPtr);
@@ -132,9 +132,9 @@ void subaddiedraw25d_entrypoint_2(Actor *arg0, s32 arg1) {
 void subaddiedraw25d_entrypoint_3(Actor *arg0) {
     struct Flags {
         u8 pad[0x70];
-        u32 high : 11;
+        BT_BITFIELD_ORDER(u32 high : 11, u32 low : 20);
         u32 enabled : 1;
-        u32 low : 20;
+        BT_BITFIELD_ORDER(u32 low : 20, u32 high : 11);
     };
     s32 func_800D2F20(void);
     void func_800E249C(s32);

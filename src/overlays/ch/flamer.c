@@ -29,9 +29,9 @@ void func_8080000C_chflamer(Actor *arg0) {
 void func_80800050_chflamer(Actor *arg0) {
     struct FlamerActorFlags {
         u8 pad0[0x74];
-        u32 pad74_25 : 7;
+        BT_BITFIELD_ORDER(u32 pad74_25 : 7, u32 pad74_0 : 24);
         u32 active : 1;
-        u32 pad74_0 : 24;
+        BT_BITFIELD_ORDER(u32 pad74_0 : 24, u32 pad74_25 : 7);
     };
     struct FlamerParticle {
         f32 age;
@@ -234,8 +234,8 @@ s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
 void chflamer_entrypoint_1(Actor *arg0, Unk80132ED0 *arg1) {
     struct LinkedActorFlags {
         u8 pad[0x74];
-        u8 pad74_1 : 7;
-        u8 unk74_0 : 1;
+        BT_BITFIELD_ORDER(u8 pad74_1 : 7, u8 unk74_0 : 1);
+        BT_BITFIELD_ORDER(u8 unk74_0 : 1, u8 pad74_1 : 7);
     };
     struct LinkFlags {
         u8 pad[0x18];
@@ -284,8 +284,8 @@ void chflamer_entrypoint_2(Unk80132ED0 *arg0, s32 arg1) {
 Actor *func_80800738_chflamer(Actor *arg0) {
     struct LinkedActorFlags {
         u8 pad[0x74];
-        u8 pad74_1 : 7;
-        u8 unk74_0 : 1;
+        BT_BITFIELD_ORDER(u8 pad74_1 : 7, u8 unk74_0 : 1);
+        BT_BITFIELD_ORDER(u8 unk74_0 : 1, u8 pad74_1 : 7);
     };
     void _subaddielink_entrypoint_0(void *arg0);
     Actor *_subaddielink_entrypoint_4(u8 *);

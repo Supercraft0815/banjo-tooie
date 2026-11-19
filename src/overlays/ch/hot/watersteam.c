@@ -49,8 +49,8 @@ s32 func_808000C4_chhotwatersteam(s32 arg0, s32 arg1, s32 arg2)
 void func_808000D8_chhotwatersteam(Actor *arg0) {
     struct SteamActorFlags {
         u8 pad0[0x70];
-        u32 index : 7;
-        u32 pad70 : 25;
+        BT_BITFIELD_ORDER(u32 index : 7, u32 pad70 : 25);
+        BT_BITFIELD_ORDER(u32 pad70 : 25, u32 index : 7);
     };
     void func_800CD08C(s32 arg0, f32 *arg1);
     f32 func_800DC178(f32, f32);

@@ -30,7 +30,7 @@ void func_80800024_chgoldsnakehead(Actor *arg0) {
     void func_800DA7A8(s32 startIndex, s32 set, s32 length);
     void func_800FFAB0(Actor *);
     void func_80103014(u8 *);
-    struct SnakeFlags { u32 : 18; u32 enabled : 1; u32 : 13; };
+    struct SnakeFlags { BT_BITFIELD_ORDER(u32 : 18, u32  : 13); u32 enabled : 1; BT_BITFIELD_ORDER(u32 : 13, u32  : 18); };
     Prop *prop;
     f32 position[3];
     Actor *other;

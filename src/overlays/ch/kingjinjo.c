@@ -31,12 +31,12 @@ void func_80800018_chkingjinjo(Actor *arg0) {
         Actor actor;
         struct {
             u32 padding[29];
-            u32 pad74_31 : 11;
+            BT_BITFIELD_ORDER(u32 pad74_31 : 11, u32 pad74_18 : 20);
             u32 visible : 1;
-            u32 pad74_18 : 20;
-            u32 pad78_31 : 30;
-            u32 enabled : 1;
-            u32 pad78_0 : 1;
+            BT_BITFIELD_ORDER(u32 pad74_18 : 20, u32 pad74_31 : 11);
+            BT_BITFIELD_ORDER(u32 pad78_31 : 30, char : 0);
+            BT_BITFIELD_ORDER(u32 enabled : 1, u32 pad78_0 : 1);
+            BT_BITFIELD_ORDER(u32 pad78_0 : 1, u32 enabled : 1; u32 pad78_31 : 30);
         } flags;
     } KingJinjoActor;
     f32 *sp44;

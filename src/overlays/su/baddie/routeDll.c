@@ -155,8 +155,8 @@ void subaddierouteDll_entrypoint_1(Actor *arg0) {
     s32 route;
     struct {
         u8 pad[12];
-        u32 route : 12;
-        u32 rest : 20;
+        BT_BITFIELD_ORDER(u32 route : 12, u32 rest : 20);
+        BT_BITFIELD_ORDER(u32 rest : 20, u32 route : 12);
     } *entry;
     s16 *slot;
 
@@ -323,10 +323,10 @@ s32 func_80800828_subaddierouteDll(void *arg0, BtIntPtr arg1, f32 arg2, f32 arg3
         Unk80132ED0 *unk0;
         f32 position[3];
         u8 pad10[0x60];
-        u32 route_start : 7;
-        u32 pad70 : 15;
-        u32 route_end : 6;
-        u32 pad73 : 4;
+        BT_BITFIELD_ORDER(u32 route_start : 7, u32 pad73 : 4);
+        BT_BITFIELD_ORDER(u32 pad70 : 15, u32 route_end : 6);
+        BT_BITFIELD_ORDER(u32 route_end : 6, u32 pad70 : 15);
+        BT_BITFIELD_ORDER(u32 pad73 : 4, u32 route_start : 7);
     };
     struct RouteNode { f32 position[3]; s16 radius; };
     struct RouteHit { s16 position[3]; u16 flags; };
@@ -390,10 +390,10 @@ s32 func_80800A74_subaddierouteDll(void *arg0, BtIntPtr arg1, f32 arg2, s32 arg3
         f32 unk10;
         u32 unk14;
         u8 pad18[0x58];
-        u32 route_start : 7;
-        u32 pad70 : 15;
-        u32 route_end : 6;
-        u32 pad73 : 4;
+        BT_BITFIELD_ORDER(u32 route_start : 7, u32 pad73 : 4);
+        BT_BITFIELD_ORDER(u32 pad70 : 15, u32 route_end : 6);
+        BT_BITFIELD_ORDER(u32 route_end : 6, u32 pad70 : 15);
+        BT_BITFIELD_ORDER(u32 pad73 : 4, u32 route_start : 7);
     };
     f32 end[3];
     f32 start[3];
@@ -485,8 +485,8 @@ s32 subaddierouteDll_entrypoint_7(Actor *arg0, RouteResult *arg1, f32 arg2, f32 
 typedef struct {
         Unk80132ED0 *actor;
         s32 unknown;
-        u32 unused : 31;
-        u32 is_actor : 1;
+        BT_BITFIELD_ORDER(u32 unused : 31, u32 is_actor : 1);
+        BT_BITFIELD_ORDER(u32 is_actor : 1, u32 unused : 31);
     } RouteEntry;
 
 s32 func_80800D88_subaddierouteDll(Actor *arg0, RouteResult *arg1, f32 arg2, s32 arg3, s32 *arg4) {
@@ -595,10 +595,10 @@ s32 subaddierouteDll_entrypoint_8(Actor *arg0, f32 *arg1, s32 arg2, s32 arg3) {
     OSThread *func_801015B0(void);
     struct RouteActor {
         u8 pad[0x70];
-        u32 route_start : 7;
-        u32 pad70 : 15;
-        u32 route_end : 6;
-        u32 pad73 : 4;
+        BT_BITFIELD_ORDER(u32 route_start : 7, u32 pad73 : 4);
+        BT_BITFIELD_ORDER(u32 pad70 : 15, u32 route_end : 6);
+        BT_BITFIELD_ORDER(u32 route_end : 6, u32 pad70 : 15);
+        BT_BITFIELD_ORDER(u32 pad73 : 4, u32 route_start : 7);
     };
     struct Region {
         f32 position[3];
@@ -678,10 +678,10 @@ s32 subaddierouteDll_entrypoint_9(Actor *arg0, f32 *arg1, s32 arg2, s32 arg3) {
     s32 func_8010BFA4(f32 *, f32 *, f32 *, f32);
     struct RouteActor {
         u8 pad[0x70];
-        u32 route_start : 7;
-        u32 pad70 : 15;
-        u32 route_end : 6;
-        u32 pad73 : 4;
+        BT_BITFIELD_ORDER(u32 route_start : 7, u32 pad73 : 4);
+        BT_BITFIELD_ORDER(u32 pad70 : 15, u32 route_end : 6);
+        BT_BITFIELD_ORDER(u32 route_end : 6, u32 pad70 : 15);
+        BT_BITFIELD_ORDER(u32 pad73 : 4, u32 route_start : 7);
     };
     struct Region {
         f32 position[3];

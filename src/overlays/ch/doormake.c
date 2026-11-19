@@ -5,16 +5,16 @@ void *func_80800000_chdoormake(Actor *arg0, s32 arg1, u32 arg2, s32 arg3) {
     struct DoorPart {
         u8 state;
         u8 unused1;
-        u8 active : 1;
-        u8 unused2 : 7;
+        BT_BITFIELD_ORDER(u8 active : 1, u8 unused2 : 7);
+        BT_BITFIELD_ORDER(u8 unused2 : 7, u8 active : 1);
         u8 unused3[5];
     };
     struct DoorData {
         u32 flags;
         s16 value;
         u8 unused6[2];
-        u8 kind : 6;
-        u8 unused8 : 2;
+        BT_BITFIELD_ORDER(u8 kind : 6, u8 unused8 : 2);
+        BT_BITFIELD_ORDER(u8 unused8 : 2, u8 kind : 6);
         u8 unused9;
         s16 scale;
         s16 angle;
@@ -271,8 +271,8 @@ void chdoormake_entrypoint_9(Actor *arg0, s32 arg1, u16 arg2, s32 arg3) {
         s16 amount;
         u8 pad20;
         s8 kind;
-        u16 flag : 1;
-        u16 value : 15;
+        BT_BITFIELD_ORDER(u16 flag : 1, u16 value : 15);
+        BT_BITFIELD_ORDER(u16 value : 15, u16 flag : 1);
     } *data;
     data = (struct DoorData *)((s8 *)func_80100094(arg0, 0U) + arg1 * 8);
     data->kind = arg2;
@@ -284,8 +284,8 @@ void chdoormake_entrypoint_9(Actor *arg0, s32 arg1, u16 arg2, s32 arg3) {
 void chdoormake_entrypoint_10(Actor *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
     struct DoorField {
-        u16 flag : 1;
-        u16 value : 15;
+        BT_BITFIELD_ORDER(u16 flag : 1, u16 value : 15);
+        BT_BITFIELD_ORDER(u16 value : 15, u16 flag : 1);
     } *data;
 
     data = (struct DoorField *)((s8 *)func_80100094(arg0, 0U) + arg1 * 8 + 0x22);

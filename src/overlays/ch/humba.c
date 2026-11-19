@@ -103,7 +103,7 @@ void func_80800294_chhumba(u8 *arg0, s32 arg1) {
 }
 
 void func_80800338_chhumba(u8 *arg0, s32 arg1, s32 arg2) {
-    struct Flags { u8 pad[0x74]; u8 high : 1; u8 flag : 1; u8 low : 6; };
+    struct Flags { u8 pad[0x74]; BT_BITFIELD_ORDER(u8 high : 1, u8 low : 6); u8 flag : 1; BT_BITFIELD_ORDER(u8 low : 6, u8 high : 1); };
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     arg2 |= 4;
     _subaddiedialog_entrypoint_11(*(Unk80132ED0 **)arg0, arg1, arg2, (f32 *)(arg0 + 4), 0x40U);
@@ -141,8 +141,8 @@ s32 func_80800414_chhumba(void *arg0) {
 s32 func_80800450_chhumba(Actor *arg0, s32 arg1, s32 arg2) {
     typedef struct {
         u8 pad[0x14];
-        u32 pad14 : 31;
-        u32 unk14_0 : 1;
+        BT_BITFIELD_ORDER(u32 pad14 : 31, u32 unk14_0 : 1);
+        BT_BITFIELD_ORDER(u32 unk14_0 : 1, u32 pad14 : 31);
     } HumbaModel;
     void func_80800E44_chhumba(u8 *, s32);
     void func_80801DB0_chhumba(Actor *, s32, s32);

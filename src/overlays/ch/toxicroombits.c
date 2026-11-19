@@ -168,12 +168,12 @@ void func_80800540_chtoxicroombits(Actor *arg0) {
 void func_80800630_chtoxicroombits(u8 *arg0) {
     struct State {
         u8 pad[0x64];
-        u32 flagsHigh : 12;
+        BT_BITFIELD_ORDER(u32 flagsHigh : 12, u32 flagsLow : 19);
         u32 flag : 1;
-        u32 flagsLow : 19;
+        BT_BITFIELD_ORDER(u32 flagsLow : 19, u32 flagsHigh : 12);
         u8 pad68[0x11];
-        u8 count : 4;
-        u8 other : 4;
+        BT_BITFIELD_ORDER(u8 count : 4, u8 other : 4);
+        BT_BITFIELD_ORDER(u8 other : 4, u8 count : 4);
     };
     s32 _capod_entrypoint_13(BtIntPtr, BtIntPtr, s32, s32);
     void _subaddieaudioloop_entrypoint_0(Actor *, f32);

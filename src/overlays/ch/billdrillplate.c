@@ -59,9 +59,9 @@ void func_808000B0_chbilldrillplate(Actor *arg0) {
     void func_808002A0_chbilldrillplate(BtIntPtr);
     extern u8 D_808011B4_chbilldrillplate[];
     struct PlateFlags {
-        u32 unused:28;
+        BT_BITFIELD_ORDER(u32 unused:28, u32 unused2 : 3);
         u32 active:1;
-        u32 unused2:3;
+        BT_BITFIELD_ORDER(u32 unused2:3, u32 unused : 28);
     };
 
     switch (arg0->unk70_10) {

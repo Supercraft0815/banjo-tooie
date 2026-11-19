@@ -181,12 +181,12 @@ void func_800EB5E0(s32 arg0, s32 arg1) {
     typedef struct {
         Unk80132ED0 *actor;
         s32 unknown;
-        unsigned int unused : 27;
-        unsigned int active : 1;
-        unsigned int group : 1;
-        unsigned int unknown2 : 1;
-        unsigned int ready : 1;
-        unsigned int is_actor : 1;
+        BT_BITFIELD_ORDER(unsigned int unused : 27, unsigned int is_actor : 1);
+        BT_BITFIELD_ORDER(unsigned int active : 1, unsigned int ready : 1);
+        BT_BITFIELD_ORDER(unsigned int group : 1, unsigned int unknown2 : 1);
+        BT_BITFIELD_ORDER(unsigned int unknown2 : 1, unsigned int group : 1);
+        BT_BITFIELD_ORDER(unsigned int ready : 1, unsigned int active : 1);
+        BT_BITFIELD_ORDER(unsigned int is_actor : 1, unsigned int unused : 27);
     } Prop;
     void _gspropprop_entrypoint_2(void *);
     void func_800E3A30(s32);
@@ -415,10 +415,10 @@ void func_800EB8C0(s32 arg0) {
     typedef struct {
         s32 unk0;
         s16 x, y;
-        signed int z : 16;
-        unsigned int unused : 14;
-        unsigned int type : 1;
-        unsigned int disabled : 1;
+        BT_BITFIELD_ORDER(signed int z : 16, unsigned int disabled : 1);
+        BT_BITFIELD_ORDER(unsigned int unused : 14, unsigned int type : 1);
+        BT_BITFIELD_ORDER(unsigned int type : 1, unsigned int unused : 14);
+        BT_BITFIELD_ORDER(unsigned int disabled : 1, signed int z : 16);
     } Entry;
     Prop *func_800E9D68(s16 *);
     u32 func_800E9D90(s16 *);
@@ -577,14 +577,14 @@ void func_800EBC0C(s32 arg0, s32 *arg1, void *arg2, s32 arg3) {
     typedef struct {
         void *owner;
         s16 position[3];
-        u16 frame : 5;
-        u16 random : 5;
-        u16 flag20 : 1;
-        u16 flag10 : 1;
-        u16 flag8 : 1;
-        u16 flag4 : 1;
-        u16 isModelProp : 1;
-        u16 isActorProp : 1;
+        BT_BITFIELD_ORDER(u16 frame : 5, u16 isActorProp : 1);
+        BT_BITFIELD_ORDER(u16 random : 5, u16 isModelProp : 1);
+        BT_BITFIELD_ORDER(u16 flag20 : 1, u16 flag4 : 1);
+        BT_BITFIELD_ORDER(u16 flag10 : 1, u16 flag8 : 1);
+        BT_BITFIELD_ORDER(u16 flag8 : 1, u16 flag10 : 1);
+        BT_BITFIELD_ORDER(u16 flag4 : 1, u16 flag20 : 1);
+        BT_BITFIELD_ORDER(u16 isModelProp : 1, u16 random : 5);
+        BT_BITFIELD_ORDER(u16 isActorProp : 1, u16 frame : 5);
     } Prop;
     s32 func_800BD948(s32);
     s32 func_800DC214(s32, s32);
@@ -781,15 +781,15 @@ void *func_800EBED4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
         u8 pad0[8];
         OSThread *(*callback)(void);
         u8 padC[6];
-        u16 id : 15;
-        u16 flag : 1;
+        BT_BITFIELD_ORDER(u16 id : 15, u16 flag : 1);
+        BT_BITFIELD_ORDER(u16 flag : 1, u16 id : 15);
         u8 pad14[16];
-        u16 type : 10;
-        u16 low24 : 6;
+        BT_BITFIELD_ORDER(u16 type : 10, u16 low24 : 6);
+        BT_BITFIELD_ORDER(u16 low24 : 6, u16 type : 10);
         u8 pad26[4];
-        u8 high2A : 6;
+        BT_BITFIELD_ORDER(u8 high2A : 6, u8 low2A : 1);
         u8 active : 1;
-        u8 low2A : 1;
+        BT_BITFIELD_ORDER(u8 low2A : 1, u8 high2A : 6);
         u8 pad2B[5];
     };
     s32 func_800EC854(void);
@@ -877,9 +877,9 @@ void func_800EC058(s32 *position, void *data) {
 void func_800EC058(s32 *arg0, void **arg1) {
     struct Flags {
         u8 pad[0x28];
-        u32 upper : 21;
+        BT_BITFIELD_ORDER(u32 upper : 21, u32 lower : 10);
         u32 update : 1;
-        u32 lower : 10;
+        BT_BITFIELD_ORDER(u32 lower : 10, u32 upper : 21);
     };
     s32 func_800BD97C(s32 *);
     void func_800CDFD0(void **);
@@ -932,12 +932,12 @@ void func_800EC124(f32 *position, void *data, f32 *angles) {
 void func_800EC124(f32 *arg0, void *arg1, f32 *arg2) {
     struct Angles {
         u8 pad[0x24];
-        u32 unused24 : 16;
+        BT_BITFIELD_ORDER(u32 unused24 : 16, u32 unused27 : 7);
         u32 x : 9;
-        u32 unused27 : 7;
-        u32 y : 9;
-        u32 z : 9;
-        u32 unused2A : 14;
+        BT_BITFIELD_ORDER(u32 unused27 : 7, u32 unused24 : 16);
+        BT_BITFIELD_ORDER(u32 y : 9, char : 0);
+        BT_BITFIELD_ORDER(u32 z : 9, u32 unused2A : 14);
+        BT_BITFIELD_ORDER(u32 unused2A : 14, u32 z : 9; u32 y : 9);
     };
     f32 func_800136E4(f32);
     struct Angles *data = arg1;
@@ -957,8 +957,8 @@ void func_800EC340(void *data, s32 index) {
 void func_800EC340(void *arg0, s32 arg1) {
     struct Fields {
         u8 pad[26];
-        u16 upper : 11;
-        u16 lower : 5;
+        BT_BITFIELD_ORDER(u16 upper : 11, u16 lower : 5);
+        BT_BITFIELD_ORDER(u16 lower : 5, u16 upper : 11);
     };
     ((struct Fields *)arg0)->upper = arg1;
 }
@@ -1167,10 +1167,10 @@ f32 func_800EC5C0(void *arg0, void *arg1) {
     typedef struct { Unk80132ED0 *marker; } PropView;
     typedef struct {
         u8 pad0[0x18];
-        u32 cached : 11;
-        u32 flags : 4;
-        u32 scaled : 1;
-        u32 rest : 16;
+        BT_BITFIELD_ORDER(u32 cached : 11, u32 rest : 16);
+        BT_BITFIELD_ORDER(u32 flags : 4, u32 scaled : 1);
+        BT_BITFIELD_ORDER(u32 scaled : 1, u32 flags : 4);
+        BT_BITFIELD_ORDER(u32 rest : 16, u32 cached : 11);
     } MarkerView;
     Unk80132ED0 *marker;
     f32 value;
@@ -1197,7 +1197,7 @@ f32 func_800EC708(Unk80132ED0 *marker) {
 f32 func_800EC708(Unk80132ED0 *marker) {
     f32 func_800EC5C0(void *, void *);
     f32 func_800EC48C(void *);
-    typedef struct { u8 pad0[8]; u32 reserved : 30; u32 isModel : 1; u32 flag : 1; } PropView;
+    typedef struct { u8 pad0[8]; BT_BITFIELD_ORDER(u32 reserved : 30, u32 flag : 1); u32 isModel : 1; BT_BITFIELD_ORDER(u32 flag : 1, u32 reserved : 30); } PropView;
     PropView *prop = marker->unk0;
     if (prop->isModel) return func_800EC5C0(prop, func_800EC504);
     else return func_800EC5C0(prop, func_800EC48C);

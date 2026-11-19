@@ -20,8 +20,8 @@ typedef struct { u8 pad0[0xC]; s16 unkC; s16 unkE; u8 pad10[0x8]; u32 unk18; } O
     int sucoasterplayer_entrypoint_3(void *);
     struct CoasterFlags {
         u8 pad[0x18];
-        u32 : 10;
-        u32 hit : 1;
+        BT_BITFIELD_ORDER(u32 : 10, u32 : 21);
+        BT_BITFIELD_ORDER(u32 hit : 1, u32 hit : 1; u32  : 10);
     };
     void *sp24;
 
@@ -129,10 +129,10 @@ void sucoasterplayer_entrypoint_1(Actor *arg0) {
     s32 func_80107070(Actor *, s32);
     struct CoasterFlags {
         u8 pad0[0x70];
-        u32 unk70_25 : 7;
-        u32 pad70_10 : 15;
-        u32 unk70_4 : 6;
-        u32 pad70_0 : 4;
+        BT_BITFIELD_ORDER(u32 unk70_25 : 7, u32 pad70_0 : 4);
+        BT_BITFIELD_ORDER(u32 pad70_10 : 15, u32 unk70_4 : 6);
+        BT_BITFIELD_ORDER(u32 unk70_4 : 6, u32 pad70_10 : 15);
+        BT_BITFIELD_ORDER(u32 pad70_0 : 4, u32 unk70_25 : 7);
     } *flags = (void *)arg0;
     s32 var_a1;
 

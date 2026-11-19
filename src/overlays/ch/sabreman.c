@@ -36,9 +36,9 @@ OSThread *chsabreman_entrypoint_3(void)
 int func_80800030_chsabreman(Actor *arg0) {
     struct SabremanFlags {
         u8 pad0[0x74];
-        u32 pad74_21 : 11;
+        BT_BITFIELD_ORDER(u32 pad74_21 : 11, u32 pad74_0 : 20);
         u32 unk74_20 : 1;
-        u32 pad74_0 : 20;
+        BT_BITFIELD_ORDER(u32 pad74_0 : 20, u32 pad74_21 : 11);
     };
     s32 _glcutDll_entrypoint_20();
     void _subaddielink_entrypoint_0(void *arg0);
@@ -110,9 +110,9 @@ void func_80800218_chsabreman(Actor *arg0) {
     };
     struct SabremanFlags {
         u8 pad0[0x74];
-        u32 pad74_21 : 11;
+        BT_BITFIELD_ORDER(u32 pad74_21 : 11, u32 pad74_0 : 20);
         u32 unk74_20 : 1;
-        u32 pad74_0 : 20;
+        BT_BITFIELD_ORDER(u32 pad74_0 : 20, u32 pad74_21 : 11);
     };
     void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
@@ -357,9 +357,9 @@ s32 func_808008C8_chsabreman(Actor *arg0, s32 arg1, s32 arg2) {
     extern s32 _chsabreman_entrypoint_0;
 #endif
     struct SabremanFlags {
-        u32 pad : 26;
+        BT_BITFIELD_ORDER(u32 pad : 26, u32 rest : 5);
         u32 active : 1;
-        u32 rest : 5;
+        BT_BITFIELD_ORDER(u32 rest : 5, u32 pad : 26);
     };
     u8 *data;
     Actor *child;

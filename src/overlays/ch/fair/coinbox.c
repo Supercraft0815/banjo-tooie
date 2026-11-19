@@ -1,13 +1,13 @@
 #include "common.h"
 
 s32 func_80800000_chfaircoinbox(u8 *arg0) {
-    struct CoinboxData { u8 pad[0x76]; unsigned short index : 9; unsigned short rest : 7; };
+    struct CoinboxData { u8 pad[0x76]; BT_BITFIELD_ORDER(unsigned short index : 9, unsigned short rest : 7); BT_BITFIELD_ORDER(unsigned short rest : 7, unsigned short index : 9); };
     extern s16 D_80800488_chfaircoinbox[3];
     return D_80800488_chfaircoinbox[((struct CoinboxData *)arg0)->index - 0x32];
 }
 
 void func_8080001C_chfaircoinbox(u8 *arg0) {
-    struct CoinboxData { u8 pad[0x76]; unsigned short index : 9; unsigned short rest : 7; };
+    struct CoinboxData { u8 pad[0x76]; BT_BITFIELD_ORDER(unsigned short index : 9, unsigned short rest : 7); BT_BITFIELD_ORDER(unsigned short rest : 7, unsigned short index : 9); };
     void func_800DA544(s32 index);
     extern s32 D_80800470_chfaircoinbox[3][2];
     func_800DA544(D_80800470_chfaircoinbox[((struct CoinboxData *)arg0)->index - 0x32][1]);

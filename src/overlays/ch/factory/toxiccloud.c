@@ -101,11 +101,11 @@ s32 func_808000F0_chfactorytoxiccloud(void *arg0, void *arg1) {
         Actor actor;
         struct {
             u8 pad[0x70];
-            u32 first : 7;
-            u32 unused : 9;
+            BT_BITFIELD_ORDER(u32 first : 7, u32 tail : 4);
+            BT_BITFIELD_ORDER(u32 unused : 9, u32 second : 6);
             u32 state : 6;
-            u32 second : 6;
-            u32 tail : 4;
+            BT_BITFIELD_ORDER(u32 second : 6, u32 unused : 9);
+            BT_BITFIELD_ORDER(u32 tail : 4, u32 first : 7);
         } data;
     };
     s32 func_800CC338(s32 *, s32, s32);
@@ -138,15 +138,15 @@ void func_808001B8_chfactorytoxiccloud(Actor *arg0) {
         Actor actor;
         struct {
             u8 pad[0x70];
-            u32 first : 7;
-            u32 unused : 9;
+            BT_BITFIELD_ORDER(u32 first : 7, u32 tail : 4);
+            BT_BITFIELD_ORDER(u32 unused : 9, u32 second : 6);
             u32 state : 6;
-            u32 second : 6;
-            u32 tail : 4;
+            BT_BITFIELD_ORDER(u32 second : 6, u32 unused : 9);
+            BT_BITFIELD_ORDER(u32 tail : 4, u32 first : 7);
             u32 pad74;
-            u32 pad78 : 29;
+            BT_BITFIELD_ORDER(u32 pad78 : 29, u32 tail78 : 2);
             u32 inactive : 1;
-            u32 tail78 : 2;
+            BT_BITFIELD_ORDER(u32 tail78 : 2, u32 pad78 : 29);
         } data;
     };
     struct CloudData {
@@ -385,9 +385,9 @@ typedef union {
     Actor actor;
     struct {
         u8 pad0[0x64];
-        u32 pad64_30 : 2;
+        BT_BITFIELD_ORDER(u32 pad64_30 : 2, u32 pad64_0 : 29);
         u32 unk64_29 : 1;
-        u32 pad64_0 : 29;
+        BT_BITFIELD_ORDER(u32 pad64_0 : 29, u32 pad64_30 : 2);
     } flags;
 } ToxicCloudActor;
 
@@ -437,9 +437,9 @@ void func_80800C7C_chfactorytoxiccloud(Actor *arg0, u8 *arg1) {
         Actor actor;
         struct {
             u8 pad[0x78];
-            u32 unused : 29;
+            BT_BITFIELD_ORDER(u32 unused : 29, u32 tail : 2);
             u32 halfAlpha : 1;
-            u32 tail : 2;
+            BT_BITFIELD_ORDER(u32 tail : 2, u32 unused : 29);
         } flags;
     } Cloud;
     f32 offset[3];
@@ -510,10 +510,10 @@ void func_80800FCC_chfactorytoxiccloud(Actor *arg0, s32 arg1) {
         Actor actor;
         struct {
             u8 pad0[0x70];
-            u32 first : 7;
-            u32 pad70 : 15;
-            u32 second : 6;
-            u32 tail : 4;
+            BT_BITFIELD_ORDER(u32 first : 7, u32 tail : 4);
+            BT_BITFIELD_ORDER(u32 pad70 : 15, u32 second : 6);
+            BT_BITFIELD_ORDER(u32 second : 6, u32 pad70 : 15);
+            BT_BITFIELD_ORDER(u32 tail : 4, u32 first : 7);
         } indices;
     } Cloud;
     f32 sp40[3];
@@ -615,9 +615,9 @@ s32 func_808012C4_chfactorytoxiccloud(Actor *arg0) {
         Actor actor;
         struct {
             u8 pad[0x78];
-            u32 head : 29;
+            BT_BITFIELD_ORDER(u32 head : 29, u32 tail : 2);
             u32 inactive : 1;
-            u32 tail : 2;
+            BT_BITFIELD_ORDER(u32 tail : 2, u32 head : 29);
         } flags;
     } Cloud;
     s32 _subaddiefind_entrypoint_4(s32, u8 **, s32);

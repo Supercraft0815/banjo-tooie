@@ -118,12 +118,12 @@ void chfreezy_entrypoint_1(Actor *arg0, s16 *arg1) {
         Actor actor;
         struct {
             u8 pad0[0x74];
-            u32 pad74_25 : 7;
+            BT_BITFIELD_ORDER(u32 pad74_25 : 7, u32 pad74_0 : 24);
             u32 unk74_24 : 1;
-            u32 pad74_0 : 24;
-            u32 pad78_3 : 29;
-            u32 unk78_2 : 1;
-            u32 pad78_0 : 2;
+            BT_BITFIELD_ORDER(u32 pad74_0 : 24, u32 pad74_25 : 7);
+            BT_BITFIELD_ORDER(u32 pad78_3 : 29, char : 0);
+            BT_BITFIELD_ORDER(u32 unk78_2 : 1, u32 pad78_0 : 2);
+            BT_BITFIELD_ORDER(u32 pad78_0 : 2, u32 unk78_2 : 1; u32 pad78_3 : 29);
         } flags;
     } *freezy = (void *)arg0;
 

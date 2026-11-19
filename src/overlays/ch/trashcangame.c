@@ -132,7 +132,7 @@ void func_80800180_chtrashcangame(Actor *arg0) {
 }
 
 void func_808003D0_chtrashcangame(void *arg0, s32 arg1) {
-    typedef struct { u8 padding[0x79]; u8 variant : 4; u8 other : 4; } TrashFlags;
+    typedef struct { u8 padding[0x79]; BT_BITFIELD_ORDER(u8 variant : 4, u8 other : 4); BT_BITFIELD_ORDER(u8 other : 4, u8 variant : 4); } TrashFlags;
     void _gcfrontend_entrypoint_9(s32 arg0);
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
     void func_800946C4(void *arg0, s32 arg1);
@@ -680,11 +680,11 @@ typedef struct {
     u8 pad0[0x24];
     f32 particleTimer;
     u8 pad28[0x48];
-    u32 particleIndex : 7;
-    u32 pad70_16 : 9;
+    BT_BITFIELD_ORDER(u32 particleIndex : 7, u32 pad70_0 : 4);
+    BT_BITFIELD_ORDER(u32 pad70_16 : 9, u32 particleSubIndex : 6);
     u32 state : 6;
-    u32 particleSubIndex : 6;
-    u32 pad70_0 : 4;
+    BT_BITFIELD_ORDER(u32 particleSubIndex : 6, u32 pad70_16 : 9);
+    BT_BITFIELD_ORDER(u32 pad70_0 : 4, u32 particleIndex : 7);
 } ChTrashcanParticleActor;
 struct ColorTable { f32 values[4]; };
 void func_808018E4_chtrashcangame(ChTrashcanParticleActor *arg0) {

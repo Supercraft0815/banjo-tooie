@@ -393,13 +393,13 @@ s32 func_80800BA4_chfireicestorm(Actor *arg0, s32 arg1, void *arg2) {
     extern s32 D_80800F54_chfireicestorm[5];
     struct {
         u8 pad0[0x18];
-        u32 pad18 : 16;
+        BT_BITFIELD_ORDER(u32 pad18 : 16, u32 pad1B : 5);
         u32 flag : 11;
-        u32 pad1B : 5;
+        BT_BITFIELD_ORDER(u32 pad1B : 5, u32 pad18 : 16);
         u32 unk1C;
         u32 unk20;
-        u32 kind : 10;
-        u32 pad24 : 22;
+        BT_BITFIELD_ORDER(u32 kind : 10, u32 pad24 : 22);
+        BT_BITFIELD_ORDER(u32 pad24 : 22, u32 kind : 10);
     } *marker;
     Actor *actor;
     f32 *value;

@@ -83,9 +83,9 @@ void func_808000CC_chcaptainblubber(Actor *arg0) {
 void func_808001F0_chcaptainblubber(Actor *arg0) {
     struct BlubberFlags {
         u8 pad[0x70];
-        u32 pad70 : 28;
+        BT_BITFIELD_ORDER(u32 pad70 : 28, u32 pad73 : 3);
         u32 expression : 1;
-        u32 pad73 : 3;
+        BT_BITFIELD_ORDER(u32 pad73 : 3, u32 pad70 : 28);
     };
     s32 _subaddiedialog_entrypoint_3(f32 *, s32, s32, s32, s32);
     s32 _subaddiedialog_entrypoint_6(f32 *, s32, s32, s32, s32);
