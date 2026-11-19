@@ -1,29 +1,29 @@
-#include "common.h"
+#include "gameselect_tables.h"
 
 s32 _gczoombox_entrypoint_4(s32, void *);
 
 struct anctrl_s;
 
-typedef struct { s16 unk0; s16 id; s16 value; } SelectEntry;
+
 
 s32 func_800D9078(f32 *);
 
-typedef struct {
-    s32 (*init)(Actor *);
-    u8 pad4[0x24];
-    void (*callback)(Actor *, s32 *);
-    u8 pad2C[8];
-} GameSelectInitTable;
 
 
-typedef struct { u8 data[0x260]; } OptionState;
+
+
+
+
+
+
+
 u32 _gcnewoption_entrypoint_37(OptionState *, u32);
 
 OSThread *chgameselect_entrypoint_0(void)
 {
-    extern u8 D_80807FD8_chgameselect[];
 
-    return (OSThread *) D_80807FD8_chgameselect;
+
+    return (OSThread *) &D_80807FD8_chgameselect;
 }
 
 void func_8080000C_chgameselect(Actor *arg0) {
@@ -181,12 +181,12 @@ void func_80800440_chgameselect(void *arg0) {
 }
 
 void func_80800478_chgameselect(BtIntPtr arg0, s32 arg1) {
-    typedef struct {
-        void (*callback)(void);
-        u8 pad4[0x30];
-    } GameSelectExit;
-    extern GameSelectInitTable D_80807DD0_chgameselect[];
-    extern GameSelectExit D_80807DD4_chgameselect[];
+
+
+
+
+
+
     void func_80101FDC(Actor *, u32);
     s32 func_80801658_chgameselect(BtIntPtr, s32);
     void func_80801714_chgameselect(Unk80132ED0 *, s32);
@@ -201,14 +201,14 @@ void func_80800478_chgameselect(BtIntPtr arg0, s32 arg1) {
         void *second;
     } GameSelectData;
     s32 option;
-    void (*exitCallback)(void);
+    GameSelectExit exitCallback;
     Actor *actor = (Actor *)arg0;
     GameSelectData *data;
 
     option = -1;
-    if (arg1 != actor->unk70_10) { exitCallback = D_80807DD4_chgameselect[actor->unk70_10].callback;
+    if (arg1 != actor->unk70_10) { exitCallback = D_80807DD0_chgameselect[actor->unk70_10].exit;
         if (exitCallback != NULL) {
-            exitCallback();
+            exitCallback(BT_NATIVE_ONLY(actor));
         }
         func_80101FDC(actor, arg1);
         data = (GameSelectData *)actor->actorData;
@@ -235,7 +235,7 @@ void func_80800478_chgameselect(BtIntPtr arg0, s32 arg1) {
 }
 
 void func_808005D4_chgameselect(Actor *arg0, s32 arg1) {
-    extern s32 D_80807DB0_chgameselect[];
+
     void func_80802640_chgameselect(Unk80132ED0 *, s32, s32);
     void func_808026C8_chgameselect(Unk80132ED0 *, s32);
     void func_80803678_chgameselect();
@@ -254,19 +254,19 @@ void func_808005D4_chgameselect(Actor *arg0, s32 arg1) {
             func_808036B8_chgameselect(option);
         }
         func_80802640_chgameselect((Unk80132ED0 *)arg0->actorData[5],
-            *(s16 *)&D_80807DB0_chgameselect[(u32)arg0->unk79_4], 0);
+            D_80807DB0_chgameselect[arg0->unk79_4].model, 0);
         func_808026C8_chgameselect((Unk80132ED0 *)arg0->actorData[5],
             func_80803DCC_chgameselect(arg0->unk79_4));
     }
 }
 
 void func_808006A0_chgameselect(Actor *arg0, s32 arg1) {
-    typedef struct {
-        s32 (*callback)(Actor *, s32, s32 *);
-        s32 pad[12];
-    } StateCallback;
-    extern StateCallback D_80807DD8_chgameselect[];
-    extern s16 D_80807DB2_chgameselect[][2];
+
+
+
+
+
+
     void func_80800478_chgameselect(BtIntPtr, s32);
     void func_808026C8_chgameselect(Unk80132ED0 *, s32);
     s32 func_80803718_chgameselect(void);
@@ -278,7 +278,7 @@ void func_808006A0_chgameselect(Actor *arg0, s32 arg1) {
     s32 changed = 0;
     s32 (*callback)(Actor *, s32, s32 *);
 
-    callback = D_80807DD8_chgameselect[arg0->unk70_10].callback;
+    callback = D_80807DD0_chgameselect[arg0->unk70_10].change;
     if (callback != NULL) {
         changed = callback(arg0, arg1, &next);
     }
@@ -315,7 +315,7 @@ void func_808006A0_chgameselect(Actor *arg0, s32 arg1) {
             changed = 1;
         } else {
             func_80800478_chgameselect(arg0,
-                D_80807DB2_chgameselect[arg0->unk79_4][0]);
+                D_80807DB0_chgameselect[arg0->unk79_4].value);
         }
     }
     if (changed != 0) {
@@ -351,18 +351,18 @@ void func_8080086C_chgameselect(Actor *arg0, s32 arg1) {
 }
 
 void func_808008D0_chgameselect(Actor *arg0, BtIntPtr arg1, s32 arg2) {
-    typedef struct {
-        s32 (*callback)(Actor *, s32, s32);
-        u8 pad4[0x30];
-    } GameSelectCallback;
+
+
+
+
     void func_808026C8_chgameselect(Unk80132ED0 *, s32);
-    extern GameSelectCallback D_80807DE0_chgameselect[];
-    s32 (*temp_v0)(Actor *, s32, s32);
+
+    GameSelectSelect temp_v0;
     s32 var_a3;
     Actor **actor = &arg0;
 
     var_a3 = -1;
-    temp_v0 = D_80807DE0_chgameselect[arg0->unk70_10].callback;
+    temp_v0 = D_80807DD0_chgameselect[arg0->unk70_10].select;
     if (temp_v0 != NULL) {
         var_a3 = temp_v0(arg0, arg1, arg2);
     }
@@ -372,15 +372,15 @@ void func_808008D0_chgameselect(Actor *arg0, BtIntPtr arg1, s32 arg2) {
 }
 
 void func_80800944_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
-    typedef struct {
-        void (*callback)();
-        u8 pad4[0x30];
-    } GameSelectCallback;
-    extern GameSelectCallback D_80807DE4_chgameselect[];
+
+
+
+
+
     void (*temp_v0)();
     Actor *original;
 
-    temp_v0 = D_80807DE4_chgameselect[arg0->unk70_10].callback;
+    temp_v0 = D_80807DD0_chgameselect[arg0->unk70_10].onEvent5;
     if (temp_v0 != NULL) {
         original = arg0;
         arg0 = (Actor *)((BtUIntPtr)arg0 ^ 0);
@@ -392,15 +392,15 @@ void func_80800944_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80800998_chgameselect(Actor *arg0, void *arg1, s32 arg2) {
-    typedef struct {
-        void (*callback)();
-        u8 pad4[0x30];
-    } GameSelectCallback;
-    extern GameSelectCallback D_80807DE8_chgameselect[];
+
+
+
+
+
     void (*temp_v0)();
     Actor *original;
 
-    temp_v0 = D_80807DE8_chgameselect[arg0->unk70_10].callback;
+    temp_v0 = D_80807DD0_chgameselect[arg0->unk70_10].onEvent3;
     if (temp_v0 != NULL) {
         original = arg0;
         arg0 = (Actor *)((BtUIntPtr)arg0 ^ 0);
@@ -410,17 +410,17 @@ void func_80800998_chgameselect(Actor *arg0, void *arg1, s32 arg2) {
         return;
     }
 }
-typedef void (*GameSelectEventCallback)(BT_PARAM_OR_VOID(BT_PASS2(Actor *, BT_PASS2(void *, BT_PASS2(s32, s32)))));
+
 void func_808009EC_chgameselect(BT_IDO_ONLY(Actor *arg0) BT_PASS2(Actor *arg0, BT_PASS2(void *option, BT_PASS2(s32 item, s32 event)))) {
-    typedef struct {
-        GameSelectEventCallback callback;
-        u8 pad4[0x30];
-    } GameSelectCallback;
+
+
+
+
     void func_80800478_chgameselect(BtIntPtr, s32);
-    extern GameSelectCallback D_80807DEC_chgameselect[];
+
     GameSelectEventCallback temp_v0;
 
-    temp_v0 = D_80807DEC_chgameselect[arg0->unk70_10].callback;
+    temp_v0 = D_80807DD0_chgameselect[arg0->unk70_10].onEvent2;
     if (temp_v0 != NULL) {
         BT_IDO_ONLY(temp_v0();) BT_NATIVE_ONLY(temp_v0(arg0, option, item, event);)
         return;
@@ -429,50 +429,50 @@ void func_808009EC_chgameselect(BT_IDO_ONLY(Actor *arg0) BT_PASS2(Actor *arg0, B
 }
 
 void func_80800A4C_chgameselect(BT_IDO_ONLY(Actor *arg0) BT_PASS2(Actor *arg0, BT_PASS2(void *option, BT_PASS2(s32 item, s32 event)))) {
-    typedef struct {
-        GameSelectEventCallback callback;
-        u8 pad4[0x30];
-    } GameSelectCallback;
-    extern GameSelectCallback D_80807DFC_chgameselect[];
+
+
+
+
+
     GameSelectEventCallback temp_v0;
 
-    temp_v0 = D_80807DFC_chgameselect[arg0->unk70_10].callback;
+    temp_v0 = D_80807DD0_chgameselect[arg0->unk70_10].onEvent7;
     if (temp_v0 != NULL) {
         BT_IDO_ONLY(temp_v0();) BT_NATIVE_ONLY(temp_v0(arg0, option, item, event);)
     }
 }
 
 void func_80800A9C_chgameselect(BT_IDO_ONLY(Actor *arg0) BT_PASS2(Actor *arg0, BT_PASS2(void *option, BT_PASS2(s32 item, s32 event)))) {
-    typedef struct {
-        GameSelectEventCallback callback;
-        u8 pad4[0x30];
-    } GameSelectCallback;
-    extern GameSelectCallback D_80807E00_chgameselect[];
+
+
+
+
+
     GameSelectEventCallback temp_v0;
 
-    temp_v0 = D_80807E00_chgameselect[arg0->unk70_10].callback;
+    temp_v0 = D_80807DD0_chgameselect[arg0->unk70_10].onEvent6;
     if (temp_v0 != NULL) {
         BT_IDO_ONLY(temp_v0();) BT_NATIVE_ONLY(temp_v0(arg0, option, item, event);)
     }
 }
 
 void func_80800AEC_chgameselect(Unk80132ED0 *arg0, void *arg1, s32 arg2, s32 arg3) {
-    typedef struct {
-        void (*callback)(Actor *, void *, s32, s32);
-        u8 pad4[0x30];
-    } GameSelectCallback;
+
+
+
+
     Actor *func_80106790(Unk80132ED0 *);
     void func_80800944_chgameselect();
     void func_80800998_chgameselect();
-    extern GameSelectCallback D_80807DDC_chgameselect[];
-    extern GameSelectCallback D_80807DF0_chgameselect[];
-    extern GameSelectCallback D_80807DF4_chgameselect[];
+
+
+
     Actor *actor;
 
     actor = func_80106790(arg0);
     switch (arg3) {
     case 0:
-        D_80807DDC_chgameselect[actor->unk70_10].callback(actor, arg1, arg2, arg3);
+        D_80807DD0_chgameselect[actor->unk70_10].open(actor, arg1, arg2, arg3);
         break;
     case 3:
 #ifdef BT_NATIVE
@@ -501,32 +501,32 @@ void func_80800AEC_chgameselect(Unk80132ED0 *arg0, void *arg1, s32 arg2, s32 arg
         func_80800A4C_chgameselect(BT_IDO_ONLY(actor) BT_PASS2(actor, BT_PASS2(arg1, BT_PASS2(arg2, arg3))));
         break;
     case 0xFF:
-        D_80807DF0_chgameselect[actor->unk70_10].callback(actor, arg1, arg2, arg3);
+        D_80807DD0_chgameselect[actor->unk70_10].onEventFF(actor, arg1, arg2, arg3);
         break;
     case 0xFC:
     case 0xFD:
     case 0xFE:
-        D_80807DF4_chgameselect[actor->unk70_10].callback(actor, arg1, arg2, arg3);
+        D_80807DD0_chgameselect[actor->unk70_10].onEventFC(actor, arg1, arg2, arg3);
         break;
     }
 }
 
 void func_80800CA0_chgameselect(Unk80132ED0 *arg0) {
-    typedef struct {
-        u8 pad0[0x28];
-        void (*callback)(Actor *, s32 *);
-        u8 pad2C[8];
-    } GameSelectCallback;
+
+
+
+
+
     Actor *func_80106790(Unk80132ED0 *);
     void func_808026C8_chgameselect(Unk80132ED0 *, s32);
-    extern GameSelectInitTable D_80807DD0_chgameselect[];
+
     s32 sp1C;
     Actor *actor;
 
     sp1C = -1;
     actor = func_80106790(arg0);
-    if (D_80807DD0_chgameselect[actor->unk70_10].callback != NULL) {
-        D_80807DD0_chgameselect[actor->unk70_10].callback(actor, &sp1C);
+    if (D_80807DD0_chgameselect[actor->unk70_10].getOption != NULL) {
+        D_80807DD0_chgameselect[actor->unk70_10].getOption(actor, &sp1C);
     }
     if (sp1C != -1) {
         func_808026C8_chgameselect((Unk80132ED0 *)actor->actorData[5], sp1C);
@@ -540,9 +540,9 @@ s32 func_80800D3C_chgameselect(Unk80132ED0 *arg0) {
 
 OSThread *chgameselect_entrypoint_1(void)
 {
-    extern u8 D_80808038_chgameselect[];
 
-    return (OSThread *) D_80808038_chgameselect;
+
+    return (OSThread *) &D_80808038_chgameselect;
 }
 
 typedef struct {
@@ -896,9 +896,9 @@ void func_80801758_chgameselect(Unk80132ED0 *arg0, s32 arg1) {
 
 OSThread *chgameselect_entrypoint_2(void)
 {
-    extern u8 D_808080C8_chgameselect[];
 
-    return (OSThread *) D_808080C8_chgameselect;
+
+    return (OSThread *) &D_808080C8_chgameselect;
 }
 
 void func_8080179C_chgameselect(Actor *arg0) {
@@ -906,10 +906,10 @@ void func_8080179C_chgameselect(Actor *arg0) {
     f32 func_800DC178(f32, f32);
     s32 func_80101E14(Actor *, f32);
     s32 func_80101E4C(Actor *, f32 *);
-    extern f32 D_80808110_chgameselect[][11];
-    extern u16 D_80808270_chgameselect[];
-    extern u8 D_80808280_chgameselect[];
-    extern f32 D_80808288_chgameselect[];
+
+
+
+
 
     switch (arg0->unk79_4) {
         case 4:
@@ -967,8 +967,8 @@ void func_80801AC4_chgameselect(Actor *arg0) {
 }
 
 s32 func_80801BA8_chgameselect(Actor *arg0, s32 arg1, BtIntPtr arg2) {
-    extern u16 D_808080A8_chgameselect[][2];
-    extern s16 D_808080AA_chgameselect[][2];
+
+
     s32 _gcfrontend_entrypoint_1(s32);
     s32 _gcfrontend_entrypoint_2(void);
     void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
@@ -990,7 +990,7 @@ s32 func_80801BA8_chgameselect(Actor *arg0, s32 arg1, BtIntPtr arg2) {
     s32 index;
     switch (arg1) {
     case 0x95:
-        func_801032B0(arg0, D_808080A8_chgameselect[arg0->unk79_4][0], 0);
+        func_801032B0(arg0, D_808080A8_chgameselect[arg0->unk79_4].model, 0);
         control = func_80104248(arg0);
         func_8008B304(control);
         model = func_800B27E0(func_801039E4(arg0->unk0));
@@ -1012,7 +1012,7 @@ s32 func_80801BA8_chgameselect(Actor *arg0, s32 arg1, BtIntPtr arg2) {
     case 10:
         func_80802070_chgameselect(arg0, arg2 == arg0->unk79_4 ? 1 : 0);
         if (arg2 == arg0->unk79_4) {
-            index = D_808080AA_chgameselect[arg2][0];
+            index = D_808080A8_chgameselect[arg2].value;
             if (index >= 0) {
                 func_80803D00_chgameselect(index, 2);
             }
@@ -1189,16 +1189,16 @@ s32 func_8080218C_chgameselect(s32 arg0, s32 arg1) {
 
 OSThread *chgameselect_entrypoint_3(void)
 {
-    extern u8 D_80808298_chgameselect[];
 
-    return (OSThread *) D_80808298_chgameselect;
+
+    return (OSThread *) &D_80808298_chgameselect;
 }
 
 OSThread *chgameselect_entrypoint_4(void)
 {
-    extern u8 D_808082E0_chgameselect[];
 
-    return (OSThread *) D_808082E0_chgameselect;
+
+    return (OSThread *) &D_808082E0_chgameselect;
 }
 
 /* extern */
@@ -1461,9 +1461,9 @@ BT_NATIVE_ONLY(return 0;) }
 
 OSThread *chgameselect_entrypoint_5(void)
 {
-    extern u8 D_80808328_chgameselect[];
 
-    return (OSThread *) D_80808328_chgameselect;
+
+    return (OSThread *) &D_80808328_chgameselect;
 }
 
 void func_808027D4_chgameselect(s32 arg0)
@@ -2146,10 +2146,10 @@ void func_80803B3C_chgameselect(BtIntPtr arg0) {
     func_80800478_chgameselect(arg0, 8);
 }
 
-struct Entry { s32 id; void (*callback)(void *); };
-void func_80803B84_chgameselect(s32 arg0) { s32 func_800AA120(void); extern struct Entry D_80808370_chgameselect[]; extern struct Entry D_808083A0_chgameselect[]; struct Entry *var_v1; struct Entry *end; s32 temp_v0; temp_v0 = func_800AA120(); end = D_808083A0_chgameselect; var_v1 = D_80808370_chgameselect; loop_1: if (temp_v0 == var_v1->id) { var_v1->callback(end); } else { var_v1++; if (var_v1 != end) { goto loop_1; } } func_80803B3C_chgameselect(arg0); }
 
-void func_80803BE8_chgameselect(Actor *arg0) { void func_800AA054(s32); void func_800AA074(); s32 func_800AA120(void); extern struct Entry D_808083A0_chgameselect[]; extern struct Entry D_808083C8_chgameselect[]; struct Entry *var_v1; struct Entry *end; s32 temp_v0;  func_800AA074(); func_800AA054(*(s32 *)&arg0->unk54); temp_v0 = func_800AA120(); end = D_808083C8_chgameselect; var_v1 = D_808083A0_chgameselect; loop_1: if (temp_v0 == var_v1->id) { var_v1->callback(end); } else { var_v1++; if (var_v1 != end) { goto loop_1; } } func_80803B3C_chgameselect(arg0); }
+void func_80803B84_chgameselect(s32 arg0) { s32 func_800AA120(void);   GameSelectAction *var_v1; GameSelectAction *end; s32 temp_v0; temp_v0 = func_800AA120(); end = D_80808370_chgameselect.enter + 6; var_v1 = D_80808370_chgameselect.enter; loop_1: if (temp_v0 == var_v1->id) { var_v1->callback(end); } else { var_v1++; if (var_v1 != end) { goto loop_1; } } func_80803B3C_chgameselect(arg0); }
+
+void func_80803BE8_chgameselect(Actor *arg0) { void func_800AA054(s32); void func_800AA074(); s32 func_800AA120(void);   GameSelectAction *var_v1; GameSelectAction *end; s32 temp_v0;  func_800AA074(); func_800AA054(*(s32 *)&arg0->unk54); temp_v0 = func_800AA120(); end = D_80808370_chgameselect.resume + 5; var_v1 = D_80808370_chgameselect.resume; loop_1: if (temp_v0 == var_v1->id) { var_v1->callback(end); } else { var_v1++; if (var_v1 != end) { goto loop_1; } } func_80803B3C_chgameselect(arg0); }
 
 void func_80803C60_chgameselect()
 {
@@ -2314,10 +2314,10 @@ void func_8080401C_chgameselect(BtIntPtr arg0, s32 arg1, s32 arg2) {
     s32 _gcnewoption_entrypoint_13(BtIntPtr, s32, s32 *);
     s32 _gcnewoption_entrypoint_19(OptionState *, s32);
     s32 _gcnewoption_entrypoint_23(BtIntPtr, s32);
-    extern struct Entry D_808083C8_chgameselect[];
+
     if (_gcnewoption_entrypoint_19(arg0, arg1) == 0) {
         _gcnewoption_entrypoint_23(arg0, arg1);
-        _gcnewoption_entrypoint_13(arg0, arg1, &D_808083C8_chgameselect[0].id);
+        _gcnewoption_entrypoint_13(arg0, arg1, D_80808370_chgameselect.color);
         if (arg2 != 0) {
             func_80803CE0_chgameselect();
         }
@@ -2328,10 +2328,10 @@ void func_8080407C_chgameselect(BtIntPtr arg0, s32 arg1, s32 arg2) {
     s32 _gcnewoption_entrypoint_13(BtIntPtr, s32, s32 *);
     s32 _gcnewoption_entrypoint_17();
     s32 _gcnewoption_entrypoint_21(BtIntPtr, s32);
-    extern s32 D_808083D0_chgameselect;
+
     if (_gcnewoption_entrypoint_17() == 0) {
         _gcnewoption_entrypoint_21(arg0, arg1);
-        _gcnewoption_entrypoint_13(arg0, arg1, &D_808083D0_chgameselect);
+        _gcnewoption_entrypoint_13(arg0, arg1, D_808083D0_chgameselect);
         if (arg2 != 0) {
             func_80803CC0_chgameselect();
         }
@@ -2342,10 +2342,10 @@ void func_808040DC_chgameselect(BtIntPtr arg0, s32 arg1, s32 arg2) {
     s32 _gcnewoption_entrypoint_13(BtIntPtr, s32, s32 *);
     s32 _gcnewoption_entrypoint_18();
     s32 _gcnewoption_entrypoint_22(BtIntPtr, s32);
-    extern s32 D_808083D8_chgameselect;
+
     if (_gcnewoption_entrypoint_18() == 0) {
         _gcnewoption_entrypoint_22(arg0, arg1);
-        _gcnewoption_entrypoint_13(arg0, arg1, &D_808083D8_chgameselect);
+        _gcnewoption_entrypoint_13(arg0, arg1, D_808083D8_chgameselect);
         if (arg2 != 0) {
             func_80803CE0_chgameselect();
         }
@@ -2519,9 +2519,9 @@ s32 func_8080462C_chgameselect(u8 *arg0) {
     s32 func_80801658_chgameselect(BtIntPtr, s32);
     void func_80802AD4_chgameselect(Unk80132ED0 *, s32, s32, s32, s32);
     s32 func_80803D00_chgameselect(s32, s32);
-    extern s32 D_80807DB0_chgameselect[];
+
     func_80801658_chgameselect((((Objgameselect_arg0 *)arg0)->unk28), 1);
-    func_80802AD4_chgameselect((((Objgameselect_arg0 *)arg0)->unk30), *(s16 *)&D_80807DB0_chgameselect[(u32)((Actor *)arg0)->unk79_4], 3, 1, 0);
+    func_80802AD4_chgameselect((((Objgameselect_arg0 *)arg0)->unk30), D_80807DB0_chgameselect[((Actor *)arg0)->unk79_4].model, 3, 1, 0);
     func_80803D00_chgameselect(5, 1);
     return 1;
 }
@@ -2540,11 +2540,11 @@ void func_808046D0_chgameselect(s32 arg0, s32 arg1) {
     void _gcnewoption_entrypoint_31(BtIntPtr, s32, s16);
     s32 func_80804948_chgameselect(s32);
     void func_808049E8_chgameselect(s32, s32, s32);
-    extern s16 D_808083E0_chgameselect;
+
     s16 *var_s1;
     s32 var_s0;
 
-    var_s1 = &D_808083E0_chgameselect;
+    var_s1 = D_808083E0_chgameselect;
     var_s0 = 0;
     do {
         func_808049E8_chgameselect(arg1, var_s0, func_80804948_chgameselect(var_s0));
@@ -2761,9 +2761,9 @@ void func_80804BF4_chgameselect(u8 *arg0, s32 arg1, s32 arg2) {
 void func_80804C30_chgameselect(void *arg0, s32 arg1) {
     s32 _gcfrontend_entrypoint_1(s32);
     void func_80802E38_chgameselect(Unk80132ED0 *, s32, s32, s32);
-    extern s32 D_80807DB0_chgameselect[];
 
-    extern SelectEntry D_808083E8_chgameselect[];
+
+
     s32 i;
     s32 count;
     s32 selected;
@@ -2779,7 +2779,7 @@ void func_80804C30_chgameselect(void *arg0, s32 arg1) {
             count++;
         }
     }
-    func_80802E38_chgameselect((Unk80132ED0 *)((Actor *)arg0)->actorData[6], *(s16 *)&D_80807DB0_chgameselect[(u32)((Actor *)arg0)->unk79_4], selected, 0);
+    func_80802E38_chgameselect((Unk80132ED0 *)((Actor *)arg0)->actorData[6], D_80807DB0_chgameselect[((Actor *)arg0)->unk79_4].model, selected, 0);
     func_808026C8_chgameselect((Unk80132ED0 *)((Actor *)arg0)->actorData[5], 2);
 }
 
@@ -2789,7 +2789,7 @@ void func_80804D30_chgameselect(Actor *arg0, s32 arg1) {
     u8 _gcfrontend_entrypoint_4(s32);
     u8 _gcfrontend_entrypoint_5(s32);
     void func_80802E38_chgameselect(Unk80132ED0 *, s32, s32, s32);
-    extern SelectEntry D_808083E8_chgameselect[];
+
     s32 var_s1;
     s32 sp40;
     s32 var_s0;
@@ -2814,7 +2814,7 @@ void func_80804D30_chgameselect(Actor *arg0, s32 arg1) {
             var_s0 += 1;
         } while (var_s1 != temp_s2);
     }
-    func_80802E38_chgameselect((Unk80132ED0 *)arg0->actorData[6], sp30->unk0, 0, 0);
+    func_80802E38_chgameselect((Unk80132ED0 *)arg0->actorData[6], sp30->text, 0, 0);
     func_808026C8_chgameselect((Unk80132ED0 *)arg0->actorData[5], arg1 + 3);
     arg0->actorData[0] = sp38;
 }
@@ -3011,8 +3011,8 @@ void func_80805310_chgameselect(u8 *arg0) {
     void func_808026C8_chgameselect(Unk80132ED0 *, s32);
     void func_80802AD4_chgameselect(Unk80132ED0 *, s32, s32, s32, s32);
     void func_80802D04_chgameselect(Unk80132ED0 *, s32);
-    extern s32 D_80807DB0_chgameselect[];
-    func_80802AD4_chgameselect((*(s32 *)((s8 *)(arg0) + (0x30))), *(s16 *)&D_80807DB0_chgameselect[(u32)((Actor *)arg0)->unk79_4], 3, 1, 0);
+
+    func_80802AD4_chgameselect((*(s32 *)((s8 *)(arg0) + (0x30))), D_80807DB0_chgameselect[((Actor *)arg0)->unk79_4].model, 3, 1, 0);
     func_80802D04_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x30))), 1);
     func_808026C8_chgameselect((*(Unk80132ED0 **)((s8 *)(arg0) + (0x2C))), 2);
     (*(s32 *)((s8 *)(arg0) + (0x18))) = 0;
@@ -3020,26 +3020,26 @@ void func_80805310_chgameselect(u8 *arg0) {
 
 void func_8080537C_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80802E38_chgameselect(Unk80132ED0 *, s32, s32, s32);
-    extern u8 D_80808424_chgameselect[];
+
     s32 i;
     s32 offset;
     s8 firstOffset;
     u8 *items;
     u8 item;
-    u8 *entry;
+    GameSelectMenu *entry;
 
-    entry = D_80808424_chgameselect + arg1 * 12;
-    func_80802D40_chgameselect((Unk80132ED0 *)arg0->actorData[6], (s32) entry[0], (s32) *(s16 *)(entry + 6));
+    entry = &D_80808424_chgameselect[arg1];
+    func_80802D40_chgameselect((Unk80132ED0 *)arg0->actorData[6], (s32) entry->count, (s32) entry->description);
     i = 0;
-    if ((s32)entry[0] > 0) {
+    if ((s32)entry->count > 0) {
 loop:
         {
-firstOffset = *(s8 *)(entry + 3); offset = firstOffset >= 0 ? firstOffset + i : -1; items = *(u8 **)(entry + 8); item = items != NULL ? items[i] : 0x9D; func_80802DB4_chgameselect((Unk80132ED0 *)arg0->actorData[6], i, entry[1] + i, -1, offset, item); i++;
+firstOffset = entry->firstOffset; offset = firstOffset >= 0 ? firstOffset + i : -1; items = entry->icons; item = items != NULL ? items[i] : 0x9D; func_80802DB4_chgameselect((Unk80132ED0 *)arg0->actorData[6], i, entry->first + i, -1, offset, item); i++;
         }
-        if (i < (s32)entry[0]) goto loop;
+        if (i < (s32)entry->count) goto loop;
     }
-    func_80802E38_chgameselect((Unk80132ED0 *)arg0->actorData[6], (s32) *(s16 *)(entry + 4), arg2, 4);
-    func_808026C8_chgameselect((Unk80132ED0 *)arg0->actorData[5], (s32) entry[2]);
+    func_80802E38_chgameselect((Unk80132ED0 *)arg0->actorData[6], (s32) entry->title, arg2, 4);
+    func_808026C8_chgameselect((Unk80132ED0 *)arg0->actorData[5], (s32) entry->option);
     arg0->actorData[0] = arg1;
 }
 
@@ -3060,8 +3060,8 @@ void func_80805498_chgameselect(Actor *arg0, BtIntPtr arg1) {
     s32 func_808068E8_chgameselect(void);
     s32 func_80806A30_chgameselect(void);
     void func_80806AF4_chgameselect(BtIntPtr, s32, s32);
-    extern u8 D_808083FC_chgameselect[];
-    extern u8 D_8080840C_chgameselect[];
+
+
     s32 i;
     s32 count;
     s32 selected;
@@ -3331,10 +3331,10 @@ void func_80805CD8_chgameselect(Actor *arg0, s32 arg1) {
     s32 func_808068E8_chgameselect(void);
     s32 func_80806A30_chgameselect(void);
     void func_80802E38_chgameselect(Unk80132ED0 *, s32, s32, s32);
-    extern u8 D_80808404_chgameselect;
-    extern u8 D_80808405_chgameselect;
-    extern u8 D_80808406_chgameselect;
-    extern u8 D_80808407_chgameselect;
+
+
+
+
     s32 flag;
     s32 value;
     s32 selection;
@@ -3361,12 +3361,12 @@ void func_80805CD8_chgameselect(Actor *arg0, s32 arg1) {
         break;
     }
     func_80802D40_chgameselect((Unk80132ED0 *)arg0->actorData[6], 4, 0);
-    func_80802DB4_chgameselect((Unk80132ED0 *)arg0->actorData[6], 0, 0, -1, -1, D_80808404_chgameselect);
+    func_80802DB4_chgameselect((Unk80132ED0 *)arg0->actorData[6], 0, 0, -1, -1, D_80808404_chgameselect[0]);
     value = func_80805ECC_chgameselect((s32 *)arg0, 1);
-    func_80802DB4_chgameselect((Unk80132ED0 *)arg0->actorData[6], 1, value + 0x23, flag ? 0x26 : -1, -1, D_80808405_chgameselect);
-    func_80802DB4_chgameselect((Unk80132ED0 *)arg0->actorData[6], 2, selection, -1, -1, D_80808406_chgameselect);
+    func_80802DB4_chgameselect((Unk80132ED0 *)arg0->actorData[6], 1, value + 0x23, flag ? 0x26 : -1, -1, D_80808404_chgameselect[1]);
+    func_80802DB4_chgameselect((Unk80132ED0 *)arg0->actorData[6], 2, selection, -1, -1, D_80808404_chgameselect[2]);
     value = func_80805ECC_chgameselect((s32 *)arg0, 3);
-    func_80802DB4_chgameselect((Unk80132ED0 *)arg0->actorData[6], 3, value + 0x1B, flag ? 0x27 : -1, -1, D_80808407_chgameselect);
+    func_80802DB4_chgameselect((Unk80132ED0 *)arg0->actorData[6], 3, value + 0x1B, flag ? 0x27 : -1, -1, D_80808404_chgameselect[3]);
     func_80802E38_chgameselect((Unk80132ED0 *)arg0->actorData[6], 0x18F4, arg1, 4);
     func_808026C8_chgameselect((Unk80132ED0 *)arg0->actorData[5], 6);
     arg0->actorData[0] = 3;
@@ -3503,7 +3503,7 @@ void func_80806218_chgameselect(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 _gcnewoption_entrypoint_24(BtIntPtr, s32, s32);
     void _gcnewoption_entrypoint_31(BtIntPtr, s32, s16);
     BT_IDO_ONLY(s32 _gczoomboxdata_entrypoint_0(s16);) BT_NATIVE_ONLY(void _gczoomboxdata_entrypoint_0(s32);)
-    extern u8 D_8080841C_chgameselect[];
+
 
     _gcnewoption_entrypoint_24(arg0, arg1, arg2);
     _gcnewoption_entrypoint_12(arg0, arg1, (s16) ((arg1 * 0xA) + arg2));
@@ -3671,12 +3671,12 @@ void func_808065F4_chgameselect(Actor *arg0) {
     s32 func_800AA240(void);
     s32 func_808066CC_chgameselect(void);
     void func_80806744_chgameselect(void *);
-    extern s32 D_80807DB0_chgameselect[];
+
     s32 count;
     s32 state;
 
     func_80802640_chgameselect((Unk80132ED0 *)arg0->actorData[5],
-        *(s16 *)&D_80807DB0_chgameselect[(u32)arg0->unk79_4], 0);
+        D_80807DB0_chgameselect[arg0->unk79_4].model, 0);
     if (func_800AA240() != 0) {
         count = func_800AA0D0();
         if (count == 1) {
@@ -3950,9 +3950,9 @@ void func_80806BD4_chgameselect(s32 arg0, s32 arg1, s32 arg2) {
 
 OSThread *chgameselect_entrypoint_6(void)
 {
-    extern u8 D_808084B4_chgameselect[];
 
-    return (OSThread *) D_808084B4_chgameselect;
+
+    return (OSThread *) &D_808084B4_chgameselect;
 }
 
 void func_80806C54_chgameselect(Actor *arg0) {
@@ -4158,7 +4158,7 @@ void func_8080714C_chgameselect(Actor *arg0, s32 (*arg1)(s32), s32 arg2, s32 arg
     int _gczoombox_entrypoint_8();
     void _gczoombox_entrypoint_27(s32, s16 *);
     extern s32 B_80808560_chgameselect[];
-    extern s16 D_808084FC_chgameselect[];
+
     s32 i;
     GameSelectScoreData *data;
     s32 scores[4];
@@ -4387,9 +4387,9 @@ void func_80807824_chgameselect(Actor *arg0) {
 
 OSThread *chgameselect_entrypoint_7(void)
 {
-    extern u8 D_80808504_chgameselect[];
 
-    return (OSThread *) D_80808504_chgameselect;
+
+    return (OSThread *) &D_80808504_chgameselect;
 }
 
 void func_808078F0_chgameselect(void *arg0) {

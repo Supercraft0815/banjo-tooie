@@ -4469,7 +4469,7 @@ segments:
     subsegments: 
       - [0x01F8E370, c, gameselect]
       - [0x01F95FB0, .rodata, gameselect]
-      - [0x01F96120, data, gameselect]
+      - [0x01F96120, .data, gameselect_tables]
       - [0x01F968C0, bss, gameselect]
   - name: chjiggybeam_header
     dir: overlays/chjiggybeam
@@ -6544,7 +6544,7 @@ segments:
     subsegments: 
       - [0x01FE8580, c, klungo]
       - [0x01FEBB10, .rodata, klungo]
-      - [0x01FEBE20, data, klungo]
+      - [0x01FEBE20, .data, klungo_tables]
       - [0x01FEC0E0, .data, klungo]
       - [0x01FEC140, data, klungo_data_tail]
       - [0x01FEC2D0, bss, klungo]
@@ -8623,7 +8623,7 @@ segments:
     subsegments: 
       - [0x02050D30, c, evilmumbo]
       - [0x02054A30, .rodata, evilmumbo]
-      - [0x02054DC0, data, evilmumbo]
+      - [0x02054DC0, .data, evilmumbo_tables]
       - [0x02055190, .data, evilmumbo]
       - [0x02055220, data, evilmumbo_tail]
       - [0x02055310, bss, evilmumbo]
@@ -12008,7 +12008,7 @@ segments:
     subsegments: 
       - [0x020D8810, c, athlete]
       - [0x020DB600, .rodata, athlete]
-      - [0x020DB840, data, athlete]
+      - [0x020DB840, .data, athlete_tables]
       - [0x020DB9C0, .data, athlete]
       - [0x020DBA10, bss, athlete]
   - name: chfantasycannon_header
@@ -12465,7 +12465,7 @@ segments:
     subsegments: 
       - [0x020ED950, c, quiz]
       - [0x020F3EA0, .rodata, quiz]
-      - [0x020F4650, data, quiz]
+      - [0x020F4650, .data, quiz_tables]
       - [0x020F4F90, .data, quiz]
       - [0x020F5020, bss, quiz]
   - name: chquizexitdoor_header

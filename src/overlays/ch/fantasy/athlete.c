@@ -1,6 +1,6 @@
-#include "common.h"
+#include "athlete_tables.h"
 
-extern u8 D_80803030_chfantasyathlete[];
+extern ActorAnimationEntry D_80803030_chfantasyathlete[36];
 void func_801018A4(Actor *, BtIntPtr);
 void *func_80107C2C(s32 *, s32, void *, s32, void *);
 OSThread *func_80108ED0(void);
@@ -29,7 +29,7 @@ BtFnWord D_808031B4_chfantasyathlete[] = {
 #include "core2/1EB5980.h"
 #include "core2/1EDB4D0.h"
 
-extern u16 D_80803034_chfantasyathlete[][4];
+
 
 /* extern */
 
@@ -698,7 +698,7 @@ s32 func_808011E4_chfantasyathlete(Actor *arg0, s32 arg1, s32 arg2) {
         return 1;
     case 0x1F:
         func_801015D0(arg0);
-        switch (D_80803034_chfantasyathlete[arg0->unk70_10][0]) {
+        switch (D_80803030_chfantasyathlete[arg0->unk70_10].index) {
         case 0x3F9:
         case 0x3FA:
         case 0x3FD:
@@ -760,22 +760,22 @@ void func_80801718_chfantasyathlete(Actor *arg0) {
     f32 func_800F15F8(f32, f32, f32);
     f32 func_800F3780(f32, u8 *, s16);
     void func_80105A9C(Actor *, f32);
-    struct AthleteCurve6 { f32 points[6][2]; };
-    struct AthleteCurve5 { f32 points[5][2]; };
+
+
     extern struct AthleteCurve6 D_8080315C_chfantasyathlete;
-    extern struct AthleteCurve5 D_8080318C_chfantasyathlete;
+    extern AthleteCurveTail D_8080318C_chfantasyathlete;
     struct AthleteCurve6 sp60;
     struct AthleteCurve5 sp38;
 
     ((f32 *)arg0->actorData)[3] = func_800F15F8(((f32 *)arg0->actorData)[3], ((f32 *)arg0->actorData)[6], 50.0f);
-    switch (D_80803034_chfantasyathlete[arg0->unk70_10][0]) {
+    switch (D_80803030_chfantasyathlete[arg0->unk70_10].index) {
     case 0x3FA:
         sp60 = D_8080315C_chfantasyathlete;
         func_80101CDC(arg0, func_800F10B4(((f32 *)arg0->actorData)[3], 250.0f, 1000.0f, 1.25f, 0.5f));
         func_80105A9C(arg0, ((f32 *)arg0->actorData)[3] * func_800F3780(func_80101F24(arg0), (u8 *)&sp60, 6));
         break;
     case 0x3FC:
-        sp38 = D_8080318C_chfantasyathlete;
+        sp38 = BT_DATA_FIELD(D_8080318C_chfantasyathlete.curve, *(struct AthleteCurve5 *)&D_8080318C_chfantasyathlete);
         func_80101CDC(arg0, func_800F10B4(((f32 *)arg0->actorData)[3], 250.0f, 800.0f, 1.5f, 0.75f));
         func_80105A9C(arg0, ((f32 *)arg0->actorData)[3] * func_800F3780(func_80101F24(arg0), (u8 *)&sp38, 5));
         break;
@@ -796,7 +796,7 @@ void func_808018B8_chfantasyathlete(Actor *arg0, struct AthletePaths *arg1, s32 
 }
 
 void func_80801974_chfantasyathlete(Actor *arg0) {
-    switch (D_80803034_chfantasyathlete[arg0->unk70_10][0]) {
+    switch (D_80803030_chfantasyathlete[arg0->unk70_10].index) {
     case 0x3F9:
         if ((func_80101E14(arg0, 0.06f) != 0) || (func_80101E14(arg0, 0.26f) != 0) || (func_80101E14(arg0, 0.46f) != 0)) {
             func_800C4140(((u32) (u16) (func_800DC178(1.1f, 1.2f) * 1023.0f) << 0x15) + 0x1B5E23, arg0->position, 0x04B000FA);

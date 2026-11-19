@@ -1,6 +1,6 @@
-#include "common.h"
+#include "evilmumbo_tables.h"
 
-extern u32 D_80804090_chevilmumbo[];
+extern ActorAnimationEntry D_80804090_chevilmumbo[22];
 void func_8080129C_chevilmumbo(Actor *);
 void func_80105834(Actor *);
 void func_801018A4(Actor *, BtIntPtr);
@@ -176,13 +176,13 @@ void func_80800300_chevilmumbo(s32 *arg0) {
     s32 func_8008F904(s32 *, BtIntPtr);
     s32 func_8008F938(s32);
     s32 func_8008F990(s32 *, s32);
-    extern s32 D_80804294_chevilmumbo;
+    extern u16 D_80804294_chevilmumbo[6];
     extern s32 func_8010D5DC;
     func_8008F8B0();
     func_8008F8D8(1);
     func_8008F938(1);
     func_8008F904(&func_8010D5DC, *arg0);
-    func_8008F990(&D_80804294_chevilmumbo, 0x43480000);
+    func_8008F990(D_80804294_chevilmumbo, 0x43480000);
 }
 
 /* extern */
@@ -346,11 +346,11 @@ s32 func_808007C4_chevilmumbo(Actor *arg0, s32 arg1) {
     void func_8010A570(Actor *);
     void func_8010A590(Actor *);
     void func_8010A800(Actor *, s32);
-    extern u8 D_80804140_chevilmumbo[];
-    extern u8 D_8080414C_chevilmumbo[];
-    extern u8 D_80804190_chevilmumbo[];
-    extern u8 D_80804198_chevilmumbo[];
-    extern u8 D_808041C0_chevilmumbo[];
+    extern u16 D_80804140_chevilmumbo[6];
+    extern u16 D_8080414C_chevilmumbo[8];
+    extern u16 D_80804190_chevilmumbo[4];
+    extern u16 D_80804198_chevilmumbo[6];
+    extern u16 D_808041C0_chevilmumbo[8];
     extern f32 D_8080427C_chevilmumbo[3];
     struct {
         u8 pad0[0x84];
@@ -626,12 +626,12 @@ void func_80800FF8_chevilmumbo(Actor *arg0) {
     void func_800BA994(void *emitter, s16 yaw_min, s16 pitch_min, s16 speed_min, s16 yaw_max, s16 pitch_max, s16 speed_max);
     BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     int func_800DC298(f32);
-    extern s32 D_808042A0_chevilmumbo;
+    extern s32 D_808042A0_chevilmumbo[12];
     f32 sp34[3];
     BtIntPtr sp30;
 
     _subaddieskeleton_entrypoint_2(arg0->unk0, 0xC, sp34);
-    sp30 = func_800BABB8(0, sp34, 0, arg0->scale, &D_808042A0_chevilmumbo);
+    sp30 = func_800BABB8(0, sp34, 0, arg0->scale, D_808042A0_chevilmumbo);
     func_800BA994(sp30, -0x4B, (s16)arg0->unk50, 0x96, -0x4B, (s16)arg0->unk50, 0xFA);
     func_800BA22C(sp30, 8);
     arg0->unk50 += ((f32 *)arg0->actorData)[3];
@@ -647,8 +647,8 @@ void func_808010C4_chevilmumbo(Actor *arg0) {
     void func_800BA77C(BtIntPtr, s16, s16, s16);
     BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     void func_80800F60_chevilmumbo(Actor *, f32 *, f32 *);
-    extern s32 D_808042D0_chevilmumbo;
-    extern s32 D_808042F4_chevilmumbo;
+    extern s32 D_808042D0_chevilmumbo[9];
+    extern u16 D_808042F4_chevilmumbo[8];
     f32 sp3C[3];
     f32 sp30[3];
     BtIntPtr sp2C;
@@ -659,20 +659,20 @@ void func_808010C4_chevilmumbo(Actor *arg0) {
     sp3C[0] = 0.0f;
     sp3C[2] = 0.0f;
     func_80800F60_chevilmumbo(arg0, sp30, sp3C);
-    temp_v0 = func_800BABB8(0, sp30, 0, arg0->scale * 0.25f, &D_808042D0_chevilmumbo);
+    temp_v0 = func_800BABB8(0, sp30, 0, arg0->scale * 0.25f, D_808042D0_chevilmumbo);
     sp2C = temp_v0;
     func_800BA77C(temp_v0, (s16) (s32) sp3C[0], (s16) (s32) sp3C[1], (s16) (s32) sp3C[2]);
     func_800BA22C(sp2C, 1);
-    _subaddieaudioquick_entrypoint_2(arg0, sp30, &D_808042F4_chevilmumbo);
+    _subaddieaudioquick_entrypoint_2(arg0, sp30, D_808042F4_chevilmumbo);
 }
 
 void func_808011B8_chevilmumbo(Actor *arg0) {
     BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
-    extern s32 D_80804304_chevilmumbo;
+    extern s32 D_80804304_chevilmumbo[18];
     f32 *temp_a0;
 
     temp_a0 = arg0->position;
-    func_800BBCB8(temp_a0, temp_a0, 1.0f, 1, &D_80804304_chevilmumbo);
+    func_800BBCB8(temp_a0, temp_a0, 1.0f, 1, D_80804304_chevilmumbo);
 }
 
 void func_808011F4_chevilmumbo(Actor *arg0) {
@@ -682,7 +682,7 @@ void func_808011F4_chevilmumbo(Actor *arg0) {
     int func_800DC298(f32);
     void func_800EEB9C(f32[3], f32, f32);
     void func_800EF04C(f32 *, f32 *);
-    extern s32 D_8080434C_chevilmumbo;
+    extern s32 D_8080434C_chevilmumbo[15];
     BtIntPtr sp34;
     f32 sp28[3];
     f32 angle;
@@ -691,7 +691,7 @@ void func_808011F4_chevilmumbo(Actor *arg0) {
     angle = arg0->unk58 * 720.0f;
     func_800EEB9C(sp28, angle, 30.0f);
     func_800EF04C(sp28, arg0->position);
-    func_800BABB8(sp34, sp28, NULL, 1.0f, &D_8080434C_chevilmumbo);
+    func_800BABB8(sp34, sp28, NULL, 1.0f, D_8080434C_chevilmumbo);
     func_800BA22C(sp34, 4);
     if (func_800DC298(0.4f) != 0) {
         func_808011B8_chevilmumbo(arg0);
@@ -701,9 +701,9 @@ void func_808011F4_chevilmumbo(Actor *arg0) {
 void func_8080129C_chevilmumbo(Actor *arg0) {
     void _chexploder_entrypoint_3(void *, void *, u32);
     void _gcfrontend_entrypoint_9(s32 arg0);
-    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, void *);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, void *, f32);
     s32 _subaddieaudioquick_entrypoint_4(Actor *arg0, f32 *arg1, void *arg2, f32 *arg3);
     s32 _subaddiedialog_entrypoint_3(f32 *, s32, s32, s32, s32);
     void _subaddiefade_entrypoint_1(void *arg0, s32 arg1);
@@ -736,7 +736,7 @@ void func_8080129C_chevilmumbo(Actor *arg0) {
     u32 func_800FDC28(u32);
     s32 func_80101DDC(Actor *);
     s32 func_80101E14(Actor *, f32);
-    s32 func_80101E4C(Actor *, u32 *);
+    s32 func_80101E4C(Actor *, f32 *);
     f32 func_80101F24(Actor *);
     s32 func_801022E4(Actor *);
     void func_80108B04(Actor *, s32);
@@ -744,16 +744,16 @@ void func_8080129C_chevilmumbo(Actor *arg0) {
     void func_8010D254(f32 *);
     s32 func_8010D278(void);
     void func_808003DC_chevilmumbo(Actor *, s32);
-    extern u32 D_8080415C_chevilmumbo[], D_8080416C_chevilmumbo[];
-    extern u32 D_80804178_chevilmumbo[], D_80804184_chevilmumbo[];
-    extern u32 D_808041A4_chevilmumbo[], D_808041D0_chevilmumbo[];
-    extern u32 D_808041DC_chevilmumbo[], D_808041E8_chevilmumbo[];
-    extern u32 D_808041F8_chevilmumbo[], D_80804244_chevilmumbo[];
-    extern u32 D_80804254_chevilmumbo[], D_8080426C_chevilmumbo[];
+    extern u16 D_8080415C_chevilmumbo[8]; extern u16 D_8080416C_chevilmumbo[6];
+    extern u16 D_80804178_chevilmumbo[6]; extern u16 D_80804184_chevilmumbo[6];
+    extern u16 D_808041A4_chevilmumbo[14]; extern u16 D_808041D0_chevilmumbo[6];
+    extern u16 D_808041DC_chevilmumbo[6]; extern u16 D_808041E8_chevilmumbo[8];
+    extern u16 D_808041F8_chevilmumbo[8]; extern u16 D_80804244_chevilmumbo[8];
+    extern u16 D_80804254_chevilmumbo[12]; extern u16 D_8080426C_chevilmumbo[8];
     extern f32 D_8080427C_chevilmumbo[3];
-    extern u32 D_80804388_chevilmumbo[], D_80804398_chevilmumbo[];
-    extern u32 D_808043A4_chevilmumbo[], D_808043B4_chevilmumbo[];
-    extern u32 D_808043C4_chevilmumbo[], D_808043D4_chevilmumbo[];
+    extern f32 D_80804388_chevilmumbo[4]; extern f32 D_80804398_chevilmumbo[3];
+    extern f32 D_808043A4_chevilmumbo[4]; extern f32 D_808043B4_chevilmumbo[4];
+    extern f32 D_808043C4_chevilmumbo[4]; extern f32 D_808043D4_chevilmumbo[4];
     struct MumboFlags {
         u8 pad0[0x70];
         BT_BITFIELD_ORDER(u32 pad70_23 : 9, u32 pad70_0 : 22);
@@ -1180,14 +1180,14 @@ void func_8080241C_chevilmumbo(Actor *arg0) {
 s32 func_80802618_chevilmumbo(Actor *arg0, s32 arg1, s32 arg2) {
     void _chexploder_entrypoint_6(Actor *, f32, f32);
     void _chexploder_entrypoint_9(Actor *, s32, s32);
-    void _chexploder_entrypoint_10(Actor *, s32 *);
+    void _chexploder_entrypoint_10(Actor *, s16 *);
     void _chexploder_entrypoint_12(Actor *, s32);
     void _chexploder_entrypoint_13(Actor *, u32);
     void _chexploder_entrypoint_14(Actor *, s32);
     void _chexploder_entrypoint_15(Actor *, u32, f32);
     void _chexploder_entrypoint_16(Actor *, s32);
     s32 _gcdialogcamera_entrypoint_0(s32, s32);
-    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    void _gcdialogcamera_entrypoint_3(f32 *, f32);
     void _gcdialogcamera_entrypoint_4(BtIntPtr arg0);
     void _gcfrontend_entrypoint_10(void);
     void _gcfrontend_entrypoint_11(void);
@@ -1208,13 +1208,13 @@ s32 func_80802618_chevilmumbo(Actor *arg0, s32 arg1, s32 arg2) {
     Actor *func_80108528(s32, f32 *, s32, Actor **);
     void func_808003DC_chevilmumbo(Actor *, s32);
     void func_80800C50_chevilmumbo(Actor *);
-    extern u32 D_808043E4_chevilmumbo[];
-    extern f32 D_808043F4_chevilmumbo[], D_80804400_chevilmumbo[];
-    extern s32 D_8080440C_chevilmumbo[], D_80804414_chevilmumbo[];
-    extern s32 D_8080441C_chevilmumbo[], D_80804428_chevilmumbo[];
-    extern s32 D_80804430_chevilmumbo[], D_80804434_chevilmumbo[];
-    extern s32 D_80804438_chevilmumbo[], D_8080443C_chevilmumbo[];
-    extern s32 D_80804440_chevilmumbo[];
+    extern f32 D_808043E4_chevilmumbo[4];
+    extern f32 D_808043F4_chevilmumbo[3]; extern f32 D_80804400_chevilmumbo[3];
+    extern s16 D_8080440C_chevilmumbo[4]; extern s16 D_80804414_chevilmumbo[4];
+    extern s16 D_8080441C_chevilmumbo[6]; extern s16 D_80804428_chevilmumbo[4];
+    extern s16 D_80804430_chevilmumbo[2]; extern s16 D_80804434_chevilmumbo[2];
+    extern EvilMumboBonePair D_80804438_chevilmumbo; extern s16 D_8080443C_chevilmumbo[2];
+    extern s16 D_80804440_chevilmumbo[16];
     struct {
         u8 pad0[0x78];
         f32 position[3];
@@ -1413,7 +1413,7 @@ s32 func_80802618_chevilmumbo(Actor *arg0, s32 arg1, s32 arg2) {
             _chexploder_entrypoint_15(exploder, 3, 0.5f);
             break;
         case 6:
-            _chexploder_entrypoint_10(exploder, D_80804438_chevilmumbo);
+            _chexploder_entrypoint_10(exploder, D_80804438_chevilmumbo.bones);
             _chexploder_entrypoint_9(exploder, 0xE, 3);
             _chexploder_entrypoint_15(exploder, 3, 0.4f);
             break;
@@ -1494,20 +1494,20 @@ void func_8080300C_chevilmumbo(Actor *arg0) {
     BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_8010A570(Actor *);
     void func_800FFAB0(Actor *);
-    extern s32 D_80804220_chevilmumbo;
+    extern u16 D_80804220_chevilmumbo[10];
 
 
     if (arg0->unk6C_0 != 0) {
         arg0->unk6C_0 = _chlightfader_entrypoint_1(arg0->unk6C_0, 1.4f, 3);
     }
     func_800BBCB8(arg0->position, arg0->position, 1.0f, 12, D_808044A8_chevilmumbo);
-    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80804220_chevilmumbo);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80804220_chevilmumbo);
     func_8010A570(arg0);
     func_800FFAB0(arg0);
 }
 
 void func_808030AC_chevilmumbo(Actor *arg0) {
-    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, void *);
     void _subaddiefade_entrypoint_3(Actor *);
     void func_800C8CB8(s32, f32 *);
     void func_800C8E54(s32, f32, f32);
@@ -1523,7 +1523,7 @@ void func_808030AC_chevilmumbo(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_8010B990(Actor *, s32);
-    extern u32 D_80804208_chevilmumbo[];
+    extern u16 D_80804208_chevilmumbo[12];
     f32 dt;
     Actor *parent;
     void *volatile data;
@@ -1709,14 +1709,14 @@ void func_8080362C_chevilmumbo(Actor *arg0, s32 arg1) {
 }
 
 void func_80803700_chevilmumbo(Actor *arg0) {
-    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, void *);
     void func_800C4140(u32, f32 *, u32);
     f32 func_800D8FF8(void);
     s32 func_800DA298(s32);
     void func_800EFA20(void *, void *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     extern f32 D_80804538_chevilmumbo[];
-    extern u32 D_80804234_chevilmumbo[];
+    extern u16 D_80804234_chevilmumbo[8];
     f32 dt;
 
     dt = func_800D8FF8();

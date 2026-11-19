@@ -1,8 +1,8 @@
-#include "common.h"
+#include "quiz_tables.h"
 
 BtUIntPtr func_800F54E4(void);
 
-extern u8 D_80807524_chquiz[];
+
 void func_80105834(Actor *);
 void *func_80107C2C(s32 *, s32, void *, s32, void *);
 OSThread *func_80108ED0(void);
@@ -46,36 +46,36 @@ BtFnWord D_80807684_chquiz[] = {
 
 s32 func_80800000_chquiz(s32 arg0) {
     s32 func_8009EA2C(void);
-    extern s32 D_80807000_chquiz;
+
     if (arg0 == 2) {
-        return func_8009EA2C() != 0 ? 0x838 : *(s32 *)((BtIntPtr)&D_80807000_chquiz + arg0 * 24);
+        return func_8009EA2C() != 0 ? 0x838 : D_80807000_chquiz[arg0].model;
     }
-    return *(s32 *)((BtIntPtr)&D_80807000_chquiz + arg0 * 24);
+    return D_80807000_chquiz[arg0].model;
 }
 
 f32 func_80800070_chquiz(s32 arg0) {
-    extern f32 D_80807004_chquiz[];
-    return *(f32 *)((BtIntPtr)&D_80807004_chquiz + (arg0 * 24));
+
+    return D_80807000_chquiz[arg0].scale;
 }
 
 s32 func_8080008C_chquiz(s32 arg0) {
-    extern s32 D_80807008_chquiz;
-    return *(s32 *)((BtIntPtr)&D_80807008_chquiz + arg0 * 24);
+
+    return D_80807000_chquiz[arg0].alternateModel;
 }
 
 f32 func_808000A8_chquiz(s32 arg0) {
-    extern f32 D_8080700C_chquiz[];
-    return *(f32 *)((BtIntPtr)&D_8080700C_chquiz + (arg0 * 24));
+
+    return D_80807000_chquiz[arg0].alternateScale;
 }
 
 BtIntPtr func_808000C4_chquiz(s32 arg0) {
-    extern s32 D_80807010_chquiz;
-    return *(s32 *)((BtIntPtr)&D_80807010_chquiz + arg0 * 24);
+
+    return (BtIntPtr)D_80807000_chquiz[arg0].animations;
 }
 
 f32 func_808000E0_chquiz(s32 arg0) {
-    extern f32 D_80807014_chquiz[];
-    return *(f32 *)((BtIntPtr)&D_80807014_chquiz + (arg0 * 24));
+
+    return D_80807000_chquiz[arg0].speed;
 }
 
 BtIntPtr func_808000FC_chquiz(Actor *arg0, s32 arg1) {
@@ -116,12 +116,12 @@ BtIntPtr func_808000FC_chquiz(Actor *arg0, s32 arg1) {
 
 void func_80800218_chquiz(BtIntPtr arg0, BtIntPtr arg1) {
     void _gcnewoption_entrypoint_12(void *a0, u32 optionIndex, s16 textIndex);
-    void _gcnewoption_entrypoint_30(BtIntPtr, s32 *);
+    void _gcnewoption_entrypoint_30(BtIntPtr, s16 *);
     s8 func_80800E38_chquiz(BtIntPtr, BtIntPtr);
-    extern s32 D_808070A8_chquiz;
+
     s32 var_s0;
 
-    _gcnewoption_entrypoint_30(arg0, &D_808070A8_chquiz);
+    _gcnewoption_entrypoint_30(arg0, D_808070A8_chquiz);
     var_s0 = 0;
     do {
         _gcnewoption_entrypoint_12(arg0, var_s0, (s16)(func_80800E38_chquiz(arg1, var_s0) + 0xA));
@@ -173,7 +173,7 @@ s32 func_8080034C_chquiz(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     s32 func_80800B6C_chquiz(Actor *);
     s32 func_80800C00_chquiz(Actor *);
-    extern s32 D_808070B0_chquiz;
+
     BtIntPtr option;
 
     option = (s32 )((Actor *)func_80100094(arg0, 0))->pad94;
@@ -211,7 +211,7 @@ s32 func_8080034C_chquiz(Actor *arg0, s32 arg1) {
         _gcnewoption_entrypoint_44(option, 0);
         if (func_80800C00_chquiz(arg0) != -1) {
             _gcnewoption_entrypoint_43(option, func_80800C00_chquiz(arg0), 0);
-            _gcnewoption_entrypoint_13(option, func_80800C00_chquiz(arg0), &D_808070B0_chquiz);
+            _gcnewoption_entrypoint_13(option, func_80800C00_chquiz(arg0), D_808070B0_chquiz);
         }
         ((Actor *)func_80100094(arg0, 0))->pad99 = 1;
         break;
@@ -288,8 +288,8 @@ void func_80800728_chquiz(Actor *arg0, s32 arg1) {
     s32 func_800DC128(s32, s32);
     void _gcnewoption_entrypoint_41();
     void _gcnewoption_entrypoint_26(u8 *arg0, s32 arg1);
-    typedef struct { s32 values[3]; } QuizChoices;
-    extern QuizChoices D_808070B8_chquiz;
+
+
     BtIntPtr option;
     s32 correct;
     QuizChoices choices;
@@ -649,11 +649,11 @@ typedef struct QuizCamera {
 
 void func_8080100C_chquiz(Actor *arg0, void *arg1, u8 arg2) {
     void func_80801058_chquiz(Actor *, QuizCamera *, f32, s8, s8, s8);
-    extern s32 D_808070E4_chquiz;
-    s8 *temp_v0;
 
-    temp_v0 = ((s8 *)&D_808070E4_chquiz) + (arg2 * 8);
-    func_80801058_chquiz(arg0, arg1, (*(f32 *)(temp_v0 + 4)), (*(s8 *)(temp_v0 + 2)), temp_v0[0], temp_v0[1]);
+    QuizCameraStep *temp_v0;
+
+    temp_v0 = &D_808070E4_chquiz.steps[arg2];
+    func_80801058_chquiz(arg0, arg1, temp_v0->duration, temp_v0->group, temp_v0->camera, temp_v0->transition);
 }
 
 void func_80801058_chquiz(Actor *arg0, QuizCamera *data, f32 arg2, s8 arg3, s8 arg4, s8 arg5) {
@@ -665,7 +665,7 @@ void func_80801058_chquiz(Actor *arg0, QuizCamera *data, f32 arg2, s8 arg3, s8 a
     void func_800EE7F8(f32 *, f32 *);
     void func_8010FFB0(s32 *, f32 *, f32 *);
     void *func_80110024(s16 *);
-    extern s8 D_808070C4_chquiz[][10];
+
     s16 sp46;
     BtIntPtr sp40;
     BtIntPtr sp3C;
@@ -898,8 +898,8 @@ void func_80801758_chquiz(s32 *arg0, s32 arg1) {
     arg0[32] = arg1;
 }
 
-extern s8 D_808071B1_chquiz[];
-s32 func_80801760_chquiz(void *arg0, s32 arg1, s32 arg2) { s32 *p = (s32 *)arg0 + arg2; p[0x19] += D_808071B1_chquiz[arg1]; BT_NATIVE_ONLY(return 0;) }
+
+s32 func_80801760_chquiz(void *arg0, s32 arg1, s32 arg2) { s32 *p = (s32 *)arg0 + arg2; p[0x19] += D_808070E4_chquiz.scoreDeltas[arg1 - 0x63]; BT_NATIVE_ONLY(return 0;) }
 
 s32 func_80801784_chquiz(void *arg0, s32 arg1) { return ((s32 *)arg0)[arg1 + 0x19]; }
 
@@ -1087,10 +1087,10 @@ void func_80801CC4_chquiz(Actor *arg0)
   f32 func_80101F24(Actor *);
   void func_80102424(Actor *, s32);
   void func_8010C908(BtIntPtr, BtIntPtr);
-  extern u16 D_80807220_chquiz[][4];
-  extern s32 D_8080723C_chquiz[];
-  extern s32 D_80807274_chquiz[];
-  extern u32 D_808072BC_chquiz[];
+
+
+
+
   f32 sp54[3];
   f32 sp50;
   f32 sp4C;
@@ -1098,7 +1098,7 @@ void func_80801CC4_chquiz(Actor *arg0)
   f32 var_f2;
   sp4C = func_80101F24(arg0);
   func_800EE7F8(sp54, (f32 *) (&arg0->actorData[4]));
-  switch (D_80807220_chquiz[arg0->unk70_10][0])
+  switch (D_8080721C_chquiz[arg0->unk70_10].index)
   {
     case 0x596:
       func_800EEB9C(sp40, arg0->rotation[1] - 90.0f, func_800138D0(func_800F10B4(sp4C, 0.0f, 1.0f, 0.0f, 360.0f)) * 30.0f);
@@ -1171,9 +1171,9 @@ void func_80801CC4_chquiz(Actor *arg0)
 
 OSThread *chquiz_entrypoint_0(void)
 {
-    extern u8 D_808072CC_chquiz[];
 
-    return (OSThread *) D_808072CC_chquiz;
+
+    return (OSThread *) &D_808072CC_chquiz;
 }
 
 void func_80802004_chquiz(Actor *arg0) {
@@ -1187,8 +1187,8 @@ void func_80802004_chquiz(Actor *arg0) {
     void func_800EEB9C(f32 *, f32, f32);
     void func_800EF04C(f32 *, f32 *);
     f32 func_80103EF4(Actor *);
-    extern f32 D_80807314_chquiz[];
-    extern u32 D_8080731C_chquiz[];
+
+
     f32 sp54[3];
     f32 sp48[3];
     s32 temp_v0;
@@ -1279,7 +1279,7 @@ void func_80802250_chquiz(Actor *arg0) {
     void func_80102424(Actor *, s32);
     void func_80102FDC(void *, f32);
     s32 func_80103140(Actor *, u32, u16);
-    extern f32 D_80807328_chquiz;
+
     s16 *data;
 
     data = func_80100094(arg0, 0);
@@ -1295,7 +1295,7 @@ void func_80802250_chquiz(Actor *arg0) {
         }
         data[0] = _chblink_entrypoint_1(0);
         data[1] = _chblink_entrypoint_1(1);
-        func_808021C8_chquiz(arg0, 0, &D_80807328_chquiz);
+        func_808021C8_chquiz(arg0, 0, D_80807328_chquiz);
         break;
     case 1:
         data[0] = _chblink_entrypoint_1(2);
@@ -1783,9 +1783,9 @@ s32 func_80802A2C_chquiz(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chquiz_entrypoint_1(void)
 {
-    extern u8 D_80807334_chquiz[];
 
-    return (OSThread *) D_80807334_chquiz;
+
+    return (OSThread *) &D_80807334_chquiz;
 }
 
 /* extern */
@@ -1814,8 +1814,8 @@ void func_80803368_chquiz(s32 arg0, s32 arg1) {
     void func_800EFA4C(f32 *, f32, f32, f32);
     void func_80102424(Actor *, s32);
     f32 func_80103EF4(Actor *);
-    extern f32 D_8080746C_chquiz[];
-    extern u32 D_80807474_chquiz[];
+
+
     f32 sp28[4];
     Actor *actor;
 
@@ -1888,11 +1888,11 @@ s32 func_80803588_chquiz(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80102FDC(void *, f32);
     s32 func_80103140(Actor *, u32, u16);
     Actor *func_80106790(Unk80132ED0 *);
-    extern s32 D_8080737C_chquiz;
-    extern s32 D_808073A4_chquiz;
-    extern s32 D_808073CC_chquiz;
-    extern s32 D_8080741C_chquiz;
-    extern s32 D_80807444_chquiz;
+
+
+
+
+
     Actor *other;
     f32 value;
     s32 padding[2];
@@ -1912,25 +1912,25 @@ s32 func_80803588_chquiz(Actor *arg0, s32 arg1, s32 arg2) {
     case 0x99:
         switch (arg0->unk74_7) {
         case 1:
-            func_80101074(&D_8080737C_chquiz);
+            func_80101074(D_8080737C_chquiz);
             return 1;
         case 0:
-            func_80101074(&D_808073A4_chquiz);
+            func_80101074(D_808073A4_chquiz);
             return 1;
         case 2:
-            func_80101074(&D_808073CC_chquiz);
+            func_80101074(D_808073CC_chquiz);
             return 1;
         case 3:
-            func_80101074(&D_808073CC_chquiz);
+            func_80101074(D_808073CC_chquiz);
             return 1;
         case 4:
-            func_80101074(&D_8080741C_chquiz);
+            func_80101074(D_8080741C_chquiz);
             return 1;
         case 5:
-            func_80101074(&D_808073CC_chquiz);
+            func_80101074(D_808073CC_chquiz);
             return 1;
         case 6:
-            func_80101074(&D_80807444_chquiz);
+            func_80101074(D_80807444_chquiz);
             return 1;
         default:
             return 0;
@@ -2010,9 +2010,9 @@ void func_80803910_chquiz(u8 *arg0) {
 
 OSThread *chquiz_entrypoint_2(void)
 {
-    extern u8 D_80807480_chquiz[];
 
-    return (OSThread *) D_80807480_chquiz;
+
+    return (OSThread *) &D_80807480_chquiz;
 }
 
 void func_80803954_chquiz(Actor *arg0) {
@@ -2049,8 +2049,8 @@ s32 func_808039D4_chquiz(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_801015D0(Actor *);
     void func_80101FDC(Actor *, u32);
     void func_80103110(Actor *, u32);
-    extern f32 D_808074C8_chquiz[];
-    extern u32 D_808074D0_chquiz[];
+
+
     f32 sp24[3];
 
     switch (arg1) {
@@ -2095,9 +2095,9 @@ s32 func_808039D4_chquiz(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chquiz_entrypoint_3(void)
 {
-    extern u8 D_808074DC_chquiz[];
 
-    return (OSThread *) D_808074DC_chquiz;
+
+    return (OSThread *) &D_808074DC_chquiz;
 }
 
 s32 func_80803B54_chquiz(Actor *arg0, s32 arg1, s32 arg2) {
@@ -2112,23 +2112,23 @@ void func_80803B88_chquiz(BtIntPtr arg0) {
     void func_800C8D4C(s32, f32 *);
     void func_800C8E84(s32, u32 *);
     void func_800C8F64(s32, s32);
-    extern s32 D_8080755C_chquiz;
-    extern s32 D_80807564_chquiz;
+
+
     s32 temp_v0;
 
     temp_v0 = func_800C8A98();
     func_800C8CB8(temp_v0, arg0);
     func_800C8F64(temp_v0, 0xF);
-    func_800C8D4C(temp_v0, &D_8080755C_chquiz);
-    func_800C8E84(temp_v0, &D_80807564_chquiz);
+    func_800C8D4C(temp_v0, D_8080755C_chquiz);
+    func_800C8E84(temp_v0, D_80807564_chquiz);
     _chlightfader_entrypoint_1(temp_v0, 0x40000000, 1);
 }
 
 void func_80803BFC_chquiz(Actor *arg0) {
-    typedef struct { f32 values[4]; } QuizTimes4;
-    typedef struct { f32 values[6]; } QuizTimes6;
+
+
     void _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
-    s32 _subaddieaudioquick_entrypoint_4(BtIntPtr, BtIntPtr, s32 *, s32 *);
+    s32 _subaddieaudioquick_entrypoint_4(BtIntPtr, BtIntPtr, u16 *, s32 *);
     void _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
     BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800C3F48(u32);
@@ -2145,14 +2145,14 @@ void func_80803BFC_chquiz(Actor *arg0) {
     void func_80102424(Actor *, s32);
     f32 func_80103EAC(u8 *);
     void func_80804170_chquiz(Actor *, s32);
-    extern u16 D_80807528_chquiz[][4];
-    extern QuizTimes4 D_80807570_chquiz;
-    extern QuizTimes6 D_80807580_chquiz;
-    extern QuizTimes6 D_80807598_chquiz;
-    extern s32 D_808075B0_chquiz;
-    extern s32 D_808075C0_chquiz;
-    extern s32 D_808075EC_chquiz;
-    extern u32 D_80807624_chquiz;
+
+
+
+
+
+
+
+
 
 
     QuizTimes4 sp90;
@@ -2165,7 +2165,7 @@ void func_80803BFC_chquiz(Actor *arg0) {
     f32 sp3C[3];
 
     if (*(u16 *)((u8 *)arg0 + 0x64) & 1) {
-        switch (D_80807528_chquiz[(u32)*(u16 *)((u8 *)arg0 + 0x72) >> 10][0]) {
+        switch (D_80807524_chquiz[(u32)*(u16 *)((u8 *)arg0 + 0x72) >> 10].index) {
         case 0x4C2:
         case 0x4C3:
         case 0x4C6:
@@ -2178,7 +2178,7 @@ void func_80803BFC_chquiz(Actor *arg0) {
         case 0x4C5:
             sp90 = D_80807570_chquiz;
             _subaddieaudioquick_entrypoint_4((BtIntPtr)arg0, (BtIntPtr)arg0->position,
-                &D_808075B0_chquiz, (s32 *)&sp90);
+                D_808075B0_chquiz, (s32 *)&sp90);
             if (func_80101DDC(arg0)) {
                 func_80102424(arg0, 5);
             }
@@ -2190,7 +2190,7 @@ void func_80803BFC_chquiz(Actor *arg0) {
             _subaddieskeleton_entrypoint_0(arg0, 0x44, sp54);
             _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80807640_chquiz[0], 0.33f);
             _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_8080765C_chquiz[0], 0.88f);
-            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80807624_chquiz, 0.09f);
+            _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80807624_chquiz, 0.09f);
             if (func_80101E14(arg0, 0.09f)) {
                 func_800C3F48(0x7FFFFE87);
             } else if (func_80101E14(arg0, 0.2f)) {
@@ -2212,7 +2212,7 @@ void func_80803BFC_chquiz(Actor *arg0) {
                     do {
                         func_800EEB9C(sp3C, func_800DC0C0() * 360.0f, func_80103EAC((u8 *)arg0) * 0.7f);
                         func_800EF04C(sp3C, sp54);
-                        func_800BBCB8(sp3C, sp3C, 1.0f, 1, &D_808075C0_chquiz);
+                        func_800BBCB8(sp3C, sp3C, 1.0f, 1, D_808075C0_chquiz);
                         i++;
                     } while (i != count);
                 }
@@ -2221,7 +2221,7 @@ void func_80803BFC_chquiz(Actor *arg0) {
                 (sp50 > 0.69f && sp50 < 0.79f) ||
                 (sp50 > 0.82f && sp50 < 0.86f) ||
                 (sp50 > 0.9f && sp50 < 0.99f)) {
-                func_800BBCB8(sp54, sp54, 2.5f, 8, &D_808075EC_chquiz);
+                func_800BBCB8(sp54, sp54, 2.5f, 8, D_808075EC_chquiz);
             }
             if (func_80101E4C(arg0, sp78.values)) {
                 func_80803B88_chquiz((BtIntPtr)sp54);
@@ -2968,7 +2968,7 @@ s32 func_808058F0_chquiz(s32 *arg0, s32 arg1, s32 arg2) {
     void func_80801058_chquiz(Actor *, QuizCamera *, f32, s8, s8, s8);
     s32 func_80801784_chquiz(void *, s32);
     s32 func_80801B7C_chquiz(void *);
-    extern u16 D_80807528_chquiz[][4];
+
     void func_800AA20C(s32, s32);
     s32 func_800D3948(void);
     s32 func_800D395C(void);
@@ -3377,7 +3377,7 @@ s32 func_808058F0_chquiz(s32 *arg0, s32 arg1, s32 arg2) {
         return 1;
     case 0x1F:
         func_801015D0((Actor *)arg0);
-        switch (D_80807528_chquiz[(u32)*&((Objquiz_arg0 *)arg0)->unk72 >> 10][0]) {
+        switch (D_80807524_chquiz[(u32)*&((Objquiz_arg0 *)arg0)->unk72 >> 10].index) {
         case 0x4C2:
         case 0x4C3:
         case 0x4C4:

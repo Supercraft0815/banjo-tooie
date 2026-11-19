@@ -1,6 +1,6 @@
-#include "common.h"
+#include "klungo_tables.h"
 
-extern u8 D_80803A4C_chklungo[];
+extern KlungoAnimations D_80803A4C_chklungo;
 void *func_80107C2C(s32 *, s32, void *, s32, void *);
 OSThread *func_80108ED0(void);
 void func_8080000C_chklungo();
@@ -17,7 +17,7 @@ u32 D_80803B60_chklungo[] = {
 
 BtFnWord D_80803B6C_chklungo[] = {
     0x00B3041E, 0xFFFF0001,
-    (BtFnWord)D_80803A4C_chklungo, (BtFnWord)func_808002D0_chklungo,
+    (BtFnWord)&D_80803A4C_chklungo, (BtFnWord)func_808002D0_chklungo,
     (BtFnWord)func_8080101C_chklungo, (BtFnWord)func_808011B4_chklungo,
     0x00000000, 0x40000000,
     0x00000000, 0x00040561,
@@ -64,10 +64,10 @@ void func_8080000C_chklungo(Actor *arg0) {
     void func_80802588_chklungo(Actor *, s32, s32);
     u8 func_80802DF4_chklungo(Actor *);
     s32 func_80803158_chklungo(Actor *, s32, s32);
-    extern s16 D_808038A2_chklungo;
-    extern f32 D_80803910_chklungo;
-    extern s16 D_80803916_chklungo;
-    extern s32 D_80803A3C_chklungo[];
+
+
+
+    extern f32 D_80803A3C_chklungo[4];
     struct KlungoInit {
         s16 unk0, unk2, unk4, unk6, unk8;
         u8 padA[6];
@@ -112,7 +112,7 @@ void func_8080000C_chklungo(Actor *arg0) {
     _susubgame_entrypoint_12(data->subgame, D_80803A3C_chklungo);
     _susubgame_entrypoint_1(arg0, data->subgame, 0xC);
     func_808020F0_chklungo(arg0, 0);
-    ((f32 *)arg0->actorData)[3] = *(f32 *)((u8 *)&D_80803910_chklungo + data->unk8 * 0x84);
+    ((f32 *)arg0->actorData)[3] = D_808038A0_chklungo[data->unk8].speed;
     data->unk2 = 1;
     data->unk4 = 0;
     data->unk0 = data->unk2;
@@ -127,7 +127,7 @@ void func_8080000C_chklungo(Actor *arg0) {
         data->unk2C = _glsplinefind_entrypoint_0(0x3A1, data->spline);
         _subaddiemarker_entrypoint_0(arg0, 0x3A1, data->marker, 1);
         _subaddiemarker_entrypoint_0(arg0, 0x154, data->camera, 1);
-        if (func_800DA298(*(s16 *)((u8 *)&D_808038A2_chklungo + data->unk8 * 0x84))) {
+        if (func_800DA298(D_808038A0_chklungo[data->unk8].defeatedFlag)) {
             camera = func_800F54E4();
             data->unk2A = 1;
             func_800F608C(camera, 1);
@@ -135,7 +135,7 @@ void func_8080000C_chklungo(Actor *arg0) {
             func_800F497C(camera);
             _plcamera_entrypoint_8(camera);
             func_80802588_chklungo(arg0, 2, 1);
-            func_80803158_chklungo(arg0, *(s16 *)((u8 *)&D_80803916_chklungo + data->unk8 * 0x84), 0xE);
+            func_80803158_chklungo(arg0, D_808038A0_chklungo[data->unk8].dialog[1], 0xE);
             func_80801964_chklungo(arg0, 8);
             data->unk42 = 1;
             return;
@@ -217,11 +217,11 @@ void func_808002D0_chklungo(Actor *arg0) {
     f32 func_808031E4_chklungo(void *);
     void func_80803208_chklungo(s32 *);
     s32 func_808034CC_chklungo(void *);
-    extern s16 D_808038A0_chklungo;
-    extern s16 D_808038A2_chklungo;
-    extern s16 D_808038A4_chklungo;
-    extern s16 D_80803914_chklungo;
-    extern s16 D_8080391C_chklungo;
+
+
+
+
+
     extern u32 D_80803BB4_chklungo[];
     struct KlungoState {
         s16 unk0;
@@ -256,13 +256,13 @@ void func_808002D0_chklungo(Actor *arg0) {
             u16 unk6;
         } route;
     };
-    struct KlungoTable {
-        s16 value;
-        u8 pad2[0x5E];
-        f32 unk60;
-        f32 unk64;
-        u8 pad68[0x1C];
-    };
+
+
+
+
+
+
+
     struct KlungoActorData {
         f32 start[3];
         f32 unkC;
@@ -277,7 +277,7 @@ void func_808002D0_chklungo(Actor *arg0) {
     s32 result;
     f32 blend;
     s32 origin[3];
-    struct KlungoTable *table;
+    KlungoEncounter *table;
 
     data = func_80100094(arg0, 0);
     expression = func_80100094(arg0, 1);
@@ -288,13 +288,13 @@ void func_808002D0_chklungo(Actor *arg0) {
         func_80801888_chklungo(arg0);
         func_80801910_chklungo((u8 *)arg0);
         func_808026CC_chklungo(arg0);
-        if (func_8010CA74(arg0->position, ((struct KlungoTable *)&D_8080391C_chklungo)[data->unk8].value) && func_800F64A4(func_800F54E4(), 1)) {
+        if (func_8010CA74(arg0->position, D_808038A0_chklungo[data->unk8].range) && func_800F64A4(func_800F54E4(), 1)) {
             func_80801964_chklungo(arg0, 5);
         }
         break;
     case 2:
         func_80801888_chklungo(arg0);
-        if (func_8010CA74(arg0->position, ((struct KlungoTable *)&D_8080391C_chklungo)[data->unk8].value) && func_800F64A4(func_800F54E4(), 1)) {
+        if (func_8010CA74(arg0->position, D_808038A0_chklungo[data->unk8].range) && func_800F64A4(func_800F54E4(), 1)) {
             func_80803158_chklungo(arg0, 0x1633, 0x44);
             func_80801964_chklungo(arg0, 5);
         }
@@ -331,7 +331,7 @@ void func_808002D0_chklungo(Actor *arg0) {
         func_808026CC_chklungo(arg0);
         if (!func_800DA298(0x6AD)) {
             func_80802588_chklungo(arg0, 3, 1);
-            func_80803158_chklungo(arg0, ((struct KlungoTable *)&D_80803914_chklungo)[data->unk8].value, 0xE);
+            func_80803158_chklungo(arg0, D_808038A0_chklungo[data->unk8].dialog[0], 0xE);
             func_80801964_chklungo(arg0, 8);
         }
         break;
@@ -339,8 +339,8 @@ void func_808002D0_chklungo(Actor *arg0) {
         func_80802634_chklungo(arg0);
         if (func_80101DDC(arg0)) {
             func_800FDC28(0xB);
-            func_800DA544(((struct KlungoTable *)&D_808038A2_chklungo)[data->unk8].value);
-            _gcfrontend_entrypoint_9(((struct KlungoTable *)&D_808038A4_chklungo)[data->unk8].value);
+            func_800DA544(D_808038A0_chklungo[data->unk8].defeatedFlag);
+            _gcfrontend_entrypoint_9(D_808038A0_chklungo[data->unk8].reward);
             func_800DA544(data->unk10 + 0xC07);
             switch (data->unk10) {
             case 1:
@@ -367,7 +367,7 @@ void func_808002D0_chklungo(Actor *arg0) {
         func_80802864_chklungo(arg0);
         result = func_80101DDC(arg0);
         if (result) {
-            table = &((struct KlungoTable *)&D_808038A0_chklungo)[data->unk8];
+            table = &D_808038A0_chklungo[data->unk8];
             /* Keep the result live through the table address calculation for IDO. */
             if (result) { }
             data->unkC = func_800DC178(table->unk60, table->unk64);
@@ -432,7 +432,7 @@ void func_808002D0_chklungo(Actor *arg0) {
         result = _subaddiefade_entrypoint_0(arg0);
         if (!result) {
             result = func_80802558_chklungo(arg0);
-            table = &((struct KlungoTable *)&D_808038A0_chklungo)[data->unk8];
+            table = &D_808038A0_chklungo[data->unk8];
             /* Keep the result live through the table address calculation for IDO. */
             if (!result) { }
             data->unkC = func_800DC178(table->unk60, table->unk64);
@@ -707,8 +707,8 @@ s32 func_80801220_chklungo(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_80802558_chklungo(Actor *);
     s32 func_80802B84_chklungo(Actor *, s32);
     s32 func_80803158_chklungo(Actor *, s32, s32);
-    extern u16 D_808038A6_chklungo[];
-    extern s32 D_80803A3C_chklungo[];
+
+    extern f32 D_80803A3C_chklungo[4];
     struct KlungoData {
         s16 pad0[4];
         s16 index;
@@ -784,7 +784,7 @@ s32 func_80801220_chklungo(Actor *arg0, s32 arg1, s32 arg2) {
     case 0x57:
         return func_80801848_chklungo(arg0, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
     case 0x95:
-        func_801032B0(arg0, *(u16 *)((u8 *)D_808038A6_chklungo + data->index * 0x84), 0);
+        func_801032B0(arg0, D_808038A0_chklungo[data->index].model, 0);
         if (data->flag2A != 0) {
             func_800FDC28(1);
             data->flag2A = 0;
@@ -999,11 +999,11 @@ void func_80801964_chklungo(Actor *arg0, s32 arg1) {
     s32 func_80803158_chklungo(Actor *, s32, s32);
     void func_8080322C_chklungo(Actor *, f32);
     extern s32 func_8010D5DC;
-    extern s16 D_808038A0_chklungo;
-    extern f32 D_80803910_chklungo;
-    extern s16 D_80803918_chklungo;
-    extern s16 D_8080391A_chklungo;
-    extern u8 D_80803A2C_chklungo[];
+
+
+
+
+    extern u16 D_80803A2C_chklungo[8];
     extern u8 D_80803BC0_chklungo[];
     extern u8 D_80803BD0_chklungo[];
     struct KlungoState {
@@ -1032,14 +1032,14 @@ void func_80801964_chklungo(Actor *arg0, s32 arg1) {
         u8 pad4A[0x1A];
         f32 unk64[3];
     };
-    struct KlungoTable {
-        u8 pad0[0x60];
-        f32 unk60;
-        f32 unk64;
-        f32 unk68;
-        f32 unk6C;
-        u8 pad70[0x14];
-    };
+
+
+
+
+
+
+
+
     u32 sp3C;
     s32 sp38;
     s32 sp34;
@@ -1083,7 +1083,7 @@ void func_80801964_chklungo(Actor *arg0, s32 arg1) {
             func_808025CC_chklungo(arg0, 3);
             break;
         case 12:
-            arg0->unk58 = func_800DC178(((struct KlungoTable *)((u8 *)&D_808038A0_chklungo + data->unk8 * 0x84))->unk68, ((struct KlungoTable *)((u8 *)&D_808038A0_chklungo + data->unk8 * 0x84))->unk6C);
+            arg0->unk58 = func_800DC178(D_808038A0_chklungo[data->unk8].unk68, D_808038A0_chklungo[data->unk8].unk6C);
             if (sp3C == 11) {
                 arg0->unk58 = 1.0f;
             }
@@ -1130,7 +1130,7 @@ void func_80801964_chklungo(Actor *arg0, s32 arg1) {
             func_808020F0_chklungo(arg0, 1);
             break;
         case 17:
-            ((f32 *)arg0->actorData)[3] = *(f32 *)((u8 *)&D_80803910_chklungo + data->unk8 * 0x84);
+            ((f32 *)arg0->actorData)[3] = D_808038A0_chklungo[data->unk8].speed;
             arg0->unk54 = arg0->rotation[1];
             sp38 = 1;
             break;
@@ -1158,7 +1158,7 @@ void func_80801964_chklungo(Actor *arg0, s32 arg1) {
             func_8010A800(arg0, 2);
             break;
         case 23:
-            data->unkC = func_800DC178(((struct KlungoTable *)((u8 *)&D_808038A0_chklungo + data->unk8 * 0x84))->unk60, ((struct KlungoTable *)((u8 *)&D_808038A0_chklungo + data->unk8 * 0x84))->unk64);
+            data->unkC = func_800DC178(D_808038A0_chklungo[data->unk8].unk60, D_808038A0_chklungo[data->unk8].unk64);
             sp38 = 1;
             break;
         case 24:
@@ -1222,11 +1222,11 @@ void func_80801964_chklungo(Actor *arg0, s32 arg1) {
             break;
         case 34:
             func_80802588_chklungo(arg0, 3, 1);
-            func_80803158_chklungo(arg0, *(s16 *)((u8 *)&D_80803918_chklungo + data->unk8 * 0x84), 0xE);
+            func_80803158_chklungo(arg0, D_808038A0_chklungo[data->unk8].dialog[2], 0xE);
             break;
         case 35:
             func_808025CC_chklungo(arg0, 8);
-            func_80803158_chklungo(arg0, *(s16 *)((u8 *)&D_8080391A_chklungo + data->unk8 * 0x84), 0x44);
+            func_80803158_chklungo(arg0, D_808038A0_chklungo[data->unk8].dialog[3], 0x44);
             break;
     }
     func_80109FE8((void **)arg0, sp38);
@@ -1357,7 +1357,7 @@ s32 func_808023A4_chklungo(Actor *arg0, f32 arg1, f32 arg2) {
 
 s32 func_8080242C_chklungo(void) {
     s32 func_800EA05C();
-    extern s16 D_808038A0_chklungo;
+
     s8 *var_a0;
     s32 temp_v0;
     s32 var_v1;
@@ -1379,7 +1379,7 @@ loop_1:
 
 s32 func_80802480_chklungo(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
-    extern s16 D_808038A0_chklungo;
+
     struct KlungoLookupData {
         u8 pad0[8];
         s16 unk8;
@@ -1414,16 +1414,16 @@ void func_80802588_chklungo(Actor *arg0, s32 arg1, s32 arg2) {
 void func_808025CC_chklungo(Actor *arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     void _susubgame_entrypoint_6(Actor *, void *, s32, s32, BtIntPtr);
-    extern s16 D_808038A0_chklungo;
+
     void *data;
-    s32 *entry;
+    BT_NATIVE_ONLY(KlungoRound) BT_IDO_ONLY(s32) *entry;
     s32 a3;
     s32 a2;
 
     data = func_80100094(arg0, 0U);
-    entry = (s32 *)((u8 *)&D_808038A0_chklungo + (((Objklungo_func_808025CC_chklungo_data *)data)->unk8 * 0x84) + (arg1 * 8));
-    a3 = entry[3];
-    a2 = entry[2];
+    entry = BT_DATA_FIELD(&D_808038A0_chklungo[((Objklungo_func_808025CC_chklungo_data *)data)->unk8].rounds[arg1], (s32 *)((u8 *)&D_808038A0_chklungo + (((Objklungo_func_808025CC_chklungo_data *)data)->unk8 * 0x84) + (arg1 * 8)));
+    a3 = BT_DATA_FIELD(entry->options, entry[3]);
+    a2 = BT_DATA_FIELD(entry->action, entry[2]);
     _susubgame_entrypoint_6(arg0, (u8 *)data + 0x88, a2, a3, 0);
 }
 
@@ -1533,12 +1533,12 @@ void func_80802940_chklungo(Actor *arg0) {
 s32 func_8080299C_chklungo(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     BtIntPtr func_800B53A4(s32);
-    void func_800BAB80(BtIntPtr, f32 *);
+    void func_800BAB80(BtIntPtr, void *);
     BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     f32 func_800DC178(f32, f32);
     void func_800EEB9C(f32[3], f32, f32);
     void func_800EF04C(f32 *, f32 *);
-    extern s16 D_808038A0_chklungo;
+
     extern s32 D_80803CC0_chklungo;
     BtIntPtr particles;
     s32 i;
@@ -1547,7 +1547,7 @@ s32 func_8080299C_chklungo(Actor *arg0) {
 
     data = func_80100094(arg0, 0);
     particles = func_800B53A4(8);
-    func_800BAB80(particles, (f32 *)((data[4] * 0x84 + 0x7E) + (u8 *)&D_808038A0_chklungo));
+    func_800BAB80(particles, D_808038A0_chklungo[data[4]].color);
     for (i = 0; i != 8; i++) {
         func_800EEB9C(sp74, (f32)i * 45.0f, func_800DC178(120.0f, 160.0f));
         func_800EF04C(sp74, arg0->position);
@@ -1583,8 +1583,8 @@ s32 func_80802B84_chklungo(Actor *arg0, s32 arg1) {
     Actor *func_801084B0(BtIntPtr, Actor **);
     Actor *func_80108528(s32, f32 *, s32, Actor **);
     void func_8010A800(Actor *, s32);
-    extern f32 D_808038F8_chklungo[][33];
-    extern f32 D_808038FC_chklungo[][33];
+
+
     s16 *data;
     Actor *spawned;
     f32 pos0[3];
@@ -1602,12 +1602,12 @@ s32 func_80802B84_chklungo(Actor *arg0, s32 arg1) {
             spawned = func_80108528(0x422, pos0, (s32)arg0->rotation[1], &arg0);
             spawned->rotation[0] = 180.0f;
             if (func_800DA298(0x683)) {
-                ((f32 *)spawned->actorData)[3] = D_808038F8_chklungo[data[4]][0];
+                ((f32 *)spawned->actorData)[3] = D_808038A0_chklungo[data[4]].spawnSpeed;
             } else {
                 ((f32 *)spawned->actorData)[3] = 0.3f;
             }
             if (!func_800DA298(0x684)) {
-                spawned->unk58 = D_808038FC_chklungo[data[4]][0];
+                spawned->unk58 = D_808038A0_chklungo[data[4]].spawnScale;
             } else {
                 spawned->unk58 = 0.2f;
             }
