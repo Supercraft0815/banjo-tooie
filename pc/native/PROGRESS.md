@@ -2555,3 +2555,15 @@ in allen Funktionen gleich. Elf Testsuiten und alle 74 Replays mit 447.849
 Retraces bestanden. Belege liegen in `build/acceptance/n3-2026-11-18/` unter
 `counters-ido/result.json`, `counters-ir.log`, `counters-native-tests.log`,
 `counters-hazards.log` und `counters-gate.log`.
+
+
+## 2026-11-19 — A4, lokale Pakete mit Rice-Loader und korrigierter Dialogkamera
+
+Die Universal-App für macOS, das x64-ZIP für Windows sowie die x86_64-
+und AArch64-AppImages für Linux liegen in
+`build/acceptance/a4-final-2026-11-19/outputs/packages/`.
+`freeze-manifest.json` im übergeordneten Abnahmelauf hält die Eingaben fest.
+Beide Mac-Architekturen und die beiden AppImages in separaten Debian-Containern
+erreichten jeweils die 2.698 erwarteten Intro-Retraces. Die Windows-Prüfung
+bestätigte die benötigten Laufzeitdateien. Die Pakete bleiben auf Nutzerwunsch
+lokal. Inhaltsfreigabe, Apple-Signatur und Notarisierung stehen aus.
