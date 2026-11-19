@@ -841,7 +841,7 @@ void func_808014E8_chmonsterinterior(Actor *arg0) {
     void _subaddierouteDll_entrypoint_5(Actor *, void *, u32, f32, f32, f32);
     f32 func_800F15F8(f32, f32, f32);
     s32 func_8010B990(Actor *, s32);
-    u8 func_800D9078(f32 *);
+    BT_IDO_ONLY(u8) BT_NATIVE_ONLY(s32) func_800D9078(f32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
     void func_800FFAB0(Actor *);
@@ -1042,7 +1042,7 @@ f32 func_80801B7C_chmonsterinterior(s32 arg0) {
 
 /* extern */
 s32 func_80801C1C_chmonsterinterior(u8 *arg0) {
-    u8 func_800D9078(f32 *);
+    BT_IDO_ONLY(u8) BT_NATIVE_ONLY(s32) func_800D9078(f32 *);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
     s32 sp24;
     s32 temp_v0;
@@ -1056,7 +1056,7 @@ s32 func_80801C1C_chmonsterinterior(u8 *arg0) {
 /* extern */
 
 s32 func_80801C78_chmonsterinterior(u8 *arg0) {
-    u8 func_800D9078(f32 *);
+    BT_IDO_ONLY(u8) BT_NATIVE_ONLY(s32) func_800D9078(f32 *);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
     s32 sp28;
 

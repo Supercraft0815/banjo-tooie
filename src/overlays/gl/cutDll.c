@@ -1,6 +1,6 @@
 #include "gl/cutDll.h"
 #include "common.h"
-
+BT_NATIVE_ONLY(u8 _gcsectionDll_entrypoint_4(s32);)
 typedef struct
 {
     s16 unk0;

@@ -396,7 +396,7 @@ void func_80800C18_chfirefx(Actor *arg0) {
         } flags;
     } FireActor;
     s32 _chlightfader_entrypoint_1(s32, f32, s32);
-    s32 _subaddiezone_entrypoint_1(void *);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _subaddiezone_entrypoint_1(void *);
     s32 func_800C8A98(void);
     void func_800C8CB8(s32, f32 *);
     void func_800C8E54(s32, f32, f32);

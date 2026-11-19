@@ -248,7 +248,7 @@ void func_80800220_chdinoboss(Actor* arg0) {
     void func_8010D254(f32*);
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
     s32 func_80101180(s32, s32, BtIntPtr);
-    u8 func_800D9078(f32*);
+    BT_IDO_ONLY(u8) BT_NATIVE_ONLY(s32) func_800D9078(f32*);
     s32 func_800D90A4(f32*);
     u32 func_800FDC28(u32);
     s32 func_80101DDC(Actor*);
@@ -1412,7 +1412,7 @@ void func_8080232C_chdinoboss(Actor *arg0, f32 *arg1, f32 *arg2) {
         f32 position[3];
     } DinoData;
     void *func_80100094(Actor *, u32);
-    u8 func_800D9078(f32 *);
+    BT_IDO_ONLY(u8) BT_NATIVE_ONLY(s32) func_800D9078(f32 *);
     void func_800A516C(f32 *, f32 *, f32 *);
     void func_800EEBF0(f32 *, f32 *, f32);
     f32 func_800EEF94(f32 *);
@@ -1531,7 +1531,7 @@ void func_808025E8_chdinoboss(Actor *arg0) {
 }
 
 void func_80802684_chdinoboss(Actor *arg0) {
-    u8 func_800D9078(f32*);
+    BT_IDO_ONLY(u8) BT_NATIVE_ONLY(s32) func_800D9078(f32*);
     void func_80108B04(Actor*, u32);
     if ((func_800D9078(&arg0->unk58) != 0) && (arg0->actorData[4] == 0x1DU)) {
         func_80108B04(arg0, 0U);

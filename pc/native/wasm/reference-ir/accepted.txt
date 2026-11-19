@@ -292,9 +292,16 @@ bodies in n2-2026-11-18/current-player-light-ir.log. The original
 instructions are in player-light-mips.txt in the same directory.
 
 2026-11-19  N1 typed sound slots and controller commands
-func_80015F84 and func_80015FA0 read byte 52 of a 56-byte sound slot.
+func_80015F84 and func_80015FA0 read the word at byte offset 52 of a
+56-byte controller record.
 The former D_80079A14 is D_800799E0 + 52. func_800A9D08 tests the
 same address as D_8011A478 + 4. func_800A9EC0 tests whether four times
 the index equals D_8011A498 - D_8011A480 (24) in a 32-bit address:
 the low 30 bits of the index must equal six. No other guest function
 changes. See n1-2026-11-18/current-input-shadow-ir.log and proof/.
+
+2026-11-19  N2 timer consumers
+func_800D9078 forwards to func_800F1574. The MIPS callee returns zero
+or one on every path. Removing the masks of its result with 255 from
+the old IR leaves each of the 13 affected bodies equal to the new IR.
+See n2-2026-11-18/timer-status-mask-proof.json and timer-status-mips.txt.

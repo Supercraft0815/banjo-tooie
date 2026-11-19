@@ -18,7 +18,7 @@ void func_8080000C_chfactorylight(BtIntPtr arg0) {
 
 void func_80800038_chfactorylight(Actor *arg0) {
     void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
-    s32 _subaddiezone_entrypoint_1(void *);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _subaddiezone_entrypoint_1(void *);
     f32 func_800136E4(f32);
     void func_800C4140(u32, f32 *, u32);
     void func_800C8CB8(s32, f32 *);

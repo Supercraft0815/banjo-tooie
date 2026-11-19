@@ -134,7 +134,7 @@ void func_80800364_chstonedartgunhead(Actor *arg0) {
     s32 _subaddiejoy_entrypoint_6(Actor *, s32);
     void func_80016068(u32, f32 *);
     f32 func_800D8FF8();
-    u8 func_800D9078(f32 *);
+    BT_IDO_ONLY(u8) BT_NATIVE_ONLY(s32) func_800D9078(f32 *);
     f32 func_800F11E4(f32, f32, f32, f32, f32);
     s32 func_80101E14(Actor *, f32);
     f32 func_80101F24(Actor *);
@@ -380,7 +380,7 @@ void func_80800C28_chstonedartgunhead(Actor *arg0) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     f32 func_800D8FF8(void);
-    u8 func_800D9078(f32 *);
+    BT_IDO_ONLY(u8) BT_NATIVE_ONLY(s32) func_800D9078(f32 *);
     f32 func_800EEB40(f32 *, f32 *);
     void func_800EF214(f32 *, f32, f32, f32);
     void func_800FFAB0(Actor *);

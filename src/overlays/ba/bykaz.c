@@ -43,7 +43,7 @@ s32 bababykaz_entrypoint_4(PlayerState *self) {
     return self->babykaz->unk0;
 }
 
-s32 bababykaz_entrypoint_5(PlayerState *self) {
+s32 bababykaz_entrypoint_5(PlayerState *self) { BT_NATIVE_ONLY(s16 func_800F8A5C(s32);)
     s32 sp24 = (func_800F8B88() == 2) ? 0xB : 0x1;
     s32 pad0;
 

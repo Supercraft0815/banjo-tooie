@@ -846,7 +846,7 @@ void func_808018A0_chfactorytwinklies(Actor *arg0) {
     void func_800C8CB8(s32, f32 *);
     s32 func_800CEAD0(s32);
     f32 func_800D8FF8(void);
-    u8 func_800D9078(f32 *);
+    BT_IDO_ONLY(u8) BT_NATIVE_ONLY(s32) func_800D9078(f32 *);
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
@@ -1075,7 +1075,7 @@ f32 func_80801FAC_chfactorytwinklies(void *arg0) {
 
 /* extern */
 s32 func_80802020_chfactorytwinklies(u8 *arg0) {
-    u8 func_800D9078(f32 *);
+    BT_IDO_ONLY(u8) BT_NATIVE_ONLY(s32) func_800D9078(f32 *);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
     s32 sp24;
     s32 temp_v0;
@@ -1089,7 +1089,7 @@ s32 func_80802020_chfactorytwinklies(u8 *arg0) {
 /* extern */
 
 s32 func_8080207C_chfactorytwinklies(u8 *arg0) {
-    u8 func_800D9078(f32 *);
+    BT_IDO_ONLY(u8) BT_NATIVE_ONLY(s32) func_800D9078(f32 *);
     f32 func_800F12D4(f32, f32, f32, f32, f32);
     s32 sp28;
 

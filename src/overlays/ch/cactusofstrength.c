@@ -101,7 +101,7 @@ s32 func_808001C4_chcactusofstrength(Actor *arg0, s32 arg1, volatile s32 arg2) {
 }
 
 void func_80800200_chcactusofstrength(Actor *arg0) {
-    u8 func_800D9078(f32 *);
+    BT_IDO_ONLY(u8) BT_NATIVE_ONLY(s32) func_800D9078(f32 *);
     s32 _sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
@@ -371,7 +371,7 @@ void func_80800A44_chcactusofstrength(Actor *arg0) {
     f32 _mlwave_entrypoint_5(u8 *, f32, f32);
     s32 _mlwave_entrypoint_8(u8 *, f32);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    u8 func_800D9078(f32 *);
+    BT_IDO_ONLY(u8) BT_NATIVE_ONLY(s32) func_800D9078(f32 *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
     void *func_80100094(Actor *, u32);

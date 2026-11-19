@@ -2851,3 +2851,20 @@ diesem Stand zählt der LP64-Scan 766 Warnstellen und der Offset-Scan 223
 verschiebbare Zugriffe. Die Nachweise einschließlich der vier Änderungen
 der kanonischen Gast-IR stehen unter
 `build/acceptance/n1-2026-11-18/current-input-shadow*` und `proof/`.
+
+## 2026-11-19 — N2, Zeitgeber und Statusabfragen
+
+Die Aufrufer des Zeitgebers lesen seinen tatsächlichen ganzzahligen
+Rückgabewert. Das Original liefert null oder eins. In den 13 geänderten
+Gastfunktionen entfallen dadurch Masken auf die unteren acht Bits.
+Nach Entfernung genau dieser Masken stimmen die kanonischen Funktionen
+vor und nach der Änderung vollständig überein. Zonen-, Subspiel- und
+Ausdruckszustände nutzen vorzeichenlose Bytes, der Kennwert für Baby
+Kazooie ein vorzeichenbehaftetes Halbwort.
+
+Ohne FixCalls bleiben 32 ungültige Linkervarianten von zuvor 40.
+Alle elf Gastsuiten, die 74 Referenzen mit 447.849 Retraces und 62
+native Sanitizertests bestehen. Der Original-IDO-Vergleich bestätigt
+16.401 Funktionen und beide vollständigen ROMs. Die Einzelbelege liegen
+unter `build/acceptance/n2-2026-11-18/current-timer-status*` sowie in
+`timer-status-mask-proof.json` und `timer-status-mips.txt`.

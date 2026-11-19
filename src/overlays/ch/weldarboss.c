@@ -364,7 +364,7 @@ void func_8080030C_chweldarboss(Actor *arg0)
     void _sudeflect_entrypoint_1(f32 *, f32, f32, f32, s32);
     BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     f32 func_800D8FF8(void);
-    u8 func_800D9078(f32*);
+    BT_IDO_ONLY(u8) BT_NATIVE_ONLY(s32) func_800D9078(f32*);
     s32 func_800D90A4(f32*);
     s32 func_800DA298(s32 index);
     void func_800DA544(s32);
@@ -1746,7 +1746,7 @@ void func_80802D2C_chweldarboss(Actor *arg0, s32 arg1, s32 arg2) {
         s16 unk78;
     } WeldarData;
     f32 func_800D8FF8(void);
-    u8 func_800D9078(f32 *);
+    BT_IDO_ONLY(u8) BT_NATIVE_ONLY(s32) func_800D9078(f32 *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EEB9C(f32[3], f32, f32);
     void func_800EF1B8(f32 *, f32, f32);

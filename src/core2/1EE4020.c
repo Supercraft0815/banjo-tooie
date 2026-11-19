@@ -75,7 +75,7 @@ void func_8010A85C(u8 *arg0, s32 arg1) {
 
 void func_8010A874(BtIntPtr arg0)
 {
-  s32 _subaddiezone_entrypoint_1(void *);
+  BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _subaddiezone_entrypoint_1(void *);
   void func_800E3A30(s16 *);
   void func_800EB3D0(void *, s32, s16 *);
   void func_800EB800(void);
