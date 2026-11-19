@@ -20,8 +20,8 @@ void func_80800018_chfireicestorm(Actor *arg0) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800FFAB0(Actor *);
     void func_80800558_chfireicestorm(Actor *, u32);
-    f32 sp44[3];
-    f32 sp38[3];
+
+    f32 sp38[6];
     enum flag_e sp34;
     enum flag_e sp30;
 

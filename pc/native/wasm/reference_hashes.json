@@ -2,7 +2,7 @@
   "cases": {
     "canary-mary-race": {
       "retrace_count": 4556,
-      "sha256": "1f1730d39118ed94c03d38494a7835349c969519ce84f3a87f13182c305327b6"
+      "sha256": "71d7baff2eed2f02a46f6f6742ed97b24ad7a3422ec97e31644dba7f0360864a"
     },
     "ccl-entrance": {
       "retrace_count": 2638,
@@ -50,7 +50,7 @@
     },
     "hag-1": {
       "retrace_count": 5695,
-      "sha256": "4c8051d2e52e7c493edf21b2a97e7649567b762084ee557aea71c6834c54a5bf"
+      "sha256": "487c0f5323cc3b45cf78e68ea2ed794ec176d603ecc6a3debd47ecb03b68716d"
     },
     "hp-entrance": {
       "retrace_count": 2638,
@@ -86,7 +86,7 @@
     },
     "mingy-jongo": {
       "retrace_count": 7673,
-      "sha256": "fe62f14afbebe534cb614e96fe49ca2b90c0eae0ecdf30e62fbe80d8f9643bc1"
+      "sha256": "c6ec8e3cfb7637d808b6255e119a1a6f62628912af9739c608dcd6eb8ff5a364"
     },
     "mp-all-games": {
       "retrace_count": 4976,
@@ -166,43 +166,43 @@
     },
     "mt-interior": {
       "retrace_count": 2638,
-      "sha256": "a2df687d0a8d569c6a35a1ec2df42d757bb650e8ba3ae704449cf027a73d462d"
+      "sha256": "c44dc85db7a1446ab698acb65bedaba5b68020d71afa9108efd071c97e3d8694"
     },
     "mumbo-ccl": {
       "retrace_count": 7973,
-      "sha256": "426d8de374cc51cd871fd7e8026bd447c27777a5b17ead14b3f981ff5cb0834c"
+      "sha256": "e883b2755043fa025ced06c97c205cfba731742f47041d7d2467132ff1f5705b"
     },
     "mumbo-ggm": {
       "retrace_count": 7673,
-      "sha256": "250ffbdaf4317ba0e84e2467bf02264097aaf91cae0971baf280bd43d86392d7"
+      "sha256": "13418ddf1bd992fedef16b7af502588a1ad6ecc15f7c0f637f4dc77cb64886e7"
     },
     "mumbo-gi": {
       "retrace_count": 7793,
-      "sha256": "7fc09f066571bb889964a6696eec25ae5bd16b082c2bc4f192730daef1e4756e"
+      "sha256": "4a3bb6b287d8b9da97b414dba1b288f9d26b80b3b10c0e56ae9d55a0c4fa63c3"
     },
     "mumbo-hfp": {
       "retrace_count": 7673,
-      "sha256": "8f49feb2ade582c847f707c639807155d993fe331db8c055fc22ba95ce5a2a6b"
+      "sha256": "4dec567389ce469f51f56fe6c689f73a82f7e78f93ca55f7531066d730b51f79"
     },
     "mumbo-ioh": {
       "retrace_count": 7673,
-      "sha256": "8c4a7015303b394060ce566a6f863e63ec7429bdb1174524e481858934cb5916"
+      "sha256": "38aa45be350b20e40409ac7d228056207f7ecb217f9964060804dcf8a29e7434"
     },
     "mumbo-jrl": {
       "retrace_count": 7673,
-      "sha256": "c6ec1251b7cf1b18c23af9b775f90f976015b7b8e164c72494036d6bcf8bc893"
+      "sha256": "24c4b9896fc0384367b37cf49b424231ae71e662124a1c79fda3e4715e88c193"
     },
     "mumbo-mt": {
       "retrace_count": 7673,
-      "sha256": "be1b32f90979958ed47e7eb611b5d4b2cb6be1d38767d035d0a850832d18b7df"
+      "sha256": "c70f3a3b8ed06d2c5fa59947bd892722cbf8b0d2174584f20df30091e75b6330"
     },
     "mumbo-tdl": {
       "retrace_count": 7673,
-      "sha256": "704abf80ceeb725ada1009d7959444f8d951501021b0d382d920a217024b184a"
+      "sha256": "3a8980f22654365ab43795d61aab26d03fcaa15d23105520a4d20c4ed4e0a4e9"
     },
     "mumbo-ww": {
       "retrace_count": 7853,
-      "sha256": "06f9608d209a1a06d28aa768684cedec82b4c885aedc1f19502d1928aa5a9fd6"
+      "sha256": "584c9b27b1e698fefbf49dd00a39b8a29d2e896e369354514478dd031fa1d775"
     },
     "new-game": {
       "retrace_count": 56943,
@@ -210,7 +210,7 @@
     },
     "old-king-coal": {
       "retrace_count": 3837,
-      "sha256": "4f4bb208e5e63926668a71ea539619e5be5742a98cefc3ea42fc54eff864e465"
+      "sha256": "0ba9812f5fa40dc5eab6f008ab099e386a754310569eb44d2e963572969d9754"
     },
     "saucer-of-peril": {
       "retrace_count": 4496,
@@ -246,23 +246,23 @@
     },
     "worlds": {
       "retrace_count": 27093,
-      "sha256": "92511eb49d3e9dfd22aadf792e310517fa1a1a0ecb46f624fd9736d1ecf13600"
+      "sha256": "d07e5a1f90ff75e2dfc7ee17c0a361a72827bd13fe4919ae23c84648bdca6d70"
     },
     "wumba-baby-t-rex": {
       "retrace_count": 7013,
-      "sha256": "0fb5941f7806a31efd579131f6d108fb589e6c291c6c2d8dd2237603dacb9308"
+      "sha256": "9c6d528fe6bbe47d3cbc0eb9c64710237d473b44e89da81865a59b3c58a1e5e5"
     },
     "wumba-bee": {
       "retrace_count": 7013,
-      "sha256": "6fc243a580d33f4362be7ffdb5aa189198460b5ed967d7d572ef5bc599aa4836"
+      "sha256": "bb7d07f3cb96b804135f0bae1addfb4c06d948c646fb34488ddcdef96f789c4e"
     },
     "wumba-daddy-t-rex": {
       "retrace_count": 7013,
-      "sha256": "633a2c1c011d69f490a0416fba69041c94f9afd11680c9344b47c543755c9539"
+      "sha256": "5b2ca98b9a17f12f8033b11d7b2445e571649bdf6b50c9998644dd278d6d792b"
     },
     "wumba-detonator": {
       "retrace_count": 7013,
-      "sha256": "8350ff1ef2d0041149ec87771157bb718c664b2609986bc37906c2e2f7949931"
+      "sha256": "0c1a481e2df06af2c46a91478bd8d7b9d18b6cf625dd213665b31b38277df296"
     },
     "wumba-dragon-kazooie": {
       "retrace_count": 7013,
@@ -270,23 +270,23 @@
     },
     "wumba-money-van": {
       "retrace_count": 7013,
-      "sha256": "d9434e7df6524ebf2b1cb5e4f37daf30b3ab68e2cd04868be6c3d89fbb281e21"
+      "sha256": "2696537bba811624f639e58b164c51185ea5b3e2303bc6bd4d873d4c9c8afce4"
     },
     "wumba-snowball": {
       "retrace_count": 7013,
-      "sha256": "c766b2266142eb88a21eee73ac996a91de205e5d8e50a3a80f47a7ffb6691d8b"
+      "sha256": "327b050724053ee9fd8cfa7550199b22bf9fd4cf63239cb4ea65e87a10b3416a"
     },
     "wumba-stony": {
       "retrace_count": 7013,
-      "sha256": "18ea6c4ea092c15bf264b224764e79b16beda5a460bc5a697917328bde0d16dd"
+      "sha256": "5ceb75778ab6597b9b8fd2b438d97e68857fec26d526b7a5424e1bca34095764"
     },
     "wumba-submarine": {
       "retrace_count": 7013,
-      "sha256": "36979a8adb5c8ffb918881f6482adabf4a2dfef9ed18582bf70e874c2c1b163c"
+      "sha256": "c93aaccfe2518d63cf538481e2c5a557ece052c66e431ea543fcaf7b07e35978"
     },
     "wumba-washer": {
       "retrace_count": 7013,
-      "sha256": "fa5edcce67d0ef82d078ccf9b246e8759171d70524344cce99afebc4f15de3d6"
+      "sha256": "4d2661f2881e83ce2983093fecfe35e488b44b7344374338d2442deb49caaca2"
     },
     "ww-entrance": {
       "retrace_count": 2638,

@@ -64,7 +64,7 @@ void func_80800168_chboxingglove(void *arg0) {
     (((Objboxingglove_arg0 *)arg0)->unk65) = (u8) ((((Objboxingglove_arg0 *)arg0)->unk65) & 0xFFFE);
     (((Objboxingglove_arg0 *)arg0)->unk58) = 1.0f;
     (((Objboxingglove_arg0 *)arg0)->unk28) = (f32) (((Objboxingglove_arg0 *)arg0)->unk8);
-    temp_v0 = _subaddiefind_entrypoint_2(0x36E, ((s32 *)&sp18) - 1, arg0);
+    temp_v0 = _subaddiefind_entrypoint_2(0x36E, ((s32 *)&sp18) BT_IDO_ONLY(- 1), arg0);
     (((Objboxingglove_arg0 *)arg0)->unk3C) = (s32) (((Objboxingglove_func_80800168_chboxingglove_temp_v0 *)temp_v0)->unk0);
     (((Objboxingglove_func_80800168_chboxingglove_temp_v0 *)temp_v0)->unk3C) = (s32) (((Objboxingglove_arg0 *)arg0)->unk0);
     func_80800630_chboxingglove(arg0);

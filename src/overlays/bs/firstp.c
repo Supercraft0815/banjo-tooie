@@ -5526,8 +5526,8 @@ void func_80808EF0_bsfirstp(BtIntPtr arg0) {
     f32 sp18[3];
 
     if (bakey_pressed(arg0, 8) != 0) {
-        func_8009C128(arg0, sp18 - 1);
-        func_801013A8(sp18 - 1, 0x6F, (((PlayerState *)arg0)->unk184));
+        func_8009C128(arg0, sp18 BT_IDO_ONLY(- 1));
+        func_801013A8(sp18 BT_IDO_ONLY(- 1), 0x6F, (((PlayerState *)arg0)->unk184));
     }
 }    typedef struct { u8 pad0[0x10C]; f32 unk10C; } Objfirstp_func_80808F38_bsfirstp_state; /* offsets.py genstruct: fields from raw offsets on state; rename once understood */
 

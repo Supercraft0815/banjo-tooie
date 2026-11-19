@@ -294,10 +294,10 @@ void func_8080078C_susubgame(BtIntPtr arg0, s32 arg1) {
     s32 _ncpod_entrypoint_24(BtIntPtr, s32, BtIntPtr);
     BtIntPtr func_800A93E4(BtIntPtr);
     void func_800F5A00(BtIntPtr, f32 *);
-    void func_800F5DC8(BtIntPtr arg0, u8 *arg1);
+    void func_800F5DC8(BtIntPtr player, f32 rotation[3]);
     void *func_80110024(s16 *);
     f32 sp3C[3];
-    s32 sp30[3];
+    f32 sp30[3];
     s32 sp20[4];
     void *sp1C;
 

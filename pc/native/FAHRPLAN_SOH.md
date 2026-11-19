@@ -26,7 +26,7 @@ Die Zahlen in der Vergleichstabelle und den Arbeitspaketen beschreiben den Ausga
 | A5–A7 | ImGui-Menü und vier Eingabeplätze, GPU-Zielgrößen und HUD bis 4K geprüft, Interpolations- und Scanout-Tests bestanden | A7-Messung am externen 4K/60-Hz-Display auf Nutzerwunsch zurückgestellt |
 | A8 | C-Mixer als Standard, alle 74 Korpusfälle gegen den Microcode, 83.772.256 identische PCM-Bytes in `new-game` | macOS-Abnahme abgeschlossen |
 | A9–A11 | A9 ersetzt HUD-Texturen und Modell-Assets nach Paketpriorität. A11-Absturzberichte auf macOS, Linux und unter Wine geprüft | Rice-CRC für Emulator-Texturpakete offen. A10-Wunschliste auf Nutzerwunsch zurückgestellt |
-| N1–N3 | 5 offene Datenmodule. Der Gast kompiliert die Bitfelder direkt aus C. N2 von 163 auf 98 ungültige Aufrufvarianten. N3 hat 943 LP64-Warnstellen, 207 verschiebbare Offsets und 45 feste Heapgrößen | Quelllisten, Fremdsymbolzugriffe und Compilerhilfen |
+| N1–N3 | 5 offene Datenmodule. Der Gast kompiliert die Bitfelder direkt aus C. N2 hat die lokalen Stack-Arrays im C-Quelltext und 98 der ursprünglich 163 ungültigen Aufrufvarianten übrig. N3 hat 943 LP64-Warnstellen, 207 verschiebbare Offsets und 45 feste Heapgrößen | Quelllisten, Fremdsymbolzugriffe und Compilerhilfen |
 | N4–N6 | Der direkte native Build setzt N1–N3 voraus | Umstellung nach dem Spike, Entscheidung über Little-Endian nach N5 |
 
 ---
@@ -471,6 +471,7 @@ bt-safepoints, default<O2>, bt-fixcalls`.
    Locals nativ zu einem Array machen (Muster: `su/spline.c`, `f32 points[4][3]`). Dazu der
    Fall, den der Pass nicht sieht (Callee liest Nachbar-Locals): Scan nach Gruppen gleichartiger
    lokaler Arrays, von denen nur eines weitergegeben wird.
+   Die Stack-Arrays sind im Gast aktiv. Bei der Dialogkamera liegen Position und Rotation im Original an getrennten Stackadressen. Nach der Korrektur wurden 24 Replay-Referenzen einzeln verglichen. Alle 74 Fälle mit 447.849 Retraces bestehen im integrierten Build. Der IDO-Vergleich umfasst 2.104 Funktionen in 88 Modulen und beide vollständigen ROM-Abbilder.
 4. `bitfields.py`: Codemod, der in jeder Struct-Definition mit Bitfeldern die gespiegelte
    Reihenfolge unter `#ifdef BT_NATIVE` daneben schreibt (in Headern dürfen Zeilen dazukommen; bei
    Structs in `.c`-Dateien auf dieselbe Zeile). Prüfung: IR des Builds mit Codemod gleich dem IR

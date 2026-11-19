@@ -148,18 +148,18 @@ void func_8080030C_gcdialogcamera(void) {
     void _capod_entrypoint_11(s32 arg0, BtIntPtr arg1);
     BtUIntPtr func_800F54E4(void);
     void func_800F5A00(BtIntPtr, f32[3]);
-    void func_800F5DC8(BtIntPtr arg0, u8 *arg1);
-    f32 sp2C[5];
-    s32 sp20;
+    void func_800F5DC8(BtIntPtr player, f32 rotation[3]);
+    f32 position[3];
+    f32 rotation[3];
     BtUIntPtr sp1C;
     BtUIntPtr temp_v0;
 
     temp_v0 = func_800F54E4();
     sp1C = temp_v0;
-    func_800F5A00((s32) temp_v0, sp2C + 2);
-    func_800F5DC8(sp1C, &sp20);
-    _capod_entrypoint_10(1, (BtIntPtr) (sp2C + 2));
-    _capod_entrypoint_11(1, (BtIntPtr) &sp20);
+    func_800F5A00((s32) temp_v0, position);
+    func_800F5DC8(sp1C, rotation);
+    _capod_entrypoint_10(1, (BtIntPtr)position);
+    _capod_entrypoint_11(1, (BtIntPtr)rotation);
 }
 
 void gcdialogcamera_entrypoint_7(BtUIntPtr arg0, f32 *arg1) {

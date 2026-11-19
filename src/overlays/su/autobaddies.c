@@ -45,11 +45,11 @@ void suautobaddies_entrypoint_1(void) {
     BtIntPtr var_a0;
 
     temp_s0 = _glcutDll_entrypoint_18();
-    var_a0 = func_801067C4((&sp28) - 1);
+    var_a0 = func_801067C4((&sp28) BT_IDO_ONLY(- 1));
     if (var_a0 != 0) {
         do {
             func_8010108C(var_a0, 0x49, temp_s0);
-            temp_v0_2 = func_8010682C((&sp28) - 1);
+            temp_v0_2 = func_8010682C((&sp28) BT_IDO_ONLY(- 1));
             var_a0 = temp_v0_2;
         } while (temp_v0_2 != 0);
     }

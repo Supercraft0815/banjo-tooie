@@ -136,7 +136,7 @@ void func_808002EC_chwaspnestgame(Actor *arg0) {
     u8 *temp_s6;
     u8 *var_s1_2;
     u8 *var_s2;
-    f32 sp58[3];
+    f32 sp58[3 BT_NATIVE_ONLY(+ 3)];
     u8 *var_s3;
 
     temp_s6 = func_80100094(arg0, 0);

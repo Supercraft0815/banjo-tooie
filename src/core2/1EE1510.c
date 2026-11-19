@@ -372,8 +372,8 @@ Actor *func_8010856C(s32 arg0, f32 *arg1, f32 *arg2) {
     actor = func_80108DC0(arg0, sp20, (s32)arg2[1], 0, 0, 0);
     if (!actor) return NULL;
 #else
-    func_800EE904((s32 *)((u8 *)sp20 - 4), arg1);
-    actor = func_80108DC0(arg0, (s32 *)((u8 *)sp20 - 4), (s32)arg2[1], 0, 0, 0);
+    func_800EE904((s32 *)((u8 *)sp20 BT_IDO_ONLY(- 4)), arg1);
+    actor = func_80108DC0(arg0, (s32 *)((u8 *)sp20 BT_IDO_ONLY(- 4)), (s32)arg2[1], 0, 0, 0);
 #endif
     actor->rotation[0] = arg2[0];
     return actor;

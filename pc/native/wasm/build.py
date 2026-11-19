@@ -173,10 +173,10 @@ def guest_pipeline(disabled, xsym):
     passes = ['function(mem2reg)', 'bt-fixcalls']
     if xsym:
         passes.append('bt-xsym')
-    passes += ['bt-bigendian', 'bt-datagroup', 'bt-stackslots', 'internalize',
+    passes += ['bt-bigendian', 'bt-datagroup', 'internalize',
                'bt-safepoints', 'default<O2>', 'bt-fixcalls']
     omit = {'bt-' + name.strip().removeprefix('bt-') for name in disabled.split(',') if name.strip()}
-    unknown = omit - {p for p in passes if p.startswith('bt-')} - {'bt-xsym'}
+    unknown = omit - {p for p in passes if p.startswith('bt-')} - {'bt-xsym', 'bt-stackslots'}
     if unknown:
         raise ValueError('BT_PASS_OFF: unknown pass ' + ', '.join(sorted(unknown)))
     if 'bt-fixcalls' in omit:

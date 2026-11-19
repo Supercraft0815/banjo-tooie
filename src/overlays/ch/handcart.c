@@ -154,7 +154,7 @@ void func_808002B8_chhandcart(Actor* arg0, s32 arg1)
     var_s4 = _susplinet_entrypoint_13(splineMemory);
     for (var_s0 = 0; var_s0 < D_80804B94_chhandcart[tempA1]; var_s0++)
     {
-        func_800EE7F8(sp68[1], D_80804B84_chhandcart[tempA1][var_s0].unk0);
+        func_800EE7F8(BT_IDO_ONLY(sp68[1]) BT_NATIVE_ONLY(sp6C[0]->f), D_80804B84_chhandcart[tempA1][var_s0].unk0);
         var_s3[0] = D_80804B84_chhandcart[tempA1][var_s0].unk10;
         var_s4[0] = -1;
         *sp68[0] = D_80804B84_chhandcart[tempA1][var_s0].unk0[3];

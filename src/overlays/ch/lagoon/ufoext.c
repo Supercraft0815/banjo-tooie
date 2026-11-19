@@ -85,8 +85,8 @@ void func_808001D8_chlagoonufoext(Actor *arg0) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800FFAB0(Actor *);
     void *func_80100094(Actor *, u32);
-    f32 unused[3];
-    f32 sp28[3];
+
+    f32 sp28[6];
     s32 temp_a0;
 
     arg0->actorData[3] = func_800CBDD4(arg0->position, 0x64, 6);

@@ -168,8 +168,8 @@ void func_80800354_chkingjinjobits(Actor *arg0) {
     s32 flag3B;
     s32 flag5A;
     s32 cameraFlags;
-    f32 rotation[3];
-    f32 position[3];
+
+    f32 position[6];
     BtIntPtr camera;
 
     active = 0;

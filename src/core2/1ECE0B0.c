@@ -742,15 +742,15 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F5D9C(BtIntPtr arg0 BT_PASS2(, s32
 
 /* extern */
 
-void func_800F5DC8(BtIntPtr arg0, u8 *arg1) {
+void func_800F5DC8(BtIntPtr arg0, f32 rotation[3]) {
     f32 func_8009BFD8(PlayerState *);
     f32 baroll_getIdeal(PlayerState *);
     volatile PlayerState *sp1C;
 
     sp1C = D_80135490.players[arg0];
-    (((Vec3f *)arg1)->pos.x) = func_8009BFD8((PlayerState *)sp1C);
-    (((Vec3f *)arg1)->pos.y) = yaw_getIdeal((PlayerState *)sp1C);
-    (((Vec3f *)arg1)->pos.z) = baroll_getIdeal((PlayerState *)sp1C);
+    rotation[0] = func_8009BFD8((PlayerState *)sp1C);
+    rotation[1] = yaw_getIdeal((PlayerState *)sp1C);
+    rotation[2] = baroll_getIdeal((PlayerState *)sp1C);
 }
 
 void func_800F5E24(s32 arg0)

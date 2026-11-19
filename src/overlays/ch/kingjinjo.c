@@ -237,10 +237,10 @@ s32 func_80800634_chkingjinjo(Actor *arg0, s32 arg1, s32 arg2) {
     Actor *found;
     s32 expression;
     s32 pad0[2];
-    f32 sp50[3];
+    f32 sp50[3 BT_NATIVE_ONLY(+ 3)];
     BtIntPtr sp4C;
     s32 pad1[3];
-    f32 sp34[3];
+    f32 sp34[3 BT_NATIVE_ONLY(+ 3)];
     BtIntPtr sp30;
 
     switch (arg1) {
