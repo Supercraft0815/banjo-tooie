@@ -635,15 +635,15 @@ void func_80801740_chfantasyeyeball(Actor *arg0, f32 *arg1) {
 /* extern */
 
 #ifdef BT_NATIVE
-s32 func_808017B4_chfantasyeyeball(s32 bt_a0) {
+s32 func_808017B4_chfantasyeyeball(Actor *actor) {
 #else
 s32 func_808017B4_chfantasyeyeball(void) {
 #endif
-    s32 func_8010C754();
+    s32 func_8010C754(BT_NATIVE_ONLY(Actor *));
     s32 func_8010D248();
     f32 temp_f0;
 
-    temp_f0 = (f32) func_8010C754();
+    temp_f0 = (f32) func_8010C754(BT_NATIVE_ONLY(actor));
     if ((temp_f0 > 5000.0f) || (temp_f0 < 500.0f)) {
         return 0;
     }

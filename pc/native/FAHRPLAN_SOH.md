@@ -41,6 +41,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Vertexpuffer und Freilisten. Die fünf Vertexpuffer und die beiden Freilisten behalten bei der Defragmentierung ihre Daten. Der LP64-Test prüft auch belegte und freigegebene Listeneinträge.
 
+- Suche nach Spielern in der Nähe. Die Suchposition und die Liste der bis zu acht Spieler besitzen typisierte Speicherbereiche. Die Figuren verwenden dieselben Treffer und Positionsfilter.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

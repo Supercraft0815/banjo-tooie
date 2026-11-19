@@ -123,28 +123,10 @@ dlabel D_80136F40
     /* 80136F40 */ .space 0x10
 
 dlabel D_80136F50
-    /* 80136F50 */ .space 0x04
-
-dlabel D_80136F54
-    /* 80136F54 */ .space 0x08
-
-dlabel D_80136F5C
-    /* 80136F5C */ .space 0x02
-
-dlabel D_80136F5E
-    /* 80136F5E */ .space 0x02
-
-dlabel D_80136F60
-    /* 80136F60 */ .space 0x04
-
-dlabel D_80136F64
-    /* 80136F64 */ .space 0x04
+    /* 80136F50 */ .space 0x18
 
 dlabel D_80136F68
-    /* 80136F68 */ .space 0x24
-
-dlabel D_80136F8C
-    /* 80136F8C */ .space 0x04
+    /* 80136F68 */ .space 0x28
 
 dlabel D_80136F90
     /* 80136F90 */ .space 0xD0

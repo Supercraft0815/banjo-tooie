@@ -217,7 +217,7 @@ void func_808006EC_chlavagargoyle(Actor *arg0) {
     void func_800EFDE8(f32 *, u8 *, f32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_80103EAC(Actor *);
-    s32 func_8010C754(void);
+    s32 func_8010C754(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(void));
     void func_8080099C_chlavagargoyle(Actor *, BtIntPtr);
     void func_80800B8C_chlavagargoyle(Actor *, f32 *, BtIntPtr);
     extern u32 D_80800DC4_chlavagargoyle[];
@@ -226,7 +226,7 @@ void func_808006EC_chlavagargoyle(Actor *arg0) {
     f32 sp48[3];
     f32 sp3C[3];
 
-    sp54 = func_8010C754();
+    sp54 = func_8010C754(BT_NATIVE_ONLY(arg0));
     if (func_800D91EC(&((struct GargoyleData *)arg0->actorData)->timer, 3.0f)) {
         func_80800B8C_chlavagargoyle(arg0, arg0->position, (BtIntPtr)arg0->position);
         return;

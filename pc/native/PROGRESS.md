@@ -3501,3 +3501,9 @@ Im isolierten Stand bis zum Speichertransport bestehen elf Gastsuiten und alle 7
 ### 2026-11-19 – Paarvergleich der Scheduler mit echter Uhr (N2)
 
 Sieben Eingabefolgen liefen jeweils gleichzeitig auf dem Taxistand mit Compilerpass und auf demselben Stand mit expliziter Übergabe an den Scheduler. Beide Varianten erreichten bei allen sieben Paaren die erwartete Zielkarte und beendeten den Lauf regulär. Im Weltenlauf erreichten sie nach 27.000 Retraces die Karte 0x14F. Das vollständige Messprotokoll einschließlich der größten Abstände zwischen Bildwechseln steht unter `build/acceptance/n2-safepoints-rebase-2026-11-19/wallclock-paired.log`. Die übrigen Fälle stammen aus dem vorangegangenen Echtzeitlauf.
+
+### 2026-11-19 – Suche nach Spielern in der Nähe (N1/N3)
+
+Die Suchposition und die Liste der bis zu acht Spieler besitzen typisierte Speicherbereiche. Die Figuren verwenden dieselben Treffer und Positionsfilter.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 68 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 7 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-player-proximity*`.

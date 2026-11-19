@@ -156,20 +156,20 @@ void func_808002A8_chweather(BtIntPtr arg0) {
 
 /* extern */
 
-void func_8080035C_chweather(BT_PARAM_OR_VOID(s32 bt_a0)) {
+void func_8080035C_chweather(BT_PARAM_OR_VOID(Actor *actor)) {
     void func_800B7D28(void);
-    s32 func_8010C500();
-    if (func_8010C500() != 0) {
+    s32 func_8010C500(BT_NATIVE_ONLY(Actor *));
+    if (func_8010C500(BT_NATIVE_ONLY(actor)) != 0) {
         func_800B7D28();
     }
 }
 
 /* extern */
 
-void func_8080038C_chweather(BT_PARAM_OR_VOID(s32 bt_a0)) {
+void func_8080038C_chweather(BT_PARAM_OR_VOID(Actor *actor)) {
     void func_800B7DC8(void);
-    s32 func_8010C500();
-    if (func_8010C500() != 0) {
+    s32 func_8010C500(BT_NATIVE_ONLY(Actor *));
+    if (func_8010C500(BT_NATIVE_ONLY(actor)) != 0) {
         func_800B7DC8();
     }
 }

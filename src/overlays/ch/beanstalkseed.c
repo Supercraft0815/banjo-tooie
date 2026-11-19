@@ -65,7 +65,7 @@ OSThread *chbeanstalkseed_entrypoint_0(void)
 /* extern */
 
 #ifdef BT_NATIVE
-s32 func_80800328_chbeanstalkseed(s32 bt_a0) {
+s32 func_80800328_chbeanstalkseed(Actor *actor) {
 #else
 s32 func_80800328_chbeanstalkseed(void) {
 #endif
@@ -74,8 +74,8 @@ s32 func_80800328_chbeanstalkseed(void) {
     s32 func_800F64A4(BtIntPtr, s32);
     s32 func_800F66F0(BtIntPtr);
     s32 func_800F6720(BtIntPtr);
-    s32 func_8010C500();
-    if (func_8010C500() == 0) {
+    s32 func_8010C500(BT_NATIVE_ONLY(Actor *));
+    if (func_8010C500(BT_NATIVE_ONLY(actor)) == 0) {
         return 0;
     }
     if (func_800D1A04(0x50) == 0) {

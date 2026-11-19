@@ -1,51 +1,76 @@
 #include "common.h"
+#ifdef BT_NATIVE
+typedef struct {
+    f32 position[3];
+    s16 active, state;
+    s32 movement, mode;
+} PlayerQueryState;
+typedef struct {
+    s32 players[8], count, cursor;
+} NearbyPlayers;
+PlayerQueryState D_80136F50;
+NearbyPlayers D_80136F68;
+_Static_assert(sizeof(PlayerQueryState) == 0x18 && sizeof(NearbyPlayers) == 0x28, "player query layout");
+#define PLAYER_POSITION D_80136F50.position
+#define D_80136F54 D_80136F50.position[1]
+#define D_80136F5C D_80136F50.active
+#define D_80136F5E D_80136F50.state
+#define D_80136F60 D_80136F50.movement
+#define D_80136F64 D_80136F50.mode
+#define D_80136F8C D_80136F68.cursor
+#else
+#define PLAYER_POSITION (&D_80136F50)
+#endif
+#define PLAYER_QUERY_HEIGHT BT_DATA_FIELD(D_80136F50.position[1], ((f32 *)&D_80136F50)[1])
+#define NEARBY_COUNT BT_DATA_FIELD(D_80136F68.count, (((Obj1EE5DF0_D_80136F68 *)&D_80136F68)->unk20))
+#define NEARBY_CURSOR BT_DATA_FIELD(D_80136F68.cursor, (((Obj1EE5DF0_D_80136F68 *)&D_80136F68)->unk24))
 
-extern s32 D_80136F60;
-extern s32 D_80136F64;     
+BT_IDO_ONLY(extern s32 D_80136F60;)
+BT_IDO_ONLY(extern s32 D_80136F64;)
 
 s32 func_8010C500(void *arg0) {
-    s32 func_800CC338(s32 *, s32, s32);
-    extern s32 D_80136F50;
+    s32 func_800CC338(BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(s32 *), s32, s32);
+    BT_IDO_ONLY(extern s32 D_80136F50;)
     u32 temp_v0;
     u32 temp_v1;
 
-    temp_v0 = (*(u32 *)((s8 *)(arg0) + (0x70)));
+    temp_v0 = BT_DATA_FIELD(((Actor *)arg0)->flags70, (*(u32 *)((s8 *)(arg0) + (0x70))));
     temp_v1 = temp_v0 >> 0x19;
     if (temp_v1 == 0) {
         return 1;
     }
-    return (func_800CC338(&D_80136F50, temp_v1 - 1, ((u32) (temp_v0 << 0x16) >> 0x1A) - 1) + 1) != 0;
+    return (func_800CC338(PLAYER_POSITION, temp_v1 - 1, ((u32) (temp_v0 << 0x16) >> 0x1A) - 1) + 1) != 0;
 }                   typedef struct { u8 pad0[0x8]; f32 unk8; u8 padC[0x64]; u32 unk70; } Obj1EE5DF0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 s32 func_8010C550(u8 *arg0, BtIntPtr arg1) {
-    s32 func_800CC338(s32 *, s32, s32);
+    s32 func_800CC338(BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(s32 *), s32, s32);
     void func_800F5A00(BtIntPtr, f32[3]);
     f32 sp1C[3];
     u32 temp_v0;
 
-    if (((u32) (((Obj1EE5DF0_arg0 *)arg0)->unk70) >> 0x19) == 0) {
+    if (((u32) (BT_DATA_FIELD(((Actor *)arg0)->flags70, ((Obj1EE5DF0_arg0 *)arg0)->unk70)) >> 0x19) == 0) {
         return 1;
     }
     func_800F5A00(arg1, sp1C);
-    temp_v0 = (((Obj1EE5DF0_arg0 *)arg0)->unk70);
-    return (func_800CC338((s32 *) sp1C, (temp_v0 >> 0x19) - 1, ((u32) (temp_v0 << 0x16) >> 0x1A) - 1) + 1) != 0;
+    temp_v0 = (BT_DATA_FIELD(((Actor *)arg0)->flags70, ((Obj1EE5DF0_arg0 *)arg0)->unk70));
+    return (func_800CC338(BT_IDO_ONLY((s32 *)) sp1C, (temp_v0 >> 0x19) - 1, ((u32) (temp_v0 << 0x16) >> 0x1A) - 1) + 1) != 0;
 }
 
 int func_8010C5C0(void *arg0, f32 arg1) {
-    s32 func_800CC338(s32 *, s32, s32);
-    extern s32 D_80136F50;
-    extern f32 D_80136F54;
+    s32 func_800CC338(BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(s32 *), s32, s32);
+    BT_IDO_ONLY(extern s32 D_80136F50;)
+    BT_IDO_ONLY(extern f32 D_80136F54;)
     u32 temp_a3;
     u32 temp_v1;
 
-    temp_v1 = ((Obj1EE5DF0_arg0 *)arg0)->unk70;
+    temp_v1 = BT_DATA_FIELD(((Actor *)arg0)->flags70, ((Obj1EE5DF0_arg0 *)arg0)->unk70);
     temp_a3 = temp_v1 >> 25;
     if (temp_a3 == 0) {
         return 1;
     }
-    return D_80136F54 < ((Obj1EE5DF0_arg0 *)arg0)->unk8 + arg1
-        && ((Obj1EE5DF0_arg0 *)arg0)->unk8 - arg1 < D_80136F54
-        && (func_800CC338(&D_80136F50, temp_a3 - 1,
+    return D_80136F54 < BT_DATA_FIELD(((Actor *)arg0)->position[1], ((Obj1EE5DF0_arg0 *)arg0)->unk8) + arg1
+        && BT_DATA_FIELD(((Actor *)arg0)->position[1], ((Obj1EE5DF0_arg0 *)arg0)->unk8) - arg1 < D_80136F54
+        && (func_800CC338(PLAYER_POSITION, temp_a3 - 1,
             ((u32)(temp_v1 << 22) >> 26) - 1) + 1) != 0;
 }
 
@@ -55,39 +80,39 @@ struct RouteActor {
 };
 
 int func_8010C668(struct RouteActor *arg0, f32 *arg1, f32 arg2, f32 arg3) {
-    s32 func_800CC338(s32 *, s32, s32);
-    extern s32 D_80136F50;
+    s32 func_800CC338(BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(s32 *), s32, s32);
+    BT_IDO_ONLY(extern s32 D_80136F50;)
     u32 temp_a3;
     u32 temp_v1;
 
-    temp_v1 = arg0->route;
+    temp_v1 = BT_DATA_FIELD(((Actor *)arg0)->flags70, arg0->route);
     temp_a3 = temp_v1 >> 25;
     if (temp_a3 == 0) {
         return 1;
     }
-    return ((f32 *)&D_80136F50)[1] < arg1[1] + arg2
-        && arg1[1] + arg3 < ((f32 *)&D_80136F50)[1]
-        && (func_800CC338(&D_80136F50, temp_a3 - 1,
+    return PLAYER_QUERY_HEIGHT < arg1[1] + arg2
+        && arg1[1] + arg3 < PLAYER_QUERY_HEIGHT
+        && (func_800CC338(PLAYER_POSITION, temp_a3 - 1,
             ((u32)(temp_v1 << 22) >> 26) - 1) + 1) != 0;
 }
 
-s32 func_8010C710(BtIntPtr arg0) {
-    extern s32 D_80136F50;
+s32 func_8010C710(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(BtIntPtr) arg0) {
+    BT_IDO_ONLY(extern s32 D_80136F50;)
     f32 func_800EEAA4(f32 a[3], f32 b[3]);
     void func_800EFB24(void *arg0, void *arg1, void *arg2);
     f32 sp1C[3];
     f32 sp20;
 
-    func_800EFB24(&sp1C, arg0 + 4, &D_80136F50);
+    func_800EFB24(&sp1C, BT_DATA_FIELD(((Actor *)arg0)->position, arg0 + 4), PLAYER_POSITION);
     return (s32) func_800EEAA4(&sp1C, &sp1C);
 }
 
 /* extern */
 
-s32 func_8010C754(BT_PARAM_OR_VOID(BT_NATIVE_ONLY(s32 bt_a0))) {
-    s32 func_8010C710();
+s32 func_8010C754(BT_PARAM_OR_VOID(Actor *actor)) {
+    s32 func_8010C710(BT_NATIVE_ONLY(Actor *));
 #ifdef BT_NATIVE
-    return (s32) sqrtf((f32) ((s32 (*)(s32))func_8010C710)(BT_NATIVE_ONLY(bt_a0)));
+    return (s32) sqrtf((f32) func_8010C710(actor));
 #else
     return (s32) sqrtf((f32) func_8010C710());
 #endif
@@ -167,57 +192,57 @@ void func_8010C964(u8 *arg0) {
 }    typedef struct { u8 pad0[0xC]; s16 unkC; s16 unkE; } Obj1EE5DF0_D_80136F50; /* offsets.py genstruct: fields from raw offsets on &D_80136F50; rename once understood */
 
 s32 func_8010C9B0(f32 *arg0, s32 arg1) {
-    extern s32 D_80136F50;
+    BT_IDO_ONLY(extern s32 D_80136F50;)
     s32 func_800EFFB4(f32 *, f32, f32 *);
-    if ((((Obj1EE5DF0_D_80136F50 *)&D_80136F50)->unkE) == 0) {
+    if (BT_DATA_FIELD(D_80136F5E, (((Obj1EE5DF0_D_80136F50 *)&D_80136F50)->unkE)) == 0) {
         return 0;
     }
-    return func_800EFFB4(arg0, (f32) arg1, (f32 *) &D_80136F50);
+    return func_800EFFB4(arg0, (f32) arg1, PLAYER_POSITION);
 }
 
 s32 func_8010C9FC(f32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     int func_800F00A4(f32 point[3], f32 radius, f32 upper, f32 lower, f32 center[3]);
-    extern s32 D_80136F50;
-    if ((((Obj1EE5DF0_D_80136F50 *)&D_80136F50)->unkE) == 0) {
+    BT_IDO_ONLY(extern s32 D_80136F50;)
+    if (BT_DATA_FIELD(D_80136F5E, (((Obj1EE5DF0_D_80136F50 *)&D_80136F50)->unkE)) == 0) {
         return 0;
     }
-    return func_800F00A4(arg0, (f32) arg1, (f32) arg2, (f32) arg3, (f32 *) &D_80136F50);
+    return func_800F00A4(arg0, (f32) arg1, (f32) arg2, (f32) arg3, PLAYER_POSITION);
 }
 
 s32 func_8010CA74(f32 *arg0, s32 arg1) {
-    extern s32 D_80136F50;
+    BT_IDO_ONLY(extern s32 D_80136F50;)
     s32 func_800F0064(f32 *, f32, f32 *);
-    if ((((Obj1EE5DF0_D_80136F50 *)&D_80136F50)->unkE) == 0) {
+    if (BT_DATA_FIELD(D_80136F5E, (((Obj1EE5DF0_D_80136F50 *)&D_80136F50)->unkE)) == 0) {
         return 0;
     }
-    return func_800F0064(arg0, (f32) arg1, (f32 *) &D_80136F50);
+    return func_800F0064(arg0, (f32) arg1, PLAYER_POSITION);
 }
 
 s32 func_8010CAC0(f32 *arg0, s32 arg1) {
-    extern s32 D_80136F50;
+    BT_IDO_ONLY(extern s32 D_80136F50;)
     s32 func_800EFFB4(f32 *, f32, f32 *);
-    if ((((Obj1EE5DF0_D_80136F50 *)&D_80136F50)->unkC) == 0) {
+    if (BT_DATA_FIELD(D_80136F5C, (((Obj1EE5DF0_D_80136F50 *)&D_80136F50)->unkC)) == 0) {
         return 0;
     }
-    return func_800EFFB4(arg0, (f32) arg1, (f32 *) &D_80136F50);
+    return func_800EFFB4(arg0, (f32) arg1, PLAYER_POSITION);
 }
 
 s32 func_8010CB0C(f32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
     int func_800F00A4(f32 point[3], f32 radius, f32 upper, f32 lower, f32 center[3]);
-    extern s32 D_80136F50;
-    if ((((Obj1EE5DF0_D_80136F50 *)&D_80136F50)->unkC) == 0) {
+    BT_IDO_ONLY(extern s32 D_80136F50;)
+    if (BT_DATA_FIELD(D_80136F5C, (((Obj1EE5DF0_D_80136F50 *)&D_80136F50)->unkC)) == 0) {
         return 0;
     }
-    return func_800F00A4(arg0, (f32) arg1, (f32) arg2, (f32) arg3, (f32 *) &D_80136F50);
+    return func_800F00A4(arg0, (f32) arg1, (f32) arg2, (f32) arg3, PLAYER_POSITION);
 }
 
  s32 func_8010CB84(f32 *arg0, s32 arg1) {
-    extern s32 D_80136F50;
+    BT_IDO_ONLY(extern s32 D_80136F50;)
     s32 func_800F0064(f32 *, f32, f32 *);
-    if ((((Obj1EE5DF0_D_80136F50 *)&D_80136F50)->unkC) == 0) {
+    if (BT_DATA_FIELD(D_80136F5C, (((Obj1EE5DF0_D_80136F50 *)&D_80136F50)->unkC)) == 0) {
         return 0;
     }
-    return func_800F0064(arg0, (f32) arg1, (f32 *) &D_80136F50);
+    return func_800F0064(arg0, (f32) arg1, PLAYER_POSITION);
 }
 
 f32 func_8010CBD0(s32 arg0, f32 *arg1) {
@@ -231,52 +256,52 @@ s32 func_8010CC10(f32 *arg0, f32 arg1) {
     s32 func_800EFFB4(f32 *, f32, f32 *);
     s32 func_800F5898();
     s32 func_800F6438(BtUIntPtr);
-    extern s32 D_80136F68;
+    BT_IDO_ONLY(extern s32 D_80136F68;)
     f32 radius;
     s32 var_s0;
     f32 sp34[3];
 
-    (((Obj1EE5DF0_D_80136F68 *)&D_80136F68)->unk20) = 0;
-    (((Obj1EE5DF0_D_80136F68 *)&D_80136F68)->unk24) = 0;
+    NEARBY_COUNT = 0;
+    NEARBY_CURSOR = 0;
     var_s0 = 0;
     if (func_800F5898() > 0) {
         do {
             if (func_800F6438(var_s0) != 0) {
                 radius = func_8010CBD0(var_s0, sp34);
                 if (func_800EFFB4(arg0, arg1 + radius, sp34) != 0) {
-                    *(&D_80136F68 + (((Obj1EE5DF0_D_80136F68 *)&D_80136F68)->unk20)) = var_s0;
-                    (((Obj1EE5DF0_D_80136F68 *)&D_80136F68)->unk20) = (s32) ((((Obj1EE5DF0_D_80136F68 *)&D_80136F68)->unk20) + 1);
+                    BT_DATA_FIELD(D_80136F68.players[D_80136F68.count], *(&D_80136F68 + (((Obj1EE5DF0_D_80136F68 *)&D_80136F68)->unk20))) = var_s0;
+                    NEARBY_COUNT = (s32) (NEARBY_COUNT + 1);
                 }
             }
             var_s0 += 1;
         } while (var_s0 < func_800F5898());
     }
-    return (((Obj1EE5DF0_D_80136F68 *)&D_80136F68)->unk20);
+    return NEARBY_COUNT;
 }
 
 void func_8010CCE0(void)
 {
-    extern s32 D_80136F8C;
+    BT_IDO_ONLY(extern s32 D_80136F8C;)
 
     D_80136F8C = 0;
 }
 
 s32 func_8010CCEC(void) {
-    extern s32 D_80136F68;
+    BT_IDO_ONLY(extern s32 D_80136F68;)
     s32 temp_v0;
 
-    if ((((Obj1EE5DF0_D_80136F68 *)&D_80136F68)->unk24) >= (((Obj1EE5DF0_D_80136F68 *)&D_80136F68)->unk20)) {
+    if (NEARBY_CURSOR >= NEARBY_COUNT) {
         return -1;
     }
-    temp_v0 = *(&D_80136F68 + (((Obj1EE5DF0_D_80136F68 *)&D_80136F68)->unk24));
-    (((Obj1EE5DF0_D_80136F68 *)&D_80136F68)->unk24) = (s32) ((((Obj1EE5DF0_D_80136F68 *)&D_80136F68)->unk24) + 1);
+    temp_v0 = BT_DATA_FIELD(D_80136F68.players[D_80136F68.cursor], *(&D_80136F68 + (((Obj1EE5DF0_D_80136F68 *)&D_80136F68)->unk24)));
+    NEARBY_CURSOR = (s32) (NEARBY_CURSOR + 1);
     return temp_v0;
 }
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(f32) func_8010CD28(BtIntPtr arg0) {
     f32 func_800F1DF4(f32 *arg0, f32 *arg1);
-    extern s32 D_80136F50;
-    BT_NATIVE_ONLY(return) func_800F1DF4(arg0 + 4, &D_80136F50);
+    BT_IDO_ONLY(extern s32 D_80136F50;)
+    BT_NATIVE_ONLY(return) func_800F1DF4(BT_DATA_FIELD(((Actor *)arg0)->position, arg0 + 4), PLAYER_POSITION);
 }
 
 f32 func_8010CD50(Actor *arg0, BtUIntPtr arg1) {
@@ -302,14 +327,14 @@ int func_8010CD88(Actor *arg0, f32 arg1, f32 arg2) {
 
 void func_8010CE28(BtIntPtr arg0, f32 *arg1) {
     void func_800F18FC(f32 *arg0, f32 *arg1, f32 *arg2);
-    extern s32 D_80136F50;
-    func_800F18FC(arg0 + 4, &D_80136F50, arg1);
+    BT_IDO_ONLY(extern s32 D_80136F50;)
+    func_800F18FC(BT_DATA_FIELD(((Actor *)arg0)->position, arg0 + 4), PLAYER_POSITION, arg1);
     *arg1 = 360.0f - *arg1;
 }
 
 /* extern */
 
-s32 func_8010CE70(u8 *arg0, s32 arg1, s32 arg2) { extern s32 D_80136F50; s32 func_80102844(u8 *, f32, s32, s32 *); return func_80102844(arg0, (f32) arg1, arg2, &D_80136F50); }
+s32 func_8010CE70(u8 *arg0, s32 arg1, s32 arg2) { BT_IDO_ONLY(extern s32 D_80136F50;) s32 func_80102844(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(u8 *), f32, s32, BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(s32 *)); return func_80102844(BT_NATIVE_ONLY((Actor *)) arg0, (f32) arg1, arg2, PLAYER_POSITION); }
 
 void func_8010CEAC(void *arg0) { void func_8010D600(BtIntPtr); f32 func_80102D78(void *, s32 *); void func_80102BF8(void *, f32, f32, f32); s32 sp1C[3]; func_8010D600((BtIntPtr) sp1C); ((Actor *) arg0)->unk54 = func_80102D78(arg0, sp1C); func_80102BF8(arg0, 0.1f, 4.0f, 180.0f); }
 
@@ -410,9 +435,9 @@ void func_8010D12C(BtIntPtr arg0, f32 *arg1, f32 arg2, s32 arg3) {
 /* extern */
 
 s32 func_8010D1E8(void) {
-    extern s32 D_80136F50;
-    extern s16 D_80136F5C;
-    extern s16 D_80136F5E;
+    BT_IDO_ONLY(extern s32 D_80136F50;)
+    BT_IDO_ONLY(extern s16 D_80136F5C;)
+    BT_IDO_ONLY(extern s16 D_80136F5E;)
     s32 func_8008FD48();
     void func_8008FE68(BtIntPtr arg0);
     s32 func_80090150(void);
@@ -420,7 +445,7 @@ s32 func_8010D1E8(void) {
     s32 func_80090128();
     s32 temp_v0;
 
-    func_8008FE68((BtIntPtr) &D_80136F50);
+    func_8008FE68((BtIntPtr) PLAYER_POSITION);
     D_80136F5C = func_80090128();
     D_80136F5E = func_80090150();
     D_80136F60 = func_8008FD48();
@@ -430,21 +455,21 @@ s32 func_8010D1E8(void) {
 }
 
 s32 func_8010D23C(void) {
-    extern s16 D_80136F5C;
+    BT_IDO_ONLY(extern s16 D_80136F5C;)
 
     return D_80136F5C;
 }
 
 s32 func_8010D248(void) {
-    extern s16 D_80136F5E;
+    BT_IDO_ONLY(extern s16 D_80136F5E;)
 
     return D_80136F5E;
 }
 
 void func_8010D254(f32 *arg0) {
     void func_800EE7F8(f32 *, f32 *);
-    extern s32 D_80136F50;
-    func_800EE7F8(arg0, &D_80136F50);
+    BT_IDO_ONLY(extern s32 D_80136F50;)
+    func_800EE7F8(arg0, PLAYER_POSITION);
 }
 
 s32 func_8010D278()
@@ -624,16 +649,3 @@ s32 func_8010D6E0(u8 *arg0, f32 *arg1, f32 arg2, f32 arg3) {
         var_s0 += 1;
     } while (var_s0 != 8); BT_NATIVE_ONLY(return 0;)
 }
-
-#ifdef BT_NATIVE
-/* bss_to_c.py: native definitions of asm .bss labels */
-#include "bt_data.h"
-s32 D_80136F50 BT_DATA(4, bss_core2bss2_2_music_tail, 0x1530);
-f32 D_80136F54 BT_DATA(4, bss_core2bss2_2_music_tail, 0x1534);
-s16 D_80136F5C BT_DATA(4, bss_core2bss2_2_music_tail, 0x153C);
-s16 D_80136F5E BT_DATA(4, bss_core2bss2_2_music_tail, 0x153E);
-s32 D_80136F60 BT_DATA(4, bss_core2bss2_2_music_tail, 0x1540);
-s32 D_80136F64 BT_DATA(4, bss_core2bss2_2_music_tail, 0x1544);
-s32 D_80136F68 BT_DATA(4, bss_core2bss2_2_music_tail, 0x1548);
-s32 D_80136F8C BT_DATA(4, bss_core2bss2_2_music_tail, 0x156C);
-#endif
