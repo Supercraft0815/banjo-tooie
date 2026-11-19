@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "boss_tables.h"
 void func_80800000_chdiggerboss(Actor *arg0) {
     s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
     void *func_80100094(Actor *, u32);
@@ -8,11 +8,11 @@ void func_80800000_chdiggerboss(Actor *arg0) {
     s32 func_801022E4(Actor *);
     void func_80800180_chdiggerboss(Actor *, s32);
     Actor *func_80802228_chdiggerboss(Actor *);
-    extern u32 D_80809DB8_chdiggerboss;
-    extern u32 D_80809DCC_chdiggerboss;
-    extern u32 D_80809DE4_chdiggerboss;
-    extern u32 D_80809DFC_chdiggerboss;
-    extern u32 D_80809E10_chdiggerboss;
+    extern s16 D_80809DB8_chdiggerboss[10];
+    extern s16 D_80809DCC_chdiggerboss[12];
+    extern s16 D_80809DE4_chdiggerboss[12];
+    extern s16 D_80809DFC_chdiggerboss[10];
+    extern s16 D_80809E10_chdiggerboss[10];
     struct DiggerBossData {
         u8 unk0[7];
         s8 unk7;
@@ -23,14 +23,14 @@ void func_80800000_chdiggerboss(Actor *arg0) {
 
     switch (func_801022E4(arg0)) {
     case 0x435:
-        _subaddieaudioquick_entrypoint_3(arg0, position = arg0->position, &D_80809DB8_chdiggerboss, 0.3f);
+        _subaddieaudioquick_entrypoint_3(arg0, position = arg0->position, (void *)D_80809DB8_chdiggerboss, 0.3f);
         nextPosition = position;
-        _subaddieaudioquick_entrypoint_3(arg0, nextPosition, &D_80809DCC_chdiggerboss, 0.8f);
+        _subaddieaudioquick_entrypoint_3(arg0, nextPosition, (void *)D_80809DCC_chdiggerboss, 0.8f);
         break;
     case 0x43B:
-        _subaddieaudioquick_entrypoint_3(arg0, position = arg0->position, &D_80809DB8_chdiggerboss, 0.5f);
+        _subaddieaudioquick_entrypoint_3(arg0, position = arg0->position, (void *)D_80809DB8_chdiggerboss, 0.5f);
         nextPosition = position;
-        _subaddieaudioquick_entrypoint_3(arg0, nextPosition, &D_80809DCC_chdiggerboss, 0.85f);
+        _subaddieaudioquick_entrypoint_3(arg0, nextPosition, (void *)D_80809DCC_chdiggerboss, 0.85f);
         break;
     case 0x436:
         if (func_80101DDC(arg0)) {
@@ -38,12 +38,12 @@ void func_80800000_chdiggerboss(Actor *arg0) {
         }
         break;
     case 0x437:
-        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80809DE4_chdiggerboss, 0.6f);
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, (void *)D_80809DE4_chdiggerboss, 0.6f);
         break;
     case 0x440:
-        _subaddieaudioquick_entrypoint_3(arg0, position = arg0->position, &D_80809DFC_chdiggerboss, 0.6f);
+        _subaddieaudioquick_entrypoint_3(arg0, position = arg0->position, (void *)D_80809DFC_chdiggerboss, 0.6f);
         nextPosition = position;
-        _subaddieaudioquick_entrypoint_3(arg0, nextPosition, &D_80809E10_chdiggerboss, 0.85f);
+        _subaddieaudioquick_entrypoint_3(arg0, nextPosition, (void *)D_80809E10_chdiggerboss, 0.85f);
         if (func_80101E14(arg0, 0.5f)) {
             ((struct DiggerBossData *)func_80100094(func_80802228_chdiggerboss(arg0), 0))->unk7 = 1;
         }
@@ -80,10 +80,10 @@ void func_80800200_chdiggerboss(Actor *arg0) {
     Actor *func_808026F8_chdiggerboss(void *);
     void func_808041E4_chdiggerboss(Actor *, s32);
     void func_80807DC0_chdiggerboss(BtIntPtr, s32);
-    extern u32 D_80809DB8_chdiggerboss;
-    extern u32 D_80809DCC_chdiggerboss;
-    extern s32 D_80809E24_chdiggerboss;
-    extern u32 D_80809E38_chdiggerboss;
+    extern s16 D_80809DB8_chdiggerboss[10];
+    extern s16 D_80809DCC_chdiggerboss[12];
+    extern s16 D_80809E24_chdiggerboss[10];
+    extern s16 D_80809E38_chdiggerboss[6];
     struct {
         u8 pad0[5];
         s8 unk5;
@@ -98,8 +98,8 @@ void func_80800200_chdiggerboss(Actor *arg0) {
     switch (func_801022E4(arg0)) {
     case 0x42D:
         active = func_80102320(arg0, 0.2f, 0.9f);
-        data->unkA0 = _subaddieaudioloop_entrypoint_7(data->unkA0, position = arg0->position, active, &D_80809E24_chdiggerboss, arg0->unk70_0);
-        _subaddieaudioquick_entrypoint_3(arg0, position, &D_80809E38_chdiggerboss, 0.85f);
+        data->unkA0 = _subaddieaudioloop_entrypoint_7(data->unkA0, position = arg0->position, active, (void *)D_80809E24_chdiggerboss, arg0->unk70_0);
+        _subaddieaudioquick_entrypoint_3(arg0, position, (void *)D_80809E38_chdiggerboss, 0.85f);
         if (func_80101DDC(arg0)) {
             func_808008C0_chdiggerboss(arg0, 1, 0);
             func_808008C0_chdiggerboss(arg0, 2, 0);
@@ -116,12 +116,12 @@ void func_80800200_chdiggerboss(Actor *arg0) {
     case 0x429:
     case 0x42B:
         active = func_80102320(arg0, 0.0f, 0.6f);
-        data->unkA0 = _subaddieaudioloop_entrypoint_7(data->unkA0, position = arg0->position, active, &D_80809E24_chdiggerboss, arg0->unk70_0);
-        _subaddieaudioquick_entrypoint_3(arg0, position, &D_80809E38_chdiggerboss, 0.65f);
+        data->unkA0 = _subaddieaudioloop_entrypoint_7(data->unkA0, position = arg0->position, active, (void *)D_80809E24_chdiggerboss, arg0->unk70_0);
+        _subaddieaudioquick_entrypoint_3(arg0, position, (void *)D_80809E38_chdiggerboss, 0.65f);
         break;
     case 0x42F:
-        _subaddieaudioquick_entrypoint_3(arg0, position = arg0->position, &D_80809DB8_chdiggerboss, 0.3f);
-        _subaddieaudioquick_entrypoint_3(arg0, position, &D_80809DCC_chdiggerboss, 0.8f);
+        _subaddieaudioquick_entrypoint_3(arg0, position = arg0->position, (void *)D_80809DB8_chdiggerboss, 0.3f);
+        _subaddieaudioquick_entrypoint_3(arg0, position, (void *)D_80809DCC_chdiggerboss, 0.8f);
         if (func_80101DDC(arg0)) {
             data->unk5 = 1;
             func_8080041C_chdiggerboss(arg0, 1);
@@ -164,16 +164,16 @@ void func_8080041C_chdiggerboss(Actor *arg0, s32 arg1) {
 
 OSThread *chdiggerboss_entrypoint_0(void)
 {
-    extern u8 D_80809E44_chdiggerboss[];
+    extern ActorData D_80809E44_chdiggerboss;
 
-    return (OSThread *) D_80809E44_chdiggerboss;
+    return (OSThread *)&D_80809E44_chdiggerboss;
 }
 
 OSThread *chdiggerboss_entrypoint_1(void)
 {
-    extern u8 D_80809E8C_chdiggerboss[];
+    extern ActorData D_80809E8C_chdiggerboss;
 
-    return (OSThread *) D_80809E8C_chdiggerboss;
+    return (OSThread *)&D_80809E8C_chdiggerboss;
 }
 
 void func_80800508_chdiggerboss(Actor *arg0, u32 arg1) {
@@ -199,8 +199,8 @@ void func_80800568_chdiggerboss(Actor *arg0, volatile s32 arg1)
   void func_800DF744(s32, s32);
   void *func_80100094(Actor *, u32);
   s32 func_801015D0(Actor *);
-  extern s16 D_80809EE0_chdiggerboss;
-  extern s16 D_80809EE2_chdiggerboss;
+  extern s16 D_80809ED4_chdiggerboss[8];
+
   s16 *var_s0;
   u8 *new_var;
   u8 *var_s1;
@@ -208,13 +208,13 @@ void func_80800568_chdiggerboss(Actor *arg0, volatile s32 arg1)
   temp_s2 = func_80100094(arg0, 0);
   func_801015D0(arg0);
   var_s1 = temp_s2;
- var_s0 = &D_80809EE0_chdiggerboss; do {
+ var_s0 = BT_DATA_FIELD(D_80809ED4_chdiggerboss + 6, &D_80809EE0_chdiggerboss); do {
     new_var = var_s1;
     func_800DF744(*var_s0, new_var[0xFC]);
     var_s0 += 1;
     var_s1 += 1;
   }
-  while (var_s0 != (&D_80809EE2_chdiggerboss));
+  while (var_s0 != (BT_DATA_FIELD(D_80809ED4_chdiggerboss + 7, &D_80809EE2_chdiggerboss)));
 }
 
 /* extern */
@@ -266,8 +266,8 @@ void func_808006F8_chdiggerboss(Actor *arg0, u8 *arg1) {
     s32 func_801022E4(Actor *);
     void *func_801040A8(Actor *);
     BtIntPtr func_801040D0(void);
-    extern s16 D_80809ED4_chdiggerboss;
-    extern s16 D_80809EE0_chdiggerboss;
+    extern s16 D_80809ED4_chdiggerboss[8];
+    extern s16 D_80809ED4_chdiggerboss[8];
     s16 *var_s0;
     u8 *temp_s1;
     u8 *temp_s2;
@@ -281,11 +281,11 @@ void func_808006F8_chdiggerboss(Actor *arg0, u8 *arg1) {
         func_800DF72C(func_801040A8(arg0));
     }
     var_s1 = temp_s2;
-    var_s0 = &D_80809ED4_chdiggerboss; do {
+    var_s0 = D_80809ED4_chdiggerboss; do {
         func_800DF744(*var_s0, var_s1[0xE4]);
         var_s0++;
         var_s1++;
-    } while (var_s0 != &D_80809EE0_chdiggerboss);
+    } while (var_s0 != BT_DATA_FIELD(D_80809ED4_chdiggerboss + 6, &D_80809EE0_chdiggerboss));
     func_800DF744(1, 0);
     func_800DF744(2, 0);
     func_800DF744(3, 0);
@@ -432,10 +432,10 @@ void func_80800A4C_chdiggerboss(Actor *arg0) {
     s32 func_80805DF4_chdiggerboss(Actor *arg0);
     s32 func_80806300_chdiggerboss(Actor *arg0);
     s32 func_808066A0_chdiggerboss(Actor *arg0);
-    void func_80806A78_chdiggerboss(Actor *arg0, s32 arg1, u8 *arg2);
+    void func_80806A78_chdiggerboss(Actor *arg0, s32 arg1, DiggerBossAttack *arg2);
     void func_80806EE4_chdiggerboss(BtIntPtr arg0, s32 arg1);
     s32 func_808070B0_chdiggerboss(Actor *arg0);
-    void *func_80807280_chdiggerboss(BtIntPtr arg0, s32 arg1, s16 *arg2);
+    void *func_80807280_chdiggerboss(BtIntPtr arg0, s32 arg1, DiggerBossProjectile *arg2);
     void func_80807754_chdiggerboss(Actor *arg0, s32 arg1, f32 arg2);
     void func_80807B54_chdiggerboss(Actor *arg0);
     void func_80807DC0_chdiggerboss(BtIntPtr arg0, s32 arg1);
@@ -444,17 +444,17 @@ void func_80800A4C_chdiggerboss(Actor *arg0) {
     void func_80808258_chdiggerboss(Actor *arg0);
     void func_80808470_chdiggerboss(Actor *arg0, s32 arg1);
     s32 func_808091E4_chdiggerboss(BtIntPtr arg0);
-    extern u8 D_80809C60_chdiggerboss;
-    extern u8 D_80809C70_chdiggerboss;
-    extern u8 D_80809C80_chdiggerboss;
-    extern u8 D_80809C90_chdiggerboss;
-    extern u8 D_80809CA0_chdiggerboss;
-    extern u8 D_80809CB0_chdiggerboss;
-    extern u8 D_80809CC0_chdiggerboss;
-    extern u8 D_80809CD0_chdiggerboss;
-    extern u8 D_80809CE0_chdiggerboss;
-    extern s16 D_80809CF0_chdiggerboss;
-    extern s16 D_80809D00_chdiggerboss;
+    extern DiggerBossAttack D_80809C60_chdiggerboss;
+    extern DiggerBossAttack D_80809C70_chdiggerboss;
+    extern DiggerBossAttack D_80809C80_chdiggerboss;
+    extern DiggerBossAttack D_80809C90_chdiggerboss;
+    extern DiggerBossAttack D_80809CA0_chdiggerboss;
+    extern DiggerBossAttack D_80809CB0_chdiggerboss;
+    extern DiggerBossAttack D_80809CC0_chdiggerboss;
+    extern DiggerBossAttack D_80809CD0_chdiggerboss;
+    extern DiggerBossAttack D_80809CE0_chdiggerboss;
+    extern DiggerBossProjectile D_80809CF0_chdiggerboss;
+    extern DiggerBossProjectile D_80809D00_chdiggerboss;
     struct DiggerBossActorFlags {
         u8 pad0[0x70];
         BT_BITFIELD_ORDER(u32 pad70_4 : 28, u32 pad70_0 : 3);
@@ -1197,8 +1197,8 @@ void func_80801DE0_chdiggerboss(Actor *arg0) {
 }
 
 u16 func_80802158_chdiggerboss(BtIntPtr arg0, s32 arg1) {
-    extern s32 D_80809EE4_chdiggerboss;
-    return *(u16 *)((u8 *)&D_80809EE4_chdiggerboss + (arg1 * 2));
+    extern u16 D_80809EE4_chdiggerboss[16];
+    return D_80809EE4_chdiggerboss[arg1];
 }
 
 int func_80802170_chdiggerboss(Actor *arg0, s32 arg1) {
@@ -1309,9 +1309,9 @@ void func_808023D8_chdiggerboss(Actor *arg0) {
     void func_80808034_chdiggerboss(Actor *);
     void func_808088CC_chdiggerboss(Actor *);
     void func_80808CD0_chdiggerboss(Actor *);
-    extern u32 D_80809F04_chdiggerboss;
-    extern s32 D_80809F10_chdiggerboss;
-    extern s32 D_80809F1C_chdiggerboss;
+    extern s16 D_80809F04_chdiggerboss[6];
+    extern f32 D_80809F10_chdiggerboss[3];
+    extern f32 D_80809F1C_chdiggerboss[3];
     struct DiggerBossUpdateData {
         Unk80132ED0 *unk0;
         u8 unk4[3];
@@ -1330,13 +1330,13 @@ void func_808023D8_chdiggerboss(Actor *arg0) {
     func_808088CC_chdiggerboss(arg0);
     func_80808CD0_chdiggerboss(arg0);
     position = arg0->position;
-    _subaddieaudioloop_entrypoint_4(arg0, position, data->unk7, &D_80809F04_chdiggerboss);
+    _subaddieaudioloop_entrypoint_4(arg0, position, data->unk7, (void *)D_80809F04_chdiggerboss);
     if (data->unk7 != 0) {
         _subaddieDll_entrypoint_7(arg0, 8);
     }
     for (i = 0; i != 8; i++) {
         if (func_800F6438(i) != 0) {
-            func_800F4E5C(i, position, arg0->rotation, &D_80809F10_chdiggerboss, &D_80809F1C_chdiggerboss);
+            func_800F4E5C(i, position, arg0->rotation, (BtIntPtr)D_80809F10_chdiggerboss, (BtIntPtr)D_80809F1C_chdiggerboss);
         }
     }
     if (arg0->unk3C != NULL) {
@@ -1871,11 +1871,11 @@ void func_80803224_chdiggerboss(Actor *arg0) {
     void _gcnewoption_entrypoint_14(void *arg0, s16 arg1, s16 arg2, s16 arg3, f32 arg4);
     void _gcnewoption_entrypoint_28(BtIntPtr);
     void _gcnewoption_entrypoint_29(BtIntPtr, s32);
-    void _gcnewoption_entrypoint_30(BtIntPtr, s32 *);
+    void _gcnewoption_entrypoint_30(BtIntPtr, s16 *);
     BT_IDO_ONLY(void) BT_NATIVE_ONLY(int) _gcnewoption_entrypoint_32(void *arg0, s16 arg1);
     void bzero(void *, int);
     extern s32 _gcnewoption_entrypoint_35;
-    extern s32 D_80809F34_chdiggerboss;
+    extern s16 D_80809F34_chdiggerboss[4];
     typedef struct {
         u8 pad0[0x40];
         s8 unk40;
@@ -1900,7 +1900,7 @@ void func_80803224_chdiggerboss(Actor *arg0) {
     _gcnewoption_entrypoint_10(options, 2);
     _gcnewoption_entrypoint_14(options, 0, 0, 0, 4.0f);
     _gcnewoption_entrypoint_32(options, 0x22);
-    _gcnewoption_entrypoint_30(options, &D_80809F34_chdiggerboss);
+    _gcnewoption_entrypoint_30(options, D_80809F34_chdiggerboss);
     _gcnewoption_entrypoint_28(options);
     _gcnewoption_entrypoint_29(options, 1);
     _gcnewoption_entrypoint_11(options);
@@ -2036,18 +2036,18 @@ void func_80803694_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80809150_chdiggerboss(Actor *);
     void func_80808470_chdiggerboss(Actor *arg0, s32 arg1);
     void func_808080C0_chdiggerboss(Actor *arg0, s32 arg1);
-    void func_80806A78_chdiggerboss(Actor *arg0, s32 arg1, u8 *arg2);
-    void *func_80807280_chdiggerboss(BtIntPtr arg0, s32 arg1, s16 *arg2);
+    void func_80806A78_chdiggerboss(Actor *arg0, s32 arg1, DiggerBossAttack *arg2);
+    void *func_80807280_chdiggerboss(BtIntPtr arg0, s32 arg1, DiggerBossProjectile *arg2);
     void func_80805A00_chdiggerboss(BtIntPtr arg0, s32 arg1);
     u32 func_800FDC28(u32);
     s32 func_80803BE8_chdiggerboss(BtIntPtr arg0, s32 arg1, s32 arg2);
     void func_80806EE4_chdiggerboss(BtIntPtr, s32);
     void func_80807DC0_chdiggerboss(BtIntPtr, s32);
-    extern u8 D_80809CC0_chdiggerboss;
-    extern u8 D_80809CD0_chdiggerboss;
-    extern u8 D_80809CE0_chdiggerboss;
-    extern s16 D_80809CF0_chdiggerboss;
-    extern s16 D_80809D00_chdiggerboss;
+    extern DiggerBossAttack D_80809CC0_chdiggerboss;
+    extern DiggerBossAttack D_80809CD0_chdiggerboss;
+    extern DiggerBossAttack D_80809CE0_chdiggerboss;
+    extern DiggerBossProjectile D_80809CF0_chdiggerboss;
+    extern DiggerBossProjectile D_80809D00_chdiggerboss;
     void *func_80100094(Actor *, u32);
     void func_80802878_chdiggerboss(Actor *arg0, s32 arg1, s32 arg2);
     void _gcfrontend_entrypoint_10(void);
@@ -2302,7 +2302,7 @@ void func_80803E10_chdiggerboss(Actor *arg0) {
     u8 func_800E8B74(u32);
     void func_800E8D5C(u8, void *, s16);
     void *func_80100094(Actor *, u32);
-    extern u8 D_80809F98_chdiggerboss[];
+    extern f32 D_80809F98_chdiggerboss[3][2];
     struct {
         u8 pad0[0xA];
         u8 unkA;
@@ -2338,15 +2338,15 @@ void func_80803E84_chdiggerboss(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     void func_80804140_chdiggerboss(Actor *);
     void func_808041E4_chdiggerboss(Actor *, s32);
-    void func_808043D8_chdiggerboss(Actor *, f32, f32 *);
+    void func_808043D8_chdiggerboss(Actor *, f32, u8 *);
     void func_80804450_chdiggerboss(Actor *);
     void func_80804680_chdiggerboss(Actor *);
-    extern f32 D_80809F3C_chdiggerboss;
-    extern f32 D_80809F40_chdiggerboss;
-    extern u32 D_80809F44_chdiggerboss;
-    extern s32 D_80809FB0_chdiggerboss;
-    extern s32 D_80809FC0_chdiggerboss;
-    extern s32 D_80809FD0_chdiggerboss;
+    extern u8 D_80809F3C_chdiggerboss[4];
+    extern u8 D_80809F40_chdiggerboss[4];
+    extern s16 D_80809F44_chdiggerboss[12];
+    extern s16 D_80809FB0_chdiggerboss[8];
+    extern s16 D_80809FC0_chdiggerboss[8];
+    extern s16 D_80809FD0_chdiggerboss[8];
     struct {
         u8 pad0[8];
         u8 state;
@@ -2367,7 +2367,7 @@ void func_80803E84_chdiggerboss(Actor *arg0) {
         case 0:
             break;
         case 1:
-            data->loopD = _subaddieaudioloop_entrypoint_7(data->loopD, arg0->position, 1, &D_80809FB0_chdiggerboss, arg0->unk70_0);
+            data->loopD = _subaddieaudioloop_entrypoint_7(data->loopD, arg0->position, 1, (void *)D_80809FB0_chdiggerboss, arg0->unk70_0);
             if (func_800D9078(&data->timer)) {
                 func_808041E4_chdiggerboss(arg0, 2);
             }
@@ -2379,28 +2379,28 @@ void func_80803E84_chdiggerboss(Actor *arg0) {
                 func_800C4B64(volume);
                 func_800C4B70(rate);
             }
-            data->loopB = _subaddieaudioloop_entrypoint_7(data->loopB, arg0->position, 1, &D_80809FC0_chdiggerboss, arg0->unk70_0);
+            data->loopB = _subaddieaudioloop_entrypoint_7(data->loopB, arg0->position, 1, (void *)D_80809FC0_chdiggerboss, arg0->unk70_0);
             if (data->loopB != 0) {
                 func_800C31DC(data->loopB, volume);
                 func_800C3058(data->loopB, rate);
             }
             if (func_80802314_chdiggerboss() < 2 && func_800D90A4(&data->timer14)) {
-                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80809F44_chdiggerboss);
+                _subaddieaudioquick_entrypoint_2(arg0, arg0->position, (void *)D_80809F44_chdiggerboss);
                 data->timer14 = func_800DC178(0.85f, 2.5f);
                 data->count = 4;
             }
             func_80804680_chdiggerboss(arg0);
             if (func_8001210C(1)) {
                 if (data->count != 0) {
-                    func_808043D8_chdiggerboss(arg0, 1.25f, &D_80809F3C_chdiggerboss);
+                    func_808043D8_chdiggerboss(arg0, 1.25f, D_80809F3C_chdiggerboss);
                     data->count--;
                 } else {
-                    func_808043D8_chdiggerboss(arg0, 1.0f, &D_80809F40_chdiggerboss);
+                    func_808043D8_chdiggerboss(arg0, 1.0f, D_80809F40_chdiggerboss);
                 }
             }
             break;
         case 3:
-            data->loopC = _subaddieaudioloop_entrypoint_7(data->loopC, arg0->position, 1, &D_80809FD0_chdiggerboss, arg0->unk70_0);
+            data->loopC = _subaddieaudioloop_entrypoint_7(data->loopC, arg0->position, 1, (void *)D_80809FD0_chdiggerboss, arg0->unk70_0);
             break;
         case 4:
             func_80804450_chdiggerboss(arg0);
@@ -2510,19 +2510,19 @@ void func_808042FC_chdiggerboss(Actor *arg0, Unkfunc_800E0960_1 *arg1, u8 *arg2)
     }
 }
 
-void func_808043D8_chdiggerboss(Actor *arg0, f32 arg1, f32 *arg2) {
+void func_808043D8_chdiggerboss(Actor *arg0, f32 arg1, u8 *arg2) {
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
     BtIntPtr func_800B53A4(s32);
-    void func_800BAB80(BtIntPtr, f32 *);
+    void func_800BAB80(BtIntPtr, u8 *);
     BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
-    extern s32 D_80809FE0_chdiggerboss;
+    extern s16 D_80809FE0_chdiggerboss[36];
     f32 sp24[3];
     BtIntPtr sp20;
 
     if (_subaddieskeleton_entrypoint_2(arg0->unk0, 7, sp24) != 0) {
         sp20 = func_800B53A4(1);
         func_800BAB80(sp20, arg2);
-        func_800BABB8(sp20, sp24, arg0->position, arg1, &D_80809FE0_chdiggerboss);
+        func_800BABB8(sp20, sp24, arg0->position, arg1, (void *)D_80809FE0_chdiggerboss);
     }
 }
 
@@ -2531,12 +2531,12 @@ void func_80804450_chdiggerboss(Actor *arg0) {
     int func_800D91EC(f32 *, f32);
     void *func_80100094(Actor *, u32);
     s32 func_80804644_chdiggerboss(f32, f32, f32);
-    extern f32 D_80809F3C_chdiggerboss;
-    extern f32 D_80809F40_chdiggerboss;
-    extern u32 D_80809F44_chdiggerboss;
-    extern u32 D_80809F5C_chdiggerboss;
-    extern u32 D_80809F74_chdiggerboss;
-    extern u32 D_80809F88_chdiggerboss;
+    extern u8 D_80809F3C_chdiggerboss[4];
+    extern u8 D_80809F40_chdiggerboss[4];
+    extern s16 D_80809F44_chdiggerboss[12];
+    extern s16 D_80809F5C_chdiggerboss[12];
+    extern s16 D_80809F74_chdiggerboss[10];
+    extern s16 D_80809F88_chdiggerboss[8];
     struct DiggerBossTimerData {
         u8 unk0[0x10];
         f32 timer;
@@ -2548,28 +2548,28 @@ void func_80804450_chdiggerboss(Actor *arg0) {
     sp28 = sp2C->timer;
     sp24 = func_800D91EC(&sp2C->timer, 4.0f);
     if (func_80804644_chdiggerboss(sp2C->timer, sp28, 0.1f) != 0) {
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80809F44_chdiggerboss);
-        func_808043D8_chdiggerboss(arg0, 1.0f, &D_80809F3C_chdiggerboss);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, (void *)D_80809F44_chdiggerboss);
+        func_808043D8_chdiggerboss(arg0, 1.0f, D_80809F3C_chdiggerboss);
     }
     if (func_80804644_chdiggerboss(sp2C->timer, sp28, 0.4f) != 0) {
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80809F44_chdiggerboss);
-        func_808043D8_chdiggerboss(arg0, 1.0f, &D_80809F3C_chdiggerboss);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, (void *)D_80809F44_chdiggerboss);
+        func_808043D8_chdiggerboss(arg0, 1.0f, D_80809F3C_chdiggerboss);
     }
     if (func_80804644_chdiggerboss(sp2C->timer, sp28, 1.2f) != 0) {
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80809F74_chdiggerboss);
-        func_808043D8_chdiggerboss(arg0, 1.25f, &D_80809F3C_chdiggerboss);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, (void *)D_80809F74_chdiggerboss);
+        func_808043D8_chdiggerboss(arg0, 1.25f, D_80809F3C_chdiggerboss);
     }
     if (func_80804644_chdiggerboss(sp2C->timer, sp28, 2.0f) != 0) {
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80809F44_chdiggerboss);
-        func_808043D8_chdiggerboss(arg0, 1.0f, &D_80809F3C_chdiggerboss);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, (void *)D_80809F44_chdiggerboss);
+        func_808043D8_chdiggerboss(arg0, 1.0f, D_80809F3C_chdiggerboss);
     }
     if (func_80804644_chdiggerboss(sp2C->timer, sp28, 2.4f) != 0) {
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80809F5C_chdiggerboss);
-        func_808043D8_chdiggerboss(arg0, 1.0f, &D_80809F40_chdiggerboss);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, (void *)D_80809F5C_chdiggerboss);
+        func_808043D8_chdiggerboss(arg0, 1.0f, D_80809F40_chdiggerboss);
     }
     if (func_80804644_chdiggerboss(sp2C->timer, sp28, 3.4f) != 0) {
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80809F88_chdiggerboss);
-        func_808043D8_chdiggerboss(arg0, 1.5f, &D_80809F3C_chdiggerboss);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, (void *)D_80809F88_chdiggerboss);
+        func_808043D8_chdiggerboss(arg0, 1.5f, D_80809F3C_chdiggerboss);
     }
     if (sp24 != 0) {
         func_808041E4_chdiggerboss(arg0, 0);
@@ -2630,7 +2630,7 @@ void func_808047A8_chdiggerboss(Actor *arg0) {
     void func_800C31DC(u8, f32);
     void func_800C3058(u8, s32);
     s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
-    extern s32 D_8080A028_chdiggerboss[];
+    extern s16 D_8080A028_chdiggerboss[8];
     typedef struct {
         u8 pad0[0x18];
         s16 state;
@@ -2667,7 +2667,7 @@ void func_808047A8_chdiggerboss(Actor *arg0) {
         func_800C4B64(volume);
         func_800C4B70(rate);
     }
-    data->sound = _subaddieaudioloop_entrypoint_7(data->sound, arg0->position, active, D_8080A028_chdiggerboss, arg0->unk70_0);
+    data->sound = _subaddieaudioloop_entrypoint_7(data->sound, arg0->position, active, (void *)D_8080A028_chdiggerboss, arg0->unk70_0);
     if (data->sound != 0) {
         func_800C31DC(data->sound, volume);
         func_800C3058(data->sound, rate);
@@ -2760,7 +2760,7 @@ void func_80804C28_chdiggerboss(BtIntPtr arg0) {
     void func_80805448_chdiggerboss(Actor *, s32, s32);
     void func_808057D0_chdiggerboss(Actor *);
     void func_808056B8_chdiggerboss(BtIntPtr);
-    extern f32 D_8080A038_chdiggerboss;
+    extern f32 D_8080A038_chdiggerboss[2];
     struct DiggerPart { s32 handle; u8 pad[8]; f32 position[3]; u8 effect; u8 tail[3]; };
     struct DiggerData { u8 prefix[0x24]; u8 active; u8 pad[0xB]; struct DiggerPart parts[4]; };
     s32 handle;
@@ -2775,7 +2775,7 @@ void func_80804C28_chdiggerboss(BtIntPtr arg0) {
         handle = func_800C8A98();
         data->parts[i].handle = handle;
         func_800C8F64(handle, 9);
-        func_800C8D4C(handle, &D_8080A038_chdiggerboss);
+        func_800C8D4C(handle, D_8080A038_chdiggerboss);
         func_800EE7F8(data->parts[i].position, (f32 *)(arg0 + 4));
         effect = func_800E8714(1);
         data->parts[i].effect = effect;
@@ -2798,7 +2798,7 @@ void func_80804D44_chdiggerboss(BtIntPtr arg0) {
     void func_80805448_chdiggerboss(Actor *, s32, s32);
     void func_808056F8_chdiggerboss(Actor *);
     void func_808057D0_chdiggerboss(Actor *);
-    extern s32 D_8080A040_chdiggerboss;
+    extern s16 D_8080A040_chdiggerboss[12];
     extern s16 D_8080A058_chdiggerboss[];
     struct DiggerPart { s32 handle; s16 state; s16 appendage; f32 timer; f32 position[3]; u8 effect; u8 pad[3]; };
     struct DiggerData { u8 prefix[0x24]; u8 active; u8 pad[3]; f32 timer; s32 unk2C; struct DiggerPart parts[4]; };
@@ -2840,7 +2840,7 @@ void func_80804D44_chdiggerboss(BtIntPtr arg0) {
     }
     func_808056F8_chdiggerboss((Actor *)arg0);
     func_808057D0_chdiggerboss((Actor *)arg0);
-    data->active = _subaddieaudioloop_entrypoint_7(data->active, ((Actor *)arg0)->position, active, &D_8080A040_chdiggerboss, ((Actor *)arg0)->unk70_0);
+    data->active = _subaddieaudioloop_entrypoint_7(data->active, ((Actor *)arg0)->position, active, (void *)D_8080A040_chdiggerboss, ((Actor *)arg0)->unk70_0);
 }
 
 void func_80804EFC_chdiggerboss(Actor *arg0, void *arg1) {
@@ -2852,13 +2852,13 @@ void func_80804EFC_chdiggerboss(Actor *arg0, void *arg1) {
     BtIntPtr func_800D674C(s32);
     void *func_800DE498(void *, f32 *, f32 *, f32, f32 *, BtIntPtr);
     void func_80804FE4_chdiggerboss(Actor *, s32, void *);
-    extern s16 D_8080A060_chdiggerboss;
+    extern s16 D_8080A060_chdiggerboss[4];
     struct DiggerData *data;
     s16 *appendage;
     s32 i;
 
     data = func_80100094(arg0, 0);
-    appendage = &D_8080A060_chdiggerboss;
+    appendage = D_8080A060_chdiggerboss;
     i = 0;
     do {
         func_800DF744(*appendage, data->parts[i].appendage);
@@ -3243,7 +3243,7 @@ void func_80805C1C_chdiggerboss(Actor *arg0, s32 arg1, f32 *arg2, f32 arg3) {
     void func_800EF04C(f32 *, f32 *);
     void func_800EF934(f32[3], f32[3], f32);
     void func_800EFA4C(f32 *, f32, f32, f32);
-    extern s32 D_8080A0B4_chdiggerboss[];
+    extern s16 D_8080A0B4_chdiggerboss[28];
     f32 sp44[3];
     f32 sp38[3];
     BtIntPtr sp34;
@@ -3256,7 +3256,7 @@ void func_80805C1C_chdiggerboss(Actor *arg0, s32 arg1, f32 *arg2, f32 arg3) {
         func_800EF934(sp38, arg2, sp30->rotation[1]);
         func_800EF04C(sp38, sp30->position);
         sp34 = func_800B53A4(1);
-        func_800BABB8(sp34, sp38, 0, 1.0f, D_8080A0B4_chdiggerboss);
+        func_800BABB8(sp34, sp38, 0, 1.0f, (void *)D_8080A0B4_chdiggerboss);
         func_800BA994(sp34, (s16)sp44[0], (s16)sp44[1], 250, (s16)sp44[0], (s16)sp44[1], 400);
         func_800BA22C(sp34, 1);
     }
@@ -3523,13 +3523,13 @@ s32 func_808063C8_chdiggerboss(Actor *arg0, s32 arg1, f32 arg2) {
 void func_808064CC_chdiggerboss(BtIntPtr arg0, s32 arg1) {
     void *func_80100094(Actor *, u32);
     s8 _subaddieaudioloop_entrypoint_7(u8, f32 *, s32, s32 *, s32);
-    extern s32 D_8080A0EC_chdiggerboss;
+    extern s16 D_8080A0EC_chdiggerboss[12];
     u8 *sp24;
     u8 *temp_v0;
 
     temp_v0 = func_80100094(arg0, 0);
     sp24 = temp_v0;
-    (((Objboss_func_808064CC_chdiggerboss_sp24 *)sp24)->unk24) = _subaddieaudioloop_entrypoint_7((((Objboss_func_808064CC_chdiggerboss_temp_v0 *)temp_v0)->unk24), arg0 + 4, arg1, &D_8080A0EC_chdiggerboss, (*(s32 *)((s8 *)(arg0) + (0x70))) & 1);
+    (((Objboss_func_808064CC_chdiggerboss_sp24 *)sp24)->unk24) = _subaddieaudioloop_entrypoint_7((((Objboss_func_808064CC_chdiggerboss_temp_v0 *)temp_v0)->unk24), arg0 + 4, arg1, (void *)D_8080A0EC_chdiggerboss, (*(s32 *)((s8 *)(arg0) + (0x70))) & 1);
 }
 
 void func_80806528_chdiggerboss(BtIntPtr arg0, BtIntPtr arg1, BtIntPtr arg2) {
@@ -3735,7 +3735,7 @@ s32 func_808066A0_chdiggerboss(Actor *arg0) {
     return 0;
 }
 
-void func_80806A78_chdiggerboss(Actor *arg0, s32 arg1, u8 *arg2) {
+void func_80806A78_chdiggerboss(Actor *arg0, s32 arg1, DiggerBossAttack *arg2) {
     void *func_80100094(Actor *, u32);
     void rare_memcpy(void *, void *, int);
     s32 func_80803BE8_chdiggerboss(BtIntPtr, s32, s32);
@@ -3758,7 +3758,7 @@ void func_80806A78_chdiggerboss(Actor *arg0, s32 arg1, u8 *arg2) {
     rare_memcpy(data->copy, arg2, 0x10);
     data->mode = 3;
     data->timer = 1.75f;
-    data->parameter = *arg2;
+    data->parameter = arg2->count;
     func_80803BE8_chdiggerboss((BtIntPtr)arg0, arg1, 8);
     func_808027F4_chdiggerboss((BtIntPtr)arg0);
     if (func_800F5410(func_800F54E4()) == 0x11) {
@@ -3957,7 +3957,7 @@ u8 func_80806F10_chdiggerboss(Actor *arg0, u8 arg1) {
     u8 func_800C4350(s32, f32[3], s32 *);
     void func_800C4B7C(s32);
     s32 func_800DC128(s32, s32);
-    extern s32 D_8080A104_chdiggerboss;
+    extern s16 D_8080A104_chdiggerboss[12];
     extern s16 D_8080A11C_chdiggerboss[];
     f32 *sp18[2];
 
@@ -3968,7 +3968,7 @@ u8 func_80806F10_chdiggerboss(Actor *arg0, u8 arg1) {
     }
     sp18[0] = arg0->position;
     func_800C4B7C(D_8080A11C_chdiggerboss[func_800DC128(0, 2)]);
-    func_800C4350(*handle, sp18[0], &D_8080A104_chdiggerboss);
+    func_800C4350(*handle, sp18[0], (void *)D_8080A104_chdiggerboss);
     return *handle;
 }
 
@@ -3981,7 +3981,7 @@ void func_80806F8C_chdiggerboss(Actor *arg0) {
     s32 func_800F1E6C(f32 *, f32 *, f32 *);
     f32 func_800F2094(f32, f32);
     extern f32 D_8080A134_chdiggerboss[];
-    extern s32 D_8080A120_chdiggerboss;
+    extern s16 D_8080A120_chdiggerboss[10];
     f32 position[3];
     f32 zero = 0.0f;
     f32 yaw;
@@ -4001,7 +4001,7 @@ void func_80806F8C_chdiggerboss(Actor *arg0) {
     _chbounce_entrypoint_3(func_800DC178(-30.0f, 30.0f) + yaw);
     _chbaddiesetup_entrypoint_5(_chbaddiesetup_entrypoint_10, 0x21,
         *(s32 *)&position[0], *(s32 *)&position[1], *(s32 *)&position[2], *(s32 *)&zero);
-    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_8080A120_chdiggerboss);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, (void *)D_8080A120_chdiggerboss);
 }
 
 s32 func_808070B0_chdiggerboss(Actor *arg0) {
@@ -4070,7 +4070,7 @@ s32 func_808070B0_chdiggerboss(Actor *arg0) {
     return 0;
 }
 
-void *func_80807280_chdiggerboss(BtIntPtr arg0, s32 arg1, s16 *arg2) {
+void *func_80807280_chdiggerboss(BtIntPtr arg0, s32 arg1, DiggerBossProjectile *arg2) {
     void *func_80100094(Actor *, u32);
     s32 func_80803BE8_chdiggerboss(BtIntPtr, s32, s32);
     void rare_memcpy(void *, void *, int);
@@ -4094,7 +4094,7 @@ void *func_80807280_chdiggerboss(BtIntPtr arg0, s32 arg1, s16 *arg2) {
     temp_v0 = data;
     ((BossData *)temp_v0)->unk7C = 1;
     ((BossData *)temp_v0)->unk84 = 1.5f;
-    ((BossData *)temp_v0)->unk7E = *arg2;
+    ((BossData *)temp_v0)->unk7E = arg2->count;
     return temp_v0;
 }
 
@@ -4112,7 +4112,7 @@ void func_80807304_chdiggerboss(Actor *arg0, s32 arg1) {
     void func_800EE7F8(f32 *, f32 *);
     void func_80102FDC(void *, f32);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
-    extern u8 D_8080A140_chdiggerboss[];
+    extern s16 D_8080A140_chdiggerboss[8];
     typedef struct {
         u8 pad0[0x7C];
         s16 unk7C;
@@ -4174,7 +4174,7 @@ void func_80807304_chdiggerboss(Actor *arg0, s32 arg1) {
         func_80102FDC(sp5C, 0.25f);
         sp5C->unk54 = 0.0f;
         ((ProjectileData *)sp5C->actorData)->speed = func_800DC178(data->unk94, data->unk96);
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_8080A140_chdiggerboss);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, (void *)D_8080A140_chdiggerboss);
         if (data->unk7E > 0) {
             data->unk7E--;
         }
@@ -4187,7 +4187,7 @@ void func_80807304_chdiggerboss(Actor *arg0, s32 arg1) {
         func_80102FDC(sp5C, 0.25f);
         sp5C->unk54 = 45.0f;
         ((ProjectileData *)sp5C->actorData)->speed = func_800DC178(data->unk94, data->unk96);
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_8080A140_chdiggerboss);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, (void *)D_8080A140_chdiggerboss);
         break;
     }
     if (!func_8080761C_chdiggerboss((BtIntPtr)arg0) || arg1 == 2) {
@@ -4376,7 +4376,7 @@ void func_80807B54_chdiggerboss(Actor *arg0) {
     s32 _subaddiefind_entrypoint_9(s32);
     void _sucoaster_entrypoint_4(Actor *);
     f32 func_8001395C(f32);
-    void func_800B4470(f32 *, f32 *, f32 *, s32, f32, f32, s32, s32, s32);
+    void func_800B4470(f32 *, f32 *, u8 *, s32, f32, f32, s32, s32, s32);
     void func_800C4104(s32, f32, s32, BtIntPtr, f32, f32);
     s32 func_800D9078(f32 *);
     void func_800EFE50(f32 *, f32 *, f32 *, f32);
@@ -4387,7 +4387,7 @@ void func_80807B54_chdiggerboss(Actor *arg0) {
     s32 func_8010108C(Actor *, s32, BtIntPtr);
     Actor *func_80106790(Unk80132ED0 *);
     void func_80108B04(Actor *, u32);
-    extern f32 D_8080A150_chdiggerboss[];
+    extern u8 D_8080A150_chdiggerboss[4];
     struct BossData {
         u8 pad[0xA4];
         u8 state, active, count, delay;
@@ -4485,7 +4485,7 @@ void func_80807E3C_chdiggerboss(Actor *arg0, s32 arg1) {
     void func_80102FDC(void *, f32);
     Actor *func_80108528(s32, f32[3], s32, Actor **);
     f32 func_8010CD50(Actor *, BtUIntPtr);
-    extern s32 D_8080A154_chdiggerboss;
+    extern s16 D_8080A154_chdiggerboss[6];
     struct DiggerBossData {
         u8 pad0[0xA4];
         s8 state;
@@ -4519,7 +4519,7 @@ void func_80807E3C_chdiggerboss(Actor *arg0, s32 arg1) {
         data->marker = sp34->unk0;
         data->state = 2;
         data->timer = 1.0f;
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_8080A154_chdiggerboss);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, (void *)D_8080A154_chdiggerboss);
     }
 }     typedef struct { u8 pad0[0xA6]; s8 unkA6; u8 padA7[0x1]; s32 unkA8; } Objboss_func_80807FD8_chdiggerboss_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
@@ -4548,7 +4548,7 @@ void func_80808034_chdiggerboss(Actor *arg0) {
     s32 func_8001210C(s32);
     void *func_80100094(Actor *, u32);
     void func_808081AC_chdiggerboss(u8 *volatile);
-    extern s32 D_8080A160_chdiggerboss;
+    extern s16 D_8080A160_chdiggerboss[6];
     u8 *sp24;
     s32 sp20;
     u8 *temp_v0;
@@ -4567,7 +4567,7 @@ void func_80808034_chdiggerboss(Actor *arg0) {
     sound = sp24[0xA6];
     flags = arg0->unk70_0;
     flags &= 1;
-    sp24[0xA6] = _subaddieaudioloop_entrypoint_7(sound, arg0->position, sp20, &D_8080A160_chdiggerboss, flags);
+    sp24[0xA6] = _subaddieaudioloop_entrypoint_7(sound, arg0->position, sp20, (void *)D_8080A160_chdiggerboss, flags);
 }
 
 void func_808080C0_chdiggerboss(Actor *arg0, s32 arg1) {
@@ -4609,7 +4609,7 @@ void func_808081AC_chdiggerboss(u8 *volatile arg0) {
     BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
-    extern s32 D_8080A16C_chdiggerboss;
+    extern s16 D_8080A16C_chdiggerboss[32];
     f32 sp34[3];
     f32 sp28[3];
     f32 *volatile sp24;
@@ -4619,7 +4619,7 @@ void func_808081AC_chdiggerboss(u8 *volatile arg0) {
     sp28[1] += 80.0f;
     func_800EE7F8(sp34, sp28);
     func_800EF1B8(sp34, *(f32 *)(arg0 + 0x48) + 90.0f, 200.0f);
-    func_800BBCB8(sp34, sp24, 1.0f, 1, &D_8080A16C_chdiggerboss);
+    func_800BBCB8(sp34, sp24, 1.0f, 1, (void *)D_8080A16C_chdiggerboss);
 }
 
 void func_80808258_chdiggerboss(Actor *arg0) {
@@ -5125,10 +5125,10 @@ void chdiggerboss_entrypoint_3(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk8013
 void func_80809078_chdiggerboss(Actor *arg0, void *arg1, BtIntPtr arg2) {
     void *func_80100094(Actor *, u32);
     void func_800E0AFC(void *, u8, f32, f32, f32, f32);
-    extern u16 D_8080A1F4_chdiggerboss[];
-    extern u16 D_8080A1FA_chdiggerboss[];
-    extern u16 D_8080A1FC_chdiggerboss[];
-    extern u16 D_8080A202_chdiggerboss[];
+    extern u16 D_8080A1F4_chdiggerboss[4];
+
+    extern u16 D_8080A1FC_chdiggerboss[4];
+
     s32 i;
     f32 *data;
 
@@ -5193,9 +5193,9 @@ s32 func_80809234_chdiggerboss(Actor *arg0) {
     void func_800FC6B0(u32);
     void func_800FC74C(u32);
     void *func_80100094(Actor *, u32);
-    extern s16 D_8080A1FE_chdiggerboss[][4];
-    extern s16 D_8080A206_chdiggerboss[][4];
-    extern f32 D_8080A208_chdiggerboss[][2];
+    extern DiggerBossExplosion D_8080A204_chdiggerboss[5];
+
+
     struct {
         u8 pad[0xDC];
         u32 phase;
@@ -5204,17 +5204,17 @@ s32 func_80809234_chdiggerboss(Actor *arg0) {
     } *data;
     data = func_80100094(arg0, 0);
     if (++data->phase >= 5U) {
-        func_800FC74C(D_8080A1FE_chdiggerboss[data->phase][0]);
+        func_800FC74C(D_8080A204_chdiggerboss[data->phase - 1].sound);
         data->state = 0;
         return 0;
     }
-    data->timer = D_8080A208_chdiggerboss[data->phase][0];
+    data->timer = D_8080A204_chdiggerboss[data->phase].delay;
     _chexploder_entrypoint_5(arg0, 0x91C, arg0->position,
         *(s32 *)((u8 *)arg0 + 0x48), 1.0f, 7);
     if (data->phase != 0) {
-        func_800FC74C(D_8080A1FE_chdiggerboss[data->phase][0]);
+        func_800FC74C(D_8080A204_chdiggerboss[data->phase - 1].sound);
     }
-    func_800FC6B0(D_8080A206_chdiggerboss[data->phase][0]);
+    func_800FC6B0(D_8080A204_chdiggerboss[data->phase].sound);
     return 1;
 }
 
@@ -5226,10 +5226,10 @@ void func_80809310_chdiggerboss(Actor *arg0) {
     Actor *func_80106790(Unk80132ED0 *);
     s32 _chexploder_entrypoint_6(BtIntPtr, s32, s32);
     s32 _chexploder_entrypoint_12(BtIntPtr, s32);
-    s32 _chexploder_entrypoint_11(Actor *, f32 *);
+    void _chexploder_entrypoint_11(Actor *, s16 *);
     void func_808093F8_chdiggerboss(Actor *);
-    extern s16 D_8080A204_chdiggerboss[][4];
-    extern f32 D_8080A240_chdiggerboss[3];
+    extern DiggerBossExplosion D_8080A204_chdiggerboss[5];
+    extern s16 D_8080A240_chdiggerboss[8];
     struct {
         u8 pad[0xDC];
         u32 phase;
@@ -5243,7 +5243,7 @@ void func_80809310_chdiggerboss(Actor *arg0) {
     temp = func_80100094(arg0, 0);
     data = temp;
     func_80802938_chdiggerboss(arg0, exploder->unk0,
-        D_8080A204_chdiggerboss[data->phase][0], 0x28);
+        D_8080A204_chdiggerboss[data->phase].part, 0x28);
     _chexploder_entrypoint_6(exploder, 0x447A0000, 0x44960000);
     _chexploder_entrypoint_12(exploder, 0xFA);
     _chexploder_entrypoint_11(exploder, D_8080A240_chdiggerboss);
@@ -5275,11 +5275,11 @@ void func_808093F8_chdiggerboss(Actor *arg0) {
     void func_800EF04C(f32 *, f32 *);
     void *func_80100094(Actor *, u32);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
-    extern s32 D_8080A22C_chdiggerboss[];
-    extern s32 D_8080A250_chdiggerboss[];
-    extern s32 D_8080A25C_chdiggerboss[];
-    extern s32 D_8080A294_chdiggerboss[];
-    extern s32 D_8080A2B8_chdiggerboss[];
+    extern s16 D_8080A22C_chdiggerboss[10];
+    extern s16 D_8080A250_chdiggerboss[6];
+    extern s16 D_8080A25C_chdiggerboss[28];
+    extern s16 D_8080A294_chdiggerboss[18];
+    extern s16 D_8080A2B8_chdiggerboss[36];
     f32 position[3];
     f32 rotation[3];
     f32 offset[3];
@@ -5289,14 +5289,13 @@ void func_808093F8_chdiggerboss(Actor *arg0) {
         u8 pad[0xE8];
         void *emitters[4];
     } *data;
-
     data = func_80100094(arg0, 0);
     func_800EE7F8(position, arg0->position);
     position[1] += 300.0f;
     if (data->emitters[0]) {
         func_800B5450(data->emitters[0]);
     }
-    data->emitters[0] = (void *)func_800BBCB8(position, position, 3.0f, 1, D_8080A25C_chdiggerboss);
+    data->emitters[0] = (void *)func_800BBCB8(position, position, 3.0f, 1, (void *)D_8080A25C_chdiggerboss);
     if (data->emitters[1]) {
         func_800B5450(data->emitters[1]);
     }
@@ -5306,21 +5305,22 @@ void func_808093F8_chdiggerboss(Actor *arg0) {
         func_800EEB9C(offset, (f32)i * 45.0f, func_800DC178(120.0f, 160.0f));
         func_800EF04C(offset, position);
         offset[1] += func_800DC178(10.0f, 50.0f);
-        func_800BABB8(emitter, offset, position, 1.0f, D_8080A2B8_chdiggerboss);
+        func_800BABB8(emitter, offset, position, 1.0f, (void *)D_8080A2B8_chdiggerboss);
     }
     if (data->emitters[2]) {
         func_800B5450(data->emitters[2]);
     }
-    data->emitters[2] = (void *)func_800BBCB8(position, position, 1.0f, 1, D_8080A294_chdiggerboss);
+    data->emitters[2] = (void *)func_800BBCB8(position, position, 1.0f, 1, (void *)D_8080A294_chdiggerboss);
     if (data->emitters[3]) {
         func_800B5450(data->emitters[3]);
     }
     func_800E3A58(rotation);
     emitter = func_800B53A4(1);
     data->emitters[3] = (void *)emitter;
-    func_800BABB8(emitter, position, position, 1.0f, D_8080A294_chdiggerboss);
+    func_800BABB8(emitter, position, position, 1.0f, (void *)D_8080A294_chdiggerboss);
     func_800BA77C(emitter, (s16)(s32)(rotation[0] + 90.0f), (s16)(s32)rotation[1], (s16)(s32)rotation[2]);
     func_800BA22C(emitter, 1);
-    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_8080A250_chdiggerboss);
-    func_8010D930(7, -1, arg0->position, D_8080A22C_chdiggerboss);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, (void *)D_8080A250_chdiggerboss);
+    func_8010D930(7, -1, arg0->position, (void *)D_8080A22C_chdiggerboss);
 }
+#include "boss_data.inc"

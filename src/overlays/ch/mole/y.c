@@ -1,4 +1,4 @@
-#include "common.h"
+#include "y_tables.h"
 
 void func_80800274_chmoley(Actor *);
 void func_80105834(Actor *);
@@ -7,7 +7,7 @@ void func_8080088C_chmoley(Actor *);
 void func_808008C0_chmoley(Actor *);
 void *func_80107C2C(s32 *, s32, void *, s32, void *);
 s32 func_80800000_chmoley(Actor *, s32, s32);
-extern u32 D_80800B60_chmoley[];
+extern ActorAnimationEntry D_80800B60_chmoley[14];
 
 BtFnWord D_80800C10_chmoley[] = {
     0x00B7018F, 0x07D60001, (BtFnWord)D_80800B60_chmoley, (BtFnWord)func_80800274_chmoley,
@@ -24,7 +24,7 @@ s32 func_80800000_chmoley(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _chmolehill_entrypoint_5(Actor *);
     s32 func_8010114C(BtIntPtr, s32, BtIntPtr);
     void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
-    extern s32 D_80800BD0_chmoley;
+    extern f32 D_80800BD0_chmoley[4];
     int result;
 
     if (arg0->unk64_17) {
@@ -36,7 +36,7 @@ s32 func_80800000_chmoley(Actor *arg0, s32 arg1, s32 arg2) {
     case 0x30:
         return func_8010114C(_chmolehill_entrypoint_5(func_80106790(arg0->unk3C)), arg1, arg2);
     case 0x52:
-        _gcdialogcamera_entrypoint_3(&D_80800BD0_chmoley, 1.0f);
+        _gcdialogcamera_entrypoint_3(D_80800BD0_chmoley, 1.0f);
         result = 1;
         break;
     default:
@@ -122,10 +122,10 @@ void func_80800274_chmoley(Actor *arg0) {
         BT_BITFIELD_ORDER(u8 upper : 4, u8 lower : 4);
         BT_BITFIELD_ORDER(u8 lower : 4, u8 upper : 4);
     };
-    struct Times { f32 values[4]; };
+
     void _chmolehill_entrypoint_1(Actor *, s32);
     void _chmolehill_entrypoint_2(Actor *, s32);
-    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
+    s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u16 *);
     void _subaddieaudioquick_entrypoint_2(Actor *arg0, f32 arg1[3], void *arg2);
     s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
@@ -139,12 +139,12 @@ void func_80800274_chmoley(Actor *arg0) {
     struct anctrl_s *func_80104248(void *);
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_80800190_chmoley(Actor *);
-    extern u32 D_80800A90_chmoley[], D_80800AA8_chmoley[];
-    extern u32 D_80800AC0_chmoley[], D_80800AD8_chmoley[];
-    extern u32 D_80800AF0_chmoley[], D_80800B08_chmoley[];
-    extern u32 D_80800B20_chmoley[], D_80800B38_chmoley[];
-    extern u32 D_80800B4C_chmoley[];
-    extern struct Times D_80800BE0_chmoley, D_80800BF0_chmoley, D_80800C00_chmoley;
+    extern u16 D_80800A90_chmoley[12]; extern u16 D_80800AA8_chmoley[12];
+    extern u16 D_80800AC0_chmoley[12]; extern u16 D_80800AD8_chmoley[12];
+    extern u16 D_80800AF0_chmoley[12]; extern u16 D_80800B08_chmoley[12];
+    extern u16 D_80800B20_chmoley[12]; extern u16 D_80800B38_chmoley[10];
+    extern u16 D_80800B4C_chmoley[10];
+    extern MoleYTimes D_80800BE0_chmoley; extern MoleYTimes D_80800BF0_chmoley; extern MoleYTimes D_80800C00_chmoley;
 
     _suexpression_entrypoint_10((BtIntPtr)func_80100094(arg0, 1), (BtIntPtr)((struct Fields *)arg0)->marker, 0);
     switch (((struct Fields *)arg0)->upper) {
@@ -256,9 +256,9 @@ void func_80800274_chmoley(Actor *arg0) {
                 break;
             }
             case 13: {
-                struct Times sp54 = D_80800BE0_chmoley;
-                struct Times sp44 = D_80800BF0_chmoley;
-                struct Times sp34 = D_80800C00_chmoley;
+                MoleYTimes sp54 = D_80800BE0_chmoley;
+                MoleYTimes sp44 = D_80800BF0_chmoley;
+                MoleYTimes sp34 = D_80800C00_chmoley;
                 if (func_80101E4C(arg0, sp54.values)) {
                     _subaddieaudioquick_entrypoint_2(arg0, ((struct Fields *)arg0)->position, D_80800AC0_chmoley);
                 } else if (func_80101E4C(arg0, sp44.values)) {

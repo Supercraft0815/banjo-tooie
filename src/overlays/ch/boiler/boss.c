@@ -1,6 +1,6 @@
-#include "common.h"
+#include "boss_tables.h"
 
-extern u8 D_80802B7C_chboilerboss[];
+extern BoilerBossAnimations D_80802B7C_chboilerboss;
 void func_801018A4(Actor *, BtIntPtr);
 void func_80102EC0();
 void *func_80107C2C(s32 *, s32, void *, s32, void *);
@@ -17,7 +17,7 @@ u32 D_80802C00_chboilerboss[] = {
 
 BtFnWord D_80802C0C_chboilerboss[] = {
     0x00070118, 0x06500001,
-    (BtFnWord)D_80802B7C_chboilerboss, (BtFnWord)func_80102EC0,
+    (BtFnWord)&D_80802B7C_chboilerboss, (BtFnWord)func_80102EC0,
     (BtFnWord)func_80800324_chboilerboss, (BtFnWord)func_801018A4,
     0x00000000, 0x00000000,
     0x00000000, 0x00011568,
@@ -29,7 +29,7 @@ BtFnWord D_80802C0C_chboilerboss[] = {
 
 BtFnWord D_80802C54_chboilerboss[] = {
     0x002B0223, 0x064D000E,
-    (BtFnWord)D_80802B7C_chboilerboss,
+    (BtFnWord)&D_80802B7C_chboilerboss,
 };
 
 OSThread *chboilerboss_entrypoint_0(void)
@@ -83,7 +83,7 @@ void func_80800030_chboilerboss(Actor *arg0) {
     void func_808024B8_chboilerboss(BtIntPtr);
     void func_80802730_chboilerboss(Actor *, s32, s32);
     void func_808027E4_chboilerboss(Actor *, s32, s32, Unk80132ED0 *);
-    extern f32 D_80802B4C_chboilerboss[];
+    extern f32 D_80802B4C_chboilerboss[4];
     extern s32 func_8010D5DC;
     struct BoilerData {
         u8 pad0[0x56];
@@ -204,12 +204,12 @@ void func_80800324_chboilerboss(Actor *arg0) {
     void func_8080238C_chboilerboss(Unk80132ED0 **, s32, s32);
     s32 func_808023C8_chboilerboss(BtIntPtr);
     void func_808025DC_chboilerboss(Actor *);
-    extern s32 D_80802AB0_chboilerboss;
-    extern u32 D_80802B08_chboilerboss;
-    extern u32 D_80802B14_chboilerboss;
-    extern f32 D_80802B34_chboilerboss;
-    extern f32 D_80802B40_chboilerboss;
-    extern f32 D_80802B5C_chboilerboss;
+    extern s32 D_80802AB0_chboilerboss[7];
+    extern u16 D_80802B08_chboilerboss[6];
+    extern u16 D_80802B14_chboilerboss[6];
+    extern u16 D_80802B34_chboilerboss[6];
+    extern u16 D_80802B40_chboilerboss[6];
+    extern f32 D_80802B5C_chboilerboss[4][2];
     extern u32 D_80802D2C_chboilerboss;
     extern s32 D_80802D38_chboilerboss;
     extern u32 D_80802D60_chboilerboss;
@@ -261,7 +261,7 @@ void func_80800324_chboilerboss(Actor *arg0) {
         func_80801CE8_chboilerboss(arg0);
         if (func_80101E14(arg0, 0.2f)) {
             _subaddieaudioquick_entrypoint_2(arg0, sp5C + 15,
-                func_800DC298(0.5f) ? &D_80802B34_chboilerboss : &D_80802B40_chboilerboss);
+                func_800DC298(0.5f) ? D_80802B34_chboilerboss : D_80802B40_chboilerboss);
         }
         if (func_80101DDC(arg0)) {
             func_80800F34_chboilerboss(arg0, 5);
@@ -279,7 +279,7 @@ void func_80800324_chboilerboss(Actor *arg0) {
             } else {
                 func_8080221C_chboilerboss(arg0, 1, 0x40A00000);
             }
-            sp5C[18] = func_800DC178(((f32 (*)[2])&D_80802B5C_chboilerboss)[sp58][0], ((f32 (*)[2])&D_80802B5C_chboilerboss)[sp58][1]);
+            sp5C[18] = func_800DC178(D_80802B5C_chboilerboss[sp58][0], D_80802B5C_chboilerboss[sp58][1]);
         }
         _subaddieaudioquick_entrypoint_3(arg0, sp5C + 15, &D_80802D2C_chboilerboss, 0.2f);
         break;
@@ -287,27 +287,27 @@ void func_80800324_chboilerboss(Actor *arg0) {
         _suexpression_entrypoint_9(func_80100094(arg0, 1));
         if (func_80101E14(arg0, 0.5f)) {
             func_80801464_chboilerboss(arg0, sp4C, 40.0f);
-            func_800BBCB8(sp4C, sp5C + 6, arg0->scale, 8, &D_80802AB0_chboilerboss);
-            _subaddieaudioquick_entrypoint_2(arg0, sp4C, &D_80802B14_chboilerboss);
+            func_800BBCB8(sp4C, sp5C + 6, arg0->scale, 8, D_80802AB0_chboilerboss);
+            _subaddieaudioquick_entrypoint_2(arg0, sp4C, D_80802B14_chboilerboss);
             func_80108B04(arg0, 0x223);
         }
         if (func_80101DDC(arg0)) {
             func_80800F34_chboilerboss(arg0, 5);
         }
-        _subaddieaudioquick_entrypoint_3(arg0, sp5C + 15, &D_80802B08_chboilerboss, 0.2f);
+        _subaddieaudioquick_entrypoint_3(arg0, sp5C + 15, D_80802B08_chboilerboss, 0.2f);
         break;
     case 8:
         _suexpression_entrypoint_9(func_80100094(arg0, 1));
         if (func_80101E14(arg0, 0.5f)) {
             func_808014F4_chboilerboss(arg0, sp40, 40.0f);
-            func_800BBCB8(sp40, sp5C + 6, arg0->scale, 8, &D_80802AB0_chboilerboss);
-            _subaddieaudioquick_entrypoint_2(arg0, sp40, &D_80802B14_chboilerboss);
+            func_800BBCB8(sp40, sp5C + 6, arg0->scale, 8, D_80802AB0_chboilerboss);
+            _subaddieaudioquick_entrypoint_2(arg0, sp40, D_80802B14_chboilerboss);
             func_80108B04(arg0, 0x224);
         }
         if (func_80101DDC(arg0)) {
             func_80800F34_chboilerboss(arg0, 5);
         }
-        _subaddieaudioquick_entrypoint_3(arg0, sp5C + 15, &D_80802B08_chboilerboss, 0.2f);
+        _subaddieaudioquick_entrypoint_3(arg0, sp5C + 15, D_80802B08_chboilerboss, 0.2f);
         break;
     case 9:
         _suexpression_entrypoint_9(func_80100094(arg0, 1));
@@ -315,13 +315,13 @@ void func_80800324_chboilerboss(Actor *arg0) {
             func_800EE7F8(sp34, sp5C + 6);
             sp34[1] -= 120.0f;
             func_800BBCB8(sp5C + 6, sp34, arg0->scale, 16, &D_80802D38_chboilerboss);
-            _subaddieaudioquick_entrypoint_2(arg0, sp5C + 6, &D_80802B14_chboilerboss);
+            _subaddieaudioquick_entrypoint_2(arg0, sp5C + 6, D_80802B14_chboilerboss);
             func_80108B04(arg0, 0x225);
         }
         if (func_80101DDC(arg0)) {
             func_80800F34_chboilerboss(arg0, 5);
         }
-        _subaddieaudioquick_entrypoint_3(arg0, sp5C + 15, &D_80802B08_chboilerboss, 0.0f);
+        _subaddieaudioquick_entrypoint_3(arg0, sp5C + 15, D_80802B08_chboilerboss, 0.0f);
         break;
     case 11:
         func_800F4EC8(func_800F54E4(), (BtIntPtr)arg0->position, 340.0f, 0.0f, 300.0f);
@@ -333,7 +333,7 @@ void func_80800324_chboilerboss(Actor *arg0) {
 }
 
 s32 func_808008B0_chboilerboss(Actor *arg0, s32 arg1, BtIntPtr arg2) {
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _gcdialogcamera_entrypoint_3(f32 *, f32);
     void _gcfrontend_entrypoint_10(void);
     s32 func_800D395C(void);
     BtUIntPtr func_800F54E4(void);
@@ -355,7 +355,7 @@ s32 func_808008B0_chboilerboss(Actor *arg0, s32 arg1, BtIntPtr arg2) {
     s32 func_80802690_chboilerboss(BtIntPtr, s32, s32);
     void func_808026F0_chboilerboss(BtIntPtr);
     void func_808027E4_chboilerboss(Actor *, s32, s32, Unk80132ED0 *);
-    extern s32 D_80802AA0_chboilerboss;
+    extern f32 D_80802AA0_chboilerboss[4];
     struct BoilerBossData {
         u8 pad0[0x55];
         u8 unk55;
@@ -410,7 +410,7 @@ s32 func_808008B0_chboilerboss(Actor *arg0, s32 arg1, BtIntPtr arg2) {
         }
         return 3;
     case 0x52:
-        _gcdialogcamera_entrypoint_3(&D_80802AA0_chboilerboss, arg0->scale);
+        _gcdialogcamera_entrypoint_3(D_80802AA0_chboilerboss, arg0->scale);
         break;
     case 0x57:
         return func_80802690_chboilerboss((BtIntPtr)arg0, arg2 & 0xFFFF, (u32)(arg2 & 0xFFFF0000) >> 16);
@@ -489,8 +489,8 @@ void func_80800D50_chboilerboss(Actor *arg0, s32 *arg1) {
     void func_80109EEC(s16 *, s32);
     s32 func_80800F34_chboilerboss(Actor *, s32);
     void func_80801B88_chboilerboss(Actor *, s32 *);
-    extern f32 D_80802B34_chboilerboss;
-    extern f32 D_80802B40_chboilerboss;
+    extern u16 D_80802B34_chboilerboss[6];
+    extern u16 D_80802B40_chboilerboss[6];
     struct {
         u8 pad0[0x3C];
         f32 unk3C[3];
@@ -514,9 +514,9 @@ void func_80800D50_chboilerboss(Actor *arg0, s32 *arg1) {
                     func_80800F34_chboilerboss(arg0, 6);
                 } else {
                     if (func_800DC298(0.5f)) {
-                        vector = &D_80802B34_chboilerboss;
+                        vector = D_80802B34_chboilerboss;
                     } else {
-                        vector = &D_80802B40_chboilerboss;
+                        vector = D_80802B40_chboilerboss;
                     }
                     func_800C4AF0(data->unk3C, vector);
                 }
@@ -798,7 +798,7 @@ void func_80801584_chboilerboss(Actor *arg0, BtIntPtr arg1)
   void func_80102FDC(void *, f32);
   void func_80105A9C(Actor *, f32);
   Actor *func_801084B0(BtIntPtr, Actor **);
-  extern f32 D_80802B4C_chboilerboss[];
+  extern f32 D_80802B4C_chboilerboss[4];
   Actor *sp1C;
   u32 flags;
   s32 index;
@@ -810,7 +810,7 @@ void func_80801584_chboilerboss(Actor *arg0, BtIntPtr arg1)
   func_80102FDC(sp1C, arg0->scale);
   flags = arg0->unk0->unk28;
   index = ((3 - ((s32) ((flags << 20) >> 31))) - ((s32) ((flags << 19) >> 31))) - ((s32) ((flags << 18) >> 31));
-  func_80105A9C(arg0, *((f32 *) (((u8 *) D_80802B4C_chboilerboss) + ((((index < 0) ? (index) : (index)) << 1) << 1))));
+  func_80105A9C(arg0, BT_DATA_FIELD(D_80802B4C_chboilerboss[index], *((f32 *) (((u8 *) D_80802B4C_chboilerboss) + ((((index < 0) ? (index) : (index)) << 1) << 1)))));
 }
 
 void func_80801628_chboilerboss(Actor *arg0) {
@@ -909,21 +909,21 @@ void func_808017F0_chboilerboss(Actor *arg0) {
 
 void func_808019C8_chboilerboss(BtIntPtr arg0, f32 *arg1) {
     BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
-    extern s32 D_80802ACC_chboilerboss;
-    func_800BBCB8(arg1, 0, 1.0f, 1, &D_80802ACC_chboilerboss);
+    extern s32 D_80802ACC_chboilerboss[15];
+    func_800BBCB8(arg1, 0, 1.0f, 1, D_80802ACC_chboilerboss);
 }
 
 void func_80801A08_chboilerboss(BtIntPtr arg0, f32 *arg1) {
     BtIntPtr func_800B53A4(s32);
     BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
-    extern s32 D_80802ACC_chboilerboss;
+    extern s32 D_80802ACC_chboilerboss[15];
     extern s32 D_80802D68_chboilerboss;
     BtIntPtr sp24;
     BtIntPtr temp_v0;
 
     temp_v0 = func_800B53A4(1);
     sp24 = temp_v0;
-    func_800BABB8(temp_v0, arg1, 0, 1.0f, &D_80802ACC_chboilerboss);
+    func_800BABB8(temp_v0, arg1, 0, 1.0f, D_80802ACC_chboilerboss);
     func_800BABB8(sp24, arg1, 0, 1.0f, &D_80802D68_chboilerboss);
 }
 
@@ -983,14 +983,14 @@ void func_80801C24_chboilerboss(Actor *arg0) {
     void func_80018820(s32, f32, f32);
     s32 func_800E1610(s32, f32, f32, f32 *);
     void *func_80100094(Actor *, u32);
-    extern u32 D_80802B20_chboilerboss;
+    extern u16 D_80802B20_chboilerboss[10];
     extern u32 D_80802EA4_chboilerboss;
     f32 *sp24;
 
     sp24 = func_80100094(arg0, 0);
     if (!_subaddieaudioquick_entrypoint_3(arg0, sp24 + 15, &D_80802EA4_chboilerboss, 0.1f) &&
-        (_subaddieaudioquick_entrypoint_3(arg0, sp24 + 9, &D_80802B20_chboilerboss, 0.65f) ||
-         _subaddieaudioquick_entrypoint_3(arg0, sp24 + 12, &D_80802B20_chboilerboss, 0.88f))) {
+        (_subaddieaudioquick_entrypoint_3(arg0, sp24 + 9, D_80802B20_chboilerboss, 0.65f) ||
+         _subaddieaudioquick_entrypoint_3(arg0, sp24 + 12, D_80802B20_chboilerboss, 0.88f))) {
         func_800E1610(0, 10.0f, 0.9f, arg0->position);
         func_80018820(0, 1.0f, 0.3f);
     }
@@ -1001,12 +1001,12 @@ void func_80801CE8_chboilerboss(Actor *arg0) {
     void func_80018820(s32, f32, f32);
     s32 func_800E1610(s32, f32, f32, f32 *);
     void *func_80100094(Actor *, u32);
-    extern u32 D_80802B20_chboilerboss;
+    extern u16 D_80802B20_chboilerboss[10];
     f32 *sp1C;
 
     sp1C = func_80100094(arg0, 0);
-    if (_subaddieaudioquick_entrypoint_3(arg0, sp1C + 9, &D_80802B20_chboilerboss, 0.0f) ||
-        _subaddieaudioquick_entrypoint_3(arg0, sp1C + 12, &D_80802B20_chboilerboss, 0.5f)) {
+    if (_subaddieaudioquick_entrypoint_3(arg0, sp1C + 9, D_80802B20_chboilerboss, 0.0f) ||
+        _subaddieaudioquick_entrypoint_3(arg0, sp1C + 12, D_80802B20_chboilerboss, 0.5f)) {
         func_800E1610(0, 15.0f, 0.6f, arg0->position);
         func_80018820(0, 0.5f, 0.2f);
     }
@@ -1058,7 +1058,7 @@ void func_80801D80_chboilerboss(Actor *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-void func_80801EB4_chboilerboss(Actor *arg0) { void func_80101CDC(Actor *, f32); f32 func_8010203C(Actor *, u32); f32 func_80105AC4(Actor *); f32 sp1C; f32 sp18; extern f32 D_80802B58_chboilerboss; sp18 = func_8010203C(arg0, (u32)arg0->unk70_10); sp1C = D_80802B58_chboilerboss / func_80105AC4(arg0); func_80101CDC(arg0, sp18 * sp1C); }
+void func_80801EB4_chboilerboss(Actor *arg0) { void func_80101CDC(Actor *, f32); f32 func_8010203C(Actor *, u32); f32 func_80105AC4(Actor *); f32 sp1C; f32 sp18; extern f32 D_80802B4C_chboilerboss[4]; sp18 = func_8010203C(arg0, (u32)arg0->unk70_10); sp1C = D_80802B4C_chboilerboss[3] / func_80105AC4(arg0); func_80101CDC(arg0, sp18 * sp1C); }
 
 /* extern */
 
@@ -1270,7 +1270,7 @@ void func_80802414_chboilerboss(Actor *arg0) {
     void func_8010A590(Actor *);
     s32 func_80800F34_chboilerboss(Actor *, s32);
     void func_808026F0_chboilerboss(BtIntPtr);
-    extern f32 D_80802B5C_chboilerboss;
+    extern f32 D_80802B5C_chboilerboss[4][2];
     struct {
         u8 pad0[0x48];
         f32 unk48;
@@ -1286,7 +1286,7 @@ void func_80802414_chboilerboss(Actor *arg0) {
     func_80800F34_chboilerboss(arg0, 5);
     func_80109FE8(&arg0->unk0, 1);
     data->unk55 = 1;
-    data->unk48 = D_80802B5C_chboilerboss * 0.5f;
+    data->unk48 = D_80802B5C_chboilerboss[0][0] * 0.5f;
     data->unk60 = 2;
     func_800DA544(0x179);
     _gcfrontend_entrypoint_9(0x24);
@@ -1413,11 +1413,11 @@ void func_80802730_chboilerboss(Actor *arg0, s32 arg1, s32 arg2) {
     void _capod_entrypoint_2(Unk80132ED0 *, u32, s32);
     void _capod_entrypoint_7(s32, s32);
     s32 _capod_entrypoint_8(s32);
-    s32 _gcdialogcamera_entrypoint_3(s32 *, f32);
+    void _gcdialogcamera_entrypoint_3(f32 *, f32);
     void _gcdialogcamera_entrypoint_4(f32 *);
     void _gcdialogcamera_entrypoint_5(f32 *);
     void _gcdialogcamera_entrypoint_8(void);
-    extern s32 D_80802AA0_chboilerboss;
+    extern f32 D_80802AA0_chboilerboss[4];
     u8 *data;
 
     data = func_80100094(arg0, 0);
@@ -1427,7 +1427,7 @@ void func_80802730_chboilerboss(Actor *arg0, s32 arg1, s32 arg2) {
         case 1:
             _capod_entrypoint_8(1);
             data[0x59] = 2;
-            _gcdialogcamera_entrypoint_3(&D_80802AA0_chboilerboss, arg0->scale);
+            _gcdialogcamera_entrypoint_3(D_80802AA0_chboilerboss, arg0->scale);
             _gcdialogcamera_entrypoint_4(arg0->position);
             _gcdialogcamera_entrypoint_5(arg0->rotation);
             _gcdialogcamera_entrypoint_8();

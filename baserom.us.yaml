@@ -992,7 +992,7 @@ segments:
     subsegments: 
       - [0x01F08A60, c, babykaz]
       - [0x01F0A060, .rodata, babykaz]
-      - [0x01F0A190, data, babykaz]
+      - [0x01F0A190, .data, babykaz_tables]
       - [0x01F0A210, bss, babykaz]
   - name: bsbee_header
     dir: overlays/bsbee
@@ -1253,7 +1253,7 @@ segments:
     subsegments: 
       - [0x01F14F50, c, btrot]
       - [0x01F17D30, .rodata, btrot]
-      - [0x01F17DA0, data, btrot]
+      - [0x01F17DA0, .data, btrot_tables]
       - [0x01F17E80, bss, btrot]
   - name: bsbwhirl_header
     dir: overlays/bsbwhirl
@@ -2748,7 +2748,7 @@ segments:
     subsegments: 
       - [0x01F4BE90, c, firstp]
       - [0x01F56250, .rodata, firstp]
-      - [0x01F56440, data, firstp]
+      - [0x01F56440, .data, firstp]
       - [0x01F57470, bss, firstp]
   - name: bswasher_header
     dir: overlays/bswasher
@@ -4316,7 +4316,7 @@ segments:
     subsegments: 
       - [0x01F82BA0, c, gamenew]
       - [0x01F86540, .rodata, gamenew]
-      - [0x01F86680, data, gamenew]
+      - [0x01F86680, .data, gamenew_tables]
       - [0x01F868B0, .data, gamenew]
       - [0x01F86AD0, bss, gamenew]
   - name: chwaspnestgame_header
@@ -5078,7 +5078,7 @@ segments:
     subsegments: 
       - [0x01FA9960, c, boss]
       - [0x01FAC1F0, .rodata, boss]
-      - [0x01FAC400, data, boss]
+      - [0x01FAC400, .data, boss_tables]
       - [0x01FAC560, .data, boss]
       - [0x01FAC5C0, data, boss_data_tail]
       - [0x01FAC8D0, bss, boss]
@@ -7117,7 +7117,7 @@ segments:
     subsegments: 
       - [0x02006880, c, weldarboss]
       - [0x0200AB00, .rodata, weldarboss]
-      - [0x0200AE70, data, weldarboss]
+      - [0x0200AE70, .data, weldarboss_tables]
       - [0x0200B010, .data, weldarboss]
       - [0x0200B360, bss, weldarboss]
   - name: chaliendad_header
@@ -7137,7 +7137,7 @@ segments:
     subsegments: 
       - [0x0200B550, c, aliendad]
       - [0x0200D9D0, .rodata, aliendad]
-      - [0x0200DB10, data, aliendad]
+      - [0x0200DB10, .data, aliendad_tables]
       - [0x0200DBC0, .data, aliendad]
       - [0x0200DC10, data, aliendad_data_tail]
       - [0x0200DDA0, bss, aliendad]
@@ -7690,7 +7690,7 @@ segments:
     subsegments: 
       - [0x02018860, c, boss]
       - [0x02021F30, .rodata, boss]
-      - [0x020224C0, data, boss]
+      - [0x020224C0, .data, boss]
       - [0x02022B60, bss, boss]
   - name: chdiggerbossdoor_header
     dir: overlays/chdiggerbossdoor
@@ -8051,7 +8051,7 @@ segments:
     subsegments: 
       - [0x0202C310, c, y]
       - [0x0202CD10, .rodata, y]
-      - [0x0202CDA0, data, y]
+      - [0x0202CDA0, .data, y_tables]
       - [0x0202CF20, .data, y]
       - [0x0202CF70, bss, y]
   - name: chmolehill_header
@@ -8223,7 +8223,7 @@ segments:
     subsegments: 
       - [0x02037DF0, c, timetable]
       - [0x020384D0, .rodata, timetable]
-      - [0x02038520, data, timetable]
+      - [0x02038520, .data, timetable]
       - [0x02038610, bss, timetable]
   - name: chmole_maya_header
     dir: overlays/chmole_maya
@@ -8299,7 +8299,7 @@ segments:
     subsegments: 
       - [0x02039F40, c, stoneballcontrol]
       - [0x0203ED40, .rodata, stoneballcontrol]
-      - [0x0203EF00, data, stoneballcontrol]
+      - [0x0203EF00, .data, stoneballcontrol_tables]
       - [0x0203EFF0, .data, stoneballcontrol]
       - [0x0203F3C0, bss, stoneballcontrol]
   - name: chmayafarmer_header
@@ -15677,7 +15677,7 @@ segments:
     subsegments: 
       - [0x02154460, c, mole]
       - [0x021566A0, .rodata, mole]
-      - [0x02156970, data, mole]
+      - [0x02156970, .data, mole]
       - [0x02156A40, bss, mole]
   - name: subaddiebounce_header
     dir: overlays/subaddiebounce

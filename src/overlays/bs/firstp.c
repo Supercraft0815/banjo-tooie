@@ -150,11 +150,11 @@ typedef struct bs_firstp_config_s {
     /* 0x30 */ f32 split_ratio; // share of the turn applied to bone1
     /* 0x34 */ f32 yaw_scale[2];
     /* 0x3C */ f32 pitch_scale[2];
+    f32 unk44, unk48;
 } FirstpConfig;
-
+#include "firstp_tables.h"
 void func_808061AC_bsfirstp(void *, s32);
 void func_8009E4E0(void *, s32, BtIntPtr);
-
 struct player_state_s;
 enum asset_e;
 
@@ -164,7 +164,7 @@ s32 func_8009E674(struct player_state_s *, s32);
 s32 func_8009E6EC(struct player_state_s *);
 f32 func_800D9004(void);
 s32 func_800F1574(f32 *, f32);
-extern f32 D_8080A660_bsfirstp[][5];
+extern f32 D_8080A650_bsfirstp[6][5];
 
 struct anctrl_s;
 struct player_state_s;
@@ -1200,8 +1200,8 @@ void func_80801E18_bsfirstp(u8 *arg0) {
     s32 _baeggcursor_entrypoint_9(void *arg0);
     s32 func_8010D930(s32 arg0, s32 arg1, f32 *arg2, s32 *arg3);
     void func_80802438_bsfirstp(void *arg0, s32 arg1);
-    extern s32 D_8080A630_bsfirstp[];
-    extern s32 D_8080A640_bsfirstp[];
+    extern s16 D_8080A630_bsfirstp[8];
+    extern s16 D_8080A640_bsfirstp[8];
     struct CursorState {
         u8 pad[0xB0];
         s32 state;
@@ -1221,7 +1221,7 @@ void func_80801E18_bsfirstp(u8 *arg0) {
             cursor->state = 1U;
             _baeggcursor_entrypoint_10(arg0, cursor->x, cursor->y);
             _baeggcursor_entrypoint_7(arg0, 3);
-            func_8010D930(0xC, -1, 0, D_8080A630_bsfirstp);
+            func_8010D930(0xC, -1, 0, (s32 *)D_8080A630_bsfirstp);
             return;
         } else {
             return;
@@ -1238,7 +1238,7 @@ void func_80801E18_bsfirstp(u8 *arg0) {
         if (held == 0) {
             cursor->state = 5U;
             _baeggcursor_entrypoint_7(arg0, 4);
-            func_8010D930(0xC, -1, 0, D_8080A640_bsfirstp);
+            func_8010D930(0xC, -1, 0, (s32 *)D_8080A640_bsfirstp);
             return;
         } else {
             return;
@@ -1252,7 +1252,7 @@ void func_80801E18_bsfirstp(u8 *arg0) {
     case 4:
         cursor->state = 5U;
         _baeggcursor_entrypoint_7(arg0, 4);
-        func_8010D930(0xC, -1, 0, D_8080A640_bsfirstp);
+        func_8010D930(0xC, -1, 0, (s32 *)D_8080A640_bsfirstp);
         break;
     case 5:
         if (_baeggcursor_entrypoint_2(arg0) != 4) {
@@ -1400,8 +1400,8 @@ s32 func_80802444_bsfirstp(void *arg0) {
 
 void *func_80802458_bsfirstp(void *arg0) {
     u32 func_800A3280(void *);
-    extern void *D_8080ABF0_bsfirstp[];
-    return D_8080ABF0_bsfirstp[func_800A3280(arg0)];
+    extern FirstpEquipment D_8080ABF0_bsfirstp;
+    return D_8080ABF0_bsfirstp.parameters[func_800A3280(arg0)];
 }
 
 FirstpConfig *func_80802484_bsfirstp(void *arg0) {
@@ -1412,20 +1412,20 @@ FirstpConfig *func_80802484_bsfirstp(void *arg0) {
 
 void *func_808024B0_bsfirstp(void *arg0) {
     u32 func_800A3280(void *);
-    extern u8 D_8080AFFC_bsfirstp[];
-    return &D_8080AFFC_bsfirstp[func_800A3280(arg0) * 8];
+    extern f32 D_8080AFFC_bsfirstp[6][2];
+    return &D_8080AFFC_bsfirstp[func_800A3280(arg0)];
 }
 
-s32 func_808024DC_bsfirstp(void *arg0) {
+BtIntPtr func_808024DC_bsfirstp(void *arg0) {
     u32 func_800A3280(void *);
-    extern s32 D_8080AFB4_bsfirstp[];
-    return D_8080AFB4_bsfirstp[func_800A3280(arg0)];
+    extern FirstpAnimation *D_8080AFB4_bsfirstp[6];
+    return (BtIntPtr)D_8080AFB4_bsfirstp[func_800A3280(arg0)];
 }
 
 void *func_80802508_bsfirstp(void *arg0) {
     u32 func_800A3280(void *);
-    extern u8 D_8080AFCC_bsfirstp[];
-    return &D_8080AFCC_bsfirstp[func_800A3280(arg0) * 8];
+    extern FirstpAnimation D_8080AFCC_bsfirstp[6];
+    return &D_8080AFCC_bsfirstp[func_800A3280(arg0)];
 }
 
 s16 func_80802534_bsfirstp(void *arg0) {
@@ -1436,98 +1436,98 @@ s16 func_80802534_bsfirstp(void *arg0) {
 
 void *func_80802560_bsfirstp(void *arg0) {
     u32 func_800A3280(void *);
-    extern u8 D_8080B038_bsfirstp[];
-    return &D_8080B038_bsfirstp[func_800A3280(arg0) * 12];
+    extern FirstpAnimationScale D_8080B038_bsfirstp[6];
+    return &D_8080B038_bsfirstp[func_800A3280(arg0)];
 }
 
 void *func_80802594_bsfirstp(void *arg0) {
     u32 func_800A3280(void *);
-    extern u8 D_8080B080_bsfirstp[];
-    return &D_8080B080_bsfirstp[func_800A3280(arg0) * 12];
+    extern FirstpAnimationScale D_8080B080_bsfirstp[6];
+    return &D_8080B080_bsfirstp[func_800A3280(arg0)];
 }
 
 void func_808025C8_bsfirstp(void *arg0, void **arg1, void **arg2) {
     u32 func_800A3280(void *);
-    extern u8 D_8080B1B8_bsfirstp[];
-    extern u8 D_8080B1E0_bsfirstp[];
+    extern FirstpAnimation D_8080B1B8_bsfirstp[5];
+    extern FirstpAnimation D_8080B1E0_bsfirstp[5];
     s32 index;
     s32 offset;
 
     index = func_800A3280(arg0) - 1;
     offset = index << 3;
-    *arg1 = D_8080B1B8_bsfirstp + offset;
-    *arg2 = D_8080B1E0_bsfirstp + offset;
+    *arg1 = (u8 *)D_8080B1B8_bsfirstp + offset;
+    *arg2 = (u8 *)D_8080B1E0_bsfirstp + offset;
 }
 
 void func_8080261C_bsfirstp(void *arg0, void **arg1, void **arg2) {
     u32 func_800A3280(void *);
-    extern u8 D_8080B208_bsfirstp[];
-    extern u8 D_8080B230_bsfirstp[];
+    extern FirstpAnimation D_8080B208_bsfirstp[5];
+    extern FirstpAnimation D_8080B230_bsfirstp[5];
     s32 index;
     s32 offset;
 
     index = func_800A3280(arg0) - 1;
     offset = index << 3;
-    *arg1 = D_8080B208_bsfirstp + offset;
-    *arg2 = D_8080B230_bsfirstp + offset;
+    *arg1 = (u8 *)D_8080B208_bsfirstp + offset;
+    *arg2 = (u8 *)D_8080B230_bsfirstp + offset;
 }
 
 void func_80802670_bsfirstp(void *arg0, u8 **arg1) {
     u32 func_800A3280(void *);
-    extern u8 D_8080B258_bsfirstp[];
+    extern FirstpAnimation D_8080B258_bsfirstp[5];
     s32 index;
     s32 offset;
     index = func_800A3280(arg0) - 1;
     offset = index << 3;
-    *arg1 = D_8080B258_bsfirstp + offset;
+    *arg1 = (u8 *)D_8080B258_bsfirstp + offset;
 }
 
 void func_808026AC_bsfirstp(void *arg0, void **arg1, void **arg2) {
     u32 func_800A3280(void *);
-    extern u8 D_8080B0C8_bsfirstp[];
-    extern u8 D_8080B0F0_bsfirstp[];
+    extern FirstpAnimation D_8080B0C8_bsfirstp[5];
+    extern FirstpAnimation D_8080B0F0_bsfirstp[5];
     s32 index;
     s32 offset;
 
     index = func_800A3280(arg0) - 1;
     offset = index << 3;
-    *arg1 = D_8080B0C8_bsfirstp + offset;
-    *arg2 = D_8080B0F0_bsfirstp + offset;
+    *arg1 = (u8 *)D_8080B0C8_bsfirstp + offset;
+    *arg2 = (u8 *)D_8080B0F0_bsfirstp + offset;
 }
 
 void func_80802700_bsfirstp(void *arg0, void **arg1, void **arg2) {
     u32 func_800A3280(void *);
-    extern u8 D_8080B118_bsfirstp[];
-    extern u8 D_8080B140_bsfirstp[];
+    extern FirstpAnimation D_8080B118_bsfirstp[5];
+    extern FirstpAnimation D_8080B140_bsfirstp[5];
     s32 index;
     s32 offset;
 
     index = func_800A3280(arg0) - 1;
     offset = index << 3;
-    *arg1 = D_8080B118_bsfirstp + offset;
-    *arg2 = D_8080B140_bsfirstp + offset;
+    *arg1 = (u8 *)D_8080B118_bsfirstp + offset;
+    *arg2 = (u8 *)D_8080B140_bsfirstp + offset;
 }
 
 void func_80802754_bsfirstp(void *arg0, void **arg1, void **arg2) {
     u32 func_800A3280(void *);
-    extern u8 D_8080B168_bsfirstp[];
-    extern u8 D_8080B190_bsfirstp[];
+    extern FirstpAnimation D_8080B168_bsfirstp[5];
+    extern FirstpAnimation D_8080B190_bsfirstp[5];
     s32 index;
     s32 offset;
 
     index = func_800A3280(arg0) - 1;
     offset = index << 3;
-    *arg1 = D_8080B168_bsfirstp + offset;
-    *arg2 = D_8080B190_bsfirstp + offset;
+    *arg1 = (u8 *)D_8080B168_bsfirstp + offset;
+    *arg2 = (u8 *)D_8080B190_bsfirstp + offset;
 }
 
 u8 *func_808027A8_bsfirstp(s32 arg0) {
-    extern s32 D_8080AC24_bsfirstp;
-    return (u8 *) &D_8080AC24_bsfirstp + ((arg0 << 4) - 0x10);
+    extern FirstpEggConfig D_8080AC24_bsfirstp[7];
+    return (u8 *)&D_8080AC24_bsfirstp[arg0 - 1];
 }
-
+typedef struct { u16 values[7]; } Entry;
 u32 bsfirstp_entrypoint_3(s32 arg0, s32 arg1, s32 arg2) {
-    typedef struct { u16 values[7]; } Entry;
+
     extern Entry D_8080ACF8_bsfirstp[];
     extern Entry D_8080AD4C_bsfirstp[];
     extern Entry D_8080ADA0_bsfirstp[];
@@ -1570,11 +1570,11 @@ u32 bsfirstp_entrypoint_3(s32 arg0, s32 arg1, s32 arg2) {
 
 void bsfirstp_entrypoint_4(BtIntPtr arg0, s32 arg1) {
     void _badeathmatch_entrypoint_10(void *arg0, s32 arg1, s32 arg2, s32 arg3);
-    extern s32 D_8080AC94_bsfirstp;
+    extern FirstpScores D_8080AC94_bsfirstp;
     s32 var_s0;
     u8 *var_s1;
 
-    var_s0 = 1; var_s1 = (u8 *)&D_8080AC94_bsfirstp; var_s1 += arg1 * 0xE + 2;
+    var_s0 = 1; var_s1 = (u8 *)D_8080AC94_bsfirstp.scores[arg1]; var_s1 += 2;
     do {
         _badeathmatch_entrypoint_10(arg0, var_s0, (*(u8 *)((s8 *)(var_s1) + (-2))), (*(u8 *)((s8 *)(var_s1) + (-1))));
         var_s0 += 1;
@@ -1586,10 +1586,10 @@ void bsfirstp_entrypoint_5(u8 *arg0, s32 arg1, s32 arg2) {
     s32 pad[2];
     void func_800A18C8(void *arg0);
     void func_800A1870(PlayerState *arg0, s32 arg1);
-    extern s32 D_8080AC94_bsfirstp;
+    extern FirstpEquipment D_8080ABF0_bsfirstp;
     s32 sp1C[1];
 
-    arg1 = *((u8 *)&D_8080AC94_bsfirstp - 0x92 + ((arg2 * 5) + arg1));
+    arg1 = D_8080ABF0_bsfirstp.equipment[(arg2 - 1) * 5 + (arg1 - 1)];
     sp1C[0] = arg1;
     func_800A18C8(arg0);
     arg1 = sp1C[0];
@@ -1598,11 +1598,11 @@ void bsfirstp_entrypoint_5(u8 *arg0, s32 arg1, s32 arg2) {
 
 s32 func_80802A40_bsfirstp(u8 *arg0, s32 arg1) {
     u32 func_800A3280(void *arg0);
-    extern s32 D_8080B45C_bsfirstp;
+
     s16 temp_a3;
     u8 *temp_v1;
 
-    temp_v1 = *((u8 **)&D_8080B45C_bsfirstp + func_800A3280(arg0));
+    temp_v1 = (u8 *)D_8080B400_bsfirstp.sets[func_800A3280(arg0) - 1];
     temp_v1 += arg1 * 8;
     temp_a3 = (((Objfirstp_func_80802A40_bsfirstp_temp_v1 *)temp_v1)->unk2);
     if (temp_a3 == 0) {
@@ -1614,8 +1614,8 @@ s32 func_80802A40_bsfirstp(u8 *arg0, s32 arg1) {
 
 void func_80802AA8_bsfirstp(u8 *arg0, s16 arg1, u8 *arg2, u8 *arg3) {
     u32 func_800A3280(void *arg0);
-    extern s32 D_8080ADF4_bsfirstp;
-    extern s32 D_8080AE44_bsfirstp;
+    extern s16 D_8080ADF4_bsfirstp[5][4][2];
+    extern s32 D_8080AE44_bsfirstp[5][4][2];
     s32 temp_t6;
     u32 temp_v0;
     u8 *temp_a0;
@@ -1945,9 +1945,9 @@ void func_80803204_bsfirstp(void *arg0) {
     }
 }
 
-s32 bsfirstp_entrypoint_8(s32 arg0) {
-    extern s32 D_8080B474_bsfirstp[];
-    return ((s32 *)&D_8080B474_bsfirstp)[arg0];
+BtFnWord bsfirstp_entrypoint_8(s32 arg0) {
+    extern BtFnWord D_8080B474_bsfirstp[4];
+    return D_8080B474_bsfirstp[arg0];
 }
 
 void func_808032C0_bsfirstp(struct player_state_s *self) {
@@ -2037,9 +2037,9 @@ void func_80803340_bsfirstp(u8 *arg0) {
     }
 }
 
-s32 bsfirstp_entrypoint_9(s32 arg0) {
-    extern s32 D_8080B484_bsfirstp[];
-    return ((s32 *)&D_8080B484_bsfirstp)[arg0];
+BtFnWord bsfirstp_entrypoint_9(s32 arg0) {
+    extern BtFnWord D_8080B484_bsfirstp[4];
+    return D_8080B484_bsfirstp[arg0];
 }
 
 /* extern */
@@ -2182,9 +2182,9 @@ void func_80803828_bsfirstp(BtIntPtr arg0) {
     }
 }
 
-s32 bsfirstp_entrypoint_11(s32 arg0) {
-    extern s32 D_8080B494_bsfirstp[];
-    return ((s32 *)&D_8080B494_bsfirstp)[arg0];
+BtFnWord bsfirstp_entrypoint_11(s32 arg0) {
+    extern BtFnWord D_8080B494_bsfirstp[4];
+    return D_8080B494_bsfirstp[arg0];
 }
 
 void bsfirstp_entrypoint_12(s32 arg0) {
@@ -2194,7 +2194,7 @@ void bsfirstp_entrypoint_12(s32 arg0) {
     void func_8009C128(struct player_state_s *, f32[3]);
     struct player_state_s *func_800F53D0(BtIntPtr);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
-    extern s32 D_8080B4A4_bsfirstp;
+    extern s16 D_8080B4A4_bsfirstp[4];
     struct player_state_s *sp2C;
     FirstpState *firstp;
     f32 sp1C[3];
@@ -2204,7 +2204,7 @@ void bsfirstp_entrypoint_12(s32 arg0) {
         firstp = ((PlayerState *)sp2C)->state_mem;
         firstp->unk114 = _ch1pfreeze_entrypoint_1(arg0);
         func_8009C128(sp2C, sp1C);
-        func_8010D930(7, -1, sp1C, &D_8080B4A4_bsfirstp);
+        func_8010D930(7, -1, sp1C, (s32 *)D_8080B4A4_bsfirstp);
         _batimer_set(sp2C, 0, 5.0f);
     }
 }
@@ -2503,9 +2503,9 @@ void func_80803F94_bsfirstp(struct player_state_s *arg0) {
     bs_setState(arg0, sp28);
 }
 
-s32 bsfirstp_entrypoint_15(s32 arg0) {
-    extern s32 D_8080B4D0_bsfirstp[];
-    return ((s32 *)&D_8080B4D0_bsfirstp)[arg0];
+BtFnWord bsfirstp_entrypoint_15(s32 arg0) {
+    extern BtFnWord D_8080B4D0_bsfirstp[4];
+    return D_8080B4D0_bsfirstp[arg0];
 }                                                                                                  typedef struct { u8 pad0[0x4]; f32 unk4; u8 pad8[0x17C]; s32 unk184; s32 * unk188; } Objfirstp_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 void func_80804104_bsfirstp(struct player_state_s *arg0, void *arg1, void *arg2) {
@@ -2595,9 +2595,9 @@ void func_80804238_bsfirstp(struct player_state_s *arg0) {
     func_80809250_bsfirstp(arg0);
 }
 
-s32 bsfirstp_entrypoint_16(s32 arg0) {
-    extern s32 D_8080B4E0_bsfirstp[];
-    return ((s32 *)&D_8080B4E0_bsfirstp)[arg0];
+BtFnWord bsfirstp_entrypoint_16(s32 arg0) {
+    extern BtFnWord D_8080B4E0_bsfirstp[4];
+    return D_8080B4E0_bsfirstp[arg0];
 }
 
 /* extern */
@@ -2653,9 +2653,9 @@ void func_80804394_bsfirstp(struct player_state_s *arg0) {
     func_80807D48_bsfirstp(arg0);
 }
 
-s32 bsfirstp_entrypoint_17(s32 arg0) {
-    extern s32 D_8080B4F0_bsfirstp[];
-    return ((s32 *)&D_8080B4F0_bsfirstp)[arg0];
+BtFnWord bsfirstp_entrypoint_17(s32 arg0) {
+    extern BtFnWord D_8080B4F0_bsfirstp[4];
+    return D_8080B4F0_bsfirstp[arg0];
 }
 
 void func_80804488_bsfirstp(struct player_state_s *arg0, s32 arg1, s32 arg2, f32 *arg3) {
@@ -2933,9 +2933,9 @@ void func_80804BA4_bsfirstp(struct player_state_s *arg0) {
     }
 }
 
-s32 bsfirstp_entrypoint_19(s32 arg0) {
-    extern s32 D_8080B500_bsfirstp[];
-    return ((s32 *)&D_8080B500_bsfirstp)[arg0];
+BtFnWord bsfirstp_entrypoint_19(s32 arg0) {
+    extern BtFnWord D_8080B500_bsfirstp[4];
+    return D_8080B500_bsfirstp[arg0];
 }
 
 /* extern */
@@ -2972,9 +2972,9 @@ void func_80804DA0_bsfirstp(struct player_state_s *arg0) {
     }
 }
 
-s32 bsfirstp_entrypoint_20(s32 arg0) {
-    extern s32 D_8080B510_bsfirstp[];
-    return ((s32 *)&D_8080B510_bsfirstp)[arg0];
+BtFnWord bsfirstp_entrypoint_20(s32 arg0) {
+    extern BtFnWord D_8080B510_bsfirstp[4];
+    return D_8080B510_bsfirstp[arg0];
 }
 
 void func_80804E1C_bsfirstp(struct player_state_s *arg0) {
@@ -3008,9 +3008,9 @@ void func_80804ED4_bsfirstp(BtIntPtr arg0) {
     bs_setState(arg0, func_800EA068(8) ? 0xCB : 0xC9);
 }
 
-s32 bsfirstp_entrypoint_21(s32 arg0) {
-    extern s32 D_8080B520_bsfirstp[];
-    return ((s32 *)&D_8080B520_bsfirstp)[arg0];
+BtFnWord bsfirstp_entrypoint_21(s32 arg0) {
+    extern BtFnWord D_8080B520_bsfirstp[4];
+    return D_8080B520_bsfirstp[arg0];
 }
 
 void func_80804F28_bsfirstp(struct player_state_s *arg0) {
@@ -3049,9 +3049,9 @@ void func_80804FD4_bsfirstp(struct player_state_s *arg0) {
     }
 }
 
-s32 bsfirstp_entrypoint_22(s32 arg0) {
-    extern s32 D_8080B530_bsfirstp[];
-    return ((s32 *)&D_8080B530_bsfirstp)[arg0];
+BtFnWord bsfirstp_entrypoint_22(s32 arg0) {
+    extern BtFnWord D_8080B530_bsfirstp[4];
+    return D_8080B530_bsfirstp[arg0];
 }
 
 /* extern */
@@ -3081,9 +3081,9 @@ void func_808050D8_bsfirstp(BtIntPtr arg0)
     func_80809D24_bsfirstp(arg0);
 }
 
-s32 bsfirstp_entrypoint_23(s32 arg0) {
-    extern s32 D_8080B540_bsfirstp[];
-    return ((s32 *)&D_8080B540_bsfirstp)[arg0];
+BtFnWord bsfirstp_entrypoint_23(s32 arg0) {
+    extern BtFnWord D_8080B540_bsfirstp[4];
+    return D_8080B540_bsfirstp[arg0];
 }
 
 void func_8080511C_bsfirstp(struct player_state_s *arg0) {
@@ -3117,9 +3117,9 @@ void func_808051C4_bsfirstp(BtIntPtr arg0)
     func_80809D24_bsfirstp(arg0);
 }
 
-s32 bsfirstp_entrypoint_24(s32 arg0) {
-    extern s32 D_8080B550_bsfirstp[];
-    return ((s32 *)&D_8080B550_bsfirstp)[arg0];
+BtFnWord bsfirstp_entrypoint_24(s32 arg0) {
+    extern BtFnWord D_8080B550_bsfirstp[4];
+    return D_8080B550_bsfirstp[arg0];
 }
 
 void bsfirstp_entrypoint_25(struct player_state_s *self, f32 speed) {
@@ -4251,9 +4251,9 @@ void func_80806D90_bsfirstp(struct player_state_s *arg0) {
     bsfirstp_entrypoint_26(arg0);
 }
 
-s32 bsfirstp_entrypoint_29(s32 arg0) {
-    extern s32 D_8080B560_bsfirstp[];
-    return ((s32 *)&D_8080B560_bsfirstp)[arg0];
+BtFnWord bsfirstp_entrypoint_29(s32 arg0) {
+    extern BtFnWord D_8080B560_bsfirstp[4];
+    return D_8080B560_bsfirstp[arg0];
 }
 
 void func_80806E0C_bsfirstp(void *arg0) {
@@ -4416,9 +4416,9 @@ void func_80807024_bsfirstp(struct player_state_s *arg0) {
     }
 }
 
-s32 bsfirstp_entrypoint_30(s32 arg0) {
-    extern s32 D_8080B570_bsfirstp[];
-    return ((s32 *)&D_8080B570_bsfirstp)[arg0];
+BtFnWord bsfirstp_entrypoint_30(s32 arg0) {
+    extern BtFnWord D_8080B570_bsfirstp[4];
+    return D_8080B570_bsfirstp[arg0];
 }
 
 void func_808071D8_bsfirstp(s32 arg0)
@@ -4458,9 +4458,9 @@ void func_80807264_bsfirstp(u8 *arg0) {
     }
 }
 
-s32 bsfirstp_entrypoint_31(s32 arg0) {
-    extern s32 D_8080B580_bsfirstp[];
-    return ((s32 *)&D_8080B580_bsfirstp)[arg0];
+BtFnWord bsfirstp_entrypoint_31(s32 arg0) {
+    extern BtFnWord D_8080B580_bsfirstp[4];
+    return D_8080B580_bsfirstp[arg0];
 }
 
 /* extern */
@@ -4653,9 +4653,9 @@ void func_8080762C_bsfirstp(struct player_state_s *arg0) {
     }
 }
 
-s32 bsfirstp_entrypoint_32(s32 arg0) {
-    extern s32 D_8080B590_bsfirstp[];
-    return ((s32 *)&D_8080B590_bsfirstp)[arg0];
+BtFnWord bsfirstp_entrypoint_32(s32 arg0) {
+    extern BtFnWord D_8080B590_bsfirstp[4];
+    return D_8080B590_bsfirstp[arg0];
 }
 
 void func_808077AC_bsfirstp(BtIntPtr arg0) {
@@ -4707,9 +4707,9 @@ void func_80807864_bsfirstp(struct player_state_s *self) {
     }
 }
 
-s32 bsfirstp_entrypoint_33(s32 arg0) {
-    extern s32 D_8080B5A0_bsfirstp[];
-    return ((s32 *)&D_8080B5A0_bsfirstp)[arg0];
+BtFnWord bsfirstp_entrypoint_33(s32 arg0) {
+    extern BtFnWord D_8080B5A0_bsfirstp[4];
+    return D_8080B5A0_bsfirstp[arg0];
 }    typedef struct { u8 pad0[0x184]; s32 unk184; } Objfirstp_func_808078F4_bsfirstp_self; /* offsets.py genstruct: fields from raw offsets on self; rename once understood */
 
 void func_808078F4_bsfirstp(BtIntPtr self) {
@@ -5312,9 +5312,9 @@ void func_808088D0_bsfirstp(struct player_state_s *self) {
     bs_setState(self, next_state);
 }
 
-s32 bsfirstp_entrypoint_34(s32 arg0) {
-    extern s32 D_8080B5B0_bsfirstp[];
-    return ((s32 *)&D_8080B5B0_bsfirstp)[arg0];
+BtFnWord bsfirstp_entrypoint_34(s32 arg0) {
+    extern BtFnWord D_8080B5B0_bsfirstp[4];
+    return D_8080B5B0_bsfirstp[arg0];
 }
 
 void func_80808A24_bsfirstp(struct player_state_s *arg0) {
@@ -5357,9 +5357,9 @@ void func_80808AAC_bsfirstp(BtIntPtr arg0) {
     }
 }
 
-s32 bsfirstp_entrypoint_35(s32 arg0) {
-    extern s32 D_8080B5C0_bsfirstp[];
-    return ((s32 *)&D_8080B5C0_bsfirstp)[arg0];
+BtFnWord bsfirstp_entrypoint_35(s32 arg0) {
+    extern BtFnWord D_8080B5C0_bsfirstp[4];
+    return D_8080B5C0_bsfirstp[arg0];
 }
 
 /* extern */
@@ -5548,7 +5548,7 @@ void func_80808F38_bsfirstp(struct player_state_s *arg0) {
     s32 func_800F7F98(BtIntPtr, u32);
     s32 func_800F1E6C(f32 *, f32 *, f32 *);
     void func_8080911C_bsfirstp(PlayerState *, s32);
-    extern f32 D_8080A650_bsfirstp[][5];
+    extern f32 D_8080A650_bsfirstp[6][5];
     s32 *state = *(s32 **)((u8 *)arg0 + 0x188);
     volatile s32 index = 0;
     f32 yaw[2];
@@ -5640,7 +5640,7 @@ void func_80809198_bsfirstp(void *arg0) {
             if (func_8009E674(arg0, 4)) {
                 speed = 0.0f;
             } else {
-                speed = D_8080A660_bsfirstp[ptr->index][0];
+                speed = D_8080A650_bsfirstp[ptr->index][4];
             }
             func_8080633C_bsfirstp(arg0, speed);
             break;
@@ -5737,9 +5737,9 @@ void func_808093A4_bsfirstp(struct player_state_s *arg0) {
     }
 }
 
-s32 bsfirstp_entrypoint_36(s32 arg0) {
-    extern s32 D_8080B5D0_bsfirstp[];
-    return ((s32 *)&D_8080B5D0_bsfirstp)[arg0];
+BtFnWord bsfirstp_entrypoint_36(s32 arg0) {
+    extern BtFnWord D_8080B5D0_bsfirstp[4];
+    return D_8080B5D0_bsfirstp[arg0];
 }
 
 /* extern */
@@ -6342,7 +6342,6 @@ void func_8080A250_bsfirstp(void *arg0) {
     FirstpState *firstp;
     s32 *state;
     s32 current;
-
     firstp = ((PlayerState *)arg0)->state_mem;
     state = &firstp->unk254;
     switch (state[3]) {
@@ -6383,3 +6382,4 @@ void func_8080A250_bsfirstp(void *arg0) {
         ((f32 *)state)[18] = 25.0f;
     }
 }
+#include "firstp_data.inc"

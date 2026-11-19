@@ -1,5 +1,5 @@
 #include "common.h"
-
+extern u16 D_80804FC0_chstoneballcontrol[10];
 typedef struct { f32 v[3]; } StoneballVector;
 void func_80801BE0_chstoneballcontrol(Actor *);
 void func_80105834(Actor *);
@@ -161,7 +161,7 @@ void func_80800000_chstoneballcontrol(Unk80132ED0 **arg0, u32 arg1, s32 arg2) {
 
 f32 func_80800040_chstoneballcontrol(void *arg0) {
     void *func_80100094(Actor *, u32);
-    extern f32 D_80804FFC_chstoneballcontrol[];
+    extern f32 D_80804FFC_chstoneballcontrol[5];
     return D_80804FFC_chstoneballcontrol[*((u8 *)func_80100094(arg0, 0) + 0x14)];
 }
 
@@ -199,13 +199,13 @@ f32 func_808000F4_chstoneballcontrol(void *arg0)
 }
 
 s32 func_80800114_chstoneballcontrol(s32 arg0, s32 arg1) {
-    extern s32 D_80805038_chstoneballcontrol[][4];
+    extern s32 D_80805038_chstoneballcontrol[5][4];
     return D_80805038_chstoneballcontrol[arg0][arg1];
 }
 
 s32 func_80800130_chstoneballcontrol(s32 arg0) {
-    extern s32 D_80805088_chstoneballcontrol[];
-    return ((s32 *)&D_80805088_chstoneballcontrol)[arg0];
+    extern s32 D_80805088_chstoneballcontrol[5];
+    return D_80805088_chstoneballcontrol[arg0];
 }
 
 void func_80800144_chstoneballcontrol(void *arg0) {
@@ -721,7 +721,7 @@ void func_80800F9C_chstoneballcontrol(Actor *arg0) {
     void func_8080128C_chstoneballcontrol(Actor *);
     void func_80801330_chstoneballcontrol(Actor *, s32);
     void func_8080145C_chstoneballcontrol(Actor *);
-    extern s32 D_8080509C_chstoneballcontrol[];
+    extern s32 D_8080509C_chstoneballcontrol[5];
     struct Fields {
         u8 pad0[0xA];
         u8 types[4];
@@ -1058,7 +1058,7 @@ void func_80801884_chstoneballcontrol(Actor *arg0) {
     s32 func_800EA05C(void);
     void *func_80100094(Actor *, u32);
     void func_80108B04(Actor *, u32);
-    extern f32 D_80805010_chstoneballcontrol[][2];
+    extern f32 D_80805010_chstoneballcontrol[5][2];
     struct {
         u8 pad0[0x39];
         u8 kind;
@@ -1361,14 +1361,14 @@ void func_808024F8_chstoneballcontrol(Actor *arg0) {
     void func_80802F14_chstoneballcontrol(Actor *);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void _subaddiefade_entrypoint_3(Actor *);
-    extern s32 D_80804FD4_chstoneballcontrol;
+    extern u16 D_80804FD4_chstoneballcontrol[10];
     Actor *sp24;
 
     sp24 = func_80106790(arg0->unk3C);
     if ((arg0->unk0->unk24 >> 22) == 0x253) {
         func_80802648_chstoneballcontrol(arg0->position);
         func_80802F14_chstoneballcontrol(arg0);
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80804FD4_chstoneballcontrol);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80804FD4_chstoneballcontrol);
         _subaddiefade_entrypoint_3(arg0);
         func_80801944_chstoneballcontrol(arg0, 4);
         func_80800DB4_chstoneballcontrol(sp24, arg0->position);
@@ -1381,7 +1381,7 @@ void func_80802588_chstoneballcontrol(Actor *volatile arg0, volatile s32 arg1) {
     void func_800BA670(BtIntPtr, s32);
     BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
 
-    extern s32 D_80804FE8_chstoneballcontrol;
+    extern u16 D_80804FE8_chstoneballcontrol[10];
     BtIntPtr emitter;
     s32 model;
     f32 *position;
@@ -1391,7 +1391,7 @@ void func_80802588_chstoneballcontrol(Actor *volatile arg0, volatile s32 arg1) {
     model = (arg1 == 1) ? 0x679 : 0x67A;
     func_800BA670(emitter, model);
     func_800BA22C(emitter, 0xA);
-    _subaddieaudioquick_entrypoint_2(arg0, position, &D_80804FE8_chstoneballcontrol);
+    _subaddieaudioquick_entrypoint_2(arg0, position, D_80804FE8_chstoneballcontrol);
 }
 
 void func_80802614_chstoneballcontrol(f32 *arg0) {

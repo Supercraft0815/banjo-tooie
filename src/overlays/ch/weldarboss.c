@@ -1,8 +1,8 @@
-#include "common.h"
+#include "core2/actor_animation_entry.h"
 
 typedef struct { f32 position[3]; } WeldarVector;
 
-extern u32 D_808045F0_chweldarboss[];
+extern ActorAnimationEntry D_808045F0_chweldarboss[52];
 void func_8080030C_chweldarboss(Actor *);
 void func_80105834(Actor *);
 void func_80801944_chweldarboss(Actor *, void *);

@@ -193,9 +193,9 @@ void func_80800438_bsbabykaz(BtIntPtr arg0) {
     bs_setState(arg0, func_808001A8_bsbabykaz(arg0, sp24));
 }
 
-s32 bsbabykaz_entrypoint_2(s32 arg0) {
-    extern s32 D_80801730_bsbabykaz[];
-    return ((s32 *)&D_80801730_bsbabykaz)[arg0];
+BtFnWord bsbabykaz_entrypoint_2(s32 arg0) {
+    extern BtFnWord D_80801730_bsbabykaz[4];
+    return D_80801730_bsbabykaz[arg0];
 }
 
 void bsbabykaz_entrypoint_3(struct player_state_s *arg0) {
@@ -308,9 +308,9 @@ void func_8080077C_bsbabykaz(struct player_state_s *arg0) {
     }
 }
 
-s32 bsbabykaz_entrypoint_6(s32 arg0) {
-    extern s32 D_80801740_bsbabykaz[];
-    return ((s32 *)&D_80801740_bsbabykaz)[arg0];
+BtFnWord bsbabykaz_entrypoint_6(s32 arg0) {
+    extern BtFnWord D_80801740_bsbabykaz[4];
+    return D_80801740_bsbabykaz[arg0];
 }
 
 void func_808007EC_bsbabykaz(struct player_state_s *arg0)
@@ -385,9 +385,9 @@ void func_80800864_bsbabykaz(struct player_state_s *arg0) {
     bs_setState(arg0, next_state);
 }
 
-s32 bsbabykaz_entrypoint_7(s32 arg0) {
-    extern s32 D_80801750_bsbabykaz[];
-    return ((s32 *)&D_80801750_bsbabykaz)[arg0];
+BtFnWord bsbabykaz_entrypoint_7(s32 arg0) {
+    extern BtFnWord D_80801750_bsbabykaz[4];
+    return D_80801750_bsbabykaz[arg0];
 }
 
 void func_808009C4_bsbabykaz(BtIntPtr arg0)
@@ -507,9 +507,9 @@ void func_80800B54_bsbabykaz(struct player_state_s *arg0) {
     bs_setState(arg0, sp34);
 }
 
-s32 bsbabykaz_entrypoint_8(s32 arg0) {
-    extern s32 D_80801760_bsbabykaz[];
-    return ((s32 *)&D_80801760_bsbabykaz)[arg0];
+BtFnWord bsbabykaz_entrypoint_8(s32 arg0) {
+    extern BtFnWord D_80801760_bsbabykaz[4];
+    return D_80801760_bsbabykaz[arg0];
 }
 
 void func_80800D18_bsbabykaz(BtIntPtr arg0)
@@ -542,9 +542,9 @@ void func_80800D68_bsbabykaz(BtIntPtr arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bsbabykaz_entrypoint_9(s32 arg0) {
-    extern s32 D_80801770_bsbabykaz[];
-    return ((s32 *)&D_80801770_bsbabykaz)[arg0];
+BtFnWord bsbabykaz_entrypoint_9(s32 arg0) {
+    extern BtFnWord D_80801770_bsbabykaz[4];
+    return D_80801770_bsbabykaz[arg0];
 }
 
 /* extern */
@@ -617,9 +617,9 @@ void func_80800EC8_bsbabykaz(struct player_state_s *arg0) {
     bs_setState(arg0, sp2C);
 }
 
-s32 bsbabykaz_entrypoint_10(s32 arg0) {
-    extern s32 D_80801780_bsbabykaz[];
-    return ((s32 *)&D_80801780_bsbabykaz)[arg0];
+BtFnWord bsbabykaz_entrypoint_10(s32 arg0) {
+    extern BtFnWord D_80801780_bsbabykaz[4];
+    return D_80801780_bsbabykaz[arg0];
 }
 
 void func_80801014_bsbabykaz(BtIntPtr arg0)
@@ -666,9 +666,9 @@ void func_808010AC_bsbabykaz(BtIntPtr arg0) {
     bs_setState(arg0, func_808001A8_bsbabykaz(arg0, sp24));
 }
 
-s32 bsbabykaz_entrypoint_11(s32 arg0) {
-    extern s32 D_80801790_bsbabykaz[];
-    return ((s32 *)&D_80801790_bsbabykaz)[arg0];
+BtFnWord bsbabykaz_entrypoint_11(s32 arg0) {
+    extern BtFnWord D_80801790_bsbabykaz[4];
+    return D_80801790_bsbabykaz[arg0];
 }
 
 void func_80801134_bsbabykaz(struct player_state_s *arg0, s32 arg1) {
@@ -811,9 +811,9 @@ void func_80801384_bsbabykaz(struct player_state_s *arg0) {
     }
 }
 
-s32 bsbabykaz_entrypoint_12(s32 arg0) {
-    extern s32 D_808017A0_bsbabykaz[];
-    return ((s32 *)&D_808017A0_bsbabykaz)[arg0];
+BtFnWord bsbabykaz_entrypoint_12(s32 arg0) {
+    extern BtFnWord D_808017A0_bsbabykaz[4];
+    return D_808017A0_bsbabykaz[arg0];
 }
 
 void bsbabykaz_entrypoint_13(s32 arg0)

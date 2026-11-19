@@ -1,14 +1,14 @@
 #include "su/mole.h"
-
+#include "mole_tables.h"
 #define MOLE_DATA(arg0) ((MoleActorData*)(arg0->actorData))
 
-extern u32 D_80802510_sumole;
-extern u32 D_80802520_sumole;
-extern s32 D_80802530_sumole[];
-extern s32 D_8080254C_sumole[];
-extern s32 D_8080255C_sumole[];
-extern s32 D_8080256C_sumole[27];
-extern s32 D_808025B4_sumole[];
+extern f32 D_80802510_sumole[4];
+extern f32 D_80802520_sumole[4];
+extern MoleCameraEffects D_80802530_sumole;
+extern s32 D_8080254C_sumole[4];
+extern s32 D_8080255C_sumole[4];
+extern MoleTutorialTables D_8080256C_sumole; BT_IDO_ONLY(extern MoleTutorialEvent D_808025B4_sumole[];)
+
 
 #ifdef BT_NATIVE
     void sumole_entrypoint_21(Unk80132ED0* arg0, s32 arg1);
@@ -79,14 +79,14 @@ void func_808001E0_sumole(Actor* arg0, s32 arg1)
     switch (arg1)
     {
     case 1:
-        _gcdialogcamera_entrypoint_3(&D_80802510_sumole, arg0->scale);
+        _gcdialogcamera_entrypoint_3((u32 *)D_80802510_sumole, arg0->scale);
         break;
     case 2:
     case 3:
-        _gcdialogcamera_entrypoint_3(&D_80802520_sumole, arg0->scale);
+        _gcdialogcamera_entrypoint_3((u32 *)D_80802520_sumole, arg0->scale);
         break;
     case 0:
-        _gcdialogcamera_entrypoint_3((u32*)D_80802530_sumole, arg0->scale);
+        _gcdialogcamera_entrypoint_3((u32 *)D_80802530_sumole.camera, arg0->scale);
         break;
     }
     _capod_entrypoint_10(0U, arg0->position);
@@ -264,7 +264,7 @@ s32 sumole_entrypoint_3(Actor* arg0, s32 arg1, Arg2 arg2, MoveData* arg3)
         case 6:
             temp_v0 = func_80108528(0xB7, MOLE_DATA(arg0)->unk0, (s32)arg0->rotation[1], &arg0);
             temp_v0->unk6C_0 = arg2.i - 4;
-            func_8080037C_sumole(arg0, D_80802530_sumole[arg2.i], 0x6000, 0);
+            func_8080037C_sumole(arg0, D_80802530_sumole.effects[arg2.i - 4], 0x6000, 0);
             break;
         case 0:
         case 1:
@@ -320,9 +320,9 @@ s32 sumole_entrypoint_3(Actor* arg0, s32 arg1, Arg2 arg2, MoveData* arg3)
             break;
         case 5:
             for (i = 0; i < 27; i += 3) {
-                if (D_8080256C_sumole[i + 0] == arg3[(s32)arg0->unk54].MoveTutorialDialog)
+                if (D_8080256C_sumole.effectWords[i + 0] == arg3[(s32)arg0->unk54].MoveTutorialDialog)
                 {
-                    func_80108B04(arg0, D_8080256C_sumole[i + 1]);
+                    func_80108B04(arg0, D_8080256C_sumole.effectWords[i + 1]);
                 }
             }
             break;
@@ -816,15 +816,15 @@ void sumole_entrypoint_16(Actor* arg0, s32 arg1)
         {
             func_800C7074((s32)temp_v0[(s32)arg0->unk54].AbilityToLearn, func_800DA298(FLAG2_660_UNK));
         }
-        for (sp28 = 0; sp28 < 8; sp28++) {
-            if (D_808025B4_sumole[sp28 * 2 + 0] == (s16)temp_v0[(s32)arg0->unk54].MoveTutorialDialog)
+        for (sp28 = 0; sp28 < MOLE_LEARNED_COUNT; sp28++) {
+            if (MOLE_LEARNED_EVENTS[sp28].dialog == (s16)temp_v0[(s32)arg0->unk54].MoveTutorialDialog)
             {
-                func_80108B04(arg0, D_808025B4_sumole[sp28 * 2 + 1]);
+                func_80108B04(arg0, MOLE_LEARNED_EVENTS[sp28].event);
                 sumole_entrypoint_2(arg0, 0x16);
                 break;
             }
         }
-        if (sp28 >= 8U)
+        if (sp28 >= (u32)MOLE_LEARNED_COUNT)
         {
             sumole_entrypoint_2(arg0, 0x11);
         }
@@ -1044,7 +1044,6 @@ void sumole_entrypoint_21(Unk80132ED0* arg0, s32 arg1)
     Actor* sp20;
     Actor* temp_v0;
     if (&arg0) {}
-
     sp24 = func_80106790(arg0);
     temp_v0 = func_801084B0(0x247, &sp24);
     sp20 = temp_v0;
@@ -1056,3 +1055,4 @@ void sumole_entrypoint_21(Unk80132ED0* arg0, s32 arg1)
         func_80103140(sp20, 0x629U, sp24->unk0->unk16);
     }
 }
+#include "mole_data.inc"

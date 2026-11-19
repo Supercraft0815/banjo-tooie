@@ -517,8 +517,8 @@ void func_80800B88_chjiggygamenew(Actor *arg0) {
     };
     void func_800EE7F8(f32 *, f32 *);
     void func_808035C4_chjiggygamenew(Unk80132ED0 *, f32 *);
-    extern f32 D_80803AE0_chjiggygamenew[][3];
-    extern f32 D_80803BD0_chjiggygamenew[][3];
+    extern f32 D_80803AE0_chjiggygamenew[20][3];
+    extern f32 D_80803BD0_chjiggygamenew[20][3];
     struct Entry *data;
     s32 i;
 
@@ -577,9 +577,9 @@ void func_80800CC0_chjiggygamenew(Actor *arg0) {
     BtIntPtr func_8010262C(Unk80132ED0 *, u32);
     s32 func_8080363C_chjiggygamenew(Unk80132ED0 *);
     void func_808035C4_chjiggygamenew(Unk80132ED0 *, f32 *);
-    extern f32 D_80803AE0_chjiggygamenew[][3];
-    extern f32 D_80803BD0_chjiggygamenew[][3];
-    extern s32 D_80803CC0_chjiggygamenew[];
+    extern f32 D_80803AE0_chjiggygamenew[20][3];
+    extern f32 D_80803BD0_chjiggygamenew[20][3];
+    extern s32 D_80803CC0_chjiggygamenew[20];
     struct Entry *data;
     s32 i;
     void *model;
@@ -790,8 +790,8 @@ s32 func_808019E0_chjiggygamenew(Actor *arg0) {
     s32 _glglobalsettings_entrypoint_3();
     void func_808035FC_chjiggygamenew(Actor *, f32 *);
     int func_800E4140(f32 *arg0, f32 *arg1);
-    extern f32 D_80803AE0_chjiggygamenew[][3];
-    extern f32 D_80803BD0_chjiggygamenew[][3];
+    extern f32 D_80803AE0_chjiggygamenew[20][3];
+    extern f32 D_80803BD0_chjiggygamenew[20][3];
 
     f32 screen[2];
     f32 position[2];

@@ -2496,3 +2496,17 @@ RSP-Interpreter und der C-Mixer verglichen nach jedem Audiobefehl den
 DMEM-Inhalt sowie Adresse, Länge und Inhalt der DMA-Schreibvorgänge. Alle
 elf Testsuiten und 447.849 Retraces bestanden. Das Protokoll liegt in
 `build/acceptance/a8-2026-11-17/audio-74.log`.
+
+## 2026-11-19 — N1, zwölf weitere Datenmodule in C
+
+Die Datenliste sinkt von 17 auf fünf Module. Die zwölf neuen C-Definitionen
+decken unter anderem die Ego-Sicht, den Baggerboss, Fahrplan, Maulwurfsdialoge
+und den Kesselboss ab. Bei der Animationsfolge des Kesselbosses stammen nun
+auch die letzten zwölf gelesenen Bytes aus der zugehörigen ROM-Tabelle.
+
+Original-IDO lieferte in der kumulativen Prüfung für 3.096 Funktionen in
+110 Modulen dieselben Adressen, Größen und Instruktionen. Die entpackte ROM
+und die vollständig aufgefüllte Cartridge stimmen byteweise mit den Originalen
+überein. Alle elf Testsuiten und die 74 Replays mit 447.849 Retraces bestanden.
+Die Belege liegen in `build/acceptance/n1-2026-11-18/current-five-ido/result.json`,
+`current-five-74.log` und den acht Einzelprüfungen unter `proof/`.

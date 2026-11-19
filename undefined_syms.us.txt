@@ -170,12 +170,28 @@ SECTIONS
         D_80802126_gcnewpause = D_80802124_gcnewpause + 0x2;
         D_8080212E_gcnewpause = D_80802124_gcnewpause + 0xA;
     }
+    .chdiggerboss :
+    {
+        D_80809EE0_chdiggerboss = D_80809ED4_chdiggerboss + 0xC;
+        D_80809EE2_chdiggerboss = D_80809ED4_chdiggerboss + 0xE;
+    }
+    .chtimetable :
+    {
+        D_80800744_chtimetable = D_80800730_chtimetable + 0x14;
+        D_80800758_chtimetable = D_80800730_chtimetable + 0x28;
+        D_8080076C_chtimetable = D_80800730_chtimetable + 0x3C;
+        D_8080080C_chtimetable = D_80800730_chtimetable + 0xDC;
+    }
     .chintrochar :
     {
         func_80804158_chintrochar = func_80804054_chintrochar + 0x104;
         func_80804160_chintrochar = func_80804054_chintrochar + 0x10C;
         func_80804168_chintrochar = func_80804054_chintrochar + 0x114;
         func_8080416C_chintrochar = func_80804054_chintrochar + 0x118;
+    }
+    .sumole :
+    {
+        D_808025B4_sumole = D_8080256C_sumole + 0x48;
     }
 }
 

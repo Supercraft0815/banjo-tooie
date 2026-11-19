@@ -1,6 +1,6 @@
-#include "common.h"
-
-extern u8 D_808025F4_chaliendad[];
+#include "core2/actor_animation_entry.h"
+#include "su/baddiedialog_descriptor.h"
+extern ActorAnimationEntry D_808025F4_chaliendad[15];
 void func_80105834(Actor *);
 void *func_80107C2C(s32 *, s32, void *, s32, void *);
 void func_80800024_chaliendad(Actor *arg0);
@@ -345,9 +345,9 @@ void func_80800918_chaliendad(Actor *arg0, void *arg1) {
 }
 
 s32 func_80800A54_chaliendad(Actor *arg0, s32 arg1, s32 arg2) {
-    extern u32 D_808025E4_chaliendad;
+    extern f32 D_808025E4_chaliendad[4];
     Unk80132ED0 *_chlifeforcespell_entrypoint_1(Actor **arg0, f32 arg1[3], s32 arg2, f32 arg3, s32 arg4);
-    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    void _gcdialogcamera_entrypoint_3(f32 *, f32);
     void _glcutDll_entrypoint_17(void);
     s32 _glcutDll_entrypoint_19(s32);
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
@@ -456,7 +456,7 @@ s32 func_80800A54_chaliendad(Actor *arg0, s32 arg1, s32 arg2) {
         }
         return 3;
     case 0x52:
-        _gcdialogcamera_entrypoint_3(&D_808025E4_chaliendad, arg0->scale);
+        _gcdialogcamera_entrypoint_3(D_808025E4_chaliendad, arg0->scale);
         break;
     case 0x57:
         return func_80801254_chaliendad(arg0, arg2 & 0xFFFF, (arg2 & 0xFFFF0000) >> 16);
@@ -569,9 +569,9 @@ void func_80801110_chaliendad(Actor *arg0, s32 arg1, s32 arg2) {
     u8 _subaddiedialog_entrypoint_9(void *arg0, s32 arg1, void *arg2, s32 arg3);
     void func_80102424(Actor *, s32);
     void func_80801D40_chaliendad(Actor *, s32, s32, Unk80132ED0 *);
-    extern s32 D_808025C0_chaliendad;
+    extern subaddiedialog_UnkStruct1 D_808025C0_chaliendad[3];
     extern f32 D_808025D8_chaliendad[3];
-    extern u32 D_808025E4_chaliendad;
+    extern f32 D_808025E4_chaliendad[4];
     f32 *sp2C;
     s32 i;
 
@@ -591,7 +591,7 @@ void func_80801110_chaliendad(Actor *arg0, s32 arg1, s32 arg2) {
         }
         break;
     default:
-        if (_subaddiedialog_entrypoint_9(arg0, arg1, &D_808025C0_chaliendad, 3) != 0) {
+        if (_subaddiedialog_entrypoint_9(arg0, arg1, D_808025C0_chaliendad, 3) != 0) {
             func_80102424(arg0, 9);
         }
         break;
@@ -879,10 +879,10 @@ void func_80801868_chaliendad(Actor *arg0) {
 }
 
 void func_80801B9C_chaliendad(BtIntPtr arg0) {
-    s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, s32 *, s32 *, s32);
-    extern s32 D_808025C0_chaliendad;
+    s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, s32 *, subaddiedialog_UnkStruct1 *, s32);
+    extern subaddiedialog_UnkStruct1 D_808025C0_chaliendad[3];
     extern s32 D_80802824_chaliendad;
-    _subaddiedialog_entrypoint_8(arg0, (s8 *)arg0 + 4, &D_80802824_chaliendad, &D_808025C0_chaliendad, 3);
+    _subaddiedialog_entrypoint_8(arg0, (s8 *)arg0 + 4, &D_80802824_chaliendad, D_808025C0_chaliendad, 3);
 }
 
 /* extern */
@@ -918,11 +918,11 @@ void func_80801C9C_chaliendad(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _capod_entrypoint_2(BtIntPtr arg0, s32 arg1, s32 arg2);
     void _capod_entrypoint_7(s32, s32);
     void _capod_entrypoint_8(s32 arg0);
-    void _gcdialogcamera_entrypoint_3(u32 *, f32);
+    void _gcdialogcamera_entrypoint_3(f32 *, f32);
     void _gcdialogcamera_entrypoint_4(BtIntPtr arg0);
     void _gcdialogcamera_entrypoint_5(BtIntPtr arg0);
     void _gcdialogcamera_entrypoint_8(void);
-    extern u32 D_808025E4_chaliendad;
+    extern f32 D_808025E4_chaliendad[4];
 
     switch (arg0->actorData[1]) {
         case 0:
@@ -930,7 +930,7 @@ void func_80801C9C_chaliendad(Actor *arg0, s32 arg1, s32 arg2) {
         case 1:
             _capod_entrypoint_8(1);
             arg0->actorData[1] = 2;
-            _gcdialogcamera_entrypoint_3(&D_808025E4_chaliendad, arg0->scale);
+            _gcdialogcamera_entrypoint_3(D_808025E4_chaliendad, arg0->scale);
             _gcdialogcamera_entrypoint_4(arg0->position);
             _gcdialogcamera_entrypoint_5(arg0->rotation);
             _gcdialogcamera_entrypoint_8();

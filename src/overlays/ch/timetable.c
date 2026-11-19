@@ -1,9 +1,9 @@
 #include "common.h"
-
+#include "timetable_tables.h"
 void func_80800000_chtimetable(BtIntPtr arg0, s32 arg1, f32 *arg2) {
     Prop* _gccubesearch_entrypoint_1(u32, f32[3]);
     void _gspropctrl_entrypoint_11(Prop*, f32[3]);
-    _gspropctrl_entrypoint_11(_gccubesearch_entrypoint_1(arg1 + 0x51F, arg0 + 4), arg2);
+    _gspropctrl_entrypoint_11(_gccubesearch_entrypoint_1(arg1 + 0x51F, (f32 *)(arg0 + 4)), arg2);
     arg2[2] = -1100.0f;
     arg2[1] = -50.0f;
 }
@@ -15,42 +15,42 @@ void func_80800058_chtimetable(Actor *arg0) {
     func_80102FDC(arg0, arg0->scale * 0.75f);
     func_80800000_chtimetable((BtIntPtr) arg0, 0, (f32 *)((s8 *)arg0 + 0x28));
     func_80800000_chtimetable((BtIntPtr) arg0, 1, (f32 *)((s8 *)arg0 + 0x18));
-}    typedef struct { s32 unk0; u8 pad4[0x10]; s32 unk14; u8 pad18[0x10]; s32 unk28; u8 pad2C[0x10]; s32 unk3C; } Objtimetable_func_808000B0_chtimetable_var_v0; /* offsets.py genstruct: fields from raw offsets on var_v0; rename once understood */
+}
 
 s32 func_808000B0_chtimetable(s32 arg0) {
-    extern s32 D_80800730_chtimetable;
-    extern s32 D_80800744_chtimetable;
-    extern s32 D_80800758_chtimetable;
-    extern s32 D_8080076C_chtimetable;
-    s32 *var_v0;
+    extern TimetableData D_80800730_chtimetable;
+
+
+
+    TimetableEntry *var_v0;
     s32 var_v1;
 
-    if (arg0 == D_80800730_chtimetable) {
+    if (arg0 == D_80800730_chtimetable.scan[0].map) {
         return 0;
     }
-    if (arg0 == D_80800744_chtimetable) {
+    if (arg0 == BT_DATA_FIELD(D_80800730_chtimetable.scan[1].map, D_80800744_chtimetable)) {
         return 1;
     }
-    var_v0 = &D_8080076C_chtimetable;
+    var_v0 = BT_DATA_FIELD(D_80800730_chtimetable.scan + 3, &D_8080076C_chtimetable);
     var_v1 = 3;
-    if (arg0 == D_80800758_chtimetable) {
+    if (arg0 == BT_DATA_FIELD(D_80800730_chtimetable.scan[2].map, D_80800758_chtimetable)) {
         return 2;
     }
 loop_7:
-    if (arg0 == (((Objtimetable_func_808000B0_chtimetable_var_v0 *)var_v0)->unk0)) {
+    if (arg0 == timetable_map_word(var_v0 + 0)) {
         return var_v1;
     }
-    if (arg0 == (((Objtimetable_func_808000B0_chtimetable_var_v0 *)var_v0)->unk14)) {
+    if (arg0 == timetable_map_word(var_v0 + 1)) {
         return var_v1 + 1;
     }
-    if (arg0 == (((Objtimetable_func_808000B0_chtimetable_var_v0 *)var_v0)->unk28)) {
+    if (arg0 == timetable_map_word(var_v0 + 2)) {
         return var_v1 + 2;
     }
-    if (arg0 == (((Objtimetable_func_808000B0_chtimetable_var_v0 *)var_v0)->unk3C)) {
+    if (arg0 == timetable_map_word(var_v0 + 3)) {
         return var_v1 + 3;
     }
     var_v1 += 4;
-    var_v0 += 0x14;
+    var_v0 += 4;
     if (var_v1 == 0xB) {
         return -1;
     }
@@ -59,14 +59,14 @@ loop_7:
 
 s32 func_8080016C_chtimetable(BtIntPtr arg0, s32 arg1, s32 arg2) {
     s32 func_800DA298(s32);
-    extern s32 D_80800730_chtimetable;
-    struct TimetableEntry {
-        s32 unk0;
-        s32 flag;
-        s32 unk8;
-        s32 unkC;
-        s32 prerequisite;
-    };
+    extern TimetableData D_80800730_chtimetable;
+
+
+
+
+
+
+
     s32 index;
 
     if (func_800DA298(0x86) == 0) {
@@ -76,12 +76,12 @@ s32 func_8080016C_chtimetable(BtIntPtr arg0, s32 arg1, s32 arg2) {
         return 0;
     }
     index = func_808000B0_chtimetable(arg2);
-    if (((struct TimetableEntry *)&D_80800730_chtimetable)[index].prerequisite != -1) {
-        if (func_800DA298(((struct TimetableEntry *)&D_80800730_chtimetable)[index].prerequisite) == 0) {
+    if (D_80800730_chtimetable.objects.stations[index].prerequisite != -1) {
+        if (func_800DA298(D_80800730_chtimetable.objects.stations[index].prerequisite) == 0) {
             return 0;
         }
     }
-    if (func_800DA298(((struct TimetableEntry *)&D_80800730_chtimetable)[index].flag) != 0) {
+    if (func_800DA298(D_80800730_chtimetable.objects.stations[index].parkedFlag) != 0) {
         return 0;
     }
     return 1;
@@ -95,8 +95,8 @@ void func_8080025C_chtimetable(BtIntPtr arg0, s32 arg1, s32 arg2) {
     void _glcutDll_entrypoint_7(u32);
     void func_800DA544(GameFlag);
     s32 func_808000B0_chtimetable(s32);
-    extern s32 D_8080073C_chtimetable;
-    func_800DA544(*(s32 *)((s8 *)&D_8080073C_chtimetable + func_808000B0_chtimetable(arg2) * 0x14));
+
+    func_800DA544(D_80800730_chtimetable.objects.stations[func_808000B0_chtimetable(arg2)].travelFlag);
     func_800DA544(0x6B7);
     _glcutDll_entrypoint_0();
     _glcutDll_entrypoint_7(arg1);
@@ -111,24 +111,24 @@ s32 func_808002D4_chtimetable(s32 bt_a0) {
 s32 func_808002D4_chtimetable() {
 #endif
     s32 func_808000B0_chtimetable();
-    extern s32 D_80800738_chtimetable;
+
 #ifdef BT_NATIVE
-    return *((s32 *)((s8 *)&D_80800738_chtimetable + (((s32 (*)())func_808000B0_chtimetable)() * 20)));
+    return timetable_dialog_word(((s32 (*)())func_808000B0_chtimetable)(BT_LP64_ONLY(bt_a0)));
 #else
-    return *((s32 *)((s8 *)&D_80800738_chtimetable + (func_808000B0_chtimetable() * 20)));
+    return D_80800730_chtimetable.scan[func_808000B0_chtimetable()].dialog;
 #endif
-}    typedef struct { s32 unk0; } Objtimetable_func_80800308_chtimetable_var_s0; /* offsets.py genstruct: fields from raw offsets on var_s0; rename once understood */
+}
 
 s32 func_80800308_chtimetable(void)
 {
   s32 func_800DA298(s32);
-  extern s32 D_80800730_chtimetable;
-  s8 *new_var;
-  extern s32 D_8080080C_chtimetable;
-  s8 *var_s0;
-  new_var = (s8 *) (&D_80800730_chtimetable);
- do { var_s0 = new_var; loop_1: if (func_800DA298(*((s32 *) (var_s0 + 4))) != 0) { return *&((Objtimetable_func_80800308_chtimetable_var_s0 *)var_s0)->unk0; } } while (0); var_s0 += 0x14;
-  if (var_s0 == ((s8 *) (&D_8080080C_chtimetable)))
+  extern TimetableData D_80800730_chtimetable;
+  TimetableEntry *new_var;
+
+  TimetableEntry *var_s0;
+  new_var = D_80800730_chtimetable.scan;
+ do { var_s0 = new_var; loop_1: if (func_800DA298(timetable_flag_word(var_s0)) != 0) { return timetable_map_word(var_s0); } } while (0); var_s0++;
+  if (var_s0 == (BT_DATA_FIELD(D_80800730_chtimetable.scan + 11, &D_8080080C_chtimetable)))
   {
     return -1;
   }
@@ -211,7 +211,7 @@ s32 func_808005B8_chtimetable(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
     void func_800C0850(void);
     s32 func_800EA05C();
-    extern s32 D_808007BC_chtimetable;
+
     s32 pad;
     s32 sp18;
 
@@ -243,7 +243,7 @@ s32 func_808005B8_chtimetable(Actor *arg0, s32 arg1, s32 arg2) {
         }
         break;
     case 0x52:                                      /* switch 1 */
-        _gcdialogcamera_entrypoint_3(&D_808007BC_chtimetable, arg0->scale);
+        _gcdialogcamera_entrypoint_3(D_80800730_chtimetable.objects.camera, arg0->scale);
         return 1;
     default:                                        /* switch 1 */
         return 0;
@@ -253,7 +253,7 @@ s32 func_808005B8_chtimetable(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chtimetable_entrypoint_0(void)
 {
-    extern u8 D_808007CC_chtimetable[];
 
-    return (OSThread *) D_808007CC_chtimetable;
+    return (OSThread *)&D_80800730_chtimetable.objects.actor;
 }
+#include "timetable_data.inc"
