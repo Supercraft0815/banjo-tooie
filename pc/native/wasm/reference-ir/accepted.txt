@@ -414,3 +414,10 @@ its actual void return type. The comparison lists 73 functions. All 9,703
 fixups retain their original address. All 74 replays and both original ROM
 images match. See n1-2026-11-18/current-map-sprites-ir.log and
 current-map-sprites-full.log.
+
+2026-11-19  Player registry, component slots and velocity reads
+Fourteen guest functions change, including registry address expressions and
+the velocity output call. All 9,703 runtime fixups retain their original
+address. Original IDO matches every function and both full ROM images.
+All 74 reference traces (447,849 retraces) match. Evidence in
+n1-2026-11-18/current-player-components-ir.log and current-player-components-full.log.

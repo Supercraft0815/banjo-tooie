@@ -1,13 +1,13 @@
 #include "core2/1ECE0B0.h"
 BT_NATIVE_ONLY(u8 func_800F8B88(void);)
-extern PlayerState* D_80135490[];
+BT_IDO_ONLY(extern PlayerState* D_80135490[];)
 extern s32 func_800966BC(void *);
 extern f32 func_800964DC(PlayerState *);
 extern f32 func_8009C150(PlayerState *);
 extern s32 func_8009E674(PlayerState *, s32);
-extern u8 D_801354DA;
+BT_IDO_ONLY(extern u8 D_801354DA;)
 
-extern u32 D_801354DC;
+BT_IDO_ONLY(extern u32 D_801354DC;)
 extern u8 D_801354F8;
 extern u8 D_801354F9;
 extern u8 D_801354FC;
@@ -400,7 +400,6 @@ void func_800F9C6C(void) {
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
-PlayerState * D_80135490 [ 2 ] BT_DATA(4, bss_core2bss2_2, 0x25F0);
 u8 D_80135520 BT_DATA(4, bss_core2bss2_2, 0x2680);
 u8 D_80135521 BT_DATA(4, bss_core2bss2_2, 0x2681);
 u8 D_80135522 BT_DATA(4, bss_core2bss2_2, 0x2682);

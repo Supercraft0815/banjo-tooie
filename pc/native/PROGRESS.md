@@ -3259,3 +3259,34 @@ Retraces stimmen überein. Elf Gastsuiten und 64 Sanitizertests bestehen.
 Original-IDO bestätigt 16.401 Funktionen und beide vollständigen ROMs. Alle
 9.703 Fixups behalten ihre Originaladresse. Belege unter
 `build/acceptance/n1-2026-11-18/current-map-sprites*`.
+
+### 2026-11-19 – Fremdzugriffe nach dem Kartenpaket (N1)
+
+Der instrumentierte Gast aus `fdb9fb996` hat alle 74 Fälle durchlaufen. Von
+6.383 überwachten Zugriffsstellen überschreiten 435 die Grenze ihres
+Datensymbols. Sie liegen in 127 Funktionen und 43 Labelgruppen. Der vorherige
+vollständige Messlauf hatte 1.336 solcher Stellen in 301 Funktionen und
+64 Gruppen. Einzelbelege stehen unter
+`build/acceptance/n1-2026-11-18/current-map-sprites-source/build/ilp32-xsym/`.
+
+### 2026-11-19 – Spielerblock, Registrierung und Lebenszyklus (N3)
+
+Der LP64-Spielerblock hält alle 86 Komponenten über ausgerichtete Zeiger.
+Der Allokator prüft die aufsummierten Größen vor dem Heapaufruf. Ein
+Sanitizertest verwendet die echten Größenfunktionen aus 79 Quelldateien
+und prüft auch negative und übergroße Rückgaben. Acht Spieler lassen sich
+mit Zeigern oberhalb von 4 GiB registrieren. Die getrennte Zeichenliste
+enthält die sieben sichtbaren Spieler in Distanzreihenfolge. Beim Zurücksetzen
+erreichen Spielerindex 7 und der ursprüngliche Controllerzeiger die
+richtigen Empfänger. Die 15 Physikflags werden gelöscht, das folgende Byte
+bleibt erhalten. Diese Probe nutzt die echte Rücksetzroutine, die Freigabe
+des Controllers und 43 Testaufrufe für abhängige Spielsysteme.
+
+Alle 74 Replays (447.849 Retraces), elf Gastsuiten und 65 Sanitizertests
+bestehen. Original-IDO bestätigt 16.401 Funktionen und zwei bytegleiche
+ROMs. Alle 9.703 Laufzeit-Fixups behalten ihre Originaladresse.
+Der LP64-Scan findet 671 Warnstellen in 228 Dateien, alle übersetzen.
+Mit der Typzuordnung des Vergleichslaufs ergeben sich weiterhin 204
+verschiebbare Offsets in 36 Dateien. Eine reine Neuinferenz aus direkten
+Aufrufern liefert 212 in 41 Dateien. Beide Arbeitslisten liegen unter
+`build/acceptance/n1-2026-11-18/current-player-components*`.

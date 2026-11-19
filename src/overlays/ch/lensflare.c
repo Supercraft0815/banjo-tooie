@@ -70,7 +70,7 @@ found:
     ((LensFlareActorData *)arg0->actorData)->intensity = 1.01f;
 }    typedef struct { u8 pad0[0x24]; s32 unk24; u8 pad28[0xC]; f32 unk34; u8 pad38[0x18]; u8 unk50; } Objlensflare_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
-void func_808000FC_chlensflare(void *arg0, s32 arg1) {
+void func_808000FC_chlensflare(void *arg0, BtIntPtr arg1) {
     typedef struct {
         u8 pad[0x64];
         BT_BITFIELD_ORDER(u32 unused : 11, u32 rest : 20);

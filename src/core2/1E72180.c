@@ -98,6 +98,12 @@ void func_80098B4C(void *arg0, s32 arg1) {
     (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xBC)))) + (0x19))) = (s8) (arg1 == 0);
 }
 
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#define PLAYER_LIFECYCLE_FIELD(host, retail) (host)
+#else
+#define PLAYER_LIFECYCLE_FIELD(host, retail) (retail)
+#endif
+
 /* extern */
 
 void func_80098B5C(void *arg0, BtIntPtr arg1, BtIntPtr arg2) {
@@ -108,7 +114,11 @@ void func_80098B5C(void *arg0, BtIntPtr arg1, BtIntPtr arg2) {
 
 s32 func_80098BA0() 
 {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    return sizeof(PlayerLifecycle);
+#else
     return 0xC;
+#endif
 }
 
 /* extern */
@@ -181,7 +191,7 @@ void func_80098C48(void *arg0) {
     void func_80098408(u8 *arg0);
     void func_80098538(u8 *arg0);
     void func_8009AC6C(u8 *arg0);
-    s32 func_8009AD90();
+    BT_IDO_ONLY(s32 func_8009AD90();) BT_NATIVE_ONLY(void func_8009AD90(u8 *);)
     void func_8009B4FC(void *arg0);
     void func_8009BD50(void *arg0);
     void func_8009BF04(void *arg0);
@@ -201,12 +211,20 @@ void func_80098C48(void *arg0) {
     void func_800A2D94(void *arg0);
     void func_800A3820(void *arg0);
     void func_800A4168(u8 *arg0);
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    ((PlayerState *)arg0)->lifecycle->active = 1;
+#else
     (*(s8 *)((s8 *)((((Obj1E72180_arg0 *)arg0)->unkB8_s32p)) + (8))) = 1;
-    func_8009AD90();
+#endif
+    func_8009AD90(BT_NATIVE_ONLY((u8 *)arg0));
     _badronemem_entrypoint_3(arg0);
     _bastatemem_entrypoint_3(arg0);
     func_800A3820(arg0);
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    ((PlayerState *)arg0)->lifecycle->callback = NULL;
+#else
     *(((Obj1E72180_arg0 *)arg0)->unkB8_s32p) = 0;
+#endif
     bakey_init(arg0);
     func_8009FE78(arg0);
     func_8009C038(arg0);
@@ -332,7 +350,7 @@ void func_80098E64(void *self) {
 
     if (func_800A3274(self) == 0xE && baflag_isTrue(self, 0x40)) {
         func_800A3410(self, 0xD);
-        func_800F8EBC(((Obj1E72180_func_80098E64_self *)self)->unk184);
+        func_800F8EBC(PLAYER_LIFECYCLE_FIELD(((PlayerState *)self)->unk184, ((Obj1E72180_func_80098E64_self *)self)->unk184));
     }
     state = func_8009CBDC((BtIntPtr)self, bs_getCurrentState(self));
     if (func_8008DAA8(self)) {
@@ -413,13 +431,26 @@ void func_80098E64(void *self) {
     _bainvisible_entrypoint_4(self);
     func_8009AD88(self);
     func_800A4160(self);
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    ((PlayerState *)self)->lifecycle->active = 0;
+#else
     (((Obj1E72180_func_80098E64_self *)self)->unkB8)[8] = 0;
+#endif
 }
 
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+void func_8009919C(void *arg0, BtIntPtr arg1, s32 arg2) {
+    PlayerLifecycle *state = ((PlayerState *)arg0)->lifecycle;
+    state->callback = (void (*)(s32))arg1;
+    state->argument = arg2;
+}
+#else
 void func_8009919C(void *arg0, BtIntPtr arg1, s32 arg2) {
     (*(s32 *)((s8 *)((((Obj1E72180_arg0 *)arg0)->unkB8)) + (0))) = arg1;
     (*(s32 *)((s8 *)((((Obj1E72180_arg0 *)arg0)->unkB8)) + (4))) = arg2;
-}    typedef struct { void (*unk0)(s32); s32 unk4; } Obj1E72180_func_800991B0_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
+}
+#endif
+    typedef struct { void (*unk0)(s32); s32 unk4; } Obj1E72180_func_800991B0_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_800991B0(void *arg0)
 {
@@ -596,12 +627,16 @@ void func_800991B0(void *arg0)
       func_800A18E8(arg0);
     }
     func_80091F30(arg0);
-    temp_v0 = ((Obj1E72180_arg0 *)arg0)->unkB8;
+    temp_v0 = PLAYER_LIFECYCLE_FIELD(((PlayerState *)arg0)->lifecycle, ((Obj1E72180_arg0 *)arg0)->unkB8);
     temp_v1 = ((Obj1E72180_func_800991B0_temp_v0 *)temp_v0)->unk0;
     if (temp_v1 != NULL)
     {
       temp_v1(((Obj1E72180_func_800991B0_temp_v0 *)temp_v0)->unk4);
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+      ((PlayerState *)arg0)->lifecycle->callback = NULL;
+#else
       *((void (**)(s32)) (((s8 *) (((Obj1E72180_arg0 *)arg0)->unkB8)) + 0)) = NULL;
+#endif
     }
     func_800989E4(arg0);
   }
@@ -616,7 +651,7 @@ void func_80099544(void *arg0) {
     void func_80096728(void *arg0);
     void func_800A266C(u8 *arg0);
     void func_800A300C(void *arg0);
-    if ((*(u8 *)((s8 *)((((Obj1E72180_arg0 *)arg0)->unkB8)) + (8))) != 0) {
+    if (PLAYER_LIFECYCLE_FIELD(((PlayerState *)arg0)->lifecycle->active, (*(u8 *)((s8 *)((((Obj1E72180_arg0 *)arg0)->unkB8)) + (8)))) != 0) {
         baanim_defrag();
         func_800934C4(arg0);
         func_80096728(arg0);

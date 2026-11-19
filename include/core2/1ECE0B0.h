@@ -13,6 +13,25 @@
 #include "ba/hold.h"
 
 #include <ultra64.h>
+typedef struct {
+    PlayerState *players[8];
+    u8 active[8];
+    PlayerState *draw_order[8];
+    u8 draw_count, updating, resetting, padding;
+    u32 current_player;
+    s16 previous_player, previous_mode;
+    u8 reserved[12];
+} PlayerRegistry;
+
+#ifdef BT_NATIVE
+extern PlayerRegistry D_80135490;
+#ifdef BT_ILP32
+_Static_assert(sizeof(PlayerRegistry) == 0x60 &&
+               __builtin_offsetof(PlayerRegistry, draw_order) == 0x28 &&
+               __builtin_offsetof(PlayerRegistry, current_player) == 0x4C, "player registry layout");
+#endif
+#endif
+
 void func_800F497C(BtIntPtr);
 #ifdef BT_NATIVE
 void func_800F49D4(BtIntPtr, BaDroneCallback, uintptr_t);

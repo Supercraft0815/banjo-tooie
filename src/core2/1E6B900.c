@@ -39,13 +39,22 @@ void func_80092018(u8 *arg0) {
     mlMtxGet(temp_s0 + 0xCC);
 }
 
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800920C8(void *arg0) {
-    BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80093504();
+    void func_80093504(void *, f32 *, f32 *);
+    u8 *model = ((PlayerState *)arg0)->model;
+    func_80093504(arg0, (f32 *)(model + 0x64), (f32 *)(model + 0x50));
+}
+#else
+void func_800920C8(void *arg0) {
+    BT_IDO_ONLY(void func_80093504();) BT_NATIVE_ONLY(void func_80093504(void *, f32 *, f32 *);)
     u8 *temp_v0;
 
     temp_v0 = ((Obj1E6B900_arg0 *)arg0)->unk50_u8p;
     func_80093504(arg0, temp_v0 + 0x64, temp_v0 + 0x50);
 }
+
+#endif
 
 void func_800920F0(PlayerState *arg0) {
     f32 yaw_get(PlayerState *);
@@ -902,13 +911,22 @@ void func_800934C4(void *arg0) {
 /* extern */
 
 #ifdef BT_NATIVE
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80093504(void *arg0, s32 bt_a1, s32 bt_a2) {
+void func_80093504(void *player, f32 *dst, f32 *src) {
+    void func_800F23D0(void *, f32 *, f32 *);
+#if defined(BT_ILP32)
+    u8 *model = *(u8 **)((u8 *)player + 0x50);
+#else
+    u8 *model = ((PlayerState *)player)->model;
+#endif
+    func_800F23D0(model + 0xcc, dst, src);
+}
 #else
 void func_80093504(void *arg0) {
-#endif
     s32 func_800F23D0(s32);
     BT_NATIVE_ONLY(return) func_800F23D0((*(s32 *)((s8 *)(arg0) + (0x50))) + 0xCC);
-}    typedef struct { u8 pad0[0xA1]; u8 unkA1; u8 padA2[0x3]; u8 unkA5; } Obj1E6B900_func_80093528_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
+}
+#endif
+    typedef struct { u8 pad0[0xA1]; u8 unkA1; u8 padA2[0x3]; u8 unkA5; } Obj1E6B900_func_80093528_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 /* extern */
 

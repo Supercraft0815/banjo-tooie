@@ -15,7 +15,7 @@ static void memory_error(const char *message) {
 
 // Like heap_alloc_sided (func_8001BD30): at least 1 byte, rounded up to 16. Game code writes a few
 // bytes past some tables (subaddierouteDll route slots); on the N64 that lands in this padding.
-static size_t n64_size(s32 size) { return ((size_t)(size > 0 ? size : 1) + 15) & ~(size_t)15; }
+static size_t n64_size(BtIntPtr size) { return ((size_t)(size > 0 ? size : 1) + 15) & ~(size_t)15; }
 
 void *heap_alloc(s32 size) {
     void *result;

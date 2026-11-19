@@ -1,13 +1,26 @@
 #include "core2/1ECD170.h"
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#include "overlays/ba/playerstate.h"
+#endif
 #ifdef BT_NATIVE
 #include "core2/1E75920.h"
 #endif
 #include "player_component_sizes.inc"
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+void func_800F3880(PlayerState *player) {
+    void func_80098E64(void *);
+    void heap_free(void *);
+    func_80098E64(player);
+    heap_free(player);
+}
+#else
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F3880(s32 arg0)
 {
     func_80098E64();
     heap_free(arg0); BT_NATIVE_ONLY(return 0;)
 }
+#endif
+
 struct player_state_s;
 int func_800F38A8(struct player_state_s *arg0, s32 arg1) {
     s32 func_800F3ED0(void *);
@@ -410,6 +423,35 @@ s32 func_800F4354(s32 arg0) {
 
 /* extern */
 
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+u8 *func_800F43A8(s32 index) {
+    void func_800F44DC(void *, s32);
+    void func_80098C48(void *);
+    s32 func_800F4354(s32);
+    void *heap_alloc(s32);
+    const size_t header_size = (sizeof(PlayerState) + 16 + 7) & ~(size_t)7;
+    size_t lengths[86], total = header_size;
+    for (s32 i = 0; i < 86; i++) {
+        s32 size = func_800F4354(i);
+        if (size < 0) return NULL;
+        lengths[i] = ((size_t)size + 7) & ~(size_t)7;
+        if (lengths[i] > 0x7fffffffU - total) return NULL;
+        total += lengths[i];
+    }
+    PlayerState *player = heap_alloc((s32)total);
+    if (!player) return NULL;
+    bzero(player, (s32)total);
+    u8 *cursor = (u8 *)player + header_size;
+    for (s32 i = 0; i < 86; i++) {
+        player->component_slots[i] = cursor;
+        cursor += lengths[i];
+    }
+    player->unk184 = index;
+    func_80098C48(player);
+    func_800F44DC(player, 1);
+    return (u8 *)player;
+}
+#else
 u8 *func_800F43A8(s32 arg0) {
     void func_800F44DC(void *, s32);
     void func_80098C48(void *arg0);
@@ -452,8 +494,18 @@ u8 *func_800F43A8(s32 arg0) {
     return var_s2;
 }
 
+#endif
+
 /* extern */
 
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+void func_800F44DC(void *arg0, s32 arg1) {
+    s16 *func_800A4C88(void *);
+    void func_8010F9C0(BtIntPtr, s32);
+    ((PlayerState *)arg0)->unk17C = arg1;
+    func_8010F9C0((BtIntPtr)func_800A4C88(arg0), arg1 ? 2 : 1);
+}
+#else
 void func_800F44DC(void *arg0, s32 arg1) {
     s32 func_800A4C88();
     void func_8010F9C0(BtIntPtr, s32);
@@ -469,6 +521,8 @@ void func_800F44DC(void *arg0, s32 arg1) {
     }
     func_8010F9C0(temp_a0, var_a1);
 }
+
+#endif
 
 void func_800F4524(s32 *arg0, s32 arg1) {
     arg0[96] = arg1;

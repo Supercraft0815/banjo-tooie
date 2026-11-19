@@ -12,6 +12,11 @@ s32 func_8009AD78(void *arg0, s32 arg1) {
 void func_8009AD88(BtIntPtr arg0) 
 {
 }
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+void func_8009AD90(u8 *arg0) {
+    bzero(((PlayerState *)arg0)->physics_flags, 15);
+}
+#else
 void func_8009AD90(u8 *arg0) {
     s32 var_v0;
     var_v0 = 3;
@@ -26,6 +31,8 @@ void func_8009AD90(u8 *arg0) {
         var_v0 += 4;
     } while (var_v0 != 0xF);
 }
+
+#endif
 
 void func_8009ADF0(void *arg0, s32 arg1, s32 arg2) {
     (*(u8 **)((u8 *)arg0 + 0xC4))[arg1] = arg2;
@@ -521,7 +528,15 @@ f32 func_8009BB18(void *arg0) {
 }
 
 /* Single line: IDO schedules this prologue by source line. */
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+void func_8009BB24(PlayerState *arg0, f32 arg1[3]) {
+    void func_800EE7F8(f32 *, f32 *);
+    func_800EE7F8(arg1, (f32 *)((u8 *)arg0->physics + 0x10));
+}
+#else
 void func_8009BB24(PlayerState *arg0, f32 arg1[3]) { void func_800EE7F8(); func_800EE7F8(arg1, arg0->unkC8 + 0x10); }
+
+#endif
 
 f32 baphysics_get_vertical_velocity(PlayerState *arg0) {
     return (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xC8)))) + (0x14)));

@@ -440,6 +440,14 @@ foreach(registry_test IN ITEMS particle_registry transition_registry timer_queue
     add_test(NAME native_${registry_test} COMMAND bt_native_${registry_test}_test)
 endforeach()
 
+if(CMAKE_C_COMPILER_ID MATCHES "Clang" AND CMAKE_SIZEOF_VOID_P EQUAL 8)
+    add_test(NAME native_player_component_slots COMMAND "${Python3_EXECUTABLE}"
+        "${CMAKE_CURRENT_SOURCE_DIR}/tests/player_slots_n3.py"
+        --cc "${CMAKE_C_COMPILER}" --aliases "${BT_OVERLAY_ALIASES}"
+        $<$<BOOL:${BT_NATIVE_SANITIZERS}>:--sanitize>
+        COMMAND_EXPAND_LISTS)
+endif()
+
 add_executable(bt_native_save_slots_test tests/save_slots.c "${BT_ROOT}/src/overlays/gl/savegame.c")
 target_link_libraries(bt_native_save_slots_test PRIVATE bt_native_core)
 add_test(NAME native_save_slots COMMAND bt_native_save_slots_test)

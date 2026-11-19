@@ -23,6 +23,9 @@ typedef struct ba_unknown_2C_s {
 
 typedef struct { u8 mode, index, flags, cycle; } PlayerEggSelection;
 
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#include "playerstate_lp64.h"
+#else
 typedef struct player_state_s {
     /* 0x00 */ struct ba_alarm_s *alarm;
     /* 0x04 */ struct ba_anim_s *anim;
@@ -97,6 +100,7 @@ typedef struct player_state_s {
         struct bs_kazfly_s *kazfly;
     };
 } PlayerState;
+#endif
 #ifndef BT_NATIVE
 typedef char bt_assert_player_state[(sizeof(PlayerState) == 0x18C) ? 1 : -1];
 #endif

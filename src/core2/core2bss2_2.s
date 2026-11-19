@@ -32,25 +32,7 @@ dlabel D_80135483
     /* 80135483 */ .space 0x0D
 
 dlabel D_80135490
-    /* 80135490 */ .space 0x08
-
-dlabel D_80135498
-    /* 80135498 */ .space 0x18
-
-dlabel D_801354B0
-    /* 801354B0 */ .space 0x08
-
-dlabel D_801354B8
-    /* 801354B8 */ .space 0x21
-
-dlabel D_801354D9
-    /* 801354D9 */ .space 0x01
-
-dlabel D_801354DA
-    /* 801354DA */ .space 0x02
-
-dlabel D_801354DC
-    /* 801354DC */ .space 0x14
+    /* 80135490 */ .space 0x60
 
 dlabel D_801354F0
     /* 801354F0 */ .space 0x08
