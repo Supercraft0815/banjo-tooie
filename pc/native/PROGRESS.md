@@ -2178,3 +2178,21 @@ je Karte steht in
 `build/acceptance/q2-followup-2026-11-18/coverage56/summary.json`.
 Dort liegen im übergeordneten Ordner auch die vier Bildbögen, die
 Wiederholungsbelege, der Live-Flagvergleich und `root-full56.log`.
+
+## 2026-11-19 — N1, sechs weitere Actor-Datenmodule
+
+Die Tabellen für Oktopus, Anemone, Sabreman, Batterie, Dinosaurierfamilie
+und Floaty liegen in C. Die noch in Assembler geführten Datenmodule gingen
+von 76 auf 70 zurück. Original-IDO erzeugte in diesen Modulen wieder alle
+97 Funktionen mit identischem Code, identischer Lage und Größe. Die Tabellen
+umfassen 2.496 Datenbytes und 88 ursprüngliche Relokationen. Drei als konstante
+Flags geschriebene Einträge und zwölf symbolische Adressausdrücke wurden
+gegen ihre gelinkten Werte geprüft. Der Gastvergleich umfasste 16.768
+Funktionen und 9.745 Adresskorrekturen.
+
+Im Hauptbaum bestanden zehn Testprogramme und 56 Referenzen mit 315.790
+Retraces, außerdem `make check` und die Bytevergleiche beider vollständigen
+ROM-Abbilder. Zwei neue Prüfwerkzeuge schlagen weitere Audio- und
+Callback-Tabellen zur Sichtung vor. Belege stehen unter
+`build/acceptance/n1-2026-11-18/proof/dispatch6-summary.json` und
+`logs/root-dispatch6-*`.

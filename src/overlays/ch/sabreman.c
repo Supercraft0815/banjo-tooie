@@ -1,4 +1,4 @@
-#include "common.h"
+#include "su/baddiedialog_descriptor.h"
 
 void func_80800D30_chsabreman(Actor *, s32);
 
@@ -7,28 +7,28 @@ void func_80801010_chsabreman(Actor *, s32);
 
 OSThread *chsabreman_entrypoint_0(void)
 {
-    extern u8 D_80801BE0_chsabreman[];
+    extern BtFnWord D_80801BE0_chsabreman[2];
 
     return (OSThread *) D_80801BE0_chsabreman;
 }
 
 OSThread *chsabreman_entrypoint_1(void)
 {
-    extern u8 D_80801D30_chsabreman[];
+    extern ActorData D_80801D30_chsabreman[];
 
     return (OSThread *) D_80801D30_chsabreman;
 }
 
 OSThread *chsabreman_entrypoint_2(void)
 {
-    extern u8 D_80801D78_chsabreman[];
+    extern ActorData D_80801D78_chsabreman[];
 
     return (OSThread *) D_80801D78_chsabreman;
 }
 
 OSThread *chsabreman_entrypoint_3(void)
 {
-    extern u8 D_80801DC0_chsabreman[];
+    extern ActorData D_80801DC0_chsabreman[];
 
     return (OSThread *) D_80801DC0_chsabreman;
 }
@@ -116,7 +116,7 @@ void func_80800218_chsabreman(Actor *arg0) {
     };
     void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
-    s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, s32 *, s32 *, s32);
+    s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, subaddiedialog_UnkStruct2 *, subaddiedialog_UnkStruct1 *, s32);
     void _subaddiepalette_entrypoint_1(void *arg0, u8 *arg1);
     s32 _subaddiepalette_entrypoint_2(void **arg0, void *arg1, u16 arg2, f32 arg3);
     s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *);
@@ -156,10 +156,10 @@ void func_80800218_chsabreman(Actor *arg0) {
     void func_808011F8_chsabreman();
     void func_80801218_chsabreman(Actor *);
     void func_80801724_chsabreman(Actor *, s32, s32);
-    extern s32 D_80801BF8_chsabreman;
-    extern s32 D_80801C20_chsabreman;
-    extern s32 D_80801E08_chsabreman;
-    extern s8 D_80801E16_chsabreman;
+    extern subaddiedialog_UnkStruct1 D_80801BF8_chsabreman[5];
+    extern subaddiedialog_UnkStruct1 D_80801C20_chsabreman[4];
+    extern subaddiedialog_UnkStruct2 D_80801E08_chsabreman;
+    BT_IDO_ONLY(extern s8 D_80801E16_chsabreman;)
     struct SabremanData *data;
     s32 sp60;
     s32 sp5C;
@@ -201,8 +201,8 @@ void func_80800218_chsabreman(Actor *arg0) {
             break;
         case 5:
             sp5C = 0;
-            D_80801E16_chsabreman = 6;
-            _subaddiedialog_entrypoint_8(arg0, arg0->position, &D_80801E08_chsabreman, &D_80801BF8_chsabreman, 5);
+            BT_IDO_ONLY(D_80801E16_chsabreman) BT_NATIVE_ONLY(D_80801E08_chsabreman.unkE) = 6;
+            _subaddiedialog_entrypoint_8(arg0, arg0->position, &D_80801E08_chsabreman, D_80801BF8_chsabreman, 5);
             break;
         case 7:
             if (func_80101DDC(arg0)) {
@@ -246,8 +246,8 @@ void func_80800218_chsabreman(Actor *arg0) {
             break;
         case 10:
             func_808011AC_chsabreman(arg0);
-            D_80801E16_chsabreman = 11;
-            _subaddiedialog_entrypoint_8(arg0, arg0->position, &D_80801E08_chsabreman, &D_80801C20_chsabreman, 4);
+            BT_IDO_ONLY(D_80801E16_chsabreman) BT_NATIVE_ONLY(D_80801E08_chsabreman.unkE) = 11;
+            _subaddiedialog_entrypoint_8(arg0, arg0->position, &D_80801E08_chsabreman, D_80801C20_chsabreman, 4);
             break;
         case 11:
             func_808011AC_chsabreman(arg0);
@@ -352,7 +352,7 @@ s32 func_808008C8_chsabreman(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80108B04(Actor *, u32);
     void func_808011F8_chsabreman();
     s32 func_8080167C_chsabreman(BtIntPtr, s32, s32);
-    extern s32 D_80801BE8_chsabreman;
+    extern f32 D_80801BE8_chsabreman[4];
 #ifndef BT_NATIVE
     extern s32 _chsabreman_entrypoint_0;
 #endif
@@ -437,7 +437,7 @@ s32 func_808008C8_chsabreman(Actor *arg0, s32 arg1, s32 arg2) {
             *(s32 *)((u8 *)arg0 + 0x3C) = 0;
             break;
         case 0x52:
-            _gcdialogcamera_entrypoint_3(&D_80801BE8_chsabreman, arg0->scale);
+            _gcdialogcamera_entrypoint_3(D_80801BE8_chsabreman, arg0->scale);
             break;
         case 0x1F:
             func_80800D30_chsabreman(arg0, arg2);
@@ -647,11 +647,11 @@ void func_808011F8_chsabreman()
     void func_80102424();
     func_80102424();
 }
-
+typedef struct { f32 words[3]; } AudioTimes;
 void func_80801218_chsabreman(Actor *arg0) {
-    typedef struct { u32 words[3]; } AudioTimes;
+
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, u32 *, f32);
+    s32 _subaddieaudioquick_entrypoint_3(Actor *, f32 *, void *, f32);
     s32 _subaddieaudioquick_entrypoint_4(Actor *arg0, f32 *arg1, void *arg2, f32 *arg3);
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
     s32 func_8001210C(s32);
@@ -663,16 +663,16 @@ void func_80801218_chsabreman(Actor *arg0) {
     s32 func_80101E14(Actor *, f32);
     f32 func_80101F24(Actor *);
     s32 func_801022E4(Actor *);
-    extern AudioTimes D_80801E18_chsabreman, D_80801E24_chsabreman;
-    extern u32 D_80801E30_chsabreman[], D_80801E40_chsabreman[];
-    extern u32 D_80801E50_chsabreman[], D_80801E8C_chsabreman[];
-    extern u32 D_80801E9C_chsabreman[], D_80801EC4_chsabreman[];
-    extern u32 D_80801EFC_chsabreman[], D_80801F08_chsabreman[];
-    extern u32 D_80801F14_chsabreman[], D_80801F2C_chsabreman[];
-    extern u32 D_80801F44_chsabreman[], D_80801F5C_chsabreman[];
-    extern u32 D_80801F6C_chsabreman[];
-    extern s32 D_80801E60_chsabreman[], D_80801ED4_chsabreman[];
-    extern s32 D_80801F78_chsabreman[], D_80801F88_chsabreman[], D_80801F98_chsabreman[];
+    extern AudioTimes D_80801E18_chsabreman; extern AudioTimes D_80801E24_chsabreman;
+    extern s16 D_80801E30_chsabreman[8]; extern s16 D_80801E40_chsabreman[8];
+    extern s16 D_80801E50_chsabreman[8]; extern s16 D_80801E8C_chsabreman[8];
+    extern f32 D_80801E9C_chsabreman[10]; extern s16 D_80801EC4_chsabreman[8];
+    extern s16 D_80801EFC_chsabreman[6]; extern s16 D_80801F08_chsabreman[6];
+    extern s16 D_80801F14_chsabreman[12]; extern s16 D_80801F2C_chsabreman[12];
+    extern s16 D_80801F44_chsabreman[12]; extern f32 D_80801F5C_chsabreman[4];
+    extern s16 D_80801F6C_chsabreman[6];
+    extern s16 D_80801E60_chsabreman[22]; extern s16 D_80801ED4_chsabreman[20];
+    extern s16 D_80801F78_chsabreman[8]; extern s16 D_80801F88_chsabreman[8]; extern s16 D_80801F98_chsabreman[12];
     AudioTimes sp5C;
     f32 sp50[3];
     f32 sp44[3];
@@ -691,7 +691,7 @@ void func_80801218_chsabreman(Actor *arg0) {
                     func_800EE7F8(sp44, sp50);
                     func_800EF1B8(sp44, arg0->rotation[1], -50.0f);
                     sp44[1] += 30.0f;
-                    func_800BABB8(0, sp50, sp44, 1.0f, D_80801E60_chsabreman);
+                    func_800BABB8(0, sp50, sp44, 1.0f, (s32 *)D_80801E60_chsabreman);
                 }
                 _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80801E50_chsabreman);
             }
@@ -702,7 +702,7 @@ void func_80801218_chsabreman(Actor *arg0) {
             _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80801E30_chsabreman, 0.75f);
             if (func_80101F24(arg0) < 0.7f && func_8001210C(1) &&
                 _subaddieskeleton_entrypoint_2(arg0->unk0, 4, sp38)) {
-                func_800BBCB8(sp38, NULL, 1.0f, 1, D_80801ED4_chsabreman);
+                func_800BBCB8(sp38, NULL, 1.0f, 1, (s32 *)D_80801ED4_chsabreman);
             }
             break;
         case 0x2FB:
@@ -723,14 +723,14 @@ void func_80801218_chsabreman(Actor *arg0) {
             break;
         case 0x2FF:
             if (arg0->unk5F == 0) {
-                arg0->unk5F = func_800C4350(0, arg0->position, D_80801F78_chsabreman);
+                arg0->unk5F = func_800C4350(0, arg0->position, (s32 *)D_80801F78_chsabreman);
             }
             if (arg0->unk5F != 0) {
                 if (func_80101E14(arg0, 0.0f)) {
-                    func_800C4350(arg0->unk5F, arg0->position, D_80801F88_chsabreman);
+                    func_800C4350(arg0->unk5F, arg0->position, (s32 *)D_80801F88_chsabreman);
                 }
                 if (func_80101E14(arg0, 0.65f)) {
-                    func_800C4350(arg0->unk5F, arg0->position, D_80801F98_chsabreman);
+                    func_800C4350(arg0->unk5F, arg0->position, (s32 *)D_80801F98_chsabreman);
                 }
             }
             break;
@@ -815,7 +815,7 @@ void func_80801724_chsabreman(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcdialogcamera_entrypoint_4(BtIntPtr arg0);
     void _gcdialogcamera_entrypoint_5(BtIntPtr arg0);
     void _gcdialogcamera_entrypoint_8(void);
-    extern s32 D_80801BE8_chsabreman;
+    extern f32 D_80801BE8_chsabreman[4];
     s16 *data;
 
     data = func_80100094(arg0, 0U);
@@ -825,7 +825,7 @@ void func_80801724_chsabreman(Actor *arg0, s32 arg1, s32 arg2) {
         case 1:
             _capod_entrypoint_8(1);
             data[0x410] = 2;
-            _gcdialogcamera_entrypoint_3(&D_80801BE8_chsabreman, arg0->scale);
+            _gcdialogcamera_entrypoint_3(D_80801BE8_chsabreman, arg0->scale);
             _gcdialogcamera_entrypoint_4(arg0->position);
             _gcdialogcamera_entrypoint_5(arg0->rotation);
             _gcdialogcamera_entrypoint_8();
@@ -899,7 +899,6 @@ void func_8080193C_chsabreman(Actor *arg0, void *arg1) {
     func_800DF744(5, 1);
     func_80101870(arg0, arg1);
 }
-
 s32 func_808019A4_chsabreman(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80102424(Actor *, s32);
     s32 *data = &arg2;
@@ -915,3 +914,4 @@ s32 func_808019A4_chsabreman(Actor *arg0, s32 arg1, s32 arg2) {
     }
     return 1;
 }
+#include "sabreman_data.inc"

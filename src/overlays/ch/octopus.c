@@ -1,8 +1,8 @@
 #include "common.h"
-
+#include "core2/actor_animation_entry.h"
 OSThread *choctopus_entrypoint_0(void)
 {
-    extern u8 D_808008F4_choctopus[];
+    extern ActorData D_808008F4_choctopus[];
 
     return (OSThread *) D_808008F4_choctopus;
 }
@@ -26,9 +26,9 @@ void func_80800054_choctopus(Actor *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_80101CDC(Actor *, f32);
     void func_80102424(Actor *, s32);
-    extern u8 D_808008C0_choctopus[];
-    extern f32 D_808008D4_choctopus;
-    extern s32 D_8080093C_choctopus[];
+    extern s16 D_808008C0_choctopus[6];
+    extern ActorAnimationEntry D_808008CC_choctopus[5];
+    extern s16 D_8080093C_choctopus[10];
     void *expression;
     f32 *position;
 
@@ -38,12 +38,12 @@ void func_80800054_choctopus(Actor *arg0) {
         _suexpression_entrypoint_10(expression, arg0->unk0, 0);
     }
     position = arg0->position;
-    _subaddieaudioloop_entrypoint_5(arg0, position, arg0->unk70_10 == 1, 0x1194, D_8080093C_choctopus);
+    _subaddieaudioloop_entrypoint_5(arg0, position, arg0->unk70_10 == 1, 0x1194, (s32 *)D_8080093C_choctopus);
     switch (arg0->unk70_10) {
         case 1:
             break;
         case 2:
-            func_80101CDC(arg0, func_800F10B4(arg0->unk58, 0.0f, 1.25f, 30.0f, D_808008D4_choctopus));
+            func_80101CDC(arg0, func_800F10B4(arg0->unk58, 0.0f, 1.25f, 30.0f, D_808008CC_choctopus[1].duration));
             if (func_800D9078(&arg0->unk58)) {
                 func_80102424(arg0, 3);
                 arg0->unk58 = 8.0f;
@@ -58,7 +58,7 @@ void func_80800054_choctopus(Actor *arg0) {
             }
             break;
         case 4:
-            func_80101CDC(arg0, func_800F10B4(arg0->unk58, 0.0f, 3.75f, D_808008D4_choctopus, 30.0f));
+            func_80101CDC(arg0, func_800F10B4(arg0->unk58, 0.0f, 3.75f, D_808008CC_choctopus[1].duration, 30.0f));
             if (func_800D9078(&arg0->unk58)) {
                 func_80102424(arg0, 1);
                 if (expression != NULL) {
@@ -151,8 +151,8 @@ void func_80800428_choctopus(Actor *arg0, s32 arg1) {
     void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     void _suexpression_entrypoint_18(s8 *arg0, s32 arg1);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    extern u8 D_808008C0_choctopus[];
-    extern u8 D_8080098C_choctopus[];
+    extern s16 D_808008C0_choctopus[6];
+    extern s16 D_8080098C_choctopus[6];
     s32 sp34;
     s32 sp30;
     void *sp2C;
@@ -247,7 +247,7 @@ s32 func_80800540_choctopus(Unk80132ED0 *arg0, f32 *arg1, f32 arg2, BtIntPtr arg
 
 OSThread *choctopus_entrypoint_1(void)
 {
-    extern u8 D_80800998_choctopus[];
+    extern BtFnWord D_80800998_choctopus[4];
 
     return (OSThread *) D_80800998_choctopus;
 }
@@ -260,10 +260,10 @@ void func_80800790_choctopus(Actor *arg0) {
         _suexpression_entrypoint_12(func_80100094(arg0, 1U), 80.0f, 30.0f);
     }
 }
-
 void func_808007E4_choctopus(Actor *arg0) {
     void _suexpression_entrypoint_8(Actor *, s32);
     if (func_80100094(arg0, 1U) != 0) {
         _suexpression_entrypoint_8(arg0, 1);
     }
 }
+#include "octopus_data.inc"

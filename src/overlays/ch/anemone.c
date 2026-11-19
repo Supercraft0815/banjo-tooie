@@ -2,7 +2,7 @@
 
 OSThread *chanemone_entrypoint_0(void)
 {
-    extern u8 D_808008D8_chanemone[];
+    extern ActorData D_808008D8_chanemone[];
 
     return (OSThread *) D_808008D8_chanemone;
 }
@@ -21,9 +21,9 @@ void func_8080000C_chanemone(Actor *arg0) {
     void func_8010A590(Actor *);
     s32 func_8010D23C(void);
     void func_808003A8_chanemone(Actor *);
-    extern s32 D_80800920_chanemone[];
-    extern u32 D_80800934_chanemone[];
-    extern u32 D_80800944_chanemone[];
+    extern s16 D_80800920_chanemone[10];
+    extern s16 D_80800934_chanemone[8];
+    extern s16 D_80800944_chanemone[8];
     s32 flags = 4;
     s32 active = arg0->unk70_10 != 3;
 
@@ -42,7 +42,7 @@ void func_8080000C_chanemone(Actor *arg0) {
     } else {
         _sudeflect_entrypoint_0(arg0->position, arg0->scale * 250.0f, arg0->scale * 700.0f, flags);
     }
-    _subaddieaudioloop_entrypoint_5((BtIntPtr)arg0, (BtIntPtr)arg0->position, arg0->unk70_10 == 1, 2000, D_80800920_chanemone);
+    _subaddieaudioloop_entrypoint_5((BtIntPtr)arg0, (BtIntPtr)arg0->position, arg0->unk70_10 == 1, 2000, (s32 *)D_80800920_chanemone);
     switch (arg0->unk70_10) {
         case 2:
             _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80800934_chanemone, 0.2f);
@@ -159,7 +159,7 @@ void func_808005A0_chanemone(Actor *arg0, s32 arg1) {
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     void func_80102424(Actor *, s32);
     void func_8010A570(Actor *);
-    extern s32 D_80800954_chanemone;
+    extern s16 D_80800954_chanemone[8];
     u32 state;
 
     if ((s32)arg0->unk6C_0 == 1) {
@@ -172,7 +172,7 @@ void func_808005A0_chanemone(Actor *arg0, s32 arg1) {
         }
         if (state == 4) {
 activate:
-            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800954_chanemone);
+            _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800954_chanemone);
             func_80102424(arg0, 2);
             _subaddieDll_entrypoint_4(arg0, 1);
             func_8010A570(arg0);
@@ -245,7 +245,7 @@ s32 func_80800648_chanemone(Unk80132ED0 *arg0, BtIntPtr arg1, f32 arg2, BtIntPtr
 
 OSThread *chanemone_entrypoint_1(void)
 {
-    extern u8 D_80800964_chanemone[];
-
+    extern BtFnWord D_80800964_chanemone[4];
     return (OSThread *) D_80800964_chanemone;
 }
+#include "anemone_data.inc"

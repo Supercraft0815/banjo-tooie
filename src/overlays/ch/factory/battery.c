@@ -2,7 +2,7 @@
 
 OSThread *chfactorybattery_entrypoint_0(void)
 {
-    extern u8 D_80801B34_chfactorybattery[];
+    extern BtFnWord D_80801B34_chfactorybattery[2];
 
     return (OSThread *) D_80801B34_chfactorybattery;
 }
@@ -242,7 +242,7 @@ void func_808006E4_chfactorybattery(Actor *arg0) {
         func_800C8FE0(*(s32 *)&arg0->unk50, 0);
     }
 }
-
+typedef struct { u32 v[3]; } Color;
 void func_80800760_chfactorybattery(Actor *arg0) {
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);
     void func_800C8CB8(s32, f32[3]);
@@ -250,7 +250,7 @@ void func_80800760_chfactorybattery(Actor *arg0) {
     void func_800C8FE0(s32, s32);
     f32 func_800DC178(f32, f32);
     int func_800F3214(void *, void *, void *, f32);
-    typedef struct { u32 v[3]; } Color;
+
     extern Color D_80801B3C_chfactorybattery;
     extern Color D_80801B48_chfactorybattery;
     extern Color D_80801B54_chfactorybattery;
@@ -311,8 +311,8 @@ void func_808008C8_chfactorybattery(Actor *arg0) {
 void func_80800948_chfactorybattery(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
     s32 _subaddieaudioquick_entrypoint_3(Actor *arg0, f32 arg1[3], void *arg2, f32 arg3);
-    extern u32 D_80801B60_chfactorybattery;
-    extern u32 D_80801B78_chfactorybattery;
+    extern s16 D_80801B60_chfactorybattery[12];
+    extern s16 D_80801B78_chfactorybattery[8];
 
     switch (arg0->unk70_10) {
     case 1:
@@ -326,11 +326,11 @@ void func_80800948_chfactorybattery(Actor *arg0) {
     case 6:
     case 8:
     case 10:
-        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, &D_80801B60_chfactorybattery, 0.5f);
+        _subaddieaudioquick_entrypoint_3(arg0, arg0->position, D_80801B60_chfactorybattery, 0.5f);
         break;
     }
     if (arg0->unk79_4 != 0) {
-        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, &D_80801B78_chfactorybattery);
+        _subaddieaudioloop_entrypoint_4(arg0, arg0->position, 1, (u32 *)D_80801B78_chfactorybattery);
     }
 }
 
@@ -396,7 +396,7 @@ void func_80800AB8_chfactorybattery(Actor *arg0) {
     s32 func_8010C9FC(f32 *, s32, s32, s32);
     f32 func_8010CD50(Actor *, BtIntPtr);
     void func_8080130C_chfactorybattery(Actor *, s32);
-    extern u8 D_80801B88_chfactorybattery[];
+    extern f32 D_80801B88_chfactorybattery[4][2];
     struct Route { u16 pad[3]; u16 node; };
     struct BatteryActorFlags {
         u8 pad[0x70];
@@ -434,7 +434,7 @@ void func_80800AB8_chfactorybattery(Actor *arg0) {
         }
         break;
     case 6:
-        sp4C = func_800F3780(func_80101F24(arg0), D_80801B88_chfactorybattery, 4);
+        sp4C = func_800F3780(func_80101F24(arg0), (u8 *)D_80801B88_chfactorybattery, 4);
         sp48 = func_80100094(arg0, 1);
         if (_subaddierouteDll_entrypoint_4(arg0)) {
             if (func_8010C500(arg0)) {
@@ -678,7 +678,7 @@ void func_808014C0_chfactorybattery(Actor *arg0) {
 
 OSThread *chfactorybattery_entrypoint_1(void)
 {
-    extern u8 D_80801BA8_chfactorybattery[];
+    extern ActorData D_80801BA8_chfactorybattery[];
 
     return (OSThread *) D_80801BA8_chfactorybattery;
 }
@@ -770,7 +770,7 @@ void func_80801804_chfactorybattery(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chfactorybattery_entrypoint_2(void)
 {
-    extern u8 D_80801BF0_chfactorybattery[];
-
+    extern ActorData D_80801BF0_chfactorybattery[];
     return (OSThread *) D_80801BF0_chfactorybattery;
 }
+#include "battery_data.inc"

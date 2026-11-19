@@ -5536,7 +5536,7 @@ segments:
     subsegments: 
       - [0x01FBDE70, c, octopus]
       - [0x01FBE690, .rodata, octopus]
-      - [0x01FBE730, data, octopus]
+      - [0x01FBE730, .data, octopus]
       - [0x01FBE820, bss, octopus]
   - name: chanemone_header
     dir: overlays/chanemone
@@ -5555,7 +5555,7 @@ segments:
     subsegments: 
       - [0x01FBE8A0, c, anemone]
       - [0x01FBF140, .rodata, anemone]
-      - [0x01FBF150, data, anemone]
+      - [0x01FBF150, .data, anemone]
       - [0x01FBF220, bss, anemone]
   - name: chjollyroger_header
     dir: overlays/chjollyroger
@@ -6506,7 +6506,7 @@ segments:
     subsegments: 
       - [0x01FE4DA0, c, sabreman]
       - [0x01FE67B0, .rodata, sabreman]
-      - [0x01FE6980, data, sabreman]
+      - [0x01FE6980, .data, sabreman]
       - [0x01FE6D50, bss, sabreman]
   - name: chbanjoctrl_header
     dir: overlays/chbanjoctrl
@@ -11476,7 +11476,7 @@ segments:
     subsegments: 
       - [0x020BA730, c, battery]
       - [0x020BBFC0, .rodata, battery]
-      - [0x020BC1E0, data, battery]
+      - [0x020BC1E0, .data, battery]
       - [0x020BC370, bss, battery]
   - name: chfactoryroofbits_header
     dir: overlays/chfactoryroofbits
@@ -12104,7 +12104,7 @@ segments:
     subsegments: 
       - [0x020E0400, c, familysick]
       - [0x020E1170, .rodata, familysick]
-      - [0x020E1260, data, familysick]
+      - [0x020E1260, .data, familysick]
       - [0x020E13C0, bss, familysick]
   - name: choildrill_header
     dir: overlays/choildrill
@@ -12142,7 +12142,7 @@ segments:
     subsegments: 
       - [0x020E2AC0, c, floaty]
       - [0x020E3880, .rodata, floaty]
-      - [0x020E38C0, data, floaty]
+      - [0x020E38C0, .data, floaty]
       - [0x020E3A00, bss, floaty]
   - name: chdinofamilymother_header
     dir: overlays/chdinofamilymother

@@ -2,7 +2,7 @@
 
 OSThread *chfloaty_entrypoint_0(void)
 {
-    extern u8 D_80800E00_chfloaty[];
+    extern BtFnWord D_80800E00_chfloaty[2];
 
     return (OSThread *) D_80800E00_chfloaty;
 }
@@ -302,7 +302,7 @@ void func_80800BD8_chfloaty(BtIntPtr arg0, s32 arg1) {
     s32 func_800BA22C(BtIntPtr, s32);
     BtIntPtr func_800BABB8(BtIntPtr, BtIntPtr, BtIntPtr, s32, s32 *);
     void func_80800CA0_chfloaty(Actor *);
-    extern s32 D_80800EA8_chfloaty;
+    extern s16 D_80800EA8_chfloaty[36];
     BtIntPtr sp24;
     BtIntPtr temp_a1;
     BtIntPtr temp_v0;
@@ -311,7 +311,7 @@ void func_80800BD8_chfloaty(BtIntPtr arg0, s32 arg1) {
         temp_v0 = func_800B5BE4(0x1C);
         temp_a1 = arg0 + 4;
         sp24 = temp_v0;
-        func_800BABB8(temp_v0, temp_a1, temp_a1, 0x3F800000, &D_80800EA8_chfloaty);
+        func_800BABB8(temp_v0, temp_a1, temp_a1, 0x3F800000, (s32 *)D_80800EA8_chfloaty);
         func_800BA22C(sp24, arg1);
     }
     func_80800CA0_chfloaty((Actor *) arg0);
@@ -358,7 +358,7 @@ void func_80800CA0_chfloaty(Actor *arg0) {
 
 OSThread *chfloaty_entrypoint_1(void)
 {
-    extern u8 D_80800EF0_chfloaty[];
-
+    extern ActorData D_80800EF0_chfloaty[];
     return (OSThread *) D_80800EF0_chfloaty;
 }
+#include "floaty_data.inc"

@@ -3,7 +3,7 @@ void func_80102424(Actor *, s32);
 
 OSThread *chdinofamilysick_entrypoint_0(void)
 {
-    extern u8 D_80800E60_chdinofamilysick[];
+    extern BtFnWord D_80800E60_chdinofamilysick[2];
 
     return (OSThread *) D_80800E60_chdinofamilysick;
 }
@@ -118,7 +118,7 @@ s32 func_808003B0_chdinofamilysick(Actor *arg0, s32 arg1, s32 arg2) {
     void func_80101EE4(Actor *, f32);
     s32 func_801022E4(Actor *);
     void func_80102424(Actor *, s32);
-    extern s32 D_80800E98_chdinofamilysick;
+    extern f32 D_80800E98_chdinofamilysick[4];
 #ifndef BT_NATIVE
     extern s32 _chdinofamilysick_entrypoint_0;
 #endif
@@ -168,7 +168,7 @@ s32 func_808003B0_chdinofamilysick(Actor *arg0, s32 arg1, s32 arg2) {
             return 1;
         case 0x52:
             _gcdialogcamera_entrypoint_4(arg0->position);
-            _gcdialogcamera_entrypoint_3(&D_80800E98_chdinofamilysick, arg0->scale);
+            _gcdialogcamera_entrypoint_3(D_80800E98_chdinofamilysick, arg0->scale);
             return 3;
     }
     return 0;
@@ -176,7 +176,7 @@ s32 func_808003B0_chdinofamilysick(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chdinofamilysick_entrypoint_1(void)
 {
-    extern u8 D_80800EA8_chdinofamilysick[];
+    extern ActorData D_80800EA8_chdinofamilysick[];
 
     return (OSThread *) D_80800EA8_chdinofamilysick;
 }
@@ -231,7 +231,7 @@ void func_808005F8_chdinofamilysick(Actor *arg0) {
         break;
     }
 }
-
+typedef struct { u32 rgb[3]; } Color;
 void func_80800768_chdinofamilysick(Actor *arg0) {
     void _chdinofamilyfx_entrypoint_0(Actor *arg0);
     void _glcutDll_entrypoint_24(u32, u32, u32);
@@ -261,7 +261,7 @@ void func_80800768_chdinofamilysick(Actor *arg0) {
         }
         break;
     case 2: {
-        typedef struct { u32 rgb[3]; } Color;
+
         extern Color D_80800F30_chdinofamilysick;
         extern Color D_80800F3C_chdinofamilysick;
         Color start = D_80800F30_chdinofamilysick;
@@ -312,12 +312,12 @@ void func_80800A1C_chdinofamilysick(Actor *arg0) {
     f32 func_80101F24(Actor *);
     void func_80105834(Actor *);
     void func_80105A9C(Actor *, f32);
-    extern u8 D_80800F48_chdinofamilysick;
+    extern f32 D_80800F48_chdinofamilysick[4][2];
     f32 temp_f2;
     f32 var_f0;
     f32 temp_f6;
 
-    temp_f2 = func_800F3780(func_80101F24(arg0), &D_80800F48_chdinofamilysick, 4);
+    temp_f2 = func_800F3780(func_80101F24(arg0), (u8 *)D_80800F48_chdinofamilysick, 4);
     if (arg0->unk70_10 == 4) {
         var_f0 = 0.75f;
     } else {
@@ -348,7 +348,7 @@ s32 func_80800AB0_chdinofamilysick(Actor *arg0, s32 arg1, s32 arg2) {
     s32 func_801022E4(Actor *);
     f32 func_80103EAC(Actor *);
     void *func_80105494(Actor *);
-    extern s32 D_80800F68_chdinofamilysick[];
+    extern f32 D_80800F68_chdinofamilysick[4];
     struct DinoFamilySickFlags {
         u8 pad0[0x74];
         u32 pad74_4 : 28;
@@ -421,7 +421,7 @@ s32 func_80800AB0_chdinofamilysick(Actor *arg0, s32 arg1, s32 arg2) {
 
 OSThread *chdinofamilysick_entrypoint_2(void)
 {
-    extern u8 D_80800F78_chdinofamilysick[];
-
+    extern ActorData D_80800F78_chdinofamilysick[];
     return (OSThread *) D_80800F78_chdinofamilysick;
 }
+#include "familysick_data.inc"

@@ -96,6 +96,11 @@ SECTIONS
         .L800B5F84 = func_800B5E74 + 0x110;
         .L800B5FD8 = func_800B5E74 + 0x164;
     }
+    /* Keep the state byte relocatable with the dialogue descriptor. */
+    .chsabreman :
+    {
+        D_80801E16_chsabreman = D_80801E08_chsabreman + 0xE;
+    }
     .chintrochar :
     {
         func_80804158_chintrochar = func_80804054_chintrochar + 0x104;
