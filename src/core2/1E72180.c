@@ -1,4 +1,5 @@
 #include "common.h"
+#include "core2/player_motion_data.h"
 #include "overlays/ba/playerstate.h"
 s32 func_80098890() 
 {
@@ -9,7 +10,6 @@ void func_80098898(void *arg0) {
     void func_800BED18(s32 *, s32 *);
     s32 func_800EA05C();
     void func_800EE84C(f32 *, s32 *);
-    extern s16 D_80117EC0;
     s32 sp3C[3];
     s32 sp30[3];
     s32 sp2C;
@@ -19,7 +19,7 @@ void func_80098898(void *arg0) {
     func_800BED18(sp30, sp3C);
     func_800EE84C(((Obj1E72180_arg0 *)arg0)->unkBC + 3, sp30);
     func_800EE84C(((Obj1E72180_arg0 *)arg0)->unkBC, sp3C);
-    for (var_v1 = &D_80117EC0; var_v1[0] != 0 && sp2C != var_v1[0]; var_v1 += 7) {
+    for (var_v1 = D_80117EC0; var_v1[0] != 0 && sp2C != var_v1[0]; var_v1 += 7) {
     }
     (((Obj1E72180_arg0 *)arg0)->unkBC)[3] -= var_v1[1];
     (((Obj1E72180_arg0 *)arg0)->unkBC)[4] -= var_v1[2];

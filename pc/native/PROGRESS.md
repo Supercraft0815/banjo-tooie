@@ -3027,3 +3027,17 @@ sinkt von 90 auf 76. Elf Gastsuiten, 74 Replays mit 447.849 Retraces, 63
 Sanitizertests, 9.688 Zeigerwort-Adressen und 16.401 Originalfunktionen
 sind geprüft. Beide ROM-Abbilder sind bytegleich. Die Belege stehen unter
 `build/acceptance/n1-2026-11-18/current-player-form-data*`.
+
+## 2026-11-19 — N1, Spiegelungen, Dialog und Spielerbewegung
+
+Gast und Host verwenden dieselben drei Spiegelungsebenen. Die Abfrage läuft
+über die tatsächlichen drei Einträge. Der Stand mit Dialogpositionen und
+Grafikbefehlen senkt die strenge Restliste von 76 auf 68. Die ursprünglichen
+Fallschwellen, Gravitation und Knotennummern senken sie weiter auf 60.
+Der 64-Bit-Test vergleicht 24.004 Fallhöhen in zwei Konfigurationen und
+prüft die Weitergabe der vollständigen Zeiger für alle elf Knotennummern.
+Je Stand bestehen 11 Gastsuiten, 74 Replays mit 447.849 Retraces und 63
+Sanitizertests. Alle 9.688 Zeigerwort-Adressen, 16.401 Originalfunktionen
+und beide ROM-Abbilder sind identisch. Belege unter
+`build/acceptance/n1-2026-11-18/current-reflection-dialog*` und
+`current-player-motion*`.

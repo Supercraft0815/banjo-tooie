@@ -2,6 +2,7 @@
 #include "1E95F80_native.inc"
 #else
 #include "common.h"
+#include "core2/reflection_planes.h"
 
 typedef struct { s32 unk0; union { s32 unk4; void * unk4_voidp; }; s32 unk8; u8 unkC; u8 unkD; u8 unkE; u8 unkF; u8 unk10; u8 unk11; s16 unk12; } Obj1E95F80_D_801282E0; /* offsets.py genstruct: fields from raw offsets on &D_801282E0; rename once understood */ void func_800BC690(void) {
     void func_800B5680(s32);
@@ -11,9 +12,8 @@ typedef struct { s32 unk0; union { s32 unk4; void * unk4_voidp; }; s32 unk8; u8 
     void func_800EF410(f32 *, f32 *);
     void func_800EFA20(void *, void *, f32);
     void *heap_alloc(s32);
-    typedef struct { s16 map, count, mode, flag; f32 point[3]; f32 normal[3]; } Entry;
     typedef struct { void *buffers[2]; s32 unk8; u8 unkC, active, unkE, unkF, unk10, mode; s16 count; f32 matrix[4][4]; } State;
-    extern Entry D_8011A760[3];
+
     extern s8 D_8011A7C0[];
     extern s32 D_801282E0, D_801282F4, D_80128338;
     extern f32 D_80128324[], D_80128378[], D_80128384[];
@@ -27,14 +27,14 @@ typedef struct { s32 unk0; union { s32 unk4; void * unk4_voidp; }; s32 unk8; u8 
         if (map == D_8011A760[i].map) break;
         i++;
     } while (i < 3);
-    if (D_8011A7C0 != (s8 *)&D_8011A760[i]) {
-        if (D_8011A760[i].flag) {
+    if (BT_DATA_FIELD(i < 3, D_8011A7C0 != (s8 *)&D_8011A760[i])) {
+        if (D_8011A760[i].water) {
             func_800B5680((s32)D_8011A760[i].point[1]);
         }
         ((State *)&D_801282E0)->unk10 = ((State *)&D_801282E0)->active = 1;
         ((State *)&D_801282E0)->unkF = ((State *)&D_801282E0)->unkE = 0;
-        ((State *)&D_801282E0)->count = D_8011A760[i].count;
-        ((State *)&D_801282E0)->mode = D_8011A760[i].mode;
+        ((State *)&D_801282E0)->count = D_8011A760[i].model;
+        ((State *)&D_801282E0)->mode = D_8011A760[i].alpha;
         *(void **)&D_801282E0 = heap_alloc(0x5DC0);
         ((Obj1E95F80_D_801282E0 *)&D_801282E0)->unk4_voidp = heap_alloc(0x5DC0);
         func_800EF410(normal, D_8011A760[i].normal);

@@ -1,3 +1,4 @@
+#include "core2/reflection_planes.h"
 #include "native_reflection.h"
 #include "native_render.h"
 #include "core2/1EAF950.h"
@@ -7,22 +8,17 @@ f32 func_800EEAA4(f32 *,f32 *);
 extern Mtx *D_8012D558;
 NativeReflection native_reflection;
 int native_reflection_load_map(s32 map) {
-    static const struct {s16 map,model,alpha,water;f32 point[3],normal[3];} entries[]={
-        {0x151,0x861,255,1,{0,0,0},{0,1,0}},
-        {0x103,0x860,255,0,{1050,0,0},{-1,0,0}},
-        {0x15E,0x857,255,1,{0,0,0},{0,1,0}},
-    };
     NativeReflection *state=&native_reflection;func_800BC8A0();
-    unsigned index;for(index=0;index<sizeof(entries)/sizeof(*entries);++index)if(entries[index].map==map)break;
-    if(index==sizeof(entries)/sizeof(*entries))return 0;
-    if(entries[index].water)func_800B5680(entries[index].point[1]);
+    unsigned index;for(index=0;index<sizeof(D_8011A760)/sizeof(*D_8011A760);++index)if(D_8011A760[index].map==map)break;
+    if(index==sizeof(D_8011A760)/sizeof(*D_8011A760))return 0;
+    if(D_8011A760[index].water)func_800B5680(D_8011A760[index].point[1]);
     state->cull_enabled=state->active=1;state->bounds_valid=state->bounds_cached=0;
-    state->model=entries[index].model;state->alpha=entries[index].alpha;
+    state->model=D_8011A760[index].model;state->alpha=D_8011A760[index].alpha;
     for(int i=0;i<2;++i)state->buffers[i]=heap_alloc(NATIVE_REFLECTION_PACKETS*sizeof(Gfx));
-    f32 normal[3],input[3];for(int i=0;i<3;++i)input[i]=entries[index].normal[i];func_800EF410(normal,input);
+    f32 normal[3],input[3];for(int i=0;i<3;++i)input[i]=D_8011A760[index].normal[i];func_800EF410(normal,input);
     for(int row=0;row<3;++row)for(int column=0;column<3;++column)
         state->matrix.m[row][column]=row==column ? 1.0f-(2.0f*normal[row])*normal[column] : (2.0f*-normal[row])*normal[column];
-    for(int i=0;i<3;++i){state->matrix.m[i][3]=0;state->point[i]=entries[index].point[i];state->normal[i]=normal[i];}
+    for(int i=0;i<3;++i){state->matrix.m[i][3]=0;state->point[i]=D_8011A760[index].point[i];state->normal[i]=normal[i];}
     func_800EFA20(state->matrix.m[3],normal,2.0f*func_800EEAA4(state->point,normal));state->matrix.m[3][3]=1;
     guMtxF2L(state->matrix.m,&state->fixed);return 1;
 }

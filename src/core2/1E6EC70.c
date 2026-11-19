@@ -1,23 +1,24 @@
 #include "core2/1E6EC70.h"
+#include "core2/player_motion_data.h"
 
 s32 func_80095380(void)
 {
 	return 0x18;
 }
 
-u8 func_80095388(s32 *arg0, s32 arg1, u8 *arg2, s32 arg3) {
+u8 func_80095388(s32 *arg0, s32 arg1, FallThreshold *arg2, s32 arg3) {
     s32 threshold = arg3 + 0x3E8;
-    s16 *entry = (s16 *)(arg2 + 0xC);
+    FallThreshold *entry = arg2 + 3;
     s16 index;
-    if (*entry >= 0) {
+    if (entry->height >= 0) {
       do {
-        index = *entry;
+        index = entry->height;
         if (index + threshold < arg1) {
-            *arg0 = ((u8 *)entry)[2];
-            return ((u8 *)entry)[3];
+            *arg0 = entry->severity;
+            return entry->damage;
         }
-        entry += 2;
-        index = *entry;
+        entry++;
+        index = entry->height;
       } while (index >= 0);
     }
     return 0;
@@ -43,7 +44,6 @@ s32 func_800953E0(PlayerState *arg0, void *arg1, s32 arg2) {
         TRANSFORM_1_BK = 0x1
     } func_800A3274(PlayerState *);
     s32 func_8009E71C(PlayerState *, s32);
-    extern u8 D_80117E60[];
 
     *(s32 *)arg1 = 0;
     if (arg2 < 0) {
