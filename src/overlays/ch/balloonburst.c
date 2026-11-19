@@ -240,7 +240,7 @@ s32 func_808001FC_chballoonburst(Actor *arg0, int arg1, s32 arg2) {
 
 void func_80800970_chballoonburst(Actor *, s32);
 typedef enum flag_e GameFlag;
-s32 _gcstatusDll_entrypoint_11(void);
+BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_11(void);
 
 void func_808003C4_chballoonburst(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcfrontend_entrypoint_10(void);
@@ -416,7 +416,7 @@ void func_808008F0_chballoonburst(Actor *arg0) {
 }
 
 void func_80800970_chballoonburst(Actor *arg0, s32 arg1) {
-    s32 _gcstatusDll_entrypoint_11();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_11();
     s32 _subaddiemulti_entrypoint_2();
     void func_800CE88C(s32, s32);
     void func_800CE8D8(s32, f32, s32);
@@ -601,7 +601,7 @@ void func_80800F4C_chballoonburst(Actor *arg0) {
     void func_80101FDC(Actor *, u32);
     s32 _subaddiefind_entrypoint_9(s32);
     f32 func_800DC178(f32, f32);
-    s32 _gcstatusDll_entrypoint_11(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_11(void);
     int func_800D9154(f32 *, f32);
     void func_80108B04(Actor *, u32);
     s32 func_800CEAD0(s32);
@@ -676,7 +676,7 @@ s32 func_8080110C_chballoonburst(void *arg0, s32 arg1, s32 arg2) {
 
 void func_808011A8_chballoonburst(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcfrontend_entrypoint_10(void);
-    s32 _gcstatusDll_entrypoint_11();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_11();
     s32 _subaddiemulti_entrypoint_2();
     int func_800F7C58(BtIntPtr, s32, s32);
     void func_80101FDC(Actor *, u32);
@@ -708,7 +708,7 @@ s32 func_80801254_chballoonburst(u8 *arg0, s32 arg1, s32 arg2) {
 
 void func_80801290_chballoonburst(void *arg0)
 {
-  s32 _gcstatusDll_entrypoint_11();
+  BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_11();
   s32 _subaddiemulti_entrypoint_1(s32, s32);
   s32 func_800BF544(s32, s32, s32);
   void func_800BF744(s32, s32);
@@ -736,7 +736,7 @@ void func_80801290_chballoonburst(void *arg0)
 }
 
 void func_80801338_chballoonburst(Actor *arg0) {
-    s32 _gcstatusDll_entrypoint_11();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_11();
     s32 _subaddiemulti_entrypoint_1(s32, s32);
     void _sumultiscore_entrypoint_11(u8 *, s32, s32, f32);
     s32 _sumultiscore_entrypoint_8(void *, s32, s32);

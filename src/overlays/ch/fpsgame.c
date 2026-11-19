@@ -135,7 +135,7 @@ void func_808002FC_chfpsgame(Actor *arg0) {
     void func_8080075C_chfpsgame(Actor *arg0);
     void func_80801C5C_chfpsgame(Actor *arg0);
     u8 _gcstatusDll_entrypoint_11(void);
-    s32 _gcstatusDll_entrypoint_14();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_14();
     void* func_80100094();
     s32 func_80800CF8_chfpsgame(Actor *, s32);
     void *sp24;
@@ -321,7 +321,7 @@ void func_808006A8_chfpsgame(Actor *arg0) {
 void func_8080075C_chfpsgame(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     PlayerState *func_800F53D0(BtIntPtr);
-    s32 _gcstatusDll_entrypoint_15(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_15(void);
     void _sumultiscore_entrypoint_3(u8 *arg0);
     s32 _sumultiscore_entrypoint_4(u8 *, s32, s32, s32);
     void _badeathmatch_entrypoint_10(PlayerState *, s32, s32, s32);
@@ -401,8 +401,8 @@ void func_8080090C_chfpsgame(s32 arg0)
 }
 s32 func_80800914_chfpsgame(Actor *arg0, s32 arg1, BtIntPtr arg2) {
     void *func_80100094(Actor *, u32);
-    s32 _gcstatusDll_entrypoint_14();
-    s32 _gcstatusDll_entrypoint_15();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_14();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_15();
     u32 _suegg_entrypoint_7(void *);
     void _sumultiscore_entrypoint_5(u8 *, s32, s32, s32);
     void _sumultiscore_entrypoint_9(u8 *, BtIntPtr, s32, s32);
@@ -773,7 +773,7 @@ s32 func_8080121C_chfpsgame(Actor *arg0) {
 s32 func_808012CC_chfpsgame(BtIntPtr arg0) {
     s32 _badeathmatch_entrypoint_9(void *arg0, s32 arg1);
     u8 _gcstatusDll_entrypoint_11(void);
-    s32 _gcstatusDll_entrypoint_14();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_14();
     struct player_state_s *func_800F53D0(BtIntPtr);
     s32 temp_v0;
     s32 var_s0;
@@ -796,8 +796,8 @@ s32 func_808012CC_chfpsgame(BtIntPtr arg0) {
 
 void func_8080135C_chfpsgame(Actor *arg0) {
     void *func_80100094(Actor *, u32);
-    s32 _gcstatusDll_entrypoint_14();
-    s32 _gcstatusDll_entrypoint_15();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_14();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_15();
     f32 func_800D8FF8(void);
     s32 func_800F1574(f32 *, f32);
     void func_800FC660(u32);
@@ -970,7 +970,7 @@ void func_80801780_chfpsgame(Actor *arg0, BtIntPtr arg1) {
 
 void func_80801814_chfpsgame(Actor *arg0) {
     void *func_80100094(Actor *, u32);
-    s32 _gcstatusDll_entrypoint_17();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_17();
     void func_80801A8C_chfpsgame(Actor *, f32);
     s32 temp_v0;
     u8 *temp_s0;

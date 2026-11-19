@@ -1,5 +1,5 @@
 #include "overlays/ba/data.h"
-
+BT_NATIVE_ONLY(u8 func_800F8B88(void);)
 s32 func_80800000_badata(PlayerState *self) {
     s32 sp1C  = bs_getCurrentState(self);
     switch(func_800A3274(self)) {

@@ -71,7 +71,7 @@ void func_8080000C_chgameselect(Actor *arg0) {
 
 void func_8080015C_chgameselect(Actor *arg0) {
     s32 func_80803E40_chgameselect(void);
-    s32 _gcstatusDll_entrypoint_10(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_10(void);
     void _gcstatusDll_entrypoint_2(s32);
     void func_80803C80_chgameselect(void);
     void func_808016E8_chgameselect(Unk80132ED0 *, s32);
@@ -2108,9 +2108,9 @@ void func_80803A88_chgameselect(void) {
     _gcstatusDll_entrypoint_7(3);
 }
 
-s32 _gcstatusDll_entrypoint_15(void);
+BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_15(void);
 void func_80803AB0_chgameselect(void) {
-    s32 _gcstatusDll_entrypoint_14(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_14(void);
     s32 _gcstatusDll_entrypoint_6(s32, s32);
     s32 i;
     s32 status;
@@ -2136,7 +2136,7 @@ void func_80803AB0_chgameselect(void) {
 }
 
 void func_80803B3C_chgameselect(BtIntPtr arg0) {
-    s32 _gcstatusDll_entrypoint_10(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_10(void);
     void func_80016BDC(s32);
     void func_800C9DAC(f32, void *);
     void func_80800478_chgameselect(BtIntPtr, s32);
@@ -2820,8 +2820,8 @@ void func_80804D30_chgameselect(Actor *arg0, s32 arg1) {
 }
 
 s32 func_80804E34_chgameselect(u8 *arg0) {
-    s32 _gcstatusDll_entrypoint_17();
-    s32 _gcstatusDll_entrypoint_18(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_17();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_18(void);
     u32 func_800AA0B8(void);
     void func_80805310_chgameselect(u8 *);
     void func_808065C0_chgameselect(BtIntPtr);
@@ -2858,8 +2858,8 @@ void func_80804F14_chgameselect(void *arg0) {
 void func_80804F38_chgameselect(Actor *arg0, s32 arg1, s32 arg2) {
     void _gcstatusDll_entrypoint_2(s32);
     s32 _gcstatusDll_entrypoint_4(s32);
-    s32 _gcstatusDll_entrypoint_10(void);
-    s32 _gcstatusDll_entrypoint_14();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_10(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_14();
     s32 _gcfrontend_entrypoint_6(s32);
     s32 func_808068E8_chgameselect(void);
     void func_808069C8_chgameselect(s32);
@@ -3052,7 +3052,7 @@ void func_80805498_chgameselect(Actor *arg0, BtIntPtr arg1) {
     s32 _gcnewoption_entrypoint_12(BtIntPtr, s32, s16);
     void _gcnewoption_entrypoint_31(BtIntPtr, s32, s16);
     void _gcnewoption_entrypoint_41(OptionState *, s32);
-    s32 _gcstatusDll_entrypoint_10(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_10(void);
     void func_80805BA0_chgameselect(BtIntPtr, s32, s32);
     s32 func_80805ECC_chgameselect(s32 *, s32);
     void func_80806218_chgameselect(BtIntPtr, s32, s32, s32);
@@ -3118,7 +3118,7 @@ void func_8080569C_chgameselect(Actor *arg0, BT_IDO_ONLY(s32 arg1) BT_PASS2(s32 
     } SelectControllers;
     void _gcnewoption_entrypoint_43(s32, s32, s32);
     s32 _gcnewoption_entrypoint_45(BtIntPtr);
-    s32 _gcstatusDll_entrypoint_10(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_10(void);
     void func_80015E80(s32, void *);
     s32 func_80015FA0(s32);
     void func_80016068(u32, f32 *);
@@ -3324,7 +3324,7 @@ void func_80805BFC_chgameselect(Actor *arg0, s32 arg1) {
 }
 
 void func_80805CD8_chgameselect(Actor *arg0, s32 arg1) {
-    s32 _gcstatusDll_entrypoint_14();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_14();
     s32 _gcstatusDll_entrypoint_4(s32);
     s32 func_80805ECC_chgameselect(s32 *, s32);
     void func_80806068_chgameselect(void *, s32, s32);
@@ -3374,8 +3374,8 @@ void func_80805CD8_chgameselect(Actor *arg0, s32 arg1) {
 }
 
 s32 func_80805ECC_chgameselect(s32 *arg0, s32 arg1) {
-    s32 _gcstatusDll_entrypoint_14();
-    s32 _gcstatusDll_entrypoint_19(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_14();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_19(void);
 
     switch (arg1) {
     case 1:
@@ -3440,7 +3440,7 @@ void func_80806068_chgameselect(void *arg0, s32 arg1, s32 arg2) {
     s32 _gcstatusDll_entrypoint_7(s32);
     s32 _gcstatusDll_entrypoint_8(s32);
     s32 _gcstatusDll_entrypoint_9(s32);
-    s32 _gcstatusDll_entrypoint_19(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_19(void);
 
     switch (arg1) {
     case 1:
@@ -3487,7 +3487,7 @@ void func_80806068_chgameselect(void *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_808061A8_chgameselect(Actor *arg0) {
-    s32 _gcstatusDll_entrypoint_10(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_10(void);
     void func_80802AD4_chgameselect(Unk80132ED0 *, s32, s32, s32, s32);
     u32 *func_80100074(Actor *, u32, u32);
 
@@ -3551,7 +3551,7 @@ void func_808062EC_chgameselect(s32 arg0, s32 arg1, s32 arg2, u8 *arg3) {
 }
 
 void func_80806370_chgameselect(Actor *arg0, s32 arg1) {
-    s32 _gcstatusDll_entrypoint_10(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_10(void);
     s32 _gcnewoption_entrypoint_20();
     u32 *func_80100074(Actor *, u32, u32);
     s32 count;
@@ -3798,7 +3798,7 @@ void func_808068AC_chgameselect(void *arg0, s32 arg1) {
 }
 
 s32 func_808068E8_chgameselect(void) {
-    s32 _gcstatusDll_entrypoint_10(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_10(void);
     s32 _gcstatusDll_entrypoint_16(BtIntPtr);
     s32 _gcstatusDll_entrypoint_6(s32, s32);
     s32 func_80806AA8_chgameselect(void);
@@ -3855,7 +3855,7 @@ void func_808069C8_chgameselect(s32 arg0)
   while (var_s0 != 4);
 }
 
- s32 _gcstatusDll_entrypoint_10(void);
+ BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_10(void);
 
 s32 func_80806A30_chgameselect(void) {
     s32 var_v1;

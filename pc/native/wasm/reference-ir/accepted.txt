@@ -150,3 +150,62 @@ original addresses of the BSS owners, floating-point literals and actor
 tables. Their individual reports identify the data bytes and relocations.
 See proof/*-whole.json for those stages and current-strict-six-ido/result.json
 for the cumulative comparison in build/acceptance/n1-2026-11-18/.
+
+2026-11-19  N2 return sign and width of status, quiz and camera getters
+The original gcstatus and glcut getters and func_800F8B88 load with lbu.
+suquiz_entrypoint_6 uses lb and returns -1 for an error. func_800A8178,
+func_800A8184 and the func_800CF6B0 wrapper return a signed lh.
+The signed and unsigned extensions and comparisons below follow those loads.
+The 49 canonical differences on the cumulative data-owner build reproduce
+signature-six-ir.log byte for byte. stage6-mips-review.md identifies the
+original objects, access instructions and call sites. Both reports are in
+build/acceptance/n2-2026-11-18/.
+func_800A6DAC
+func_800C0A34
+func_80800048_chfactorytwinklies
+func_8080015C_chgameselect
+func_808002FC_chfpsgame
+func_8080068C_chmonsterinterior
+func_8080075C_chfpsgame
+func_80800914_chfpsgame
+func_80800970_chballoonburst
+func_80800A08_gcnewpause
+func_80800D00_chfactorytwinklies
+func_80800DE0_chfactorytwinklies
+func_80800E0C_chmonsterinterior
+func_80800E9C_chfactorytwinklies
+func_80800F4C_chballoonburst
+func_80801130_chhoopswoop
+func_808011A8_chballoonburst
+func_808011B0_chfactorytwinklies
+func_808011BC_chmonsterinterior
+func_808011DC_chhoopswoop
+func_80801290_chballoonburst
+func_80801338_chballoonburst
+func_8080135C_chfpsgame
+func_808013BC_chfactorytwinklies
+func_808014B0_chfactorytwinklies
+func_8080154C_chquiz
+func_808015A4_chhoopswoop
+func_80801814_chfpsgame
+func_80801AB4_chhoopswoop
+func_80803AB0_chgameselect
+func_80803B3C_chgameselect
+func_80803CD4_bsfirstp
+func_80804170_chquiz
+func_80804F38_chgameselect
+func_80805498_chgameselect
+func_8080569C_chgameselect
+func_808058F0_chquiz
+func_80805CD8_chgameselect
+func_80805ECC_chgameselect
+func_808061A8_chgameselect
+func_80806370_chgameselect
+func_808068E8_chgameselect
+func_80806A30_chgameselect
+func_80806AA8_chgameselect
+func_80806AD4_chgameselect
+func_80806C54_chgameselect
+func_80808F38_bsfirstp
+sumultiscore_entrypoint_2
+sumultiscore_entrypoint_3

@@ -2611,3 +2611,18 @@ Der kumulative Neubau mit Original-IDO bestätigt alle 16.401 Funktionen
 samt Adresse, Größe und Instruktionen sowie beide vollständigen ROM-Abbilder.
 Alle elf Suiten und 74 Replays mit 447.849 Retraces bestanden. Die Nachweise
 liegen unter `build/acceptance/n1-2026-11-18/current-strict-six*`.
+
+## 2026-11-19 — N2, Rückgabetypen von Status-, Quiz- und Kamerafunktionen
+
+Die Aufrufer verwenden nun die Rückgabebreite und das Vorzeichen des
+Originals. Die Getter für den Spielstatus lesen ein Byte mit `lbu`, die
+Quizfunktion verwendet `lb` und kann −1 zurückgeben. Für die drei
+vorzeichenbehafteten 16-Bit-Rückgaben ist jeweils das `lh` belegt.
+Damit verbleiben bei abgeschalteter Aufrufkorrektur 83 statt 96 ungültige
+Aufrufvarianten. Die 49 geänderten IR-Funktionen sind im Einzelvergleich
+aufgeführt. Die elf Suiten und 74 Referenzläufe stimmen überein.
+
+Der gemeinsame Original-IDO-Neubau bestätigt 16.401 Funktionen und beide
+ROM-Abbilder. Die Protokolle liegen unter `build/acceptance/n2-2026-11-18/`
+in `stage6-mips-review.md`, `current-six-ir.log`, `current-six.log` und
+`current-six-ido/result.json`.

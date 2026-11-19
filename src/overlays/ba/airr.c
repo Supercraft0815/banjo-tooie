@@ -1,5 +1,5 @@
 #include "common.h"
-
+BT_NATIVE_ONLY(u8 func_800F8B88(void);)
 #include "overlays/ba/playerstate.h"
 #include "gameflags.h"
 

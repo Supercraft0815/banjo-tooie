@@ -1,5 +1,5 @@
 #include "core2/1ECE0B0.h"
-
+BT_NATIVE_ONLY(u8 func_800F8B88(void);)
 extern PlayerState* D_80135490[];
 extern s32 func_800966BC(void *);
 extern f32 func_800964DC(PlayerState *);

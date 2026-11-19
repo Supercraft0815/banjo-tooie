@@ -51,7 +51,7 @@ void func_80800140_sumultiscore(s32 *arg0, s32 *arg1, s32 *arg2, s32 arg3) {
 }
 
 s32 sumultiscore_entrypoint_2(s32 *arg0, s32 *arg1, s32 *arg2, s32 arg3, s32 arg4) {
-    s32 _gcstatusDll_entrypoint_11();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_11();
     void func_800AA200(s32);
     void func_800AA20C(s32, s32);
     s32 func_800D3948(void);
@@ -94,7 +94,7 @@ s32 sumultiscore_entrypoint_2(s32 *arg0, s32 *arg1, s32 *arg2, s32 arg3, s32 arg
 /* extern */
 
 void sumultiscore_entrypoint_3(u8 *arg0) {
-    s32 _gcstatusDll_entrypoint_11();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_11();
     void func_800A8A04(s32, s32 *, s32 *, s32 *, s32 *);
     s32 func_800A940C(s32);
     s32 sumultiscore_entrypoint_4(u8 *, s32, s32, s32);

@@ -26,7 +26,7 @@
 #include "core2/1EBB4F0.h"
 #include "core2/1ED3900.h"
 #include "core2/1EB3750.h"
-
+BT_NATIVE_ONLY(u8 _gcstatusDll_entrypoint_11(void);)
 #include "gc/level.h"
 #include "gc/audiolist.h"
 

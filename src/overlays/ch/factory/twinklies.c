@@ -46,7 +46,7 @@ struct player_state_s;
 
 void func_80800048_chfactorytwinklies(Actor *arg0) {
     typedef struct player_state_s PlayerState;
-    s32 _gcstatusDll_entrypoint_11(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_11(void);
     void _susubgame_entrypoint_0(BtIntPtr arg0, u8 *arg1, s32 arg2);
     void _susubgame_entrypoint_11(s32 arg0);
     void func_800946C4(PlayerState *, s32);
@@ -453,7 +453,7 @@ s32 func_80800B80_chfactorytwinklies(Actor *arg0, s32 *arg1) {
 }
 
 void func_80800D00_chfactorytwinklies(Actor *arg0) {
-    s32 _gcstatusDll_entrypoint_11(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_11(void);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_800F849C(s32, f32);
     void *func_80100094(Actor *, u32);
@@ -473,7 +473,7 @@ void func_80800D00_chfactorytwinklies(Actor *arg0) {
 
 void func_80800DE0_chfactorytwinklies(Actor *arg0) {
     typedef struct player_state_s PlayerState;
-    s32 _gcstatusDll_entrypoint_11(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_11(void);
     void _subaddiemulti_entrypoint_3(s32 arg0);
     void func_800946C4(PlayerState *, s32);
     void func_800A16BC(s32);
@@ -501,7 +501,7 @@ void func_80800DE0_chfactorytwinklies(Actor *arg0) {
 
 void func_80800E9C_chfactorytwinklies(Actor *arg0) {
     s32 _chmrtannoy_entrypoint_0(void);
-    s32 _gcstatusDll_entrypoint_11(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_11(void);
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
     s32 _subaddiefind_entrypoint_9(s32);
     s32 func_800C954C(void);
@@ -605,7 +605,7 @@ s32 func_80801174_chfactorytwinklies(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_808011B0_chfactorytwinklies(Actor *arg0) {
-    s32 _gcstatusDll_entrypoint_11();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_11();
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
     s32 _subaddiemulti_entrypoint_1(s32, s32);
     void func_800AA20C(s32, s32);
@@ -656,7 +656,7 @@ void func_808011B0_chfactorytwinklies(Actor *arg0) {
 }
 
 void func_808013BC_chfactorytwinklies(Actor *arg0, s32 arg1) {
-    s32 _gcstatusDll_entrypoint_11();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_11();
     s32 func_800D24E8(s32, s32, u32);
     s32 func_800D28A0(s32);
     void *func_80100094(Actor *, u32);
@@ -695,7 +695,7 @@ void func_8080145C_chfactorytwinklies(Actor *arg0) {
 
 void func_808014B0_chfactorytwinklies(Actor *arg0) {
     void _chscorepoints_entrypoint_2(s32, BtIntPtr, f32 *, s32);
-    s32 _gcstatusDll_entrypoint_11(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_11(void);
     s32 func_800CEAA8(s32);
     s32 func_800CEAD0(s32);
     s32 func_800F55FC(BtIntPtr);

@@ -76,7 +76,7 @@ void sccustom_banjo_entrypoint_0(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
 void sccustom_banjo_entrypoint_1(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
     s32 _scinfobar_entrypoint_11(void *arg0);
     f32 _scinfobar_entrypoint_18(f32 *arg0);
-    s32 func_800CF6B0();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s16) func_800CF6B0();
     s32 func_800CF6D0();
     BtIntPtr func_800D674C(s32);
     void func_800E24F8(s32, s32, s32);

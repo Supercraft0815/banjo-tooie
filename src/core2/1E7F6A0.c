@@ -407,7 +407,7 @@ void func_800A6DAC(Actor *arg0, s32 arg1) {
     s32 func_800F65D0(BtIntPtr);
     int func_800F6640(s32);
     s32 func_800F6E80(s32);
-    s32 func_800F8B88(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) func_800F8B88(void);
 
     if (func_800F6438(arg0->unk74_7) &&
         func_800F6640(arg0->unk74_7) &&

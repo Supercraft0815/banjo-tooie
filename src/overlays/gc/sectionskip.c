@@ -129,7 +129,7 @@ s32 gcsectionskip_entrypoint_1(BtIntPtr arg0, s32 arg1, s32 arg2, u32 arg3, u8 *
     s32 func_800F6D24(BtIntPtr);
     s32 func_800F70BC(BtIntPtr);
     s32 func_800F7C9C(BtIntPtr, s32, s32, s32);
-    s32 func_800F8B88(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) func_800F8B88(void);
     void func_80800374_gcsectionskip();
     s32 func_80800D3C_gcsectionskip(s32 *, s32 *);
     void func_80800EF8_gcsectionskip(s32, s32);

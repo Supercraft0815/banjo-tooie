@@ -659,7 +659,7 @@ void func_80800D28_chhoopswoop(void *arg0, s32 arg1) {
 }
 
 void func_80801130_chhoopswoop(Actor *arg0) {
-    s32 _gcstatusDll_entrypoint_11();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_11();
     void _subaddiemulti_entrypoint_3(s32 arg0);
     void _sumultiscore_entrypoint_3(u8 *arg0);
     s32 _sumultiscore_entrypoint_4(u8 *, s32, s32, s32);
@@ -699,7 +699,7 @@ void func_808011DC_chhoopswoop(Actor *arg0) {
         u8 score[0x51C];
         f32 timer;
     } HoopData;
-    s32 _gcstatusDll_entrypoint_11();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_11();
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
     s32 _subaddiefind_entrypoint_9(s32);
     void _sumultiscore_entrypoint_6(u8 *);
@@ -828,7 +828,7 @@ void func_8080153C_chhoopswoop(void *arg0)
 }
 
 void func_808015A4_chhoopswoop(Actor *arg0) {
-    s32 _gcstatusDll_entrypoint_11();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_11();
     s32 _subaddiemulti_entrypoint_1(s32, s32);
     void _sumultiscore_entrypoint_11(u8 *, s32, s32, f32);
     s32 _sumultiscore_entrypoint_8(void *, s32, s32);
@@ -995,7 +995,7 @@ s32 func_80801AB4_chhoopswoop(Actor *arg0) {
         u8 multiplayer[1];
     } ParentData;
     void _chscorepoints_entrypoint_2(s32, BtIntPtr, f32 *, s32);
-    s32 _gcstatusDll_entrypoint_11();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_11();
     void _sumultiscore_entrypoint_7(u8 *, BtIntPtr, s32, s32);
     s32 func_800D3948(void);
     f32 func_800EEAA4(f32 *, f32 *);

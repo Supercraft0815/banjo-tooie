@@ -2347,8 +2347,8 @@ void bsfirstp_entrypoint_14(register struct player_state_s *self) {
 
 s32 func_80803CD4_bsfirstp(void *arg0, s32 arg1, s32 arg2, s32 arg3, f32 *arg4) {
     void _bamotor_entrypoint_0(void *, f32, f32);
-    s32 _gcstatusDll_entrypoint_14(void);
-    s32 _gcstatusDll_entrypoint_15(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_14(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_15(void);
     s32 _gcstatusDll_entrypoint_20(void);
     s32 bs_getCurrentState(struct player_state_s *);
     s32 func_8009BD44(void *);
@@ -2978,7 +2978,7 @@ BtFnWord bsfirstp_entrypoint_20(s32 arg0) {
 }
 
 void func_80804E1C_bsfirstp(struct player_state_s *arg0) {
-    s32 _glcutDll_entrypoint_1();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _glcutDll_entrypoint_1();
     u32 func_800A3404(void *);
     void baanim_playForDuration_loopStartingAt(struct player_state_s *, enum asset_e, f32, f32);
     void func_80807BB8_bsfirstp(void *);
@@ -5541,8 +5541,8 @@ void func_80808F38_bsfirstp(struct player_state_s *arg0) {
     void baphysics_set_vertical_velocity(PlayerState *, f32);
     void baphysics_set_gravity(PlayerState *, f32);
     void yaw_applyIdeal(PlayerState *);
-    s32 _gcstatusDll_entrypoint_14();
-    s32 _gcstatusDll_entrypoint_15();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_14();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_15();
     void _bababykaz_entrypoint_14(PlayerState *);
     s32 func_800D3948(void);
     s32 func_800F7F98(BtIntPtr, u32);

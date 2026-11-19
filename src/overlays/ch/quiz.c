@@ -169,7 +169,7 @@ s32 func_8080034C_chquiz(Actor *arg0, s32 arg1) {
     s32 _gcnewoption_entrypoint_43(u8 *arg0, s32 arg1, s32 arg2);
     void _gcnewoption_entrypoint_44(void *arg0, s32 arg1);
     s32 _suquiz_entrypoint_10(s32);
-    s32 _suquiz_entrypoint_6(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s8) _suquiz_entrypoint_6(void);
     void *func_80100094(Actor *, u32);
     s32 func_80800B6C_chquiz(Actor *);
     s32 func_80800C00_chquiz(Actor *);
@@ -810,8 +810,8 @@ s32 func_80801544_chquiz(s32 arg0) {
 }
 
 s32 func_8080154C_chquiz(void *arg0) {
-    s32 _gcstatusDll_entrypoint_17();
-    s32 _gcstatusDll_entrypoint_18(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_17();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_18(void);
     s32 _suquiz_entrypoint_16();
     s32 func_800D3948(void);
     s32 func_80801784_chquiz(void *, s32);
@@ -1409,7 +1409,7 @@ void func_80802628_chquiz(Actor *arg0) {
 void func_80802664_chquiz(Actor *arg0) {
     s32 _suexpression_entrypoint_10(BtIntPtr, BtIntPtr, BtIntPtr);
     s32 _suquiz_entrypoint_28(s32, u32, void *);
-    s32 _suquiz_entrypoint_6(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s8) _suquiz_entrypoint_6(void);
     void func_800C3F48(u32);
     void *func_80100094(Actor *, u32);
     s32 func_80101180(s32, s32, BtIntPtr);
@@ -1542,7 +1542,7 @@ s32 func_80802A2C_chquiz(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _suexpression_entrypoint_8(Actor *, s32);
     s32 _suquiz_entrypoint_11(s32);
     s32 _suquiz_entrypoint_21(s32, s32);
-    s32 _suquiz_entrypoint_6(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s8) _suquiz_entrypoint_6(void);
     s32 _suquiz_entrypoint_9(s32);
     s32 func_800D3948(void);
     s32 func_800D395C(void);
@@ -2277,8 +2277,8 @@ void func_80804170_chquiz(Actor *arg0, s32 arg1) {
     s32 _chintrotext_entrypoint_1(s32, s32, s32, s32);
     s32 _gcgoto_entrypoint_2(s32, s32, s32);
     s32 _gcnewoption_entrypoint_47(s32);
-    s32 _gcstatusDll_entrypoint_17();
-    s32 _gcstatusDll_entrypoint_18(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_17();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_18(void);
     s32 _glglobalsettings_entrypoint_3();
     s32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, s32, s32, f32 *, s32);
     s32 _suquiz_entrypoint_11(s32);
@@ -2287,7 +2287,7 @@ void func_80804170_chquiz(Actor *arg0, s32 arg1) {
     s32 _suquiz_entrypoint_2();
     s32 _suquiz_entrypoint_20(s32);
     s32 _suquiz_entrypoint_4();
-    s32 _suquiz_entrypoint_6();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s8) _suquiz_entrypoint_6();
     f32 _suquiz_entrypoint_8(s32);
     s32 func_8008F8B0();
     s32 func_8008F8D8(s32);
@@ -2762,7 +2762,7 @@ void func_80805404_chquiz(Actor *arg0) {
     s32 _suexpression_entrypoint_10();
     s32 _suquiz_entrypoint_1(void);
     s32 _suquiz_entrypoint_4(void);
-    s32 _suquiz_entrypoint_6(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s8) _suquiz_entrypoint_6(void);
     s32 _suquiz_entrypoint_11(s32);
     s32 _suquiz_entrypoint_19(s32);
     s32 _suquiz_entrypoint_22(f32 *, f32 *);
@@ -2952,15 +2952,15 @@ s32 func_808058F0_chquiz(s32 *arg0, s32 arg1, s32 arg2) {
     void *func_80100094(Actor *, u32);
     void _gcfrontend_entrypoint_10(void);
     void _gcfrontend_entrypoint_11(void);
-    s32 _gcstatusDll_entrypoint_17();
-    s32 _gcstatusDll_entrypoint_18(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_17();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_18(void);
     BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
     s32 _suexpression_entrypoint_8(Actor *, s32);
     s32 _suquiz_entrypoint_19(s32);
     s32 _suquiz_entrypoint_23(void);
     u32 _suquiz_entrypoint_3(void);
     s32 _suquiz_entrypoint_5(void);
-    s32 _suquiz_entrypoint_6(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s8) _suquiz_entrypoint_6(void);
     f32 _suquiz_entrypoint_8(s32);
     u32 func_800D3D04(void);
     s32 func_808005C0_chquiz(Actor *, s32, s32);

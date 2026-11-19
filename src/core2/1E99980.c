@@ -341,8 +341,8 @@ s32 func_800C0948(void) {
 
 void func_800C0984(BtIntPtr arg0) {
     void _gcnewpause_entrypoint_3(BtUIntPtr, PauseState *);
-    s32 func_800A8178(void);
-    s32 func_800A8184(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s16) func_800A8178(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s16) func_800A8184(void);
     void func_800C0F8C(BtIntPtr);
     void func_800C0FD8(BtIntPtr);
     void func_800C1044(BtIntPtr);
@@ -375,7 +375,7 @@ void func_800C0A2C(void) {
 }
 
 s32 func_800C0A34(void) {
-    s32 _gcstatusDll_entrypoint_11();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _gcstatusDll_entrypoint_11();
     s32 func_80015FA0(s32);
     s32 func_800C9510();
     s32 func_800C95D4();
