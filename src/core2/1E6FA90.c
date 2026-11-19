@@ -1,9 +1,10 @@
 #include "core2/1E6F080.h"
+#include "core2/movement_collision.h"
 
 s32 func_800961A0(s32 *arg0, s32 arg1)
 {
-    ((u8 *) arg0[0x25])[0xA2] = arg1; BT_NATIVE_ONLY(return 0;)
-}    typedef struct { u8 pad0[0x9C]; s32 unk9C; } Obj1E6FA90_func_800961AC_data; /* offsets.py genstruct: fields from raw offsets on data; rename once understood */
+    ((PlayerState *)arg0)->collisionState->flagA2 = arg1; BT_NATIVE_ONLY(return 0;)
+}
 
 void func_800961AC(PlayerState *arg0, s32 arg1) {
     void func_80097858(void *);
@@ -11,21 +12,21 @@ void func_800961AC(PlayerState *arg0, s32 arg1) {
     void _bahitspline_entrypoint_0();
     void _bahitspline_entrypoint_1(PlayerState *, s32);
     s32 state;
-    void *data;
+    PlayerCollisionState *data;
 
-    data = *(void **)((s8 *)arg0 + 0x94);
-    state = ((Obj1E6FA90_func_800961AC_data *)data)->unk9C;
+    data = arg0->collisionState;
+    state = data->mode;
     switch (state) {
     case 7:
         func_80097858(arg0);
-        data = *(void **)((s8 *)arg0 + 0x94);
+        data = arg0->collisionState;
         break;
     case 10:
         _bahitspline_entrypoint_0(arg0, arg1);
-        data = *(void **)((s8 *)arg0 + 0x94);
+        data = arg0->collisionState;
         break;
     }
-    ((Obj1E6FA90_func_800961AC_data *)data)->unk9C = arg1;
+    data->mode = arg1;
     switch (arg1) {
     case 7:
         func_8009788C(arg0);
@@ -38,7 +39,7 @@ void func_800961AC(PlayerState *arg0, s32 arg1) {
 
 void func_80096254(s32 *arg0, s32 arg1)
 {
-    ((s32 *) arg0[0x25])[0x2A] = arg1;
+    ((PlayerState *)arg0)->collisionState->status = arg1;
 }
 
 void func_80096260(PlayerState *arg0) {
@@ -51,18 +52,18 @@ void func_80096260(PlayerState *arg0) {
 
 void func_800962B0(PlayerState *arg0, s32 arg1) {
     void func_800C68D4(s8 *arg0, s32 arg1);
-    func_800C68D4(*(*(s8 ***)((s8 *)(arg0) + (0x94))), arg1);
+    func_800C68D4(((PlayerState *)arg0)->collisionState->response.object, arg1);
 }
 
 /* extern */
 
 f32 func_800962D4(void *arg0) {
-    f32 func_8009C150();
+    BT_NATIVE_ONLY(f32 func_8009C150(PlayerState *);) BT_IDO_ONLY(f32 func_8009C150();)
     f32 func_800C6784(void *);
     f32 sp1C;
 
-    sp1C = func_8009C150();
-    return sp1C - func_800C6784(*(*(void ***)((s8 *)(arg0) + (0x94))));
+    sp1C = func_8009C150(BT_NATIVE_ONLY(arg0));
+    return sp1C - func_800C6784(((PlayerState *)arg0)->collisionState->response.object);
 }
 
 /* extern */
@@ -77,30 +78,30 @@ f32 func_8009630C(PlayerState *arg0) {
     f32 sp1C;
 
     sp1C = func_8009C150(arg0);
-    sp20 = func_800C6784(*(*(void ***)((s8 *)arg0 + 0x94)));
-    return sp1C - func_800F0E00(sp20, func_800C67D8(*(arg0->unk94)));
+    sp20 = func_800C6784(((PlayerState *)arg0)->collisionState->response.object);
+    return sp1C - func_800F0E00(sp20, func_800C67D8(((PlayerState *)arg0)->collisionState->response.object));
 }
 
 f32 func_80096364(PlayerState *arg0) {
     f32 func_800C6784(void *);
-    return func_800C6784(*(*(void ***)((u8 *)arg0 + 0x94)));
+    return func_800C6784(((PlayerState *)arg0)->collisionState->response.object);
 }
 
 s32 func_80096388(PlayerState *arg0)
 {
-    return (*(s32 **)((u8 *)arg0 + 0x94))[39];
+    return ((PlayerState *)arg0)->collisionState->mode;
 }
 
 /* extern */
 
 void func_80096394(PlayerState *arg0, f32 *arg1) {
     void func_800EE7F8(f32 *, f32 *);
-    func_800EE7F8(arg1, (f32 *)(*(u8 **)((u8 *)arg0 + 0x94) + 0x90));
+    func_800EE7F8(arg1, ((PlayerState *)arg0)->collisionState->movement);
 }
 
 void func_800963C0(PlayerState *arg0, f32 *arg1) {
     void func_800C675C(void *arg0, f32 *arg1);
-    func_800C675C(*(*(u8 ***)((s8 *)(arg0) + (0x94))), arg1);
+    func_800C675C(((PlayerState *)arg0)->collisionState->response.object, arg1);
 }
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(f32) func_800963E4(PlayerState *arg0) {
@@ -112,22 +113,22 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(f32) func_800963E4(PlayerState *arg0) {
 }
 
 int func_8009640C(PlayerState *arg0) {
-    u8 *ptr;
+    PlayerCollisionState *ptr;
 
-    ptr = *(u8 **)((u8 *)arg0 + 0x94);
-    return ptr[0x18] == 0 && ptr[0x56] != 0;
+    ptr = arg0->collisionState;
+    return ptr->response.previous == 0 && ptr->response.flag != 0;
 }
 
 s32 func_80096434(PlayerState *arg0)
 {
-    return (*(s32 **)((u8 *)arg0 + 0x94))[29];
+    return ((PlayerState *)arg0)->collisionState->triangleCopy.flags;
 }
 
 /* extern */
 
 void func_80096440(PlayerState *arg0, f32 *arg1) {
     void func_800EE7F8(f32 *, f32 *);
-    func_800EE7F8(arg1, (f32 *)(*(u8 **)((u8 *)arg0 + 0x94) + 0x44));
+    func_800EE7F8(arg1, ((PlayerState *)arg0)->collisionState->response.normal);
 }
 
 void func_8009646C(u8 *arg0, f32 *arg1) {
@@ -138,7 +139,7 @@ void func_8009646C(u8 *arg0, f32 *arg1) {
     var_s0 = 0;
     var_s1 = arg1;
     do {
-        func_800EE7F8(var_s1, (f32 *)(*(u8 **)(arg0 + 0x94) + var_s0 + 0x20));
+        func_800EE7F8(var_s1, (f32 *)((u8 *)((PlayerState *)arg0)->collisionState->response.matrix + var_s0));
         var_s0 += 0xC;
         var_s1 += 3;
     } while (var_s0 != 0x24);
@@ -146,102 +147,102 @@ void func_8009646C(u8 *arg0, f32 *arg1) {
 
 s32 func_800964D0(PlayerState *arg0)
 {
-    return (*(s32 **)((u8 *)arg0 + 0x94))[42];
+    return ((PlayerState *)arg0)->collisionState->status;
 }
 
 f32 func_800964DC(PlayerState *arg0) {
     f32 func_800C67D8(f32 *arg0);
-    return func_800C67D8(*(arg0->unk94));
+    return func_800C67D8(((PlayerState *)arg0)->collisionState->response.object);
 }
 
 s32 func_80096500(PlayerState *arg0)
 {
-    return (*(u8 **)((u8 *)arg0 + 0x94))[0xA1];
+    return ((PlayerState *)arg0)->collisionState->flagA1;
 }
 
 s32 func_8009650C(PlayerState *arg0)
 {
-    return (*(u8 **)((u8 *)arg0 + 0x94))[0x55];
+    return ((PlayerState *)arg0)->collisionState->response.count;
 }
 
 u32 func_80096518(PlayerState *arg0)
 {
-    return (*(u8 **)((u8 *)arg0 + 0x94))[0x56];
+    return ((PlayerState *)arg0)->collisionState->response.flag;
 }
 
 u32 func_80096524(PlayerState *arg0)
 {
-    return (*(u8 **)((u8 *)arg0 + 0x94))[0xA0];
+    return ((PlayerState *)arg0)->collisionState->flagA0;
 }
 
 s32 func_80096530(void *arg0) {
-    return (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x94)))) + (0xA3))) == 3;
+    return ((PlayerState *)arg0)->collisionState->flagA3 == 3;
 }
 
 /* extern */
 
 s32 func_80096544(PlayerState *arg0) {
     u8 func_800C670C(void *arg0);
-    return func_800C670C(*(*(s32 **)((s8 *)(arg0) + (0x94))));
+    return func_800C670C(((PlayerState *)arg0)->collisionState->response.object);
 }
 
 /* extern */
 
 s32 func_80096568(void *arg0, s32 arg1) {
     s32 func_800C6744(s32 *arg0);
-    return arg1 == (func_800C6744(*(*(s32 **)((s8 *)(arg0) + (0x94)))) & 0x1F00);
+    return arg1 == (func_800C6744(((PlayerState *)arg0)->collisionState->response.object) & 0x1F00);
 }
 
 /* extern */
 
 s32 func_8009659C(void *arg0, s32 arg1) {
     s32 func_800C6744(s32 *arg0);
-    return func_800C6744(*(*(s32 **)((s8 *)(arg0) + (0x94)))) & arg1;
+    return func_800C6744(((PlayerState *)arg0)->collisionState->response.object) & arg1;
 }
 
 u8 func_800965C8(void *arg0)
 {
-    return (*(u8 **)((u8 *)arg0 + 0x94))[0xA4];
+    return ((PlayerState *)arg0)->collisionState->flagA4;
 }
 
 BtIntPtr func_800965D4(void *arg0)
 {
-    return (*(s32 **)((u8 *)arg0 + 0x94))[0x14];
+    return ((PlayerState *)arg0)->collisionState->response.contact;
 }
 
 /* extern */
 
-void func_800965E0(void *arg0 BT_PASS2(, s32 bt_a1)) {
-    s32 func_800C67F8(s32);
-    func_800C67F8(*(*(s32 **)((s8 *)(arg0) + (0x94))));
+void func_800965E0(void *arg0 BT_PASS2(, u8 *bt_a1)) {
+    BT_NATIVE_ONLY(void func_800C67F8(u8 *, u8 *);) BT_IDO_ONLY(s32 func_800C67F8(s32);)
+    func_800C67F8(((PlayerState *)arg0)->collisionState->response.object BT_PASS2(, bt_a1));
 }
 
 /* extern */
 
-void func_80096604(void *arg0 BT_PASS2(, s32 bt_a1)) {
-    s32 func_800C6840(s32);
-    func_800C6840(*(*(s32 **)((s8 *)(arg0) + (0x94))));
+void func_80096604(void *arg0 BT_PASS2(, f32 *bt_a1)) {
+    BT_NATIVE_ONLY(void func_800C6840(f32 *, f32 *);) BT_IDO_ONLY(s32 func_800C6840(s32);)
+    func_800C6840(((PlayerState *)arg0)->collisionState->response.object BT_PASS2(, bt_a1));
 }
 
 /* extern */
 
 s32 func_80096628(PlayerState *arg0) {
     s32 func_800C6744(s32 *arg0);
-    return func_800C6744(*(*(s32 **)((s8 *)(arg0) + (0x94))));
-}    typedef struct { u8 pad0[0x94]; s32 * unk94; } Obj1E6FA90_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+    return func_800C6744(((PlayerState *)arg0)->collisionState->response.object);
+}
 
 /* extern */
 
 void func_8009664C(void *arg0) {
     s32 func_800C674C(s16 *arg0);
-    func_800C674C(*(((Obj1E6FA90_arg0 *)arg0)->unk94));
+    func_800C674C(((PlayerState *)arg0)->collisionState->response.object);
 }
 
 /* extern */
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80096670(void *arg0) {
     s32 func_800C67C8(s32 *arg0);
-    BT_NATIVE_ONLY(return) func_800C67C8(*(*(s32 **)((s8 *)(arg0) + (0x94))));
+    BT_NATIVE_ONLY(return) func_800C67C8(((PlayerState *)arg0)->collisionState->response.object);
 }
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80096694(PlayerState* a0)
@@ -253,21 +254,21 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80096694(PlayerState* a0)
 
 s32 func_800966BC(void *arg0) {
     s32 func_800C67E0(s32 *arg0);
-    return func_800C67E0(*(*(s32 **)((s8 *)(arg0) + (0x94))));
+    return func_800C67E0(((PlayerState *)arg0)->collisionState->response.object);
 }
 
 /* extern */
 
 BtIntPtr func_800966E0(void *arg0) {
     void *func_800C67E8(void *arg0);
-    return func_800C67E8(*(*(s32 **)((s8 *)(arg0) + (0x94))));
+    return func_800C67E8(((PlayerState *)arg0)->collisionState->response.object);
 }
 
 /* extern */
 
 void func_80096704(void *arg0) {
     void func_800C5B84(BtIntPtr arg0);
-    func_800C5B84(*(((Obj1E6FA90_arg0 *)arg0)->unk94));
+    func_800C5B84(((PlayerState *)arg0)->collisionState->response.object);
 }
 
 /* extern */
@@ -276,9 +277,9 @@ void func_80096728(void *arg0) {
     void* func_800C5BC4(void* arg0);
     BtIntPtr temp_a1;
 
-    temp_a1 = *(((Obj1E6FA90_arg0 *)arg0)->unk94);
+    temp_a1 = (BtIntPtr)((PlayerState *)arg0)->collisionState->response.object;
     if (temp_a1 != 0) {
-        *(((Obj1E6FA90_arg0 *)arg0)->unk94) = func_800C5BC4(temp_a1);
+        ((PlayerState *)arg0)->collisionState->response.object = func_800C5BC4((void *)temp_a1);
     }
 }
 
@@ -290,14 +291,14 @@ void func_80096768(PlayerState *arg0) {
     f32 sp1C[3];
 
     func_8009C128(arg0, sp1C);
-    func_800D4D5C((BtIntPtr) sp1C, *(void **)((s8 *)arg0 + 0x94));
+    func_800D4D5C((BtIntPtr) sp1C, arg0->collisionState);
 }
 
 /* extern */
 
 void func_8009679C(void *arg0) {
     void func_800C68DC(s8 *arg0);
-    func_800C68DC(*(((Obj1E6FA90_arg0 *)arg0)->unk94));
+    func_800C68DC(((PlayerState *)arg0)->collisionState->response.object);
 }
 
 s32 func_800967C0()

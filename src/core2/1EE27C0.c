@@ -392,7 +392,7 @@ s32 func_801099D0(BtIntPtr arg0, f32 arg1, s32 arg2, BtIntPtr arg3, s32 arg4, Bt
         s32 (*test)(void *, void *);
     };
     s32 *func_800BE444(f32 *);
-    s16 func_800CB854(s32 *);
+    s16 func_800CB854(BtIntPtr *);
     BtIntPtr func_800E9E88(BtIntPtr);
     BtUIntPtr func_800E9EB4(s16 *);
     void *func_80106790(BtIntPtr);
@@ -494,7 +494,7 @@ s32 func_80109CC4(f32 *arg0, f32 arg1, void *arg2) {
         BT_BITFIELD_ORDER(u32 pad70b : 1, u32 pad70 : 30);
     } HitFlags;
     s32 *func_800BE444(f32 *);
-    s16 func_800CB854(s32 *);
+    s16 func_800CB854(BtIntPtr *);
     BtIntPtr func_800E9E88(BtIntPtr);
     BtUIntPtr func_800E9EB4(s16 *);
     void *func_80106790();
@@ -635,7 +635,7 @@ Unk80132ED0 *func_8010A01C(f32 *arg0, f32 *arg1, f32 arg2, f32 arg3, s32 arg4) {
         BT_BITFIELD_ORDER(u32 active : 1, u32 pad8 : 27);
     };
     s32 *func_800BE444(f32 *);
-    s16 func_800CB854(s32 *);
+    s16 func_800CB854(BtIntPtr *);
     BtIntPtr func_800E9E88(BtIntPtr);
     BtUIntPtr func_800E9EB4(s16 *);
     void func_800EE7F8(f32 *, f32 *);

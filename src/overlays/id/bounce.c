@@ -1,4 +1,7 @@
 #include "common.h"
+#include "core2/world_effect.h"
+
+extern u8 D_80135480[3], D_80135483;
 
 f32 func_80800000_idbounce(void) {
     s32 func_8008FD48();
@@ -15,7 +18,7 @@ f32 func_80800000_idbounce(void) {
     }
 }
 
-void idbounce_entrypoint_0(s32 arg0, u8 *arg1, u32 arg2, s32 arg3, u8 *arg4) {
+void idbounce_entrypoint_0(s32 arg0, u8 *arg1, BtUIntPtr arg2, s32 arg3, u8 *arg4) {
     u32 func_800F54E4(void);
     void func_800F83E4(BtIntPtr, f32);
     extern s32 D_8013546C;
@@ -37,7 +40,7 @@ void idbounce_entrypoint_0(s32 arg0, u8 *arg1, u32 arg2, s32 arg3, u8 *arg4) {
     f32 temp_f2_2;
     f32 var_f20;
     f32 var_f20_2;
-    u32 temp_s4;
+    BtUIntPtr temp_s4;
     BtUIntPtr var_s1;
     s32 temp_v0_2;
     u8 *var_s3;
@@ -48,8 +51,8 @@ void idbounce_entrypoint_0(s32 arg0, u8 *arg1, u32 arg2, s32 arg3, u8 *arg4) {
     sp74 = *(f32 *)(arg4 + 0xC);
     temp_f24 = *(f32 *)(arg4 + 0x20);
     var_s3 = arg1;
-    sp6C = *(f32 *)(arg4 + 0x40);
-    sp68 = *(f32 *)(arg4 + 0x44);
+    sp6C = ((BounceEffect *)arg4)->unk40;
+    sp68 = ((BounceEffect *)arg4)->unk44;
     temp_f26 = *(f32 *)(arg4 + 0x1C);
     if (arg2 < temp_s4) {
         do {
@@ -58,23 +61,23 @@ void idbounce_entrypoint_0(s32 arg0, u8 *arg1, u32 arg2, s32 arg3, u8 *arg4) {
                 temp_f0 = (f32)*(s16 *)var_s1 - sp78;
                 temp_f2 = (f32)*(s16 *)(var_s1 + 4) - sp74;
                 temp_f0_2 = sqrtf(temp_f0 * temp_f0 + temp_f2 * temp_f2);
-                temp_f2_2 = *(f32 *)(arg4 + 0x34);
+                temp_f2_2 = ((BounceEffect *)arg4)->unk34;
                 sp60 = temp_f0_2;
                 if (temp_f0_2 < temp_f2_2) {
                     var_f20 = 0.0f - temp_f24;
-                } else if (temp_f0_2 < *(f32 *)(arg4 + 0x38)) {
-                    var_f20 -= temp_f24 * (1.0f - ((temp_f0_2 - temp_f2_2) * *(f32 *)(arg4 + 0x3C)));
+                } else if (temp_f0_2 < ((BounceEffect *)arg4)->unk38) {
+                    var_f20 -= temp_f24 * (1.0f - ((temp_f0_2 - temp_f2_2) * ((BounceEffect *)arg4)->unk3C));
                 }
             }
-            temp_v0 = *(f32 **)(arg4 + 0x28);
+            temp_v0 = ((BounceEffect *)arg4)->cursor;
             temp_f0_3 = *temp_v0;
             var_f20 += (f32)(*(s16 *)(var_s3 + 2) - *(s16 *)(var_s1 + 2)) * sp6C - temp_f0_3 * sp68;
             *temp_v0 += var_f20 * temp_f26;
-            *(s16 *)(var_s1 + 2) += **(f32 **)(arg4 + 0x28) * temp_f26;
+            *(s16 *)(var_s1 + 2) += *((BounceEffect *)arg4)->cursor * temp_f26;
             if (D_80135480[1] != 0) {
                 temp_v0_2 = D_80135480[2];
-                if (temp_v0_2 == 0 && sp60 < *(f32 *)(arg4 + 0x34)) {
-                    temp_f0_4 = **(f32 **)(arg4 + 0x28);
+                if (temp_v0_2 == 0 && sp60 < ((BounceEffect *)arg4)->unk34) {
+                    temp_f0_4 = *((BounceEffect *)arg4)->cursor;
                     if (temp_f0_4 < 0.0f) {
                         temp_v0_2 *= 1;
                     }
@@ -90,12 +93,12 @@ void idbounce_entrypoint_0(s32 arg0, u8 *arg1, u32 arg2, s32 arg3, u8 *arg4) {
             }
             var_s1 += 0x10;
             var_s3 += 0x10;
-            (*(f32 **)(arg4 + 0x28))++;
+            (((BounceEffect *)arg4)->cursor)++;
         } while (var_s1 < temp_s4);
     }
 }
 
-void idbounce_entrypoint_1(s32 arg0, u8 *arg1, u32 arg2, s32 arg3, u8 *arg4)
+void idbounce_entrypoint_1(s32 arg0, u8 *arg1, BtUIntPtr arg2, s32 arg3, u8 *arg4)
 {
   u32 func_800F54E4(void);
   void func_800F83E4(BtIntPtr, f32);
@@ -118,7 +121,7 @@ void idbounce_entrypoint_1(s32 arg0, u8 *arg1, u32 arg2, s32 arg3, u8 *arg4)
   f32 var_f20;
   f32 var_f20_2;
   s32 *new_var;
-  u32 temp_s5;
+  BtUIntPtr temp_s5;
   BtUIntPtr var_s1;
   s32 temp_v0_2;
   BtUIntPtr temp_s2;
@@ -129,8 +132,8 @@ void idbounce_entrypoint_1(s32 arg0, u8 *arg1, u32 arg2, s32 arg3, u8 *arg4)
   sp74 = *((f32 *) (arg4 + 0xC));
   temp_f26 = *((f32 *) (arg4 + 0x20));
   var_s3 = arg1;
-  sp6C = *((f32 *) (arg4 + 0x40));
-  sp68 = *((f32 *) (arg4 + 0x44));
+  sp6C = ((BounceEffect *)arg4)->unk40;
+  sp68 = ((BounceEffect *)arg4)->unk44;
   temp_f28 = *((f32 *) (arg4 + 0x1C));
   if (arg2 < temp_s5)
   {
@@ -138,7 +141,7 @@ void idbounce_entrypoint_1(s32 arg0, u8 *arg1, u32 arg2, s32 arg3, u8 *arg4)
     if (!sp60)
     {
     }
-    temp_s2 = (BtUIntPtr) (((u8 *) new_var) + 0x14);
+    temp_s2 = (BtUIntPtr) BT_DATA_FIELD(D_80135480, (((u8 *) new_var) + 0x14));
     do
     {
       var_f20 = 0.0f;
@@ -147,33 +150,33 @@ void idbounce_entrypoint_1(s32 arg0, u8 *arg1, u32 arg2, s32 arg3, u8 *arg4)
         temp_f0 = ((f32) (*((s16 *) var_s1))) - sp78;
         temp_f2 = ((f32) (*((s16 *) (var_s1 + 4)))) - sp74;
         temp_f0_2 = sqrtf((temp_f0 * temp_f0) + (temp_f2 * temp_f2));
-        temp_f2_2 = *((f32 *) (arg4 + 0x34));
+        temp_f2_2 = ((BounceEffect *)arg4)->unk34;
         sp60 = temp_f0_2;
         if (temp_f0_2 < temp_f2_2)
         {
           var_f20 = 0.0f - temp_f26;
         }
         else
-          if (temp_f0_2 < (*((f32 *) (arg4 + 0x38))))
+          if (temp_f0_2 < (((BounceEffect *)arg4)->unk38))
         {
-          var_f20 -= temp_f26 * (1.0f - ((temp_f0_2 - temp_f2_2) * (*((f32 *) (arg4 + 0x3C)))));
+          var_f20 -= temp_f26 * (1.0f - ((temp_f0_2 - temp_f2_2) * (((BounceEffect *)arg4)->unk3C)));
         }
       }
-      temp_v0 = *((f32 **) (arg4 + 0x28));
+      temp_v0 = ((BounceEffect *)arg4)->cursor;
       temp_f0_3 = *temp_v0;
       var_f20 += (((f32) ((*((s16 *) (var_s3 + 2))) - (*((s16 *) (var_s1 + 2))))) * sp6C) - (temp_f0_3 * sp68);
       *temp_v0 += var_f20 * temp_f28;
-      *((s16 *) (var_s1 + 2)) = (s32) (((*(*((f32 **) (arg4 + 0x28)))) * temp_f28) + ((f32) (*((s16 *) (var_s1 + 2)))));
+      *((s16 *) (var_s1 + 2)) = (s32) (((*(((BounceEffect *)arg4)->cursor)) * temp_f28) + ((f32) (*((s16 *) (var_s1 + 2)))));
       if ((*((u8 *) (temp_s2 + 1))) != 0)
       {
         temp_v0_2 = *((u8 *) (temp_s2 + 2));
-        if ((temp_v0_2 == 0) && (sp60 < (*((f32 *) (arg4 + 0x34)))))
+        if ((temp_v0_2 == 0) && (sp60 < (((BounceEffect *)arg4)->unk34)))
         {
-          if ((*(*((f32 **) (arg4 + 0x28)))) < 0.0f)
+          if ((*(((BounceEffect *)arg4)->cursor)) < 0.0f)
           {
             temp_v0_2 = temp_v0_2 * 1;
           }
-          var_f20_2 = (*(*((f32 **) (arg4 + 0x28)))) / (*((f32 *) (arg4 + 0x50)));
+          var_f20_2 = (*(((BounceEffect *)arg4)->cursor)) / (((BounceEffect *)arg4)->unk50);
           if (temp_v0_2 == 0)
           {
             if (var_f20_2 > 2000.0f)
@@ -191,7 +194,7 @@ void idbounce_entrypoint_1(s32 arg0, u8 *arg1, u32 arg2, s32 arg3, u8 *arg4)
         *((s16 *) (var_s1 + 2)) = 0;
       }
       var_s1 += 0x10;
-      (*((f32 **) (arg4 + 0x28)))++;
+      (((BounceEffect *)arg4)->cursor)++;
     }
     while (var_s1 < temp_s5);
   }
@@ -200,7 +203,7 @@ void idbounce_entrypoint_1(s32 arg0, u8 *arg1, u32 arg2, s32 arg3, u8 *arg4)
   }
 }                    
 
-void idbounce_entrypoint_2(u8 *arg0, u32 arg1, u8 *arg2, s32 arg3, u8 *arg4) {
+void idbounce_entrypoint_2(u8 *arg0, BtUIntPtr arg1, u8 *arg2, s32 arg3, u8 *arg4) {
     u32 func_800F54E4(void);
     void func_800F83E4(BtIntPtr, f32);
     extern s32 D_8013546C;
@@ -223,7 +226,7 @@ void idbounce_entrypoint_2(u8 *arg0, u32 arg1, u8 *arg2, s32 arg3, u8 *arg4) {
     f32 var_f20;
     f32 var_f20_2;
     s32 temp_s5;
-    u32 temp_s6;
+    BtUIntPtr temp_s6;
     BtUIntPtr var_s1;
     s32 temp_v0_2;
     BtUIntPtr temp_s3;
@@ -234,47 +237,47 @@ void idbounce_entrypoint_2(u8 *arg0, u32 arg1, u8 *arg2, s32 arg3, u8 *arg4) {
     originY = (*(f32 *)((s8 *)(arg4) + (8)));
     sp74 = (*(f32 *)((s8 *)(arg4) + (0xC)));
     temp_f24 = (*(f32 *)((s8 *)(arg4) + (0x20)));
-    sp6C = (*(f32 *)((s8 *)(arg4) + (0x40)));
+    sp6C = (((BounceEffect *)arg4)->unk40);
     var_s1 = arg1;
-    sp68 = (*(f32 *)((s8 *)(arg4) + (0x44)));
+    sp68 = (((BounceEffect *)arg4)->unk44);
     var_s2 = arg2;
     var_s4 = arg0;
     temp_s5 = (*(u8 *)((s8 *)(arg4) + (0))) == 2;
     temp_s6 = (arg3 * 0x10) + arg1;
     temp_f26 = (*(f32 *)((s8 *)(arg4) + (0x1C)));
-    temp_s3 = (BtUIntPtr)((u8 *)&D_8013546C + 0x14);
+    temp_s3 = (BtUIntPtr)BT_DATA_FIELD(D_80135480, ((u8 *)&D_8013546C + 0x14));
     while (var_s1 < temp_s6) {
-            var_f12 = (*(f32 *)((s8 *)(arg4) + (0x38)));
+            var_f12 = (((BounceEffect *)arg4)->unk38);
             var_f20 = 0.0f;
             if (*(u8 *)(temp_s3 + 1) != 0) {
                 temp_f0 = (f32) (*(s16 *)((s8 *)(var_s2) + (0))) - temp_f30;
                 temp_f2 = (f32) (*(s16 *)((s8 *)(var_s2) + (4))) - sp74;
                 temp_f0_2 = sqrtf((temp_f0 * temp_f0) + (temp_f2 * temp_f2));
-                temp_f2_2 = (*(f32 *)((s8 *)(arg4) + (0x34)));
+                temp_f2_2 = (((BounceEffect *)arg4)->unk34);
                 var_f12 = temp_f0_2;
                 if (temp_f0_2 < temp_f2_2) {
                     var_f20 = 0.0f - temp_f24;
-                } else if (temp_f0_2 < (*(f32 *)((s8 *)(arg4) + (0x38)))) {
-                    var_f20 -= temp_f24 * (1.0f - ((temp_f0_2 - temp_f2_2) * (*(f32 *)((s8 *)(arg4) + (0x3C)))));
+                } else if (temp_f0_2 < (((BounceEffect *)arg4)->unk38)) {
+                    var_f20 -= temp_f24 * (1.0f - ((temp_f0_2 - temp_f2_2) * (((BounceEffect *)arg4)->unk3C)));
                 }
             }
-            temp_v0 = (*(f32 **)((s8 *)(arg4) + (0x28)));
+            temp_v0 = (((BounceEffect *)arg4)->cursor);
             temp_f0_3 = *temp_v0;
             var_f20 += ((f32) ((*(s16 *)((s8 *)(var_s4) + (2))) - (*(s16 *)((s8 *)(var_s2) + (2)))) * sp6C) - (temp_f0_3 * sp68);
             *temp_v0 += var_f20 * temp_f26;
-            (*(s16 *)((s8 *)(var_s1) + (2))) = (s16) (s32) ((*(*(f32 **)((s8 *)(arg4) + (0x28))) * temp_f26) + (f32) (*(s16 *)((s8 *)(var_s2) + (2))));
+            (*(s16 *)((s8 *)(var_s1) + (2))) = (s16) (s32) ((*(((BounceEffect *)arg4)->cursor) * temp_f26) + (f32) (*(s16 *)((s8 *)(var_s2) + (2))));
             if (*(u8 *)(temp_s3 + 1) != 0) {
                 temp_v0_2 = *(u8 *)(temp_s3 + 2);
-                if ((temp_v0_2 == 0) && (var_f12 < (*(f32 *)((s8 *)(arg4) + (0x34))))) {
-                    temp_f0_4 = *(*(f32 **)((s8 *)(arg4) + (0x28)));
+                if ((temp_v0_2 == 0) && (var_f12 < (((BounceEffect *)arg4)->unk34))) {
+                    temp_f0_4 = *(((BounceEffect *)arg4)->cursor);
                     if (temp_f0_4 < 0.0f) {
-                        var_f20_2 = temp_f0_4 / (*(f32 *)((s8 *)(arg4) + (0x50)));
+                        var_f20_2 = temp_f0_4 / (((BounceEffect *)arg4)->unk50);
                     } else {
-                        temp_f2_3 = (*(f32 *)((s8 *)(arg4) + (0x50)));
+                        temp_f2_3 = (((BounceEffect *)arg4)->unk50);
                         if (temp_f0_4 < (10.0f * temp_f2_3)) {
                             var_f20_2 = -1.0f;
-                        } else if ((*(f32 *)((s8 *)(arg4) + (0x48))) < temp_f0_4) {
-                            temp_f0_4 *= (*(f32 *)((s8 *)(arg4) + (0x4C)));
+                        } else if ((((BounceEffect *)arg4)->unk48) < temp_f0_4) {
+                            temp_f0_4 *= (((BounceEffect *)arg4)->unk4C);
                             var_f20_2 = temp_f0_4;
                         } else {
                             var_f20_2 = temp_f0_4 / temp_f2_3;
@@ -295,7 +298,7 @@ void idbounce_entrypoint_2(u8 *arg0, u32 arg1, u8 *arg2, s32 arg3, u8 *arg4) {
             }
             var_s1 += 0x10;
             var_s2 += 0x10;
-            (*(f32 **)((s8 *)(arg4) + (0x28))) = (f32 *) ((*(f32 **)((s8 *)(arg4) + (0x28))) + 1);
+            (((BounceEffect *)arg4)->cursor) = (f32 *) ((((BounceEffect *)arg4)->cursor) + 1);
     }
 }
 
@@ -329,16 +332,16 @@ int func_808008B4_idbounce(void) {
         return 0;
     }
     return 1;
-} typedef struct { u8 pad0[0x4]; f32 unk4; u8 pad8[0x14]; f32 unk1C; f32 unk20; union { f32 * unk24; void * unk24_voidp; }; f32 * unk28; f32 * unk2C; f32 unk30; f32 unk34; f32 unk38; f32 unk3C; f32 unk40; f32 unk44; f32 unk48; f32 unk4C; f32 unk50; f32 unk54; f32 unk58; f32 unk5C; } Objbounce_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+}
 
 void idbounce_entrypoint_3(void *arg0) {
     void heap_free(void *);
     extern u8 D_80135480[];
     u8 *state;
 
-    heap_free(((Objbounce_arg0 *)arg0)->unk24_voidp);
+    heap_free(((BounceEffect *)arg0)->begin);
     state = D_80135480;
-    state[3]--;
+    BT_NATIVE_ONLY(D_80135483--;) BT_IDO_ONLY(state[3]--;)
 }
 
 void idbounce_entrypoint_4(void *arg0, s32 arg1, void *arg2, s32 arg3, s32 arg4) {
@@ -359,26 +362,26 @@ void idbounce_entrypoint_4(void *arg0, s32 arg1, void *arg2, s32 arg3, s32 arg4)
 
     sp2C = func_80800874_idbounce(arg1);
     sp28 = _glidmake_entrypoint_3(arg2, arg3);
-    ((Objbounce_arg0 *)arg0)->unk24 = heap_alloc(sp28 * 4);
-    ((Objbounce_arg0 *)arg0)->unk2C = ((Objbounce_arg0 *)arg0)->unk24 + sp28;
-    ((Objbounce_arg0 *)arg0)->unk28 = ((Objbounce_arg0 *)arg0)->unk24;
-    while (((Objbounce_arg0 *)arg0)->unk28 < ((Objbounce_arg0 *)arg0)->unk2C) {
-        *((Objbounce_arg0 *)arg0)->unk28 = 0.0f;
-        (((Objbounce_arg0 *)arg0)->unk28)++;
+    ((BounceEffect *)arg0)->begin = heap_alloc(sp28 * 4);
+    ((BounceEffect *)arg0)->end = ((BounceEffect *)arg0)->begin + sp28;
+    ((BounceEffect *)arg0)->cursor = ((BounceEffect *)arg0)->begin;
+    while (((BounceEffect *)arg0)->cursor < ((BounceEffect *)arg0)->end) {
+        *((BounceEffect *)arg0)->cursor = 0.0f;
+        (((BounceEffect *)arg0)->cursor)++;
     }
-    ((Objbounce_arg0 *)arg0)->unk20 = 0.0f;
-    ((Objbounce_arg0 *)arg0)->unk30 = -sp2C[1] / -2700.0f;
-    ((Objbounce_arg0 *)arg0)->unk34 = sp2C[2];
-    ((Objbounce_arg0 *)arg0)->unk38 = sp2C[3];
-    ((Objbounce_arg0 *)arg0)->unk40 = sp2C[4];
-    ((Objbounce_arg0 *)arg0)->unk44 = sp2C[5];
-    ((Objbounce_arg0 *)arg0)->unk48 = sp2C[6];
-    ((Objbounce_arg0 *)arg0)->unk4C = sp2C[7];
+    ((BounceEffect *)arg0)->unk20 = 0.0f;
+    ((BounceEffect *)arg0)->unk30 = -sp2C[1] / -2700.0f;
+    ((BounceEffect *)arg0)->unk34 = sp2C[2];
+    ((BounceEffect *)arg0)->unk38 = sp2C[3];
+    ((BounceEffect *)arg0)->unk40 = sp2C[4];
+    ((BounceEffect *)arg0)->unk44 = sp2C[5];
+    ((BounceEffect *)arg0)->unk48 = sp2C[6];
+    ((BounceEffect *)arg0)->unk4C = sp2C[7];
     if (arg4 == 4) {
         temp_v0 = func_80106790(func_80106314());
         sp24 = temp_v0;
-        ((Objbounce_arg0 *)arg0)->unk50 = 1.0f / temp_v0->scale;
-        func_800EE7F8(&((Objbounce_arg0 *)arg0)->unk54, temp_v0->position);
+        ((BounceEffect *)arg0)->unk50 = 1.0f / temp_v0->scale;
+        func_800EE7F8(&((BounceEffect *)arg0)->unk54, temp_v0->position);
         switch (sp24->unk6C_9) {
             case 0x34C:
                 *(s8 *)arg0 = 2;
@@ -398,30 +401,30 @@ void idbounce_entrypoint_4(void *arg0, s32 arg1, void *arg2, s32 arg3, s32 arg4)
                 break;
         }
     } else {
-        ((Objbounce_arg0 *)arg0)->unk5C = 0.0f;
-        ((Objbounce_arg0 *)arg0)->unk58 = 0.0f;
-        ((Objbounce_arg0 *)arg0)->unk54 = 0.0f;
+        ((BounceEffect *)arg0)->unk5C = 0.0f;
+        ((BounceEffect *)arg0)->unk58 = 0.0f;
+        ((BounceEffect *)arg0)->unk54 = 0.0f;
         map = func_800EA05C();
         if (map != 0xE2 && map != 0xE4 && map != 0xE5 && map != 0xF8 && map != 0x138) {
-            ((Objbounce_arg0 *)arg0)->unk50 = 0.0f;
+            ((BounceEffect *)arg0)->unk50 = 0.0f;
             *(s8 *)arg0 = 0;
         } else {
             *(s8 *)arg0 = 3;
-            ((Objbounce_arg0 *)arg0)->unk50 = 1.0f;
+            ((BounceEffect *)arg0)->unk50 = 1.0f;
         }
     }
-    if (((Objbounce_arg0 *)arg0)->unk50) {
-        ((Objbounce_arg0 *)arg0)->unk30 *= ((Objbounce_arg0 *)arg0)->unk50;
-        ((Objbounce_arg0 *)arg0)->unk34 *= ((Objbounce_arg0 *)arg0)->unk50;
-        ((Objbounce_arg0 *)arg0)->unk38 *= ((Objbounce_arg0 *)arg0)->unk50;
-        ((Objbounce_arg0 *)arg0)->unk40 *= ((Objbounce_arg0 *)arg0)->unk50;
-        ((Objbounce_arg0 *)arg0)->unk44 *= ((Objbounce_arg0 *)arg0)->unk50;
-        ((Objbounce_arg0 *)arg0)->unk48 *= ((Objbounce_arg0 *)arg0)->unk50;
-        ((Objbounce_arg0 *)arg0)->unk4C /= ((Objbounce_arg0 *)arg0)->unk50;
+    if (((BounceEffect *)arg0)->unk50) {
+        ((BounceEffect *)arg0)->unk30 *= ((BounceEffect *)arg0)->unk50;
+        ((BounceEffect *)arg0)->unk34 *= ((BounceEffect *)arg0)->unk50;
+        ((BounceEffect *)arg0)->unk38 *= ((BounceEffect *)arg0)->unk50;
+        ((BounceEffect *)arg0)->unk40 *= ((BounceEffect *)arg0)->unk50;
+        ((BounceEffect *)arg0)->unk44 *= ((BounceEffect *)arg0)->unk50;
+        ((BounceEffect *)arg0)->unk48 *= ((BounceEffect *)arg0)->unk50;
+        ((BounceEffect *)arg0)->unk4C /= ((BounceEffect *)arg0)->unk50;
     }
     counter = D_80135480;
-    ((Objbounce_arg0 *)arg0)->unk3C = 1.0f / (sp2C[3] - sp2C[2]);
-    counter[3]++;
+    ((BounceEffect *)arg0)->unk3C = 1.0f / (sp2C[3] - sp2C[2]);
+    BT_NATIVE_ONLY(D_80135483++;) BT_IDO_ONLY(counter[3]++;)
 }
 
 void idbounce_entrypoint_5(void *arg0, void *arg1, s32 arg2) {
@@ -445,21 +448,21 @@ void idbounce_entrypoint_5(void *arg0, void *arg1, s32 arg2) {
     extern s32 D_8013546C;
     f32 sp34[3];
 
-    ((Objbounce_arg0 *)arg0)->unk1C = func_800D8FF8();
-    func_800F5A00(func_800F54E4(), &((Objbounce_arg0 *)arg0)->unk4);
-    func_800EF3DC(&((Objbounce_arg0 *)arg0)->unk4, &((Objbounce_arg0 *)arg0)->unk54);
-    if (((Objbounce_arg0 *)arg0)->unk50 != 0.0f) {
-        func_800EF334(&((Objbounce_arg0 *)arg0)->unk4, ((Objbounce_arg0 *)arg0)->unk50);
+    ((BounceEffect *)arg0)->unk1C = func_800D8FF8();
+    func_800F5A00(func_800F54E4(), &((BounceEffect *)arg0)->unk4);
+    func_800EF3DC(&((BounceEffect *)arg0)->unk4, &((BounceEffect *)arg0)->unk54);
+    if (((BounceEffect *)arg0)->unk50 != 0.0f) {
+        func_800EF334(&((BounceEffect *)arg0)->unk4, ((BounceEffect *)arg0)->unk50);
     }
-    ((Objbounce_arg0 *)arg0)->unk20 =
-        -((Objbounce_arg0 *)arg0)->unk30 * func_80800000_idbounce() * -2700.0f;
-    if (*((u8 *)&D_8013546C + 0x14) != 0) {
+    ((BounceEffect *)arg0)->unk20 =
+        -((BounceEffect *)arg0)->unk30 * func_80800000_idbounce() * -2700.0f;
+    if (*BT_DATA_FIELD(D_80135480, ((u8 *)&D_8013546C + 0x14)) != 0) {
         func_800F5D70(func_800F54E4(), sp34);
-        ((Objbounce_arg0 *)arg0)->unk20 -=
-            (((Objbounce_arg0 *)arg0)->unk30 * func_80800000_idbounce() * sp34[1]) /
-            ((Objbounce_arg0 *)arg0)->unk1C;
+        ((BounceEffect *)arg0)->unk20 -=
+            (((BounceEffect *)arg0)->unk30 * func_80800000_idbounce() * sp34[1]) /
+            ((BounceEffect *)arg0)->unk1C;
     }
-    *(s32 *)((u8 *)arg0 + 0x28) = *(s32 *)((u8 *)arg0 + 0x24);
+    ((BounceEffect *)arg0)->cursor = ((BounceEffect *)arg0)->begin;
     switch (*(u8 *)arg0) {
         case 0:
             _glid_entrypoint_0(arg1, arg2, &_idbounce_entrypoint_0, (BtIntPtr)arg0);

@@ -641,7 +641,7 @@ s16 func_800CF640(void) {
 
     temp_v0 = func_800CEAA8(1);
     if (temp_v0 != 0) {
-        var_v1 = ((s16 *)&D_8012B15E)[temp_v0];
+        var_v1 = BT_DATA_FIELD(D_8012B160_storage.counters[0], ((s16 *)&D_8012B15E)[temp_v0]);
     } else {
         var_v1 = 0;
     }

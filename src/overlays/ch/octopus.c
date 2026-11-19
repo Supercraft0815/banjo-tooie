@@ -146,7 +146,7 @@ s32 func_80800348_choctopus(Actor *arg0, s32 arg1, volatile s32 arg2) {
 void *func_80100094(Actor *, u32);
 
 void func_80800428_choctopus(Actor *arg0, s32 arg1) {
-    s16 func_800CB854(s32 *);
+    s16 func_800CB854(BtIntPtr *);
     void func_80102424(Actor *, s32);
     void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     void _suexpression_entrypoint_18(s8 *arg0, s32 arg1);
@@ -184,7 +184,7 @@ void func_80800428_choctopus(Actor *arg0, s32 arg1) {
 s32 func_80800540_choctopus(Unk80132ED0 *arg0, f32 *arg1, f32 arg2, BtIntPtr arg3, s32 arg4) {
     s32 _subaddiecustomhits_entrypoint_3(Actor *, f32 *, f32);
     s32 func_800B1F8C(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, BtIntPtr arg5, f32 *arg6, f32 arg7, f32 *arg8, s32 arg9);
-    s16 func_800CB854(s32 *);
+    s16 func_800CB854(BtIntPtr *);
     f32 func_800EFC7C(void *, void *);
     s32 func_800EFFB4(f32 *, f32, f32 *);
     f32 func_800F1DCC(f32, f32);
@@ -195,7 +195,7 @@ s32 func_80800540_choctopus(Unk80132ED0 *arg0, f32 *arg1, f32 arg2, BtIntPtr arg
     Actor *func_80106790(Unk80132ED0 *);
     f32 mlAbsF(f32);
     Actor *actor;
-    s32 sp78;
+    BtIntPtr sp78;
     f32 radius2;
     f32 sp68[3];
     f32 radius5;

@@ -566,7 +566,10 @@ void func_80105CD0(void) {
             }
         }
         D_80136ED0 = freelist_defrag(D_80136ED0);
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#ifdef BT_ILP32
+        extern s32 D_80136ED4;
+        D_80136ED4 = 0;
+#elif defined(BT_NATIVE)
         D_80136ED4 = NULL;
 #else
         (&D_80136ED0)[1] = 0;

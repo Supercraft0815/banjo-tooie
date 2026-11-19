@@ -1,9 +1,10 @@
+#include "core2/camera_state_callbacks.h"
 #include "common.h"
 
-void ncbasub_entrypoint_0(s32 arg0) 
-{
+void ncbasub_entrypoint_0(struct player_state_s *arg0) {
 }
-void ncbasub_entrypoint_1(BtIntPtr arg0) {
+void ncbasub_entrypoint_1(BT_NATIVE_ONLY(struct player_state_s *camera) BT_IDO_ONLY(BtIntPtr arg0)) {
+    BT_NATIVE_ONLY(BtIntPtr arg0 = (BtIntPtr)camera;)
     void func_801124D0(BtIntPtr arg0, s32 arg1);
     void func_80115858(void *arg0, s32 arg1);
     void func_80115870(void *arg0, f32 arg1);
@@ -12,7 +13,8 @@ void ncbasub_entrypoint_1(BtIntPtr arg0) {
     func_80115870((u8 *) arg0, 0.0f);
 }
 
-void ncbasub_entrypoint_2(void *arg0) {
+void ncbasub_entrypoint_2(BT_NATIVE_ONLY(struct player_state_s *camera) BT_IDO_ONLY(void *arg0)) {
+    BT_NATIVE_ONLY(void * arg0 = (void *)camera;)
     typedef struct player_state_s PlayerState;
     f32 func_8009BFCC(PlayerState *);
     f32 yaw_get(PlayerState *);

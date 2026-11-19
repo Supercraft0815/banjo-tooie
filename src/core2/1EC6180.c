@@ -5,10 +5,11 @@ void func_800ED964(void *);
 #include "core2/mesh_effect.h"
 
 
-void func_800EC890(s32 arg0) 
-{
+void func_800EC890(void *data) {
 }               typedef struct { u8 pad0[0x4]; f32 unk4; f32 unk8; f32 unkC; f32 unk10; f32 unk14; s16 unk18; s8 unk1A; s8 unk1B; s8 unk1C; u8 pad1D[0xC]; s8 unk29; u8 pad2A[0x1A]; f32 unk44; f32 unk48; s16 unk4C; s16 unk4E; } Obj1EC6180_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
-void func_800EC898(u8 *arg0, s32 arg1, BtIntPtr arg2, s32 arg3) {
+void func_800EC898(void *data, s32 variant, void *model, s32 mesh, s32 flags) {
+    u8 *arg0 = (u8 *)data;
+    BtIntPtr arg2 = (BtIntPtr)model;
 
     void _glidmake_entrypoint_2(BtIntPtr, s32, u8 *, u8 *);
     s32 func_800EA05C();
@@ -21,14 +22,14 @@ void func_800EC898(u8 *arg0, s32 arg1, BtIntPtr arg2, s32 arg3) {
 
     temp_v0 = func_800EA05C();
     for (var_t0 = D_80123580; var_t0->map != 0; var_t0++) {
-        if (temp_v0 == var_t0->map && arg3 == var_t0->mesh) {
+        if (temp_v0 == var_t0->map && mesh == var_t0->mesh) {
             break;
         }
     }
     (((Obj1EC6180_arg0 *)arg0)->unk14) = (f32) (2048.0f / (f32) (var_t0->scale));
     (((Obj1EC6180_arg0 *)arg0)->unkC) = (f32) ((var_t0->offset) << 6);
-    _glidmake_entrypoint_2(arg2, arg3, arg0, arg0 + 6);
-    temp_v0 = arg1 / 10;
+    _glidmake_entrypoint_2(arg2, mesh, arg0, arg0 + 6);
+    temp_v0 = variant / 10;
     if (temp_v0 & 1) {
         (((Obj1EC6180_arg0 *)arg0)->unk1A) = 0;
     } else {
@@ -52,7 +53,7 @@ void func_800EC898(u8 *arg0, s32 arg1, BtIntPtr arg2, s32 arg3) {
     (((Obj1EC6180_arg0 *)arg0)->unk10) = (f32) (50.0f / (f32) temp_v0_2);
 }
 
-void func_800EC9E0(s32 arg0, s32 arg1, s32 arg2) {
+void func_800EC9E0(void *data, void *model, s32 mesh) {
 }
 void func_800EC9F0(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, f32 *arg4) {
     f32 ratio;

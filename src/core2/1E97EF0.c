@@ -488,7 +488,7 @@ void func_800BF544(s32 arg0, s32 arg1, s32 arg2) {
 void func_800BF58C(void) {
     s32 defrag(s32);
     s32 func_800DC060(s32);
-    s32 func_800EE5D8(s32);
+    BtIntPtr func_800EE5D8(BtIntPtr);
     s32 func_800F9F90(s32, s32);
     extern s32 D_801285B0;
     if ((((Obj1E97EF0_D_801285B0 *)&D_801285B0)->unk178) != 0) {

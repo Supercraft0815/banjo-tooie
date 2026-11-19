@@ -1,3 +1,4 @@
+#include "core2/camera_state_callbacks.h"
 #include "nc/ba/target.h"
 
 s32 ncbatarget_entrypoint_0() 
@@ -24,7 +25,8 @@ void func_80800058_ncbatarget(PlayerState* arg0, f32* arg1)
 
 /* extern */
 
-void ncbatarget_entrypoint_1(void *arg0) {
+void ncbatarget_entrypoint_1(BT_NATIVE_ONLY(struct player_state_s *camera) BT_IDO_ONLY(void *arg0)) {
+    BT_NATIVE_ONLY(void * arg0 = (void *)camera;)
     void func_800EFD24(f32 *);
     void func_80111B8C(s32 *, f32, f32);
     void func_801120CC(s32 *, f32, f32, f32);
@@ -42,8 +44,7 @@ void ncbatarget_entrypoint_1(void *arg0) {
     func_8011607C(arg0, 1);
 }
 
-void ncbatarget_entrypoint_2(s32 arg0) 
-{
+void ncbatarget_entrypoint_2(struct player_state_s *arg0) {
 }
 void ncbatarget_entrypoint_3(PlayerState *arg0) {
     void func_800EE780(f32 *, f32 *, f32 *);

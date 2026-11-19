@@ -1,4 +1,5 @@
 #include "core2/1E9A960.h"
+BT_NATIVE_ONLY(extern s16 D_8012A994;) BT_NATIVE_ONLY(extern s16 D_8012A996;)
 
 /* One entry of the sound source pool (60 entries at D_80128B90, see func_800C1414). */
 typedef struct sfx_source_s {
@@ -1796,7 +1797,7 @@ u8 func_800C4350(u8 index, f32 *position, s32 *command_list) { s16 *commands = (
             commands = (s16 *)((s16 *)commands + 2);
             break;
         case 30:
-            func_800C3058(index, ((Obj1E9A960_D_8012A990 *)&D_8012A990)->unk4);
+            func_800C3058(index, BT_DATA_FIELD(D_8012A994, ((Obj1E9A960_D_8012A990 *)&D_8012A990)->unk4));
             break;
         case 26:
             a = *(s16 *)commands * (1.0f / 256.0f);
@@ -1813,7 +1814,7 @@ u8 func_800C4350(u8 index, f32 *position, s32 *command_list) { s16 *commands = (
             source->unk7B2 = 1;
             break;
         case 33:
-            func_800C301C(index, ((Obj1E9A960_D_8012A990 *)&D_8012A990)->unk6);
+            func_800C301C(index, BT_DATA_FIELD(D_8012A996, ((Obj1E9A960_D_8012A990 *)&D_8012A990)->unk6));
             break;
         case 35:
             a = *(s16 *)commands * (1.0f / 256.0f);

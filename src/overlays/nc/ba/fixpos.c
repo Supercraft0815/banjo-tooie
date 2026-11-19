@@ -1,3 +1,4 @@
+#include "core2/camera_state_callbacks.h"
 #include "common.h"
 
 s32 ncbafixpos_entrypoint_0() 
@@ -5,14 +6,14 @@ s32 ncbafixpos_entrypoint_0()
     return 0x1C;
 }    typedef struct { u8 pad0[0x20]; u8 * unk20; } Objfixpos_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
-void ncbafixpos_entrypoint_1(u8 *arg0) {
+void ncbafixpos_entrypoint_1(BT_NATIVE_ONLY(struct player_state_s *camera) BT_IDO_ONLY(u8 *arg0)) {
+    BT_NATIVE_ONLY(u8 * arg0 = (u8 *)camera;)
     void func_801124D0(BtIntPtr arg0, s32 arg1);
     (*(s8 *)((s8 *)((((Objfixpos_arg0 *)arg0)->unk20)) + (0x1A))) = 1;
     func_801124D0((BtIntPtr) arg0, 1);
 }
 
-void ncbafixpos_entrypoint_2(s32 arg0) 
-{
+void ncbafixpos_entrypoint_2(struct player_state_s *arg0) {
 }
 /* extern */
 
@@ -80,13 +81,13 @@ void ncbafixpos_entrypoint_4(u8 *arg0, s32 arg1) {
     s32 _cadbfunc_entrypoint_0(u8 *);
     s32 _cadbfunc_entrypoint_29(s32, s32 *);
     s32 _cadbfunc_entrypoint_4(u8 *);
-    s32 _cadbfunc_entrypoint_6(s32 *, s32 *);
-    s32 _cadbfunc_entrypoint_8(s32 *, s32 *);
+    BT_NATIVE_ONLY(s32 _cadbfunc_entrypoint_6(f32 *, f32 *);) BT_IDO_ONLY(s32 _cadbfunc_entrypoint_6(s32 *, s32 *);)
+    BT_NATIVE_ONLY(s32 _cadbfunc_entrypoint_8(f32 *, f32 *);) BT_IDO_ONLY(s32 _cadbfunc_entrypoint_8(s32 *, s32 *);)
     BT_IDO_ONLY(s32 func_800A5800(s32);) BT_NATIVE_ONLY(u8 *func_800A5800(s32);)
-    s32 func_80111B8C(u8 *, s32, s32);
-    s32 func_80112570(u8 *, u8 *, s32);
-    s32 sp2C;
-    s32 sp28;
+    BT_NATIVE_ONLY(void func_80111B8C(s32 *, f32, f32);) BT_IDO_ONLY(s32 func_80111B8C(u8 *, s32, s32);)
+    BT_NATIVE_ONLY(void func_80112570(u8 *, BtIntPtr, f32);) BT_IDO_ONLY(s32 func_80112570(u8 *, u8 *, s32);)
+    BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32) sp2C;
+    BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32) sp28;
     s32 sp24;
 
     func_800A5800(arg1);
@@ -97,8 +98,8 @@ void ncbafixpos_entrypoint_4(u8 *arg0, s32 arg1) {
     _cadbfunc_entrypoint_4((((Objfixpos_arg0 *)arg0)->unk20) + 0xC);
     _cadbfunc_entrypoint_0((((Objfixpos_arg0 *)arg0)->unk20));
     _cadbfunc_entrypoint_6(&sp2C, &sp28);
-    func_80111B8C(arg0, sp2C, sp28);
+    func_80111B8C(BT_NATIVE_ONLY((s32 *))arg0, sp2C, sp28);
     _cadbfunc_entrypoint_8(&sp2C, &sp28);
     (*(s8 *)((s8 *)((((Objfixpos_arg0 *)arg0)->unk20)) + (0x1A))) = 0;
-    func_80112570(arg0, (((Objfixpos_arg0 *)arg0)->unk20) + 0xC, 0x42C80000);
+    func_80112570(arg0, BT_NATIVE_ONLY((BtIntPtr))((((Objfixpos_arg0 *)arg0)->unk20) + 0xC), BT_DATA_FIELD(100.0f, 0x42C80000));
 }

@@ -1,3 +1,4 @@
+#include "core2/camera_state_callbacks.h"
 #include "common.h"
 
 s32 ncbadolly_entrypoint_0() 
@@ -5,14 +6,14 @@ s32 ncbadolly_entrypoint_0()
     return 0x2C;
 }    typedef struct { u8 pad0[0x1C]; u8 * unk1C; } Objdolly_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
-void ncbadolly_entrypoint_1(u8 *arg0) {
+void ncbadolly_entrypoint_1(BT_NATIVE_ONLY(struct player_state_s *camera) BT_IDO_ONLY(u8 *arg0)) {
+    BT_NATIVE_ONLY(u8 * arg0 = (u8 *)camera;)
     void func_801124D0(BtIntPtr arg0, s32 arg1);
     (*(s8 *)((s8 *)((((Objdolly_arg0 *)arg0)->unk1C)) + (0x21))) = 1;
     func_801124D0((BtIntPtr) arg0, 1);
 }
 
-void ncbadolly_entrypoint_2(s32 arg0) 
-{
+void ncbadolly_entrypoint_2(struct player_state_s *arg0) {
 }
 typedef struct player_state_s PlayerState;
 

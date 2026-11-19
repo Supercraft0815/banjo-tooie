@@ -1,12 +1,12 @@
 #include "common.h"
+#include "core2/world_effect.h"
 
 typedef struct { u8 pad0[0x4]; s16 unk4; u8 unk6; } Objworld_func_80800000_idworld_var_v1; /* offsets.py genstruct: fields from raw offsets on var_v1; rename once understood */ BtIntPtr func_80800000_idworld(s32 arg0, s32 arg1) {
     void * vector_begin(void *vec);
     void * vector_end(void *vec);
-    extern s32 D_80127EF8;
     s32 pad;
     BtUIntPtr sp20;
-    BtIntPtr sp1C = D_80127EF8;
+    struct Vector *sp1C = D_80127EF8;
     BtUIntPtr temp_v0;
     BtUIntPtr var_v1;
 
@@ -18,10 +18,10 @@ typedef struct { u8 pad0[0x4]; s16 unk4; u8 unk6; } Objworld_func_80800000_idwor
     var_v1 = temp_v0;
     if (temp_v0 < sp20) {
 loop_3:
-        if ((arg1 == (((Objworld_func_80800000_idworld_var_v1 *)var_v1)->unk6)) && (arg0 == (((Objworld_func_80800000_idworld_var_v1 *)var_v1)->unk4))) {
+        if ((arg1 == (((WorldEffect *)var_v1)->type)) && (arg0 == (((WorldEffect *)var_v1)->id))) {
             return var_v1;
         }
-        var_v1 += 0xA8;
+        var_v1 += sizeof(WorldEffect);
         if (var_v1 >= sp20) {
             goto block_7;
         }
@@ -40,7 +40,7 @@ BtIntPtr idworld_entrypoint_0(s32 arg0) {
 
     temp_v0 = func_80800000_idworld(arg0, 6);
     if (temp_v0 != 0) {
-        var_v1 = temp_v0 + 8;
+        var_v1 = (BtIntPtr)((WorldEffect *)temp_v0)->data;
     } else {
         var_v1 = 0;
     }
@@ -56,7 +56,7 @@ BtIntPtr idworld_entrypoint_1(s32 arg0) {
 
     temp_v0 = func_80800000_idworld(arg0, 8);
     if (temp_v0 != 0) {
-        var_v1 = temp_v0 + 8;
+        var_v1 = (BtIntPtr)((WorldEffect *)temp_v0)->data;
     } else {
         var_v1 = 0;
     }
@@ -72,7 +72,7 @@ BtIntPtr idworld_entrypoint_2(s32 arg0) {
 
     temp_v0 = func_80800000_idworld(arg0, 12);
     if (temp_v0 != 0) {
-        var_v1 = temp_v0 + 8;
+        var_v1 = (BtIntPtr)((WorldEffect *)temp_v0)->data;
     } else {
         var_v1 = 0;
     }
@@ -88,7 +88,7 @@ BtIntPtr idworld_entrypoint_3(s32 arg0) {
 
     temp_v0 = func_80800000_idworld(arg0, 2);
     if (temp_v0 != 0) {
-        var_v1 = temp_v0 + 8;
+        var_v1 = (BtIntPtr)((WorldEffect *)temp_v0)->data;
     } else {
         var_v1 = 0;
     }
@@ -98,10 +98,9 @@ BtIntPtr idworld_entrypoint_3(s32 arg0) {
 BtIntPtr idworld_entrypoint_4(BtIntPtr arg0, s32 arg1) {
     void * vector_begin(void *vec);
     void * vector_end(void *vec);
-    extern s32 D_80127EF8;
     s32 pad;
     BtUIntPtr sp20;
-    BtIntPtr sp1C = D_80127EF8;
+    struct Vector *sp1C = D_80127EF8;
     BtUIntPtr temp_v0;
     BtUIntPtr var_v1;
 
@@ -113,10 +112,10 @@ BtIntPtr idworld_entrypoint_4(BtIntPtr arg0, s32 arg1) {
     var_v1 = temp_v0;
     if (temp_v0 < sp20) {
 loop_4:
-        if (((((Objworld_idworld_entrypoint_4_var_v1 *)var_v1)->unk6) == 0xA) && (arg0 == (((Objworld_idworld_entrypoint_4_var_v1 *)var_v1)->unk0)) && (arg1 == (((Objworld_idworld_entrypoint_4_var_v1 *)var_v1)->unk4))) {
-            return var_v1 + 8;
+        if (((((WorldEffect *)var_v1)->type) == 0xA) && (arg0 == (((WorldEffect *)var_v1)->owner)) && (arg1 == (((WorldEffect *)var_v1)->id))) {
+            return (BtIntPtr)((WorldEffect *)var_v1)->data;
         }
-        var_v1 += 0xA8;
+        var_v1 += sizeof(WorldEffect);
         if (var_v1 >= sp20) {
             goto block_9;
         }
@@ -126,11 +125,34 @@ block_9:
     return NULL;
 }    typedef struct { u8 pad0[0x8]; BtIntPtr unk8; } Objworld_D_80127EF0; /* offsets.py genstruct: fields from raw offsets on &D_80127EF0; rename once understood */
 
+#ifdef BT_NATIVE
 void idworld_entrypoint_5(void) {
     void * vector_begin(void *vec);
     void * vector_end(void *vec);
     extern s32 D_80127EF0;
-    extern void (*D_808002C0_idworld[])(u32, s32, s32);
+    extern void (*D_808002C0_idworld[])(void *, void *, s32);
+    BtUIntPtr end;
+    BtUIntPtr begin;
+    BtUIntPtr item;
+
+    end = vector_end(BT_DATA_FIELD(D_80127EF8, ((Objworld_D_80127EF0 *)&D_80127EF0)->unk8));
+    begin = vector_begin(BT_DATA_FIELD(D_80127EF8, ((Objworld_D_80127EF0 *)&D_80127EF0)->unk8));
+    item = begin;
+    if (begin < end) {
+        do {
+            if (((WorldEffect *)item)->active != 0) {
+                D_808002C0_idworld[((WorldEffect *)item)->type](((WorldEffect *)item)->data, (void *)((WorldEffect *)item)->owner, ((WorldEffect *)item)->id);
+            }
+            item += sizeof(WorldEffect);
+        } while (item < end);
+    }
+}
+#else
+void idworld_entrypoint_5(void) {
+    void * vector_begin(void *vec);
+    void * vector_end(void *vec);
+    extern s32 D_80127EF0;
+    extern void (*D_808002C0_idworld[])(void *, void *, s32);
     BtUIntPtr end;
     BtUIntPtr begin;
     BtUIntPtr item;
@@ -147,21 +169,27 @@ void idworld_entrypoint_5(void) {
         } while (item < end);
     }
 }
-/* data_to_c.py: from asm/data/overlays/id/world.data.s */
-void _idlight_entrypoint_3();
-void _idscroll_entrypoint_3();
-void func_800EE108();
-void _idwater_entrypoint_4();
-void _idglow_entrypoint_3();
-void _idwave_entrypoint_3();
-void _idglowa_entrypoint_4();
-void _idflash_entrypoint_3();
-void _idflasha_entrypoint_4();
-void func_800EC9E0();
-void _idwibble_entrypoint_3();
-void _idbounce_entrypoint_5();
-void _idtwinkle_entrypoint_5();
-void _idflame_entrypoint_4();
-void _idtwinklea_entrypoint_2();
-void _idtwinklecolour_entrypoint_5();
-void ( * D_808002C0_idworld [16] ) ( u32 , s32 , s32 ) BT_DATA(4, overlays_id_world, 0x0) = { (void (*)(unsigned long, long, long))_idlight_entrypoint_3, (void (*)(unsigned long, long, long))_idscroll_entrypoint_3, (void (*)(unsigned long, long, long))func_800EE108, (void (*)(unsigned long, long, long))_idwater_entrypoint_4, (void (*)(unsigned long, long, long))_idglow_entrypoint_3, (void (*)(unsigned long, long, long))_idwave_entrypoint_3, (void (*)(unsigned long, long, long))_idglowa_entrypoint_4, (void (*)(unsigned long, long, long))_idflash_entrypoint_3, (void (*)(unsigned long, long, long))_idflasha_entrypoint_4, (void (*)(unsigned long, long, long))func_800EC9E0, (void (*)(unsigned long, long, long))_idwibble_entrypoint_3, (void (*)(unsigned long, long, long))_idbounce_entrypoint_5, (void (*)(unsigned long, long, long))_idtwinkle_entrypoint_5, (void (*)(unsigned long, long, long))_idflame_entrypoint_4, (void (*)(unsigned long, long, long))_idtwinklea_entrypoint_2, (void (*)(unsigned long, long, long))_idtwinklecolour_entrypoint_5 };
+#endif
+void _idlight_entrypoint_3(void *, void *, s32);
+void _idscroll_entrypoint_3(void *, void *, s32);
+void func_800EE108(void *, void *, s32);
+void _idwater_entrypoint_4(void *, void *, s32);
+void _idglow_entrypoint_3(void *, void *, s32);
+void _idwave_entrypoint_3(void *, void *, s32);
+void _idglowa_entrypoint_4(void *, void *, s32);
+void _idflash_entrypoint_3(void *, void *, s32);
+void _idflasha_entrypoint_4(void *, void *, s32);
+void func_800EC9E0(void *, void *, s32);
+void _idwibble_entrypoint_3(void *, void *, s32);
+void _idbounce_entrypoint_5(void *, void *, s32);
+void _idtwinkle_entrypoint_5(void *, void *, s32);
+void _idflame_entrypoint_4(void *, void *, s32);
+void _idtwinklea_entrypoint_2(void *, void *, s32);
+void _idtwinklecolour_entrypoint_5(void *, void *, s32);
+
+void (*D_808002C0_idworld[16])(void *, void *, s32) BT_DATA(4, overlays_id_world, 0x0) = {
+    _idlight_entrypoint_3, _idscroll_entrypoint_3, func_800EE108, _idwater_entrypoint_4,
+    _idglow_entrypoint_3, _idwave_entrypoint_3, _idglowa_entrypoint_4, _idflash_entrypoint_3,
+    _idflasha_entrypoint_4, func_800EC9E0, _idwibble_entrypoint_3, _idbounce_entrypoint_5,
+    _idtwinkle_entrypoint_5, _idflame_entrypoint_4, _idtwinklea_entrypoint_2, _idtwinklecolour_entrypoint_5,
+};

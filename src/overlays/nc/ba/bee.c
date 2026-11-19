@@ -1,22 +1,23 @@
+#include "core2/camera_state_callbacks.h"
 #include "nc/ba/bee.h"
 
 /* extern */
 
-void ncbabee_entrypoint_0(u8 *arg0) {
-    s32 func_801120CC(void *, s32, s32, s32);
+void ncbabee_entrypoint_0(BT_NATIVE_ONLY(struct player_state_s *camera) BT_IDO_ONLY(u8 *arg0)) {
+    BT_NATIVE_ONLY(u8 * arg0 = (u8 *)camera;)
+    BT_NATIVE_ONLY(void func_801120CC(s32 *, f32, f32, f32);) BT_IDO_ONLY(s32 func_801120CC(void *, s32, s32, s32);)
     s32 func_801124D0(BtIntPtr, s32);
     void func_80115858(void *arg0, s32 arg1);
     void func_80115870(void *arg0, f32 arg1);
-    s32 func_80111B8C(u8 *, s32, s32);
-    func_801120CC(arg0, 0x44FA0000, 0x457A0000, -0x3A860000);
-    func_80111B8C(arg0, 0x40800000, 0x41000000);
+    BT_NATIVE_ONLY(void func_80111B8C(s32 *, f32, f32);) BT_IDO_ONLY(s32 func_80111B8C(u8 *, s32, s32);)
+    BT_NATIVE_ONLY(func_801120CC((s32 *)arg0, 2000.0f, 4000.0f, -4000.0f);) BT_IDO_ONLY(func_801120CC(arg0, 0x44FA0000, 0x457A0000, -0x3A860000);)
+    BT_NATIVE_ONLY(func_80111B8C((s32 *)arg0, 4.0f, 8.0f);) BT_IDO_ONLY(func_80111B8C(arg0, 0x40800000, 0x41000000);)
     func_80115858(arg0, 0);
     func_80115870(arg0, 0.0f);
     func_801124D0((BtIntPtr) arg0, 1);
 }
 
-void ncbabee_entrypoint_1(s32 arg0) 
-{
+void ncbabee_entrypoint_1(struct player_state_s *arg0) {
 }
 void func_80800070_ncbabee(PlayerState* arg0, f32* arg1)
 {

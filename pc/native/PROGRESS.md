@@ -3110,3 +3110,25 @@ Gastsuiten und 74 Replays mit 447.849 Retraces bestehen. Alle 9.703
 Zeigerwörter liegen an denselben Originaladressen. Der Original-IDO-Build
 bestätigt die 16.401 Funktionen sowie beide ROM-Abbilder. Belege unter
 `build/acceptance/n1-2026-11-18/current-item-methods*`.
+
+### 2026-11-19 – Welt-Effekte, Kamera, Bewegung und Spielerstatus
+
+Die Kameraverwaltung verwendet die Größenfunktionen aller 25 Komponenten
+und die Methoden der 27 Kamerazustände. Die Festkamera übernimmt beide
+Gleitkommawerte aus der Kameradatenbank. Der LP64-Test ruft die tatsächlichen
+Datenbankleser mit 1,25 und −13,5 auf und prüft eine Fokusdistanz von 100.
+Die vier Welt-Effekt-Typen und die 16 Methoden zum Verschieben von Effekten
+erhalten ihre Zeiger auch oberhalb von 4 GiB. Die Bewegungstabellen verweisen
+auf die Originalbefehle. Spielerstatus, die acht Zählerpaare und der
+Kollisionskontext haben gemeinsame C-Definitionen für Gast und Host.
+
+Der strenge Scan ist bei sechs Geometrietabellen. Die Welt-Effekte wurden
+über alle 74 Fälle auf Zugriffe außerhalb ihrer C-Objekte untersucht.
+Insgesamt wurden 6.203 Stellen überwacht. Davon erreichten 1.429 eine
+fremde Adresse, verteilt auf 343 Funktionen und 77 Gruppen. Der anschließende
+Gesamtstand besteht elf Gastsuiten, alle 74 Replays mit 447.849 Retraces,
+64 Sanitizertests und den Original-IDO-Vergleich aller 16.401 Funktionen und
+beider ROM-Abbilder. Alle 9.703 zur Laufzeit korrigierten Zeigerwörter sind
+ihren Originaladressen zugeordnet. Belege unter
+`build/acceptance/n1-2026-11-18/current-fixed-camera*` und
+`current-world-methods-xsym.log`.

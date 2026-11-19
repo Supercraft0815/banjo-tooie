@@ -26,15 +26,17 @@ void idflash_entrypoint_0(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, f32 *arg4) {
     }
 }
 
-void idflash_entrypoint_1(s32 arg0) 
-{
+void idflash_entrypoint_1(void *data) {
 }
-void idflash_entrypoint_2(f32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+void idflash_entrypoint_2(void *data, s32 variant, void *model, s32 mesh, s32 flags) {
+    f32 *arg0 = (f32 *)data;
     *arg0 = 0.0f;
 }
 
-void idflash_entrypoint_3(f32 *arg0, BtIntPtr arg1, s32 arg2) {
-    void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
+void idflash_entrypoint_3(void *data, void *model, s32 mesh) {
+    f32 *arg0 = (f32 *)data;
+    BtIntPtr arg1 = (BtIntPtr)model;
+    void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*mesh)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
     s32 _idflasha_entrypoint_1(BtIntPtr);
     BtIntPtr _idworld_entrypoint_1(s32);
 #ifndef BT_NATIVE
@@ -42,11 +44,11 @@ void idflash_entrypoint_3(f32 *arg0, BtIntPtr arg1, s32 arg2) {
 #endif
     BtIntPtr temp_v0;
 
-    temp_v0 = _idworld_entrypoint_1(arg2 - 0x64);
+    temp_v0 = _idworld_entrypoint_1(mesh - 0x64);
     if (temp_v0 != 0) {
         *arg0 = (f32) _idflasha_entrypoint_1(temp_v0) * 0.003921569f;
     } else {
         *arg0 = 0.0f;
     }
-    _glid_entrypoint_0(arg1, arg2, &_idflash_entrypoint_0, arg0);
+    _glid_entrypoint_0(arg1, mesh, &_idflash_entrypoint_0, arg0);
 }

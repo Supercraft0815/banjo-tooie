@@ -594,7 +594,7 @@ void func_800C68A0(void *arg0, f32 arg1) {
 
 /* extern */
 
-void func_800C68AC(s32 arg0 BT_PASS2(, s32 bt_a1)) {
+void func_800C68AC(BT_NATIVE_ONLY(u8 *) BT_IDO_ONLY(s32) arg0 BT_PASS2(, f32 *bt_a1)) {
     void func_800EE7F8();
     func_800EE7F8(arg0 + 0x4C BT_PASS2(, bt_a1));
 }

@@ -1,3 +1,4 @@
+#include "core2/camera_state_callbacks.h"
 #include "nc/ba/spiral.h"
 
 s32 ncbaspiral_entrypoint_0() 
@@ -17,7 +18,8 @@ void func_80800028_ncbaspiral(PlayerState* arg0, f32* arg1)
 
 /* extern */
 
-void ncbaspiral_entrypoint_1(void *arg0) {
+void ncbaspiral_entrypoint_1(BT_NATIVE_ONLY(struct player_state_s *camera) BT_IDO_ONLY(void *arg0)) {
+    BT_NATIVE_ONLY(void * arg0 = (void *)camera;)
     void func_800EFD24(f32 vec[3]);
     void func_80111B8C(s32 *, f32, f32);
     void func_801124D0(BtIntPtr, s32);
@@ -31,8 +33,7 @@ void ncbaspiral_entrypoint_1(void *arg0) {
     *(((Objspiral_arg0 *)arg0)->unk48) = -1;
 }
 
-void ncbaspiral_entrypoint_2(s32 arg0) 
-{
+void ncbaspiral_entrypoint_2(struct player_state_s *arg0) {
 }
 /* extern */
 

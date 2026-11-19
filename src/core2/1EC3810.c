@@ -176,7 +176,7 @@ s32 func_800EA170(void) {
 #endif
     void func_8010D7EC(void);
     extern struct Vector *D_80127EF0;
-    extern s32 D_80127EF8;
+    extern struct Vector *D_80127EF8;
     extern s16 D_80132DCA;
     func_800C718C();
     func_800D8744();
@@ -477,7 +477,7 @@ s32 func_800EB350(Actor *arg0, f32 *arg1, f32 *arg2) {
 #include "bt_data.h"
 struct Vector * D_80127EF0 BT_DATA(4, bss_core2bss1_0_2, 0x750);
 s32 D_80127EF4 BT_DATA(4, bss_core2bss1_0_2, 0x754);
-s32 D_80127EF8 BT_DATA(4, bss_core2bss1_0_2, 0x758);
+struct Vector *D_80127EF8 BT_DATA(4, bss_core2bss1_0_2, 0x758);
 s32 D_80132DC0 BT_DATA(4, bss_core2bss2_1_reset_tail, 0x860);
 u16 D_80132DC2 BT_DATA(4, bss_core2bss2_1_reset_tail, 0x862);
 s32 D_80132DC4 BT_DATA(4, bss_core2bss2_1_reset_tail, 0x864);

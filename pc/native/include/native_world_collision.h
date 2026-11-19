@@ -8,7 +8,7 @@ typedef struct NativeMarkerCollision {
     s32 (*test)(Unk80132ED0 *,f32 *,f32,f32 *,u32);
 } NativeMarkerCollision;
 void func_800CB840(s32,BtIntPtr);
-s16 func_800CB854(s32 *);
+s16 func_800CB854(BtIntPtr *);
 void func_800CB870(void);
 void func_800CD230(f32);
 void *func_800CD23C(f32 *,f32 *,f32 *,u32);

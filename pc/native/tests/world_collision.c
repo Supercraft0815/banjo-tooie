@@ -155,7 +155,10 @@ static void test_marker_hits(void) {
     CHECK(!func_800CDFA8(-1,&index) && index==-1 && !func_800CDFA8(1,NULL));
     filter_allow=0;CHECK(!func_800CD820(self,a,b,2) && !func_800CDBA8(self,points,radius,2));filter_allow=1;
     func_80106790(target)->unk64_0=1;func_800CB840(1,17);CHECK(!func_800CD820(self,a,b,2));func_800CB840(33,17);CHECK(!func_800CD820(self,a,b,2));
-    func_800CB870();CHECK(func_800CB854(&index)==0 && index==0);
+    BtIntPtr context;
+    func_800CB840(3,(BtIntPtr)target);
+    CHECK(func_800CB854(&context)==3 && context==(BtIntPtr)target);
+    func_800CB870();CHECK(func_800CB854(&context)==0 && context==0);
     func_80106790(target)->unk64_17=1;CHECK(!func_800CDBA8(self,points,radius,2));func_80106790(target)->unk64_17=0;
     target->unk28&=~0x200;CHECK(!func_800CD820(self,a,b,2));target->unk28|=0x200;
     func_800EC358(target,NULL);target->unk18=(target->unk18&0x1FFFFF)|(1u<<21);

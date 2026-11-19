@@ -55,7 +55,7 @@ void *func_800EA628(NativeWorldCell *cell,f32 *start,f32 *end,f32 *normal,u32 fl
             if(mesh) {
                 void *hit=func_800AB868(mesh,func_80103CDC(actor,model),actor->position,actor->rotation,actor->scale,start,end,normal,flags);
                 if(hit && world_hit_callback) world_hit_callback((uintptr_t)marker,world_hit_userdata);
-                s32 context;
+                BtIntPtr context;
                 if(hit && func_800CB854(&context)==1) {
                     func_801039E4(marker);
                     if((u32)actor->pad80>>16) func_800EA400(context,marker,end,hit);

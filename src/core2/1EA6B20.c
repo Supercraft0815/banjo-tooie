@@ -222,7 +222,7 @@ u8 *func_800CD820(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3) {
     } ActorFlags;
     f32 _subaddiecustomhits_entrypoint_5(void *, f32 *);
     s32 *func_800BE444(f32 *);
-    s16 func_800CB854(s32 *);
+    s16 func_800CB854(BtIntPtr *);
     s32 func_800CD6B4(u8 *, f32 *, f32, f32 *, s32);
     HitProp *func_800E9E88(s32);
     HitProp *func_800E9EB4(s32);
@@ -365,7 +365,7 @@ s32 func_800CDBA8(u8 *arg0, f32 *volatile arg1, f32 *arg2, s32 arg3) {
     } Callbacks;
     f32 _subaddiecustomhits_entrypoint_5(void *, f32 *);
     s32 *func_800BE444(f32 *);
-    s16 func_800CB854(s32 *);
+    s16 func_800CB854(BtIntPtr *);
     HitProp *func_800E9E88(s32);
     HitProp *func_800E9EB4(s32);
     u8 *func_800EC3C4(u8 *);

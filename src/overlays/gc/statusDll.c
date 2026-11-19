@@ -2,10 +2,10 @@
 
 typedef struct StatusState {
     s32 value;
-    s8 state;
-    s8 pad5[4];
-    s8 flag;
-    s8 padA[5];
+    u8 state;
+    u8 playerOptions[4];
+    u8 flag;
+    u8 playerTeams[4]; s8 fieldE;
     s8 fieldF;
     s8 field10;
     s8 field11;
@@ -40,58 +40,58 @@ void gcstatusDll_entrypoint_0(void)
 
 void gcstatusDll_entrypoint_1(s32 arg0) {
     extern s32 D_8012B3FC;
-    ((ObjstatusDll_D_8012B3FC *)&D_8012B3FC)->unk4 = arg0;
+    BT_DATA_FIELD(D_8012B400.value, ((ObjstatusDll_D_8012B3FC *)&D_8012B3FC)->unk4) = arg0;
 }
 
 void gcstatusDll_entrypoint_2(s32 arg0) {
     extern s32 D_8012B3FC;
-    ((ObjstatusDll_D_8012B3FC *)&D_8012B3FC)->unk8 = arg0;
+    BT_DATA_FIELD(D_8012B400.state, ((ObjstatusDll_D_8012B3FC *)&D_8012B3FC)->unk8) = arg0;
 }
 
 void gcstatusDll_entrypoint_3(s32 arg0, s32 arg1) {
     extern s32 D_8012B3FC;
-    *(s8 *)((u8 *)&D_8012B3FC + 9 + arg0) = arg1;
+    BT_DATA_FIELD(D_8012B400.playerOptions[arg0], *(s8 *)((u8 *)&D_8012B3FC + 9 + arg0)) = arg1;
 }
 
 void gcstatusDll_entrypoint_4(s32 arg0) {
     extern s32 D_8012B3FC;
-    ((ObjstatusDll_D_8012B3FC *)&D_8012B3FC)->unkD = arg0;
+    BT_DATA_FIELD(D_8012B400.flag, ((ObjstatusDll_D_8012B3FC *)&D_8012B3FC)->unkD) = arg0;
 }
 
 void gcstatusDll_entrypoint_5(s32 arg0) {
     extern s32 D_8012B3FC;
-    ((ObjstatusDll_D_8012B3FC *)&D_8012B3FC)->unk12 = arg0;
+    BT_DATA_FIELD(D_8012B400.fieldE, ((ObjstatusDll_D_8012B3FC *)&D_8012B3FC)->unk12) = arg0;
 }
 
 void gcstatusDll_entrypoint_6(s32 arg0, s32 arg1) {
     extern s32 D_8012B3FC;
-    *(s8 *)((u8 *)&D_8012B3FC + 14 + arg0) = arg1;
+    BT_DATA_FIELD(D_8012B400.playerTeams[arg0], *(s8 *)((u8 *)&D_8012B3FC + 14 + arg0)) = arg1;
 }
 
 void gcstatusDll_entrypoint_7(s32 arg0) {
     extern s32 D_8012B3FC;
-    ((ObjstatusDll_D_8012B3FC *)&D_8012B3FC)->unk13 = arg0;
+    BT_DATA_FIELD(D_8012B400.fieldF, ((ObjstatusDll_D_8012B3FC *)&D_8012B3FC)->unk13) = arg0;
 }
 
 void gcstatusDll_entrypoint_8(s32 arg0) {
     extern s32 D_8012B3FC;
-    ((ObjstatusDll_D_8012B3FC *)&D_8012B3FC)->unk14 = arg0;
+    BT_DATA_FIELD(D_8012B400.field10, ((ObjstatusDll_D_8012B3FC *)&D_8012B3FC)->unk14) = arg0;
 }
 
 void gcstatusDll_entrypoint_9(s32 arg0) {
     extern s32 D_8012B3FC;
-    ((ObjstatusDll_D_8012B3FC *)&D_8012B3FC)->unk15 = arg0;
+    BT_DATA_FIELD(D_8012B400.field11, ((ObjstatusDll_D_8012B3FC *)&D_8012B3FC)->unk15) = arg0;
 }
 
 u8 gcstatusDll_entrypoint_10(void) {
     extern s32 D_8012B3FC;
-    return (*(u8 *)((s8 *)(&D_8012B3FC) + (8)));
+    return BT_DATA_FIELD(D_8012B400.state, (*(u8 *)((s8 *)(&D_8012B3FC) + (8))));
 }
 
 u8 gcstatusDll_entrypoint_11(void) {
     extern u8 D_8012762C;
     extern s32 D_8012B3FC;
-    u8 value = *((u8 *)&D_8012B3FC + 8);
+    u8 value = BT_DATA_FIELD(D_8012B400.state, *((u8 *)&D_8012B3FC + 8));
     if (D_8012762C != 0x1B) {
         return 1U;
     }
@@ -100,49 +100,49 @@ u8 gcstatusDll_entrypoint_11(void) {
 
 s32 gcstatusDll_entrypoint_12(void) {
     extern s32 D_8012B3FC;
-    return *&((ObjstatusDll_D_8012B3FC *)&D_8012B3FC)->unk4;
+    return *&BT_DATA_FIELD(D_8012B400.value, ((ObjstatusDll_D_8012B3FC *)&D_8012B3FC)->unk4);
 }
 
 u8 gcstatusDll_entrypoint_13(s32 arg0) {
     extern s32 D_8012B3FC;
-    return *((u8 *)&D_8012B3FC + 9 + arg0);
+    return BT_DATA_FIELD(D_8012B400.playerOptions[arg0], *((u8 *)&D_8012B3FC + 9 + arg0));
 }
 
 u8 gcstatusDll_entrypoint_14(void) {
     extern s32 D_8012B3FC;
     u8 result;
-    result = *((u8 *)&D_8012B3FC + 13);
+    result = BT_DATA_FIELD(D_8012B400.flag, *((u8 *)&D_8012B3FC + 13));
     return result;
 }
 
 u8 gcstatusDll_entrypoint_15(void) {
     extern s32 D_8012B3FC;
-    return (*(u8 *)((s8 *)(&D_8012B3FC) + (18)));
+    return BT_DATA_FIELD((u8)D_8012B400.fieldE, (*(u8 *)((s8 *)(&D_8012B3FC) + (18))));
 }
 
 u8 gcstatusDll_entrypoint_16(BtIntPtr arg0) {
     extern s32 D_8012B3FC;
-    return *((u8 *)&D_8012B3FC + 14 + arg0);
+    return BT_DATA_FIELD(D_8012B400.playerTeams[arg0], *((u8 *)&D_8012B3FC + 14 + arg0));
 }
 
 u8 gcstatusDll_entrypoint_17(void) {
     extern s32 D_8012B3FC;
     u8 result;
-    result = *((u8 *)&D_8012B3FC + 19);
+    result = BT_DATA_FIELD((u8)D_8012B400.fieldF, *((u8 *)&D_8012B3FC + 19));
     return result;
 }
 
 u8 gcstatusDll_entrypoint_18(void) {
     extern s32 D_8012B3FC;
     u8 result;
-    result = *((u8 *)&D_8012B3FC + 20);
+    result = BT_DATA_FIELD((u8)D_8012B400.field10, *((u8 *)&D_8012B3FC + 20));
     return result;
 }
 
 u8 gcstatusDll_entrypoint_19(void) {
     extern s32 D_8012B3FC;
     u8 result;
-    result = *((u8 *)&D_8012B3FC + 21);
+    result = BT_DATA_FIELD((u8)D_8012B400.field11, *((u8 *)&D_8012B3FC + 21));
     return result;
 }
 

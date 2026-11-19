@@ -331,3 +331,22 @@ state and flags as separate halfwords. At retrace 24604 the Digger Fly enters
 state 13, followed by 14 at 24676. An independent run with the previous guest
 and only the 15 relocated words reproduced all 27,093 retraces of worlds.
 See n1-2026-11-18/baddie-independent-oracle/original-words.json.
+
+2026-11-19  N1 camera, world effects, movement and status
+The 27 camera rows have a 16-byte guest stride. The two halfwords at
+offsets 12 and 14 are read separately from the same flags word. All 25
+component size callbacks return s32. The fixed camera keeps the original
+floating-point loads and call. Its LP64 test uses 1.25 and -13.5 from the
+real camera database. The world constructors return void and receive the
+same sign-extended index. Moving the effect's float array preserves its
+aligned cursor. Twinkle and bounce address the same elements and vertices.
+Actor movement calculates the same grid coordinates and matrix offsets.
+The contacts test the same mask (256) at the same aligned flag word.
+func_800FE914 reads the scalar movement flag before selecting the branch.
+The 19 changed gcstatus functions use the fields on their actual records.
+The eight player counters have a four-byte stride and a maximum at +2.
+func_800CF640 reads the first counter at 0x8012B160 in the true branch
+of the boolean query func_800CEAA8. Collision, prop and audio readers use
+the same mapped fields. All 9,703 original fixup addresses are accounted
+for. See n1-2026-11-18/current-fixed-camera-cumulative-ir.log, the
+corresponding fixup and reader reports, and current-*-methods-ir.log.

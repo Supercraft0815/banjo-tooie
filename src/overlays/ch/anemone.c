@@ -189,7 +189,7 @@ s32 func_80800648_chanemone(Unk80132ED0 *arg0, BtIntPtr arg1, f32 arg2, BtIntPtr
 {
     f32 func_800136E4(f32);
     s32 func_800B1F8C(u8 *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *arg4, BtIntPtr arg5, f32 *arg6, f32 arg7, f32 *arg8, s32 arg9);
-    s16 func_800CB854(s32 *);
+    s16 func_800CB854(BtIntPtr *);
     void func_800EE88C(f32 *, s16 *);
     void func_800EF04C(f32 *, f32 *);
     s32 func_800EFFB4(f32 *, f32, f32 *);
@@ -200,7 +200,7 @@ s32 func_80800648_chanemone(Unk80132ED0 *arg0, BtIntPtr arg1, f32 arg2, BtIntPtr
     Actor *func_80106790(Unk80132ED0 *);
     Actor *actor;
     s32 result;
-    s32 sp64;
+    BtIntPtr sp64;
     f32 sp58[3];
     u8 *sp54;
     f32 angle;

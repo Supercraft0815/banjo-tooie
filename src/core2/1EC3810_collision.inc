@@ -43,7 +43,7 @@ s32 func_800EA628(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     u8 *func_800BFC34(s32);
     u8 *func_800BFC54(s32);
     void func_800BFC74(s32);
-    s16 func_800CB854(s32 *);
+    s16 func_800CB854(BtIntPtr *);
     void func_800D62E4(u16);
     void *func_800E9E88(s32);
     void *func_800E9EB4(s32);
@@ -71,7 +71,7 @@ s32 func_800EA628(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     u8 *actor;
     s32 hit;
     s32 customHit;
-    s32 context;
+    BtIntPtr context;
     s32 modelHit;
 
     result = 0;
@@ -158,7 +158,7 @@ s32 func_800EAA2C(s32 arg0, volatile s32 arg1, s32 arg2, f32 arg3, f32 *arg4, vo
     s32 func_800B2840(s32);
     u8 *func_800BFC54(s32);
     void func_800BFC74(s32);
-    s16 func_800CB854(s32 *);
+    s16 func_800CB854(BtIntPtr *);
     void func_800D62E4(u16);
     void *func_800E9E88(s32);
     void *func_800E9EB4(s32);
@@ -309,7 +309,7 @@ s32 func_800EADFC(s32 arg0, s32 arg1, f32 arg2, f32 *arg3, u32 arg4) {
     u8 *func_800B2720(u8 *);
     s32 func_800B2840(s32);
     u8 *func_800BFC54(s32);
-    s16 func_800CB854(s32 *);
+    s16 func_800CB854(BtIntPtr *);
     void func_800D62E4(u16);
     void *func_800E9E88(s32);
     void *func_800E9EB4(s32);

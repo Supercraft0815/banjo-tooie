@@ -365,12 +365,12 @@ s32 chswitch_entrypoint_10(Actor *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 s32 func_8080093C_chswitch(Actor *arg0) {
-    s16 func_800CB854(s32 *);
+    s16 func_800CB854(BtIntPtr *);
     s32 func_800DA298(s32);
     void func_80100120(Actor *);
     void func_80102204(Actor *);
     void func_80102424(Actor *, s32);
-    s32 sp24;
+    BtIntPtr sp24;
 
     if (func_800CB854(&sp24) == 1) {
         func_80100120(arg0);

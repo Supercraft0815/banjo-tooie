@@ -1,3 +1,4 @@
+#include "core2/camera_state_callbacks.h"
 #include "common.h"
 
 s32 ncbaswim_entrypoint_0() 
@@ -5,10 +6,10 @@ s32 ncbaswim_entrypoint_0()
     return 0x4;
 }
 
-void ncbaswim_entrypoint_1(s32 arg0) 
-{
+void ncbaswim_entrypoint_1(struct player_state_s *arg0) {
 }
-void ncbaswim_entrypoint_2(BtIntPtr arg0) {
+void ncbaswim_entrypoint_2(BT_NATIVE_ONLY(struct player_state_s *camera) BT_IDO_ONLY(BtIntPtr arg0)) {
+    BT_NATIVE_ONLY(BtIntPtr arg0 = (BtIntPtr)camera;)
     void func_801124D0(BtIntPtr arg0, s32 arg1);
     void func_80115858(void *arg0, s32 arg1);
     void func_80115870(void *arg0, f32 arg1);
@@ -17,7 +18,8 @@ void ncbaswim_entrypoint_2(BtIntPtr arg0) {
     func_80115870((u8 *) arg0, 0.0f);
 }    typedef struct { u8 pad0[0x5C]; s32 * unk5C; } Objswim_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
-void ncbaswim_entrypoint_3(void *arg0) {
+void ncbaswim_entrypoint_3(BT_NATIVE_ONLY(struct player_state_s *camera) BT_IDO_ONLY(void *arg0)) {
+    BT_NATIVE_ONLY(void * arg0 = (void *)camera;)
     f32 _baswim_entrypoint_14(void *);
     f32 _ncbawaypoint_entrypoint_3(void *, f32 *, f32 *);
     f32 func_80013728(f32);

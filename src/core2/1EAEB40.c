@@ -1,5 +1,6 @@
 #include "common.h"
 #include "prop_triggers.inc"
+BT_NATIVE_ONLY(extern u8 D_8012B431;) BT_NATIVE_ONLY(extern s16 D_8012B432;)
 void func_800D5250()
 {
     func_800D52B0();
@@ -14,8 +15,8 @@ void func_800D5270(void)
 
 void func_800D527C(s32 arg0) {
     extern u8 D_8012B430;
-    (((Obj1EAEB40_D_8012B430 *)&D_8012B430)->unk0) = arg0 + 1;
-    (((Obj1EAEB40_D_8012B430 *)&D_8012B430)->unk1) = 1;
+    BT_DATA_FIELD(D_8012B430, (((Obj1EAEB40_D_8012B430 *)&D_8012B430)->unk0)) = arg0 + 1;
+    BT_DATA_FIELD(D_8012B431, (((Obj1EAEB40_D_8012B430 *)&D_8012B430)->unk1)) = 1;
 }    typedef struct { u8 unk0; } Obj1EAEB40_D_8012B431; /* offsets.py genstruct: fields from raw offsets on &D_8012B431; rename once understood */
 
 u32 func_800D5298(void) {
@@ -30,8 +31,8 @@ u32 func_800D52A4(void) {
 
 int func_800D52B0(void) {
     extern u8 D_8012B430;
-    (((Obj1EAEB40_D_8012B430 *)&D_8012B430)->unk1) = 0;
-    (((Obj1EAEB40_D_8012B430 *)&D_8012B430)->unk2) = -1;
+    BT_DATA_FIELD(D_8012B431, (((Obj1EAEB40_D_8012B430 *)&D_8012B430)->unk1)) = 0;
+    BT_DATA_FIELD(D_8012B432, (((Obj1EAEB40_D_8012B430 *)&D_8012B430)->unk2)) = -1;
     (*(s8 *)((s8 *)(&D_8012B430) + (0))) = 0; BT_NATIVE_ONLY(return 0;)
 }
 

@@ -1,3 +1,4 @@
+#include "core2/camera_state_callbacks.h"
 #include "nc/ba/die.h"
 
 s32 ncbadie_entrypoint_0() 
@@ -14,7 +15,8 @@ void func_80800048_ncbadie(PlayerState* arg0, f32* arg1)
 
 /* extern */
 
-void ncbadie_entrypoint_1(void *arg0) {
+void ncbadie_entrypoint_1(BT_NATIVE_ONLY(struct player_state_s *camera) BT_IDO_ONLY(void *arg0)) {
+    BT_NATIVE_ONLY(void * arg0 = (void *)camera;)
 #ifdef BT_NATIVE
 #ifdef BT_NATIVE
 #ifdef BT_NATIVE
@@ -51,8 +53,7 @@ void ncbadie_entrypoint_1(void *arg0) {
     func_801124D0((BtIntPtr) arg0, 4);
 }
 
-void ncbadie_entrypoint_2(s32 arg0) 
-{
+void ncbadie_entrypoint_2(struct player_state_s *arg0) {
 }    typedef struct { u8 pad0[0x10]; void * unk10; } Objdie_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 void ncbadie_entrypoint_3(void *arg0, f32 arg1) {
     *(f32 *)((u8 *)*&((Objdie_arg0 *)arg0)->unk10 + 0) = arg1;

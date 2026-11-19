@@ -1,5 +1,7 @@
 #include "common.h"
 
+#include "core2/world_effect.h"
+
 void idtwinklecolour_entrypoint_0(s32 arg0, s16 *arg1, s32 arg2, u8 *arg3) {
     BT_IDO_ONLY(s16 func_800DC214(s16, s16);) BT_NATIVE_ONLY(s32 func_800DC214(s32, s32);)
     struct Entry {
@@ -69,7 +71,7 @@ void idtwinklecolour_entrypoint_2(s32 arg0, u8 *arg1, u8 *arg2, s32 arg3, u8 *ar
         i = 0;
         if (*(s16 *)(arg4 + 0x22) > 0) {
             x = *(s16 *)arg1;
-            entry = *(u8 **)(arg4 + 0x24);
+            entry = ((TwinkleColorEffect *)arg4)->particles;
             do {
                 if (x == *(s16 *)(entry + 4) &&
                     *(s16 *)(arg1 + 2) == *(s16 *)(entry + 6) &&
@@ -81,7 +83,7 @@ void idtwinklecolour_entrypoint_2(s32 arg0, u8 *arg1, u8 *arg2, s32 arg3, u8 *ar
             } while (i < *(s16 *)(arg4 + 0x22));
         }
         if (i != *(s16 *)(arg4 + 0x22)) {
-            entry = *(u8 **)(arg4 + 0x24) + i * 0x14;
+            entry = ((TwinkleColorEffect *)arg4)->particles + i * 0x14;
             scale = *(f32 *)entry;
             colour = D_80800970_idtwinklecolour[entry[0xC]];
             arg2[0xC] = arg1[0xC] + (colour[0] - arg1[0xC]) * scale;
@@ -89,7 +91,7 @@ void idtwinklecolour_entrypoint_2(s32 arg0, u8 *arg1, u8 *arg2, s32 arg3, u8 *ar
             arg2[0xE] = arg1[0xE] + (colour[2] - arg1[0xE]) * scale;
         }
     }
-}                typedef struct { u8 pad0[0xC]; s16 unkC; u8 padE[0x6]; s32 unk14; s16 unk18; s16 unk1A; s16 unk1C; s16 unk1E; s16 unk20; s16 unk22; BtIntPtr unk24; } Objtwinklecolour_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+}
 
 void func_80800574_idtwinklecolour(void *arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
     void _glid_entrypoint_2(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s32), BtIntPtr arg3);
@@ -102,12 +104,12 @@ void func_80800574_idtwinklecolour(void *arg0, BtIntPtr arg1, s32 arg2, s32 arg3
 #endif
     s16 temp_v0;       
 
-    (((Objtwinklecolour_arg0 *)arg0)->unk1E) = func_800DC214(0, (((Objtwinklecolour_arg0 *)arg0)->unkC));
-    (((Objtwinklecolour_arg0 *)arg0)->unk1C) = 0;
-    (((Objtwinklecolour_arg0 *)arg0)->unk20) = (s16) arg3;
+    (((TwinkleColorEffect *)arg0)->unk1E) = func_800DC214(0, (((TwinkleColorEffect *)arg0)->unkC));
+    (((TwinkleColorEffect *)arg0)->unk1C) = 0;
+    (((TwinkleColorEffect *)arg0)->unk20) = (s16) arg3;
     _glid_entrypoint_2(arg1, arg2, &_idtwinklecolour_entrypoint_1, arg0);
-    temp_v0 = func_800DC214((((Objtwinklecolour_arg0 *)arg0)->unk18), (((Objtwinklecolour_arg0 *)arg0)->unk1A));
-    (((Objtwinklecolour_arg0 *)arg0)->unk14) = (s32) (temp_v0 * temp_v0);
+    temp_v0 = func_800DC214((((TwinkleColorEffect *)arg0)->unk18), (((TwinkleColorEffect *)arg0)->unk1A));
+    (((TwinkleColorEffect *)arg0)->unk14) = (s32) (temp_v0 * temp_v0);
     _glid_entrypoint_2(arg1, arg2, &_idtwinklecolour_entrypoint_0, arg0);
 }
 
@@ -115,14 +117,20 @@ void func_80800574_idtwinklecolour(void *arg0, BtIntPtr arg1, s32 arg2, s32 arg3
 
 void idtwinklecolour_entrypoint_3(void *arg0) {
     void heap_free(void *memory);
-    heap_free((((Objtwinklecolour_arg0 *)arg0)->unk24));
+    heap_free((((TwinkleColorEffect *)arg0)->particles));
 }
 
 /* extern */
 
-void idtwinklecolour_entrypoint_4(u8 *arg0, s32 arg1, BtIntPtr arg2, s32 arg3) {
+#ifdef BT_NATIVE
+void idtwinklecolour_entrypoint_4(void *data, s32 variant, void *model, s32 mesh, s32 flags) {
+    u8 *arg0 = (u8 *)data;
+    BtIntPtr arg2 = (BtIntPtr)model;
+#else
+void idtwinklecolour_entrypoint_4(u8 *arg0, s32 variant, BtIntPtr arg2, s32 mesh) {
+#endif
     void _glidmake_entrypoint_2(BtIntPtr, s32, u8 *, u8 *);
-    s16 _glidmake_entrypoint_3(s32 *arg0, s32 arg1);
+    s16 _glidmake_entrypoint_3(s32 *arg0, s32 variant);
     void *heap_alloc(s32);
     f32 sqrtf(f32);
     void bzero(void *, int);
@@ -131,30 +139,35 @@ void idtwinklecolour_entrypoint_4(u8 *arg0, s32 arg1, BtIntPtr arg2, s32 arg3) {
     s32 sum;
 
     sum = 0;
-    _glidmake_entrypoint_2(arg2, arg3, arg0, arg0 + 6);
-    *(s16 *)(arg0 + 0xC) = _glidmake_entrypoint_3(arg2, arg3);
+    _glidmake_entrypoint_2(arg2, mesh, arg0, arg0 + 6);
+    *(s16 *)(arg0 + 0xC) = _glidmake_entrypoint_3(arg2, mesh);
     for (i = 0; i < 3; i++) {
         delta[i] = ((s16 *)arg0)[i + 3] - ((s16 *)arg0)[i];
         sum += delta[i] * delta[i];
     }
     sum = (s32)sqrtf((f32)sum);
-    *(s16 *)(arg0 + 0x22) = arg1;
+    *(s16 *)(arg0 + 0x22) = variant;
     *(s16 *)(arg0 + 0x1A) = (s32)((f32)sum * 0.25f);
     *(s16 *)(arg0 + 0x18) = (s32)((f32)*(s16 *)(arg0 + 0x1A) * 0.5f);
     if (*(s16 *)(arg0 + 0x22) <= 0 || *(s16 *)(arg0 + 0x22) >= 21) {
         *(s16 *)(arg0 + 0x22) = 5;
     }
-    *(u8 **)(arg0 + 0x24) = heap_alloc(*(s16 *)(arg0 + 0x22) * 0x14);
-    bzero(*(u8 **)(arg0 + 0x24), *(s16 *)(arg0 + 0x22) * 0x14);
+    ((TwinkleColorEffect *)arg0)->particles = heap_alloc(*(s16 *)(arg0 + 0x22) * 0x14);
+    bzero(((TwinkleColorEffect *)arg0)->particles, *(s16 *)(arg0 + 0x22) * 0x14);
     for (i = 0; i < *(s16 *)(arg0 + 0x22); i++) {
-        (*(u8 **)(arg0 + 0x24))[i * 0x14 + 0xD] = 1;
-        func_80800574_idtwinklecolour(arg0, arg2, arg3, i);
+        (((TwinkleColorEffect *)arg0)->particles)[i * 0x14 + 0xD] = 1;
+        func_80800574_idtwinklecolour(arg0, arg2, mesh, i);
     }
 }    typedef struct { f32 unk0; u8 pad4[0x7]; s8 unkB; } Objtwinklecolour_idtwinklecolour_entrypoint_5_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
-void idtwinklecolour_entrypoint_5(s16 *arg0, BtIntPtr arg1, s32 arg2)
-{
-  void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
+#ifdef BT_NATIVE
+void idtwinklecolour_entrypoint_5(void *data, void *model, s32 mesh) {
+    s16 *arg0 = (s16 *)data;
+    BtIntPtr arg1 = (BtIntPtr)model;
+#else
+void idtwinklecolour_entrypoint_5(s16 *arg0, BtIntPtr arg1, s32 mesh) {
+#endif
+  void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*mesh)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
   f32 func_800D8FF8(void);
   s32 func_800E3DC0(s16 *, s16 *);
 #ifndef BT_NATIVE
@@ -169,20 +182,20 @@ void idtwinklecolour_entrypoint_5(s16 *arg0, BtIntPtr arg1, s32 arg2)
   if (func_800E3DC0(arg0, arg0 + 3) != 0)
   {
     var_s1 = 0;
- do { if ((((Objtwinklecolour_arg0 *)arg0)->unk22) > 0) { var_s0 = 0; do { temp_v0 = (((Objtwinklecolour_arg0 *)arg0)->unk24) + var_s0; ((Objtwinklecolour_idtwinklecolour_entrypoint_5_temp_v0 *)temp_v0)->unk0 += ((f32) (((Objtwinklecolour_idtwinklecolour_entrypoint_5_temp_v0 *)temp_v0)->unkB)) * sp34; temp_v0 = (((Objtwinklecolour_arg0 *)arg0)->unk24) + var_s0; temp_f0 = *((f32 *) temp_v0); if (temp_f0 >= 1.0f) { *((f32 *) temp_v0) = 1.0f; temp_v0 = (((Objtwinklecolour_arg0 *)arg0)->unk24) + var_s0; ((Objtwinklecolour_idtwinklecolour_entrypoint_5_temp_v0 *)temp_v0)->unkB = (s8) (-(((Objtwinklecolour_idtwinklecolour_entrypoint_5_temp_v0 *)temp_v0)->unkB)); } else if (temp_f0 < 0.0f) { *((f32 *) temp_v0) = 0.0f; *((s8 *) (((s8 *) ((((Objtwinklecolour_arg0 *)arg0)->unk24) + var_s0)) + 0xD)) = 1; } var_s1 += 1; var_s0 += 0x14; } while (var_s1 < (((Objtwinklecolour_arg0 *)arg0)->unk22)); var_s1 = 0; } _glid_entrypoint_0(arg1, arg2, &_idtwinklecolour_entrypoint_2, (BtIntPtr) arg0); } while (0);
+ do { if ((((TwinkleColorEffect *)arg0)->unk22) > 0) { var_s0 = 0; do { temp_v0 = (((TwinkleColorEffect *)arg0)->particles) + var_s0; ((Objtwinklecolour_idtwinklecolour_entrypoint_5_temp_v0 *)temp_v0)->unk0 += ((f32) (((Objtwinklecolour_idtwinklecolour_entrypoint_5_temp_v0 *)temp_v0)->unkB)) * sp34; temp_v0 = (((TwinkleColorEffect *)arg0)->particles) + var_s0; temp_f0 = *((f32 *) temp_v0); if (temp_f0 >= 1.0f) { *((f32 *) temp_v0) = 1.0f; temp_v0 = (((TwinkleColorEffect *)arg0)->particles) + var_s0; ((Objtwinklecolour_idtwinklecolour_entrypoint_5_temp_v0 *)temp_v0)->unkB = (s8) (-(((Objtwinklecolour_idtwinklecolour_entrypoint_5_temp_v0 *)temp_v0)->unkB)); } else if (temp_f0 < 0.0f) { *((f32 *) temp_v0) = 0.0f; *((s8 *) (((s8 *) ((((TwinkleColorEffect *)arg0)->particles) + var_s0)) + 0xD)) = 1; } var_s1 += 1; var_s0 += 0x14; } while (var_s1 < (((TwinkleColorEffect *)arg0)->unk22)); var_s1 = 0; } _glid_entrypoint_0(arg1, mesh, &_idtwinklecolour_entrypoint_2, (BtIntPtr) arg0); } while (0);
     var_s0 = 0;
-    if ((((Objtwinklecolour_arg0 *)arg0)->unk22) > 0)
+    if ((((TwinkleColorEffect *)arg0)->unk22) > 0)
     {
       do
       {
-        if ((*((u8 *) (((s8 *) ((((Objtwinklecolour_arg0 *)arg0)->unk24) + var_s0)) + 0xD))) != 0)
+        if ((*((u8 *) (((s8 *) ((((TwinkleColorEffect *)arg0)->particles) + var_s0)) + 0xD))) != 0)
         {
-          func_80800574_idtwinklecolour(arg0, arg1, arg2, var_s1);
+          func_80800574_idtwinklecolour(arg0, arg1, mesh, var_s1);
         }
         var_s1 += 1;
         var_s0 += 0x14;
       }
-      while (var_s1 < (((Objtwinklecolour_arg0 *)arg0)->unk22));
+      while (var_s1 < (((TwinkleColorEffect *)arg0)->unk22));
     }
   }
 }

@@ -49,7 +49,7 @@ typedef struct player_state_s {
         struct { u8 pad[0xC]; PlayerEggSelection *slot; } eggSelection;
     };
     /* 0x80 */ struct ba_flag_s *flag;
-    u8 pad84[0x8]; f32 unk8C; u8 pad90[0x4]; f32 ** unk94; f32 * unk98;
+    u8 pad84[0x8]; f32 unk8C; u8 pad90[0x4]; union { f32 **unk94; struct PlayerCollisionState *collisionState; }; f32 * unk98;
     /* 0x9C */ struct ba_unk_9C* unk9C;
     f32 * unkA0;
     /* 0xA4 */ struct ba_input_s *input;

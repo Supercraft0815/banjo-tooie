@@ -80,10 +80,7 @@ dlabel D_80128144
     /* 80128144 */ .space 0x0C
 
 dlabel D_80128150
-    /* 80128150 */ .space 0x01
-
-dlabel D_80128151
-    /* 80128151 */ .space 0x28
+    /* 80128150 */ .space 0x29
 
 dlabel D_80128179
     /* 80128179 */ .space 0x07

@@ -1,3 +1,4 @@
+#include "core2/camera_state_callbacks.h"
 #include "nc/ba/dive.h"
 
 s32 ncbadive_entrypoint_0() 
@@ -7,17 +8,19 @@ s32 ncbadive_entrypoint_0()
 
 /* extern */
 
-void ncbadive_entrypoint_1(void *arg0) {
+void ncbadive_entrypoint_1(BT_NATIVE_ONLY(struct player_state_s *camera) BT_IDO_ONLY(void *arg0)) {
+    BT_NATIVE_ONLY(void * arg0 = (void *)camera;)
     s32 func_800EFD24(void *);
-    s32 func_801120CC(void *, s32, s32, s32);
+    BT_NATIVE_ONLY(void func_801120CC(s32 *, f32, f32, f32);) BT_IDO_ONLY(s32 func_801120CC(void *, s32, s32, s32);)
     func_800EFD24((((Objdive_arg0 *)arg0)->unk18));
     (*(f32 *)((s8 *)((((Objdive_arg0 *)arg0)->unk18)) + (0xC))) = 0.0f;
-    func_801120CC(arg0, 0x45834000, 0x46034000, 0xC6034000);
+    BT_NATIVE_ONLY(func_801120CC((s32 *)arg0, 4200.0f, 8400.0f, -8400.0f);) BT_IDO_ONLY(func_801120CC(arg0, 0x45834000, 0x46034000, 0xC6034000);)
 }
 
-void ncbadive_entrypoint_2(u8 *arg0) {
-    s32 func_801120CC(void *, s32, s32, s32);
-    func_801120CC(arg0, 0x44FA0000, 0x457A0000, -0x3A860000);
+void ncbadive_entrypoint_2(BT_NATIVE_ONLY(struct player_state_s *camera) BT_IDO_ONLY(u8 *arg0)) {
+    BT_NATIVE_ONLY(u8 * arg0 = (u8 *)camera;)
+    BT_NATIVE_ONLY(void func_801120CC(s32 *, f32, f32, f32);) BT_IDO_ONLY(s32 func_801120CC(void *, s32, s32, s32);)
+    BT_NATIVE_ONLY(func_801120CC((s32 *)arg0, 2000.0f, 4000.0f, -4000.0f);) BT_IDO_ONLY(func_801120CC(arg0, 0x44FA0000, 0x457A0000, -0x3A860000);)
 }
 
 void func_80800080_ncbadive(PlayerState* arg0, f32* arg1)

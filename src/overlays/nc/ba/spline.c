@@ -1,3 +1,4 @@
+#include "core2/camera_state_callbacks.h"
 #include "common.h"
 
 s32 ncbaspline_entrypoint_0() 
@@ -33,15 +34,16 @@ void ncbaspline_entrypoint_1(void *arg0)
 
 /* extern */
 
-void ncbaspline_entrypoint_2(s32 arg0) {
+void ncbaspline_entrypoint_2(BT_NATIVE_ONLY(struct player_state_s *camera) BT_IDO_ONLY(s32 arg0)) {
+    BT_NATIVE_ONLY(BtIntPtr arg0 = (BtIntPtr)camera;)
     s32 func_801124D0(BtIntPtr, s32);
-    s32 func_80111B8C(s32, s32, s32);
+    BT_NATIVE_ONLY(void func_80111B8C(s32 *, f32, f32);) BT_IDO_ONLY(s32 func_80111B8C(s32, s32, s32);)
     func_801124D0(arg0, 1);
-    func_80111B8C(arg0, 0x40400000, 0x41000000);
+    BT_NATIVE_ONLY(func_80111B8C((s32 *)arg0, 3.0f, 8.0f);) BT_IDO_ONLY(func_80111B8C(arg0, 0x40400000, 0x41000000);)
 }
 
-void ncbaspline_entrypoint_3(void *arg0)
-{
+void ncbaspline_entrypoint_3(BT_NATIVE_ONLY(struct player_state_s *camera) BT_IDO_ONLY(void *arg0)) {
+    BT_NATIVE_ONLY(void * arg0 = (void *)camera;)
     func_8080002C_ncbaspline(arg0);
 }
 
@@ -155,7 +157,8 @@ s32 func_80800318_ncbaspline(void *arg0, f32 *arg1) {
     return 2;
 }
 
-void ncbaspline_entrypoint_4(void *arg0) {
+void ncbaspline_entrypoint_4(BT_NATIVE_ONLY(struct player_state_s *camera) BT_IDO_ONLY(void *arg0)) {
+    BT_NATIVE_ONLY(void * arg0 = (void *)camera;)
     BtIntPtr func_800D7520(s32);
     void func_800C7A68(BtIntPtr, f32, void *);
     f32 func_800D8FF8(void);

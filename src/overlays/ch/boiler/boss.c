@@ -483,7 +483,7 @@ void func_80800B94_chboilerboss(Actor *arg0, u8 *arg1) {
 
 void func_80800D50_chboilerboss(Actor *arg0, s32 *arg1) {
     void func_800C4AF0(f32 *, void *);
-    s16 func_800CB854(s32 *);
+    s16 func_800CB854(BtIntPtr *);
     int func_800DC298(f32);
     void *func_80100094(Actor *, u32);
     void func_80109EEC(s16 *, s32);

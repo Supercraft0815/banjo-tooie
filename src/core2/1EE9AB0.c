@@ -1,10 +1,13 @@
 #include "1EE9AB0_types.h"
+#ifdef BT_NATIVE
+#include "core2/camera_state_callbacks.h"
+#endif
 
 void func_801101C0(void) {
-    extern s16 (*D_80124950)(void);
+    BT_IDO_ONLY(extern s16 (*D_80124950)(void);)
     extern s16 D_80137340[25];
     extern s16 D_80137372;
-    s16 (**var_s1)(void);
+    BT_NATIVE_ONLY(s32) BT_IDO_ONLY(s16) (**var_s1)(void);
     s16 *var_s0;
     s16 temp_v1;
     s32 var_a0;
@@ -12,7 +15,7 @@ void func_801101C0(void) {
     BtUIntPtr end;
 
     D_80137372 = 0x98;
-    var_s0 = D_80137340; var_s1 = &D_80124950; end = (BtUIntPtr)&D_80137340[25];
+    var_s0 = D_80137340; var_s1 = BT_NATIVE_ONLY(D_80124950) BT_IDO_ONLY(&D_80124950); end = (BtUIntPtr)&D_80137340[25];
     do {
         *var_s0 = (*var_s1)();
         temp_v1 = *var_s0;
@@ -101,8 +104,7 @@ void func_80110528(PlayerState *arg0) { s32 func_801138A0(void *); s32 func_8011
 // picture. Pitch only tilts the picture around the focus. Camera modes without C-button turns: off.
 static f32 bt_pitch;
 static s32 bt_free_camera_allowed(void *camera) {
-    extern s16 D_801247A0[];
-    return D_801247A0[*(s32 *)((u8 *)camera + 0x6C) * 8 + 6] != 0;
+    return (D_801247A0[((s32 *)camera)[27]].flags >> 16) != 0;
 }
 
 static void bt_free_camera_yaw(PlayerState *camera) {
@@ -201,13 +203,15 @@ static void bt_free_camera_pitch(PlayerState *camera, f32 *position, f32 *rotati
 #endif
 
 void func_80110588(PlayerState *arg0) {
+#ifndef BT_NATIVE
     struct StateCallbacks {
         void (*enter)(PlayerState *, s32);
         void (*update)(PlayerState *);
         void (*exit)();
         void (*unkC)();
     };
-    extern s16 D_801247A0[];
+#endif
+    BT_IDO_ONLY(extern s16 D_801247A0[];)
     void func_800EE7F8(f32 *, f32 *);
     void func_8010FE14(s32 *, f32 *, f32 *);
     void func_800EFD24(f32 *);
@@ -238,7 +242,7 @@ void func_80110588(PlayerState *arg0) {
             func_80112648(arg0);
             func_80114DD8(arg0);
             func_80113D30(arg0);
-            update = ((struct StateCallbacks *)D_801247A0)[((s32 *)arg0)[27]].update;
+            update = BT_NATIVE_ONLY(D_801247A0) BT_IDO_ONLY(((struct StateCallbacks *)D_801247A0))[((s32 *)arg0)[27]].update;
             if (update != NULL) {
                 update(arg0);
             }
@@ -264,26 +268,28 @@ s32 func_801106A0(s32 *arg0) {
 }
 
 s32 func_801106A8(PlayerState *arg0, s32 arg1) {
+#ifndef BT_NATIVE
     struct StateCallbacks {
         void (*enter)(PlayerState *, s32);
         void (*unk4)();
         void (*exit)();
         void (*unkC)();
     };
-    extern s16 D_801247A0[];
-    void (*exit)();
-    void (*enter)(PlayerState *, s32);
+#endif
+    BT_IDO_ONLY(extern s16 D_801247A0[];)
+    BT_NATIVE_ONLY(CameraStateMethod exit; CameraStateMethod enter;)
+    BT_IDO_ONLY(void (*exit)(); void (*enter)(PlayerState *, s32);)
     s32 oldState;
 
     oldState = ((s32 *)arg0)[27];
     if (arg1 != oldState) {
-        exit = ((struct StateCallbacks *)D_801247A0)[oldState].exit;
+        exit = BT_NATIVE_ONLY(D_801247A0) BT_IDO_ONLY(((struct StateCallbacks *)D_801247A0))[oldState].exit;
         if (exit != NULL) {
-            exit();
+            exit(BT_NATIVE_ONLY(arg0));
         }
-        enter = ((struct StateCallbacks *)D_801247A0)[arg1].enter;
+        enter = BT_NATIVE_ONLY(D_801247A0) BT_IDO_ONLY(((struct StateCallbacks *)D_801247A0))[arg1].enter;
         if (enter != NULL) {
-            enter(arg0, arg1);
+            BT_NATIVE_ONLY(enter(arg0);) BT_IDO_ONLY(enter(arg0, arg1);)
         }
         ((s32 *)arg0)[27] = arg1;
     }
@@ -547,7 +553,7 @@ void func_80110DE0(BT_NATIVE_ONLY(void *bt_a0))
 }
 
 s32 func_80110E00(PlayerState *arg0, s32 arg1) {
-    extern s16 D_801247A0[];
+    BT_IDO_ONLY(extern s16 D_801247A0[];)
     BT_IDO_ONLY(f32 func_800F5AE0(s32);) BT_NATIVE_ONLY(s32 func_800F5AE0(s32); union { s32 bits; f32 value; } bt_pitch;)
     s32 func_80111154(BtIntPtr, f32);
     s32 func_80111198(BtIntPtr, f32);
@@ -559,7 +565,7 @@ s32 func_80110E00(PlayerState *arg0, s32 arg1) {
     func_80114D98(arg0, arg1);
     switch (arg1) {
         case 2:
-            switch (((s16 *)((u8 *)D_801247A0 + *(s32 *)((u8 *)arg0 + 0x6C) * 16))[7]) {
+            switch BT_NATIVE_ONLY((D_801247A0[((s32 *)arg0)[27]].flags & 0xFFFF)) BT_IDO_ONLY((((s16 *)((u8 *)D_801247A0 + *(s32 *)((u8 *)arg0 + 0x6C) * 16))[7])) {
                 case 1:
                     BT_NATIVE_ONLY(bt_pitch.bits = func_800F5AE0(*(s32 *)((u8 *)arg0 + 0x68));) func_80111198((BtIntPtr)arg0, BT_IDO_ONLY(func_800F5AE0(*(s32 *)((u8 *)arg0 + 0x68))) BT_NATIVE_ONLY(bt_pitch.value));
                     break;
@@ -578,10 +584,10 @@ s32 func_80110E00(PlayerState *arg0, s32 arg1) {
 
 s32 func_80110EFC(BT_IDO_ONLY(u8 *arg0) BT_PASS2(u8 *arg0, s32 bt_a1)) {
     s32 func_80110E00();
-    extern s16 D_801247A0[];
+    BT_IDO_ONLY(extern s16 D_801247A0[];)
     s32 index;
     index = ((Obj1EE9AB0_arg0 *)arg0)->unk6C;
-    if (D_801247A0[index * 8 + 6] != 0) {
+    if (BT_DATA_FIELD(D_801247A0[index].flags >> 16, D_801247A0[index * 8 + 6]) != 0) {
 #ifdef BT_NATIVE
         return func_80110E00(arg0, bt_a1);
 #else

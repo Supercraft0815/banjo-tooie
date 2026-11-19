@@ -1,8 +1,9 @@
 #include "core2/1E6F080.h"
+#include "core2/movement_collision.h"
 
 s32 func_80095790()
 {
-    return 0xAC;
+    return sizeof(PlayerCollisionState);
 }
 
 /* extern */
@@ -24,14 +25,14 @@ void func_80095798(void *arg0) {
 
     sp38 = func_800985B8(arg0);
     temp_f0 = func_8009864C(arg0);
-    if (temp_f0 < (*(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x94)) + 0x7C))) {
-        (*(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x94)) + 0x7C)) = temp_f0;
+    if (temp_f0 < ((PlayerState *)arg0)->collisionState->position[1]) {
+        ((PlayerState *)arg0)->collisionState->position[1] = temp_f0;
     }
-    if ((*(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x94)) + 0x7C)) < sp38) {
-        (*(f32 *)((s8 *)(*(u8 **)((s8 *)arg0 + 0x94)) + 0x7C)) = sp38;
+    if (((PlayerState *)arg0)->collisionState->position[1] < sp38) {
+        ((PlayerState *)arg0)->collisionState->position[1] = sp38;
     }
     func_80098590(arg0, sp3C);
-    func_800F1E6C((f32 *)((*(u8 **)((s8 *)(arg0) + (0x94))) + 0x78), sp3C, &sp30);
+    func_800F1E6C(((PlayerState *)arg0)->collisionState->position, sp3C, &sp30);
     if (mlAbsF(func_800F1DCC(sp30, yaw_get(arg0))) > 1.0f) {
         yaw_setIdeal(arg0, sp30);
         yaw_applyIdeal(arg0);
@@ -39,18 +40,18 @@ void func_80095798(void *arg0) {
 }
 
 void func_80095870(void *arg0, f32 *arg1, f32 *arg2) {
-    *arg1 = (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x94)))) + (4)));
-    *arg2 = (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x94)))) + (8)));
+    *arg1 = ((PlayerState *)arg0)->collisionState->response.height;
+    *arg2 = ((PlayerState *)arg0)->collisionState->response.radius;
 }
 
 s32 func_8009588C(s32 *arg0)
 {
-    return ((s32 *)arg0[37])[5];
+    return ((PlayerState *)arg0)->collisionState->response.flags;
 }
 
 u32 func_80095898(s32 *arg0)
 {
-    return ((u8 *)arg0[37])[162];
+    return ((PlayerState *)arg0)->collisionState->flagA2;
 }
 
 /* extern */
@@ -65,7 +66,7 @@ s32 func_800958A4(PlayerState *arg0, f32 arg1, f32 arg2) {
 
     func_8009C128(arg0, sp28);
     sp28[1] += arg1;
-    if (func_800C6C94(sp28, arg2, sp1C, (*(u32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x94)))) + (0x14)))) != 0) {
+    if (func_800C6C94(sp28, arg2, sp1C, ((PlayerState *)arg0)->collisionState->response.flags) != 0) {
         var_v1 = 1;
     } else {
         var_v1 = 0;
@@ -76,10 +77,10 @@ s32 func_800958A4(PlayerState *arg0, f32 arg1, f32 arg2) {
 void func_8009590C(PlayerState *arg0, f32 arg1) {
     void func_800C68A0(void *arg0, f32 arg1);
     if (arg1 == 0.0f) {
-        func_800C68A0(*(*(void ***)((s8 *)(arg0) + (0x94))), 56.0f);
+        func_800C68A0(((PlayerState *)arg0)->collisionState->response.object, 56.0f);
         return;
     }
-    func_800C68A0(*(*(void ***)((s8 *)(arg0) + (0x94))), arg1);
+    func_800C68A0(((PlayerState *)arg0)->collisionState->response.object, arg1);
 }
 
 void func_80095964(void *arg0, s32 arg1) {
@@ -91,46 +92,46 @@ void func_80095964(void *arg0, s32 arg1) {
     }
     func_80095A08(arg0, 8, 0);
     func_80095A08(arg0, 4, 1);
-}    typedef struct { u8 pad0[0x4]; f32 unk4; f32 unk8; u8 padC[0x58]; f32 unk64; f32 unk68; } Obj1E6F080_func_800959C8_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
+}
 
 void func_800959C8(PlayerState *arg0, f32 arg1, f32 arg2) {
     void *temp_v0;
 
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x94)))) + (0x64))) = arg1;
-    temp_v0 = (*(void **)((s8 *)(arg0) + (0x94)));
-    (((Obj1E6F080_func_800959C8_temp_v0 *)temp_v0)->unk4) = (f32) (((Obj1E6F080_func_800959C8_temp_v0 *)temp_v0)->unk64);
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x94)))) + (0x68))) = arg2;
-    temp_v0 = (*(void **)((s8 *)(arg0) + (0x94)));
-    (((Obj1E6F080_func_800959C8_temp_v0 *)temp_v0)->unk8) = (f32) (((Obj1E6F080_func_800959C8_temp_v0 *)temp_v0)->unk68);
+    ((PlayerState *)arg0)->collisionState->targetHeight = arg1;
+    temp_v0 = ((PlayerState *)arg0)->collisionState;
+    ((PlayerCollisionState *)temp_v0)->response.height = (f32) ((PlayerCollisionState *)temp_v0)->targetHeight;
+    ((PlayerState *)arg0)->collisionState->targetRadius = arg2;
+    temp_v0 = ((PlayerState *)arg0)->collisionState;
+    ((PlayerCollisionState *)temp_v0)->response.radius = (f32) ((PlayerCollisionState *)temp_v0)->targetRadius;
 }
 
 void func_800959FC(s32 *arg0, s32 arg1) {
-    ((s32 *) arg0[37])[5] = arg1;
-} typedef struct { u8 pad0[0x14]; s32 unk14; } Obj1E6F080_func_80095A08_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 pad0[0x14]; s32 unk14; } Obj1E6F080_func_80095A08_temp_v0_2; /* offsets.py genstruct: fields from raw offsets on temp_v0_2; rename once understood */ typedef struct { u8 pad0[0x94]; union { u8 * unk94; s32 * unk94_s32p; u8 ** unk94_u8pp; void * unk94_voidp; }; } Obj1E6F080_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+    ((PlayerState *)arg0)->collisionState->response.flags = arg1;
+}
 
 void func_80095A08(void *arg0, s32 arg1, s32 arg2) {
     void *temp_v0;
     void *temp_v0_2;
 
     if (arg2 != 0) {
-        temp_v0 = (((Obj1E6F080_arg0 *)arg0)->unk94_voidp);
-        (((Obj1E6F080_func_80095A08_temp_v0 *)temp_v0)->unk14) = (s32) ((((Obj1E6F080_func_80095A08_temp_v0 *)temp_v0)->unk14) | arg1);
+        temp_v0 = ((PlayerState *)arg0)->collisionState;
+        ((PlayerCollisionState *)temp_v0)->response.flags = (s32) (((PlayerCollisionState *)temp_v0)->response.flags | arg1);
         return;
     }
-    temp_v0_2 = (((Obj1E6F080_arg0 *)arg0)->unk94_voidp);
-    (((Obj1E6F080_func_80095A08_temp_v0_2 *)temp_v0_2)->unk14) = (s32) ((((Obj1E6F080_func_80095A08_temp_v0_2 *)temp_v0_2)->unk14) & ~arg1);
+    temp_v0_2 = ((PlayerState *)arg0)->collisionState;
+    ((PlayerCollisionState *)temp_v0_2)->response.flags = (s32) (((PlayerCollisionState *)temp_v0_2)->response.flags & ~arg1);
 }
 
 void func_80095A40(PlayerState *arg0) {
     func_800959C8(arg0, 80.0f, 35.0f);
 }
 
-void func_80095A64(s32 *arg0) {
-    arg0[20] = 0;
+void func_80095A64(MovementCollision *state) {
+    state->contact = 0;
 }
 
-void func_80095A6C(s32 *arg0, s32 *arg1) {
-    arg1[20] = (BtIntPtr) arg0;
+void func_80095A6C(BtUIntPtr actor, BtUIntPtr userdata) {
+    ((MovementCollision *)userdata)->contact = actor;
 }
 
 /* extern */
@@ -152,45 +153,45 @@ void func_80095AD0(s32 *arg0) {
     void func_800EFD24(f32 *);
     void func_80096254(s32 *, s32);
     u8 temp_v0;
-    u8 *temp_v1;
+    PlayerCollisionState *temp_v1;
 
-    (((Obj1E6F080_arg0 *)arg0)->unk94)[0xA3] = 0;
-    temp_v1 = ((Obj1E6F080_arg0 *)arg0)->unk94;
-    temp_v0 = temp_v1[0xA3];
-    temp_v1[0x54] = temp_v0;
-    (((Obj1E6F080_arg0 *)arg0)->unk94)[0xA1] = temp_v0;
-    (((Obj1E6F080_arg0 *)arg0)->unk94)[0x18] = temp_v0;
-    (((Obj1E6F080_arg0 *)arg0)->unk94)[0x56] = temp_v0;
-    (((Obj1E6F080_arg0 *)arg0)->unk94)[0xA0] = temp_v0;
+    ((PlayerState *)arg0)->collisionState->flagA3 = 0;
+    temp_v1 = ((PlayerState *)arg0)->collisionState;
+    temp_v0 = temp_v1->flagA3;
+    temp_v1->response.blocked = temp_v0;
+    ((PlayerState *)arg0)->collisionState->flagA1 = temp_v0;
+    ((PlayerState *)arg0)->collisionState->response.previous = temp_v0;
+    ((PlayerState *)arg0)->collisionState->response.flag = temp_v0;
+    ((PlayerState *)arg0)->collisionState->flagA0 = temp_v0;
     func_800959FC(arg0, 0x400005);
-    *((Obj1E6F080_arg0 *)arg0)->unk94_u8pp = func_800C5A38();
-    func_800EFD24((f32 *)(((Obj1E6F080_arg0 *)arg0)->unk94 + 0x90));
-    func_800EFD24((f32 *)(((Obj1E6F080_arg0 *)arg0)->unk94 + 0x78));
-    func_800EFD24((f32 *)(((Obj1E6F080_arg0 *)arg0)->unk94 + 0x84));
-    func_800EFD24((f32 *)(((Obj1E6F080_arg0 *)arg0)->unk94 + 0x44));
-    *(s32 *)(((Obj1E6F080_arg0 *)arg0)->unk94 + 0x1C) = 0;
-    (((Obj1E6F080_arg0 *)arg0)->unk94)[0xA2] = 0;
+    ((PlayerState *)arg0)->collisionState->response.object = func_800C5A38();
+    func_800EFD24(((PlayerState *)arg0)->collisionState->movement);
+    func_800EFD24(((PlayerState *)arg0)->collisionState->position);
+    func_800EFD24(((PlayerState *)arg0)->collisionState->oldPosition);
+    func_800EFD24(((PlayerState *)arg0)->collisionState->response.normal);
+    ((PlayerState *)arg0)->collisionState->response.triangle = 0;
+    ((PlayerState *)arg0)->collisionState->flagA2 = 0;
     func_80095A40((PlayerState *)arg0);
-    temp_v1 = ((Obj1E6F080_arg0 *)arg0)->unk94;
-    *(f32 *)(temp_v1 + 4) = *(f32 *)(temp_v1 + 0x64);
-    temp_v1 = ((Obj1E6F080_arg0 *)arg0)->unk94;
-    *(f32 *)(temp_v1 + 8) = *(f32 *)(temp_v1 + 0x68);
+    temp_v1 = ((PlayerState *)arg0)->collisionState;
+    temp_v1->response.height = temp_v1->targetHeight;
+    temp_v1 = ((PlayerState *)arg0)->collisionState;
+    temp_v1->response.radius = temp_v1->targetRadius;
     func_80096254(arg0, 1);
     func_8009590C((PlayerState *)arg0, 0.0f);
-    *(s32 *)(((Obj1E6F080_arg0 *)arg0)->unk94 + 0x9C) = 0;
+    ((PlayerState *)arg0)->collisionState->mode = 0;
     func_800961AC((PlayerState *)arg0, 1);
     baflag_clear((PlayerState *)arg0, 1);
     baflag_clear((PlayerState *)arg0, 2);
-    *(void (**)(s32 *, s32 *))(((Obj1E6F080_arg0 *)arg0)->unk94 + 0xC) = func_80095A6C;
-    *(void (**)(s32 *))(((Obj1E6F080_arg0 *)arg0)->unk94 + 0x10) = func_80095A64;
-    (((Obj1E6F080_arg0 *)arg0)->unk94)[0xA4] = 0;
+    ((PlayerState *)arg0)->collisionState->response.onContact = func_80095A6C;
+    ((PlayerState *)arg0)->collisionState->response.resetContact = func_80095A64;
+    ((PlayerState *)arg0)->collisionState->flagA4 = 0;
 }
 
 /* extern */
 
 void func_80095C10(void *arg0) {
     void func_800C5BA4(void* arg0);
-    func_800C5BA4(*(((Obj1E6F080_arg0 *)arg0)->unk94_s32p));
+    func_800C5BA4(((PlayerState *)arg0)->collisionState->response.object);
 }
 
 f32 func_80095C34(f32 arg0, f32 arg1, f32 arg2) {
@@ -207,42 +208,6 @@ f32 func_80095C34(f32 arg0, f32 arg1, f32 arg2) {
 void func_80095C94(PlayerState *self)
 {
   void baflag_clear(PlayerState *, int);
-  typedef struct
-  {
-    void *floor;
-    f32 radius;
-    f32 height;
-    u8 pad0C[12];
-    u8 previous;
-    u8 pad19[3];
-    void *triangle;
-    u8 pad20[48];
-    s32 contact;
-    u8 flag54;
-    u8 flag55;
-    u8 flag56;
-    u8 pad57;
-    f32 delta[3];
-    f32 targetRadius;
-    f32 targetHeight;
-    u8 triangleCopy[12];
-    f32 position[3];
-    f32 oldPosition[3];
-    f32 movement[3];
-    s32 mode;
-    u8 flagA0;
-    u8 flagA1;
-    u8 flagA2;
-    u8 flagA3;
-    u8 flagA4;
-  } Collision;
-  typedef struct
-  {
-    u8 pad00[0x94];
-    Collision *collision;
-    u8 pad98[0xEC];
-    s32 id;
-  } PlayerView;
   s32 func_80091E80(u8 *, s32);
   s32 func_8008E454(void *);
   void func_8009C128(PlayerState *, f32 *);
@@ -257,7 +222,7 @@ void func_80095C94(PlayerState *self)
   f32 baphysics_get_vertical_velocity(PlayerState *);
   void func_800EFB24(void *, void *, void *);
   void func_800D4584(void *, f32 *, f32 *, f32 *);
-  void func_8009C0F8();
+  void func_8009C0F8(PlayerState *, f32 *);
   void func_800978A4(PlayerState *);
   void func_80096768(PlayerState *);
   void _bahitspline_entrypoint_2(PlayerState *);
@@ -274,8 +239,8 @@ void func_80095C94(PlayerState *self)
   f32 previous[3];
   f32 floorHeight;
   f32 groundHeight;
-  ((PlayerView *) self)->collision->flagA4 = 1;
-  ((PlayerView *) self)->collision->contact = 0;
+  self->collisionState->flagA4 = 1;
+  self->collisionState->response.contact = 0;
   if (!func_80091E80((u8 *) self, 4))
   {
     return;
@@ -287,55 +252,55 @@ void func_80095C94(PlayerState *self)
   func_8009C128(self, position);
   if (func_800BEAAC(position, &floorHeight))
   {
-    func_800C68E8(((PlayerView *) self)->collision->floor, 1, floorHeight);
+    func_800C68E8(self->collisionState->response.object, 1, floorHeight);
   }
   else
   {
-    func_800C68E8(((PlayerView *) self)->collision->floor, 0, floorHeight);
+    func_800C68E8(self->collisionState->response.object, 0, floorHeight);
   }
-  ((PlayerView *) self)->collision->flagA1 = 0;
-  ((PlayerView *) self)->collision->flag54 = 0;
-  ((PlayerView *) self)->collision->flag55 = 0;
-  ((PlayerView *) self)->collision->triangle = 0;
-  ((PlayerView *) self)->collision->previous = ((PlayerView *) self)->collision->flag56;
-  func_800CB840(1, ((PlayerView *) self)->id);
-  ((PlayerView *) self)->collision->radius = func_80095C34(((PlayerView *) self)->collision->targetRadius, ((PlayerView *) self)->collision->radius, 1.0f);
-  ((PlayerView *) self)->collision->height = func_80095C34(((PlayerView *) self)->collision->targetHeight, ((PlayerView *) self)->collision->height, 1.0f);
-  switch (((PlayerView *) self)->collision->mode)
+  self->collisionState->flagA1 = 0;
+  self->collisionState->response.blocked = 0;
+  self->collisionState->response.count = 0;
+  self->collisionState->response.triangle = 0;
+  self->collisionState->response.previous = self->collisionState->response.flag;
+  func_800CB840(1, self->unk184);
+  self->collisionState->response.height = func_80095C34(self->collisionState->targetHeight, self->collisionState->response.height, 1.0f);
+  self->collisionState->response.radius = func_80095C34(self->collisionState->targetRadius, self->collisionState->response.radius, 1.0f);
+  switch (self->collisionState->mode)
   {
     case 1:
     case 3:
     case 4:
     case 9:
-      func_8009C128(self, ((PlayerView *) self)->collision->position);
-      func_8009C15C(self, ((PlayerView *) self)->collision->oldPosition);
-      if (((PlayerView *) self)->collision->mode == 3)
+      func_8009C128(self, self->collisionState->position);
+      func_8009C15C(self, self->collisionState->oldPosition);
+      if (self->collisionState->mode == 3)
     {
-      void *floor = ((PlayerView *) self)->collision->floor;
-      if (func_800C670C((BtIntPtr) floor))
+      void *floor = self->collisionState->response.object;
+      if (func_800C670C(floor))
       {
         f32 y = func_800C67D8(floor);
         f32 offset = func_800A0E58(self);
-        if ((y - offset) < ((PlayerView *) self)->collision->position[1])
+        if ((y - offset) < self->collisionState->position[1])
         {
-          ((PlayerView *) self)->collision->position[1] = y - offset;
-          ((PlayerView *) self)->collision->flagA1 = 1;
+          self->collisionState->position[1] = y - offset;
+          self->collisionState->flagA1 = 1;
           baphysics_set_vertical_velocity(self, 1.0f);
         }
       }
     }
-      func_800EFB24(((PlayerView *) self)->collision->delta, ((PlayerView *) self)->collision->position, ((PlayerView *) self)->collision->oldPosition);
-      func_800D4584(((PlayerView *) self)->collision, ((PlayerView *) self)->collision->oldPosition, ((PlayerView *) self)->collision->position, ((PlayerView *) self)->collision->delta);
-      func_8009C0F8(self, ((PlayerView *) self)->collision->position);
+      func_800EFB24(self->collisionState->delta, self->collisionState->position, self->collisionState->oldPosition);
+      func_800D4584(&self->collisionState->response, self->collisionState->oldPosition, self->collisionState->position, self->collisionState->delta);
+      func_8009C0F8(self, self->collisionState->position);
       break;
 
     case 5:
-      func_8009C128(self, ((PlayerView *) self)->collision->position);
-      func_8009C15C(self, ((PlayerView *) self)->collision->oldPosition);
-      func_800EFB24(((PlayerView *) self)->collision->delta, ((PlayerView *) self)->collision->position, ((PlayerView *) self)->collision->oldPosition);
-      func_800D4584(((PlayerView *) self)->collision, ((PlayerView *) self)->collision->oldPosition, ((PlayerView *) self)->collision->position, ((PlayerView *) self)->collision->delta);
+      func_8009C128(self, self->collisionState->position);
+      func_8009C15C(self, self->collisionState->oldPosition);
+      func_800EFB24(self->collisionState->delta, self->collisionState->position, self->collisionState->oldPosition);
+      func_800D4584(&self->collisionState->response, self->collisionState->oldPosition, self->collisionState->position, self->collisionState->delta);
       func_80095798(self);
-      func_8009C0F8(self, ((PlayerView *) self)->collision->position);
+      func_8009C0F8(self, self->collisionState->position);
       break;
 
     case 7:
@@ -351,32 +316,32 @@ void func_80095C94(PlayerState *self)
 
     case 2:
     case 6:
-      ((PlayerView *) self)->collision->flag54 = 0;
-      ((PlayerView *) self)->collision->flag55 = 0;
-      ((PlayerView *) self)->collision->flag56 = 0;
+      self->collisionState->response.blocked = 0;
+      self->collisionState->response.count = 0;
+      self->collisionState->response.flag = 0;
       break;
 
   }
 
-  if (func_800C670C((BtIntPtr) ((PlayerView *) self)->collision->floor))
+  if (func_800C670C(self->collisionState->response.object))
   {
-    groundHeight = func_800C67D8(((PlayerView *) self)->collision->floor);
-    ((PlayerView *) self)->collision->flagA0 = ((PlayerView *) self)->collision->position[1] < groundHeight;
+    groundHeight = func_800C67D8(self->collisionState->response.object);
+    self->collisionState->flagA0 = self->collisionState->position[1] < groundHeight;
   }
   if (func_80096530(self))
   {
-    ((PlayerView *) self)->collision->flag56 = 1;
+    self->collisionState->response.flag = 1;
   }
-  if (((PlayerView *) self)->collision->flagA0 && ((groundHeight = func_800C67D8(((PlayerView *) self)->collision->floor) - func_800A0E58(self), ((PlayerView *) self)->collision->position[1] < groundHeight)))
+  if (self->collisionState->flagA0 && ((groundHeight = func_800C67D8(self->collisionState->response.object) - func_800A0E58(self), self->collisionState->position[1] < groundHeight)))
   {
     func_80096254((s32 *) self, 3);
-    if (((PlayerView *) self)->collision->flag56 && (baphysics_get_vertical_velocity(self) < 0.0f))
+    if (self->collisionState->response.flag && (baphysics_get_vertical_velocity(self) < 0.0f))
     {
       baphysics_set_vertical_velocity(self, -1.0f);
     }
   }
   else
-    if (((PlayerView *) self)->collision->flag56)
+    if (self->collisionState->response.flag)
   {
     func_80096260(self);
     if ((baphysics_get_vertical_velocity(self) < 0.0f) && (!(func_80096628(self) & 0x8000)))
@@ -388,31 +353,31 @@ void func_80095C94(PlayerState *self)
   {
     func_80096254((s32 *) self, 1);
   }
-  if (((PlayerView *) self)->collision->flagA2)
+  if (self->collisionState->flagA2)
   {
     func_8009C0F8(self, position);
   }
   func_800CB870();
-  if (((PlayerView *) self)->collision->flag54)
+  if (self->collisionState->response.blocked)
   {
-    ((PlayerView *) self)->collision->flagA3 = func_800F1418(((PlayerView *) self)->collision->flagA3 + 1, 3);
+    self->collisionState->flagA3 = func_800F1418(self->collisionState->flagA3 + 1, 3);
   }
   else
   {
-    ((PlayerView *) self)->collision->flagA3 = 0;
+    self->collisionState->flagA3 = 0;
   }
   func_8009C15C(self, previous);
   func_8009C128(self, current);
-  func_800EFB24(((PlayerView *) self)->collision->movement, current, previous);
-  if (((PlayerView *) self)->collision->triangle)
+  func_800EFB24(self->collisionState->movement, current, previous);
+  if (self->collisionState->response.triangle)
   {
-    func_800FB508(((PlayerView *) self)->collision->triangleCopy, ((PlayerView *) self)->collision->triangle);
-    ((PlayerView *) self)->collision->triangle = ((PlayerView *) self)->collision->triangleCopy;
+    func_800FB508(&self->collisionState->triangleCopy, self->collisionState->response.triangle);
+    self->collisionState->response.triangle = &self->collisionState->triangleCopy;
   }
   baflag_clear(self, 1);
   baflag_clear(self, 2);
-  if (((PlayerView *) self)->collision->contact && player_isStable(self))
+  if (self->collisionState->response.contact && player_isStable(self))
   {
-    func_8010114C(((PlayerView *) self)->collision->contact, 0x91, ((PlayerView *) self)->id);
+    func_8010114C(self->collisionState->response.contact, 0x91, self->unk184);
   }
 }

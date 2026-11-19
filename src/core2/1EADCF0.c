@@ -1,4 +1,4 @@
-#include "common.h"
+#include "core2/movement_collision.h"
 
 void func_800D4400(void *arg0, void *arg1, f32 *arg2) {
     void func_800D4D5C(BtIntPtr, void *);
@@ -14,24 +14,24 @@ void func_800D4400(void *arg0, void *arg1, f32 *arg2) {
     func_800D4D5C(arg1, arg0);
     height = func_800C6784(*(void **)arg0);
     func_800C675C(*(void **)arg0, normal);
-    grounded = *((u8 *)arg0 + 0x56);
-    *((u8 *)arg0 + 0x56) = 0;
+    grounded = ((MovementCollision *)arg0)->flag;
+    ((MovementCollision *)arg0)->flag = 0;
     if (!(normal[1] < 0.432f)) {
         y = ((f32 *)arg1)[1];
         if (y <= height) {
             ((f32 *)arg1)[1] = height;
-            *((u8 *)arg0 + 0x56) = 1;
+            ((MovementCollision *)arg0)->flag = 1;
             return;
         }
         if (grounded && arg2[1] < 0.0f) {
             if (normal[1] < 0.9f) {
                 if (y < height + 30.0f) {
                     ((f32 *)arg1)[1] = height;
-                    *((u8 *)arg0 + 0x56) = 1;
+                    ((MovementCollision *)arg0)->flag = 1;
                 }
             } else if (y < height + 5.0f) {
                 ((f32 *)arg1)[1] = height;
-                *((u8 *)arg0 + 0x56) = 1;
+                ((MovementCollision *)arg0)->flag = 1;
             }
         }
     }
@@ -50,11 +50,7 @@ void func_800D4564()
 
 void func_800D4584(void *arg0, f32 arg1[3], f32 arg2[3], f32 arg3[3])
 {
-    typedef struct {
-        s16 vertices[3];
-        s16 pad;
-        u32 flags;
-    } Collision;
+    typedef MovementTriangle Collision;
     typedef struct {
         f32 position[3];
         f32 previous[3];
@@ -68,22 +64,7 @@ void func_800D4584(void *arg0, f32 arg1[3], f32 arg2[3], f32 arg3[3])
         f32 matrix[3][3];
         s32 flag;
     } Step;
-    typedef struct {
-        f32 *object;
-        f32 height;
-        f32 radius;
-        s32 unkC;
-        s32 unk10;
-        s32 flags;
-        s32 unk18;
-        Collision *triangle;
-        f32 matrix[3][3];
-        f32 normal[3];
-        s32 unk50;
-        u8 blocked;
-        u8 count;
-        u8 flag;
-    } State;
+    typedef MovementCollision State;
 
     f32 func_800C673C(f32 *);
     void *func_800C6B78(f32 *, f32 *, f32, f32 *, s32, u32);
@@ -268,6 +249,22 @@ void func_800D4584(void *arg0, f32 arg1[3], f32 arg2[3], f32 arg3[3])
 
 /* extern */
 
+#ifdef BT_NATIVE
+void func_800D4D5C(BtIntPtr position, void *data) {
+    void func_800EA600(void (*)(BtUIntPtr, BtUIntPtr), BtUIntPtr);
+    void func_800C68AC(void *, f32 *);
+    void func_800C68CC(s32 *, s32);
+    void func_800C65E0(void *);
+    void func_800EA614(void);
+    MovementCollision *state = data;
+    func_800EA600(state->onContact, (BtUIntPtr)state);
+    state->resetContact(state);
+    func_800C68AC(state->object, (f32 *)position);
+    func_800C68CC((s32 *)state->object, state->flags);
+    func_800C65E0(state->object);
+    func_800EA614();
+}
+#else
 void func_800D4D5C(BtIntPtr arg0, void *arg1) {
     void func_800C65E0(u8 *arg0);
     s32 func_800C68AC(s32, BtIntPtr);
@@ -281,3 +278,4 @@ void func_800D4D5C(BtIntPtr arg0, void *arg1) {
     func_800C65E0((((Obj1EADCF0_arg1 *)arg1)->unk0));
     func_800EA614();
 }
+#endif

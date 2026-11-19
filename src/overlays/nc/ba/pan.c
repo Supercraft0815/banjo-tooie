@@ -1,3 +1,4 @@
+#include "core2/camera_state_callbacks.h"
 #include "nc/ba/pan.h"
 
 s32 ncbapan_entrypoint_0() 
@@ -47,8 +48,7 @@ void ncbapan_entrypoint_1(PlayerState *arg0) {
     func_80800048_ncbapan(arg0);
 }
 
-void ncbapan_entrypoint_2(s32 arg0) 
-{
+void ncbapan_entrypoint_2(struct player_state_s *arg0) {
 }
 void ncbapan_entrypoint_3(PlayerState *arg0) {
     void func_800EE780(f32 *, f32 *, f32 *);

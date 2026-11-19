@@ -1,3 +1,4 @@
+#include "core2/camera_state_callbacks.h"
 #include "nc/ba/climb.h"
 
 s32 ncbaclimb_entrypoint_0() 
@@ -17,7 +18,8 @@ void func_80800028_ncbaclimb(PlayerState* arg0, f32* arg1)
 
 /* extern */
 
-void ncbaclimb_entrypoint_1(BtIntPtr arg0) {
+void ncbaclimb_entrypoint_1(BT_NATIVE_ONLY(struct player_state_s *camera) BT_IDO_ONLY(BtIntPtr arg0)) {
+    BT_NATIVE_ONLY(BtIntPtr arg0 = (BtIntPtr)camera;)
     void func_80111B8C(s32 *, f32, f32);
     void func_801124D0(BtIntPtr arg0, s32 arg1);
     void func_80115858(void *, s32);
@@ -28,8 +30,7 @@ void ncbaclimb_entrypoint_1(BtIntPtr arg0) {
     func_80115870((void *) arg0, 0.0f);
 }
 
-void ncbaclimb_entrypoint_2(s32 arg0) 
-{
+void ncbaclimb_entrypoint_2(struct player_state_s *arg0) {
 }
 /* extern */
 

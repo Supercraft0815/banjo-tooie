@@ -1,8 +1,10 @@
+#include "core2/camera_state_callbacks.h"
 #include "nc/ba/glide.h"
 
 /* extern */
 
-void ncbaglide_entrypoint_0(s32 *arg0) {
+void ncbaglide_entrypoint_0(BT_NATIVE_ONLY(struct player_state_s *camera) BT_IDO_ONLY(s32 *arg0)) {
+    BT_NATIVE_ONLY(s32 * arg0 = (s32 *)camera;)
     void func_80111590(void *, f32, f32, f32, f32);
     void func_80111B8C(s32 *, f32, f32);
     void func_801124D0(BtIntPtr, s32);
@@ -15,8 +17,7 @@ void ncbaglide_entrypoint_0(s32 *arg0) {
     func_801124D0((BtIntPtr) arg0, 1);
 }
 
-void ncbaglide_entrypoint_1(s32 arg0) 
-{
+void ncbaglide_entrypoint_1(struct player_state_s *arg0) {
 }
 void func_8080007C_ncbaglide(PlayerState* arg0, f32* arg1)
 {
