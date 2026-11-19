@@ -1,5 +1,5 @@
 #include "core2/1E6B900.h"
-
+#include "player_model_details.inc"
 s32 func_80092010(void)
 {
 	return 0x118;
@@ -1302,12 +1302,12 @@ f32 func_80093ECC(u8 *arg0, f32 *arg1, BtIntPtr arg2, f32 *arg3) {
 
 s32 func_80093F30(s32 arg0) {
     s32 func_8009EA2C(void);
-    extern s32 D_80117DD8[][4];
-    extern s32 D_80117DDC[][4];
+    BT_IDO_ONLY(extern s32 D_80117DD8[][4];)
+    BT_IDO_ONLY(extern s32 D_80117DDC[][4];)
     if (func_8009EA2C() != 0) {
-        return D_80117DDC[arg0][0];
+        return BT_DATA_FIELD(playerModelDetails[arg0].dragonModel, D_80117DDC[arg0][0]);
     }
-    return D_80117DD8[arg0][0];
+    return BT_DATA_FIELD(playerModelDetails[arg0].normalModel, D_80117DD8[arg0][0]);
 }
 
 /* extern */
@@ -1330,18 +1330,18 @@ s32 func_80093F7C(u8 *arg0, s32 arg1) {
 void func_80093FD4(BtIntPtr arg0, s32 arg1) {
     void func_800941C8(u8 *, s32);
     s32 func_800EA05C();
-    extern s16 D_80117DF0[][2];
+    extern PlayerModelMap D_80117DF0[10];
     s32 temp_v0;
     s32 var_a1;
 
     if (arg1 == 0x607) {
         temp_v0 = func_800EA05C();
-        for (var_a1 = 0; D_80117DF0[var_a1][0] != -1; var_a1++) {
-            if (temp_v0 == D_80117DF0[var_a1][0]) {
+        for (var_a1 = 0; D_80117DF0[var_a1].map != -1; var_a1++) {
+            if (temp_v0 == D_80117DF0[var_a1].map) {
                 break;
             }
         }
-        func_800941C8(arg0, func_80093F30(D_80117DF0[var_a1][1]));
+        func_800941C8(arg0, func_80093F30(D_80117DF0[var_a1].detail));
         return;
     }
     func_800941C8(arg0, 0);
@@ -1355,7 +1355,7 @@ void func_80094070(u8 *arg0, f32 *arg1) {
     f32 func_800EEAD4(f32 *, f32 *);
     void func_800941C8(u8 *, s32);
     s32 func_800942D0(u8 *, s32);
-    extern f32 D_80117DD0[][4];
+    BT_IDO_ONLY(extern f32 D_80117DD0[][4];)
     f32 distance;
     f32 sp30[3];
     s32 i;
@@ -1365,7 +1365,7 @@ void func_80094070(u8 *arg0, f32 *arg1) {
         func_800E3980(sp30);
         distance = func_800EEAD4(arg1, sp30);
         for (i = 0; i < 2; i++) {
-            if (distance < D_80117DD0[i][0]) {
+            if (distance < BT_DATA_FIELD(playerModelDetails[i].distance, D_80117DD0[i][0])) {
                 break;
             }
         }
@@ -1440,12 +1440,12 @@ void func_800941C8(u8 *arg0, s32 arg1) {
 
 s32 func_800942D0(u8 *arg0, s32 arg1) {
     s32 func_8001BDAC(s32 *, s32);
-    extern s32 D_80117DD4[][4];
+    BT_IDO_ONLY(extern s32 D_80117DD4[][4];)
     s32 sp1C;
 
     func_8001BDAC(&sp1C, 1);
     if ((*(s32 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk50_u8p)) + (0x110))) != 0) {
-        sp1C += D_80117DD4[arg1][0];
+        sp1C += BT_DATA_FIELD(playerModelDetails[arg1].memoryCredit, D_80117DD4[arg1][0]);
     }
     return sp1C >= 0x32001;
 }

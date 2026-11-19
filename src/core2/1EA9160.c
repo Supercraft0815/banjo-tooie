@@ -1,71 +1,71 @@
 #include "core2/1EA9160.h"
 #include "gameflags.h"
-
-extern s32 D_8011AE60;    typedef struct { s32 unk0; } Obj1EA9160_D_8011AE60; /* offsets.py genstruct: fields from raw offsets on &D_8011AE60; rename once understood */
+#include "collectible_settings.inc"
+BT_IDO_ONLY(extern s32 D_8011AE60;)
 
 void func_800CF870(s32 arg0) {
-    ((Obj1EA9160_D_8011AE60 *)&D_8011AE60)->unk0 = arg0;
+    BT_NATIVE_ONLY(collectibleSettings.firstLevelJiggy) BT_IDO_ONLY(D_8011AE60) = arg0;
 }
 
 s32 func_800CF87C()
 {
-    return D_8011AE60;
+    return BT_DATA_FIELD(collectibleSettings.firstLevelJiggy, D_8011AE60);
 }
 
 s32 func_800CF888(s32 arg0, s32 arg1) {
-    extern s16 D_8011AE64[][2];
-    extern s16 D_8011AE6C[][2];
+    BT_IDO_ONLY(extern s16 D_8011AE64[][2];)
+    BT_IDO_ONLY(extern s16 D_8011AE6C[][2];)
     s32 i;
 
     i = 0;
     do {
-        if (arg0 == D_8011AE64[i][0] && arg1 == D_8011AE64[i][1]) {
+        if (arg0 == BT_DATA_FIELD(collectibleSettings.actorPairs[0][i][0], D_8011AE64[i][0]) && arg1 == BT_DATA_FIELD(collectibleSettings.actorPairs[0][i][1], D_8011AE64[i][1])) {
             return 1;
         }
         i++;
-    } while (D_8011AE6C != &D_8011AE64[i]);
+    } while (BT_DATA_FIELD(i != 2, D_8011AE6C != &D_8011AE64[i]));
     return 0;
 }
 
 s32 func_800CF8D0(s32 arg0, s32 arg1) {
-    extern s16 D_8011AE6C[][2];
-    extern s16 D_8011AE74[][2];
+    BT_IDO_ONLY(extern s16 D_8011AE6C[][2];)
+    BT_IDO_ONLY(extern s16 D_8011AE74[][2];)
     s32 i;
 
     i = 0;
     do {
-        if (arg0 == D_8011AE6C[i][0] && arg1 == D_8011AE6C[i][1]) {
+        if (arg0 == BT_DATA_FIELD(collectibleSettings.actorPairs[1][i][0], D_8011AE6C[i][0]) && arg1 == BT_DATA_FIELD(collectibleSettings.actorPairs[1][i][1], D_8011AE6C[i][1])) {
             return 1;
         }
         i++;
-    } while (D_8011AE74 != &D_8011AE6C[i]);
+    } while (BT_DATA_FIELD(i != 2, D_8011AE74 != &D_8011AE6C[i]));
     return 0;
 }
 
 s32 func_800CF918(s32 arg0, s32 arg1) {
-    extern s16 D_8011AE74[][2];
-    extern s16 D_8011AE76;
-    extern s16 D_8011AE84[][8];
-    s16 (*entry)[8];
+    BT_IDO_ONLY(extern s16 D_8011AE74[][2];)
+    BT_IDO_ONLY(extern s16 D_8011AE76;)
+    BT_IDO_ONLY(extern s16 D_8011AE84[][8];)
+    BT_NATIVE_ONLY(CollectibleLight *entry;) BT_IDO_ONLY(s16 (*entry)[8];)
     s32 i;
 
     i = 1;
-    if (arg0 == D_8011AE74[0][0] && arg1 == D_8011AE76) {
+    if (arg0 == BT_DATA_FIELD(collectibleSettings.lights[0].id[0], D_8011AE74[0][0]) && BT_DATA_FIELD(arg1 == collectibleSettings.lights[0].id[1], arg1 == D_8011AE76)) {
         return 0;
     }
     i = 1;
-    entry = D_8011AE84;
+    entry = BT_DATA_FIELD(&collectibleSettings.lights[1], D_8011AE84);
 loop:
-        if (arg0 == entry[0][0] && arg1 == entry[0][1]) {
+        if (arg0 == BT_DATA_FIELD(entry[0].id[0], entry[0][0]) && arg1 == BT_DATA_FIELD(entry[0].id[1], entry[0][1])) {
             return i;
         }
-        if (arg0 == entry[1][0] && arg1 == entry[1][1]) {
+        if (arg0 == BT_DATA_FIELD(entry[1].id[0], entry[1][0]) && arg1 == BT_DATA_FIELD(entry[1].id[1], entry[1][1])) {
             return i + 1;
         }
-        if (arg0 == entry[2][0] && arg1 == entry[2][1]) {
+        if (arg0 == BT_DATA_FIELD(entry[2].id[0], entry[2][0]) && arg1 == BT_DATA_FIELD(entry[2].id[1], entry[2][1])) {
             return i + 2;
         }
-        if (arg0 == entry[3][0] && arg1 == entry[3][1]) {
+        if (arg0 == BT_DATA_FIELD(entry[3].id[0], entry[3][0]) && arg1 == BT_DATA_FIELD(entry[3].id[1], entry[3][1])) {
             return i + 3;
         }
         i += 4;
@@ -80,7 +80,7 @@ void func_800CF9E4(s32 arg0, s32 arg1, s32 arg2) {
     void func_800C8D4C(s32, f32 *);
     void func_800C8E84(s32, u32 *);
     void func_800C8F64(s32, s32);
-    extern s16 D_8011AE74[][2];
+    BT_IDO_ONLY(extern s16 D_8011AE74[][2];)
     struct LightEntry {
         s16 id[2];
         f32 position[2];
@@ -89,14 +89,14 @@ void func_800CF9E4(s32 arg0, s32 arg1, s32 arg2) {
     };
     s32 index;
     u32 rgb[3];
-    struct LightEntry *entry;
+    BT_NATIVE_ONLY(CollectibleLight *entry;) BT_IDO_ONLY(struct LightEntry *entry;)
 
     index = func_800CF918(arg0, arg1);
     for (arg1 = 0; arg1 < 3; arg1++) {
-        rgb[arg1] = ((struct LightEntry *)D_8011AE74)[index].color[arg1];
+        rgb[arg1] = BT_DATA_FIELD(collectibleSettings.lights[index].color[arg1], ((struct LightEntry *)D_8011AE74)[index].color[arg1]);
     }
-    entry = (struct LightEntry *)(index * 0x10 + (u8 *)D_8011AE74);
-    func_800C8D4C(arg2, entry->position);
+    entry = BT_DATA_FIELD(&collectibleSettings.lights[index], (struct LightEntry *)(index * 0x10 + (u8 *)D_8011AE74));
+    func_800C8D4C(arg2, BT_DATA_FIELD(entry->range, entry->position));
     func_800C8E84(arg2, rgb);
     func_800C8F64(arg2, entry->flags);
 }
@@ -116,7 +116,7 @@ s32 func_800CFA90(void) {
     void func_800DC324(s32);
     void func_800DC330(void);
     void func_800DC354(void);
-    extern u8 D_8011AB40[];
+    BT_IDO_ONLY(extern u8 D_8011AB40[];)
     s32 counts[9];
     s32 *ptr;
     s32 value;
@@ -146,7 +146,7 @@ s32 func_800CFA90(void) {
             ptr = &counts[value];
         }
         counts[value]++;
-        ((u8 (*)[3])D_8011AB40)[idx][1] = value;
+        BT_NATIVE_ONLY(collectibleSettings.jinjos[idx].color) BT_IDO_ONLY(((u8 (*)[3])D_8011AB40)[idx][1]) = value;
     }
     func_800DC354();
     return 1;
@@ -169,19 +169,19 @@ void func_800CFBC8(Actor *arg0, u32 arg1, s32 arg2, s32 arg3) {
 }
 
 s32 func_800CFC5C(s32 arg0) {
-    if ((arg0 -= D_8011AE60) >= 0 && arg0 < 0xA) {
+    if ((arg0 -= BT_DATA_FIELD(collectibleSettings.firstLevelJiggy, D_8011AE60)) >= 0 && arg0 < 0xA) {
         return arg0;
     }
     return -1;
 }
 
 u32 func_800CFC8C(s32 arg0, s32 arg1) {
-    extern u8 D_8011AB40[];
-    extern u8 D_8011ABC8[];
-    extern u8 D_8011AC7C[];
-    extern u8 D_8011ACB0[];
-    extern u8 D_8011ACD4[];
-    extern u8 D_8011AD08[];
+    BT_IDO_ONLY(extern u8 D_8011AB40[];)
+    BT_IDO_ONLY(extern u8 D_8011ABC8[];)
+    BT_IDO_ONLY(extern u8 D_8011AC7C[];)
+    BT_IDO_ONLY(extern u8 D_8011ACB0[];)
+    BT_IDO_ONLY(extern u8 D_8011ACD4[];)
+    BT_IDO_ONLY(extern u8 D_8011AD08[];)
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _chnests_entrypoint_13(s32);
     s32 i;
     u32 count = 0;
@@ -189,35 +189,35 @@ u32 func_800CFC8C(s32 arg0, s32 arg1) {
     switch (arg0) {
         case 0:
             for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
-                if (arg1 == D_8011AB40[i * 3 - 3]) {
+                if (arg1 == BT_DATA_FIELD(collectibleSettings.jinjos[i - 1].level, D_8011AB40[i * 3 - 3])) {
                     count++;
                 }
             }
             return count;
         case 1:
             for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
-                if (arg1 == D_8011ABC8[i * 2 - 2]) {
+                if (arg1 == BT_DATA_FIELD(collectibleSettings.jiggies[i - 1].level, D_8011ABC8[i * 2 - 2])) {
                     count++;
                 }
             }
             return count;
         case 2:
             for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
-                if (arg1 == D_8011AC7C[i * 2 - 2]) {
+                if (arg1 == BT_DATA_FIELD(collectibleSettings.emptyHoneycombs[i - 1].level, D_8011AC7C[i * 2 - 2])) {
                     count++;
                 }
             }
             return count;
         case 3:
             for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
-                if (arg1 == D_8011ACB0[i * 2 - 2]) {
+                if (arg1 == BT_DATA_FIELD(collectibleSettings.glowbos[i - 1].level, D_8011ACB0[i * 2 - 2])) {
                     count++;
                 }
             }
             return count;
         case 4:
             for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
-                if (arg1 == D_8011ACD4[i * 2 - 2]) {
+                if (arg1 == BT_DATA_FIELD(collectibleSettings.cheatoPages[i - 1].level, D_8011ACD4[i * 2 - 2])) {
                     count++;
                 }
             }
@@ -226,8 +226,8 @@ u32 func_800CFC8C(s32 arg0, s32 arg1) {
             return func_800D0894(arg0) - func_800D0820(arg0) + 1;
         case 6:
             for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
-                if (arg1 == D_8011AD08[i * 2 - 2]) {
-                    count += BT_NATIVE_ONLY((s8)) _chnests_entrypoint_13(D_8011AD08[i * 2 - 1] ? 0x1DA : 0x1D9);
+                if (arg1 == BT_DATA_FIELD(collectibleSettings.noteNests[i - 1].level, D_8011AD08[i * 2 - 2])) {
+                    count += BT_NATIVE_ONLY((s8)) _chnests_entrypoint_13(BT_DATA_FIELD(collectibleSettings.noteNests[i - 1].isTrebleClef, D_8011AD08[i * 2 - 1]) ? 0x1DA : 0x1D9);
                 }
             }
             return count;
@@ -247,12 +247,12 @@ s32 func_800CFFBC(u32 arg0, s32 arg1) {
 }
 
 s32 func_800D0018(s32 arg0, s32 arg1) {
-    extern u8 D_8011AB3D[][3];
-    extern u8 D_8011ABC6[][2];
-    extern u8 D_8011AC7A[][2];
-    extern u8 D_8011ACAE[][2];
-    extern u8 D_8011ACD2[][2];
-    extern u8 D_8011AD08[];
+    BT_IDO_ONLY(extern u8 D_8011AB3D[][3];)
+    BT_IDO_ONLY(extern u8 D_8011ABC6[][2];)
+    BT_IDO_ONLY(extern u8 D_8011AC7A[][2];)
+    BT_IDO_ONLY(extern u8 D_8011ACAE[][2];)
+    BT_IDO_ONLY(extern u8 D_8011ACD2[][2];)
+    BT_IDO_ONLY(extern u8 D_8011AD08[];)
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _chnests_entrypoint_13(s32);
     s32 i;
     s32 count = 0;
@@ -260,43 +260,43 @@ s32 func_800D0018(s32 arg0, s32 arg1) {
     switch (arg0) {
         case 0:
             for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
-                if (func_800D0B68(i, arg0) && arg1 == D_8011AB3D[i][0]) {
+                if (func_800D0B68(i, arg0) && arg1 == BT_DATA_FIELD(collectibleSettings.jinjos[i - 1].level, D_8011AB3D[i][0])) {
                     count++;
                 }
             }
             return count;
         case 1:
             for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
-                if (func_800D0B68(i, arg0) && arg1 == D_8011ABC6[i][0]) {
+                if (func_800D0B68(i, arg0) && arg1 == BT_DATA_FIELD(collectibleSettings.jiggies[i - 1].level, D_8011ABC6[i][0])) {
                     count++;
                 }
             }
             return count;
         case 2:
             for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
-                if (func_800D0B68(i, arg0) && arg1 == D_8011AC7A[i][0]) {
+                if (func_800D0B68(i, arg0) && arg1 == BT_DATA_FIELD(collectibleSettings.emptyHoneycombs[i - 1].level, D_8011AC7A[i][0])) {
                     count++;
                 }
             }
             return count;
         case 3:
             for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
-                if (func_800D0B68(i, arg0) && arg1 == D_8011ACAE[i][0]) {
+                if (func_800D0B68(i, arg0) && arg1 == BT_DATA_FIELD(collectibleSettings.glowbos[i - 1].level, D_8011ACAE[i][0])) {
                     count++;
                 }
             }
             return count;
         case 4:
             for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
-                if (func_800D0B68(i, arg0) && arg1 == D_8011ACD2[i][0]) {
+                if (func_800D0B68(i, arg0) && arg1 == BT_DATA_FIELD(collectibleSettings.cheatoPages[i - 1].level, D_8011ACD2[i][0])) {
                     count++;
                 }
             }
             return count;
         case 6:
             for (i = func_800D0820(arg0); i <= func_800D0894(arg0); i++) {
-                if (func_800D0B68(i, arg0) && arg1 == D_8011AD08[i * 2 - 2]) {
-                    count += BT_NATIVE_ONLY((s8)) _chnests_entrypoint_13(D_8011AD08[i * 2 - 1] ? 0x1DA : 0x1D9);
+                if (func_800D0B68(i, arg0) && arg1 == BT_DATA_FIELD(collectibleSettings.noteNests[i - 1].level, D_8011AD08[i * 2 - 2])) {
+                    count += BT_NATIVE_ONLY((s8)) _chnests_entrypoint_13(BT_DATA_FIELD(collectibleSettings.noteNests[i - 1].isTrebleClef, D_8011AD08[i * 2 - 1]) ? 0x1DA : 0x1D9);
                 }
             }
             return count;
@@ -313,7 +313,7 @@ s32 func_800D0018(s32 arg0, s32 arg1) {
 
 s32 func_800D035C(s32 a0) {
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(u8) _chnests_entrypoint_13(s32);
-    extern u8 D_8011AD08[];
+    BT_IDO_ONLY(extern u8 D_8011AD08[];)
     s32 i;
     s32 count;
 
@@ -323,7 +323,7 @@ s32 func_800D035C(s32 a0) {
         if (func_800D0894(a0) >= i) {
             do {
                 if (func_800D0B68(i, a0) != 0) {
-                    count += BT_NATIVE_ONLY((s8)) _chnests_entrypoint_13(D_8011AD08[i * 2 - 1] ? 0x1DA : 0x1D9);
+                    count += BT_NATIVE_ONLY((s8)) _chnests_entrypoint_13(BT_DATA_FIELD(collectibleSettings.noteNests[i - 1].isTrebleClef, D_8011AD08[i * 2 - 1]) ? 0x1DA : 0x1D9);
                 }
                 i++;
             } while (func_800D0894(a0) >= i);
@@ -377,17 +377,17 @@ void func_800D05E4(s32 arg0, s32 arg1, BtIntPtr arg2) { s32 func_800CFC5C(s32); 
 s16 func_800D0684(s32 arg0, s32 arg1) { s32 func_800CFC5C(s32); extern s16 D_8012B190[]; s32 temp_v0; if (arg1 == 1) { temp_v0 = func_800CFC5C(arg0); if (temp_v0 != -1) { return *(s16 *)((u8 *)D_8012B190 + temp_v0 * 0x14); } } return 0; }
 
 s32 func_800D06D4(s32 itemIndex, s32 itemType) {
-    extern u8 D_8011ABC6[][2];
-    extern u8 D_8011AB3D[][3];
-    extern u8 D_8011ACD2[][2];
-    extern u8 D_8011ACAE[][2];
-    extern u8 D_8011AC7A[][2];
+    BT_IDO_ONLY(extern u8 D_8011ABC6[][2];)
+    BT_IDO_ONLY(extern u8 D_8011AB3D[][3];)
+    BT_IDO_ONLY(extern u8 D_8011ACD2[][2];)
+    BT_IDO_ONLY(extern u8 D_8011ACAE[][2];)
+    BT_IDO_ONLY(extern u8 D_8011AC7A[][2];)
     switch (itemType) {
-        case 1: return D_8011ABC6[itemIndex][0];
-        case 0: return D_8011AB3D[itemIndex][0];
-        case 4: return D_8011ACD2[itemIndex][0];
-        case 3: return D_8011ACAE[itemIndex][0];
-        case 2: return D_8011AC7A[itemIndex][0];
+        case 1: return BT_DATA_FIELD(collectibleSettings.jiggies[itemIndex - 1].level, D_8011ABC6[itemIndex][0]);
+        case 0: return BT_DATA_FIELD(collectibleSettings.jinjos[itemIndex - 1].level, D_8011AB3D[itemIndex][0]);
+        case 4: return BT_DATA_FIELD(collectibleSettings.cheatoPages[itemIndex - 1].level, D_8011ACD2[itemIndex][0]);
+        case 3: return BT_DATA_FIELD(collectibleSettings.glowbos[itemIndex - 1].level, D_8011ACAE[itemIndex][0]);
+        case 2: return BT_DATA_FIELD(collectibleSettings.emptyHoneycombs[itemIndex - 1].level, D_8011AC7A[itemIndex][0]);
         case 5: return 0x10;
         case 6: return -1;
     }
@@ -430,48 +430,48 @@ s32 func_800D0894(s32 itemType) {
 }
 
 s32 func_800D0908(s32 itemIndex, s32 itemType) {
-    extern GameFlag D_8011AF28[];
-    extern u8 D_8011AB3F[];
-    extern u8 D_8011ABC7[];
-    extern u8 D_8011ACD3[];
-    extern u8 D_8011AC7B[];
-    extern u8 D_8011ACAF[];
-    extern u8 D_8011AE3B[];
-    extern u8 D_8011AE5B[];
+    BT_IDO_ONLY(extern GameFlag D_8011AF28[];)
+    BT_IDO_ONLY(extern u8 D_8011AB3F[];)
+    BT_IDO_ONLY(extern u8 D_8011ABC7[];)
+    BT_IDO_ONLY(extern u8 D_8011ACD3[];)
+    BT_IDO_ONLY(extern u8 D_8011AC7B[];)
+    BT_IDO_ONLY(extern u8 D_8011ACAF[];)
+    BT_IDO_ONLY(extern u8 D_8011AE3B[];)
+    BT_IDO_ONLY(extern u8 D_8011AE5B[];)
     switch (itemType) {
         case 0:
-            if (D_8011AB3F[itemIndex * 3]) {
-                return D_8011AF28[itemType] + D_8011AB3F[itemIndex * 3] - 1;
+            if (BT_DATA_FIELD(collectibleSettings.jinjos[itemIndex - 1].spawnFlag, D_8011AB3F[itemIndex * 3])) {
+                return BT_DATA_FIELD(collectibleSettings.firstSpawnedFlag[itemType], D_8011AF28[itemType]) + BT_DATA_FIELD(collectibleSettings.jinjos[itemIndex - 1].spawnFlag, D_8011AB3F[itemIndex * 3]) - 1;
             }
             break;
         case 1:
-            if (D_8011ABC7[itemIndex * 2]) {
-                return D_8011AF28[itemType] + D_8011ABC7[itemIndex * 2] - 1;
+            if (BT_DATA_FIELD(collectibleSettings.jiggies[itemIndex - 1].spawnFlag, D_8011ABC7[itemIndex * 2])) {
+                return BT_DATA_FIELD(collectibleSettings.firstSpawnedFlag[itemType], D_8011AF28[itemType]) + BT_DATA_FIELD(collectibleSettings.jiggies[itemIndex - 1].spawnFlag, D_8011ABC7[itemIndex * 2]) - 1;
             }
             break;
         case 4:
-            if (D_8011ACD3[itemIndex * 2]) {
-                return D_8011AF28[itemType] + D_8011ACD3[itemIndex * 2] - 1;
+            if (BT_DATA_FIELD(collectibleSettings.cheatoPages[itemIndex - 1].spawnFlag, D_8011ACD3[itemIndex * 2])) {
+                return BT_DATA_FIELD(collectibleSettings.firstSpawnedFlag[itemType], D_8011AF28[itemType]) + BT_DATA_FIELD(collectibleSettings.cheatoPages[itemIndex - 1].spawnFlag, D_8011ACD3[itemIndex * 2]) - 1;
             }
             break;
         case 2:
-            if (D_8011AC7B[itemIndex * 2]) {
-                return D_8011AF28[itemType] + D_8011AC7B[itemIndex * 2] - 1;
+            if (BT_DATA_FIELD(collectibleSettings.emptyHoneycombs[itemIndex - 1].spawnFlag, D_8011AC7B[itemIndex * 2])) {
+                return BT_DATA_FIELD(collectibleSettings.firstSpawnedFlag[itemType], D_8011AF28[itemType]) + BT_DATA_FIELD(collectibleSettings.emptyHoneycombs[itemIndex - 1].spawnFlag, D_8011AC7B[itemIndex * 2]) - 1;
             }
             break;
         case 3:
-            if (D_8011ACAF[itemIndex * 2]) {
-                return D_8011AF28[itemType] + D_8011ACAF[itemIndex * 2] - 1;
+            if (BT_DATA_FIELD(collectibleSettings.glowbos[itemIndex - 1].spawnFlag, D_8011ACAF[itemIndex * 2])) {
+                return BT_DATA_FIELD(collectibleSettings.firstSpawnedFlag[itemType], D_8011AF28[itemType]) + BT_DATA_FIELD(collectibleSettings.glowbos[itemIndex - 1].spawnFlag, D_8011ACAF[itemIndex * 2]) - 1;
             }
             break;
         case 7:
-            if (D_8011AE3B[itemIndex]) {
-                return D_8011AF28[itemType] + D_8011AE3B[itemIndex] - 1;
+            if (BT_DATA_FIELD(collectibleSettings.doubloonSpawnFlags[itemIndex - 1], D_8011AE3B[itemIndex])) {
+                return BT_DATA_FIELD(collectibleSettings.firstSpawnedFlag[itemType], D_8011AF28[itemType]) + BT_DATA_FIELD(collectibleSettings.doubloonSpawnFlags[itemIndex - 1], D_8011AE3B[itemIndex]) - 1;
             }
             break;
         case 8:
-            if (D_8011AE5B[itemIndex]) {
-                return D_8011AF28[itemType] + D_8011AE5B[itemIndex] - 1;
+            if (BT_DATA_FIELD(collectibleSettings.item8SpawnFlags[itemIndex - 1], D_8011AE5B[itemIndex])) {
+                return BT_DATA_FIELD(collectibleSettings.firstSpawnedFlag[itemType], D_8011AF28[itemType]) + BT_DATA_FIELD(collectibleSettings.item8SpawnFlags[itemIndex - 1], D_8011AE5B[itemIndex]) - 1;
             }
             break;
     }
@@ -479,8 +479,8 @@ s32 func_800D0908(s32 itemIndex, s32 itemType) {
 }
 
 s32 func_800D0A80(s32 arg0, s32 arg1) {
-    extern s32 D_8011AF04[];
-    return D_8011AF04[arg1] + arg0 - 1;
+    BT_IDO_ONLY(extern s32 D_8011AF04[];)
+    return BT_DATA_FIELD(collectibleSettings.firstCollectedFlag[arg1], D_8011AF04[arg1]) + arg0 - 1;
 }
 
 /* extern */
@@ -578,8 +578,8 @@ void func_800D0C78(u32 arg0, u32 arg1, u32 arg2) {
 }
 
 u8 func_800D0CC8(s32 arg0) {
-    extern u8 D_8011AB3E[];
-    return D_8011AB3E[arg0 * 3];
+    BT_IDO_ONLY(extern u8 D_8011AB3E[];)
+    return BT_DATA_FIELD(collectibleSettings.jinjos[arg0 - 1].color, D_8011AB3E[arg0 * 3]);
 }
 
 Actor *func_800D0CE0(s32 arg0, f32 *arg1, s32 arg2, s32 *arg3) {
@@ -757,61 +757,61 @@ void func_800D1254(u32 arg0, u32 arg1, f32 *arg2) {
 }
 
 s32 func_800D129C(u32 arg0) {
-    extern u8 D_8011AB40[];
+    BT_IDO_ONLY(extern u8 D_8011AB40[];)
     s32 var_s1;
     s32 var_s2;
-    u8 *var_s0;
+    BT_NATIVE_ONLY(JinjoLocation *var_s0;) BT_IDO_ONLY(u8 *var_s0;)
 
     var_s2 = 0;
     var_s1 = func_800D0820(0);
     if (func_800D0894(0) >= var_s1) {
-        var_s0 = (var_s1 * 3) + D_8011AB40;
+        var_s0 = BT_DATA_FIELD(&collectibleSettings.jinjos[var_s1 - 1], (var_s1 * 3) + D_8011AB40);
         do {
-            if (arg0 == var_s0[-2]) {
+            if (arg0 == BT_DATA_FIELD(var_s0->color, var_s0[-2])) {
                 var_s2 += 1;
             }
             var_s1 += 1;
-            var_s0 += 3;
+            var_s0 += BT_DATA_FIELD(1, 3);
         } while (func_800D0894(0) >= var_s1);
     }
     return var_s2;
 }
 
 u32 func_800D1338(u32 JinjoColor) {
-    extern u8 D_8011AB40[];
+    BT_IDO_ONLY(extern u8 D_8011AB40[];)
     s32 var_s0;
     u32 var_s2;
-    u8 *var_s1;
+    BT_NATIVE_ONLY(JinjoLocation *var_s1;) BT_IDO_ONLY(u8 *var_s1;)
 
     var_s2 = 0;
     var_s0 = func_800D0820(0);
     if (func_800D0894(0) >= var_s0) {
-        var_s1 = (var_s0 * 3) + D_8011AB40;
+        var_s1 = BT_DATA_FIELD(&collectibleSettings.jinjos[var_s0 - 1], (var_s0 * 3) + D_8011AB40);
         do {
-            if ((JinjoColor == (*(u8 *)((s8 *)(var_s1) + (-2)))) && (func_800D0B68((u32) var_s0, 0U) != 0)) {
+            if ((JinjoColor == BT_DATA_FIELD(var_s1->color, (*(u8 *)((s8 *)(var_s1) + (-2))))) && (func_800D0B68((u32) var_s0, 0U) != 0)) {
                 var_s2 += 1;
             }
             var_s0 += 1;
-            var_s1 += 3;
+            var_s1 += BT_DATA_FIELD(1, 3);
         } while (func_800D0894(0) >= var_s0);
     }
     return var_s2;
 }
 
 s32 func_800D13E8(s32 arg0, s32 arg1) {
-    extern u8 D_8011AD08[];
+    BT_IDO_ONLY(extern u8 D_8011AD08[];)
     s32 var_s1;
-    u8 *var_s0;
+    BT_NATIVE_ONLY(NoteNestLocation *var_s0;) BT_IDO_ONLY(u8 *var_s0;)
 
     if (arg0 == 6) {
         var_s1 = func_800D0820(arg0);
         if (func_800D0894(arg0) >= var_s1) {
-            var_s0 = (var_s1 * 2) + D_8011AD08;
+            var_s0 = BT_DATA_FIELD(&collectibleSettings.noteNests[var_s1 - 1], (var_s1 * 2) + D_8011AD08);
 loop_3:
-            if (arg1 == var_s0[-2]) {
+            if (arg1 == BT_DATA_FIELD(var_s0->level, var_s0[-2])) {
                 return var_s1 - 1;
             }
-            var_s0 += 2;
+            var_s0 += BT_DATA_FIELD(1, 2);
             var_s1 += 1;
             if (func_800D0894(arg0) < var_s1) {
                 goto block_6;

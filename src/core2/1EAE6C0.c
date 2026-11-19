@@ -1,5 +1,6 @@
 #include "core2/1EAE6C0.h"
 
+typedef struct { u8 kind, value, maximum; } InventoryEntry; extern InventoryEntry D_8011B640[20];
 extern s32 D_8012B420;
 s32 func_800D4DD0(s32 arg0) {
     if (D_8012B420 != 0) {
@@ -22,26 +23,26 @@ void func_800D4E18(s32 arg0, s32 arg1) { s32 func_800D4E7C(s32); void func_800D4
 
 s32 func_800D4E7C(s32 arg0) {
     s32 func_800D4DD0(s32);
-    extern u8 D_8011B641[];
+    BT_IDO_ONLY(extern u8 D_8011B641[];)
     s32 index;
 
     if (arg0 == 9) {
         arg0 = 1;
     }
     index = func_800D4DD0(arg0);
-    return D_8011B641[index * 3];
+    return BT_DATA_FIELD(D_8011B640[index].value, D_8011B641[index * 3]);
 }
 
 u8 func_800D4EB8(s32 arg0) {
     s32 func_800D4DD0(s32);
-    extern u8 D_8011B642[];
+    BT_IDO_ONLY(extern u8 D_8011B642[];)
     s32 index;
 
     if (arg0 == 9) {
         arg0 = 1;
     }
     index = func_800D4DD0(arg0);
-    return D_8011B642[index * 3];
+    return BT_DATA_FIELD(D_8011B640[index].maximum, D_8011B642[index * 3]);
 }
 
 s32 func_800D4EF4(s32 arg0) {
@@ -75,37 +76,37 @@ s32 func_800D4F9C(s32 arg0) {
 
 void func_800D4FB8(s32 arg0, s32 arg1) {
     s32 func_800D4DD0(s32);
-    extern u8 D_8011B640[];
+
     s32 index;
-    u8 *entry;
+    InventoryEntry *entry;
     if (arg0 == 9) {
         arg0 = 1;
     }
     index = func_800D4DD0(arg0);
     if (arg1 < 0) {
-        entry = &D_8011B640[index * 3];
+        entry = &D_8011B640[index];
         arg1 = 0;
     } else {
-        entry = &D_8011B640[index * 3];
-        arg0 = entry[2];
+        entry = &D_8011B640[index];
+        arg0 = entry->maximum;
         if (arg0 < arg1) {
             arg1 = arg0;
         }
     }
-    entry[1] = arg1;
+    entry->value = arg1;
 }
 
 void func_800D5034(s32 arg0, s32 arg1) {
-    typedef struct { u8 kind, value, maximum; } InventoryEntry;
-    extern u8 D_8011B640[];
+
+
     s32 value;
     s32 maximum;
 
     if (arg1 == 9) {
         arg1 = 1;
     }
-    value = ((InventoryEntry *)D_8011B640)[arg1].value;
-    maximum = ((InventoryEntry *)D_8011B640)[arg1].maximum;
+    value = D_8011B640[arg1].value;
+    maximum = D_8011B640[arg1].maximum;
     switch (arg1) {
         case 1:
             switch (arg0) {
@@ -123,7 +124,7 @@ void func_800D5034(s32 arg0, s32 arg1) {
                     break;
                 case 10:
                 case 11:
-                    value = ((InventoryEntry *)D_8011B640)[10].value + ((InventoryEntry *)D_8011B640)[11].value;
+                    value = D_8011B640[10].value + D_8011B640[11].value;
                     break;
             }
             break;
@@ -149,9 +150,9 @@ void func_800D5034(s32 arg0, s32 arg1) {
                 value = maximum;
                 func_800D4FB8(arg1 == 10 ? 11 : 10, value);
             } else {
-                value = ((InventoryEntry *)D_8011B640)[arg0].value / 2;
+                value = D_8011B640[arg0].value / 2;
                 if (arg1 == 10) {
-                    value += ((InventoryEntry *)D_8011B640)[arg0].value % 2;
+                    value += D_8011B640[arg0].value % 2;
                 }
                 if (value == 0) {
                     value = 1;
@@ -165,8 +166,8 @@ void func_800D5034(s32 arg0, s32 arg1) {
 void func_800D517C(void) {
     s32 _gcextra_entrypoint_0();
     s32 func_800D4EF4(s32);
-    extern u8 D_8011B640[];
-    u8 *entry;
+
+    InventoryEntry *entry;
     s32 extra;
     s32 i;
     s32 value;
@@ -181,19 +182,19 @@ void func_800D517C(void) {
             value += extra;
         }
         i++;
-        entry += 3;
-        entry[-1] = value;
-        entry[-2] = value;
+        entry++;
+        entry[-1].maximum = value;
+        entry[-1].value = value;
     } while (i != 0x14);
 }
 
 u8 func_800D5210(s32 arg0) {
-    extern u8 D_8011B640[];
+
 
     if (arg0 == 9) {
         arg0 = 1;
     }
-    return D_8011B640[arg0 * 3];
+    return D_8011B640[arg0].kind;
 }    typedef struct { s32 unk0; } Obj1EAE6C0_D_8012B420; /* offsets.py genstruct: fields from raw offsets on &D_8012B420; rename once understood */
 
 void func_800D5234(s32 arg0) {
@@ -211,3 +212,26 @@ s32 func_800D5240(void) {
 #include "bt_data.h"
 s32 D_8012B420 BT_DATA(16, bss_core2bss1_2_status_tail, 0x0);
 #endif
+
+InventoryEntry D_8011B640[20] = {
+    {0x00, 0, 0},
+    {0x01, 0, 0},
+    {0x32, 0, 0},
+    {0x00, 0, 0},
+    {0x00, 0, 0},
+    {0x00, 0, 0},
+    {0x31, 0, 0},
+    {0x36, 0, 0},
+    {0x2D, 0, 0},
+    {0x00, 0, 0},
+    {0x10, 0, 0},
+    {0x5F, 0, 0},
+    {0x2F, 0, 0},
+    {0x11, 0, 0},
+    {0x35, 0, 0},
+    {0x2E, 0, 0},
+    {0x34, 0, 0},
+    {0x37, 0, 0},
+    {0x30, 0, 0},
+    {0x30, 0, 0},
+};

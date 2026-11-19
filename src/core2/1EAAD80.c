@@ -19,7 +19,8 @@ static const s16 func_800D1A04_code[84] = {
 
 typedef struct { s16 *values; s32 heapSide; } CounterStorage;
 extern CounterStorage D_8012B250;
-extern struct { s16 value; s16 padding; } D_8011AF52[];
+typedef struct { s16 hudItem; s16 maximum; } CounterDefinition; extern CounterDefinition D_8011AF50[21];
+BT_IDO_ONLY(extern struct { s16 value; s16 padding; } D_8011AF52[];)
 
 void func_800D1490(void) {
     s32 i;
@@ -68,7 +69,7 @@ void func_800D1604(void) {
     D_8012B250.values = NULL;
 }
 
-extern struct { s16 padding; s16 value; } D_8011AF50[];
+
 
 void func_800D162C(void) {
     void func_800D2770(s32, s32);
@@ -89,7 +90,7 @@ void func_800D16CC(s32 arg0, s32 arg1) {
     s16 limit;
 
     index = arg0 * 4;
-    limit = *(s16 *)((u8 *)D_8011AF52 + index);
+    limit = BT_DATA_FIELD(D_8011AF50[arg0].maximum, *(s16 *)((u8 *)D_8011AF52 + index));
     if (limit == -2) {
         D_8012B250.values[arg0] = *(s16 *)((u8 *)&CODE_800D1A04 + index * 2) ^ 0x3E7;
         return;
@@ -110,7 +111,7 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800D175C(s32 arg0, s32 arg1) {
 
     index = func_800D16C4(arg0);
     func_800D16CC(index, (D_8012B250.values[index] ^ ((s16 *)&CODE_800D1A04)[index * 4]) + arg1);
-    BT_NATIVE_ONLY(return) func_800D24E8(D_8011AF50[index].padding, D_8012B250.values[index] ^ ((s16 *)&CODE_800D1A04)[index * 4], 0);
+    BT_NATIVE_ONLY(return) func_800D24E8(D_8011AF50[index].hudItem, D_8012B250.values[index] ^ ((s16 *)&CODE_800D1A04)[index * 4], 0);
 }
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800D1804(s32 arg0) {
@@ -136,9 +137,9 @@ void func_800D1864(u32 arg0, u32 arg1, u32 arg2) {
     index = func_800D16C4(arg0);
     func_800D16CC(index, arg1);
     if (arg2 != 0) {
-        func_800D2498(D_8011AF50[index].padding, D_8012B250.values[index] ^ ((s16 *)&CODE_800D1A04)[index * 4], D_8011AF50[index].value);
+        func_800D2498(D_8011AF50[index].hudItem, D_8012B250.values[index] ^ ((s16 *)&CODE_800D1A04)[index * 4], D_8011AF50[index].maximum);
     } else {
-        func_800D2770(D_8011AF50[index].padding, D_8012B250.values[index] ^ ((s16 *)&CODE_800D1A04)[index * 4]);
+        func_800D2770(D_8011AF50[index].hudItem, D_8012B250.values[index] ^ ((s16 *)&CODE_800D1A04)[index * 4]);
     }
 }
 
@@ -155,7 +156,7 @@ void func_800D1960(s32 arg0, s32 arg1, s32 arg2) {
     if (arg1 <= 0 && arg1 != -2) {
         arg1 = 1;
     }
-    D_8011AF50[index].value = arg1;
+    D_8011AF50[index].maximum = arg1;
     if (arg2 != 0) {
         value = func_800D1A6C(arg0);
     } else {
@@ -168,7 +169,7 @@ s32 func_800D1A04(s32 a0) {
     s32 index;
 
     index = func_800D16C4(a0);
-    if (D_8011AF52[index].value == -2) {
+    if (BT_DATA_FIELD(D_8011AF50[index].maximum, D_8011AF52[index].value) == -2) {
         return 0x3E7;
     }
     return D_8012B250.values[index] ^ ((s16 *)&CODE_800D1A04)[index * 4];
@@ -179,7 +180,7 @@ u32 func_800D1A6C(u32 arg0) {
     s32 temp_v0;
 
     temp_v0 = func_800D16C4((s32) arg0);
-    temp_v1 = D_8011AF50[temp_v0].value;
+    temp_v1 = D_8011AF50[temp_v0].maximum;
     if (temp_v1 != -2) {
         if (temp_v1 == -1) {
             return 0x32U;
@@ -187,7 +188,7 @@ u32 func_800D1A6C(u32 arg0) {
     } else {
         return 0x3E7U;
     }
-    return D_8011AF50[temp_v0].value;
+    return D_8011AF50[temp_v0].maximum;
 }
 
 s32 func_800D1ACC(s32 arg0) {
@@ -251,8 +252,8 @@ s32 func_800D1C38(s32 arg0) {
 }
 
 s32 func_800D1C5C(u32 arg0) {
-    extern s16 D_8011AE50[];
-    return *(s16 *)((u8 *)D_8011AE50 + (arg0 << 2));
+    BT_IDO_ONLY(extern s16 D_8011AE50[];)
+    return BT_DATA_FIELD(D_8011AF50[arg0 - 0x40].hudItem, *(s16 *)((u8 *)D_8011AE50 + (arg0 << 2)));
 }
 
 s32 func_800D1C70() 
@@ -311,3 +312,27 @@ s32 func_800D1F34(u8 *arg0, register s32 arg1) {
 #include "bt_data.h"
 CounterStorage D_8012B250 BT_DATA(4, bss_core2bss1_1_counter_tail, 0xD0);
 #endif
+
+CounterDefinition D_8011AF50[21] = {
+    {0xD1, 100},
+    {0xD2, 50},
+    {0xD3, 50},
+    {0xD4, 25},
+    {0xD5, 10},
+    {0x11A, 0},
+    {0xD7, 100},
+    {0xD8, 10},
+    {0xD9, 16},
+    {0xDA, 25},
+    {0xDB, 25},
+    {0xDC, 5},
+    {0xDD, 5},
+    {0xDE, 4},
+    {0xDF, 30},
+    {0xE0, 1},
+    {0xED, 2},
+    {0x108, 1},
+    {0x109, 2},
+    {0x10C, 1},
+    {0x10D, 1},
+};

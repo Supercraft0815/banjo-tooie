@@ -12,7 +12,7 @@ EntryData D_8011B560[4] = {
     {0x0C20, 16, 0, 0},
     {0x0C23, 6, 0, 0}
 };
-
+u8 D_8011B580[] BT_DATA(1, code_entry_alphabet, 0) = "0123456789:ABCDEFGHIJKLMNOPQRSTUVWXYZ@%?()<>\".;-!/'";
 
 void func_800D34A0(void) {
     s32 func_800E7188(u8 *);

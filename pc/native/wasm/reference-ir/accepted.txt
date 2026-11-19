@@ -228,3 +228,11 @@ including the text pointer at offset 16 and the timed callback's index,
 follows the corresponding variable. The original linked code and ROM
 are byte-identical. See current-game-select-ir.log and role-ctest.log
 in build/acceptance/n3-current-gameselect-2026-11-19/.
+
+2026-11-19  N1 font, counters, collectibles, HUD, player models and effects
+The stages strict-charset1 through strict-sharedfx1 now include the dialog,
+inventory and item-counter object boundaries. The symbol D_8011AF52 selects
+the maximum within a counter row. HUD references and model thresholds use
+their named table fields. The individual proofs preserve guest functions
+and the 9,688 swap targets; current-six-settings-ido/result.json and the
+current-six-settings replay log cover the cumulative build.

@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "shared_actor_effects.inc"
 void func_80106DF0(void) {
     void * freelist_new(s32 element_size, s32 capacity);
     extern s32 D_80136F00;
@@ -121,7 +121,7 @@ s32 func_80107070(Actor *arg0, u32 arg1) {
     void func_80107750(BtIntPtr arg0, BtIntPtr arg1);
     void _subaddieaudioquick_entrypoint_2();
     void func_80103110(void *arg0, s32 arg1);
-    extern s32 D_801244F0;
+    extern s16 D_801244F0[6];
     f32 *sp24;
     f32 *temp_v0;
 
@@ -138,7 +138,7 @@ s32 func_80107070(Actor *arg0, u32 arg1) {
         func_80103110(arg0, 1);
         break;
     case 1:
-        _subaddieaudioquick_entrypoint_2(arg0, (u8 *)arg0 ->position, &D_801244F0, arg1);
+        _subaddieaudioquick_entrypoint_2(arg0, (u8 *)arg0 ->position, D_801244F0, arg1);
         if (func_801073F8((BtIntPtr) arg0, 1, 1) == 0) {
             func_80103110(arg0, 0);
         }
@@ -390,7 +390,7 @@ void func_801075E4(Actor *arg0, void *arg1) {
     s32 func_80102FA0(Actor *, s32);
     void _subaddiefade_entrypoint_2(void *arg0);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
-    extern s32 D_801244FC;
+    extern s16 D_801244FC[6];
     void *settings;
     struct ActorFlags *flags = (void *)arg0;
     struct Entry *entry = arg1;
@@ -415,7 +415,7 @@ void func_801075E4(Actor *arg0, void *arg1) {
     flags->flag16 = func_80102FA0(settings, 0x80001000);
     entry->unk14 = 0;
     if (func_801073F8((BtIntPtr)arg0, 4, 2) == 0) {
-        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_801244FC);
+        _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_801244FC);
     }
 }
 
@@ -491,15 +491,15 @@ s32 func_801078AC(BtIntPtr arg0, f32 *arg1) {
 s32 func_801078DC(Actor *arg0, u8 *arg1) {
     s32 _subaddievolume_entrypoint_0(Actor *, f32 *, s32, s32, s32 *);
     BtIntPtr func_800B5BE4(s32);
-    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
+    BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s16[]);
     void func_800EE780(f32 *, f32 *, f32 *);
     void func_800EF04C(f32 *, f32 *);
     void func_800EF334(f32 *, f32);
     void func_800EF368(f32 *, f32);
     void func_800EFB24(void *, void *, void *);
     f32 func_80103F38(Actor *, f32 *);
-    extern s32 D_80124508[];
-    extern s32 D_80124538[];
+    extern s16 D_80124508[23];
+    extern s16 D_80124538[5];
     f32 points[20][3];
     f32 position[3];
     s32 count;

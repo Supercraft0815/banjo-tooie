@@ -2659,3 +2659,18 @@ LP64-Warnstellen, jeweils 223 kritische Offsets. Alle elf Suiten und
 `build/acceptance/n3-current-gameselect-2026-11-19/` in
 `current-game-select-ido/result.json`, `current-game-select-full.log`,
 `role-ctest.log` und den beiden Hazard-Berichten.
+
+## 2026-11-19 — N1, Zeichensatz, Inventar, HUD, Spielermodelle und Effekte
+
+Die Daten von Dialogeffekt, Inventar und Item-Zählern sind an den
+ursprünglichen Objektgrenzen eingebunden. Weitere C-Tabellen liefern
+Zeichensatz, Sammelobjekte, HUD-Anzeigen, Spielermodelle und gemeinsame
+Effekte. Der strenge Datenimport zählt jetzt 282 Daten- und 56
+Rodata-Einträge. Das sind 48 Einträge weniger als vor dieser Gruppe.
+
+Die gezielten 64-Bit-Prüfungen umfassen 128 ASCII-Werte, 414 Item-Indizes,
+48 HUD-Plätze sowie Modell- und Distanzgrenzen. Auf dem gemeinsamen Stand
+mit der Spielstandauswahl bestanden alle 60 nativen Tests, elf Suiten und
+74 Replays mit 447.849 Retraces. Original-IDO erhielt alle 16.401
+Funktionen und beide vollständigen ROM-Abbilder. Die kumulativen Nachweise
+liegen unter `build/acceptance/n1-2026-11-18/current-six-settings*`.

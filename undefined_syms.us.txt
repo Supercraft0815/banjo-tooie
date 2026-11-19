@@ -52,6 +52,51 @@ D_8011B626 = cheatInventoryAbilities + 0x6;
 D_8011B628 = cheatInventoryAbilities + 0x8;
 D_8011B62A = cheatInventoryAbilities + 0xA;
 
+/* The original zero row for Cheato codes lies in the alphabet alignment padding. */
+D_8011B5B8 = D_8011B580 + 0x38;
+D_8011B5BA = D_8011B580 + 0x3A;
+D_8011B5BC = D_8011B580 + 0x3C;
+D_8011B5BE = D_8011B580 + 0x3E;
+
+/* Original collectible table and field symbols. */
+D_8011AB40 = collectibleSettings + 0x0;
+D_8011ABC6 = collectibleSettings + 0x86;
+D_8011ABC7 = collectibleSettings + 0x87;
+D_8011ABC8 = collectibleSettings + 0x88;
+D_8011AC7A = collectibleSettings + 0x13A;
+D_8011AC7B = collectibleSettings + 0x13B;
+D_8011AC7C = collectibleSettings + 0x13C;
+D_8011ACAE = collectibleSettings + 0x16E;
+D_8011ACAF = collectibleSettings + 0x16F;
+D_8011ACB0 = collectibleSettings + 0x170;
+D_8011ACD2 = collectibleSettings + 0x192;
+D_8011ACD3 = collectibleSettings + 0x193;
+D_8011ACD4 = collectibleSettings + 0x194;
+D_8011AD08 = collectibleSettings + 0x1C8;
+D_8011AE3B = collectibleSettings + 0x2FB;
+D_8011AE50 = collectibleSettings + 0x310;
+D_8011AE5B = collectibleSettings + 0x31B;
+D_8011AE60 = collectibleSettings + 0x320;
+D_8011AE64 = collectibleSettings + 0x324;
+D_8011AE6C = collectibleSettings + 0x32C;
+D_8011AE74 = collectibleSettings + 0x334;
+D_8011AE76 = collectibleSettings + 0x336;
+D_8011AE84 = collectibleSettings + 0x344;
+D_8011AF04 = collectibleSettings + 0x3C4;
+D_8011AF28 = collectibleSettings + 0x3E8;
+
+/* Original HUD slot and handle labels. */
+D_80123898 = D_80123880 + 0x18;
+D_80123998 = D_80123880 + 0x118;
+D_801239B4 = D_80123880 + 0x134;
+D_80123D6C = D_80123880 + 0x4EC;
+
+/* Original field labels in the player model detail table. */
+D_80117DD0 = playerModelDetails + 0x0;
+D_80117DD4 = playerModelDetails + 0x4;
+D_80117DD8 = playerModelDetails + 0x8;
+D_80117DDC = playerModelDetails + 0xC;
+
 /* Aliases within audio storage. */
 D_80079FA2 = D_80079FA0 + 0x2;
 D_80079FA3 = D_80079FA0 + 0x3;
@@ -108,6 +153,9 @@ SECTIONS
     /* Preserve the original text-command jump-table labels. */
     .core2 :
     {
+        D_8011AF52 = D_8011AF50 + 2;
+        D_8011B641 = D_8011B640 + 1;
+        D_8011B642 = D_8011B640 + 2;
         .L800B5EB4 = func_800B5E74 + 0x40;
         .L800B5EC4 = func_800B5E74 + 0x50;
         .L800B5ED4 = func_800B5E74 + 0x60;
@@ -172,6 +220,11 @@ SECTIONS
     .chsilo :
     {
         D_808012EC_chsilo = D_808012E0_chsilo + 0xC;
+    }
+    .fxdialog_bss :
+    {
+        B_808002A0_fxdialog = B_80800290_fxdialog + 0x10;
+        B_808002A4_fxdialog = B_80800290_fxdialog + 0x14;
     }
     .suexpressjoint :
     {
