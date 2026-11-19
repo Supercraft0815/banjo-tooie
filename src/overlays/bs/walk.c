@@ -1,3 +1,4 @@
+#include "bs_script.h"
 #include "common.h"
 #ifdef BT_NATIVE
 #include "overlays/ba/yaw.h" // enums for the prototypes below
@@ -8,7 +9,6 @@
 #include "overlays/ba/assets.h"
 #include "overlays/ba/anim.h"
 #endif
-
 struct anctrl_s;
 enum asset_e;
 enum baanim_update_type_e;
@@ -235,9 +235,9 @@ void bswalk_entrypoint_4(PlayerState *self) {
     bs_setState(self, func_800A02DC(self, next_state));
 }
 
-s32 bswalk_entrypoint_5(s32 arg0) {
+BsScript bswalk_entrypoint_5(BsScriptType arg0) {
     extern BtIntPtr D_80801520_bswalk[];
-    return ((s32 *)&D_80801520_bswalk)[arg0];
+    return (BsScript)D_80801520_bswalk[arg0];
 }
 
 
@@ -362,9 +362,9 @@ void bswalk_entrypoint_8(PlayerState *arg0) {
     }
 }
 
-s32 bswalk_entrypoint_9(s32 arg0) {
+BsScript bswalk_entrypoint_9(BsScriptType arg0) {
     extern BtIntPtr D_80801530_bswalk[];
-    return ((s32 *)&D_80801530_bswalk)[arg0];
+    return (BsScript)D_80801530_bswalk[arg0];
 }
 
 void bswalk_entrypoint_10(PlayerState *self) {
@@ -495,9 +495,9 @@ void bswalk_entrypoint_12(PlayerState *arg0) {
     }
 }
 
-s32 bswalk_entrypoint_13(s32 arg0) {
+BsScript bswalk_entrypoint_13(BsScriptType arg0) {
     extern BtIntPtr D_80801540_bswalk[];
-    return ((s32 *)&D_80801540_bswalk)[arg0];
+    return (BsScript)D_80801540_bswalk[arg0];
 }
 
 void bswalk_entrypoint_14(PlayerState *self) {
@@ -660,9 +660,9 @@ void bswalk_entrypoint_16(PlayerState *arg0) {
     }
 }
 
-s32 bswalk_entrypoint_17(s32 arg0) {
+BsScript bswalk_entrypoint_17(BsScriptType arg0) {
     extern BtIntPtr D_80801550_bswalk[];
-    return ((s32 *)&D_80801550_bswalk)[arg0];
+    return (BsScript)D_80801550_bswalk[arg0];
 }
 
 void bswalk_entrypoint_18(s32 arg0) 
@@ -723,9 +723,9 @@ void bswalk_entrypoint_20(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bswalk_entrypoint_21(s32 arg0) {
+BsScript bswalk_entrypoint_21(BsScriptType arg0) {
     extern BtIntPtr D_80801560_bswalk[];
-    return ((s32 *)&D_80801560_bswalk)[arg0];
+    return (BsScript)D_80801560_bswalk[arg0];
 }
 
 /* extern */

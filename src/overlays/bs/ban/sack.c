@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #include "common.h"
 #include "overlays/ba/playerstate.h"
-
 void baanim_playForDuration_onceSmooth(PlayerState *, s32, f32);
 
 /* extern */
@@ -204,9 +204,9 @@ void func_808004B0_bsbansack(PlayerState *arg0) {
     bs_setState(arg0, func_80800084_bsbansack(arg0, var_a1));
 }
 
-s32 bsbansack_entrypoint_0(s32 arg0) {
+BsScript bsbansack_entrypoint_0(BsScriptType arg0) {
     extern BtIntPtr D_80801E10_bsbansack[];
-    return ((s32 *)&D_80801E10_bsbansack)[arg0];
+    return (BsScript)D_80801E10_bsbansack[arg0];
 }
 
 void func_80800508_bsbansack(PlayerState *arg0) { if (arg0->unk15C.bytes[2] == 0) func_808002D4_bsbansack(arg0); func_80800238_bsbansack(arg0); }
@@ -270,9 +270,9 @@ void func_808005BC_bsbansack(PlayerState *arg0) {
     bs_setState(arg0, sp20);
 }
 
-s32 bsbansack_entrypoint_1(s32 arg0) {
+BsScript bsbansack_entrypoint_1(BsScriptType arg0) {
     extern BtIntPtr D_80801E20_bsbansack[];
-    return ((s32 *)&D_80801E20_bsbansack)[arg0];
+    return (BsScript)D_80801E20_bsbansack[arg0];
 }
 
 /* extern */
@@ -368,9 +368,9 @@ void func_80800810_bsbansack(PlayerState *arg0) {
     bs_setState(arg0, sp28);
 }
 
-s32 bsbansack_entrypoint_2(s32 arg0) {
+BsScript bsbansack_entrypoint_2(BsScriptType arg0) {
     extern BtIntPtr D_80801E30_bsbansack[];
-    return ((s32 *)&D_80801E30_bsbansack)[arg0];
+    return (BsScript)D_80801E30_bsbansack[arg0];
 }
 
 /* extern */
@@ -559,9 +559,9 @@ void func_80800DAC_bsbansack(PlayerState *arg0) {
     bs_setState(arg0, sp24);
 }
 
-s32 bsbansack_entrypoint_3(s32 arg0) {
+BsScript bsbansack_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_80801E40_bsbansack[];
-    return ((s32 *)&D_80801E40_bsbansack)[arg0];
+    return (BsScript)D_80801E40_bsbansack[arg0];
 }
 
 void func_8080101C_bsbansack(PlayerState *arg0, s32 arg1) {
@@ -694,9 +694,9 @@ void func_80801390_bsbansack(PlayerState *arg0) {
     bs_setState(arg0, var_s1);
 }
 
-s32 bsbansack_entrypoint_4(s32 arg0) {
+BsScript bsbansack_entrypoint_4(BsScriptType arg0) {
     extern BtIntPtr D_80801E50_bsbansack[];
-    return ((s32 *)&D_80801E50_bsbansack)[arg0];
+    return (BsScript)D_80801E50_bsbansack[arg0];
 }
 
 void func_8080143C_bsbansack(BtIntPtr arg0)
@@ -736,9 +736,9 @@ void func_808014B4_bsbansack(PlayerState *arg0) {
     bs_setState(arg0, var_s1);
 }
 
-s32 bsbansack_entrypoint_5(s32 arg0) {
+BsScript bsbansack_entrypoint_5(BsScriptType arg0) {
     extern BtIntPtr D_80801E60_bsbansack[];
-    return ((s32 *)&D_80801E60_bsbansack)[arg0];
+    return (BsScript)D_80801E60_bsbansack[arg0];
 }
 
 void func_80801560_bsbansack(BtIntPtr arg0)
@@ -755,9 +755,9 @@ void func_808015B0_bsbansack(PlayerState* self)
 {
     _bsdrone_entrypoint_1(self);
 }
-s32 bsbansack_entrypoint_6(s32 arg0) {
+BsScript bsbansack_entrypoint_6(BsScriptType arg0) {
     extern BtIntPtr D_80801E70_bsbansack[];
-    return ((s32 *)&D_80801E70_bsbansack)[arg0];
+    return (BsScript)D_80801E70_bsbansack[arg0];
 }
 
 void func_808015E4_bsbansack(BtIntPtr arg0)
@@ -784,9 +784,9 @@ void func_80801634_bsbansack(BtIntPtr arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bsbansack_entrypoint_7(s32 arg0) {
+BsScript bsbansack_entrypoint_7(BsScriptType arg0) {
     extern BtIntPtr D_80801E80_bsbansack[];
-    return ((s32 *)&D_80801E80_bsbansack)[arg0];
+    return (BsScript)D_80801E80_bsbansack[arg0];
 }
 
 void func_80801680_bsbansack(BtIntPtr arg0, s32 arg1) {
@@ -968,9 +968,9 @@ void func_80801A64_bsbansack(PlayerState *arg0) {
     bs_setState(arg0, sp2C);
 }
 
-s32 bsbansack_entrypoint_8(s32 arg0) {
+BsScript bsbansack_entrypoint_8(BsScriptType arg0) {
     extern BtIntPtr D_80801E90_bsbansack[];
-    return ((s32 *)&D_80801E90_bsbansack)[arg0];
+    return (BsScript)D_80801E90_bsbansack[arg0];
 }
 
 void func_80801CB4_bsbansack(PlayerState *arg0)
@@ -1009,9 +1009,9 @@ void func_80801D20_bsbansack(PlayerState *arg0) {
     bs_setState(arg0, var_s0);
 }
 
-s32 bsbansack_entrypoint_9(s32 arg0) {
+BsScript bsbansack_entrypoint_9(BsScriptType arg0) {
     extern BtIntPtr D_80801EA0_bsbansack[];
-    return ((s32 *)&D_80801EA0_bsbansack)[arg0];
+    return (BsScript)D_80801EA0_bsbansack[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/ban/sack.data.s */
 BtIntPtr D_80801E10_bsbansack [4] BT_DATA(4, overlays_bs_ban_sack, 0x0) = { (BtIntPtr)func_80800434_bsbansack, (BtIntPtr)func_8080045C_bsbansack, (BtIntPtr)func_808004B0_bsbansack, (BtIntPtr)func_80800168_bsbansack };

@@ -1,6 +1,6 @@
 #include "common.h"
 #include "overlays/ba/playerstate.h"
-
+#include "bs_script.h"
 
 /* extern */
 
@@ -50,9 +50,9 @@ void bssplitup_entrypoint_2(BtIntPtr arg0) {
     }
 }
 
-s32 bssplitup_entrypoint_3(s32 arg0) {
+BsScript bssplitup_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_80800700_bssplitup[];
-    return ((s32 *)&D_80800700_bssplitup)[arg0];
+    return (BsScript)D_80800700_bssplitup[arg0];
 }
 
 s32 func_8080012C_bssplitup(PlayerState *arg0, s32 arg1) {
@@ -160,9 +160,9 @@ void bssplitup_entrypoint_6(void *arg0) {
     func_800F8EE4((((PlayerState *)arg0)->unk184));
 }
 
-s32 bssplitup_entrypoint_7(s32 arg0) {
+BsScript bssplitup_entrypoint_7(BsScriptType arg0) {
     extern BtIntPtr D_80800710_bssplitup[];
-    return ((s32 *)&D_80800710_bssplitup)[arg0];
+    return (BsScript)D_80800710_bssplitup[arg0];
 }
 
 /* extern */
@@ -200,9 +200,9 @@ void bssplitup_entrypoint_9(u8 *arg0) {
 void bssplitup_entrypoint_10(s32 arg0) 
 {
 }
-s32 bssplitup_entrypoint_11(s32 arg0) {
+BsScript bssplitup_entrypoint_11(BsScriptType arg0) {
     extern BtIntPtr D_80800720_bssplitup[];
-    return ((s32 *)&D_80800720_bssplitup)[arg0];
+    return (BsScript)D_80800720_bssplitup[arg0];
 }
 
 void bssplitup_entrypoint_12(void *arg0) {
@@ -242,9 +242,9 @@ void bssplitup_entrypoint_14(BtIntPtr arg0)
     func_800A0CF4(arg0,0);
 }
 
-s32 bssplitup_entrypoint_15(s32 arg0) {
+BsScript bssplitup_entrypoint_15(BsScriptType arg0) {
     extern BtIntPtr D_80800730_bssplitup[];
-    return ((s32 *)&D_80800730_bssplitup)[arg0];
+    return (BsScript)D_80800730_bssplitup[arg0];
 }
 
 void bssplitup_entrypoint_16(void *arg0) {
@@ -281,9 +281,9 @@ void bssplitup_entrypoint_18(BtIntPtr arg0)
     func_800A0CF4(arg0,0);
 }
 
-s32 bssplitup_entrypoint_19(s32 arg0) {
+BsScript bssplitup_entrypoint_19(BsScriptType arg0) {
     extern BtIntPtr D_80800740_bssplitup[];
-    return ((s32 *)&D_80800740_bssplitup)[arg0];
+    return (BsScript)D_80800740_bssplitup[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/splitup.data.s */
 void _bssplitup_entrypoint_2();

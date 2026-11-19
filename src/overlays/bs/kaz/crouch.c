@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "common.h"
-
 #include "overlays/bs/kaz/crouch.h"
 
 extern BtIntPtr D_808007C0_bskazcrouch[];
@@ -196,8 +196,8 @@ void bskazcrouch_entrypoint_3(PlayerState *self) {
 }
 
 
-BtIntPtr bskazcrouch_entrypoint_4(s32 idx) {
-    return D_808007C0_bskazcrouch[idx];
+BsScript bskazcrouch_entrypoint_4(BsScriptType idx) {
+    return (BsScript)D_808007C0_bskazcrouch[idx];
 }
 /* data_to_c.py: from asm/data/overlays/bs/kaz/crouch.data.s */
 void _bskazcrouch_entrypoint_2();

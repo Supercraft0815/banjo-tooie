@@ -4,7 +4,7 @@ struct anctrl_s;
 void func_80800000_bssub(BtIntPtr arg0) {
     func_8009FFD8(arg0, 0x1, 0x3, 0x3, 0xF);
 }
-
+#include "bs_script.h"
 f32 func_80800030_bssub(f32 arg0, f32 arg1) {
     return arg1 * 300.0f;
 }
@@ -516,9 +516,9 @@ void func_80800EE0_bssub(s32 arg0) {
     _basudie_entrypoint_11(arg0);
 }
 
-s32 bssub_entrypoint_0(s32 arg0) {
+BsScript bssub_entrypoint_0(BsScriptType arg0) {
     extern BtIntPtr D_80801890_bssub[];
-    return ((s32 *)&D_80801890_bssub)[arg0];
+    return (BsScript)D_80801890_bssub[arg0];
 }
 
 void func_80800F70_bssub(BtIntPtr arg0)
@@ -538,9 +538,9 @@ void func_80800FC0_bssub(BtIntPtr arg0)
     _bsdrone_entrypoint_1(arg0);
 }
 
-s32 bssub_entrypoint_1(s32 arg0) {
+BsScript bssub_entrypoint_1(BsScriptType arg0) {
     extern BtIntPtr D_808018A0_bssub[];
-    return ((s32 *)&D_808018A0_bssub)[arg0];
+    return (BsScript)D_808018A0_bssub[arg0];
 }
 
 void func_80801004_bssub(BtIntPtr arg0)
@@ -611,9 +611,9 @@ void func_80801188_bssub(struct player_state_s *arg0) {
     bs_setState(arg0, sp24);
 }
 
-s32 bssub_entrypoint_2(s32 arg0) {
+BsScript bssub_entrypoint_2(BsScriptType arg0) {
     extern BtIntPtr D_808018B0_bssub[];
-    return ((s32 *)&D_808018B0_bssub)[arg0];
+    return (BsScript)D_808018B0_bssub[arg0];
 }
 
 void func_8080121C_bssub(BtIntPtr arg0)
@@ -646,9 +646,9 @@ void func_80801284_bssub(BtIntPtr arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bssub_entrypoint_3(s32 arg0) {
+BsScript bssub_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_808018C0_bssub[];
-    return ((s32 *)&D_808018C0_bssub)[arg0];
+    return (BsScript)D_808018C0_bssub[arg0];
 }
 
 void func_808012F0_bssub(BtIntPtr arg0)
@@ -681,9 +681,9 @@ void func_80801358_bssub(BtIntPtr arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bssub_entrypoint_4(s32 arg0) {
+BsScript bssub_entrypoint_4(BsScriptType arg0) {
     extern BtIntPtr D_808018D0_bssub[];
-    return ((s32 *)&D_808018D0_bssub)[arg0];
+    return (BsScript)D_808018D0_bssub[arg0];
 }
 
 void func_808013C4_bssub(BtIntPtr arg0)
@@ -718,9 +718,9 @@ void func_80801428_bssub(BtIntPtr arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bssub_entrypoint_5(s32 arg0) {
+BsScript bssub_entrypoint_5(BsScriptType arg0) {
     extern BtIntPtr D_808018E0_bssub[];
-    return ((s32 *)&D_808018E0_bssub)[arg0];
+    return (BsScript)D_808018E0_bssub[arg0];
 }
 
 void func_80801490_bssub(BtIntPtr arg0)
@@ -754,9 +754,9 @@ void func_80801518_bssub(s32 arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bssub_entrypoint_6(s32 arg0) {
+BsScript bssub_entrypoint_6(BsScriptType arg0) {
     extern BtIntPtr D_808018F0_bssub[];
-    return ((s32 *)&D_808018F0_bssub)[arg0];
+    return (BsScript)D_808018F0_bssub[arg0];
 }
 
 void func_80801578_bssub(BtIntPtr arg0)
@@ -799,9 +799,9 @@ void func_80801618_bssub(struct player_state_s *arg0) {
     bs_setState(arg0, sp24);
 }
 
-s32 bssub_entrypoint_7(s32 arg0) {
+BsScript bssub_entrypoint_7(BsScriptType arg0) {
     extern BtIntPtr D_80801900_bssub[];
-    return ((s32 *)&D_80801900_bssub)[arg0];
+    return (BsScript)D_80801900_bssub[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/sub.data.s */
 void _bsdrone_entrypoint_3();

@@ -3,7 +3,7 @@
 #include "overlays/ba/anim_smooth.h"
 #endif
 #include "overlays/ba/playerstate.h"
-
+#include "bs_script.h"
 #include "overlays/ba/assets.h"
 
 enum baanim_update_type_e {
@@ -303,9 +303,9 @@ void bsstonehead_entrypoint_2(PlayerState *arg0) {
     bs_setState((BtIntPtr)arg0, next_state);
 }
 
-s32 bsstonehead_entrypoint_3(s32 arg0) {
+BsScript bsstonehead_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_80801630_bsstonehead[];
-    return ((s32 *)&D_80801630_bsstonehead)[arg0];
+    return (BsScript)D_80801630_bsstonehead[arg0];
 }
 
 struct anctrl_s;
@@ -395,9 +395,9 @@ void bsstonehead_entrypoint_6(BT_NATIVE_ONLY(s32 bt_a0))
     _basudie_entrypoint_6(BT_NATIVE_ONLY(bt_a0));
 }
 
-s32 bsstonehead_entrypoint_7(s32 arg0) {
+BsScript bsstonehead_entrypoint_7(BsScriptType arg0) {
     extern BtIntPtr D_80801640_bsstonehead[];
-    return ((s32 *)&D_80801640_bsstonehead)[arg0];
+    return (BsScript)D_80801640_bsstonehead[arg0];
 }
 
 void bsstonehead_entrypoint_8(PlayerState *arg0)
@@ -414,9 +414,9 @@ void bsstonehead_entrypoint_10(PlayerState *arg0)
     func_80800000_bsstonehead(arg0);
     _bsdrone_entrypoint_2(arg0);
 }
-s32 bsstonehead_entrypoint_11(s32 arg0) {
+BsScript bsstonehead_entrypoint_11(BsScriptType arg0) {
     extern BtIntPtr D_80801650_bsstonehead[];
-    return ((s32 *)&D_80801650_bsstonehead)[arg0];
+    return (BsScript)D_80801650_bsstonehead[arg0];
 }
 
 struct anctrl_s;
@@ -508,9 +508,9 @@ void bsstonehead_entrypoint_14(PlayerState *arg0) {
     bs_setState(arg0, sp24);
 }
 
-s32 bsstonehead_entrypoint_15(s32 arg0) {
+BsScript bsstonehead_entrypoint_15(BsScriptType arg0) {
     extern BtIntPtr D_80801660_bsstonehead[];
-    return ((s32 *)&D_80801660_bsstonehead)[arg0];
+    return (BsScript)D_80801660_bsstonehead[arg0];
 }
 
 void func_80800B38_bsstonehead(PlayerState *arg0, u32 arg1) {
@@ -629,9 +629,9 @@ void bsstonehead_entrypoint_18(PlayerState *arg0) {
     bs_setState(arg0, next_state);
 }
 
-s32 bsstonehead_entrypoint_19(s32 arg0) {
+BsScript bsstonehead_entrypoint_19(BsScriptType arg0) {
     extern BtIntPtr D_80801670_bsstonehead[];
-    return ((s32 *)&D_80801670_bsstonehead)[arg0];
+    return (BsScript)D_80801670_bsstonehead[arg0];
 }
 
 enum baanim_update_type_e;
@@ -700,9 +700,9 @@ void bsstonehead_entrypoint_22(PlayerState *arg0)
     func_80800000_bsstonehead(arg0);
     func_80090A2C(arg0);
 }
-s32 bsstonehead_entrypoint_23(s32 arg0) {
+BsScript bsstonehead_entrypoint_23(BsScriptType arg0) {
     extern BtIntPtr D_80801680_bsstonehead[];
-    return ((s32 *)&D_80801680_bsstonehead)[arg0];
+    return (BsScript)D_80801680_bsstonehead[arg0];
 }
 
 void bsstonehead_entrypoint_24(PlayerState *arg0)
@@ -726,9 +726,9 @@ void bsstonehead_entrypoint_26(BtIntPtr arg0) {
     bs_setState(arg0, var_a1);
 }
 
-s32 bsstonehead_entrypoint_27(s32 arg0) {
+BsScript bsstonehead_entrypoint_27(BsScriptType arg0) {
     extern BtIntPtr D_80801690_bsstonehead[];
-    return ((s32 *)&D_80801690_bsstonehead)[arg0];
+    return (BsScript)D_80801690_bsstonehead[arg0];
 }
 
 void bsstonehead_entrypoint_28(PlayerState *arg0)
@@ -765,9 +765,9 @@ void bsstonehead_entrypoint_30(BtIntPtr arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bsstonehead_entrypoint_31(s32 arg0) {
+BsScript bsstonehead_entrypoint_31(BsScriptType arg0) {
     extern BtIntPtr D_808016A0_bsstonehead[];
-    return ((s32 *)&D_808016A0_bsstonehead)[arg0];
+    return (BsScript)D_808016A0_bsstonehead[arg0];
 }
 
 void bsstonehead_entrypoint_32(PlayerState *arg0)
@@ -797,9 +797,9 @@ void bsstonehead_entrypoint_34(BtIntPtr arg0) {
     bs_setState(arg0, var_a1);
 }
 
-s32 bsstonehead_entrypoint_35(s32 arg0) {
+BsScript bsstonehead_entrypoint_35(BsScriptType arg0) {
     extern BtIntPtr D_808016B0_bsstonehead[];
-    return ((s32 *)&D_808016B0_bsstonehead)[arg0];
+    return (BsScript)D_808016B0_bsstonehead[arg0];
 }
 
 void bsstonehead_entrypoint_36(PlayerState *arg0)
@@ -843,9 +843,9 @@ void bsstonehead_entrypoint_38(PlayerState *arg0) {
     bs_setState(arg0, sp34);
 }
 
-s32 bsstonehead_entrypoint_39(s32 arg0) {
+BsScript bsstonehead_entrypoint_39(BsScriptType arg0) {
     extern BtIntPtr D_808016C0_bsstonehead[];
-    return ((s32 *)&D_808016C0_bsstonehead)[arg0];
+    return (BsScript)D_808016C0_bsstonehead[arg0];
 }
 
 void bsstonehead_entrypoint_40(PlayerState *arg0)
@@ -898,9 +898,9 @@ void bsstonehead_entrypoint_42(PlayerState *arg0) {
     bs_setState(arg0, func_800A02DC(arg0, var_s1));
 }
 
-s32 bsstonehead_entrypoint_43(s32 arg0) {
+BsScript bsstonehead_entrypoint_43(BsScriptType arg0) {
     extern BtIntPtr D_808016D0_bsstonehead[];
-    return ((s32 *)&D_808016D0_bsstonehead)[arg0];
+    return (BsScript)D_808016D0_bsstonehead[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/stonehead.data.s */
 void _bsstonehead_entrypoint_0();

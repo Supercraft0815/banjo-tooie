@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "overlays/bs/mum.h"
-
 void bsmum_entrypoint_13(PlayerState *self);
 
 void func_80800000_bsmum(PlayerState *self) {
@@ -141,8 +141,8 @@ void func_80800484_bsmum(PlayerState *self) {
     }
 }
 
-BtIntPtr bsmum_entrypoint_3(s32 idx) {
-    return D_80801140_bsmum[idx];
+BsScript bsmum_entrypoint_3(BsScriptType idx) {
+    return (BsScript)D_80801140_bsmum[idx];
 }
 
 void func_80800560_bsmum(PlayerState *self) {
@@ -159,8 +159,8 @@ void func_808005B0_bsmum(PlayerState *self) {
     _bsdrone_entrypoint_1(self);
 }
 
-BtIntPtr bsmum_entrypoint_4(s32 idx) {
-    return D_80801150_bsmum[idx];
+BsScript bsmum_entrypoint_4(BsScriptType idx) {
+    return (BsScript)D_80801150_bsmum[idx];
 }
 
 void func_808005E4_bsmum(PlayerState *self) {
@@ -212,8 +212,8 @@ void func_8080065C_bsmum(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bsmum_entrypoint_5(s32 idx) {
-    return D_80801160_bsmum[idx];
+BsScript bsmum_entrypoint_5(BsScriptType idx) {
+    return (BsScript)D_80801160_bsmum[idx];
 }
 
 #ifndef NONMATCHINGS
@@ -332,8 +332,8 @@ void func_808009F8_bsmum(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bsmum_entrypoint_6(s32 idx) {
-    return D_80801170_bsmum[idx];
+BsScript bsmum_entrypoint_6(BsScriptType idx) {
+    return (BsScript)D_80801170_bsmum[idx];
 }
 
 void func_80800BC4_bsmum(PlayerState *self) {
@@ -363,8 +363,8 @@ void func_80800C2C_bsmum(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bsmum_entrypoint_7(s32 idx) {
-    return D_80801180_bsmum[idx];
+BsScript bsmum_entrypoint_7(BsScriptType idx) {
+    return (BsScript)D_80801180_bsmum[idx];
 }
 
 void bsmum_entrypoint_8(PlayerState *self) {
@@ -391,8 +391,8 @@ void bsmum_entrypoint_10(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bsmum_entrypoint_11(s32 idx) {
-    return D_80801190_bsmum[idx];
+BsScript bsmum_entrypoint_11(BsScriptType idx) {
+    return (BsScript)D_80801190_bsmum[idx];
 }
 
 void func_80800DC0_bsmum(PlayerState *self) {
@@ -415,8 +415,8 @@ void func_80800E10_bsmum(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bsmum_entrypoint_12(s32 idx) {
-    return D_808011A0_bsmum[idx];
+BsScript bsmum_entrypoint_12(BsScriptType idx) {
+    return (BsScript)D_808011A0_bsmum[idx];
 }
 
 void bsmum_entrypoint_13(PlayerState *self) {
@@ -484,8 +484,8 @@ void func_80801058_bsmum(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bsmum_entrypoint_14(s32 idx) {
-    return D_808011B0_bsmum[idx];
+BsScript bsmum_entrypoint_14(BsScriptType idx) {
+    return (BsScript)D_808011B0_bsmum[idx];
 }
 /* data_to_c.py: from asm/data/overlays/bs/mum.data.s */
 void _basudie_entrypoint_11();

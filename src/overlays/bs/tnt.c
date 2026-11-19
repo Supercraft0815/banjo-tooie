@@ -5,7 +5,7 @@
 #ifdef BT_NATIVE // complete the enum forward declarations below
 #include "overlays/ba/assets.h"
 #endif
-
+#include "bs_script.h"
 struct anctrl_s; 
 enum asset_e;     
 
@@ -383,9 +383,9 @@ void func_80800998_bstnt(struct player_state_s *arg0) {
     bs_setState((BtIntPtr)arg0, next_state);
 }
 
-s32 bstnt_entrypoint_0(s32 arg0) {
+BsScript bstnt_entrypoint_0(BsScriptType arg0) {
     extern BtIntPtr D_808023F8_bstnt[];
-    return ((s32 *)&D_808023F8_bstnt)[arg0];
+    return (BsScript)D_808023F8_bstnt[arg0];
 }
 
 void func_80800B60_bstnt(struct player_state_s *arg0, s32 arg1) {
@@ -493,9 +493,9 @@ void func_80800D08_bstnt(struct player_state_s *arg0) {
     bs_setState(arg0, next_state);
 }
 
-s32 bstnt_entrypoint_1(s32 arg0) {
+BsScript bstnt_entrypoint_1(BsScriptType arg0) {
     extern BtIntPtr D_80802408_bstnt[];
-    return ((s32 *)&D_80802408_bstnt)[arg0];
+    return (BsScript)D_80802408_bstnt[arg0];
 }
 
 void bstnt_entrypoint_2(void *arg0) {
@@ -607,9 +607,9 @@ void func_80801190_bstnt(BtIntPtr arg0)
     _basudie_entrypoint_10();
     bstnt_entrypoint_4(arg0);
 }
-s32 bstnt_entrypoint_5(s32 arg0) {
+BsScript bstnt_entrypoint_5(BsScriptType arg0) {
     extern BtIntPtr D_8080254C_bstnt[];
-    return ((s32 *)&D_8080254C_bstnt)[arg0];
+    return (BsScript)D_8080254C_bstnt[arg0];
 }
 
 void func_808011CC_bstnt(BtIntPtr arg0)
@@ -627,9 +627,9 @@ void func_8080121C_bstnt(BtIntPtr arg0)
     bstnt_entrypoint_2(arg0);
     _bsdrone_entrypoint_2(arg0);
 }
-s32 bstnt_entrypoint_6(s32 arg0) {
+BsScript bstnt_entrypoint_6(BsScriptType arg0) {
     extern BtIntPtr D_8080255C_bstnt[];
-    return ((s32 *)&D_8080255C_bstnt)[arg0];
+    return (BsScript)D_8080255C_bstnt[arg0];
 }
 
 struct player_state_s;
@@ -731,9 +731,9 @@ void func_80801464_bstnt(BtIntPtr arg0) {
     bstnt_entrypoint_2(arg0);
 }
 
-s32 bstnt_entrypoint_7(s32 arg0) {
+BsScript bstnt_entrypoint_7(BsScriptType arg0) {
     extern BtIntPtr D_8080256C_bstnt[];
-    return ((s32 *)&D_8080256C_bstnt)[arg0];
+    return (BsScript)D_8080256C_bstnt[arg0];
 }
 
 /* extern */
@@ -891,9 +891,9 @@ void func_808018D0_bstnt(BtIntPtr arg0) {
     bstnt_entrypoint_2(arg0);
 }
 
-s32 bstnt_entrypoint_9(s32 arg0) {
+BsScript bstnt_entrypoint_9(BsScriptType arg0) {
     extern BtIntPtr D_8080257C_bstnt[];
-    return ((s32 *)&D_8080257C_bstnt)[arg0];
+    return (BsScript)D_8080257C_bstnt[arg0];
 }
 
 /* extern */
@@ -1060,9 +1060,9 @@ void func_80801E20_bstnt(BtIntPtr arg0)
     bstnt_entrypoint_2(arg0);
 }
 
-s32 bstnt_entrypoint_11(s32 arg0) {
+BsScript bstnt_entrypoint_11(BsScriptType arg0) {
     extern BtIntPtr D_8080258C_bstnt[];
-    return ((s32 *)&D_8080258C_bstnt)[arg0];
+    return (BsScript)D_8080258C_bstnt[arg0];
 }
 
 void func_80801E60_bstnt(BtIntPtr arg0) { bstnt_entrypoint_3(arg0); _babounce_entrypoint_4(arg0, 1); _babounce_entrypoint_5(arg0, 0xE9, (s32) 0x3ED0FF97); }
@@ -1094,9 +1094,9 @@ void func_80801F20_bstnt(BtIntPtr arg0)
     _babounce_entrypoint_3();
     bstnt_entrypoint_2(arg0);
 }
-s32 bstnt_entrypoint_12(s32 arg0) {
+BsScript bstnt_entrypoint_12(BsScriptType arg0) {
     extern BtIntPtr D_8080259C_bstnt[];
-    return ((s32 *)&D_8080259C_bstnt)[arg0];
+    return (BsScript)D_8080259C_bstnt[arg0];
 }
 
 void func_80801F5C_bstnt(BtIntPtr arg0) { bstnt_entrypoint_3(arg0); _babounce_entrypoint_4(arg0, 2); _babounce_entrypoint_5(arg0, 0xE9, (s32) 0x3ED0FF97); }
@@ -1125,9 +1125,9 @@ void func_80802000_bstnt(BtIntPtr arg0)
     _babounce_entrypoint_3();
     bstnt_entrypoint_2(arg0);
 }
-s32 bstnt_entrypoint_13(s32 arg0) {
+BsScript bstnt_entrypoint_13(BsScriptType arg0) {
     extern BtIntPtr D_808025AC_bstnt[];
-    return ((s32 *)&D_808025AC_bstnt)[arg0];
+    return (BsScript)D_808025AC_bstnt[arg0];
 }
 
 void func_8080203C_bstnt(BtIntPtr arg0)
@@ -1156,9 +1156,9 @@ void func_8080208C_bstnt(BtIntPtr arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bstnt_entrypoint_14(s32 arg0) {
+BsScript bstnt_entrypoint_14(BsScriptType arg0) {
     extern BtIntPtr D_808025BC_bstnt[];
-    return ((s32 *)&D_808025BC_bstnt)[arg0];
+    return (BsScript)D_808025BC_bstnt[arg0];
 }
 
 void func_808020EC_bstnt(BtIntPtr arg0)
@@ -1196,9 +1196,9 @@ void func_8080217C_bstnt(struct player_state_s *arg0) {
     bs_setState(arg0, next_state);
 }
 
-s32 bstnt_entrypoint_15(s32 arg0) {
+BsScript bstnt_entrypoint_15(BsScriptType arg0) {
     extern BtIntPtr D_808025CC_bstnt[];
-    return ((s32 *)&D_808025CC_bstnt)[arg0];
+    return (BsScript)D_808025CC_bstnt[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/tnt.data.s */
 void _bstnt_entrypoint_10();

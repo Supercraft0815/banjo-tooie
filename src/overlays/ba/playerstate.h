@@ -21,6 +21,8 @@ typedef struct ba_unknown_2C_s {
     u8 unk1A;
 } BaUnknown2C;
 
+typedef struct { u8 mode, index, flags, cycle; } PlayerEggSelection;
+
 typedef struct player_state_s {
     /* 0x00 */ struct ba_alarm_s *alarm;
     /* 0x04 */ struct ba_anim_s *anim;
@@ -42,7 +44,10 @@ typedef struct player_state_s {
     /* 0x44 */ struct ba_cough_s *cough;
     u8 pad48[0xC];
     /* 0x54 */ struct ba_drone_s *drone;
-    u8 pad58[0x28];
+    union {
+        u8 pad58[0x28];
+        struct { u8 pad[0xC]; PlayerEggSelection *slot; } eggSelection;
+    };
     /* 0x80 */ struct ba_flag_s *flag;
     u8 pad84[0x8]; f32 unk8C; u8 pad90[0x4]; f32 ** unk94; f32 * unk98;
     /* 0x9C */ struct ba_unk_9C* unk9C;

@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "inflate_tables.inc"
 typedef struct { u8 pad0[0x3A]; s16 unk3A; } Obj1EBE020_func_800E4730_D_8012D56C; /* offsets.py genstruct: fields from raw offsets on D_8012D56C; rename once understood */ typedef struct { u8 pad0[0x3A]; s16 unk3A; } Obj1EBE020_func_800E4730_D_8012D564; /* offsets.py genstruct: fields from raw offsets on D_8012D564; rename once understood */ typedef struct { u8 pad0[0x3A]; s16 unk3A; } Obj1EBE020_func_800E4730_D_8012D560; /* offsets.py genstruct: fields from raw offsets on D_8012D560; rename once understood */ typedef struct { u8 pad0[0x3A]; s16 unk3A; } Obj1EBE020_func_800E4730_D_8012D568; /* offsets.py genstruct: fields from raw offsets on D_8012D568; rename once understood */ s32 func_800E4730(s32 arg0) {
     extern void *D_8012D560;
     extern void *D_8012D564;
@@ -794,7 +794,7 @@ int func_800E5EC0(struct workspace *arg0) {
     };
     void func_8001311C(u8 *, s32);
     extern u8 D_801231F0[];
-    extern u8 D_80123203;
+
     extern u16 D_80123204[];
     extern u8 D_80123244[];
     extern u16 D_80123264[];

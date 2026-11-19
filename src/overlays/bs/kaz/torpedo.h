@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #ifndef __BS_KAZ_TORPEDO_H__
 #define __BS_KAZ_TORPEDO_H__
-
 #include <ultra64.h>
 
 #include "core2/anctrl.h"
@@ -55,13 +55,13 @@
 #include "overlays/pl/su.h"
 #include "player.h"
 
-s32 _bskaztorpedo_entrypoint_0(s32 idx);
-s32 _bskaztorpedo_entrypoint_1(s32 idx);
-s32 _bskaztorpedo_entrypoint_2(s32 idx);
-s32 _bskaztorpedo_entrypoint_3(s32 idx);
-s32 _bskaztorpedo_entrypoint_4(s32 idx);
-s32 _bskaztorpedo_entrypoint_5(s32 idx);
-s32 _bskaztorpedo_entrypoint_6(s32 idx);
-s32 _bskaztorpedo_entrypoint_7(s32 idx);
+BsScript _bskaztorpedo_entrypoint_0(BsScriptType idx);
+BsScript _bskaztorpedo_entrypoint_1(BsScriptType idx);
+BsScript _bskaztorpedo_entrypoint_2(BsScriptType idx);
+BsScript _bskaztorpedo_entrypoint_3(BsScriptType idx);
+BsScript _bskaztorpedo_entrypoint_4(BsScriptType idx);
+BsScript _bskaztorpedo_entrypoint_5(BsScriptType idx);
+BsScript _bskaztorpedo_entrypoint_6(BsScriptType idx);
+BsScript _bskaztorpedo_entrypoint_7(BsScriptType idx);
 
 #endif // __BS_KAZ_TORPEDO_H__

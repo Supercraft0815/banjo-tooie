@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "common.h"
-
 struct player_state_s;
 void bsbpeck_entrypoint_0(struct player_state_s *self) {
     void baanim_playForDuration_once(void *self, s32 anim_id, f32 duration);
@@ -155,9 +155,9 @@ void bsbpeck_entrypoint_2(BtIntPtr arg0) {
     baphysics_reset_gravity(arg0);
 }
 
-s32 bsbpeck_entrypoint_3(s32 arg0) {
+BsScript bsbpeck_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_808004A0_bsbpeck[];
-    return ((s32 *)&D_808004A0_bsbpeck)[arg0];
+    return (BsScript)D_808004A0_bsbpeck[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/bpeck.data.s */
 void _bsbpeck_entrypoint_2();

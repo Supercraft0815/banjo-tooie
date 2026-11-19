@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #ifndef __BS_KAZ_SHOCK_H__
 #define __BS_KAZ_SHOCK_H__
-
 #include <ultra64.h>
 
 #include "core2/anctrl.h"
@@ -27,10 +27,10 @@ extern void _bskazshock_entrypoint_0(PlayerState *self);
 extern void _bskazshock_entrypoint_1(PlayerState *self);
 extern void _bskazshock_entrypoint_2(PlayerState *self);
 extern void _bskazshock_entrypoint_3(PlayerState *self);
-extern BtIntPtr _bskazshock_entrypoint_4(s32 idx);
+extern BsScript _bskazshock_entrypoint_4(BsScriptType idx);
 extern void _bskazshock_entrypoint_5(PlayerState *self);
 extern void _bskazshock_entrypoint_6(PlayerState *self);
 extern void _bskazshock_entrypoint_7(PlayerState *self);
-extern BtIntPtr _bskazshock_entrypoint_8(s32 idx);
+extern BsScript _bskazshock_entrypoint_8(BsScriptType idx);
 
 #endif // __BS_KAZ_SHOCK_H__

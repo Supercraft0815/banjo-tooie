@@ -1,8 +1,8 @@
+#include "bs_script.h"
 #include "common.h"
 #ifdef BT_NATIVE // complete the enum forward declarations below
 #include "overlays/ba/assets.h"
 #endif
-
 /* extern */
 
 struct player_state_s;
@@ -133,9 +133,9 @@ void bsdie_entrypoint_2(BtIntPtr arg0) {
     baroll_setIdeal(arg0, 0);
 }
 
-s32 bsdie_entrypoint_3(s32 arg0) {
+BsScript bsdie_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_80800960_bsdie[];
-    return ((s32 *)&D_80800960_bsdie)[arg0];
+    return (BsScript)D_80800960_bsdie[arg0];
 }
 
 /* extern */
@@ -245,9 +245,9 @@ void bsdie_entrypoint_6(BtIntPtr arg0) {
     func_800A0CF4(arg0, 0);
 }
 
-s32 bsdie_entrypoint_7(s32 arg0) {
+BsScript bsdie_entrypoint_7(BsScriptType arg0) {
     extern BtIntPtr D_80800970_bsdie[];
-    return ((s32 *)&D_80800970_bsdie)[arg0];
+    return (BsScript)D_80800970_bsdie[arg0];
 }
 
 /* extern */
@@ -356,9 +356,9 @@ void bsdie_entrypoint_10(BtIntPtr arg0) {
     baroll_setIdeal(arg0, 0.0f);
 }
 
-s32 bsdie_entrypoint_11(s32 arg0) {
+BsScript bsdie_entrypoint_11(BsScriptType arg0) {
     extern BtIntPtr D_80800980_bsdie[];
-    return ((s32 *)&D_80800980_bsdie)[arg0];
+    return (BsScript)D_80800980_bsdie[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/die.data.s */
 void _bsdie_entrypoint_2();

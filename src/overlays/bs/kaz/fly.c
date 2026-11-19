@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "overlays/bs/kaz/fly.h"
-
 void func_80800000_bskazfly(PlayerState *self) {
     f32 sp24[3];
 
@@ -96,8 +96,8 @@ void func_808003E0_bskazfly(PlayerState *self) {
     func_800A4E30(self);
 }
 
-BtIntPtr bskazfly_entrypoint_0(s32 idx) {
-    return D_80801C38_bskazfly[idx];
+BsScript bskazfly_entrypoint_0(BsScriptType idx) {
+    return (BsScript)D_80801C38_bskazfly[idx];
 }
 
 void func_8080042C_bskazfly(PlayerState *self) {
@@ -221,8 +221,8 @@ void func_808008A8_bskazfly(PlayerState *self) {
     func_80800188_bskazfly(self);
 }
 
-BtIntPtr bskazfly_entrypoint_1(s32 idx) {
-    return D_80801C48_bskazfly[idx];
+BsScript bskazfly_entrypoint_1(BsScriptType idx) {
+    return (BsScript)D_80801C48_bskazfly[idx];
 }
 
 void func_80800974_bskazfly(PlayerState *self) {
@@ -428,8 +428,8 @@ void func_808010DC_bskazfly(PlayerState *self) {
 }
 
 
-BtIntPtr bskazfly_entrypoint_2(s32 idx) {
-    return D_80801C58_bskazfly[idx];
+BsScript bskazfly_entrypoint_2(BsScriptType idx) {
+    return (BsScript)D_80801C58_bskazfly[idx];
 }
 
 void func_8080111C_bskazfly(PlayerState *self) {
@@ -508,8 +508,8 @@ void func_80801320_bskazfly(PlayerState *self) {
 }
 
 
-BtIntPtr bskazfly_entrypoint_3(s32 idx) {
-    return D_80801C68_bskazfly[idx];
+BsScript bskazfly_entrypoint_3(BsScriptType idx) {
+    return (BsScript)D_80801C68_bskazfly[idx];
 }
 
 
@@ -620,8 +620,8 @@ void func_808017B0_bskazfly(PlayerState *self) {
     func_8008E95C(self);
 }
 
-BtIntPtr bskazfly_entrypoint_4(s32 idx) {
-    return D_80801C78_bskazfly[idx];
+BsScript bskazfly_entrypoint_4(BsScriptType idx) {
+    return (BsScript)D_80801C78_bskazfly[idx];
 }
 
 void func_80801800_bskazfly(PlayerState *self) {
@@ -638,8 +638,8 @@ void func_8080185C_bskazfly(PlayerState *self) {
     func_80800188_bskazfly(self);
 }
 
-BtIntPtr bskazfly_entrypoint_5(s32 idx) {
-    return D_80801C88_bskazfly[idx];
+BsScript bskazfly_entrypoint_5(BsScriptType idx) {
+    return (BsScript)D_80801C88_bskazfly[idx];
 }
 
 
@@ -658,8 +658,8 @@ void func_808018F4_bskazfly(PlayerState *self) {
 }
 
 
-BtIntPtr bskazfly_entrypoint_6(s32 idx) {
-    return D_80801C98_bskazfly[idx];
+BsScript bskazfly_entrypoint_6(BsScriptType idx) {
+    return (BsScript)D_80801C98_bskazfly[idx];
 }
 
 void func_80801930_bskazfly(PlayerState *self) {
@@ -676,8 +676,8 @@ void func_8080198C_bskazfly(PlayerState *self) {
     func_80800188_bskazfly(self);
 }
 
-BtIntPtr bskazfly_entrypoint_7(s32 idx) {
-    return D_80801CA8_bskazfly[idx];
+BsScript bskazfly_entrypoint_7(BsScriptType idx) {
+    return (BsScript)D_80801CA8_bskazfly[idx];
 }
 
 void func_808019C8_bskazfly(PlayerState *self) {
@@ -707,8 +707,8 @@ void func_80801ABC_bskazfly(PlayerState *self) {
     func_80800188_bskazfly(self);
 }
 
-BtIntPtr bskazfly_entrypoint_8(s32 idx) {
-    return D_80801CB8_bskazfly[idx];
+BsScript bskazfly_entrypoint_8(BsScriptType idx) {
+    return (BsScript)D_80801CB8_bskazfly[idx];
 }
 
 void func_80801AF0_bskazfly(PlayerState *self) {
@@ -738,8 +738,8 @@ void func_80801BB4_bskazfly(PlayerState *self) {
     func_80800188_bskazfly(self);
 }
 
-BtIntPtr bskazfly_entrypoint_9(s32 idx) {
-    return D_80801CC8_bskazfly[idx];
+BsScript bskazfly_entrypoint_9(BsScriptType idx) {
+    return (BsScript)D_80801CC8_bskazfly[idx];
 }
 /* data_to_c.py: from asm/data/overlays/bs/kaz/fly.data.s */
 void func_80099AA8();

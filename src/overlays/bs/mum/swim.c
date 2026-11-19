@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "overlays/bs/mum/swim.h"
-
 void func_80800000_bsmumswim(PlayerState *self) {
     f32 sp2C[3];
     BtIntPtr sp28;
@@ -104,8 +104,8 @@ void bsmumswim_entrypoint_2(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bsmumswim_entrypoint_3(s32 idx) {
-    return D_80800B30_bsmumswim[idx];
+BsScript bsmumswim_entrypoint_3(BsScriptType idx) {
+    return (BsScript)D_80800B30_bsmumswim[idx];
 }
 
 void func_80800498_bsmumswim(PlayerState *self) {
@@ -162,8 +162,8 @@ void func_80800714_bsmumswim(PlayerState *self) {
     func_800A4E30(self);
 }
 
-BtIntPtr bsmumswim_entrypoint_4(s32 idx) {
-    return D_80800B40_bsmumswim[idx];
+BsScript bsmumswim_entrypoint_4(BsScriptType idx) {
+    return (BsScript)D_80800B40_bsmumswim[idx];
 }
 
 void func_80800750_bsmumswim(PlayerState *self) {
@@ -227,8 +227,8 @@ void func_808009A0_bsmumswim(PlayerState *self) {
     func_80800198_bsmumswim(self);
 }
 
-BtIntPtr bsmumswim_entrypoint_5(s32 idx) {
-    return D_80800B50_bsmumswim[idx];
+BsScript bsmumswim_entrypoint_5(BsScriptType idx) {
+    return (BsScript)D_80800B50_bsmumswim[idx];
 }
 
 void func_808009D4_bsmumswim(PlayerState *self) {
@@ -251,8 +251,8 @@ void func_80800A24_bsmumswim(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bsmumswim_entrypoint_6(s32 idx) {
-    return D_80800B60_bsmumswim[idx];
+BsScript bsmumswim_entrypoint_6(BsScriptType idx) {
+    return (BsScript)D_80800B60_bsmumswim[idx];
 }
 
 void func_80800A70_bsmumswim(PlayerState *self) {
@@ -276,8 +276,8 @@ void func_80800ADC_bsmumswim(PlayerState *self) {
     func_80800198_bsmumswim(self);
 }
 
-BtIntPtr bsmumswim_entrypoint_7(s32 idx) {
-    return D_80800B70_bsmumswim[idx];
+BsScript bsmumswim_entrypoint_7(BsScriptType idx) {
+    return (BsScript)D_80800B70_bsmumswim[idx];
 }
 /* data_to_c.py: from asm/data/overlays/bs/mum/swim.data.s */
 BtIntPtr D_80800B30_bsmumswim [4] BT_DATA(4, overlays_bs_mum_swim, 0x0) = { (BtIntPtr)_bsmumswim_entrypoint_0, (BtIntPtr)_bsmumswim_entrypoint_1, (BtIntPtr)_bsmumswim_entrypoint_2, (BtIntPtr)_bsmum_entrypoint_0 };

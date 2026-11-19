@@ -1,3 +1,4 @@
+#include "light_defaults.inc"
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_lights.h"
 #include "memory.h"
@@ -7,9 +8,11 @@ static NativeLight *native_light(s32 id) {
     return native_lighting.entries && id>0 && id<=vector_size(native_lighting.entries) ? vector_at(native_lighting.entries,id-1) : NULL;
 }
 s32 func_800C84B0(s32 flags) {
-    static const u8 categories[]={0,1,10,9,6,5,3,7,8,2,11,16,17,18,20,21,24,25};
-    u32 index=(flags&0x1F00)>>8;
-    return flags&0x20000 ? 4 : index<sizeof(categories) ? categories[index] : 1;
+    s32 mask=flags&0x1F00;
+    if(flags&0x20000)return 4;
+    if(!mask)return 0;
+    for(s32 i=0;i<17;++i)if(mask==D_8011A930.rows[i].flags)return D_8011A930.rows[i].category;
+    return 1;
 }
 u32 func_800C8560(NativeLight *light,s32 mask) {return light->dirty && (light->mask&mask);}
 u32 func_800C8588(NativeLight *light,s32 mask) {(void)mask;return light->permanent;}
@@ -25,12 +28,10 @@ s32 func_800C8678(s32 previous,NativeLightPredicate predicate,s32 mask) {
 }
 s32 func_800C85A0(NativeLightPredicate predicate,s32 mask) {return func_800C8678(0,predicate,mask);}
 s32 func_800C8760(s32 kind,s32 mask) {
-    NativeLightPredicate predicates[]={func_800C8594,func_800C8588,func_800C8560};
-    return kind>=0 && kind<3 ? func_800C85A0(predicates[kind],mask) : 0;
+    return kind>=0 && kind<3 ? func_800C85A0(D_8011A9C0[kind],mask) : 0;
 }
 s32 func_800C878C(s32 previous,s32 kind,s32 mask) {
-    NativeLightPredicate predicates[]={func_800C8594,func_800C8588,func_800C8560};
-    return kind>=0 && kind<3 ? func_800C8678(previous,predicates[kind],mask) : 0;
+    return kind>=0 && kind<3 ? func_800C8678(previous,D_8011A9C0[kind],mask) : 0;
 }
 void func_800C87B8(s32 *out) {rare_memcpy(out,native_lighting.ambient,12);}
 void func_800C87DC(s32 *out) {rare_memcpy(out,native_lighting.primary_color,12);}
@@ -64,20 +65,19 @@ void func_800C8A08(void) {
 }
 s32 func_800C8A98(void) {
     NativeLight *light; s32 i;
-    f32 position[3]={0},range[2]={150,3000};u32 color[3]={255,255,255};
     if(!native_lighting.entries)func_800C90AC();
     for(i=0;i<vector_size(native_lighting.entries);++i)if(!((NativeLight *)vector_at(native_lighting.entries,i))->mask)break;
     if(i==vector_size(native_lighting.entries)) {light=vector_push_back(&native_lighting.entries);*light=(NativeLight){0};}
     else light=vector_at(native_lighting.entries,i);
     light->mask=11;light->dirty=light->enabled=1;
     light->permanent=light->disabled=light->moved=0;
-    func_800C8CB8(i+1,position);func_800C8D4C(i+1,range);func_800C8E84(i+1,color);
+    func_800C8CB8(i+1,D_8011A9CC);func_800C8D4C(i+1,D_8011A9D8);func_800C8E84(i+1,D_8011A9E0);
     return i+1;
 }
 void func_800C8B84(volatile s32 id) {
-    NativeLight *light=native_light(id);f32 position[3]={0,-16000,0},range[2]={0,1};u32 color[3]={0};
+    NativeLight *light=native_light(id);
     if(!light)return;
-    func_800C8CB8(id,position);func_800C8D4C(id,range);func_800C8E84(id,color);light->dirty=2;
+    func_800C8CB8(id,D_8011A9EC);func_800C8D4C(id,D_8011A9F8);func_800C8E84(id,D_8011AA00);light->dirty=2;
 }
 s32 func_800C8BF4(void) {return native_lighting.entries ? vector_size(native_lighting.entries) : 0;}
 s32 func_800C8C18(void) {
@@ -135,7 +135,7 @@ s32 func_800C9128(f32 *position) {return _gclightsDll_entrypoint_3(&native_light
 extern s32 D_8012AB00;
 
 s32 func_800C84B0(s32 arg0) {
-    extern s32 D_8011A930[17][2];
+    extern LightCategoryList D_8011A930;
     s32 i;
     s32 temp_v0;
 
@@ -147,8 +147,8 @@ s32 func_800C84B0(s32 arg0) {
         return 0;
     }
     for (i = 0; i < 17; i++) {
-        if (temp_v0 == D_8011A930[i][0]) {
-            return D_8011A930[i][1];
+        if (temp_v0 == D_8011A930.rows[i].flags) {
+            return D_8011A930.rows[i].category;
         }
     }
     return 1;
@@ -205,14 +205,14 @@ s32 func_800C8678(s32 arg0, s32 (*arg1)(u32, s32), s32 arg2) {
 }
 
 s32 func_800C8760(s32 arg0, s32 arg1) {
-    extern s32 D_8011A9C0;
-    return func_800C85A0(*(s32 (**)(u32, s32))((u8 *)&D_8011A9C0 + (arg0 * 4)), arg1);
+    extern LightPredicate D_8011A9C0[3];
+    return func_800C85A0(D_8011A9C0[arg0], arg1);
 }
 
  s32 func_800C878C(s32 arg0, s32 arg1, s32 arg2) {
     s32 func_800C8678(s32, s32 (*)(u32, s32), s32);
-    extern s32 D_8011A9C0;
-    return func_800C8678(arg0, *(s32 *)((u8 *)&D_8011A9C0 + (arg1 * 4)), arg2);
+    extern LightPredicate D_8011A9C0[3];
+    return func_800C8678(arg0, D_8011A9C0[arg1], arg2);
 }
 
 void func_800C87B8(s32 *arg0) {
@@ -330,9 +330,9 @@ s32 func_800C8A98(void) {
     u32 vector_end(s32);
     s32 vector_index_of(s32, void *);
     void *vector_push_back(s32 *);
-    extern f32 D_8011A9CC;
-    extern f32 D_8011A9D8;
-    extern u32 D_8011A9E0;
+    extern f32 D_8011A9CC[];
+    extern f32 D_8011A9D8[];
+    extern u32 D_8011A9E0[];
     u32 sp24;
     u32 temp_v0;
     u32 var_a2;
@@ -354,23 +354,23 @@ s32 func_800C8A98(void) {
     ((struct Entry *)var_a2)->flag14 = 0;
     ((struct Entry *)var_a2)->flag18 = 0;
     ((struct Entry *)var_a2)->flag19 = 0;
-    func_800C8CB8(sp18, &D_8011A9CC);
-    func_800C8D4C(sp18, &D_8011A9D8);
-    func_800C8E84(sp18, &D_8011A9E0);
+    func_800C8CB8(sp18, D_8011A9CC);
+    func_800C8D4C(sp18, D_8011A9D8);
+    func_800C8E84(sp18, D_8011A9E0);
     return sp18;
 }
 
 void func_800C8B84(volatile s32 arg0) {
     void *vector_at(s32, s32);
     void *sp1C;
-    extern f32 D_8011A9EC;
-    extern f32 D_8011A9F8;
-    extern u32 D_8011AA00;
+    extern f32 D_8011A9EC[];
+    extern f32 D_8011A9F8[];
+    extern u32 D_8011AA00[];
 
     sp1C = vector_at(D_8012AB00, arg0 - 1);
-    func_800C8CB8(arg0, &D_8011A9EC);
-    func_800C8D4C(arg0, &D_8011A9F8);
-    func_800C8E84(arg0, &D_8011AA00);
+    func_800C8CB8(arg0, D_8011A9EC);
+    func_800C8D4C(arg0, D_8011A9F8);
+    func_800C8E84(arg0, D_8011AA00);
     ((s8 *)sp1C)[0x16] = 2;
 }
 

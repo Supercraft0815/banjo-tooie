@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "common.h"
-
 struct player_state_s;
 void baflag_clear(void *self, s32 id);
 
@@ -210,9 +210,9 @@ void func_808004F4_bsstatue(BtIntPtr arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bsstatue_entrypoint_2(s32 arg0) {
+BsScript bsstatue_entrypoint_2(BsScriptType arg0) {
     extern BtIntPtr D_808015A0_bsstatue[];
-    return ((s32 *)&D_808015A0_bsstatue)[arg0];
+    return (BsScript)D_808015A0_bsstatue[arg0];
 }
 
 struct anctrl_s;
@@ -387,9 +387,9 @@ void func_8080084C_bsstatue(struct player_state_s *arg0) {
     bs_setState((BtIntPtr)arg0, nextState);
 }
 
-s32 bsstatue_entrypoint_3(s32 arg0) {
+BsScript bsstatue_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_808015B0_bsstatue[];
-    return ((s32 *)&D_808015B0_bsstatue)[arg0];
+    return (BsScript)D_808015B0_bsstatue[arg0];
 }
 
 typedef struct player_state_s PlayerState;
@@ -449,9 +449,9 @@ void func_80800AA8_bsstatue(PlayerState *arg0) {
     bs_setState(arg0, sp2C);
 }
 
-s32 bsstatue_entrypoint_4(s32 arg0) {
+BsScript bsstatue_entrypoint_4(BsScriptType arg0) {
     extern BtIntPtr D_808015C0_bsstatue[];
-    return ((s32 *)&D_808015C0_bsstatue)[arg0];
+    return (BsScript)D_808015C0_bsstatue[arg0];
 }
 
 void func_80800BEC_bsstatue(PlayerState *arg0) {
@@ -511,9 +511,9 @@ void func_80800CCC_bsstatue(BtIntPtr arg0) {
     bs_setState(arg0, var_a1);
 }
 
-s32 bsstatue_entrypoint_5(s32 arg0) {
+BsScript bsstatue_entrypoint_5(BsScriptType arg0) {
     extern BtIntPtr D_808015D0_bsstatue[];
-    return ((s32 *)&D_808015D0_bsstatue)[arg0];
+    return (BsScript)D_808015D0_bsstatue[arg0];
 }
 
 /* extern */
@@ -615,9 +615,9 @@ void func_80800F3C_bsstatue(PlayerState *arg0) {
     }
 }
 
-s32 bsstatue_entrypoint_6(s32 arg0) {
+BsScript bsstatue_entrypoint_6(BsScriptType arg0) {
     extern BtIntPtr D_808015E0_bsstatue[];
-    return ((s32 *)&D_808015E0_bsstatue)[arg0];
+    return (BsScript)D_808015E0_bsstatue[arg0];
 }
 
 void func_80800FCC_bsstatue(s32 arg0)
@@ -653,9 +653,9 @@ void func_80801060_bsstatue(PlayerState *arg0) {
     }
 }
 
-s32 bsstatue_entrypoint_7(s32 arg0) {
+BsScript bsstatue_entrypoint_7(BsScriptType arg0) {
     extern BtIntPtr D_808015F0_bsstatue[];
-    return ((s32 *)&D_808015F0_bsstatue)[arg0];
+    return (BsScript)D_808015F0_bsstatue[arg0];
 }
 
 void func_808010B4_bsstatue(s32 arg0)
@@ -709,9 +709,9 @@ void func_80801144_bsstatue(PlayerState *arg0) {
     bs_setState(arg0, var_s1);
 }
 
-s32 bsstatue_entrypoint_8(s32 arg0) {
+BsScript bsstatue_entrypoint_8(BsScriptType arg0) {
     extern BtIntPtr D_80801600_bsstatue[];
-    return ((s32 *)&D_80801600_bsstatue)[arg0];
+    return (BsScript)D_80801600_bsstatue[arg0];
 }
 
 void func_80801218_bsstatue(s32 arg0)
@@ -787,9 +787,9 @@ void func_808012E8_bsstatue(PlayerState *arg0) {
     bs_setState(arg0, sp24);
 }
 
-s32 bsstatue_entrypoint_9(s32 arg0) {
+BsScript bsstatue_entrypoint_9(BsScriptType arg0) {
     extern BtIntPtr D_80801610_bsstatue[];
-    return ((s32 *)&D_80801610_bsstatue)[arg0];
+    return (BsScript)D_80801610_bsstatue[arg0];
 }
 
 void func_8080147C_bsstatue(PlayerState *arg0) {

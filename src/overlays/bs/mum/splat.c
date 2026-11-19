@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "overlays/bs/mum/splat.h"
-
 void func_80800000_bsmumsplat(PlayerState *self) {
     _bsmum_entrypoint_2(self);
     baanim_playForDuration_onceStartingAt(self, ASSET_CB_ANIM_BSMUMSPLAT_UNKNOWN, 3.08f, 0.085f);
@@ -45,8 +45,8 @@ void func_8080019C_bsmumsplat(PlayerState *self) {
     _bsmum_entrypoint_1(self);
 }
 
-BtIntPtr bsmumsplat_entrypoint_0(s32 idx) {
-    return D_808001E0_bsmumsplat[idx];
+BsScript bsmumsplat_entrypoint_0(BsScriptType idx) {
+    return (BsScript)D_808001E0_bsmumsplat[idx];
 }
 /* data_to_c.py: from asm/data/overlays/bs/mum/splat.data.s */
 void func_80099AA8();

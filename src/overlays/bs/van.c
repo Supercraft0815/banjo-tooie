@@ -3,7 +3,7 @@
 #include "overlays/ba/assets.h"
 #endif
 #include "overlays/ba/playerstate.h"
-struct player_state_s; 
+#include "bs_script.h"
 void func_80800000_bsvan(struct player_state_s *arg0) {
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     s32 bastick_getZone(struct player_state_s *);
@@ -269,9 +269,9 @@ void func_808005E4_bsvan(struct player_state_s *arg0) {
     bs_setState(arg0, 0);
 }
 
-s32 bsvan_entrypoint_4(s32 arg0) {
+BsScript bsvan_entrypoint_4(BsScriptType arg0) {
     extern BtIntPtr D_80801C8C_bsvan[];
-    return ((s32 *)&D_80801C8C_bsvan)[arg0];
+    return (BsScript)D_80801C8C_bsvan[arg0];
 }
 
 void func_80800760_bsvan(BtIntPtr arg0)
@@ -289,9 +289,9 @@ void func_808007B0_bsvan(BtIntPtr arg0)
     _bsdrone_entrypoint_1();
     bsvan_entrypoint_3(arg0);
 }
-s32 bsvan_entrypoint_5(s32 arg0) {
+BsScript bsvan_entrypoint_5(BsScriptType arg0) {
     extern BtIntPtr D_80801C9C_bsvan[];
-    return ((s32 *)&D_80801C9C_bsvan)[arg0];
+    return (BsScript)D_80801C9C_bsvan[arg0];
 }
 
 /* extern */
@@ -390,9 +390,9 @@ void func_808008D4_bsvan(struct player_state_s *arg0) {
     bs_setState(arg0, sp34);
 }
 
-s32 bsvan_entrypoint_6(s32 arg0) {
+BsScript bsvan_entrypoint_6(BsScriptType arg0) {
     extern BtIntPtr D_80801CAC_bsvan[];
-    return ((s32 *)&D_80801CAC_bsvan)[arg0];
+    return (BsScript)D_80801CAC_bsvan[arg0];
 }
 
 void func_80800A5C_bsvan(struct player_state_s *arg0) {
@@ -536,9 +536,9 @@ void func_80800E0C_bsvan(struct player_state_s *arg0) {
     bsvan_entrypoint_0(arg0);
 }
 
-s32 bsvan_entrypoint_7(s32 arg0) {
+BsScript bsvan_entrypoint_7(BsScriptType arg0) {
     extern BtIntPtr D_80801CBC_bsvan[];
-    return ((s32 *)&D_80801CBC_bsvan)[arg0];
+    return (BsScript)D_80801CBC_bsvan[arg0];
 } typedef struct { BtIntPtr unk0; } Objvan_func_80800E60_bsvan_temp_v1; /* offsets.py genstruct: fields from raw offsets on temp_v1; rename once understood */
 
 /* extern */
@@ -646,9 +646,9 @@ void func_80801034_bsvan(struct player_state_s *arg0) {
     bs_setState(arg0, var_s1);
 }
 
-s32 bsvan_entrypoint_10(s32 arg0) {
+BsScript bsvan_entrypoint_10(BsScriptType arg0) {
     extern BtIntPtr D_80801CCC_bsvan[];
-    return ((s32 *)&D_80801CCC_bsvan)[arg0];
+    return (BsScript)D_80801CCC_bsvan[arg0];
 }
 
 void func_80801118_bsvan(BtIntPtr arg0)
@@ -692,9 +692,9 @@ void func_80801198_bsvan(struct player_state_s *arg0) {
     bs_setState(arg0, sp24);
 }
 
-s32 bsvan_entrypoint_11(s32 arg0) {
+BsScript bsvan_entrypoint_11(BsScriptType arg0) {
     extern BtIntPtr D_80801CDC_bsvan[];
-    return ((s32 *)&D_80801CDC_bsvan)[arg0];
+    return (BsScript)D_80801CDC_bsvan[arg0];
 }
 
 void func_80801224_bsvan(BtIntPtr arg0)
@@ -732,9 +732,9 @@ void func_808012A4_bsvan(BtIntPtr arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bsvan_entrypoint_12(s32 arg0) {
+BsScript bsvan_entrypoint_12(BsScriptType arg0) {
     extern BtIntPtr D_80801CEC_bsvan[];
-    return ((s32 *)&D_80801CEC_bsvan)[arg0];
+    return (BsScript)D_80801CEC_bsvan[arg0];
 }
 
 void func_8080130C_bsvan(BtIntPtr arg0)
@@ -761,9 +761,9 @@ void func_8080135C_bsvan(u8 *arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bsvan_entrypoint_13(s32 arg0) {
+BsScript bsvan_entrypoint_13(BsScriptType arg0) {
     extern BtIntPtr D_80801CFC_bsvan[];
-    return ((s32 *)&D_80801CFC_bsvan)[arg0];
+    return (BsScript)D_80801CFC_bsvan[arg0];
 }
 
 void func_808013BC_bsvan(struct player_state_s *arg0)
@@ -840,9 +840,9 @@ void func_8080145C_bsvan(struct player_state_s *arg0) {
     bs_setState(arg0, sp6C);
 }
 
-s32 bsvan_entrypoint_14(s32 arg0) {
+BsScript bsvan_entrypoint_14(BsScriptType arg0) {
     extern BtIntPtr D_80801D70_bsvan[];
-    return ((s32 *)&D_80801D70_bsvan)[arg0];
+    return (BsScript)D_80801D70_bsvan[arg0];
 }
 
 s32 func_8080164C_bsvan(void *arg0, s32 arg1) {
@@ -980,9 +980,9 @@ void func_80801890_bsvan(struct player_state_s *arg0) {
     bs_setState(arg0, sp24);
 }
 
-s32 bsvan_entrypoint_16(s32 arg0) {
+BsScript bsvan_entrypoint_16(BsScriptType arg0) {
     extern BtIntPtr D_80801D80_bsvan[];
-    return ((s32 *)&D_80801D80_bsvan)[arg0];
+    return (BsScript)D_80801D80_bsvan[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/van.data.s */
 void _basudie_entrypoint_11();

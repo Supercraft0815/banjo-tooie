@@ -1,3 +1,4 @@
+#include "bs_script.h"
 #include "bs/firstp.h"
 #ifdef BT_NATIVE
 #include "overlays/ba/yaw.h" // enums for the prototypes below
@@ -7,7 +8,6 @@
 #ifdef BT_NATIVE // complete the enum forward declarations below
 #include "overlays/ba/assets.h"
 #include "overlays/ba/anim.h"
-
 #endif
 /* Per-state memory of the first-person state, allocated in player->state_mem. */
 typedef struct bs_firstp_state_s {
@@ -1945,9 +1945,9 @@ void func_80803204_bsfirstp(void *arg0) {
     }
 }
 
-BtFnWord bsfirstp_entrypoint_8(s32 arg0) {
+BsScript bsfirstp_entrypoint_8(BsScriptType arg0) {
     extern BtFnWord D_8080B474_bsfirstp[4];
-    return D_8080B474_bsfirstp[arg0];
+    return (BsScript)D_8080B474_bsfirstp[arg0];
 }
 
 void func_808032C0_bsfirstp(struct player_state_s *self) {
@@ -2037,9 +2037,9 @@ void func_80803340_bsfirstp(u8 *arg0) {
     }
 }
 
-BtFnWord bsfirstp_entrypoint_9(s32 arg0) {
+BsScript bsfirstp_entrypoint_9(BsScriptType arg0) {
     extern BtFnWord D_8080B484_bsfirstp[4];
-    return D_8080B484_bsfirstp[arg0];
+    return (BsScript)D_8080B484_bsfirstp[arg0];
 }
 
 /* extern */
@@ -2182,9 +2182,9 @@ void func_80803828_bsfirstp(BtIntPtr arg0) {
     }
 }
 
-BtFnWord bsfirstp_entrypoint_11(s32 arg0) {
+BsScript bsfirstp_entrypoint_11(BsScriptType arg0) {
     extern BtFnWord D_8080B494_bsfirstp[4];
-    return D_8080B494_bsfirstp[arg0];
+    return (BsScript)D_8080B494_bsfirstp[arg0];
 }
 
 void bsfirstp_entrypoint_12(s32 arg0) {
@@ -2503,9 +2503,9 @@ void func_80803F94_bsfirstp(struct player_state_s *arg0) {
     bs_setState(arg0, sp28);
 }
 
-BtFnWord bsfirstp_entrypoint_15(s32 arg0) {
+BsScript bsfirstp_entrypoint_15(BsScriptType arg0) {
     extern BtFnWord D_8080B4D0_bsfirstp[4];
-    return D_8080B4D0_bsfirstp[arg0];
+    return (BsScript)D_8080B4D0_bsfirstp[arg0];
 }                                                                                                  typedef struct { u8 pad0[0x4]; f32 unk4; u8 pad8[0x17C]; s32 unk184; s32 * unk188; } Objfirstp_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
 void func_80804104_bsfirstp(struct player_state_s *arg0, void *arg1, void *arg2) {
@@ -2595,9 +2595,9 @@ void func_80804238_bsfirstp(struct player_state_s *arg0) {
     func_80809250_bsfirstp(arg0);
 }
 
-BtFnWord bsfirstp_entrypoint_16(s32 arg0) {
+BsScript bsfirstp_entrypoint_16(BsScriptType arg0) {
     extern BtFnWord D_8080B4E0_bsfirstp[4];
-    return D_8080B4E0_bsfirstp[arg0];
+    return (BsScript)D_8080B4E0_bsfirstp[arg0];
 }
 
 /* extern */
@@ -2653,9 +2653,9 @@ void func_80804394_bsfirstp(struct player_state_s *arg0) {
     func_80807D48_bsfirstp(arg0);
 }
 
-BtFnWord bsfirstp_entrypoint_17(s32 arg0) {
+BsScript bsfirstp_entrypoint_17(BsScriptType arg0) {
     extern BtFnWord D_8080B4F0_bsfirstp[4];
-    return D_8080B4F0_bsfirstp[arg0];
+    return (BsScript)D_8080B4F0_bsfirstp[arg0];
 }
 
 void func_80804488_bsfirstp(struct player_state_s *arg0, s32 arg1, s32 arg2, f32 *arg3) {
@@ -2933,9 +2933,9 @@ void func_80804BA4_bsfirstp(struct player_state_s *arg0) {
     }
 }
 
-BtFnWord bsfirstp_entrypoint_19(s32 arg0) {
+BsScript bsfirstp_entrypoint_19(BsScriptType arg0) {
     extern BtFnWord D_8080B500_bsfirstp[4];
-    return D_8080B500_bsfirstp[arg0];
+    return (BsScript)D_8080B500_bsfirstp[arg0];
 }
 
 /* extern */
@@ -2972,9 +2972,9 @@ void func_80804DA0_bsfirstp(struct player_state_s *arg0) {
     }
 }
 
-BtFnWord bsfirstp_entrypoint_20(s32 arg0) {
+BsScript bsfirstp_entrypoint_20(BsScriptType arg0) {
     extern BtFnWord D_8080B510_bsfirstp[4];
-    return D_8080B510_bsfirstp[arg0];
+    return (BsScript)D_8080B510_bsfirstp[arg0];
 }
 
 void func_80804E1C_bsfirstp(struct player_state_s *arg0) {
@@ -3008,9 +3008,9 @@ void func_80804ED4_bsfirstp(BtIntPtr arg0) {
     bs_setState(arg0, func_800EA068(8) ? 0xCB : 0xC9);
 }
 
-BtFnWord bsfirstp_entrypoint_21(s32 arg0) {
+BsScript bsfirstp_entrypoint_21(BsScriptType arg0) {
     extern BtFnWord D_8080B520_bsfirstp[4];
-    return D_8080B520_bsfirstp[arg0];
+    return (BsScript)D_8080B520_bsfirstp[arg0];
 }
 
 void func_80804F28_bsfirstp(struct player_state_s *arg0) {
@@ -3049,9 +3049,9 @@ void func_80804FD4_bsfirstp(struct player_state_s *arg0) {
     }
 }
 
-BtFnWord bsfirstp_entrypoint_22(s32 arg0) {
+BsScript bsfirstp_entrypoint_22(BsScriptType arg0) {
     extern BtFnWord D_8080B530_bsfirstp[4];
-    return D_8080B530_bsfirstp[arg0];
+    return (BsScript)D_8080B530_bsfirstp[arg0];
 }
 
 /* extern */
@@ -3081,9 +3081,9 @@ void func_808050D8_bsfirstp(BtIntPtr arg0)
     func_80809D24_bsfirstp(arg0);
 }
 
-BtFnWord bsfirstp_entrypoint_23(s32 arg0) {
+BsScript bsfirstp_entrypoint_23(BsScriptType arg0) {
     extern BtFnWord D_8080B540_bsfirstp[4];
-    return D_8080B540_bsfirstp[arg0];
+    return (BsScript)D_8080B540_bsfirstp[arg0];
 }
 
 void func_8080511C_bsfirstp(struct player_state_s *arg0) {
@@ -3117,9 +3117,9 @@ void func_808051C4_bsfirstp(BtIntPtr arg0)
     func_80809D24_bsfirstp(arg0);
 }
 
-BtFnWord bsfirstp_entrypoint_24(s32 arg0) {
+BsScript bsfirstp_entrypoint_24(BsScriptType arg0) {
     extern BtFnWord D_8080B550_bsfirstp[4];
-    return D_8080B550_bsfirstp[arg0];
+    return (BsScript)D_8080B550_bsfirstp[arg0];
 }
 
 void bsfirstp_entrypoint_25(struct player_state_s *self, f32 speed) {
@@ -4251,9 +4251,9 @@ void func_80806D90_bsfirstp(struct player_state_s *arg0) {
     bsfirstp_entrypoint_26(arg0);
 }
 
-BtFnWord bsfirstp_entrypoint_29(s32 arg0) {
+BsScript bsfirstp_entrypoint_29(BsScriptType arg0) {
     extern BtFnWord D_8080B560_bsfirstp[4];
-    return D_8080B560_bsfirstp[arg0];
+    return (BsScript)D_8080B560_bsfirstp[arg0];
 }
 
 void func_80806E0C_bsfirstp(void *arg0) {
@@ -4416,9 +4416,9 @@ void func_80807024_bsfirstp(struct player_state_s *arg0) {
     }
 }
 
-BtFnWord bsfirstp_entrypoint_30(s32 arg0) {
+BsScript bsfirstp_entrypoint_30(BsScriptType arg0) {
     extern BtFnWord D_8080B570_bsfirstp[4];
-    return D_8080B570_bsfirstp[arg0];
+    return (BsScript)D_8080B570_bsfirstp[arg0];
 }
 
 void func_808071D8_bsfirstp(s32 arg0)
@@ -4458,9 +4458,9 @@ void func_80807264_bsfirstp(u8 *arg0) {
     }
 }
 
-BtFnWord bsfirstp_entrypoint_31(s32 arg0) {
+BsScript bsfirstp_entrypoint_31(BsScriptType arg0) {
     extern BtFnWord D_8080B580_bsfirstp[4];
-    return D_8080B580_bsfirstp[arg0];
+    return (BsScript)D_8080B580_bsfirstp[arg0];
 }
 
 /* extern */
@@ -4653,9 +4653,9 @@ void func_8080762C_bsfirstp(struct player_state_s *arg0) {
     }
 }
 
-BtFnWord bsfirstp_entrypoint_32(s32 arg0) {
+BsScript bsfirstp_entrypoint_32(BsScriptType arg0) {
     extern BtFnWord D_8080B590_bsfirstp[4];
-    return D_8080B590_bsfirstp[arg0];
+    return (BsScript)D_8080B590_bsfirstp[arg0];
 }
 
 void func_808077AC_bsfirstp(BtIntPtr arg0) {
@@ -4707,9 +4707,9 @@ void func_80807864_bsfirstp(struct player_state_s *self) {
     }
 }
 
-BtFnWord bsfirstp_entrypoint_33(s32 arg0) {
+BsScript bsfirstp_entrypoint_33(BsScriptType arg0) {
     extern BtFnWord D_8080B5A0_bsfirstp[4];
-    return D_8080B5A0_bsfirstp[arg0];
+    return (BsScript)D_8080B5A0_bsfirstp[arg0];
 }    typedef struct { u8 pad0[0x184]; s32 unk184; } Objfirstp_func_808078F4_bsfirstp_self; /* offsets.py genstruct: fields from raw offsets on self; rename once understood */
 
 void func_808078F4_bsfirstp(BtIntPtr self) {
@@ -5312,9 +5312,9 @@ void func_808088D0_bsfirstp(struct player_state_s *self) {
     bs_setState(self, next_state);
 }
 
-BtFnWord bsfirstp_entrypoint_34(s32 arg0) {
+BsScript bsfirstp_entrypoint_34(BsScriptType arg0) {
     extern BtFnWord D_8080B5B0_bsfirstp[4];
-    return D_8080B5B0_bsfirstp[arg0];
+    return (BsScript)D_8080B5B0_bsfirstp[arg0];
 }
 
 void func_80808A24_bsfirstp(struct player_state_s *arg0) {
@@ -5357,9 +5357,9 @@ void func_80808AAC_bsfirstp(BtIntPtr arg0) {
     }
 }
 
-BtFnWord bsfirstp_entrypoint_35(s32 arg0) {
+BsScript bsfirstp_entrypoint_35(BsScriptType arg0) {
     extern BtFnWord D_8080B5C0_bsfirstp[4];
-    return D_8080B5C0_bsfirstp[arg0];
+    return (BsScript)D_8080B5C0_bsfirstp[arg0];
 }
 
 /* extern */
@@ -5737,9 +5737,9 @@ void func_808093A4_bsfirstp(struct player_state_s *arg0) {
     }
 }
 
-BtFnWord bsfirstp_entrypoint_36(s32 arg0) {
+BsScript bsfirstp_entrypoint_36(BsScriptType arg0) {
     extern BtFnWord D_8080B5D0_bsfirstp[4];
-    return D_8080B5D0_bsfirstp[arg0];
+    return (BsScript)D_8080B5D0_bsfirstp[arg0];
 }
 
 /* extern */

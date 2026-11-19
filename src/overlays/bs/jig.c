@@ -5,7 +5,7 @@ struct player_state_s;
 s32 bsjig_entrypoint_0(s32 arg0) {
     return arg0 == 0x44;
 }
-
+#include "bs_script.h"
 void bsjig_entrypoint_1(void *arg0) {
     void _chjigsawdance_entrypoint_1(Actor *arg0, s32 arg1);
     void anctrl_reset(struct anctrl_s *);
@@ -151,9 +151,9 @@ void bsjig_entrypoint_5(BtIntPtr arg0) {
     func_8009CEE8(arg0);
 }
 
-s32 bsjig_entrypoint_6(s32 arg0) {
+BsScript bsjig_entrypoint_6(BsScriptType arg0) {
     extern BtIntPtr D_808005B0_bsjig[];
-    return ((s32 *)&D_808005B0_bsjig)[arg0];
+    return (BsScript)D_808005B0_bsjig[arg0];
 }
 
 /* extern */
@@ -243,9 +243,9 @@ void bsjig_entrypoint_10(PlayerState *arg0) {
     bs_setState(arg0, sp24);
 }
 
-s32 bsjig_entrypoint_11(s32 arg0) {
+BsScript bsjig_entrypoint_11(BsScriptType arg0) {
     extern BtIntPtr D_808005C0_bsjig[];
-    return ((s32 *)&D_808005C0_bsjig)[arg0];
+    return (BsScript)D_808005C0_bsjig[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/jig.data.s */
 void _bsjig_entrypoint_5();

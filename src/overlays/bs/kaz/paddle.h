@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #ifndef __BS_KAZ_PADDLE_H__
 #define __BS_KAZ_PADDLE_H__
-
 #include <ultra64.h>
 
 #include "overlays/bs/drone.h"
@@ -31,11 +31,11 @@
 #include "core2/1ECB9F0.h"
 #include "player.h"
 
-extern BtIntPtr _bskazpaddle_entrypoint_0(s32 idx);
-extern BtIntPtr _bskazpaddle_entrypoint_1(s32 idx);
-extern BtIntPtr _bskazpaddle_entrypoint_2(s32 idx);
-extern BtIntPtr _bskazpaddle_entrypoint_3(s32 idx);
-extern BtIntPtr _bskazpaddle_entrypoint_4(s32 idx);
-extern BtIntPtr _bskazpaddle_entrypoint_5(s32 idx);
+extern BsScript _bskazpaddle_entrypoint_0(BsScriptType idx);
+extern BsScript _bskazpaddle_entrypoint_1(BsScriptType idx);
+extern BsScript _bskazpaddle_entrypoint_2(BsScriptType idx);
+extern BsScript _bskazpaddle_entrypoint_3(BsScriptType idx);
+extern BsScript _bskazpaddle_entrypoint_4(BsScriptType idx);
+extern BsScript _bskazpaddle_entrypoint_5(BsScriptType idx);
 
 #endif // __BS_KAZ_PADDLE_H__

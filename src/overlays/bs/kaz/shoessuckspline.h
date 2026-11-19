@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #ifndef __BS_KAZ_SHOESSUCKSPLINE_H__
 #define __BS_KAZ_SHOESSUCKSPLINE_H__
-
 #include <ultra64.h>
 
 #include "core2/1E72EA0.h"
@@ -29,10 +29,10 @@ extern void _bskazshoessuckspline_entrypoint_0(PlayerState *self);
 extern void _bskazshoessuckspline_entrypoint_1(PlayerState *self);
 extern void _bskazshoessuckspline_entrypoint_2(PlayerState *self);
 extern void _bskazshoessuckspline_entrypoint_3(PlayerState *self);
-extern BtIntPtr _bskazshoessuckspline_entrypoint_4(s32 idx);
+extern BsScript _bskazshoessuckspline_entrypoint_4(BsScriptType idx);
 extern void _bskazshoessuckspline_entrypoint_5(PlayerState *self);
 extern void _bskazshoessuckspline_entrypoint_6(PlayerState *self);
 extern void _bskazshoessuckspline_entrypoint_7(PlayerState *self);
-extern BtIntPtr _bskazshoessuckspline_entrypoint_8(s32 idx);
+extern BsScript _bskazshoessuckspline_entrypoint_8(BsScriptType idx);
 
 #endif // __BS_KAZ_SHOESSUCKSPLINE_H__

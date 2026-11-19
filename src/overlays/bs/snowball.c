@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "common.h"
-
 struct anctrl_s;
 
 /* extern */
@@ -176,9 +176,9 @@ void func_808004AC_bssnowball(BT_NATIVE_ONLY(s32 bt_a0))
     _basudie_entrypoint_10(BT_NATIVE_ONLY(bt_a0));
 }
 
-s32 bssnowball_entrypoint_3(s32 arg0) {
+BsScript bssnowball_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_80801054_bssnowball[];
-    return ((s32 *)&D_80801054_bssnowball)[arg0];
+    return (BsScript)D_80801054_bssnowball[arg0];
 }
 
 void func_808004E0_bssnowball(BtIntPtr arg0)
@@ -196,9 +196,9 @@ void func_80800530_bssnowball(BtIntPtr arg0)
     _bsdrone_entrypoint_1();
     bssnowball_entrypoint_2(arg0);
 }
-s32 bssnowball_entrypoint_4(s32 arg0) {
+BsScript bssnowball_entrypoint_4(BsScriptType arg0) {
     extern BtIntPtr D_80801064_bssnowball[];
-    return ((s32 *)&D_80801064_bssnowball)[arg0];
+    return (BsScript)D_80801064_bssnowball[arg0];
 }
 
 /* extern */
@@ -247,9 +247,9 @@ void func_80800614_bssnowball(PlayerState *arg0) {
     bs_setState(arg0, sp24);
 }
 
-s32 bssnowball_entrypoint_5(s32 arg0) {
+BsScript bssnowball_entrypoint_5(BsScriptType arg0) {
     extern BtIntPtr D_80801074_bssnowball[];
-    return ((s32 *)&D_80801074_bssnowball)[arg0];
+    return (BsScript)D_80801074_bssnowball[arg0];
 }
 
 void func_808006BC_bssnowball(PlayerState *arg0) {
@@ -322,9 +322,9 @@ void func_8080089C_bssnowball(BtIntPtr arg0) {
     bssnowball_entrypoint_0(arg0);
 }
 
-s32 bssnowball_entrypoint_6(s32 arg0) {
+BsScript bssnowball_entrypoint_6(BsScriptType arg0) {
     extern BtIntPtr D_80801084_bssnowball[];
-    return ((s32 *)&D_80801084_bssnowball)[arg0];
+    return (BsScript)D_80801084_bssnowball[arg0];
 }
 
 void func_808008F0_bssnowball(BT_NATIVE_ONLY(s32 bt_a0))
@@ -394,9 +394,9 @@ void func_808009B0_bssnowball(PlayerState *arg0) {
     bs_setState((BtIntPtr)arg0, sp2C);
 }
 
-s32 bssnowball_entrypoint_7(s32 arg0) {
+BsScript bssnowball_entrypoint_7(BsScriptType arg0) {
     extern BtIntPtr D_80801094_bssnowball[];
-    return ((s32 *)&D_80801094_bssnowball)[arg0];
+    return (BsScript)D_80801094_bssnowball[arg0];
 }
 
 void func_80800B44_bssnowball(BtIntPtr arg0) { _baspin_entrypoint_1(); *(u8 *)(arg0 + 0x165) = 0; bssnowball_entrypoint_0(arg0); }
@@ -418,9 +418,9 @@ void func_80800BBC_bssnowball(BtIntPtr arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bssnowball_entrypoint_8(s32 arg0) {
+BsScript bssnowball_entrypoint_8(BsScriptType arg0) {
     extern BtIntPtr D_808010A4_bssnowball[];
-    return ((s32 *)&D_808010A4_bssnowball)[arg0];
+    return (BsScript)D_808010A4_bssnowball[arg0];
 }
 
 void func_80800C18_bssnowball(BtIntPtr arg0)
@@ -460,9 +460,9 @@ void func_80800C98_bssnowball(BtIntPtr arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bssnowball_entrypoint_9(s32 arg0) {
+BsScript bssnowball_entrypoint_9(BsScriptType arg0) {
     extern BtIntPtr D_808010B4_bssnowball[];
-    return ((s32 *)&D_808010B4_bssnowball)[arg0];
+    return (BsScript)D_808010B4_bssnowball[arg0];
 }
 
 void func_80800D00_bssnowball(BtIntPtr arg0)
@@ -491,9 +491,9 @@ void func_80800D50_bssnowball(BtIntPtr arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bssnowball_entrypoint_10(s32 arg0) {
+BsScript bssnowball_entrypoint_10(BsScriptType arg0) {
     extern BtIntPtr D_808010C4_bssnowball[];
-    return ((s32 *)&D_808010C4_bssnowball)[arg0];
+    return (BsScript)D_808010C4_bssnowball[arg0];
 }
 
 void func_80800DB0_bssnowball(BtIntPtr arg0)
@@ -537,9 +537,9 @@ void func_80800E4C_bssnowball(PlayerState *arg0) {
     bs_setState(arg0, var_s1);
 }
 
-s32 bssnowball_entrypoint_11(s32 arg0) {
+BsScript bssnowball_entrypoint_11(BsScriptType arg0) {
     extern BtIntPtr D_808010D4_bssnowball[];
-    return ((s32 *)&D_808010D4_bssnowball)[arg0];
+    return (BsScript)D_808010D4_bssnowball[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/snowball.data.s */
 void _basudie_entrypoint_11();

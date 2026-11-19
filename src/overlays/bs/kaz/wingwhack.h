@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #ifndef __BS_KAZ_WINGWHACK__
 #define __BS_KAZ_WINGWHACK__
-
 #include <ultra64.h>
 
 #include "overlays/ba/anim.h"
@@ -25,7 +25,7 @@
 #include "core2/1ECD170.h"
 #include "player.h"
 
-extern BtIntPtr _bskazwingwhack_entrypoint_0(s32 idx);
-extern BtIntPtr _bskazwingwhack_entrypoint_1(s32 idx);
+extern BsScript _bskazwingwhack_entrypoint_0(BsScriptType idx);
+extern BsScript _bskazwingwhack_entrypoint_1(BsScriptType idx);
 
 #endif // __BS_KAZ_WINGWHACK__

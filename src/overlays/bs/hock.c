@@ -1,8 +1,8 @@
+#include "bs_script.h"
 #include "common.h"
 #ifdef BT_NATIVE // complete the enum forward declarations below
 #include "overlays/ba/assets.h"
 #endif
-
 struct player_state_s;
 struct anctrl_s;
 enum asset_e;
@@ -186,9 +186,9 @@ void bsbshock_entrypoint_2(struct player_state_s *arg0) {
     }
 }
 
-s32 bsbshock_entrypoint_3(s32 arg0) {
+BsScript bsbshock_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_80800870_bsbshock[];
-    return ((s32 *)&D_80800870_bsbshock)[arg0];
+    return (BsScript)D_80800870_bsbshock[arg0];
 }
 
 struct anctrl_s;
@@ -326,9 +326,9 @@ void bsbshock_entrypoint_6(struct player_state_s *arg0) {
     func_8009C1B4(arg0, 87.0f);
 }
 
-s32 bsbshock_entrypoint_7(s32 arg0) {
+BsScript bsbshock_entrypoint_7(BsScriptType arg0) {
     extern BtIntPtr D_80800880_bsbshock[];
-    return ((s32 *)&D_80800880_bsbshock)[arg0];
+    return (BsScript)D_80800880_bsbshock[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/hock.data.s */
 void _bsbshock_entrypoint_2();

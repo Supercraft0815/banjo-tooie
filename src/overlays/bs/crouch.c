@@ -8,7 +8,7 @@ void func_80800000_bscrouch(BtIntPtr arg0) {
     baanim_playForDuration_loopSmooth(arg0, 0x10C, BT_IDO_ONLY(0x3F000000) BT_NATIVE_ONLY(0.5f));
     (((PlayerState *)arg0)->unk15C.word) = 4;
 }
-
+#include "bs_script.h"
 void func_80800034_bscrouch(BtIntPtr arg0) {
     BT_IDO_ONLY(s32 baanim_playForDuration_onceSmooth(BtIntPtr, s32, s32);)
     baanim_playForDuration_onceSmooth(arg0, 0x116, BT_IDO_ONLY(0x40000000) BT_NATIVE_ONLY(2.0f));
@@ -220,9 +220,9 @@ void bscrouch_entrypoint_1(void *arg0) {
 void bscrouch_entrypoint_2(s32 arg0) 
 {
 }
-s32 bscrouch_entrypoint_3(s32 arg0) {
+BsScript bscrouch_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_80800990_bscrouch[];
-    return ((s32 *)&D_80800990_bscrouch)[arg0];
+    return (BsScript)D_80800990_bscrouch[arg0];
 }
 
 /* extern */

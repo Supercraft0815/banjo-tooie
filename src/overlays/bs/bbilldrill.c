@@ -6,7 +6,7 @@
 void func_80800000_bsbbilldrill(void *arg0) {
     *(u32 *)((u8 *)arg0 + 0x168) = 0;
 }
-
+#include "bs_script.h"
 void func_80800008_bsbbilldrill(void *arg0) {
     s32 func_8001210C(s32);
     void func_8009C128(void *, f32[3]);
@@ -364,9 +364,9 @@ void bsbbilldrill_entrypoint_2(struct player_state_s *arg0) {
     bs_setState(arg0, nextState);
 }
 
-s32 bsbbilldrill_entrypoint_3(s32 arg0) {
+BsScript bsbbilldrill_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_80800B68_bsbbilldrill[];
-    return ((s32 *)&D_80800B68_bsbbilldrill)[arg0];
+    return (BsScript)D_80800B68_bsbbilldrill[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/bbilldrill.data.s */
 void _bsbbilldrill_entrypoint_0();

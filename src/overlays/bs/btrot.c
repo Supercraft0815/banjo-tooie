@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #include "common.h"
 typedef struct anctrl_s AnimCtrl;
-
 void bs_setState();
 
 /* extern */
@@ -454,9 +454,9 @@ void bsbtrot_entrypoint_1(PlayerState *arg0) {
 
 void bsbtrot_entrypoint_2(BtIntPtr arg0) { bainput_enable(arg0, 0, 1); func_8080061C_bsbtrot(arg0); }
 
-BtFnWord bsbtrot_entrypoint_3(s32 arg0) {
+BsScript bsbtrot_entrypoint_3(BsScriptType arg0) {
     extern BtFnWord D_80802E50_bsbtrot[4];
-    return D_80802E50_bsbtrot[arg0];
+    return (BsScript)D_80802E50_bsbtrot[arg0];
 }
 
 s32 func_80800C20_bsbtrot(PlayerState *arg0) {
@@ -500,9 +500,9 @@ void bsbtrot_entrypoint_6(PlayerState *arg0)
     func_8080061C_bsbtrot(arg0);
 }
 
-BtFnWord bsbtrot_entrypoint_7(s32 arg0) {
+BsScript bsbtrot_entrypoint_7(BsScriptType arg0) {
     extern BtFnWord D_80802E60_bsbtrot[4];
-    return D_80802E60_bsbtrot[arg0];
+    return (BsScript)D_80802E60_bsbtrot[arg0];
 }
 
 s32 func_80800DC4_bsbtrot(BtIntPtr arg0) {
@@ -604,9 +604,9 @@ void bsbtrot_entrypoint_10(PlayerState *arg0)
     func_8080061C_bsbtrot(arg0);
 }
 
-BtFnWord bsbtrot_entrypoint_11(s32 arg0) {
+BsScript bsbtrot_entrypoint_11(BsScriptType arg0) {
     extern BtFnWord D_80802E70_bsbtrot[4];
-    return D_80802E70_bsbtrot[arg0];
+    return (BsScript)D_80802E70_bsbtrot[arg0];
 }
 
 void func_8009D2D8(PlayerState *, s32);
@@ -796,9 +796,9 @@ void bsbtrot_entrypoint_14(BtIntPtr arg0)
     baphysics_reset_gravity();
     func_8080061C_bsbtrot(arg0);
 }
-BtFnWord bsbtrot_entrypoint_15(s32 arg0) {
+BsScript bsbtrot_entrypoint_15(BsScriptType arg0) {
     extern BtFnWord D_80802E80_bsbtrot[4];
-    return D_80802E80_bsbtrot[arg0];
+    return (BsScript)D_80802E80_bsbtrot[arg0];
 }
 
 /* extern */
@@ -861,9 +861,9 @@ void bsbtrot_entrypoint_18(BtIntPtr arg0) {
     func_8080061C_bsbtrot(arg0);
 }
 
-BtFnWord bsbtrot_entrypoint_19(s32 arg0) {
+BsScript bsbtrot_entrypoint_19(BsScriptType arg0) {
     extern BtFnWord D_80802E90_bsbtrot[4];
-    return D_80802E90_bsbtrot[arg0];
+    return (BsScript)D_80802E90_bsbtrot[arg0];
 }
 
 void func_8009D658(PlayerState *);
@@ -957,9 +957,9 @@ void bsbtrot_entrypoint_22(PlayerState *arg0)
     func_8080061C_bsbtrot(arg0);
 }
 
-BtFnWord bsbtrot_entrypoint_23(s32 arg0) {
+BsScript bsbtrot_entrypoint_23(BsScriptType arg0) {
     extern BtFnWord D_80802EA0_bsbtrot[4];
-    return D_80802EA0_bsbtrot[arg0];
+    return (BsScript)D_80802EA0_bsbtrot[arg0];
 }
 
 void bsbtrot_entrypoint_24(PlayerState *arg0) {
@@ -1101,9 +1101,9 @@ void bsbtrot_entrypoint_26(PlayerState *arg0)
     func_8080061C_bsbtrot(arg0);
 }
 
-BtFnWord bsbtrot_entrypoint_27(s32 arg0) {
+BsScript bsbtrot_entrypoint_27(BsScriptType arg0) {
     extern BtFnWord D_80802EB0_bsbtrot[4];
-    return D_80802EB0_bsbtrot[arg0];
+    return (BsScript)D_80802EB0_bsbtrot[arg0];
 }
 
 void bsbtrot_entrypoint_28(BtIntPtr arg0)
@@ -1146,9 +1146,9 @@ void bsbtrot_entrypoint_30(PlayerState *arg0) {
     bs_setState(arg0, sp24);
 }
 
-BtFnWord bsbtrot_entrypoint_31(s32 arg0) {
+BsScript bsbtrot_entrypoint_31(BsScriptType arg0) {
     extern BtFnWord D_80802EC0_bsbtrot[4];
-    return D_80802EC0_bsbtrot[arg0];
+    return (BsScript)D_80802EC0_bsbtrot[arg0];
 }
 
 void bsbtrot_entrypoint_32(PlayerState *arg0) {
@@ -1235,9 +1235,9 @@ void bsbtrot_entrypoint_34(void *arg0) {
     func_8080061C_bsbtrot(arg0);
 }
 
-BtFnWord bsbtrot_entrypoint_35(s32 arg0) {
+BsScript bsbtrot_entrypoint_35(BsScriptType arg0) {
     extern BtFnWord D_80802ED0_bsbtrot[4];
-    return D_80802ED0_bsbtrot[arg0];
+    return (BsScript)D_80802ED0_bsbtrot[arg0];
 }
 
 void bsbtrot_entrypoint_36(PlayerState *arg0)
@@ -1257,9 +1257,9 @@ void bsbtrot_entrypoint_38(BtIntPtr arg0)
     _bsdrone_entrypoint_2();
     func_8080061C_bsbtrot(arg0);
 }
-BtFnWord bsbtrot_entrypoint_39(s32 arg0) {
+BsScript bsbtrot_entrypoint_39(BsScriptType arg0) {
     extern BtFnWord D_80802EE0_bsbtrot[4];
-    return D_80802EE0_bsbtrot[arg0];
+    return (BsScript)D_80802EE0_bsbtrot[arg0];
 }
 
 void func_80802380_bsbtrot(PlayerState *arg0, s32 arg1) {
@@ -1321,9 +1321,9 @@ void bsbtrot_entrypoint_42(PlayerState *arg0) {
     bs_setState(arg0, sp24);
 }
 
-BtFnWord bsbtrot_entrypoint_43(s32 arg0) {
+BsScript bsbtrot_entrypoint_43(BsScriptType arg0) {
     extern BtFnWord D_80802EF0_bsbtrot[4];
-    return D_80802EF0_bsbtrot[arg0];
+    return (BsScript)D_80802EF0_bsbtrot[arg0];
 }
 
 s32 func_808025D8_bsbtrot(BtIntPtr arg0, s32 arg1) {
@@ -1463,9 +1463,9 @@ void bsbtrot_entrypoint_46(PlayerState *arg0) {
     bs_setState(arg0, next_state);
 }
 
-BtFnWord bsbtrot_entrypoint_47(s32 arg0) {
+BsScript bsbtrot_entrypoint_47(BsScriptType arg0) {
     extern BtFnWord D_80802F00_bsbtrot[4];
-    return D_80802F00_bsbtrot[arg0];
+    return (BsScript)D_80802F00_bsbtrot[arg0];
 }
 
 /* extern */
@@ -1581,9 +1581,9 @@ void bsbtrot_entrypoint_50(BtIntPtr arg0)
     func_80802A4C_bsbtrot((void *)arg0);
     func_8080061C_bsbtrot(arg0);
 }
-BtFnWord bsbtrot_entrypoint_51(s32 arg0) {
+BsScript bsbtrot_entrypoint_51(BsScriptType arg0) {
     extern BtFnWord D_80802F10_bsbtrot[4];
-    return D_80802F10_bsbtrot[arg0];
+    return (BsScript)D_80802F10_bsbtrot[arg0];
 }
 
 void bsbtrot_entrypoint_52(void *arg0) {
@@ -1617,9 +1617,9 @@ void bsbtrot_entrypoint_54(BtIntPtr arg0)
     func_80802A4C_bsbtrot((void *)arg0);
     func_8080061C_bsbtrot(arg0);
 }
-BtFnWord bsbtrot_entrypoint_55(s32 arg0) {
+BsScript bsbtrot_entrypoint_55(BsScriptType arg0) {
     extern BtFnWord D_80802F20_bsbtrot[4];
-    return D_80802F20_bsbtrot[arg0];
+    return (BsScript)D_80802F20_bsbtrot[arg0];
 }
 
 /* The ROM table holds the syscall stub, so this copy (its .data is not linked) only records the address reference for IDO. */

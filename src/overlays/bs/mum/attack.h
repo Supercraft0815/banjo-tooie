@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #ifndef __BS_MUM_ATTACK_H__
 #define __BS_MUM_ATTACK_H__
-
 #include "core2/anctrl.h"
 #include "overlays/ba/anim.h"
 #include "overlays/ba/flag.h"
@@ -27,6 +27,6 @@
 extern s32 D_808006F0_bsmumattack[];
 extern BtIntPtr D_80800700_bsmumattack[];
 
-extern BtIntPtr _bsmumattack_entrypoint_0(s32 idx);
+extern BsScript _bsmumattack_entrypoint_0(BsScriptType idx);
 
 #endif // __BS_MUM_ATTACK_H__

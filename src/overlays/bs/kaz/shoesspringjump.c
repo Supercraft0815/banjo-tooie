@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "common.h"
-
 #include "overlays/bs/kaz/shoesspringjump.h"
 
 extern BtIntPtr D_80800270_bskazshoesspringjump[];
@@ -62,8 +62,8 @@ void bskazshoesspringjump_entrypoint_2(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bskazshoesspringjump_entrypoint_3(s32 idx) {
-    return D_80800270_bskazshoesspringjump[idx];
+BsScript bskazshoesspringjump_entrypoint_3(BsScriptType idx) {
+    return (BsScript)D_80800270_bskazshoesspringjump[idx];
 }
 /* data_to_c.py: from asm/data/overlays/bs/kaz/shoesspringjump.data.s */
 void func_80099B94(PlayerState *);

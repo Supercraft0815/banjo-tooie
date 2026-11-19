@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "overlays/bs/ow.h"
-
 void bsow_entrypoint_0(PlayerState *self) {
     _babounce_entrypoint_4(self, 1);
     _babounce_entrypoint_5(self, ASSET_4D_ANIM_BSOW_UNKNOWN, 0.5344f);
@@ -33,8 +33,8 @@ void bsow_entrypoint_2(PlayerState *self) {
     _babounce_entrypoint_3(self);
 }
 
-BtIntPtr bsow_entrypoint_3(s32 idx) {
-    return D_80800150_bsow[idx];
+BsScript bsow_entrypoint_3(BsScriptType idx) {
+    return (BsScript)D_80800150_bsow[idx];
 }
 /* data_to_c.py: from asm/data/overlays/bs/ow.data.s */
 void func_80099AA8();

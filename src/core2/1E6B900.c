@@ -1456,7 +1456,7 @@ s32 func_80094340(void)
 }
 
 s32 func_80094348(void *arg0, s32 arg1) {
-    return ((*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x64)))) + (2))) & arg1) ? 1 : 0;
+    return (PLAYER_EGG_STATE(arg0)->flags & arg1) ? 1 : 0;
 }
 
 void func_80094370(BtIntPtr arg0)
@@ -1502,19 +1502,19 @@ void func_80094430(PlayerState *arg0, f32 arg1) {
 }
 
 s32 func_800944E0(PlayerState *arg0, s32 arg1) {
-    extern u8 D_80117E3C[];
-    return D_80117E3C[arg1 * 2];
+    BT_IDO_ONLY(extern u8 D_80117E3C[];)
+    return BT_DATA_FIELD(eggFirePolicies[arg1].shotCount, D_80117E3C[arg1 * 2]);
 }
 
 s32 func_800944F8(PlayerState *arg0, s32 arg1) {
-    extern u8 D_80117E3D[];
-    return D_80117E3D[arg1 * 2];
+    BT_IDO_ONLY(extern u8 D_80117E3D[];)
+    return BT_DATA_FIELD(eggFirePolicies[arg1].repeat, D_80117E3D[arg1 * 2]);
 }
 
 s32 func_80094510(PlayerState *arg0) {
     extern u8 *D_80117E30[];
-    u8 *p = *(u8 **)((u8 *)arg0 + 0x64);
-    return *(p[1] + D_80117E30[p[0]]);
+    PlayerEggSelection *p = PLAYER_EGG_STATE(arg0);
+    return *(p->index + D_80117E30[p->mode]);
 }
 
 /* extern */
@@ -1530,29 +1530,29 @@ void func_80094538(PlayerState *arg0) {
 s32 func_80094574(void *arg0, s32 arg1) {
     s32 _gcegg_entrypoint_6(s32);
     s32 current;
-    u8 *state;
+    PlayerEggSelection *state;
 
-    (*(u8 **)((u8 *)arg0 + 0x64))[1] = 0;
+    PLAYER_EGG_STATE(arg0)->index = 0;
     current = func_80094510(arg0);
     while (current != 0) {
         if (_gcegg_entrypoint_6(current) != 0 && current == arg1) {
             BT_IDO_ONLY(return;) BT_NATIVE_ONLY(return 0;)
         }
-        state = *(u8 **)((u8 *)arg0 + 0x64);
-        state[1]++;
+        state = PLAYER_EGG_STATE(arg0);
+        state->index++;
         current = func_80094510(arg0);
     }
-    (*(u8 **)((u8 *)arg0 + 0x64))[1] = 0;
+    PLAYER_EGG_STATE(arg0)->index = 0;
     current = func_80094510(arg0);
     while (current != 0) {
         if (_gcegg_entrypoint_6(current) != 0) {
             BT_IDO_ONLY(return;) BT_NATIVE_ONLY(return 0;)
         }
-        state = *(u8 **)((u8 *)arg0 + 0x64);
-        state[1]++;
+        state = PLAYER_EGG_STATE(arg0);
+        state->index++;
         current = func_80094510(arg0);
     }
-    (*(u8 **)((u8 *)arg0 + 0x64))[1] = 0;
+    PLAYER_EGG_STATE(arg0)->index = 0;
 BT_NATIVE_ONLY(return 0;) }
 
 /* extern */
@@ -1564,14 +1564,14 @@ void func_80094644(void *arg0) {
     f32 func_8009E970();
     s32 temp_f4;
 
-    (*(s8 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk64)) + (2))) = 0;
+    PLAYER_EGG_STATE(arg0)->flags = 0;
     func_80094370((BtIntPtr) arg0);
     func_80094574(arg0, func_8009E964());
     temp_f4 = (s32) func_8009E970();
     if (temp_f4 != 0) {
         func_80094430(arg0, (f32) temp_f4);
     }
-    (*(s8 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk64)) + (3))) = 0;
+    PLAYER_EGG_STATE(arg0)->cycle = 0;
 }
 
 void func_800946C4(PlayerState *arg0, s32 arg1) {
@@ -1595,8 +1595,8 @@ void func_800946C4(PlayerState *arg0, s32 arg1) {
             func_800947EC(arg0, 8, 0);
             break;
     }
-    (*(u8 **)((u8 *)arg0 + 0x64))[0] = arg1;
-    (*(u8 **)((u8 *)arg0 + 0x64))[1] = 0;
+    PLAYER_EGG_STATE(arg0)->mode = arg1;
+    PLAYER_EGG_STATE(arg0)->index = 0;
 }    typedef struct { u8 pad0[0x2]; u8 unk2; } Obj1E6B900_func_800947EC_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 pad0[0x2]; u8 unk2; } Obj1E6B900_func_800947EC_temp_v0_2; /* offsets.py genstruct: fields from raw offsets on temp_v0_2; rename once understood */
 
 void func_800947EC(PlayerState *arg0, s32 arg1, s32 arg2) {
@@ -1604,11 +1604,11 @@ void func_800947EC(PlayerState *arg0, s32 arg1, s32 arg2) {
     void *temp_v0_2;
 
     if (arg2 != 0) {
-        temp_v0 = (*(void **)((s8 *)(arg0) + (0x64)));
+        temp_v0 = PLAYER_EGG_STATE(arg0);
         (((Obj1E6B900_func_800947EC_temp_v0 *)temp_v0)->unk2) = (u8) ((((Obj1E6B900_func_800947EC_temp_v0 *)temp_v0)->unk2) | arg1);
         return;
     }
-    temp_v0_2 = (*(void **)((s8 *)(arg0) + (0x64)));
+    temp_v0_2 = PLAYER_EGG_STATE(arg0);
     (((Obj1E6B900_func_800947EC_temp_v0_2 *)temp_v0_2)->unk2) = (u8) ((((Obj1E6B900_func_800947EC_temp_v0_2 *)temp_v0_2)->unk2) & ~arg1);
 }
 
@@ -1648,11 +1648,11 @@ s32 func_80094864(PlayerState *arg0) {
             }
         }
         if (func_80094348(arg0, 1) == 0) {
-            state = (*(u8 **)((s8 *)arg0 + 0x64))[3];
+            state = PLAYER_EGG_STATE(arg0)->cycle;
             switch (state) {
                 case 0:
                     if (bainput_func_80097C7C(arg0) != 0) {
-                        (*(u8 **)((s8 *)arg0 + 0x64))[3] = 1;
+                        PLAYER_EGG_STATE(arg0)->cycle = 1;
                         func_80094E40(func_80094510(arg0));
                         func_80094C88(arg0);
                     }
@@ -1660,14 +1660,14 @@ s32 func_80094864(PlayerState *arg0) {
                 case 1:
                     func_80094824(arg0);
                     if (func_80094DA8(arg0) != 0) {
-                        (*(u8 **)((s8 *)arg0 + 0x64))[3] = 2;
+                        PLAYER_EGG_STATE(arg0)->cycle = 2;
                         func_80094C88(arg0);
                     }
                     break;
                 case 2:
                     func_80094824(arg0);
                     if (func_80094DA8(arg0) == 0) {
-                        (*(u8 **)((s8 *)arg0 + 0x64))[3] = 0;
+                        PLAYER_EGG_STATE(arg0)->cycle = 0;
                     }
                     break;
             }
@@ -1695,19 +1695,19 @@ s32 func_80094A10(PlayerState *arg0) {
     s32 result;
     s32 previous;
     s32 current;
-    u8 *state;
+    PlayerEggSelection *state;
 
     previous = func_80094510(arg0);
     if (func_800949BC(arg0) != 0) {
         return previous;
     }
     do {
-        state = *(u8 **)((u8 *)arg0 + 0x64);
-        state[1]++;
+        state = PLAYER_EGG_STATE(arg0);
+        state->index++;
         result = func_80094510(arg0);
         current = result;
         if (result == 0) {
-            (*(u8 **)((u8 *)arg0 + 0x64))[1] = 0;
+            PLAYER_EGG_STATE(arg0)->index = 0;
             current = func_80094510(arg0);
         }
     } while (_gcegg_entrypoint_6(current) == 0);
@@ -1728,7 +1728,7 @@ void func_80094AB4(void *arg0) {
     s32 sp1C;
 
     if (func_80094348(arg0, 2) == 0) {
-        temp_v0 = func_80094C64(arg0, (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x64)))) + (1))));
+        temp_v0 = func_80094C64(arg0, PLAYER_EGG_STATE(arg0)->index);
         if (temp_v0 != 0) {
             sp1C = temp_v0;
             if (_gcegg_entrypoint_6(temp_v0) != 0) {
@@ -1783,7 +1783,7 @@ void func_80094C0C(PlayerState *arg0, s32 arg1) {
 
 u8 func_80094C64(void *arg0, s32 arg1) {
     extern u8 *D_80117E30[];
-    return D_80117E30[*((Obj1E6B900_arg0 *)arg0)->unk64_u8p][arg1];
+    return D_80117E30[PLAYER_EGG_STATE(arg0)->mode][arg1];
 }
 
 void func_80094C88(void *arg0) {
@@ -1827,7 +1827,7 @@ void func_80094D04(void *arg0) {
     var_s0 = temp_v0;
     if (temp_v0 != 0) {
         do {
-            if ((var_s1 != (*(u8 **)((u8 *)arg0 + 0x64))[1]) && (_gcegg_entrypoint_6(var_s0) != 0)) {
+            if ((var_s1 != PLAYER_EGG_STATE(arg0)->index) && (_gcegg_entrypoint_6(var_s0) != 0)) {
                 temp_v0_3 = func_800D27C8(func_800D1C5C(_gcegg_entrypoint_5(var_s0)));
                 if (temp_v0_3 >= 0) {
                     func_800FAA34(temp_v0_3);

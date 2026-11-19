@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "common.h"
-
 #include "overlays/bs/kaz/die.h"
 
 BtIntPtr D_80800460_bskazdie[];
@@ -108,8 +108,8 @@ void bskazdie_entrypoint_2(PlayerState *self) {
     _bskaz_entrypoint_2(self);
 }
 
-BtIntPtr bskazdie_entrypoint_3(s32 idx) {
-    return D_80800460_bskazdie[idx];
+BsScript bskazdie_entrypoint_3(BsScriptType idx) {
+    return (BsScript)D_80800460_bskazdie[idx];
 }
 /* data_to_c.py: from asm/data/overlays/bs/kaz/die.data.s */
 void _basudie_entrypoint_11();

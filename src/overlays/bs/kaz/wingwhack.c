@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "common.h"
-
 #include "overlays/bs/kaz/wingwhack.h"
 
 extern s32 D_80800920_bskazwingwhack[];
@@ -96,8 +96,8 @@ void func_80800278_bskazwingwhack(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bskazwingwhack_entrypoint_0(s32 idx) {
-    return D_80800AB8_bskazwingwhack[idx];
+BsScript bskazwingwhack_entrypoint_0(BsScriptType idx) {
+    return (BsScript)D_80800AB8_bskazwingwhack[idx];
 }
 
 void func_808004A8_bskazwingwhack(PlayerState *self) {
@@ -182,8 +182,8 @@ void func_80800580_bskazwingwhack(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bskazwingwhack_entrypoint_1(s32 idx) {
-    return D_80800AC8_bskazwingwhack[idx];
+BsScript bskazwingwhack_entrypoint_1(BsScriptType idx) {
+    return (BsScript)D_80800AC8_bskazwingwhack[idx];
 }
 /* data_to_c.py: from asm/data/overlays/bs/kaz/wingwhack.data.s */
 void func_80099B94(PlayerState *);

@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #ifndef __BS_MUM_CAST_H__
 #define __BS_MUM_CAST_H__
-
 #include <ultra64.h>
 #include "overlays/ba/playerstate.h"
 #include "overlays/bs/mum.h"
@@ -15,6 +15,6 @@ extern BtIntPtr D_808004A0_bsmumcast[];
 
 extern void _bsmumcast_entrypoint_0(PlayerState *self);
 extern void _bsmumcast_entrypoint_1(PlayerState *self);
-extern BtIntPtr _bsmumcast_entrypoint_4(s32 idx);
+extern BsScript _bsmumcast_entrypoint_4(BsScriptType idx);
 
 #endif // __BS_MUM_CAST_H__

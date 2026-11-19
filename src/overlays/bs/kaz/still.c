@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "common.h"
-
 #include "overlays/bs/kaz/still.h"
 
 extern u8 D_808008A0_bskazstill[];
@@ -203,8 +203,8 @@ void bskazstill_entrypoint_2(PlayerState *self) {
     bs_setState(self, func_808001A4_bskazstill(self, BS_STATE_0_INVALID));
 }
 
-BtIntPtr bskazstill_entrypoint_3(s32 idx) {
-    return D_808008A4_bskazstill[idx];
+BsScript bskazstill_entrypoint_3(BsScriptType idx) {
+    return (BsScript)D_808008A4_bskazstill[idx];
 }
 
 BanjoStateId bskazstill_entrypoint_4(PlayerState *self, BanjoStateId arg1) {
@@ -231,8 +231,8 @@ void bskazstill_entrypoint_7(PlayerState *self) {
     bs_setState(self, func_808001A4_bskazstill(self, next_state));
 }
 
-BtIntPtr bskazstill_entrypoint_8(s32 idx) {
-    return D_808008B4_bskazstill[idx];
+BsScript bskazstill_entrypoint_8(BsScriptType idx) {
+    return (BsScript)D_808008B4_bskazstill[idx];
 }
 
 void func_80800758_bskazstill(PlayerState *self) {
@@ -249,8 +249,8 @@ void func_808007A8_bskazstill(PlayerState *self) {
     _bsdrone_entrypoint_1(self);
 }
 
-BtIntPtr bskazstill_entrypoint_9(s32 idx) {
-    return D_808008C4_bskazstill[idx];
+BsScript bskazstill_entrypoint_9(BsScriptType idx) {
+    return (BsScript)D_808008C4_bskazstill[idx];
 }
 
 void func_808007DC_bskazstill(PlayerState *self) {
@@ -273,8 +273,8 @@ void func_8080082C_bskazstill(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bskazstill_entrypoint_10(s32 idx) {
-    return D_808008D4_bskazstill[idx];
+BsScript bskazstill_entrypoint_10(BsScriptType idx) {
+    return (BsScript)D_808008D4_bskazstill[idx];
 }
 /* data_to_c.py: from asm/data/overlays/bs/kaz/still.data.s */
 void func_8009AB78(PlayerState *);

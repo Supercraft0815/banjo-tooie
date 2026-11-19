@@ -1,3 +1,4 @@
+#include "bs_script.h"
 #include "common.h"
 #ifdef BT_NATIVE
 #include "overlays/ba/anim_smooth.h"
@@ -8,7 +9,6 @@
 struct player_state_s;
 struct anctrl_s;
 void func_80093230(struct player_state_s *, f32);
-
 typedef struct player_state_s {
     /* 0x00 */ struct ba_alarm_s *alarm;
     /* 0x04 */ struct ba_anim_s *anim;
@@ -174,9 +174,9 @@ void func_808001CC_bsride(PlayerState *arg0) {
     bs_setState(arg0, next_state);
 }
 
-s32 bsride_entrypoint_0(s32 arg0) {
+BsScript bsride_entrypoint_0(BsScriptType arg0) {
     extern BtIntPtr D_808009C0_bsride[];
-    return ((s32 *)&D_808009C0_bsride)[arg0];
+    return (BsScript)D_808009C0_bsride[arg0];
 }
 struct RideAnim { s16 state; s16 index; f32 duration; u8 loop; u8 timed; u8 mode; f32 end; f32 threshold; };
 void func_808002A0_bsride(PlayerState *arg0) {
@@ -280,9 +280,9 @@ void func_80800524_bsride(struct player_state_s *arg0) {
     bs_setState(arg0, next_state);
 }
 
-s32 bsride_entrypoint_1(s32 arg0) {
+BsScript bsride_entrypoint_1(BsScriptType arg0) {
     extern BtIntPtr D_80800A70_bsride[];
-    return ((s32 *)&D_80800A70_bsride)[arg0];
+    return (BsScript)D_80800A70_bsride[arg0];
 }
 
 void func_808005B8_bsride(BT_NATIVE_ONLY(s32 bt_a0))
@@ -339,9 +339,9 @@ void func_8080066C_bsride(BtIntPtr arg0) {
     func_80099B94(arg0);
 }
 
-s32 bsride_entrypoint_2(s32 arg0) {
+BsScript bsride_entrypoint_2(BsScriptType arg0) {
     extern BtIntPtr D_80800A80_bsride[];
-    return ((s32 *)&D_80800A80_bsride)[arg0];
+    return (BsScript)D_80800A80_bsride[arg0];
 }
 
 void func_808006D0_bsride(PlayerState *arg0, s32 arg1) {
@@ -445,9 +445,9 @@ void func_80800904_bsride(PlayerState *arg0) {
     bs_setState(arg0, nextState);
 }
 
-s32 bsride_entrypoint_3(s32 arg0) {
+BsScript bsride_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_80800A90_bsride[];
-    return ((s32 *)&D_80800A90_bsride)[arg0];
+    return (BsScript)D_80800A90_bsride[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/ride.data.s */
 BtIntPtr D_808009C0_bsride [4] BT_DATA(4, overlays_bs_ride, 0x0) = { (BtIntPtr)func_8080016C_bsride, (BtIntPtr)func_8080018C_bsride, (BtIntPtr)func_808001CC_bsride, (BtIntPtr)func_8080011C_bsride };

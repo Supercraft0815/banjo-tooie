@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "bs/trexlarge.h"
-
 struct anctrl_s;
 
 void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
@@ -237,9 +237,9 @@ void func_808005D4_bstrexlarge(PlayerState *arg0) {
     bs_setState((BtIntPtr)arg0, func_808003C4_bstrexlarge(arg0, sp24, 1));
 }
 
-s32 bstrexlarge_entrypoint_0(s32 arg0) {
+BsScript bstrexlarge_entrypoint_0(BsScriptType arg0) {
     extern BtIntPtr D_80801990_bstrexlarge[];
-    return ((s32 *)&D_80801990_bstrexlarge)[arg0];
+    return (BsScript)D_80801990_bstrexlarge[arg0];
 }
 
 void bstrexlarge_entrypoint_1(PlayerState *arg0) {
@@ -327,9 +327,9 @@ void func_80800874_bstrexlarge(s32 arg0)
     bstrexlarge_entrypoint_3(arg0);
 }
 
-s32 bstrexlarge_entrypoint_4(s32 arg0) {
+BsScript bstrexlarge_entrypoint_4(BsScriptType arg0) {
     extern BtIntPtr D_808019A0_bstrexlarge[];
-    return ((s32 *)&D_808019A0_bstrexlarge)[arg0];
+    return (BsScript)D_808019A0_bstrexlarge[arg0];
 }
 
 void func_808008A8_bstrexlarge(BtIntPtr arg0)
@@ -347,9 +347,9 @@ void func_808008F8_bstrexlarge(s32 arg0)
     _bsdrone_entrypoint_1();
     bstrexlarge_entrypoint_3(arg0);
 }
-s32 bstrexlarge_entrypoint_5(s32 arg0) {
+BsScript bstrexlarge_entrypoint_5(BsScriptType arg0) {
     extern BtIntPtr D_808019B0_bstrexlarge[];
-    return ((s32 *)&D_808019B0_bstrexlarge)[arg0];
+    return (BsScript)D_808019B0_bstrexlarge[arg0];
 }
 
 void func_80800934_bstrexlarge(void *arg0, s32 arg1) {
@@ -420,9 +420,9 @@ void func_80800A50_bstrexlarge(PlayerState *arg0) {
     bs_setState((BtIntPtr)arg0, sp24);
 }
 
-s32 bstrexlarge_entrypoint_6(s32 arg0) {
+BsScript bstrexlarge_entrypoint_6(BsScriptType arg0) {
     extern BtIntPtr D_808019C0_bstrexlarge[];
-    return ((s32 *)&D_808019C0_bstrexlarge)[arg0];
+    return (BsScript)D_808019C0_bstrexlarge[arg0];
 }
 
 /* extern */
@@ -559,9 +559,9 @@ void func_80800E08_bstrexlarge(PlayerState *arg0) {
     bs_setState((BtIntPtr)arg0, sp34);
 }
 
-s32 bstrexlarge_entrypoint_8(s32 arg0) {
+BsScript bstrexlarge_entrypoint_8(BsScriptType arg0) {
     extern BtIntPtr D_808019D0_bstrexlarge[];
-    return ((s32 *)&D_808019D0_bstrexlarge)[arg0];
+    return (BsScript)D_808019D0_bstrexlarge[arg0];
 }
 
 void func_80800F2C_bstrexlarge(PlayerState *arg0)
@@ -578,9 +578,9 @@ void func_80800F6C_bstrexlarge(s32 arg0)
     bstrexlarge_entrypoint_3(arg0);
 }
 
-s32 bstrexlarge_entrypoint_9(s32 arg0) {
+BsScript bstrexlarge_entrypoint_9(BsScriptType arg0) {
     extern BtIntPtr D_808019E0_bstrexlarge[];
-    return ((s32 *)&D_808019E0_bstrexlarge)[arg0];
+    return (BsScript)D_808019E0_bstrexlarge[arg0];
 }
 
 void func_80800FA0_bstrexlarge(BtIntPtr arg0)
@@ -605,9 +605,9 @@ void func_80801008_bstrexlarge(BtIntPtr arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bstrexlarge_entrypoint_10(s32 arg0) {
+BsScript bstrexlarge_entrypoint_10(BsScriptType arg0) {
     extern BtIntPtr D_808019F0_bstrexlarge[];
-    return ((s32 *)&D_808019F0_bstrexlarge)[arg0];
+    return (BsScript)D_808019F0_bstrexlarge[arg0];
 }
 
 void func_80801060_bstrexlarge(BtIntPtr arg0)
@@ -636,9 +636,9 @@ void func_808010B0_bstrexlarge(BtIntPtr arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bstrexlarge_entrypoint_11(s32 arg0) {
+BsScript bstrexlarge_entrypoint_11(BsScriptType arg0) {
     extern BtIntPtr D_80801A00_bstrexlarge[];
-    return ((s32 *)&D_80801A00_bstrexlarge)[arg0];
+    return (BsScript)D_80801A00_bstrexlarge[arg0];
 }
 
 /* extern */
@@ -759,9 +759,9 @@ void func_808012EC_bstrexlarge(PlayerState *arg0) {
     bs_setState(arg0, nextState);
 }
 
-s32 bstrexlarge_entrypoint_12(s32 arg0) {
+BsScript bstrexlarge_entrypoint_12(BsScriptType arg0) {
     extern BtIntPtr D_80801A10_bstrexlarge[];
-    return ((s32 *)&D_80801A10_bstrexlarge)[arg0];
+    return (BsScript)D_80801A10_bstrexlarge[arg0];
 }
 
 void func_808014A4_bstrexlarge(PlayerState *arg0)
@@ -797,9 +797,9 @@ void func_80801574_bstrexlarge(PlayerState *arg0) {
     bs_setState((BtIntPtr)arg0, func_808002E0_bstrexlarge(arg0, 0, 1));
 }
 
-s32 bstrexlarge_entrypoint_13(s32 arg0) {
+BsScript bstrexlarge_entrypoint_13(BsScriptType arg0) {
     extern BtIntPtr D_80801A20_bstrexlarge[];
-    return ((s32 *)&D_80801A20_bstrexlarge)[arg0];
+    return (BsScript)D_80801A20_bstrexlarge[arg0];
 }
 
 void func_80801604_bstrexlarge(BtIntPtr arg0)
@@ -847,9 +847,9 @@ void func_808016B4_bstrexlarge(PlayerState *arg0) {
     bs_setState((BtIntPtr)arg0, func_808003C4_bstrexlarge(arg0, 0, 1));
 }
 
-s32 bstrexlarge_entrypoint_14(s32 arg0) {
+BsScript bstrexlarge_entrypoint_14(BsScriptType arg0) {
     extern BtIntPtr D_80801A30_bstrexlarge[];
-    return ((s32 *)&D_80801A30_bstrexlarge)[arg0];
+    return (BsScript)D_80801A30_bstrexlarge[arg0];
 }
 
 void func_808017DC_bstrexlarge(PlayerState *arg0)
@@ -885,9 +885,9 @@ void func_808018AC_bstrexlarge(PlayerState *arg0) {
     bs_setState((BtIntPtr)arg0, func_808002E0_bstrexlarge(arg0, 0, 1));
 }
 
-s32 bstrexlarge_entrypoint_15(s32 arg0) {
+BsScript bstrexlarge_entrypoint_15(BsScriptType arg0) {
     extern BtIntPtr D_80801A40_bstrexlarge[];
-    return ((s32 *)&D_80801A40_bstrexlarge)[arg0];
+    return (BsScript)D_80801A40_bstrexlarge[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/trexlarge.data.s */
 void _basudie_entrypoint_11();

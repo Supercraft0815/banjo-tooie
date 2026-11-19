@@ -1,3 +1,4 @@
+#include "bs_script.h"
 #include "overlays/ba/physics.h"
 #include "overlays/ba/playerstate.h"
 #include "core2/anctrl.h"
@@ -12,7 +13,6 @@
 #include "core2/1E79FD0.h"
 #include "core2/1EA0690.h"
 #include "core2/1ECA640.h"
-
 
 // bseggass_init
 void bsbeggass_entrypoint_0(PlayerState* arg0){
@@ -80,6 +80,6 @@ void* D_808002A0_bsbeggass[4] = {
     func_8009AB78
 };
 
-void* bsbeggass_entrypoint_3(s32 arg0) {
-    return D_808002A0_bsbeggass[arg0];
+BsScript bsbeggass_entrypoint_3(BsScriptType arg0) {
+    return (BsScript)D_808002A0_bsbeggass[arg0];
 }

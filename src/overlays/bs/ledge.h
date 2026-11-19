@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #ifndef __BS_LEDGE_H__
 #define __BS_LEDGE_H__
-
 #include <ultra64.h>
 
 #include "core2/anctrl.h"
@@ -42,14 +42,14 @@ extern u8 D_80801390_bsledge[];
 extern BtIntPtr D_80801398_bsledge[];
 extern BtIntPtr D_808013A8_bsledge[];
 
-extern BtIntPtr _bsledge_entrypoint_0(s32 idx);
-extern BtIntPtr _bsledge_entrypoint_1(s32 idx);
-extern BtIntPtr _bsledge_entrypoint_2(s32 idx);
-extern BtIntPtr _bsledge_entrypoint_3(s32 idx);
-extern BtIntPtr _bsledge_entrypoint_4(s32 idx);
+extern BsScript _bsledge_entrypoint_0(BsScriptType idx);
+extern BsScript _bsledge_entrypoint_1(BsScriptType idx);
+extern BsScript _bsledge_entrypoint_2(BsScriptType idx);
+extern BsScript _bsledge_entrypoint_3(BsScriptType idx);
+extern BsScript _bsledge_entrypoint_4(BsScriptType idx);
 extern void _bsledge_entrypoint_5(PlayerState *self);
 extern void _bsledge_entrypoint_6(PlayerState *self);
 extern void _bsledge_entrypoint_7(PlayerState *self);
-extern BtIntPtr _bsledge_entrypoint_8(s32 idx);
+extern BsScript _bsledge_entrypoint_8(BsScriptType idx);
 
 #endif // __BS_LEDGE_H__

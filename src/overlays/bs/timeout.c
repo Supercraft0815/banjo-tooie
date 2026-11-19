@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "common.h"
-
 /* extern */
 
 struct player_state_s;
@@ -61,9 +61,9 @@ void bstimeout_entrypoint_2(s32 arg0)
     func_800951B4();
     func_800A4E30(arg0);
 }
-s32 bstimeout_entrypoint_3(s32 arg0) {
+BsScript bstimeout_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_80800330_bstimeout[];
-    return ((s32 *)&D_80800330_bstimeout)[arg0];
+    return (BsScript)D_80800330_bstimeout[arg0];
 }
 
 /* extern */
@@ -113,9 +113,9 @@ void bstimeout_entrypoint_5(u8 *arg0) {
 
 void bstimeout_entrypoint_6(void *arg0) { func_800A0CF4(arg0, 0); func_800A4E30(arg0); func_800FC7C4(); }
 
-s32 bstimeout_entrypoint_7(s32 arg0) {
+BsScript bstimeout_entrypoint_7(BsScriptType arg0) {
     extern BtIntPtr D_80800340_bstimeout[];
-    return ((s32 *)&D_80800340_bstimeout)[arg0];
+    return (BsScript)D_80800340_bstimeout[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/timeout.data.s */
 void _bstimeout_entrypoint_2();

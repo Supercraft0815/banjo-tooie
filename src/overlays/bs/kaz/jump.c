@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "common.h"
-
 #include "overlays/bs/kaz/jump.h"
 
 extern BtIntPtr D_80800C40_bskazjump[];
@@ -132,8 +132,8 @@ void bskazjump_entrypoint_2(PlayerState *self) {
     _bskaz_entrypoint_2(self);
 }
 
-BtIntPtr bskazjump_entrypoint_3(s32 idx) {
-    return D_80800C40_bskazjump[idx];
+BsScript bskazjump_entrypoint_3(BsScriptType idx) {
+    return (BsScript)D_80800C40_bskazjump[idx];
 }
 
 void func_808004C4_bskazjump(PlayerState *self, s32 arg1) {
@@ -232,8 +232,8 @@ void bskazjump_entrypoint_6(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bskazjump_entrypoint_7(s32 idx) {
-    return D_80800C50_bskazjump[idx];
+BsScript bskazjump_entrypoint_7(BsScriptType idx) {
+    return (BsScript)D_80800C50_bskazjump[idx];
 }
 
 void bskazjump_entrypoint_8(PlayerState *self) {
@@ -291,8 +291,8 @@ void bskazjump_entrypoint_10(PlayerState *self) {
     _bskaz_entrypoint_2(self);
 }
 
-BtIntPtr bskazjump_entrypoint_11(s32 idx) {
-    return D_80800C60_bskazjump[idx];
+BsScript bskazjump_entrypoint_11(BsScriptType idx) {
+    return (BsScript)D_80800C60_bskazjump[idx];
 }
 
 void bskazjump_entrypoint_12(PlayerState *self) {
@@ -339,8 +339,8 @@ void bskazjump_entrypoint_14(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bskazjump_entrypoint_15(s32 idx) {
-    return D_80800C70_bskazjump[idx];
+BsScript bskazjump_entrypoint_15(BsScriptType idx) {
+    return (BsScript)D_80800C70_bskazjump[idx];
 }
 /* data_to_c.py: from asm/data/overlays/bs/kaz/jump.data.s */
 void _bskazshoessuckspline_entrypoint_0();

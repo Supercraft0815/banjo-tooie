@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #ifndef __BS_KAZ_FLAMETHROWER_H__
 #define __BS_KAZ_FLAMETHROWER_H__
-
 #include "common.h"
 #include <ultra64.h>
 
@@ -21,6 +21,6 @@ extern void _bskazflamethrower_entrypoint_0(PlayerState *self, f32 arg1[3], s32 
 extern void _bskazflamethrower_entrypoint_1(PlayerState *self);
 extern void _bskazflamethrower_entrypoint_2(PlayerState *self);
 extern void _bskazflamethrower_entrypoint_3(PlayerState *self);
-extern BtIntPtr _bskazflamethrower_entrypoint_4(s32 idx);
+extern BsScript _bskazflamethrower_entrypoint_4(BsScriptType idx);
 
 #endif // __BS_KAZ_FLAMETHROWER_H__

@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "common.h"
-
 #include "overlays/bs/kaz/torpedo.h"
 
 void func_80099AA8(PlayerState *);
@@ -368,8 +368,8 @@ void func_80800BA0_bskaztorpedo(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bskaztorpedo_entrypoint_0(s32 idx) {
-    return D_80801730_bskaztorpedo[idx];
+BsScript bskaztorpedo_entrypoint_0(BsScriptType idx) {
+    return (BsScript)D_80801730_bskaztorpedo[idx];
 }
 
 void func_80800BF8_bskaztorpedo(PlayerState *self) {
@@ -403,8 +403,8 @@ void func_80800CAC_bskaztorpedo(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bskaztorpedo_entrypoint_1(s32 idx) {
-    return D_80801740_bskaztorpedo[idx];
+BsScript bskaztorpedo_entrypoint_1(BsScriptType idx) {
+    return (BsScript)D_80801740_bskaztorpedo[idx];
 }
 
 void func_80800D48_bskaztorpedo(PlayerState *self) {
@@ -430,8 +430,8 @@ void func_80800DA4_bskaztorpedo(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bskaztorpedo_entrypoint_2(s32 idx) {
-    return D_80801750_bskaztorpedo[idx];
+BsScript bskaztorpedo_entrypoint_2(BsScriptType idx) {
+    return (BsScript)D_80801750_bskaztorpedo[idx];
 }
 
 void func_80800E04_bskaztorpedo(PlayerState *self) {
@@ -450,8 +450,8 @@ void func_80800E54_bskaztorpedo(PlayerState *self) {
     _bsdrone_entrypoint_1(self);
 }
 
-s32 bskaztorpedo_entrypoint_3(s32 idx) {
-    return D_80801760_bskaztorpedo[idx];
+BsScript bskaztorpedo_entrypoint_3(BsScriptType idx) {
+    return (BsScript)D_80801760_bskaztorpedo[idx];
 }
 
 void func_80800E98_bskaztorpedo(PlayerState *self) {
@@ -518,8 +518,8 @@ void func_80800FB4_bskaztorpedo(PlayerState *self) {
     }
 }
 
-s32 bskaztorpedo_entrypoint_4(s32 idx) {
-    return D_808017E4_bskaztorpedo[idx];
+BsScript bskaztorpedo_entrypoint_4(BsScriptType idx) {
+    return (BsScript)D_808017E4_bskaztorpedo[idx];
 }
 
 void func_808011A4_bskaztorpedo(PlayerState *self) {
@@ -563,8 +563,8 @@ void func_808012DC_bskaztorpedo(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bskaztorpedo_entrypoint_5(s32 idx) {
-    return D_80801884_bskaztorpedo[idx];
+BsScript bskaztorpedo_entrypoint_5(BsScriptType idx) {
+    return (BsScript)D_80801884_bskaztorpedo[idx];
 }
 
 void func_80801380_bskaztorpedo(PlayerState *self) {
@@ -594,8 +594,8 @@ void func_80801400_bskaztorpedo(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bskaztorpedo_entrypoint_6(s32 idx) {
-    return D_80801894_bskaztorpedo[idx];
+BsScript bskaztorpedo_entrypoint_6(BsScriptType idx) {
+    return (BsScript)D_80801894_bskaztorpedo[idx];
 }
 
 void func_80801484_bskaztorpedo(PlayerState *self) {
@@ -653,6 +653,6 @@ void func_80801614_bskaztorpedo(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-s32 bskaztorpedo_entrypoint_7(s32 idx) {
-    return D_808018A4_bskaztorpedo[idx];
+BsScript bskaztorpedo_entrypoint_7(BsScriptType idx) {
+    return (BsScript)D_808018A4_bskaztorpedo[idx];
 }

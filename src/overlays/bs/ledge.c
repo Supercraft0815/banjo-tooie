@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "overlays/bs/ledge.h"
-
 #ifndef NONMATCHINGS
 int func_80800000_bsledge(PlayerState *arg0) {
     return (func_8008E23C(arg0) == 0) && (bakey_pressed(arg0, 9) != 0);
@@ -207,8 +207,8 @@ void func_808005E0_bsledge(PlayerState *self) {
     bs_setState(self, sp2C);
 }
 
-BtIntPtr bsledge_entrypoint_0(s32 idx) {
-    return D_80801348_bsledge[idx];
+BsScript bsledge_entrypoint_0(BsScriptType idx) {
+    return (BsScript)D_80801348_bsledge[idx];
 }
 
 void func_8080072C_bsledge(PlayerState *self) {
@@ -244,8 +244,8 @@ void func_808007F4_bsledge(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bsledge_entrypoint_1(s32 idx) {
-    return D_80801358_bsledge[idx];
+BsScript bsledge_entrypoint_1(BsScriptType idx) {
+    return (BsScript)D_80801358_bsledge[idx];
 }
 
 void func_808008D4_bsledge(PlayerState *self) {
@@ -290,8 +290,8 @@ void func_808009C8_bsledge(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bsledge_entrypoint_2(s32 idx) {
-    return D_80801368_bsledge[idx];
+BsScript bsledge_entrypoint_2(BsScriptType idx) {
+    return (BsScript)D_80801368_bsledge[idx];
 }
 
 AssetId func_80800AA0_bsledge(PlayerState *self) {
@@ -351,8 +351,8 @@ void func_80800B70_bsledge(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bsledge_entrypoint_3(s32 idx) {
-    return D_80801378_bsledge[idx];
+BsScript bsledge_entrypoint_3(BsScriptType idx) {
+    return (BsScript)D_80801378_bsledge[idx];
 }
 
 s32 func_80800CF4_bsledge(PlayerState *self, u8 *arg1, u32 arg2) {
@@ -509,8 +509,8 @@ void func_80800F70_bsledge(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bsledge_entrypoint_4(s32 idx) {
-    return D_80801398_bsledge[idx];
+BsScript bsledge_entrypoint_4(BsScriptType idx) {
+    return (BsScript)D_80801398_bsledge[idx];
 }
 
 void bsledge_entrypoint_5(PlayerState *self) {
@@ -534,8 +534,8 @@ void bsledge_entrypoint_7(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bsledge_entrypoint_8(s32 idx) {
-    return D_808013A8_bsledge[idx];
+BsScript bsledge_entrypoint_8(BsScriptType idx) {
+    return (BsScript)D_808013A8_bsledge[idx];
 }
 /* data_to_c.py: from asm/data/overlays/bs/ledge.data.s */
 void func_80099B94(PlayerState *);

@@ -13,9 +13,9 @@ void *func_800CE3E0(s32 arg0) {
     extern s32 D_8012B030;
     return (void *) ((arg0 << 5) + (BtIntPtr) &D_8012B030);
 }
-
-void func_800CE3F4(u8 *arg0, s32 arg1) { extern s16 D_8011AA30;
-    func_800D2498(*(s16 *)((s8 *)&D_8011AA30 + arg1 * 6), *(s16 *)(arg0 + 0xA), 0U);
+#include "air_timer_settings.inc"
+void func_800CE3F4(u8 *arg0, s32 arg1) { extern HudTimerPolicy D_8011AA30[9];
+    func_800D2498(D_8011AA30[arg1].hudItem, *(s16 *)(arg0 + 0xA), 0U);
 }
 
 /* extern */
@@ -60,10 +60,10 @@ void func_800CE524(void) {
 }
 
 s32 func_800CE59C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    extern u16 D_8011AA34[][3];
+    BT_IDO_ONLY(extern u16 D_8011AA34[][3];)
     u16 temp_v0;
 
-    temp_v0 = D_8011AA34[arg0][0];
+    temp_v0 = BT_DATA_FIELD(D_8011AA30[arg0].pauseFlags, D_8011AA34[arg0][0]);
     if ((arg1 != 0) && (temp_v0 & 4)) {
         return 0;
     }
@@ -88,9 +88,9 @@ s32 func_800CE628(void) {
     s32 func_800F6D24(BtIntPtr);
     int func_800F8004(BtIntPtr);
     void func_800CEC94(u8 *, s32, s32);
-    extern s16 D_8011AA30;
+    extern HudTimerPolicy D_8011AA30[9];
     void (*callback)(s32, s32);
-    s16 *entry;
+    HudTimerPolicy *entry;
     f32 previous;
     f32 delta;
     s32 callback_arg;
@@ -110,7 +110,7 @@ s32 func_800CE628(void) {
         flag1 = func_800F6D24(player);
         flag2 = func_800F8004(player);
         flag3 = func_800F68B8(player);
-        entry = &D_8011AA30;
+        entry = D_8011AA30;
         i = 0;
         do {
             timer = func_800CE3E0(i);
@@ -132,11 +132,11 @@ s32 func_800CE628(void) {
                 }
                 func_800CE49C(timer, i, 1);
             }
-            if (entry[1] != 0) {
+            if (entry->playWarning != 0) {
                 func_800CEC94(timer, i, active);
             }
             i++;
-            entry += 3;
+            entry++;
             timer[0x14] = 0;
         } while (i != 9);
     } BT_NATIVE_ONLY(return 0;)
@@ -301,7 +301,7 @@ void func_800CEBD8(s32 arg0, s32 arg1) {
     s32 func_800F68B8(BtIntPtr);
     s32 func_800F6D24(BtIntPtr);
     int func_800F8004(BtIntPtr);
-    extern s16 D_8011AA30;
+    extern HudTimerPolicy D_8011AA30[9];
     BtIntPtr sp34;
     s32 pad30;
     s32 sp2C;
@@ -319,7 +319,7 @@ void func_800CEBD8(s32 arg0, s32 arg1) {
             return;
         }
     }
-    func_800D284C(*(s16 *)((u8 *)&D_8011AA30 + arg0 * 6));
+    func_800D284C(D_8011AA30[arg0].hudItem);
 }
 
 void func_800CEC94(u8 *arg0, s32 arg1, s32 arg2) {
@@ -329,7 +329,7 @@ void func_800CEC94(u8 *arg0, s32 arg1, s32 arg2) {
     void func_800FC6B0(u32);
     void func_800FC74C(u32 track_id);
     void func_800FCD14(s32, s32);
-    extern s32 D_8011AA68;
+    extern HudTimerSound D_8011AA68;
     extern s32 D_8012B030;
     s32 active;
     s32 music;
@@ -355,7 +355,7 @@ void func_800CEC94(u8 *arg0, s32 arg1, s32 arg2) {
         }
         if (sound) {
             if (!((u8 *)&D_8012B030)[0x120]) {
-                ((u8 *)&D_8012B030)[0x120] = func_800C4350(0, 0, &D_8011AA68);
+                ((u8 *)&D_8012B030)[0x120] = func_800C4350(0, 0, (s32 *)D_8011AA68.commands);
             }
             func_800C3BDC(((u8 *)&D_8012B030)[0x120]);
         } else if (((u8 *)&D_8012B030)[0x120]) {
@@ -367,14 +367,14 @@ void func_800CEC94(u8 *arg0, s32 arg1, s32 arg2) {
 }
 
 f32 func_800CEF00(s32 arg0) {
-    extern f32 D_8011AA80;
+    extern AirTimerSetting D_8011AA80[9];
     extern s32 func_800CF6D0(void);
-    return *(f32 *) ((u8 *) &D_8011AA80 + arg0 * 20) * (f32) func_800CF6D0();
+    return D_8011AA80[arg0].secondsPerUnit * (f32) func_800CF6D0();
 }
 
 f32 func_800CEF48(s32 arg0) {
-    extern s16 D_8011AA8E;
-    return (f32) *(s16 *) ((u8 *) &D_8011AA8E + arg0 * 20);
+    BT_IDO_ONLY(extern s16 D_8011AA8E;)
+    return (f32) BT_DATA_FIELD(D_8011AA80[arg0].mode, *(s16 *) ((u8 *) &D_8011AA8E + arg0 * 20));
 }
 
 void func_800CEF6C(void) {
@@ -407,7 +407,7 @@ s32 func_800CF01C(void) {
     void func_800FC63C(u32, u32);
     s32 func_800CF580(void);
     s16 func_800CF640(void);
-    extern f32 D_8011AA80;
+    extern AirTimerSetting D_8011AA80[9];
     extern s16 D_8012B168;
     extern s16 D_8012B16A;
     s32 sp24;
@@ -417,7 +417,7 @@ s32 func_800CF01C(void) {
     f32 temp_f0;
     s32 temp_a0;
     s32 temp_a2;
-    u8 *temp_v1;
+    AirTimerSetting *temp_v1;
 
     sp24 = func_800CEAA8(1) + D_8012B168;
     sp1C = func_800CEA60(1);
@@ -435,10 +435,10 @@ s32 func_800CF01C(void) {
     }
     sp20 = func_800CEA84(1);
     if (sp20 != D_8012B16A) {
-        temp_v1 = (u8 *)&D_8011AA80 + func_800CF640() * 20;
-        temp_f0 = *(f32 *)(temp_v1 + 8);
-        temp_a0 = *(s16 *)(temp_v1 + 4);
-        temp_a2 = *(s16 *)(temp_v1 + 6);
+        temp_v1 = &D_8011AA80[func_800CF640()];
+        temp_f0 = temp_v1->pitch;
+        temp_a0 = temp_v1->soundId;
+        temp_a2 = temp_v1->volume;
         if (temp_f0 >= 0.0f) {
             func_800C3FF0(temp_a0, temp_f0, temp_a2);
         } else {
@@ -687,17 +687,17 @@ void func_800CF700(void) {
 }
 
 void func_800CF734(s32 arg0, s32 arg1) {
-    extern f32 D_8011AA80;
+    extern AirTimerSetting D_8011AA80[9];
     extern s16 D_8012B168;
     s32 index;
     s32 count;
     s32 i;
-    u8 *entry;
+    AirTimerSetting *entry;
 
     index = func_800CF640();
-    if (*(f32 *)((u8 *)&D_8011AA80 + index * 20 + 0x10) > 0.0f) {
-        entry = (u8 *)&D_8011AA80 + index * 20;
-        func_800CF160(*(f32 *)(entry + 0x10), *(s16 *)(entry + 0xC));
+    if (D_8011AA80[index].effectDuration > 0.0f) {
+        entry = &D_8011AA80[index];
+        func_800CF160(entry->effectDuration, entry->expiryEffect);
     }
     count = func_800CEAA8(1);
     i = 0;

@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "overlays/bs/rebound.h"
-
 void func_80800000_bsrebound(PlayerState *self) {
     _babounce_entrypoint_4(self, 2);
     _babounce_entrypoint_5(self, 0xF, 0.5823f);
@@ -35,8 +35,8 @@ void func_808000EC_bsrebound(PlayerState *self) {
     _babounce_entrypoint_3(self);
 }
 
-BtIntPtr bsrebound_entrypoint_0(s32 idx) {
-    return D_80800120_bsrebound[idx];
+BsScript bsrebound_entrypoint_0(BsScriptType idx) {
+    return (BsScript)D_80800120_bsrebound[idx];
 }
 /* data_to_c.py: from asm/data/overlays/bs/rebound.data.s */
 void func_80099AA8();

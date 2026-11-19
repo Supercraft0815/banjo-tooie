@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #include "common.h"
 struct player_state_s;
-
 /* extern */
 
 void func_80800000_bssilowait(u8 *arg0) {
@@ -53,9 +53,9 @@ void func_808000D0_bssilowait(BtIntPtr arg0) {
 void func_80800120_bssilowait(s32 arg0) 
 {
 }
-s32 bssilowait_entrypoint_0(s32 arg0) {
+BsScript bssilowait_entrypoint_0(BsScriptType arg0) {
     extern BtIntPtr D_80800140_bssilowait[];
-    return ((s32 *)&D_80800140_bssilowait)[arg0];
+    return (BsScript)D_80800140_bssilowait[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/silowait.data.s */
 BtIntPtr D_80800140_bssilowait [4] BT_DATA(4, overlays_bs_silowait, 0x0) = { (BtIntPtr)func_80800000_bssilowait, (BtIntPtr)func_8080003C_bssilowait, (BtIntPtr)func_80800120_bssilowait, (BtIntPtr)func_808000D0_bssilowait };

@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #ifndef __BS_MUM_H__
 #define __BS_MUM_H__
-
 #include "core2/anctrl.h"
 #include "core2/1E72EA0.h"
 #include "overlays/ba/anim.h"
@@ -41,16 +41,16 @@ extern BtIntPtr D_808011B0_bsmum[];
 extern void _bsmum_entrypoint_0(PlayerState *self);
 extern void _bsmum_entrypoint_1(PlayerState *self);
 extern void _bsmum_entrypoint_2(PlayerState *self);
-extern BtIntPtr _bsmum_entrypoint_3(s32 idx);
-extern BtIntPtr _bsmum_entrypoint_4(s32 idx);
-extern BtIntPtr _bsmum_entrypoint_5(s32 idx);
-extern BtIntPtr _bsmum_entrypoint_6(s32 idx);
-extern BtIntPtr _bsmum_entrypoint_7(s32 idx);
+extern BsScript _bsmum_entrypoint_3(BsScriptType idx);
+extern BsScript _bsmum_entrypoint_4(BsScriptType idx);
+extern BsScript _bsmum_entrypoint_5(BsScriptType idx);
+extern BsScript _bsmum_entrypoint_6(BsScriptType idx);
+extern BsScript _bsmum_entrypoint_7(BsScriptType idx);
 extern void _bsmum_entrypoint_8(PlayerState *self);
 extern void _bsmum_entrypoint_9(PlayerState *self);
 extern void _bsmum_entrypoint_10(PlayerState *self);
-extern BtIntPtr _bsmum_entrypoint_11(s32 idx);
-extern BtIntPtr _bsmum_entrypoint_12(s32 idx);
+extern BsScript _bsmum_entrypoint_11(BsScriptType idx);
+extern BsScript _bsmum_entrypoint_12(BsScriptType idx);
 extern void _bsmum_entrypoint_13(PlayerState *self);
-extern BtIntPtr _bsmum_entrypoint_14(s32 idx);
+extern BsScript _bsmum_entrypoint_14(BsScriptType idx);
 #endif // __BS_MUM_H__

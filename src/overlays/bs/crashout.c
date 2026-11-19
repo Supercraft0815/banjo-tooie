@@ -1,7 +1,7 @@
 #include "common.h"
 #include "overlays/ba/playerstate.h"
 struct player_state_s;
-
+#include "bs_script.h"
 void func_80800000_bscrashout(struct player_state_s *self) {
     int baanim_isAt(struct player_state_s *, f32);
     f32 baanim_getTimer(struct player_state_s *);
@@ -128,9 +128,9 @@ void bscrashout_entrypoint_2(struct player_state_s *arg0) {
     bs_setState(arg0, next_state);
 }
 
-s32 bscrashout_entrypoint_3(s32 arg0) {
+BsScript bscrashout_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_808003D0_bscrashout[];
-    return ((s32 *)&D_808003D0_bscrashout)[arg0];
+    return (BsScript)D_808003D0_bscrashout[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/crashout.data.s */
 void _bscrashout_entrypoint_0();

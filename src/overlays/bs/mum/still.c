@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "overlays/bs/mum/still.h"
-
 enum bs_state_e func_80800000_bsmumstill(PlayerState *self, enum bs_state_e next_state) {
     switch (bastick_getZone(self)) {
         case BS_STICK_ZONE_ID_0:
@@ -81,8 +81,8 @@ void func_8080024C_bsmumstill(PlayerState *self) {
     bs_setState(self, func_80800000_bsmumstill(self, current_state));
 }
 
-BtIntPtr bsmumstill_entrypoint_0(s32 idx) {
-    return D_80800404_bsmumstill[idx];
+BsScript bsmumstill_entrypoint_0(BsScriptType idx) {
+    return (BsScript)D_80800404_bsmumstill[idx];
 }
 
 void func_808002A4_bsmumstill(PlayerState *self) {
@@ -114,8 +114,8 @@ void func_80800300_bsmumstill(PlayerState *self) {
     bs_setState(self, func_80800000_bsmumstill(self, BS_STATE_0_INVALID));
 }
 
-BtIntPtr bsmumstill_entrypoint_1(s32 idx) {
-    return D_80800414_bsmumstill[idx];
+BsScript bsmumstill_entrypoint_1(BsScriptType idx) {
+    return (BsScript)D_80800414_bsmumstill[idx];
 }
 /* data_to_c.py: from asm/data/overlays/bs/mum/still.data.s */
 u8 D_80800400_bsmumstill [4] BT_DATA(4, overlays_bs_mum_still, 0x0) = { 1, 2, 0, 0 };

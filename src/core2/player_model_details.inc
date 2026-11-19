@@ -27,3 +27,5 @@ PlayerModelMap D_80117DF0[10] BT_DATA(2, player_model_details, 0x20) = {
     {MAP_136_CCL_CLOUD_CUCKOOLAND, 1},
     {-1, 0},
 };
+
+#include "player_egg_selection.inc"

@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "common.h"
-
 struct player_state_s;
 
 /* extern */
@@ -139,9 +139,9 @@ void bsbreegullbash_entrypoint_2(struct player_state_s *arg0) {
     bs_setState(arg0, next_state);
 }
 
-s32 bsbreegullbash_entrypoint_3(s32 arg0) {
+BsScript bsbreegullbash_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_80800560_bsbreegullbash[];
-    return ((s32 *)&D_80800560_bsbreegullbash)[arg0];
+    return (BsScript)D_80800560_bsbreegullbash[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/breegullbash.data.s */
 void _bsbreegullbash_entrypoint_0();

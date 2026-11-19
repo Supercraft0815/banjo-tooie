@@ -1,3 +1,4 @@
+#include "bs_script.h"
 #include "common.h"
 #ifdef BT_NATIVE
 #include "overlays/ba/yaw.h" // enums for the prototypes below
@@ -7,7 +8,6 @@
 #include "overlays/ba/assets.h"
 #include "overlays/ba/anim.h"
 #endif
-
 struct anctrl_s;
 enum asset_e;
 struct player_state_s;
@@ -169,9 +169,9 @@ void bstaxi_entrypoint_4(struct player_state_s *arg0) {
     bs_setState(arg0, next_state);
 }
 
-s32 bstaxi_entrypoint_5(s32 arg0) {
+BsScript bstaxi_entrypoint_5(BsScriptType arg0) {
     extern BtIntPtr D_80802130_bstaxi[];
-    return ((s32 *)&D_80802130_bstaxi)[arg0];
+    return (BsScript)D_80802130_bstaxi[arg0];
 }
 
 s32 func_80800420_bstaxi(struct player_state_s *arg0) {
@@ -358,9 +358,9 @@ void func_808006F4_bstaxi(struct player_state_s *arg0) {
     bs_setState(arg0, sp44);
 }
 
-s32 bstaxi_entrypoint_6(s32 arg0) {
+BsScript bstaxi_entrypoint_6(BsScriptType arg0) {
     extern BtIntPtr D_80802188_bstaxi[];
-    return ((s32 *)&D_80802188_bstaxi)[arg0];
+    return (BsScript)D_80802188_bstaxi[arg0];
 }
 
 void bstaxi_entrypoint_7(struct player_state_s *arg0)
@@ -429,9 +429,9 @@ void bstaxi_entrypoint_9(struct player_state_s *arg0) {
     bs_setState(arg0, sp2C);
 }
 
-s32 bstaxi_entrypoint_10(s32 arg0) {
+BsScript bstaxi_entrypoint_10(BsScriptType arg0) {
     extern BtIntPtr D_80802198_bstaxi[];
-    return ((s32 *)&D_80802198_bstaxi)[arg0];
+    return (BsScript)D_80802198_bstaxi[arg0];
 }
 
 /* extern */
@@ -583,9 +583,9 @@ void bstaxi_entrypoint_13(void *arg0) {
     bs_setState(arg0, sp5C);
 }
 
-s32 bstaxi_entrypoint_14(s32 arg0) {
+BsScript bstaxi_entrypoint_14(BsScriptType arg0) {
     extern BtIntPtr D_808021A8_bstaxi[];
-    return ((s32 *)&D_808021A8_bstaxi)[arg0];
+    return (BsScript)D_808021A8_bstaxi[arg0];
 }
 
 void bstaxi_entrypoint_15(struct player_state_s *arg0) {
@@ -742,9 +742,9 @@ void bstaxi_entrypoint_17(struct player_state_s *arg0) {
     bstaxi_entrypoint_0(arg0);
 }
 
-s32 bstaxi_entrypoint_18(s32 arg0) {
+BsScript bstaxi_entrypoint_18(BsScriptType arg0) {
     extern BtIntPtr D_808021B8_bstaxi[];
-    return ((s32 *)&D_808021B8_bstaxi)[arg0];
+    return (BsScript)D_808021B8_bstaxi[arg0];
 }
 
 void bstaxi_entrypoint_19(struct player_state_s *arg0)
@@ -802,9 +802,9 @@ void bstaxi_entrypoint_21(struct player_state_s *arg0) {
     bs_setState(arg0, func_800A02DC(arg0, var_s1));
 }
 
-s32 bstaxi_entrypoint_22(s32 arg0) {
+BsScript bstaxi_entrypoint_22(BsScriptType arg0) {
     extern BtIntPtr D_808021C8_bstaxi[];
-    return ((s32 *)&D_808021C8_bstaxi)[arg0];
+    return (BsScript)D_808021C8_bstaxi[arg0];
 }
 
 void bstaxi_entrypoint_23(struct player_state_s *arg0)
@@ -853,9 +853,9 @@ void bstaxi_entrypoint_25(void *arg0) {
     bs_setState(arg0, sp2C);
 }
 
-s32 bstaxi_entrypoint_26(s32 arg0) {
+BsScript bstaxi_entrypoint_26(BsScriptType arg0) {
     extern BtIntPtr D_808021D8_bstaxi[];
-    return ((s32 *)&D_808021D8_bstaxi)[arg0];
+    return (BsScript)D_808021D8_bstaxi[arg0];
 }
 
 void func_80801600_bstaxi(void *arg0, u32 arg1) {
@@ -1101,9 +1101,9 @@ void bstaxi_entrypoint_30(void *arg0) {
     bs_setState(arg0, next_state);
 }
 
-s32 bstaxi_entrypoint_31(s32 arg0) {
+BsScript bstaxi_entrypoint_31(BsScriptType arg0) {
     extern BtIntPtr D_808021E8_bstaxi[];
-    return ((s32 *)&D_808021E8_bstaxi)[arg0];
+    return (BsScript)D_808021E8_bstaxi[arg0];
 }
 
 void bstaxi_entrypoint_32(BtIntPtr arg0)
@@ -1153,9 +1153,9 @@ void bstaxi_entrypoint_34(struct player_state_s *arg0) {
     bs_setState(arg0, func_800A02DC(arg0, var_s0));
 }
 
-s32 bstaxi_entrypoint_35(s32 arg0) {
+BsScript bstaxi_entrypoint_35(BsScriptType arg0) {
     extern BtIntPtr D_808021F8_bstaxi[];
-    return ((s32 *)&D_808021F8_bstaxi)[arg0];
+    return (BsScript)D_808021F8_bstaxi[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/taxi.data.s */
 void _bstaxi_entrypoint_2();

@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #ifndef __BS_KAZ_EGGASS_H__
 #define __BS_KAZ_EGGASS_H__
-
 #include "common.h"
 #include <ultra64.h>
 
@@ -24,6 +24,6 @@
 extern void _bskazeggass_entrypoint_0(PlayerState *self);
 extern void _bskazeggass_entrypoint_1(PlayerState *self);
 extern void _bskazeggass_entrypoint_2(PlayerState *self);
-extern BtIntPtr _bskazeggass_entrypoint_3(s32 idx);
+extern BsScript _bskazeggass_entrypoint_3(BsScriptType idx);
 
 #endif // __BS_KAZ_EGGASS_H__

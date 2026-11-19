@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "common.h"
-
 #include "overlays/bs/kaz/flamethrower.h"
 
 extern BtIntPtr D_808003B0_bskazflamethrower[];
@@ -104,8 +104,8 @@ void bskazflamethrower_entrypoint_3(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bskazflamethrower_entrypoint_4(s32 idx) {
-    return D_808003B0_bskazflamethrower[idx];
+BsScript bskazflamethrower_entrypoint_4(BsScriptType idx) {
+    return (BsScript)D_808003B0_bskazflamethrower[idx];
 }
 /* data_to_c.py: from asm/data/overlays/bs/kaz/flamethrower.data.s */
 void func_80099B94(PlayerState *);

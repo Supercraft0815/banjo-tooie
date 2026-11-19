@@ -2,7 +2,7 @@
 #ifdef BT_NATIVE
 #include "overlays/ba/anim_smooth.h"
 #endif
-
+#include "bs_script.h"
 struct player_state_s;
 void _babee_entrypoint_2(struct player_state_s *self);
 extern s32 _badrone_entrypoint_3(struct player_state_s *self);
@@ -92,9 +92,9 @@ void func_808001FC_bsbeemain(s32 arg0)
     func_80090A2C();
     _bsbee_entrypoint_0(arg0);
 }
-s32 bsbeemain_entrypoint_0(s32 arg0) {
+BsScript bsbeemain_entrypoint_0(BsScriptType arg0) {
     extern BtIntPtr D_80801260_bsbeemain[];
-    return ((s32 *)&D_80801260_bsbeemain)[arg0];
+    return (BsScript)D_80801260_bsbeemain[arg0];
 }
 
 void func_80800238_bsbeemain(struct player_state_s *arg0) {
@@ -153,9 +153,9 @@ void func_808003B4_bsbeemain(s32 arg0)
     func_80090A2C();
     _bsbee_entrypoint_0(arg0);
 }
-s32 bsbeemain_entrypoint_1(s32 arg0) {
+BsScript bsbeemain_entrypoint_1(BsScriptType arg0) {
     extern BtIntPtr D_80801270_bsbeemain[];
-    return ((s32 *)&D_80801270_bsbeemain)[arg0];
+    return (BsScript)D_80801270_bsbeemain[arg0];
 }
 
 struct anctrl_s;
@@ -276,9 +276,9 @@ void func_80800788_bsbeemain(s32 arg0)
     _bsbee_entrypoint_0();
     baphysics_reset_gravity(arg0);
 }
-s32 bsbeemain_entrypoint_2(s32 arg0) {
+BsScript bsbeemain_entrypoint_2(BsScriptType arg0) {
     extern BtIntPtr D_80801280_bsbeemain[];
-    return ((s32 *)&D_80801280_bsbeemain)[arg0];
+    return (BsScript)D_80801280_bsbeemain[arg0];
 }
 
 void func_808007C4_bsbeemain(struct player_state_s *arg0) {
@@ -387,9 +387,9 @@ void func_80800A74_bsbeemain(BT_NATIVE_ONLY(s32 bt_a0))
     _bsbee_entrypoint_0(BT_NATIVE_ONLY(bt_a0));
 }
 
-s32 bsbeemain_entrypoint_3(s32 arg0) {
+BsScript bsbeemain_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_80801290_bsbeemain[];
-    return ((s32 *)&D_80801290_bsbeemain)[arg0];
+    return (BsScript)D_80801290_bsbeemain[arg0];
 }
 
 void bsbeemain_entrypoint_4(s32 arg0)
@@ -416,9 +416,9 @@ void bsbeemain_entrypoint_6(s32 arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bsbeemain_entrypoint_7(s32 arg0) {
+BsScript bsbeemain_entrypoint_7(BsScriptType arg0) {
     extern BtIntPtr D_808012A0_bsbeemain[];
-    return ((s32 *)&D_808012A0_bsbeemain)[arg0];
+    return (BsScript)D_808012A0_bsbeemain[arg0];
 }
 
 void func_80800B68_bsbeemain(s32 arg0)
@@ -444,9 +444,9 @@ void func_80800BD0_bsbeemain(s32 arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bsbeemain_entrypoint_8(s32 arg0) {
+BsScript bsbeemain_entrypoint_8(BsScriptType arg0) {
     extern BtIntPtr D_808012B0_bsbeemain[];
-    return ((s32 *)&D_808012B0_bsbeemain)[arg0];
+    return (BsScript)D_808012B0_bsbeemain[arg0];
 }
 
 void func_80800C28_bsbeemain(struct player_state_s *arg0) {
@@ -584,9 +584,9 @@ void func_80800FF0_bsbeemain(s32 arg0) {
     _basudie_entrypoint_11(arg0);
 }
 
-s32 bsbeemain_entrypoint_9(s32 arg0) {
+BsScript bsbeemain_entrypoint_9(BsScriptType arg0) {
     extern BtIntPtr D_808012C0_bsbeemain[];
-    return ((s32 *)&D_808012C0_bsbeemain)[arg0];
+    return (BsScript)D_808012C0_bsbeemain[arg0];
 }
 
 void func_80801080_bsbeemain(s32 arg0)
@@ -616,9 +616,9 @@ void func_808010F4_bsbeemain(s32 arg0)
     _bsrest_entrypoint_14();
     _bsbee_entrypoint_0(arg0);
 }
-s32 bsbeemain_entrypoint_10(s32 arg0) {
+BsScript bsbeemain_entrypoint_10(BsScriptType arg0) {
     extern BtIntPtr D_808012D0_bsbeemain[];
-    return ((s32 *)&D_808012D0_bsbeemain)[arg0];
+    return (BsScript)D_808012D0_bsbeemain[arg0];
 }
 
 void func_80801130_bsbeemain(void *arg0) {
@@ -649,9 +649,9 @@ void func_808011E8_bsbeemain(BtIntPtr arg0) {
     _bsbee_entrypoint_0(arg0);
 }
 
-s32 bsbeemain_entrypoint_11(s32 arg0) {
+BsScript bsbeemain_entrypoint_11(BsScriptType arg0) {
     extern BtIntPtr D_808012E0_bsbeemain[];
-    return ((s32 *)&D_808012E0_bsbeemain)[arg0];
+    return (BsScript)D_808012E0_bsbeemain[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/beemain.data.s */
 void func_80099B94();

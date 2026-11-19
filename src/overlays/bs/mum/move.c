@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "overlays/bs/mum/move.h"
-
 f32 bsmummove_entrypoint_0(PlayerState *self) {
     return 600.0f;
 }
@@ -84,8 +84,8 @@ void func_808001D8_bsmummove(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bsmummove_entrypoint_3(s32 idx) {
-    return D_808005B0_bsmummove[idx];
+BsScript bsmummove_entrypoint_3(BsScriptType idx) {
+    return (BsScript)D_808005B0_bsmummove[idx];
 }
 
 void func_80800318_bsmummove(PlayerState *self) {
@@ -154,8 +154,8 @@ void func_80800444_bsmummove(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bsmummove_entrypoint_4(s32 idx) {
-    return D_808005C0_bsmummove[idx];
+BsScript bsmummove_entrypoint_4(BsScriptType idx) {
+    return (BsScript)D_808005C0_bsmummove[idx];
 }
 /* data_to_c.py: from asm/data/overlays/bs/mum/move.data.s */
 BtIntPtr D_808005B0_bsmummove [4] BT_DATA(4, overlays_bs_mum_move, 0x0) = { (BtIntPtr)func_80800030_bsmummove, (BtIntPtr)func_80800068_bsmummove, (BtIntPtr)func_808001D8_bsmummove, (BtIntPtr)_bsmum_entrypoint_0 };

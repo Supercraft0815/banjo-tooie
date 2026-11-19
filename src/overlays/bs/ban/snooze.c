@@ -6,7 +6,7 @@
 #ifdef BT_NATIVE // complete the enum forward declarations below
 #include "overlays/ba/assets.h"
 #endif
-
+#include "bs_script.h"
 void func_80800000_bsbansnooze(PlayerState *arg0) {
     int _babackpack_get_state();
     void _babackpack_set_state(void *, s32);
@@ -128,9 +128,9 @@ void func_80800278_bsbansnooze(PlayerState *arg0) {
     bs_setState(arg0, sp24);
 }
 
-s32 bsbansnooze_entrypoint_0(s32 arg0) {
+BsScript bsbansnooze_entrypoint_0(BsScriptType arg0) {
     extern BtIntPtr D_80800A40_bsbansnooze[];
-    return ((s32 *)&D_80800A40_bsbansnooze)[arg0];
+    return (BsScript)D_80800A40_bsbansnooze[arg0];
 }
 
 void func_8080037C_bsbansnooze(PlayerState *arg0)
@@ -163,9 +163,9 @@ void func_80800414_bsbansnooze(PlayerState *arg0) {
     bs_setState(arg0, sp24);
 }
 
-s32 bsbansnooze_entrypoint_1(s32 arg0) {
+BsScript bsbansnooze_entrypoint_1(BsScriptType arg0) {
     extern BtIntPtr D_80800A50_bsbansnooze[];
-    return ((s32 *)&D_80800A50_bsbansnooze)[arg0];
+    return (BsScript)D_80800A50_bsbansnooze[arg0];
 }
 
 void func_808004C0_bsbansnooze(PlayerState *arg0)
@@ -224,9 +224,9 @@ void func_80800588_bsbansnooze(BtIntPtr arg0)
   bs_setState(arg0, var_s1);
 }
 
-s32 bsbansnooze_entrypoint_2(s32 arg0) {
+BsScript bsbansnooze_entrypoint_2(BsScriptType arg0) {
     extern BtIntPtr D_80800A78_bsbansnooze[];
-    return ((s32 *)&D_80800A78_bsbansnooze)[arg0];
+    return (BsScript)D_80800A78_bsbansnooze[arg0];
 }
 
 void func_8080064C_bsbansnooze(BtIntPtr arg0)
@@ -243,9 +243,9 @@ void func_8080069C_bsbansnooze(PlayerState* self)
 {
     _bsdrone_entrypoint_1(self);
 }
-s32 bsbansnooze_entrypoint_3(s32 arg0) {
+BsScript bsbansnooze_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_80800A88_bsbansnooze[];
-    return ((s32 *)&D_80800A88_bsbansnooze)[arg0];
+    return (BsScript)D_80800A88_bsbansnooze[arg0];
 }
 
 void func_808006D0_bsbansnooze(BtIntPtr arg0)
@@ -272,9 +272,9 @@ void func_80800720_bsbansnooze(BtIntPtr arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bsbansnooze_entrypoint_4(s32 arg0) {
+BsScript bsbansnooze_entrypoint_4(BsScriptType arg0) {
     extern BtIntPtr D_80800A98_bsbansnooze[];
-    return ((s32 *)&D_80800A98_bsbansnooze)[arg0];
+    return (BsScript)D_80800A98_bsbansnooze[arg0];
 }
 
 void func_8080076C_bsbansnooze(BtIntPtr arg0)
@@ -379,9 +379,9 @@ void func_808008A4_bsbansnooze(PlayerState *arg0) {
     bs_setState(arg0, state);
 }
 
-s32 bsbansnooze_entrypoint_5(s32 arg0) {
+BsScript bsbansnooze_entrypoint_5(BsScriptType arg0) {
     extern BtIntPtr D_80800AA8_bsbansnooze[];
-    return ((s32 *)&D_80800AA8_bsbansnooze)[arg0];
+    return (BsScript)D_80800AA8_bsbansnooze[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/ban/snooze.data.s */
 void func_80099B94(PlayerState *);

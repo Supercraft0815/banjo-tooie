@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #ifndef __BS_KAZ_EGGHEAD_H__
 #define __BS_KAZ_EGGHEAD_H__
-
 #include "common.h"
 #include <ultra64.h>
 
@@ -22,6 +22,6 @@
 extern void _bskazegghead_entrypoint_0(PlayerState *self);
 extern void _bskazegghead_entrypoint_1(PlayerState *self);
 extern void _bskazegghead_entrypoint_2(PlayerState *self);
-extern BtIntPtr _bskazegghead_entrypoint_3(s32 idx);
+extern BsScript _bskazegghead_entrypoint_3(BsScriptType idx);
 
 #endif // __BS_KAZ_EGGHEAD_H__

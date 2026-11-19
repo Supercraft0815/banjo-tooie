@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "common.h"
-
 #include "overlays/bs/kaz/paddle.h"
 
 extern BtIntPtr D_80800A50_bskazpaddle[];
@@ -97,8 +97,8 @@ void func_808002A0_bskazpaddle(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bskazpaddle_entrypoint_0(s32 idx) {
-    return D_80800A50_bskazpaddle[idx];
+BsScript bskazpaddle_entrypoint_0(BsScriptType idx) {
+    return (BsScript)D_80800A50_bskazpaddle[idx];
 }
 
 void func_808003F4_bskazpaddle(PlayerState *self, f32 arg1[3]) {
@@ -158,8 +158,8 @@ void func_80800518_bskazpaddle(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bskazpaddle_entrypoint_1(s32 idx) {
-    return D_80800A60_bskazpaddle[idx];
+BsScript bskazpaddle_entrypoint_1(BsScriptType idx) {
+    return (BsScript)D_80800A60_bskazpaddle[idx];
 }
 
 void func_80800664_bskazpaddle(PlayerState *self) {
@@ -201,8 +201,8 @@ void func_8080070C_bskazpaddle(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bskazpaddle_entrypoint_2(s32 idx) {
-    return D_80800A70_bskazpaddle[idx];
+BsScript bskazpaddle_entrypoint_2(BsScriptType idx) {
+    return (BsScript)D_80800A70_bskazpaddle[idx];
 }
 
 void func_80800818_bskazpaddle(PlayerState *self) {
@@ -226,8 +226,8 @@ void func_80800894_bskazpaddle(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bskazpaddle_entrypoint_3(s32 idx) {
-    return D_80800A80_bskazpaddle[idx];
+BsScript bskazpaddle_entrypoint_3(BsScriptType idx) {
+    return (BsScript)D_80800A80_bskazpaddle[idx];
 }
 
 void func_808008EC_bskazpaddle(PlayerState *self) {
@@ -250,8 +250,8 @@ void func_8080093C_bskazpaddle(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bskazpaddle_entrypoint_4(s32 idx) {
-    return D_80800A90_bskazpaddle[idx];
+BsScript bskazpaddle_entrypoint_4(BsScriptType idx) {
+    return (BsScript)D_80800A90_bskazpaddle[idx];
 }
 
 void func_80800990_bskazpaddle(PlayerState *self) {
@@ -275,8 +275,8 @@ void func_808009FC_bskazpaddle(PlayerState *self) {
     func_80800000_bskazpaddle(self);
 }
 
-BtIntPtr bskazpaddle_entrypoint_5(s32 idx) {
-    return D_80800AA0_bskazpaddle[idx];
+BsScript bskazpaddle_entrypoint_5(BsScriptType idx) {
+    return (BsScript)D_80800AA0_bskazpaddle[idx];
 }
 /* data_to_c.py: from asm/data/overlays/bs/kaz/paddle.data.s */
 void func_80099B94(PlayerState *);

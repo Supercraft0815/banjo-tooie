@@ -1,7 +1,7 @@
 #include "common.h"
 #include "overlays/ba/playerstate.h"
 /* extern */
-
+#include "bs_script.h"
 struct player_state_s;
 
 void bssplat_entrypoint_0(struct player_state_s *arg0) {
@@ -99,9 +99,9 @@ void func_80800274_bssplat(s32 arg0)
     func_8008E95C();
     func_8009BD88(arg0);
 }
-s32 bssplat_entrypoint_1(s32 arg0) {
+BsScript bssplat_entrypoint_1(BsScriptType arg0) {
     extern BtIntPtr D_808002B0_bssplat[];
-    return ((s32 *)&D_808002B0_bssplat)[arg0];
+    return (BsScript)D_808002B0_bssplat[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/splat.data.s */
 void func_80099AA8();

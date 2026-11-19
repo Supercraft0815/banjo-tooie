@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #ifndef __BS_KAZ_GLIDE_H__
 #define __BS_KAZ_GLIDE_H__
-
 #include "common.h"
 #include <ultra64.h>
 
@@ -43,10 +43,10 @@ extern BtIntPtr D_80800AD0_bskazglide[];
 extern BtIntPtr D_80800AE0_bskazglide[];
 extern BtIntPtr D_80800AF0_bskazglide[];
 
-extern BtIntPtr _bskazglide_entrypoint_0(s32 idx);
-extern BtIntPtr _bskazglide_entrypoint_1(s32 idx);
-extern BtIntPtr _bskazglide_entrypoint_2(s32 idx);
-extern BtIntPtr _bskazglide_entrypoint_3(s32 idx);
-extern BtIntPtr _bskazglide_entrypoint_4(s32 idx);
+extern BsScript _bskazglide_entrypoint_0(BsScriptType idx);
+extern BsScript _bskazglide_entrypoint_1(BsScriptType idx);
+extern BsScript _bskazglide_entrypoint_2(BsScriptType idx);
+extern BsScript _bskazglide_entrypoint_3(BsScriptType idx);
+extern BsScript _bskazglide_entrypoint_4(BsScriptType idx);
 
 #endif // __BS_KAZ_GLIDE_H__

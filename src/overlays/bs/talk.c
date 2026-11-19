@@ -1,7 +1,7 @@
 #include "common.h"
 #include "overlays/ba/playerstate.h"
 /* extern */
-
+#include "bs_script.h"
 void bstalk_entrypoint_0(void *arg0) {
     typedef struct anctrl_s AnimCtrl;
 
@@ -56,9 +56,9 @@ void bstalk_entrypoint_1(u8 *arg0) {
 void bstalk_entrypoint_2(s32 arg0) 
 {
 }
-s32 bstalk_entrypoint_3(s32 arg0) {
+BsScript bstalk_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_80800170_bstalk[];
-    return ((s32 *)&D_80800170_bstalk)[arg0];
+    return (BsScript)D_80800170_bstalk[arg0];
 }
 
 /* extern */

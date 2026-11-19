@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "bs/blongleg.h"
-
 struct anctrl_s;
 
 s32 func_80800000_bsblongleg(PlayerState* arg0)
@@ -217,9 +217,9 @@ void bsblongleg_entrypoint_1(PlayerState *arg0) {
 
 void bsblongleg_entrypoint_2(void *arg0) { func_80800204_bsblongleg(arg0); func_800C2FDC((((Objblongleg_arg0 *)arg0)->unk160)); }
 
-s32 bsblongleg_entrypoint_3(s32 arg0) {
+BsScript bsblongleg_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_80801470_bsblongleg[];
-    return ((s32 *)&D_80801470_bsblongleg)[arg0];
+    return (BsScript)D_80801470_bsblongleg[arg0];
 }
 
 void bsblongleg_entrypoint_4(PlayerState *arg0) {
@@ -278,9 +278,9 @@ void bsblongleg_entrypoint_6(PlayerState *arg0)
     func_80800204_bsblongleg(arg0);
 }
 
-s32 bsblongleg_entrypoint_7(s32 arg0) {
+BsScript bsblongleg_entrypoint_7(BsScriptType arg0) {
     extern BtIntPtr D_80801480_bsblongleg[];
-    return ((s32 *)&D_80801480_bsblongleg)[arg0];
+    return (BsScript)D_80801480_bsblongleg[arg0];
 }
 
 /* extern */
@@ -362,9 +362,9 @@ void bsblongleg_entrypoint_10(PlayerState *arg0)
     func_80800204_bsblongleg(arg0);
 }
 
-s32 bsblongleg_entrypoint_11(s32 arg0) {
+BsScript bsblongleg_entrypoint_11(BsScriptType arg0) {
     extern BtIntPtr D_80801490_bsblongleg[];
-    return ((s32 *)&D_80801490_bsblongleg)[arg0];
+    return (BsScript)D_80801490_bsblongleg[arg0];
 }
 
 /* extern */
@@ -470,9 +470,9 @@ void bsblongleg_entrypoint_13(PlayerState *arg0) {
 
 void bsblongleg_entrypoint_14(void *arg0) { func_800C2FDC((((Objblongleg_arg0 *)arg0)->unk160)); func_80800204_bsblongleg(arg0); }
 
-s32 bsblongleg_entrypoint_15(s32 arg0) {
+BsScript bsblongleg_entrypoint_15(BsScriptType arg0) {
     extern BtIntPtr D_808014A0_bsblongleg[];
-    return ((s32 *)&D_808014A0_bsblongleg)[arg0];
+    return (BsScript)D_808014A0_bsblongleg[arg0];
 }
 
 void bsblongleg_entrypoint_16(PlayerState *arg0) {
@@ -614,9 +614,9 @@ void bsblongleg_entrypoint_18(BtIntPtr arg0)
     baphysics_reset_gravity();
     func_80800204_bsblongleg(arg0);
 }
-s32 bsblongleg_entrypoint_19(s32 arg0) {
+BsScript bsblongleg_entrypoint_19(BsScriptType arg0) {
     extern BtIntPtr D_808014B0_bsblongleg[];
-    return ((s32 *)&D_808014B0_bsblongleg)[arg0];
+    return (BsScript)D_808014B0_bsblongleg[arg0];
 }
 
 void bsblongleg_entrypoint_20(PlayerState *arg0) {
@@ -710,9 +710,9 @@ void bsblongleg_entrypoint_22(PlayerState *arg0)
     func_80800204_bsblongleg(arg0);
 }
 
-s32 bsblongleg_entrypoint_23(s32 arg0) {
+BsScript bsblongleg_entrypoint_23(BsScriptType arg0) {
     extern BtIntPtr D_808014C0_bsblongleg[];
-    return ((s32 *)&D_808014C0_bsblongleg)[arg0];
+    return (BsScript)D_808014C0_bsblongleg[arg0];
 }
 
 void bsblongleg_entrypoint_24(BtIntPtr arg0)
@@ -742,9 +742,9 @@ void bsblongleg_entrypoint_26(PlayerState *arg0) {
     bs_setState(arg0, sp24);
 }
 
-s32 bsblongleg_entrypoint_27(s32 arg0) {
+BsScript bsblongleg_entrypoint_27(BsScriptType arg0) {
     extern BtIntPtr D_808014D0_bsblongleg[];
-    return ((s32 *)&D_808014D0_bsblongleg)[arg0];
+    return (BsScript)D_808014D0_bsblongleg[arg0];
 }
 
 void bsblongleg_entrypoint_28(PlayerState *arg0)
@@ -771,9 +771,9 @@ void bsblongleg_entrypoint_30(BtIntPtr arg0)
     _bsdrone_entrypoint_2();
     func_80800204_bsblongleg(arg0);
 }
-s32 bsblongleg_entrypoint_31(s32 arg0) {
+BsScript bsblongleg_entrypoint_31(BsScriptType arg0) {
     extern BtIntPtr D_808014E0_bsblongleg[];
-    return ((s32 *)&D_808014E0_bsblongleg)[arg0];
+    return (BsScript)D_808014E0_bsblongleg[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/blongleg.data.s */
 void _bsblongleg_entrypoint_2();

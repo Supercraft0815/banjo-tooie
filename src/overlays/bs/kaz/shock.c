@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "common.h"
-
 #include "overlays/bs/kaz/shock.h"
 
 extern s32 D_80800770_bskazshock[];
@@ -113,8 +113,8 @@ void bskazshock_entrypoint_3(PlayerState *self) {
     _bskaz_entrypoint_2(self);
 }
 
-BtIntPtr bskazshock_entrypoint_4(s32 idx) {
-    return D_808007A4_bskazshock[idx];
+BsScript bskazshock_entrypoint_4(BsScriptType idx) {
+    return (BsScript)D_808007A4_bskazshock[idx];
 }
 
 void bskazshock_entrypoint_5(PlayerState *self) {
@@ -186,8 +186,8 @@ void bskazshock_entrypoint_7(PlayerState *self) {
     _bskaz_entrypoint_2(self);
 }
 
-BtIntPtr bskazshock_entrypoint_8(s32 idx) {
-    return D_808007B4_bskazshock[idx];
+BsScript bskazshock_entrypoint_8(BsScriptType idx) {
+    return (BsScript)D_808007B4_bskazshock[idx];
 }
 /* data_to_c.py: from asm/data/overlays/bs/kaz/shock.data.s */
 void func_80099B94(PlayerState *);

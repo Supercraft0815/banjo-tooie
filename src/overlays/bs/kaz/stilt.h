@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #ifndef __BS_KAZ_STILT_H__
 #define __BS_KAZ_STILT_H__
-
 #include <ultra64.h>
 
 #include "core2/anctrl.h"
@@ -36,34 +36,34 @@
 extern void _bskazstilt_entrypoint_0(PlayerState *self);
 extern void _bskazstilt_entrypoint_1(PlayerState *self);
 extern void _bskazstilt_entrypoint_2(PlayerState *self);
-extern BtIntPtr _bskazstilt_entrypoint_3(s32 idx);
+extern BsScript _bskazstilt_entrypoint_3(BsScriptType idx);
 extern void _bskazstilt_entrypoint_4(PlayerState *self);
 extern void _bskazstilt_entrypoint_5(PlayerState *self);
 extern void _bskazstilt_entrypoint_6(PlayerState *self);
-extern BtIntPtr _bskazstilt_entrypoint_7(s32 idx);
+extern BsScript _bskazstilt_entrypoint_7(BsScriptType idx);
 extern void _bskazstilt_entrypoint_8(PlayerState *self);
 extern void _bskazstilt_entrypoint_9(PlayerState *self);
 extern void _bskazstilt_entrypoint_10(PlayerState *self);
-extern BtIntPtr _bskazstilt_entrypoint_11(s32 idx);
+extern BsScript _bskazstilt_entrypoint_11(BsScriptType idx);
 extern void _bskazstilt_entrypoint_12(PlayerState *self);
 extern void _bskazstilt_entrypoint_13(PlayerState *self);
 extern void _bskazstilt_entrypoint_14(PlayerState *self);
-extern BtIntPtr _bskazstilt_entrypoint_15(s32 idx);
+extern BsScript _bskazstilt_entrypoint_15(BsScriptType idx);
 extern void _bskazstilt_entrypoint_16(PlayerState *self);
 extern void _bskazstilt_entrypoint_17(PlayerState *self);
 extern void _bskazstilt_entrypoint_18(PlayerState *self);
-extern BtIntPtr _bskazstilt_entrypoint_19(s32 idx);
+extern BsScript _bskazstilt_entrypoint_19(BsScriptType idx);
 extern void _bskazstilt_entrypoint_20(PlayerState *self);
 extern void _bskazstilt_entrypoint_21(PlayerState *self);
 extern void _bskazstilt_entrypoint_22(PlayerState *self);
-extern BtIntPtr _bskazstilt_entrypoint_23(s32 idx);
+extern BsScript _bskazstilt_entrypoint_23(BsScriptType idx);
 extern void _bskazstilt_entrypoint_24(PlayerState *self);
 extern void _bskazstilt_entrypoint_25(PlayerState *self);
 extern void _bskazstilt_entrypoint_26(PlayerState *self);
-extern BtIntPtr _bskazstilt_entrypoint_27(s32 idx);
+extern BsScript _bskazstilt_entrypoint_27(BsScriptType idx);
 extern void _bskazstilt_entrypoint_28(PlayerState *self);
 extern void _bskazstilt_entrypoint_29(PlayerState *self);
 extern void _bskazstilt_entrypoint_30(PlayerState *self);
-extern BtIntPtr _bskazstilt_entrypoint_31(s32 idx);
+extern BsScript _bskazstilt_entrypoint_31(BsScriptType idx);
 
 #endif // __BS_KAZ_STILT_H__

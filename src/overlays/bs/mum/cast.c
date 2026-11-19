@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "overlays/bs/mum/cast.h"
-
 #ifndef NONMATCHINGS
 s32 func_80800000_bsmumcast(PlayerState *self, s32);
 s32 func_80800000_bsmumcast(PlayerState *self, s32 arg1) {
@@ -158,8 +158,8 @@ void bsmumcast_entrypoint_3(PlayerState *arg0)
 // Decomp failure
 #endif
 
-BtIntPtr bsmumcast_entrypoint_4(s32 idx) {
-    return D_808004A0_bsmumcast[idx];
+BsScript bsmumcast_entrypoint_4(BsScriptType idx) {
+    return (BsScript)D_808004A0_bsmumcast[idx];
 }
 /* data_to_c.py: from asm/data/overlays/bs/mum/cast.data.s */
 void _bsmumcast_entrypoint_3();

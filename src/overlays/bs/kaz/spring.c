@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "common.h"
-
 #include "overlays/bs/kaz/spring.h"
 
 extern BtIntPtr D_80800430_bskazspring[];
@@ -107,8 +107,8 @@ void func_808002A0_bskazspring(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bskazspring_entrypoint_0(s32 idx) {
-    return D_80800430_bskazspring[idx];
+BsScript bskazspring_entrypoint_0(BsScriptType idx) {
+    return (BsScript)D_80800430_bskazspring[idx];
 }
 /* data_to_c.py: from asm/data/overlays/bs/kaz/spring.data.s */
 void func_80099B94(PlayerState *);

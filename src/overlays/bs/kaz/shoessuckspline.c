@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "common.h"
-
 #include "overlays/bs/kaz/shoessuckspline.h"
 
 extern BtIntPtr D_80800470_bskazshoessuckspline[];
@@ -85,8 +85,8 @@ void bskazshoessuckspline_entrypoint_3(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bskazshoessuckspline_entrypoint_4(s32 idx) {
-    return D_80800470_bskazshoessuckspline[idx];
+BsScript bskazshoessuckspline_entrypoint_4(BsScriptType idx) {
+    return (BsScript)D_80800470_bskazshoessuckspline[idx];
 }
 
 void bskazshoessuckspline_entrypoint_5(PlayerState *self) {
@@ -121,8 +121,8 @@ void bskazshoessuckspline_entrypoint_7(PlayerState *self) {
     _bskaz_entrypoint_2(self);
 }
 
-BtIntPtr bskazshoessuckspline_entrypoint_8(s32 idx) {
-    return D_80800480_bskazshoessuckspline[idx];
+BsScript bskazshoessuckspline_entrypoint_8(BsScriptType idx) {
+    return (BsScript)D_80800480_bskazshoessuckspline[idx];
 }
 /* data_to_c.py: from asm/data/overlays/bs/kaz/shoessuckspline.data.s */
 BtIntPtr D_80800470_bskazshoessuckspline [4] BT_DATA(4, overlays_bs_kaz_shoessuckspline, 0x0) = { (BtIntPtr)_bskazshoessuckspline_entrypoint_1, (BtIntPtr)_bskazshoessuckspline_entrypoint_2, (BtIntPtr)_bskazshoessuckspline_entrypoint_3, (BtIntPtr)_bskazshoessuckspline_entrypoint_0 };

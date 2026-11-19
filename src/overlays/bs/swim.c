@@ -1,3 +1,4 @@
+#include "bs_script.h"
 #include "common.h"
 #ifdef BT_NATIVE // complete the enum forward declarations below
 #include "overlays/ba/assets.h"
@@ -5,7 +6,6 @@
 struct player_state_s;
 struct anctrl_s;
 enum asset_e;
-
 /* extern */
 
 #ifdef BT_NATIVE
@@ -239,9 +239,9 @@ void func_80800688_bsswim(struct player_state_s *arg0)
     func_80800270_bsswim(arg0);
     func_800A4E30(arg0);
 }
-s32 bsswim_entrypoint_0(s32 arg0) {
+BsScript bsswim_entrypoint_0(BsScriptType arg0) {
     extern BtIntPtr D_80800BA4_bsswim[];
-    return ((s32 *)&D_80800BA4_bsswim)[arg0];
+    return (BsScript)D_80800BA4_bsswim[arg0];
 }
 
 void func_808006C4_bsswim(struct player_state_s *arg0) {
@@ -355,9 +355,9 @@ void func_808009F0_bsswim(struct player_state_s *arg0)
     func_80800270_bsswim(arg0);
 }
 
-s32 bsswim_entrypoint_1(s32 arg0) {
+BsScript bsswim_entrypoint_1(BsScriptType arg0) {
     extern BtIntPtr D_80800BB4_bsswim[];
-    return ((s32 *)&D_80800BB4_bsswim)[arg0];
+    return (BsScript)D_80800BB4_bsswim[arg0];
 }
 
 void func_80800A24_bsswim(struct player_state_s *arg0)
@@ -387,9 +387,9 @@ void func_80800A74_bsswim(BtIntPtr arg0) {
     bs_setState(arg0, var_a1);
 }
 
-s32 bsswim_entrypoint_2(s32 arg0) {
+BsScript bsswim_entrypoint_2(BsScriptType arg0) {
     extern BtIntPtr D_80800BC4_bsswim[];
-    return ((s32 *)&D_80800BC4_bsswim)[arg0];
+    return (BsScript)D_80800BC4_bsswim[arg0];
 }
 
 void func_80800AC8_bsswim(struct player_state_s *arg0)
@@ -418,9 +418,9 @@ void func_80800B34_bsswim(BtIntPtr arg0)
     _bsdrone_entrypoint_2();
     func_80800270_bsswim(arg0);
 }
-s32 bsswim_entrypoint_3(s32 arg0) {
+BsScript bsswim_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_80800BD4_bsswim[];
-    return ((s32 *)&D_80800BD4_bsswim)[arg0];
+    return (BsScript)D_80800BD4_bsswim[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/swim.data.s */
 void func_80099B94();

@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "common.h"
-
 #include "overlays/bs/kaz/move.h"
 
 void func_80800000_bskazmove(PlayerState *self, f32 *arg1, f32 *arg2) {
@@ -171,8 +171,8 @@ void bskazmove_entrypoint_3(PlayerState *self) {
     bs_setState(self, func_800A02DC(self, next_state));
 }
 
-BtIntPtr bskazmove_entrypoint_4(s32 idx) {
-    return D_80800C70_bskazmove[idx];
+BsScript bskazmove_entrypoint_4(BsScriptType idx) {
+    return (BsScript)D_80800C70_bskazmove[idx];
 }
 
 void bskazmove_entrypoint_5(PlayerState *self, s32 arg1) {
@@ -343,8 +343,8 @@ void bskazmove_entrypoint_9(PlayerState *self) {
     bs_setState(self, func_800A02DC(self, next_state));
 }
 
-BtIntPtr bskazmove_entrypoint_10(s32 idx) {
-    return D_80800C80_bskazmove[idx];
+BsScript bskazmove_entrypoint_10(BsScriptType idx) {
+    return (BsScript)D_80800C80_bskazmove[idx];
 }
 
 void bskazmove_entrypoint_11(PlayerState *self, s32 arg1) {

@@ -1,5 +1,5 @@
 #include "1EA78C0_types.h"
-
+#include "prop_flag_mapping.inc"
 
 
 void func_800CDFD0(void **arg0) {
@@ -81,12 +81,12 @@ int func_800CE1A8(void *arg0, void *arg1, s32 arg2) {
 }
 
 s32 func_800CE21C(s32 arg0) {
-    extern u16 D_8011AA10[7][2];
+    extern PropFlagMapping D_8011AA10[7];
     s32 i;
 
     for (i = 0; i < 7; i++) {
-        if (arg0 == D_8011AA10[i][0]) {
-            return D_8011AA10[i][1];
+        if (arg0 == D_8011AA10[i].propId) {
+            return D_8011AA10[i].flagIndex;
         }
     }
     return -1;

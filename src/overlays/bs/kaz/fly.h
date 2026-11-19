@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #ifndef __BS_KAZ_FLY_H__
 #define __BS_KAZ_FLY_H__
-
 #include "common.h"
 #include <ultra64.h>
 
@@ -76,15 +76,15 @@ BtIntPtr D_80801CA8_bskazfly[];
 BtIntPtr D_80801CB8_bskazfly[];
 BtIntPtr D_80801CC8_bskazfly[];
 
-extern BtIntPtr _bskazfly_entrypoint_0(s32 idx);
-extern BtIntPtr _bskazfly_entrypoint_1(s32 idx);
-extern BtIntPtr _bskazfly_entrypoint_2(s32 idx);
-extern BtIntPtr _bskazfly_entrypoint_3(s32 idx);
-extern BtIntPtr _bskazfly_entrypoint_4(s32 idx);
-extern BtIntPtr _bskazfly_entrypoint_5(s32 idx);
-extern BtIntPtr _bskazfly_entrypoint_6(s32 idx);
-extern BtIntPtr _bskazfly_entrypoint_7(s32 idx);
-extern BtIntPtr _bskazfly_entrypoint_8(s32 idx);
-extern BtIntPtr _bskazfly_entrypoint_9(s32 idx);
+extern BsScript _bskazfly_entrypoint_0(BsScriptType idx);
+extern BsScript _bskazfly_entrypoint_1(BsScriptType idx);
+extern BsScript _bskazfly_entrypoint_2(BsScriptType idx);
+extern BsScript _bskazfly_entrypoint_3(BsScriptType idx);
+extern BsScript _bskazfly_entrypoint_4(BsScriptType idx);
+extern BsScript _bskazfly_entrypoint_5(BsScriptType idx);
+extern BsScript _bskazfly_entrypoint_6(BsScriptType idx);
+extern BsScript _bskazfly_entrypoint_7(BsScriptType idx);
+extern BsScript _bskazfly_entrypoint_8(BsScriptType idx);
+extern BsScript _bskazfly_entrypoint_9(BsScriptType idx);
 
 #endif // __BS_KAZ_FLY_H__

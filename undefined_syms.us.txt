@@ -97,6 +97,37 @@ D_80117DD4 = playerModelDetails + 0x4;
 D_80117DD8 = playerModelDetails + 0x8;
 D_80117DDC = playerModelDetails + 0xC;
 
+/* End of the dynamic Huffman alphabet in the original image. */
+D_80123203 = D_801231F0 + 0x13;
+
+/* Interior labels of the original light category table. */
+D_8011A934 = D_8011A930 + 0x4;
+D_8011A938 = D_8011A930 + 0x8;
+D_8011A9B8 = D_8011A930 + 0x88;
+
+/* Interior halfwords in the original prop flag mapping. */
+D_8011AA12 = D_8011AA10 + 0x2;
+D_8011AA14 = D_8011AA10 + 0x4;
+D_8011AA16 = D_8011AA10 + 0x6;
+D_8011AA18 = D_8011AA10 + 0x8;
+D_8011AA1A = D_8011AA10 + 0xA;
+
+/* Original HUD timer fields and virtual collectible indices before the next table. */
+D_8011AA34 = D_8011AA30 + 0x4;
+D_8011AA8E = D_8011AA80 + 0xE;
+D_8011AB3D = D_8011AA80 + 0xBD;
+D_8011AB3E = D_8011AA80 + 0xBE;
+D_8011AB3F = D_8011AA80 + 0xBF;
+
+/* Original field labels of the player state dispatch entries. */
+D_80117F32 = playerStates + 0x2;
+D_80117F34 = playerStates + 0x4;
+D_80117F38 = playerStates + 0x8;
+
+/* The two originally addressed bytes in each egg firing policy. */
+D_80117E3C = eggFirePolicies + 0x0;
+D_80117E3D = eggFirePolicies + 0x1;
+
 /* Aliases within audio storage. */
 D_80079FA2 = D_80079FA0 + 0x2;
 D_80079FA3 = D_80079FA0 + 0x3;

@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #ifndef __BS_KAZ_MOVE_H__
 #define __BS_KAZ_MOVE_H__
-
 #include "common.h"
 #include <ultra64.h>
 
@@ -36,13 +36,13 @@ extern void _bskazmove_entrypoint_0(PlayerState *self);
 extern void _bskazmove_entrypoint_1(PlayerState *self);
 extern void _bskazmove_entrypoint_2(PlayerState *self);
 extern void _bskazmove_entrypoint_3(PlayerState *self);
-extern BtIntPtr _bskazmove_entrypoint_4(s32 idx);
+extern BsScript _bskazmove_entrypoint_4(BsScriptType idx);
 extern void _bskazmove_entrypoint_5(PlayerState *self, s32 arg1);
 extern void _bskazmove_entrypoint_6(PlayerState *self);
 extern void _bskazmove_entrypoint_7(PlayerState *self);
 extern void _bskazmove_entrypoint_8(PlayerState *self);
 extern void _bskazmove_entrypoint_9(PlayerState *self);
-extern BtIntPtr _bskazmove_entrypoint_10(s32 idx);
+extern BsScript _bskazmove_entrypoint_10(BsScriptType idx);
 extern void _bskazmove_entrypoint_11(PlayerState *self, s32 arg1);
 
 #endif // __BS_KAZ_MOVE_H__

@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #ifndef __BS_OW_H__
 #define __BS_OW_H__
-
 #include "overlays/ba/anim.h"
 #include "overlays/ba/bounce.h"
 #include "overlays/ba/physics.h"
@@ -18,5 +18,5 @@ extern BtIntPtr D_80800150_bsow[];
 extern void _bsow_entrypoint_0(PlayerState *self);
 extern void _bsow_entrypoint_1(PlayerState *self);
 extern void _bsow_entrypoint_2(PlayerState *self);
-extern BtIntPtr _bsow_entrypoint_3(s32 idx);
+extern BsScript _bsow_entrypoint_3(BsScriptType idx);
 #endif // __BS_OW_H__

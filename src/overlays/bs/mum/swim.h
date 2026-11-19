@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #ifndef __BS_MUM_SWIM_H__
 #define __BS_MUM_SWIM_H__
-
 #include "core2/anctrl.h"
 #include "overlays/ba/anim.h"
 #include "overlays/ba/drone.h"
@@ -41,10 +41,10 @@ extern BtIntPtr D_80800B70_bsmumswim[];
 extern void _bsmumswim_entrypoint_0(PlayerState *self);
 extern void _bsmumswim_entrypoint_1(PlayerState *self);
 extern void _bsmumswim_entrypoint_2(PlayerState *self);
-extern BtIntPtr _bsmumswim_entrypoint_3(s32 idx);
-extern BtIntPtr _bsmumswim_entrypoint_4(s32 idx);
-extern BtIntPtr _bsmumswim_entrypoint_5(s32 idx);
-extern BtIntPtr _bsmumswim_entrypoint_6(s32 idx);
-extern BtIntPtr _bsmumswim_entrypoint_7(s32 idx);
+extern BsScript _bsmumswim_entrypoint_3(BsScriptType idx);
+extern BsScript _bsmumswim_entrypoint_4(BsScriptType idx);
+extern BsScript _bsmumswim_entrypoint_5(BsScriptType idx);
+extern BsScript _bsmumswim_entrypoint_6(BsScriptType idx);
+extern BsScript _bsmumswim_entrypoint_7(BsScriptType idx);
 
 #endif // __BS_MUM_SWIM_H__

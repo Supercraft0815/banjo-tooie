@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #ifndef __BS_REST_H__
 #define __BS_REST_H__
-
 #include <ultra64.h>
 #include "core2/anctrl.h"
 #include "overlays/ba/anim.h"
@@ -36,15 +36,15 @@ extern void _bsrest_entrypoint_0(PlayerState *self);
 extern void _bsrest_entrypoint_1(PlayerState *self);
 extern void _bsrest_entrypoint_2(PlayerState *self);
 extern void _bsrest_entrypoint_3(PlayerState *self);
-extern BtIntPtr _bsrest_entrypoint_4(s32 idx);
+extern BsScript _bsrest_entrypoint_4(BsScriptType idx);
 extern void _bsrest_entrypoint_5(PlayerState *self);
 extern void _bsrest_entrypoint_6(PlayerState *self);
 extern void _bsrest_entrypoint_7(PlayerState *self);
-extern BtIntPtr _bsrest_entrypoint_8(s32 idx);
+extern BsScript _bsrest_entrypoint_8(BsScriptType idx);
 extern void _bsrest_entrypoint_9(PlayerState *self);
 extern void _bsrest_entrypoint_10(PlayerState *self);
 extern void _bsrest_entrypoint_11(PlayerState *self);
-extern BtIntPtr _bsrest_entrypoint_12(s32 idx);
+extern BsScript _bsrest_entrypoint_12(BsScriptType idx);
 #ifndef BT_NATIVE
 extern AssetId _bsrest_entrypoint_13(PlayerState *self);
 #endif

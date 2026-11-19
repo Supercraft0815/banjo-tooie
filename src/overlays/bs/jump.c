@@ -6,7 +6,7 @@
 struct player_state_s; 
 struct anctrl_s;
 enum asset_e;
-
+#include "bs_script.h"
 void func_8009FE58(struct player_state_s *);
 int player_isStable(struct player_state_s *);
 int func_8008DA24(struct player_state_s *);
@@ -197,9 +197,9 @@ void bsjump_entrypoint_1(void *arg0) {
 
 void bsjump_entrypoint_2(BtIntPtr arg0) { s32 bs_getNextState(struct player_state_s *); if (func_800C6E38(0xA) != 0) { func_800C6DA0(0x3C); } if (bs_getNextState(arg0) != 0x11) { baphysics_reset_gravity(arg0); } }
 
-s32 bsjump_entrypoint_3(s32 arg0) {
+BsScript bsjump_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_80801110_bsjump[];
-    return ((s32 *)&D_80801110_bsjump)[arg0];
+    return (BsScript)D_80801110_bsjump[arg0];
 }
 
 /* extern */
@@ -314,9 +314,9 @@ void bsjump_entrypoint_5(void *arg0) {
 void bsjump_entrypoint_6(s32 arg0) 
 {
 }
-s32 bsjump_entrypoint_7(s32 arg0) {
+BsScript bsjump_entrypoint_7(BsScriptType arg0) {
     extern BtIntPtr D_80801120_bsjump[];
-    return ((s32 *)&D_80801120_bsjump)[arg0];
+    return (BsScript)D_80801120_bsjump[arg0];
 }
 
 void func_800961AC(struct player_state_s *, s32);
@@ -438,9 +438,9 @@ void bsjump_entrypoint_10(BtIntPtr arg0)
     baphysics_reset_gravity(arg0);
 }
 
-s32 bsjump_entrypoint_11(s32 arg0) {
+BsScript bsjump_entrypoint_11(BsScriptType arg0) {
     extern BtIntPtr D_80801130_bsjump[];
-    return ((s32 *)&D_80801130_bsjump)[arg0];
+    return (BsScript)D_80801130_bsjump[arg0];
 }
 
 /* extern */
@@ -531,9 +531,9 @@ void bsjump_entrypoint_14(BT_NATIVE_ONLY(void *arg0))
     func_8008E95C(BT_NATIVE_ONLY(arg0));
 }
 
-s32 bsjump_entrypoint_15(s32 arg0) {
+BsScript bsjump_entrypoint_15(BsScriptType arg0) {
     extern BtIntPtr D_80801140_bsjump[];
-    return ((s32 *)&D_80801140_bsjump)[arg0];
+    return (BsScript)D_80801140_bsjump[arg0];
 }
 
 s32 bsjump_entrypoint_16(s32 *arg0) {
@@ -642,9 +642,9 @@ void bsjump_entrypoint_19(struct player_state_s *arg0) {
     func_8009E0DC(arg0);
 }
 
-s32 bsjump_entrypoint_20(s32 arg0) {
+BsScript bsjump_entrypoint_20(BsScriptType arg0) {
     extern BtIntPtr D_80801150_bsjump[];
-    return ((s32 *)&D_80801150_bsjump)[arg0];
+    return (BsScript)D_80801150_bsjump[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/jump.data.s */
 void _bsjump_entrypoint_2();

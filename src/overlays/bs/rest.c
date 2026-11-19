@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "overlays/bs/rest.h"
-
 #ifdef BT_NATIVE
     enum bs_state_e bsrest_entrypoint_13(PlayerState *self);
 #else
@@ -167,8 +167,8 @@ void bsrest_entrypoint_3(PlayerState *self) {
     func_808003FC_bsrest(self);
 }
 
-BtIntPtr bsrest_entrypoint_4(s32 idx) {
-    return D_80800910_bsrest[idx];
+BsScript bsrest_entrypoint_4(BsScriptType idx) {
+    return (BsScript)D_80800910_bsrest[idx];
 }
 
 void bsrest_entrypoint_5(PlayerState *self) {
@@ -198,8 +198,8 @@ void bsrest_entrypoint_7(PlayerState *self) {
     func_808003FC_bsrest(self);
 }
 
-BtIntPtr bsrest_entrypoint_8(s32 idx) {
-    return D_80800920_bsrest[idx];
+BsScript bsrest_entrypoint_8(BsScriptType idx) {
+    return (BsScript)D_80800920_bsrest[idx];
 }
 
 void bsrest_entrypoint_9(PlayerState *self) {
@@ -232,8 +232,8 @@ void bsrest_entrypoint_11(PlayerState *self) {
     func_8080003C_bsrest(self);
 }
 
-BtIntPtr bsrest_entrypoint_12(s32 idx) {
-    return D_80800930_bsrest[idx];
+BsScript bsrest_entrypoint_12(BsScriptType idx) {
+    return (BsScript)D_80800930_bsrest[idx];
 }
 
 enum bs_state_e bsrest_entrypoint_13(PlayerState *self) {

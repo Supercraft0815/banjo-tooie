@@ -1,7 +1,7 @@
 #include "common.h"
 #include "overlays/ba/playerstate.h"
 /* extern */
-
+#include "bs_script.h"
 void bsthrow_entrypoint_0(void *arg0) {
 
     s32 anctrl_reset(BtIntPtr);
@@ -86,9 +86,9 @@ void bsthrow_entrypoint_2(void *self) {
     }
 }
 
-s32 bsthrow_entrypoint_3(s32 arg0) {
+BsScript bsthrow_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_808002F0_bsthrow[];
-    return ((s32 *)&D_808002F0_bsthrow)[arg0];
+    return (BsScript)D_808002F0_bsthrow[arg0];
 }
 
 /* extern */

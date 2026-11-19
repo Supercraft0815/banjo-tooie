@@ -5,7 +5,7 @@
 #ifdef BT_NATIVE // complete the enum forward declarations below
 #include "overlays/ba/assets.h"
 #endif
-
+#include "bs_script.h"
 struct player_state_s; 
 s32 func_8009D454(struct player_state_s *, volatile u8, s32 *);
 
@@ -370,9 +370,9 @@ void func_80800608_bswasher(struct player_state_s *arg0) {
     bs_setState(arg0, 0);
 }
 
-s32 bswasher_entrypoint_1(s32 arg0) {
+BsScript bswasher_entrypoint_1(BsScriptType arg0) {
 
-    return ((s32 *)&D_80801E10_bswasher)[arg0];
+    return (BsScript)D_80801E10_bswasher[arg0];
 }
 
 void func_80800714_bswasher(BtIntPtr arg0) { if (_badrone_entrypoint_3(arg0) == 2) { _bafpctrl_entrypoint_10(arg0, 0); func_800947EC(arg0, 2, 0); } func_808000F0_bswasher(arg0); _bsdrone_entrypoint_2(arg0); }
@@ -411,9 +411,9 @@ void func_808007DC_bswasher(struct player_state_s *arg0) {
     }
 }
 
-s32 bswasher_entrypoint_2(s32 arg0) {
+BsScript bswasher_entrypoint_2(BsScriptType arg0) {
 
-    return ((s32 *)&D_80801E20_bswasher)[arg0];
+    return (BsScript)D_80801E20_bswasher[arg0];
 }
 
 /* extern */
@@ -509,9 +509,9 @@ void func_8080099C_bswasher(struct player_state_s *arg0) {
     bs_setState(arg0, next_state);
 }
 
-s32 bswasher_entrypoint_3(s32 arg0) {
+BsScript bswasher_entrypoint_3(BsScriptType arg0) {
 
-    return ((s32 *)&D_80801E30_bswasher)[arg0];
+    return (BsScript)D_80801E30_bswasher[arg0];
 }
 
 void func_80800B08_bswasher(struct player_state_s *arg0) {
@@ -648,9 +648,9 @@ void func_80800E74_bswasher(BtIntPtr arg0) {
     func_808000F0_bswasher(arg0);
 }
 
-s32 bswasher_entrypoint_4(s32 arg0) {
+BsScript bswasher_entrypoint_4(BsScriptType arg0) {
 
-    return ((s32 *)&D_80801E40_bswasher)[arg0];
+    return (BsScript)D_80801E40_bswasher[arg0];
 }                typedef struct { u8 pad0[0x15C]; s32 unk15C; BtIntPtr unk160; } Objwasher_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
@@ -762,9 +762,9 @@ void func_808010DC_bswasher(struct player_state_s *arg0) {
     bs_setState(arg0, var_s1);
 }
 
-s32 bswasher_entrypoint_5(s32 arg0) {
+BsScript bswasher_entrypoint_5(BsScriptType arg0) {
 
-    return ((s32 *)&D_80801E60_bswasher)[arg0];
+    return (BsScript)D_80801E60_bswasher[arg0];
 }
 
 void func_808011B4_bswasher(BtIntPtr arg0)
@@ -797,9 +797,9 @@ void func_80801218_bswasher(struct player_state_s *arg0) {
     bs_setState(self, sp24);
 }
 
-s32 bswasher_entrypoint_6(s32 arg0) {
+BsScript bswasher_entrypoint_6(BsScriptType arg0) {
 
-    return ((s32 *)&D_80801E70_bswasher)[arg0];
+    return (BsScript)D_80801E70_bswasher[arg0];
 }
 
 void func_80801294_bswasher(BtIntPtr arg0)
@@ -839,9 +839,9 @@ void func_80801314_bswasher(BtIntPtr arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bswasher_entrypoint_7(s32 arg0) {
+BsScript bswasher_entrypoint_7(BsScriptType arg0) {
 
-    return ((s32 *)&D_80801E80_bswasher)[arg0];
+    return (BsScript)D_80801E80_bswasher[arg0];
 }
 
 void func_8080137C_bswasher(BtIntPtr arg0)
@@ -871,9 +871,9 @@ void func_808013CC_bswasher(BtIntPtr arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bswasher_entrypoint_8(s32 arg0) {
+BsScript bswasher_entrypoint_8(BsScriptType arg0) {
 
-    return ((s32 *)&D_80801E90_bswasher)[arg0];
+    return (BsScript)D_80801E90_bswasher[arg0];
 }
 
 void func_8080142C_bswasher(BtIntPtr arg0)
@@ -933,9 +933,9 @@ void func_808014C8_bswasher(struct player_state_s *arg0) {
     bs_setState(arg0, var_s1);
 }
 
-s32 bswasher_entrypoint_9(s32 arg0) {
+BsScript bswasher_entrypoint_9(BsScriptType arg0) {
 
-    return ((s32 *)&D_80801EA0_bswasher)[arg0];
+    return (BsScript)D_80801EA0_bswasher[arg0];
 }
 
 void func_808015EC_bswasher(BtIntPtr arg0, u32 arg1) {
@@ -1078,9 +1078,9 @@ void func_808017A0_bswasher(u8 *arg0) {
     bs_setState((BtIntPtr)arg0, next_state);
 }
 
-s32 bswasher_entrypoint_10(s32 arg0) {
+BsScript bswasher_entrypoint_10(BsScriptType arg0) {
 
-    return ((s32 *)&D_80801EC4_bswasher)[arg0];
+    return (BsScript)D_80801EC4_bswasher[arg0];
 }
 
 void func_80801B10_bswasher(struct player_state_s *arg0)
@@ -1140,7 +1140,7 @@ void func_80801BA4_bswasher(struct player_state_s *arg0) {
     bs_setState(arg0, sp34);
 }
 
-s32 bswasher_entrypoint_11(s32 arg0) {
+BsScript bswasher_entrypoint_11(BsScriptType arg0) {
 
-    return ((s32 *)&D_80801ED4_bswasher)[arg0];
+    return (BsScript)D_80801ED4_bswasher[arg0];
 }

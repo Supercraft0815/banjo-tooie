@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "common.h"
-
 #include "overlays/bs/kaz/egghead.h"
 
 BtIntPtr D_808002F0_bskazegghead[];
@@ -69,8 +69,8 @@ void bskazegghead_entrypoint_2(PlayerState *self) {
     _bskaz_entrypoint_2(self);
 }
 
-BtIntPtr bskazegghead_entrypoint_3(s32 idx) {
-    return D_808002F0_bskazegghead[idx];
+BsScript bskazegghead_entrypoint_3(BsScriptType idx) {
+    return (BsScript)D_808002F0_bskazegghead[idx];
 }
 /* data_to_c.py: from asm/data/overlays/bs/kaz/egghead.data.s */
 BtIntPtr D_808002F0_bskazegghead [4] BT_DATA(4, overlays_bs_kaz_egghead, 0x0) = { (BtIntPtr)_bskazegghead_entrypoint_2, (BtIntPtr)_bskazegghead_entrypoint_0, (BtIntPtr)_bskazegghead_entrypoint_1, (BtIntPtr)func_80099B94 };

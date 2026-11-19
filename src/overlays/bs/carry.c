@@ -1,3 +1,4 @@
+#include "bs_script.h"
 #include "common.h"
 #ifdef BT_NATIVE
 #include "overlays/ba/yaw.h" // enums for the prototypes below
@@ -7,7 +8,6 @@
 #ifdef BT_NATIVE // complete the enum forward declarations below
 #include "overlays/ba/anim.h"
 #endif
-
 void func_80800000_bscarry(PlayerState *arg0) {
     int bastatetimer_isDone(PlayerState *, s32);
     void bs_setState(PlayerState *, s32);
@@ -149,9 +149,9 @@ void func_80800310_bscarry(PlayerState *arg0) {
     bs_setState(arg0, next_state);
 }
 
-s32 bscarry_entrypoint_0(s32 arg0) {
+BsScript bscarry_entrypoint_0(BsScriptType arg0) {
     extern BtIntPtr D_808007B0_bscarry[];
-    return ((s32 *)&D_808007B0_bscarry)[arg0];
+    return (BsScript)D_808007B0_bscarry[arg0];
 }
 
 void func_808003D8_bscarry(PlayerState *arg0)
@@ -191,9 +191,9 @@ void func_8080047C_bscarry(PlayerState *arg0) {
     bs_setState(arg0, next_state);
 }
 
-s32 bscarry_entrypoint_1(s32 arg0) {
+BsScript bscarry_entrypoint_1(BsScriptType arg0) {
     extern BtIntPtr D_808007C0_bscarry[];
-    return ((s32 *)&D_808007C0_bscarry)[arg0];
+    return (BsScript)D_808007C0_bscarry[arg0];
 }
 
 void func_80800500_bscarry(PlayerState *arg0)
@@ -235,9 +235,9 @@ void func_80800594_bscarry(PlayerState *arg0) {
     bs_setState(arg0, next_state);
 }
 
-s32 bscarry_entrypoint_2(s32 arg0) {
+BsScript bscarry_entrypoint_2(BsScriptType arg0) {
     extern BtIntPtr D_808007D0_bscarry[];
-    return ((s32 *)&D_808007D0_bscarry)[arg0];
+    return (BsScript)D_808007D0_bscarry[arg0];
 }
 
 void func_8080065C_bscarry(BtIntPtr arg0)
@@ -254,9 +254,9 @@ void func_808006AC_bscarry(PlayerState* self)
 {
     _bsdrone_entrypoint_1(self);
 }
-s32 bscarry_entrypoint_3(s32 arg0) {
+BsScript bscarry_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_808007E0_bscarry[];
-    return ((s32 *)&D_808007E0_bscarry)[arg0];
+    return (BsScript)D_808007E0_bscarry[arg0];
 }
 
 void func_808006E0_bscarry(BtIntPtr arg0)
@@ -287,9 +287,9 @@ void func_80800730_bscarry(BtIntPtr arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bscarry_entrypoint_4(s32 arg0) {
+BsScript bscarry_entrypoint_4(BsScriptType arg0) {
     extern BtIntPtr D_808007F0_bscarry[];
-    return ((s32 *)&D_808007F0_bscarry)[arg0];
+    return (BsScript)D_808007F0_bscarry[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/carry.data.s */
 BtIntPtr D_808007B0_bscarry [4] BT_DATA(4, overlays_bs_carry, 0x0) = { (BtIntPtr)func_8080027C_bscarry, (BtIntPtr)func_8080029C_bscarry, (BtIntPtr)func_80800310_bscarry, (BtIntPtr)func_80800000_bscarry };

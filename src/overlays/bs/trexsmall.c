@@ -1,10 +1,10 @@
+#include "bs_script.h"
 #include "bs/trexsmall.h"
 #ifdef BT_NATIVE // complete the enum forward declarations below
 #include "overlays/ba/assets.h"
 #endif
 void func_8009D3A8(PlayerState *, s32);
 void bs_setState(void *self, s32 nextState);
-
 void bstrexsmall_entrypoint_3(BtIntPtr arg0);
 void bstrexsmall_entrypoint_1(PlayerState *);
 void yaw_setVelocityBounded(PlayerState *, f32, f32);
@@ -133,9 +133,9 @@ void func_808003D0_bstrexsmall(PlayerState *arg0) {
     bs_setState((BtIntPtr) arg0, func_8080020C_bstrexsmall(arg0, sp24));
 }
 
-s32 bstrexsmall_entrypoint_0(s32 arg0) {
+BsScript bstrexsmall_entrypoint_0(BsScriptType arg0) {
     extern BtIntPtr D_80801B08_bstrexsmall[];
-    return ((s32 *)&D_80801B08_bstrexsmall)[arg0];
+    return (BsScript)D_80801B08_bstrexsmall[arg0];
 }
 
 void bstrexsmall_entrypoint_1(PlayerState *arg0) {
@@ -324,9 +324,9 @@ void func_80800818_bstrexsmall(PlayerState *arg0) {
     bs_setState((BtIntPtr)arg0, 0);
 }
 
-s32 bstrexsmall_entrypoint_4(s32 arg0) {
+BsScript bstrexsmall_entrypoint_4(BsScriptType arg0) {
     extern BtIntPtr D_80801B18_bstrexsmall[];
-    return ((s32 *)&D_80801B18_bstrexsmall)[arg0];
+    return (BsScript)D_80801B18_bstrexsmall[arg0];
 }
 
 void func_80800998_bstrexsmall(BtIntPtr arg0)
@@ -344,9 +344,9 @@ void func_808009E8_bstrexsmall(s32 arg0)
     _bsdrone_entrypoint_1();
     bstrexsmall_entrypoint_3(arg0);
 }
-s32 bstrexsmall_entrypoint_5(s32 arg0) {
+BsScript bstrexsmall_entrypoint_5(BsScriptType arg0) {
     extern BtIntPtr D_80801B28_bstrexsmall[];
-    return ((s32 *)&D_80801B28_bstrexsmall)[arg0];
+    return (BsScript)D_80801B28_bstrexsmall[arg0];
 }
 
 void func_80800A24_bstrexsmall(PlayerState *arg0, s32 arg1) {
@@ -408,9 +408,9 @@ void func_80800B40_bstrexsmall(PlayerState *arg0) {
     bs_setState((BtIntPtr)arg0, sp24);
 }
 
-s32 bstrexsmall_entrypoint_6(s32 arg0) {
+BsScript bstrexsmall_entrypoint_6(BsScriptType arg0) {
     extern BtIntPtr D_80801B38_bstrexsmall[];
-    return ((s32 *)&D_80801B38_bstrexsmall)[arg0];
+    return (BsScript)D_80801B38_bstrexsmall[arg0];
 }
 
 /* extern */
@@ -537,9 +537,9 @@ void func_80800EF0_bstrexsmall(PlayerState *arg0) {
     bs_setState((BtIntPtr)arg0, sp34);
 }
 
-s32 bstrexsmall_entrypoint_8(s32 arg0) {
+BsScript bstrexsmall_entrypoint_8(BsScriptType arg0) {
     extern BtIntPtr D_80801B48_bstrexsmall[];
-    return ((s32 *)&D_80801B48_bstrexsmall)[arg0];
+    return (BsScript)D_80801B48_bstrexsmall[arg0];
 }
 
 void func_80801004_bstrexsmall(BtIntPtr arg0)
@@ -564,9 +564,9 @@ void func_8080106C_bstrexsmall(PlayerState *arg0) {
     bs_setState(arg0, sp24);
 }
 
-s32 bstrexsmall_entrypoint_9(s32 arg0) {
+BsScript bstrexsmall_entrypoint_9(BsScriptType arg0) {
     extern BtIntPtr D_80801B58_bstrexsmall[];
-    return ((s32 *)&D_80801B58_bstrexsmall)[arg0];
+    return (BsScript)D_80801B58_bstrexsmall[arg0];
 }
 
 void func_808010E8_bstrexsmall(BtIntPtr arg0)
@@ -587,9 +587,9 @@ void func_80801150_bstrexsmall(BtIntPtr arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bstrexsmall_entrypoint_10(s32 arg0) {
+BsScript bstrexsmall_entrypoint_10(BsScriptType arg0) {
     extern BtIntPtr D_80801B68_bstrexsmall[];
-    return ((s32 *)&D_80801B68_bstrexsmall)[arg0];
+    return (BsScript)D_80801B68_bstrexsmall[arg0];
 }
 
 void func_808011A8_bstrexsmall(BtIntPtr arg0)
@@ -613,9 +613,9 @@ void func_808011F8_bstrexsmall(BtIntPtr arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bstrexsmall_entrypoint_11(s32 arg0) {
+BsScript bstrexsmall_entrypoint_11(BsScriptType arg0) {
     extern BtIntPtr D_80801B78_bstrexsmall[];
-    return ((s32 *)&D_80801B78_bstrexsmall)[arg0];
+    return (BsScript)D_80801B78_bstrexsmall[arg0];
 }
 
 /* extern */
@@ -726,9 +726,9 @@ void func_80801438_bstrexsmall(PlayerState *self) {
     bs_setState((BtIntPtr)self, next_state);
 }
 
-s32 bstrexsmall_entrypoint_12(s32 arg0) {
+BsScript bstrexsmall_entrypoint_12(BsScriptType arg0) {
     extern BtIntPtr D_80801B88_bstrexsmall[];
-    return ((s32 *)&D_80801B88_bstrexsmall)[arg0];
+    return (BsScript)D_80801B88_bstrexsmall[arg0];
 }
 
 void func_808015BC_bstrexsmall(PlayerState *arg0)
@@ -763,9 +763,9 @@ void func_80801688_bstrexsmall(PlayerState *arg0) {
     bs_setState(arg0, func_80800154_bstrexsmall(arg0, 0));
 }
 
-s32 bstrexsmall_entrypoint_13(s32 arg0) {
+BsScript bstrexsmall_entrypoint_13(BsScriptType arg0) {
     extern BtIntPtr D_80801B98_bstrexsmall[];
-    return ((s32 *)&D_80801B98_bstrexsmall)[arg0];
+    return (BsScript)D_80801B98_bstrexsmall[arg0];
 }
 
 void func_80801718_bstrexsmall(BtIntPtr arg0)
@@ -828,9 +828,9 @@ void func_80801844_bstrexsmall(PlayerState *arg0) {
     bs_setState((BtIntPtr)arg0, func_8080020C_bstrexsmall(arg0, 0));
 }
 
-s32 bstrexsmall_entrypoint_14(s32 arg0) {
+BsScript bstrexsmall_entrypoint_14(BsScriptType arg0) {
     extern BtIntPtr D_80801BA8_bstrexsmall[];
-    return ((s32 *)&D_80801BA8_bstrexsmall)[arg0];
+    return (BsScript)D_80801BA8_bstrexsmall[arg0];
 }
 
 void func_80801970_bstrexsmall(PlayerState *arg0)
@@ -865,9 +865,9 @@ void func_80801A3C_bstrexsmall(PlayerState *arg0) {
     bs_setState(arg0, func_80800154_bstrexsmall(arg0, 0));
 }
 
-s32 bstrexsmall_entrypoint_15(s32 arg0) {
+BsScript bstrexsmall_entrypoint_15(BsScriptType arg0) {
     extern BtIntPtr D_80801BB8_bstrexsmall[];
-    return ((s32 *)&D_80801BB8_bstrexsmall)[arg0];
+    return (BsScript)D_80801BB8_bstrexsmall[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/trexsmall.data.s */
 void _basudie_entrypoint_11();

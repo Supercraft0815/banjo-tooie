@@ -3,7 +3,7 @@
 #include "overlays/ba/anim_smooth.h"
 #endif
 #include "overlays/ba/playerstate.h"
-
+#include "bs_script.h"
 struct anctrl_s;
 
 /* extern */
@@ -166,9 +166,9 @@ void func_8080037C_bsbanshack(PlayerState *arg0) {
     bs_setState(arg0, sp24);
 }
 
-s32 bsbanshack_entrypoint_0(s32 arg0) {
+BsScript bsbanshack_entrypoint_0(BsScriptType arg0) {
     extern BtIntPtr D_80800CB0_bsbanshack[];
-    return ((s32 *)&D_80800CB0_bsbanshack)[arg0];
+    return (BsScript)D_80800CB0_bsbanshack[arg0];
 }
 
 void func_80800430_bsbanshack(PlayerState *arg0)
@@ -216,9 +216,9 @@ void func_808004AC_bsbanshack(PlayerState *arg0) {
     bs_setState(arg0, sp2C);
 }
 
-s32 bsbanshack_entrypoint_1(s32 arg0) {
+BsScript bsbanshack_entrypoint_1(BsScriptType arg0) {
     extern BtIntPtr D_80800CC0_bsbanshack[];
-    return ((s32 *)&D_80800CC0_bsbanshack)[arg0];
+    return (BsScript)D_80800CC0_bsbanshack[arg0];
 }
 
 void func_808005DC_bsbanshack(PlayerState *arg0, s32 arg1) {
@@ -338,9 +338,9 @@ void func_808007A0_bsbanshack(PlayerState *arg0)
     bs_setState(arg0, sp24);
 }
 
-s32 bsbanshack_entrypoint_2(s32 arg0) {
+BsScript bsbanshack_entrypoint_2(BsScriptType arg0) {
     extern BtIntPtr D_80800CD0_bsbanshack[];
-    return ((s32 *)&D_80800CD0_bsbanshack)[arg0];
+    return (BsScript)D_80800CD0_bsbanshack[arg0];
 }
 
 void func_80800928_bsbanshack(PlayerState *arg0)
@@ -388,9 +388,9 @@ void func_808009E4_bsbanshack(PlayerState *arg0) {
     bs_setState(arg0, func_80800000_bsbanshack(arg0, sp24));
 }
 
-s32 bsbanshack_entrypoint_3(s32 arg0) {
+BsScript bsbanshack_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_80800CE0_bsbanshack[];
-    return ((s32 *)&D_80800CE0_bsbanshack)[arg0];
+    return (BsScript)D_80800CE0_bsbanshack[arg0];
 }
 
 void func_80800AD0_bsbanshack(BtIntPtr arg0)
@@ -407,9 +407,9 @@ void func_80800B20_bsbanshack(PlayerState* self)
 {
     _bsdrone_entrypoint_1(self);
 }
-s32 bsbanshack_entrypoint_4(s32 arg0) {
+BsScript bsbanshack_entrypoint_4(BsScriptType arg0) {
     extern BtIntPtr D_80800CF0_bsbanshack[];
-    return ((s32 *)&D_80800CF0_bsbanshack)[arg0];
+    return (BsScript)D_80800CF0_bsbanshack[arg0];
 }
 
 void func_80800B54_bsbanshack(BtIntPtr arg0)
@@ -435,9 +435,9 @@ void func_80800BA4_bsbanshack(PlayerState *arg0) {
     bs_setState(arg0, next_state);
 }
 
-s32 bsbanshack_entrypoint_5(s32 arg0) {
+BsScript bsbanshack_entrypoint_5(BsScriptType arg0) {
     extern BtIntPtr D_80800D00_bsbanshack[];
-    return ((s32 *)&D_80800D00_bsbanshack)[arg0];
+    return (BsScript)D_80800D00_bsbanshack[arg0];
 }
 
 void func_80800BF0_bsbanshack(PlayerState *arg0)
@@ -455,9 +455,9 @@ void func_80800C6C_bsbanshack(PlayerState *arg0) {
     bs_setState(arg0, func_80800074_bsbanshack(arg0, 0U));
 }
 
-s32 bsbanshack_entrypoint_6(s32 arg0) {
+BsScript bsbanshack_entrypoint_6(BsScriptType arg0) {
     extern BtIntPtr D_80800D10_bsbanshack[];
-    return ((s32 *)&D_80800D10_bsbanshack)[arg0];
+    return (BsScript)D_80800D10_bsbanshack[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/ban/shack.data.s */
 void func_80099B94(PlayerState *);

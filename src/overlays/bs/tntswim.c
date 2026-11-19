@@ -3,7 +3,7 @@
 #include "overlays/ba/anim_smooth.h"
 #endif
 #include "overlays/ba/playerstate.h"
-struct player_state_s;
+#include "bs_script.h"
 void func_80800000_bstntswim(struct player_state_s *arg0) {
     void func_80092C00(struct player_state_s *, f32 *);
     void func_80092C24(struct player_state_s *, f32 *);
@@ -150,9 +150,9 @@ void func_808002D0_bstntswim(void *arg0) {
     bs_setState(arg0, next_state);
 }
 
-s32 bstntswim_entrypoint_0(s32 arg0) {
+BsScript bstntswim_entrypoint_0(BsScriptType arg0) {
     extern BtIntPtr D_808009B0_bstntswim[];
-    return ((s32 *)&D_808009B0_bstntswim)[arg0];
+    return (BsScript)D_808009B0_bstntswim[arg0];
 }
 
 /* extern */
@@ -215,9 +215,9 @@ void func_808005FC_bstntswim(struct player_state_s *arg0)
     func_80800174_bstntswim(arg0);
 }
 
-s32 bstntswim_entrypoint_1(s32 arg0) {
+BsScript bstntswim_entrypoint_1(BsScriptType arg0) {
     extern BtIntPtr D_808009C0_bstntswim[];
-    return ((s32 *)&D_808009C0_bstntswim)[arg0];
+    return (BsScript)D_808009C0_bstntswim[arg0];
 }
 
 /* extern */
@@ -289,9 +289,9 @@ void func_80800830_bstntswim(struct player_state_s *arg0)
     func_80800174_bstntswim(arg0);
 }
 
-s32 bstntswim_entrypoint_2(s32 arg0) {
+BsScript bstntswim_entrypoint_2(BsScriptType arg0) {
     extern BtIntPtr D_808009D0_bstntswim[];
-    return ((s32 *)&D_808009D0_bstntswim)[arg0];
+    return (BsScript)D_808009D0_bstntswim[arg0];
 }
 
 void func_80800864_bstntswim(BtIntPtr arg0)
@@ -318,9 +318,9 @@ void func_808008B4_bstntswim(s32 arg0) {
     bs_setState(arg0, sp1C);
 }
 
-s32 bstntswim_entrypoint_3(s32 arg0) {
+BsScript bstntswim_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_808009E0_bstntswim[];
-    return ((s32 *)&D_808009E0_bstntswim)[arg0];
+    return (BsScript)D_808009E0_bstntswim[arg0];
 }
 
 void func_8080090C_bstntswim(struct player_state_s *arg0)
@@ -338,9 +338,9 @@ void func_8080095C_bstntswim(BtIntPtr arg0)
     _bsdrone_entrypoint_2();
     func_80800174_bstntswim(arg0);
 }
-s32 bstntswim_entrypoint_4(s32 arg0) {
+BsScript bstntswim_entrypoint_4(BsScriptType arg0) {
     extern BtIntPtr D_808009F0_bstntswim[];
-    return ((s32 *)&D_808009F0_bstntswim)[arg0];
+    return (BsScript)D_808009F0_bstntswim[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/tntswim.data.s */
 void _bstnt_entrypoint_10();

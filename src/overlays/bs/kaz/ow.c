@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "common.h"
-
 #include "overlays/bs/kaz/ow.h"
 
 extern BtIntPtr D_808002D0_bskazow[];
@@ -39,8 +39,8 @@ void func_80800098_bskazow(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bskazow_entrypoint_0(s32 idx) {
-    return D_808002D0_bskazow[idx];
+BsScript bskazow_entrypoint_0(BsScriptType idx) {
+    return (BsScript)D_808002D0_bskazow[idx];
 }
 
 void func_8080015C_bskazow(PlayerState *self) {
@@ -77,8 +77,8 @@ void func_808001F0_bskazow(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bskazow_entrypoint_1(s32 idx) {
-    return D_808002E0_bskazow[idx];
+BsScript bskazow_entrypoint_1(BsScriptType idx) {
+    return (BsScript)D_808002E0_bskazow[idx];
 }
 
 /* data_to_c.py: from asm/data/overlays/bs/kaz/ow.data.s */

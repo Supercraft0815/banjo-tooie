@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "common.h"
-
 /* extern */
 
 void bschokedie_entrypoint_0(struct player_state_s *arg0) {
@@ -84,9 +84,9 @@ void bschokedie_entrypoint_2(BtIntPtr arg0) {
     func_800A4E30(arg0);
 }
 
-s32 bschokedie_entrypoint_3(s32 arg0) {
+BsScript bschokedie_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_808002B0_bschokedie[];
-    return ((s32 *)&D_808002B0_bschokedie)[arg0];
+    return (BsScript)D_808002B0_bschokedie[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/chokedie.data.s */
 void _bschokedie_entrypoint_2();

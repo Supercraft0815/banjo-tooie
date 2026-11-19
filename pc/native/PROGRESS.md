@@ -2695,3 +2695,21 @@ Die Aufruferbelege und Prüfungen stehen unter
 `build/acceptance/n2-2026-11-18/` in `signature-7-9-closed-report.md`,
 `switch-minimal-sites.json`, `current-closed-ir.log`,
 `current-closed-ido/result.json` und `current-closed.log`.
+
+## 2026-11-19 — N1, Zustandswechsel, Ei-Auswahl und vier Datentabellen
+
+Die sechs Pakete haben die strenge Restliste von 338 auf 298 Einträge
+gesenkt. Die verbliebenen 242 Daten- und 56 Rodata-Einträge stehen in
+`current-six-dispatch-source/build/ilp32/remaining_asm_data.tsv`.
+Die Zustandssteuerung holt ihre Funktionszeiger bei 391 Overlay-Providern.
+Der native Test vergleicht 401 Zustände und 1.238 unterschiedliche
+Aktionsziele. Die Ei-Auswahl wurde mit allen 32 Fähigkeitenmasken,
+768 Auswahlen und 203 Rotationen geprüft.
+
+Auf der gemeinsamen Basis mit dem N2-Schritteffekt bestehen alle 60
+nativen Tests unter ASan/UBSan, elf Gastsuiten und 74 Replays mit
+447.849 Retraces. Original-IDO bestätigt 16.401 Funktionen und beide
+vollständigen ROM-Abbilder. Die Nachweise stehen unter
+`build/acceptance/n1-2026-11-18/` in `current-six-dispatch-full.log`,
+`current-six-dispatch-ctest.log`, `current-six-dispatch-ido/result.json`
+und den Einzelprüfungen in `proof/`.

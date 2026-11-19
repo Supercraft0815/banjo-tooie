@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #ifndef __BS_KAZ_HATCH_H__
 #define __BS_KAZ_HATCH_H__
-
 #include "common.h"
 #include <ultra64.h>
 
@@ -16,6 +16,6 @@
 
 extern BtIntPtr D_808004E0_bskazhatch[];
 
-extern BtIntPtr _bskazhatch_entrypoint_0(s32 idx);
+extern BsScript _bskazhatch_entrypoint_0(BsScriptType idx);
 
 #endif // __BS_KAZ_HATCH_H__

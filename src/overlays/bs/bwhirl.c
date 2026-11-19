@@ -4,7 +4,7 @@
 #endif
 typedef struct player_state_s PlayerState;
 struct anctrl_s;
-
+#include "bs_script.h"
 void func_80800000_bsbwhirl(void *arg0) {
     *(s32 *)((u8 *)arg0 + 0x160) = 0;
 }
@@ -226,9 +226,9 @@ void bsbwhirl_entrypoint_1(BtIntPtr arg0) {
 void bsbwhirl_entrypoint_2(BtIntPtr arg0) { bainput_enable(arg0, 1, 1); func_8080017C_bsbwhirl(arg0); }
 
 
-s32 bsbwhirl_entrypoint_3(s32 arg0) {
+BsScript bsbwhirl_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_80800F98_bsbwhirl[];
-    return ((s32 *)&D_80800F98_bsbwhirl)[arg0];
+    return (BsScript)D_80800F98_bsbwhirl[arg0];
 }
 
 /* extern */
@@ -268,9 +268,9 @@ void bsbwhirl_entrypoint_6(PlayerState *arg0)
     func_8080017C_bsbwhirl(arg0);
 }
 
-s32 bsbwhirl_entrypoint_7(s32 arg0) {
+BsScript bsbwhirl_entrypoint_7(BsScriptType arg0) {
     extern BtIntPtr D_80800FA8_bsbwhirl[];
-    return ((s32 *)&D_80800FA8_bsbwhirl)[arg0];
+    return (BsScript)D_80800FA8_bsbwhirl[arg0];
 }
 
 /* extern */
@@ -327,9 +327,9 @@ void bsbwhirl_entrypoint_10(PlayerState *arg0)
     func_8080017C_bsbwhirl(arg0);
 }
 
-s32 bsbwhirl_entrypoint_11(s32 arg0) {
+BsScript bsbwhirl_entrypoint_11(BsScriptType arg0) {
     extern BtIntPtr D_80800FB8_bsbwhirl[];
-    return ((s32 *)&D_80800FB8_bsbwhirl)[arg0];
+    return (BsScript)D_80800FB8_bsbwhirl[arg0];
 }
 
 void bsbwhirl_entrypoint_12(PlayerState *arg0) {
@@ -446,9 +446,9 @@ void bsbwhirl_entrypoint_14(BtIntPtr arg0)
     baphysics_reset_gravity();
     func_8080017C_bsbwhirl(arg0);
 }
-s32 bsbwhirl_entrypoint_15(s32 arg0) {
+BsScript bsbwhirl_entrypoint_15(BsScriptType arg0) {
     extern BtIntPtr D_80800FC8_bsbwhirl[];
-    return ((s32 *)&D_80800FC8_bsbwhirl)[arg0];
+    return (BsScript)D_80800FC8_bsbwhirl[arg0];
 }
 
 /* extern */
@@ -503,9 +503,9 @@ void bsbwhirl_entrypoint_18(PlayerState *arg0)
     func_8080017C_bsbwhirl(arg0);
 }
 
-s32 bsbwhirl_entrypoint_19(s32 arg0) {
+BsScript bsbwhirl_entrypoint_19(BsScriptType arg0) {
     extern BtIntPtr D_80800FD8_bsbwhirl[];
-    return ((s32 *)&D_80800FD8_bsbwhirl)[arg0];
+    return (BsScript)D_80800FD8_bsbwhirl[arg0];
 }
 
 void bsbwhirl_entrypoint_20(BT_NATIVE_ONLY(s32 bt_a0))
@@ -525,9 +525,9 @@ void bsbwhirl_entrypoint_22(BtIntPtr arg0)
     _bsdrone_entrypoint_2();
     func_8080017C_bsbwhirl(arg0);
 }
-s32 bsbwhirl_entrypoint_23(s32 arg0) {
+BsScript bsbwhirl_entrypoint_23(BsScriptType arg0) {
     extern BtIntPtr D_80800FE8_bsbwhirl[];
-    return ((s32 *)&D_80800FE8_bsbwhirl)[arg0];
+    return (BsScript)D_80800FE8_bsbwhirl[arg0];
 }
 
 void bsbwhirl_entrypoint_24(BtIntPtr arg0)
@@ -559,9 +559,9 @@ void bsbwhirl_entrypoint_26(PlayerState *arg0) {
     bs_setState(self, sp24);
 }
 
-s32 bsbwhirl_entrypoint_27(s32 arg0) {
+BsScript bsbwhirl_entrypoint_27(BsScriptType arg0) {
     extern BtIntPtr D_80800FF8_bsbwhirl[];
-    return ((s32 *)&D_80800FF8_bsbwhirl)[arg0];
+    return (BsScript)D_80800FF8_bsbwhirl[arg0];
 }
 
 void func_80800EA0_bsbwhirl(PlayerState *arg0, void (*arg1)(PlayerState *)) {

@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "common.h"
-
 struct player_state_s;
 struct anctrl_s;
 
@@ -105,9 +105,9 @@ void bsturn_entrypoint_2(BtIntPtr arg0) {
     baroll_setIdeal(arg0, 0.0f);
 }
 
-s32 bsturn_entrypoint_3(s32 arg0) {
+BsScript bsturn_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_80800360_bsturn[];
-    return ((s32 *)&D_80800360_bsturn)[arg0];
+    return (BsScript)D_80800360_bsturn[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/turn.data.s */
 void _bsturn_entrypoint_2();

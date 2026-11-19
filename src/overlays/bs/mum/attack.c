@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "overlays/bs/mum/attack.h"
-
 void func_80800000_bsmumattack(PlayerState *self) {
     if (self->unk160.bytes[0] != 0) {
         func_800C2FDC(self->unk160.bytes[0]);
@@ -176,8 +176,8 @@ void func_808003DC_bsmumattack(PlayerState *self) {
     bs_setState(self, next_state);
 }
 
-BtIntPtr bsmumattack_entrypoint_0(s32 idx) {
-    return D_80800700_bsmumattack[idx];
+BsScript bsmumattack_entrypoint_0(BsScriptType idx) {
+    return (BsScript)D_80800700_bsmumattack[idx];
 }
 /* data_to_c.py: from asm/data/overlays/bs/mum/attack.data.s */
 s32 D_808006F0_bsmumattack [4] BT_DATA(4, overlays_bs_mum_attack, 0x0) = { 50724883, 84672534, 1966080017, 0 };

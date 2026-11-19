@@ -1,6 +1,6 @@
 #include "common.h"
 #include "overlays/ba/playerstate.h"
-
+#include "bs_script.h"
 void func_8009C128(PlayerState *, f32[3]);
 
 void func_80800000_bsbeefly(PlayerState *arg0) {
@@ -97,9 +97,9 @@ void func_808002B0_bsbeefly(BT_NATIVE_ONLY(PlayerState *bt_a0))
     _bsbee_entrypoint_0(BT_NATIVE_ONLY(bt_a0));
 }
 
-s32 bsbeefly_entrypoint_0(s32 arg0) {
+BsScript bsbeefly_entrypoint_0(BsScriptType arg0) {
     extern BtIntPtr D_80800E18_bsbeefly[];
-    return ((s32 *)&D_80800E18_bsbeefly)[arg0];
+    return (BsScript)D_80800E18_bsbeefly[arg0];
 }
 
 void func_808002E4_bsbeefly(PlayerState *arg0) {
@@ -375,9 +375,9 @@ void func_80800B18_bsbeefly(PlayerState *arg0)
     func_808002E4_bsbeefly(arg0);
     _bsbee_entrypoint_0(arg0);
 }
-s32 bsbeefly_entrypoint_1(s32 arg0) {
+BsScript bsbeefly_entrypoint_1(BsScriptType arg0) {
     extern BtIntPtr D_80800E50_bsbeefly[];
-    return ((s32 *)&D_80800E50_bsbeefly)[arg0];
+    return (BsScript)D_80800E50_bsbeefly[arg0];
 }
 
 /* extern */
@@ -419,9 +419,9 @@ void func_80800BE8_bsbeefly(BtIntPtr arg0)
     _bsbee_entrypoint_0(arg0);
 }
 
-s32 bsbeefly_entrypoint_2(s32 arg0) {
+BsScript bsbeefly_entrypoint_2(BsScriptType arg0) {
     extern BtIntPtr D_80800E60_bsbeefly[];
-    return ((s32 *)&D_80800E60_bsbeefly)[arg0];
+    return (BsScript)D_80800E60_bsbeefly[arg0];
 }
 
 void func_80800C2C_bsbeefly(BtIntPtr arg0)
@@ -454,9 +454,9 @@ void func_80800C94_bsbeefly(BtIntPtr arg0) {
     _bafly_entrypoint_17(arg0, 0x8C, 0x85, &sp1C);
 }
 
-s32 bsbeefly_entrypoint_3(s32 arg0) {
+BsScript bsbeefly_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_80800E70_bsbeefly[];
-    return ((s32 *)&D_80800E70_bsbeefly)[arg0];
+    return (BsScript)D_80800E70_bsbeefly[arg0];
 }
 
 void func_80800CE0_bsbeefly(BtIntPtr arg0)
@@ -486,9 +486,9 @@ void func_80800D50_bsbeefly(BtIntPtr arg0) {
     _bafly_entrypoint_14(arg0, 0x8C, 0x85);
 }
 
-s32 bsbeefly_entrypoint_4(s32 arg0) {
+BsScript bsbeefly_entrypoint_4(BsScriptType arg0) {
     extern BtIntPtr D_80800E80_bsbeefly[];
-    return ((s32 *)&D_80800E80_bsbeefly)[arg0];
+    return (BsScript)D_80800E80_bsbeefly[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/beefly.data.s */
 void func_80099B94(PlayerState *arg0);

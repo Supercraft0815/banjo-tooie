@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "common.h"
-
 struct player_state_s;
 
 void bsbkflamethrower_entrypoint_0(struct player_state_s *arg0, f32 arg1[3], f32 arg2[3]) {
@@ -138,9 +138,9 @@ void bsbkflamethrower_entrypoint_3(struct player_state_s *arg0) {
     bs_setState(arg0, sp24);
 }
 
-s32 bsbkflamethrower_entrypoint_4(s32 arg0) {
+BsScript bsbkflamethrower_entrypoint_4(BsScriptType arg0) {
     extern BtIntPtr D_80800450_bsbkflamethrower[];
-    return ((s32 *)&D_80800450_bsbkflamethrower)[arg0];
+    return (BsScript)D_80800450_bsbkflamethrower[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/bkflamethrower.data.s */
 void _bsbkflamethrower_entrypoint_1();

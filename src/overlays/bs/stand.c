@@ -1,6 +1,6 @@
 #include "common.h"
 #include "overlays/ba/playerstate.h"
-
+#include "bs_script.h"
 BtIntPtr func_80800000_bsstand(s32 *arg0) {
     extern BtIntPtr D_80800D90_bsstand[];
     return D_80800D90_bsstand[arg0[0x160 / 4]];
@@ -334,9 +334,9 @@ void bsstand_entrypoint_2(PlayerState *arg0) {
     func_800951B4(arg0);
 }
 
-s32 bsstand_entrypoint_3(s32 arg0) {
+BsScript bsstand_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_80800D98_bsstand[];
-    return ((s32 *)&D_80800D98_bsstand)[arg0];
+    return (BsScript)D_80800D98_bsstand[arg0];
 }
 
 /* extern */
@@ -375,9 +375,9 @@ void bsstand_entrypoint_5(PlayerState *arg0) {
 void bsstand_entrypoint_6(s32 arg0) 
 {
 }
-s32 bsstand_entrypoint_7(s32 arg0) {
+BsScript bsstand_entrypoint_7(BsScriptType arg0) {
     extern BtIntPtr D_80800DA8_bsstand[];
-    return ((s32 *)&D_80800DA8_bsstand)[arg0];
+    return (BsScript)D_80800DA8_bsstand[arg0];
 }
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) bsstand_entrypoint_8(BT_NATIVE_ONLY(PlayerState *bt_a0) BT_PASS2(, s32 bt_a1))
@@ -402,9 +402,9 @@ void bsstand_entrypoint_11(s32 arg0)
     _bsdrone_entrypoint_2(arg0);
 }
 
-s32 bsstand_entrypoint_12(s32 arg0) {
+BsScript bsstand_entrypoint_12(BsScriptType arg0) {
     extern BtIntPtr D_80800DB8_bsstand[];
-    return ((s32 *)&D_80800DB8_bsstand)[arg0];
+    return (BsScript)D_80800DB8_bsstand[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/stand.data.s */
 extern u8 D_80800D70_bsstand[];

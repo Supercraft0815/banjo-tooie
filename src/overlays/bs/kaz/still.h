@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #ifndef __BS_KAZ_STLL_H__
 #define __BS_KAZ_STLL_H__
-
 #include <ultra64.h>
 
 #include "core2/anctrl.h"
@@ -26,13 +26,13 @@
 extern void _bskazstill_entrypoint_0(PlayerState *self);
 extern void _bskazstill_entrypoint_1(PlayerState *self);
 extern void _bskazstill_entrypoint_2(PlayerState *self);
-extern BtIntPtr _bskazstill_entrypoint_3(s32 idx);
+extern BsScript _bskazstill_entrypoint_3(BsScriptType idx);
 extern BanjoStateId _bskazstill_entrypoint_4(PlayerState *self, BanjoStateId arg1);
 extern void _bskazstill_entrypoint_5(PlayerState *self);
 extern void _bskazstill_entrypoint_6(PlayerState *self);
 extern void _bskazstill_entrypoint_7(PlayerState *self);
-extern BtIntPtr _bskazstill_entrypoint_8(s32 idx);
-extern BtIntPtr _bskazstill_entrypoint_9(s32 idx);
-extern BtIntPtr _bskazstill_entrypoint_10(s32 idx);
+extern BsScript _bskazstill_entrypoint_8(BsScriptType idx);
+extern BsScript _bskazstill_entrypoint_9(BsScriptType idx);
+extern BsScript _bskazstill_entrypoint_10(BsScriptType idx);
 
 #endif // __BS_KAZ_STLL_H__

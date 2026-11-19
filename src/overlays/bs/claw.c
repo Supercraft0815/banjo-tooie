@@ -1,5 +1,5 @@
+#include "bs_script.h"
 #include "common.h"
-
 /* extern */
 
 struct player_state_s;
@@ -116,9 +116,9 @@ void bsclaw_entrypoint_2(BtIntPtr arg0) {
     bs_setState(arg0, sp20);
 }
 
-s32 bsclaw_entrypoint_3(s32 arg0) {
+BsScript bsclaw_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_80800400_bsclaw[];
-    return ((s32 *)&D_80800400_bsclaw)[arg0];
+    return (BsScript)D_80800400_bsclaw[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/claw.data.s */
 void _bsclaw_entrypoint_0();

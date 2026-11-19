@@ -1,6 +1,6 @@
+#include "bs_script.h"
 #include "common.h"
 #include "overlays/ba/playerstate.h"
-
 struct anctrl_s;
 
 void func_8009C128(PlayerState *, f32[3]);
@@ -155,9 +155,9 @@ void func_808003E0_bsbfly(BtIntPtr arg0) {
     func_800A4E30(arg0);
 }
 
-s32 bsbfly_entrypoint_0(s32 arg0) {
+BsScript bsbfly_entrypoint_0(BsScriptType arg0) {
     extern BtIntPtr D_80801D48_bsbfly[];
-    return ((s32 *)&D_80801D48_bsbfly)[arg0];
+    return (BsScript)D_80801D48_bsbfly[arg0];
 }
 
 void func_8080042C_bsbfly(PlayerState *arg0)
@@ -341,9 +341,9 @@ void func_80800624_bsbfly(PlayerState *arg0) {
     bs_setState((BtIntPtr)arg0, next_state);
 }
 
-s32 bsbfly_entrypoint_1(s32 arg0) {
+BsScript bsbfly_entrypoint_1(BsScriptType arg0) {
     extern BtIntPtr D_80801D58_bsbfly[];
-    return ((s32 *)&D_80801D58_bsbfly)[arg0];
+    return (BsScript)D_80801D58_bsbfly[arg0];
 }
 
 /* extern */
@@ -595,9 +595,9 @@ void func_80801138_bsbfly(BtIntPtr arg0)
     func_80800188_bsbfly(arg0);
 }
 
-s32 bsbfly_entrypoint_2(s32 arg0) {
+BsScript bsbfly_entrypoint_2(BsScriptType arg0) {
     extern BtIntPtr D_80801D68_bsbfly[];
-    return ((s32 *)&D_80801D68_bsbfly)[arg0];
+    return (BsScript)D_80801D68_bsbfly[arg0];
 }
 
 void func_80801178_bsbfly(PlayerState *arg0) {
@@ -709,9 +709,9 @@ void func_80801334_bsbfly(PlayerState *arg0) {
     bs_setState(arg0, sp34);
 }
 
-s32 bsbfly_entrypoint_3(s32 arg0) {
+BsScript bsbfly_entrypoint_3(BsScriptType arg0) {
     extern BtIntPtr D_80801D78_bsbfly[];
-    return ((s32 *)&D_80801D78_bsbfly)[arg0];
+    return (BsScript)D_80801D78_bsbfly[arg0];
 }
 
 /* extern */
@@ -855,9 +855,9 @@ void func_8080183C_bsbfly(BtIntPtr arg0) {
     func_8008E95C(arg0);
 }
 
-s32 bsbfly_entrypoint_4(s32 arg0) {
+BsScript bsbfly_entrypoint_4(BsScriptType arg0) {
     extern BtIntPtr D_80801D88_bsbfly[];
-    return ((s32 *)&D_80801D88_bsbfly)[arg0];
+    return (BsScript)D_80801D88_bsbfly[arg0];
 }
 
 /* extern */
@@ -877,9 +877,9 @@ void func_808018D0_bsbfly(BtIntPtr arg0) {
 
 void func_808018F4_bsbfly(BtIntPtr arg0) { void func_800A0CF4(PlayerState *, s32); func_800A0CF4(arg0, 0); _bafly_entrypoint_15(arg0); func_80800188_bsbfly(arg0); }
 
-s32 bsbfly_entrypoint_5(s32 arg0) {
+BsScript bsbfly_entrypoint_5(BsScriptType arg0) {
     extern BtIntPtr D_80801D98_bsbfly[];
-    return ((s32 *)&D_80801D98_bsbfly)[arg0];
+    return (BsScript)D_80801D98_bsbfly[arg0];
 }
 
 /* extern */
@@ -899,9 +899,9 @@ void func_80801980_bsbfly(BtIntPtr arg0) {
 
 void func_808019A4_bsbfly(BtIntPtr arg0) { void func_800A0CF4(PlayerState *, s32); func_800A0CF4(arg0, 0); _bafly_entrypoint_15(arg0); func_80800188_bsbfly(arg0); }
 
-s32 bsbfly_entrypoint_6(s32 arg0) {
+BsScript bsbfly_entrypoint_6(BsScriptType arg0) {
     extern BtIntPtr D_80801DA8_bsbfly[];
-    return ((s32 *)&D_80801DA8_bsbfly)[arg0];
+    return (BsScript)D_80801DA8_bsbfly[arg0];
 }
 
 /* extern */
@@ -922,9 +922,9 @@ void func_80801A44_bsbfly(BtIntPtr arg0)
     _bafly_entrypoint_18();
     func_80800188_bsbfly(arg0);
 }
-s32 bsbfly_entrypoint_7(s32 arg0) {
+BsScript bsbfly_entrypoint_7(BsScriptType arg0) {
     extern BtIntPtr D_80801DB8_bsbfly[];
-    return ((s32 *)&D_80801DB8_bsbfly)[arg0];
+    return (BsScript)D_80801DB8_bsbfly[arg0];
 }
 
 void func_80801A80_bsbfly(PlayerState *arg0) {
@@ -967,9 +967,9 @@ void func_80801B80_bsbfly(PlayerState *arg0)
     func_80800188_bsbfly(arg0);
 }
 
-s32 bsbfly_entrypoint_8(s32 arg0) {
+BsScript bsbfly_entrypoint_8(BsScriptType arg0) {
     extern BtIntPtr D_80801DC8_bsbfly[];
-    return ((s32 *)&D_80801DC8_bsbfly)[arg0];
+    return (BsScript)D_80801DC8_bsbfly[arg0];
 }
 
 void func_80801BB4_bsbfly(PlayerState *arg0) {
@@ -1021,9 +1021,9 @@ void func_80801CBC_bsbfly(BtIntPtr arg0)
     _bsdrone_entrypoint_2();
     func_80800188_bsbfly(arg0);
 }
-s32 bsbfly_entrypoint_9(s32 arg0) {
+BsScript bsbfly_entrypoint_9(BsScriptType arg0) {
     extern BtIntPtr D_80801DD8_bsbfly[];
-    return ((s32 *)&D_80801DD8_bsbfly)[arg0];
+    return (BsScript)D_80801DD8_bsbfly[arg0];
 }
 /* data_to_c.py: from asm/data/overlays/bs/bfly.data.s */
 void func_80099AA8();

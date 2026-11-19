@@ -4,7 +4,7 @@
 #endif
 #include "overlays/ba/playerstate.h"
 struct player_state_s;
-
+#include "bs_script.h"
 void func_800BA22C(BtIntPtr, s32);
 
 void func_80800000_bsvanswim(struct player_state_s *arg0) {
@@ -147,9 +147,9 @@ void func_808002D0_bsvanswim(void *arg0) {
     bs_setState(arg0, next_state);
 }
 
-s32 bsvanswim_entrypoint_0(s32 arg0) {
+BsScript bsvanswim_entrypoint_0(BsScriptType arg0) {
     extern BtIntPtr D_80800980_bsvanswim[];
-    return ((s32 *)&D_80800980_bsvanswim)[arg0];
+    return (BsScript)D_80800980_bsvanswim[arg0];
 }
 
 /* extern */
@@ -209,9 +209,9 @@ void func_808005E8_bsvanswim(struct player_state_s *arg0)
     func_80800174_bsvanswim(arg0);
 }
 
-s32 bsvanswim_entrypoint_1(s32 arg0) {
+BsScript bsvanswim_entrypoint_1(BsScriptType arg0) {
     extern BtIntPtr D_80800990_bsvanswim[];
-    return ((s32 *)&D_80800990_bsvanswim)[arg0];
+    return (BsScript)D_80800990_bsvanswim[arg0];
 }
 
 /* extern */
@@ -280,9 +280,9 @@ void func_80800808_bsvanswim(struct player_state_s *arg0)
     func_80800174_bsvanswim(arg0);
 }
 
-s32 bsvanswim_entrypoint_2(s32 arg0) {
+BsScript bsvanswim_entrypoint_2(BsScriptType arg0) {
     extern BtIntPtr D_808009A0_bsvanswim[];
-    return ((s32 *)&D_808009A0_bsvanswim)[arg0];
+    return (BsScript)D_808009A0_bsvanswim[arg0];
 }
 
 void func_8080083C_bsvanswim(BtIntPtr arg0)
