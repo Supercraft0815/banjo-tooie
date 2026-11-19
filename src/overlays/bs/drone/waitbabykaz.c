@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/anim_smooth.h"
+#endif
 BT_NATIVE_ONLY(struct player_state_s;)
 void bsdronewaitbabykaz_entrypoint_0(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(struct player_state_s *) arg0)
 {
@@ -7,7 +10,7 @@ void bsdronewaitbabykaz_entrypoint_0(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(struct play
 
 void bsdronewaitbabykaz_entrypoint_1(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(struct player_state_s *) arg0) {
     void _badata_entrypoint_3(void *self, void *assetId, f32 *arg2);
-    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);) BT_NATIVE_ONLY(void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);)
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);)
     BT_IDO_ONLY(s32 func_8009FFD8(BtIntPtr, s32, s32, s32, s32);) BT_NATIVE_ONLY(void func_8009FFD8(struct player_state_s *, s32, s32, s32, s32);)
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(f32) sp24;
     s32 sp20;

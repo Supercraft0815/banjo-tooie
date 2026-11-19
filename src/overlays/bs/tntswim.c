@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/anim_smooth.h"
+#endif
 #include "overlays/ba/playerstate.h"
 struct player_state_s;
 void func_80800000_bstntswim(struct player_state_s *arg0) {
@@ -91,7 +94,7 @@ void func_80800200_bstntswim(struct player_state_s *arg0) {
     void func_8009BC5C(struct player_state_s *, f32);
     void func_800A046C(struct player_state_s *);
     f32 func_800A3298(struct player_state_s *);
-    s32 baanim_playForDuration_loopSmooth(struct player_state_s *, s32, s32);
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(struct player_state_s *, s32, s32);)
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     s32 func_8009FFD8(struct player_state_s *, s32, s32, s32, s32);
     f32 speed;
@@ -104,7 +107,7 @@ void func_80800200_bstntswim(struct player_state_s *arg0) {
     func_8009BC5C(arg0, 2.0f);
     func_800A046C(arg0);
     speed = func_800A3298(arg0);
-    baanim_playForDuration_loopSmooth(arg0, 0xE7, 0x40D00000);
+    baanim_playForDuration_loopSmooth(arg0, 0xE7, BT_IDO_ONLY(0x40D00000) BT_NATIVE_ONLY(6.5f));
     velocity = func_800F10B4(speed, 40.0f, 1000.0f, -300.0f, -1200.0f);
     arg0->unk16C = velocity;
     baphysics_set_vertical_velocity(arg0, velocity);
@@ -155,12 +158,12 @@ s32 bstntswim_entrypoint_0(s32 arg0) {
 /* extern */
 
 void func_8080042C_bstntswim(struct player_state_s *arg0) {
-    s32 baanim_playForDuration_loopSmooth(struct player_state_s *, s32, s32);
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(struct player_state_s *, s32, s32);)
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     s32 func_8009FFD8(struct player_state_s *, s32, s32, s32, s32);
     s32 yaw_setVelocityBounded(struct player_state_s *, s32, s32);
     func_80800114_bstntswim(arg0);
-    baanim_playForDuration_loopSmooth(arg0, 0xE7, 0x40D00000);
+    baanim_playForDuration_loopSmooth(arg0, 0xE7, BT_IDO_ONLY(0x40D00000) BT_NATIVE_ONLY(6.5f));
     func_8009FFD8(arg0, 1, 3, 3, 2);
     yaw_setVelocityBounded(arg0, 0x43FA0000, 0x40A00000);
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
@@ -220,7 +223,7 @@ s32 bstntswim_entrypoint_1(s32 arg0) {
 /* extern */
 
 void func_80800630_bstntswim(struct player_state_s *arg0) {
-    s32 baanim_playForDuration_loopSmooth(struct player_state_s *, s32, s32);
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(struct player_state_s *, s32, s32);)
     s32 baanim_setDurationRange(struct player_state_s *, s32, s32);
     s32 baphysics_set_type(struct player_state_s *, s32);
     s32 func_8008C9F0(struct player_state_s *, s32, s32, s32, f32);
@@ -229,7 +232,7 @@ void func_80800630_bstntswim(struct player_state_s *arg0) {
     s32 yaw_setUpdateType(struct player_state_s *, s32);
     s32 yaw_setVelocityBounded(struct player_state_s *, s32, s32);
     func_80800114_bstntswim(arg0);
-    baanim_playForDuration_loopSmooth(arg0, 0xE8, 0x3F4CCCCD);
+    baanim_playForDuration_loopSmooth(arg0, 0xE8, BT_IDO_ONLY(0x3F4CCCCD) BT_NATIVE_ONLY(0.8f));
     func_8008CA4C(arg0, 2);
     baanim_setDurationRange(arg0, 0x3E99999A, 0x3FC00000);
     func_8008C9F0(arg0, 0x41F00000, 0x43480000, 0x3F4CCCCD, 0.45f);

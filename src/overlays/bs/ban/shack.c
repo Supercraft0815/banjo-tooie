@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/anim_smooth.h"
+#endif
 #include "overlays/ba/playerstate.h"
 
 struct anctrl_s;
@@ -129,12 +132,12 @@ void func_808002AC_bsbanshack(PlayerState *arg0) {
 /* extern */
 
 void func_8080030C_bsbanshack(PlayerState *arg0) {
-    s32 baanim_playForDuration_onceSmooth(void *, s32, s32);
+    BT_IDO_ONLY(s32 baanim_playForDuration_onceSmooth(void *, s32, s32);)
     s32 bainput_enable(void *, s32, s32);
     void baphysics_set_target_horizontal_velocity(PlayerState *arg0, f32 vel);
     s32 func_8009FFD8(PlayerState *, s32, s32, s32, s32);
     arg0->unk15C.bytes[1] = 0;
-    baanim_playForDuration_onceSmooth(arg0, 0x145, 0x3FB33333);
+    baanim_playForDuration_onceSmooth(arg0, 0x145, BT_IDO_ONLY(0x3FB33333) BT_NATIVE_ONLY(1.4f));
     func_8009FFD8(arg0, 1, 1, 3, 2);
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
     bainput_enable(arg0, 5, 0);
@@ -173,7 +176,7 @@ void func_80800430_bsbanshack(PlayerState *arg0)
     func_80800164_bsbanshack(arg0);
 }
 
-void func_80800450_bsbanshack(PlayerState *arg0) { s32 baanim_playForDuration_onceSmooth(void *, s32, s32); void baphysics_set_target_horizontal_velocity(PlayerState *, f32); s32 func_8009FFD8(PlayerState *, s32, s32, s32, s32); func_8080021C_bsbanshack(arg0); baanim_playForDuration_onceSmooth(arg0, 0x295, 0x3FB33333); func_8009FFD8(arg0, 1, 1, 1, 2); baphysics_set_target_horizontal_velocity(arg0, 0.0f); }
+void func_80800450_bsbanshack(PlayerState *arg0) { BT_IDO_ONLY(s32 baanim_playForDuration_onceSmooth(void *, s32, s32);) void baphysics_set_target_horizontal_velocity(PlayerState *, f32); s32 func_8009FFD8(PlayerState *, s32, s32, s32, s32); func_8080021C_bsbanshack(arg0); baanim_playForDuration_onceSmooth(arg0, 0x295, BT_IDO_ONLY(0x3FB33333) BT_NATIVE_ONLY(1.4f)); func_8009FFD8(arg0, 1, 1, 1, 2); baphysics_set_target_horizontal_velocity(arg0, 0.0f); }
 
 /* extern */
 
@@ -346,14 +349,14 @@ void func_80800928_bsbanshack(PlayerState *arg0)
 }
 
 void func_80800948_bsbanshack(PlayerState *arg0) {
-    s32 baanim_playForDuration_loopSmooth(void *, s32, s32);
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(void *, s32, s32);)
     void baanim_setDurationRange(PlayerState *, f32, f32);
     void func_8008C9F0(PlayerState *, f32, f32, f32, f32);
     void func_8008CA30(PlayerState *, f32);
     s32 func_8009FFD8(PlayerState *, s32, s32, s32, s32);
 
     func_8080021C_bsbanshack(arg0);
-    baanim_playForDuration_loopSmooth(arg0, 0x146, 0x3F333333);
+    baanim_playForDuration_loopSmooth(arg0, 0x146, BT_IDO_ONLY(0x3F333333) BT_NATIVE_ONLY(0.7f));
     func_8009FFD8(arg0, 2, 1, 1, 2);
     baanim_setDurationRange(arg0, 0.1f, 5.0f);
     func_8008C9F0(arg0, 30.0f, 300.0f, 0.8f, 0.5f);
@@ -442,7 +445,7 @@ void func_80800BF0_bsbanshack(PlayerState *arg0)
     func_80800164_bsbanshack(arg0);
 }
 
-void func_80800C10_bsbanshack(PlayerState *arg0) { s32 baanim_playForDuration_loopSmooth(void *, s32, s32); void baphysics_set_target_horizontal_velocity(PlayerState *, f32); s32 func_8009FFD8(PlayerState *, s32, s32, s32, s32); func_8080021C_bsbanshack(arg0); baanim_playForDuration_loopSmooth(arg0, 0x293, 0x40ACCCCD); func_8009FFD8(arg0, 1, 1, 1, 2); baphysics_set_target_horizontal_velocity(arg0, 0.0f); }
+void func_80800C10_bsbanshack(PlayerState *arg0) { BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(void *, s32, s32);) void baphysics_set_target_horizontal_velocity(PlayerState *, f32); s32 func_8009FFD8(PlayerState *, s32, s32, s32, s32); func_8080021C_bsbanshack(arg0); baanim_playForDuration_loopSmooth(arg0, 0x293, BT_IDO_ONLY(0x40ACCCCD) BT_NATIVE_ONLY(5.4f)); func_8009FFD8(arg0, 1, 1, 1, 2); baphysics_set_target_horizontal_velocity(arg0, 0.0f); }
 
 /* extern */
 

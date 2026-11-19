@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/anim_smooth.h"
+#endif
 #ifdef BT_NATIVE // complete the enum forward declarations below
 #include "overlays/ba/assets.h"
 #endif
@@ -134,11 +137,11 @@ void func_8080016C_bsride(BT_NATIVE_ONLY(s32 bt_a0))
 /* extern */
 
 void func_8080018C_bsride(BtIntPtr arg0) {
-    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);)
     void func_8009C128(PlayerState *, f32[3]);
     void func_80800000_bsride(PlayerState *);
     func_80800000_bsride(arg0);
-    baanim_playForDuration_loopSmooth(arg0, 0x256, 0x3F666666);
+    baanim_playForDuration_loopSmooth(arg0, 0x256, BT_IDO_ONLY(0x3F666666) BT_NATIVE_ONLY(0.9f));
     func_8009C128(arg0, arg0 + 0x16C);
 }
 
@@ -250,24 +253,24 @@ void func_808004AC_bsride(struct player_state_s *arg0) {
 /* extern */
 
 void func_808004D8_bsride(struct player_state_s *arg0) {
-    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);)
     void func_80800000_bsride(PlayerState *);
     func_80800000_bsride(arg0);
-    baanim_playForDuration_loopSmooth(arg0, 0x281, 0x3F333333);
+    baanim_playForDuration_loopSmooth(arg0, 0x281, BT_IDO_ONLY(0x3F333333) BT_NATIVE_ONLY(0.7f));
     func_80093230(arg0, 1.35f);
     (arg0->unk160.word) = 0;
 }
 
 void func_80800524_bsride(struct player_state_s *arg0) {
     int baanim_isStopped(struct player_state_s *);
-    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);)
     void bs_setState(void *, s32);
     s32 next_state;
 
     next_state = 0;
     if (arg0->unk160.word == 1) {
         if (baanim_isStopped(arg0)) {
-            baanim_playForDuration_loopSmooth(arg0, 0x281, 0x3F333333);
+            baanim_playForDuration_loopSmooth(arg0, 0x281, BT_IDO_ONLY(0x3F333333) BT_NATIVE_ONLY(0.7f));
             arg0->unk160.word = 0;
         }
     }
@@ -295,10 +298,10 @@ void func_808005B8_bsride(BT_NATIVE_ONLY(s32 bt_a0))
 /* extern */
 
 void func_808005D8_bsride(BtIntPtr arg0) {
-    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);)
     void func_80800000_bsride(PlayerState *);
     func_80800000_bsride(arg0);
-    baanim_playForDuration_loopSmooth(arg0, 0x83, 0x3FE66666);
+    baanim_playForDuration_loopSmooth(arg0, 0x83, BT_IDO_ONLY(0x3FE66666) BT_NATIVE_ONLY(1.8f));
 }    typedef struct { u8 pad0[0x15C]; s32 unk15C; } Objride_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
@@ -403,13 +406,13 @@ void func_8080084C_bsride(BtIntPtr arg0)
 }
 
 void func_80800878_bsride(PlayerState *arg0) {
-    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);)
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     void func_800961AC(PlayerState *, s32);
     void func_8009FFD8();
     void func_800A34E4(void *, s32);
     func_80800000_bsride(arg0);
-    baanim_playForDuration_loopSmooth(arg0, 0x481, 0x3F547AE1);
+    baanim_playForDuration_loopSmooth(arg0, 0x481, BT_IDO_ONLY(0x3F547AE1) BT_NATIVE_ONLY(0.83f));
     func_8009FFD8(arg0, 1, 1, 3, 7);
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
     func_800A34E4(arg0, 0);

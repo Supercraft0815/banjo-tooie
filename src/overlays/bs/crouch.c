@@ -1,14 +1,17 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/anim_smooth.h"
+#endif
 #include "overlays/ba/playerstate.h"
 void func_80800000_bscrouch(BtIntPtr arg0) {
-    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
-    baanim_playForDuration_loopSmooth(arg0, 0x10C, 0x3F000000);
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);)
+    baanim_playForDuration_loopSmooth(arg0, 0x10C, BT_IDO_ONLY(0x3F000000) BT_NATIVE_ONLY(0.5f));
     (((PlayerState *)arg0)->unk15C.word) = 4;
 }
 
 void func_80800034_bscrouch(BtIntPtr arg0) {
-    s32 baanim_playForDuration_onceSmooth(BtIntPtr, s32, s32);
-    baanim_playForDuration_onceSmooth(arg0, 0x116, 0x40000000);
+    BT_IDO_ONLY(s32 baanim_playForDuration_onceSmooth(BtIntPtr, s32, s32);)
+    baanim_playForDuration_onceSmooth(arg0, 0x116, BT_IDO_ONLY(0x40000000) BT_NATIVE_ONLY(2.0f));
     (((PlayerState *)arg0)->unk15C.word) = 2;
 }
 

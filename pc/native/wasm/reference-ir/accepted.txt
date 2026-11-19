@@ -113,3 +113,11 @@ func_808002F4_chglowbo passes the unsigned halfword at offset 0x14 as
 argument 3 (IDO lhu). Each complete canonical function differs by one
 sext-to-zext substitution. See signature-four-ir.log and
 signature-four-original-loads.log under build/acceptance/n2-2026-11-18/.
+
+2026-11-19  N2 Kazooie animation duration
+func_80800000_bskazhatch and func_808009C8_bskazfly pass 3.0f and 1.0f
+to baanim_playForDuration_onceSmooth. Original IDO puts 0x40400000 and
+0x3f800000 in the third argument register. The old guest interpreted the
+integer literals as float bits. Those two arguments are the only canonical
+IR changes. See signature-five-final-ir.log and signature-five-original-loads.log
+in build/acceptance/n2-2026-11-18/.

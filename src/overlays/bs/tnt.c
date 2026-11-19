@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/anim_smooth.h"
+#endif
 #ifdef BT_NATIVE // complete the enum forward declarations below
 #include "overlays/ba/assets.h"
 #endif
@@ -256,7 +259,7 @@ void func_80800720_bstnt(BtIntPtr arg0) {
 
 s32 func_808007EC_bstnt(BtIntPtr arg0, s32 arg1) {
     void func_8009FFD8();
-    void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);
+    BT_IDO_ONLY(void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);)
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     void baroll_setIdeal(BtIntPtr, f32);
     f32 func_80092BE8(struct player_state_s *);
@@ -391,7 +394,7 @@ void func_80800B60_bstnt(struct player_state_s *arg0, s32 arg1) {
     void _bamovegoto_entrypoint_12(void *, f32 *);
     void _bamovegoto_entrypoint_13(void *);
     void _bamovegoto_entrypoint_7(void *, f32);
-    void baanim_playForDuration_onceSmooth(PlayerState *, s32, f32);
+    BT_IDO_ONLY(void baanim_playForDuration_onceSmooth(PlayerState *, s32, f32);)
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     void func_8008F880(Unk80132ED0 *, f32 *);
     void func_8009C128(PlayerState *, f32 *);
@@ -1165,11 +1168,11 @@ void func_808020EC_bstnt(BtIntPtr arg0)
 }
 void func_80802114_bstnt(void *arg0) {
     void *self;
-    s32 baanim_playForDuration_loopSmooth(void *, s32, s32);
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(void *, s32, s32);)
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     self = arg0;
     bstnt_entrypoint_3(self);
-    baanim_playForDuration_loopSmooth(self, 0xE5, 0x40D00000);
+    baanim_playForDuration_loopSmooth(self, 0xE5, BT_IDO_ONLY(0x40D00000) BT_NATIVE_ONLY(6.5f));
     func_8009FFD8(self, 1, 1, 1, 2);
     baphysics_set_target_horizontal_velocity(self, 0.0f);
     func_800909CC(self);

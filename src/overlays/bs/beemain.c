@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/anim_smooth.h"
+#endif
 
 struct player_state_s;
 void _babee_entrypoint_2(struct player_state_s *self);
@@ -34,11 +37,11 @@ void func_80800058_bsbeemain(struct player_state_s *arg0) {
 
 void func_808000C0_bsbeemain(void *arg0) {
     void *self;
-    s32 baanim_playForDuration_loopSmooth(void *, s32, s32);
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(void *, s32, s32);)
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     self = arg0;
     _bsbee_entrypoint_1(self);
-    baanim_playForDuration_loopSmooth(self, 0x1DE, 0x40400000);
+    baanim_playForDuration_loopSmooth(self, 0x1DE, BT_IDO_ONLY(0x40400000) BT_NATIVE_ONLY(3.0f));
     func_8009FFD8(self, 1, 1, 1, 2);
     baphysics_set_target_horizontal_velocity(self, 0.0f);
     func_800909CC(self);
@@ -95,11 +98,11 @@ s32 bsbeemain_entrypoint_0(s32 arg0) {
 }
 
 void func_80800238_bsbeemain(struct player_state_s *arg0) {
-    s32 baanim_playForDuration_loopSmooth(void *, s32, s32);
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(void *, s32, s32);)
     void func_8008C9F0(struct player_state_s *, f32, f32, f32, f32);
 
     _bsbee_entrypoint_1(arg0);
-    baanim_playForDuration_loopSmooth(arg0, 0x1DD, 0x3EC28F5C);
+    baanim_playForDuration_loopSmooth(arg0, 0x1DD, BT_IDO_ONLY(0x3EC28F5C) BT_NATIVE_ONLY(0.38f));
     func_8009FFD8(arg0, 2, 1, 1, 2);
     func_8008C9F0(arg0, 30.0f, 375.0f, 0.6f, 0.4f);
     func_800909CC(arg0);

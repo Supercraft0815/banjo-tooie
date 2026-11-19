@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/anim_smooth.h"
+#endif
 #ifdef BT_NATIVE // complete the enum forward declarations below
 #include "overlays/ba/assets.h"
 #endif
@@ -706,14 +709,14 @@ void func_8080100C_bswasher(BtIntPtr arg0)
     func_808000F0_bswasher(arg0);
 }
 void func_80801034_bswasher(struct player_state_s *arg0) {
-    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);)
     void baanim_setDurationRange(struct player_state_s *, f32, f32);
     void func_8008C9F0(struct player_state_s *, f32, f32, f32, f32);
     void func_8008CA30(struct player_state_s *, f32);
     void func_8009FFD8();
 
     func_808001A8_bswasher(arg0);
-    baanim_playForDuration_loopSmooth(arg0, 0x359, 0x3F800000);
+    baanim_playForDuration_loopSmooth(arg0, 0x359, BT_IDO_ONLY(0x3F800000) BT_NATIVE_ONLY(1.0f));
     func_8009FFD8(arg0, 2, 3, 1, 0xE);
     baanim_setDurationRange(arg0, 0.3f, 1.5f);
     func_8008C9F0(arg0, 30.0f, 900.0f, 0.7f, 0.3f);
@@ -880,11 +883,11 @@ void func_8080142C_bswasher(BtIntPtr arg0)
 }
 void func_80801454_bswasher(BtIntPtr arg0) {
     void func_8009FFD8();
-    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);)
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     void func_800909CC(struct player_state_s *);
     func_808001A8_bswasher(arg0);
-    baanim_playForDuration_loopSmooth(arg0, 0x356, 0x4079999A);
+    baanim_playForDuration_loopSmooth(arg0, 0x356, BT_IDO_ONLY(0x4079999A) BT_NATIVE_ONLY(3.9f));
     func_8009FFD8(arg0, 1, 3, 1, 2);
     func_808000BC_bswasher(arg0);
     baphysics_set_target_horizontal_velocity(arg0, 0.0f);
@@ -936,7 +939,7 @@ s32 bswasher_entrypoint_9(s32 arg0) {
 }
 
 void func_808015EC_bswasher(BtIntPtr arg0, u32 arg1) {
-    void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);
+    BT_IDO_ONLY(void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);)
     void func_8009DBB0(struct player_state_s *, s32, f32, f32, s32);
     void func_8009FFD8();
     s32 func_800C2FDC(u8);
@@ -1086,7 +1089,7 @@ void func_80801B10_bswasher(struct player_state_s *arg0)
 }
 
 void func_80801B30_bswasher(struct player_state_s *arg0) {
-    void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);
+    BT_IDO_ONLY(void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);)
     void func_8009FFD8();
     f32 yaw_get(struct player_state_s *);
     void yaw_setIdeal(struct player_state_s *, f32);

@@ -34,7 +34,7 @@ typedef enum asset_e AssetId;
 
 void bsdronebitten_entrypoint_1(PlayerState *arg0) {
     void _badata_entrypoint_4(PlayerState *, AssetId *, f32 *);
-    void baanim_playForDuration_loopSmooth(PlayerState *, AssetId, f32);
+    BT_IDO_ONLY(void baanim_playForDuration_loopSmooth(PlayerState *, AssetId, f32);)
     void baphysics_set_gravity(PlayerState *, f32);
     void baphysics_set_vertical_velocity(PlayerState *, f32);
     void bastick_pushZone(PlayerState *);
@@ -131,7 +131,7 @@ void bsdronebitten_entrypoint_6(BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(struct play
 
 void bsdronebitten_entrypoint_7(PlayerState *arg0) {
     void _badata_entrypoint_4(PlayerState *, AssetId *, f32 *);
-    void baanim_playForDuration_loopSmooth(PlayerState *, AssetId, f32);
+    BT_IDO_ONLY(void baanim_playForDuration_loopSmooth(PlayerState *, AssetId, f32);)
 #ifndef BT_NATIVE
     void func_8009FFD8();
 #endif

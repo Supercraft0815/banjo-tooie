@@ -672,7 +672,7 @@ void bswalk_entrypoint_18(s32 arg0)
 
 void bswalk_entrypoint_19(PlayerState *arg0) {
 #ifndef BT_NATIVE
-    void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
+    BT_IDO_ONLY(void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);)
 #endif
     void baanim_setDurationRange(PlayerState *, f32, f32);
     void func_8008C9F0(PlayerState *, f32, f32, f32, f32);

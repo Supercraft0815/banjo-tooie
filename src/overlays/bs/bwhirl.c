@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/anim_smooth.h"
+#endif
 typedef struct player_state_s PlayerState;
 struct anctrl_s;
 
@@ -231,10 +234,10 @@ s32 bsbwhirl_entrypoint_3(s32 arg0) {
 /* extern */
 
 void bsbwhirl_entrypoint_4(BtIntPtr arg0) {
-    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);)
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     void func_8009FFD8(PlayerState *, int, int, s32, int);
-    baanim_playForDuration_loopSmooth(arg0, 0x23, 0x3F800000);
+    baanim_playForDuration_loopSmooth(arg0, 0x23, BT_IDO_ONLY(0x3F800000) BT_NATIVE_ONLY(1.0f));
     func_8009FFD8(arg0, 1, 1, 1, 2);
     baphysics_set_target_horizontal_velocity((void *)arg0, 0.0f);
 }
@@ -273,10 +276,10 @@ s32 bsbwhirl_entrypoint_7(s32 arg0) {
 /* extern */
 
 void bsbwhirl_entrypoint_8(BtIntPtr arg0) {
-    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);)
     s32 func_8008C9F0(BtIntPtr, s32, s32, s32, f32);
     void func_8009FFD8(PlayerState *, int, int, s32, int);
-    baanim_playForDuration_loopSmooth(arg0, 0x11, 0x3F07AE14);
+    baanim_playForDuration_loopSmooth(arg0, 0x11, BT_IDO_ONLY(0x3F07AE14) BT_NATIVE_ONLY(0.53f));
     func_8008C9F0(arg0, 0x42A00000, 0x43D48000, 0x3F0F5C29, 0.4f);
     func_8009FFD8(arg0, 2, 1, 1, 2);
 }

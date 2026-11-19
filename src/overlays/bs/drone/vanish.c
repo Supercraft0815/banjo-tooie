@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/anim_smooth.h"
+#endif
 BT_NATIVE_ONLY(struct player_state_s;)
 typedef struct { u8 pad0[0x188]; union { void * unk188; s32 * unk188_s32p; }; } Objvanish_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void func_80800000_bsdronevanish(void *arg0, s32 arg1) {
     void _batimer_set(struct player_state_s *, s32, f32);
@@ -96,12 +99,12 @@ void func_808002A4_bsdronevanish(void *arg0) {
 void bsdronevanish_entrypoint_0(BT_IDO_ONLY(void *) BT_NATIVE_ONLY(struct player_state_s *) arg0) {
     void _badata_entrypoint_3(void *self, void *assetId, f32 *arg2);
     void _bastatemem_entrypoint_0(void *, s32);
-    s32 baanim_playForDuration_loopSmooth(void *, s32, s32);
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(void *, s32, s32);)
     s32 func_800961AC(void *, s32);
     s32 func_8009FFD8(void *, s32, s32, s32, s32);
     void func_80800000_bsdronevanish(void *, s32);
-    s32 sp2C;
-    s32 sp28;
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(f32) sp2C;
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(AssetId) sp28;
 
     _bastatemem_entrypoint_0(arg0, 0x1C);
     _badata_entrypoint_3(arg0, &sp28, &sp2C);

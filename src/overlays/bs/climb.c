@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/anim_smooth.h"
+#endif
 
 void func_80800000_bsclimb(void *arg0, s32 arg1) {
     u32 func_80098634(void *arg0);
@@ -122,7 +125,7 @@ int func_80800298_bsclimb(struct player_state_s *arg0) {
 }
 
 void bsclimb_entrypoint_0(BtIntPtr arg0) {
-    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);)
     s32 func_8008CA4C(void *, s32);
     void func_8008FE68(f32 *);
     void func_80098590(f32 **, f32 *);
@@ -143,7 +146,7 @@ void bsclimb_entrypoint_0(BtIntPtr arg0) {
         yaw_applyIdeal(arg0);
     }
     func_800C6DA0(0x40);
-    baanim_playForDuration_loopSmooth(arg0, 0xB2, 0x4028F5C3);
+    baanim_playForDuration_loopSmooth(arg0, 0xB2, BT_IDO_ONLY(0x4028F5C3) BT_NATIVE_ONLY(2.64f));
     func_8008CA4C(arg0, 1);
     func_808000E8_bsclimb(arg0);
     *(s32 *)(arg0 + 0x160) = 1;
@@ -154,8 +157,8 @@ void bsclimb_entrypoint_0(BtIntPtr arg0) {
 void bsclimb_entrypoint_1(struct player_state_s *arg0) {
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     s32 anctrl_isStopped(struct anctrl_s *);
-    void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);
-    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
+    BT_IDO_ONLY(void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);)
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);)
     void func_800956B8(struct player_state_s *);
     f32 func_800D8FF8(void);
     int bakey_pressed(struct player_state_s *, int);
@@ -176,7 +179,7 @@ void bsclimb_entrypoint_1(struct player_state_s *arg0) {
             break;
         case 1:
             if (anctrl_isStopped(anim)) {
-                baanim_playForDuration_loopSmooth(arg0, 0xB2, 0x4028F5C3);
+                baanim_playForDuration_loopSmooth(arg0, 0xB2, BT_IDO_ONLY(0x4028F5C3) BT_NATIVE_ONLY(2.64f));
                 func_80800258_bsclimb(arg0, 3.0f, 4.0f);
                 *(s32 *)((u8 *)arg0 + 0x15C) = 0;
             }
@@ -207,12 +210,12 @@ s32 bsclimb_entrypoint_3(s32 arg0) {
 }
 
 void bsclimb_entrypoint_4(BtIntPtr arg0) {
-    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);)
     void baanim_setDurationRange(struct player_state_s *, f32, f32);
     void func_8008C9F0(struct player_state_s *, f32, f32, f32, f32);
     s32 func_8008CA4C(void *, s32);
 
-    baanim_playForDuration_loopSmooth(arg0, 0xA, 0x3F666666);
+    baanim_playForDuration_loopSmooth(arg0, 0xA, BT_IDO_ONLY(0x3F666666) BT_NATIVE_ONLY(0.9f));
     func_8008CA4C(arg0, 3);
     baanim_setDurationRange(arg0, 0.3f, 1.5f);
     func_8008C9F0(arg0, 100.0f, 300.0f, 0.6f, 0.4f);
@@ -282,11 +285,11 @@ s32 bsclimb_entrypoint_7(s32 arg0) {
 /* extern */
 
 void bsclimb_entrypoint_8(BtIntPtr arg0) {
-    s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(BtIntPtr, s32, s32);)
     s32 baphysics_set_type(void *, s32);
     s32 func_8008CA4C(void *, s32);
     s32 func_808000E8_bsclimb(BtIntPtr);
-    baanim_playForDuration_loopSmooth(arg0, 0xB2, 0x4028F5C3);
+    baanim_playForDuration_loopSmooth(arg0, 0xB2, BT_IDO_ONLY(0x4028F5C3) BT_NATIVE_ONLY(2.64f));
     func_8008CA4C(arg0, 1);
     func_808000E8_bsclimb(arg0);
     baphysics_set_type(arg0, 7);

@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/anim_smooth.h"
+#endif
 #include "overlays/ba/playerstate.h"
 #ifdef BT_NATIVE // complete the enum forward declarations below
 #include "overlays/ba/assets.h"
@@ -77,7 +80,7 @@ void func_8080019C_bsbansnooze(PlayerState *arg0) {
     }
 }
 
-void baanim_playForDuration_onceSmooth(PlayerState *, s32, f32);
+BT_IDO_ONLY(void baanim_playForDuration_onceSmooth(PlayerState *, s32, f32);)
 void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
 
 void func_808001FC_bsbansnooze(PlayerState *arg0) {
@@ -173,13 +176,13 @@ void func_808004C0_bsbansnooze(PlayerState *arg0)
 /* extern */
 
 void func_808004E0_bsbansnooze(PlayerState *arg0) {
-    s32 baanim_playForDuration_loopSmooth(PlayerState *, s32, s32);
+    BT_IDO_ONLY(s32 baanim_playForDuration_loopSmooth(PlayerState *, s32, s32);)
     s32 baanim_setDurationRange(PlayerState *, s32, s32);
     s32 func_8008C9F0(PlayerState *, s32, s32, f32, f32);
     s32 func_8008CA30(PlayerState *, s32);
     s32 yaw_setVelocityBounded(PlayerState *, f32, f32);
     func_80800098_bsbansnooze(arg0);
-    baanim_playForDuration_loopSmooth(arg0, 0x278, 0x3F333333);
+    baanim_playForDuration_loopSmooth(arg0, 0x278, BT_IDO_ONLY(0x3F333333) BT_NATIVE_ONLY(0.7f));
     func_8009FFD8(arg0, 2, 3, 8, 0xE);
     yaw_setVelocityBounded(arg0, 100.0f, 3.5f);
     baanim_setDurationRange(arg0, 0x3DCCCCCD, 0x40A00000);

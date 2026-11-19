@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/anim_smooth.h"
+#endif
 
 void func_80800000_bsbswim(BtIntPtr arg0) {
     func_8009FFD8(arg0, 0x1, 0x3, 0x3, 0x9);
@@ -371,7 +374,7 @@ s32 bsbswim_entrypoint_2(s32 arg0) {
 }
 
 void func_8080090C_bsbswim(struct player_state_s *arg0) {
-    void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
+    BT_IDO_ONLY(void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);)
     void _baswim_entrypoint_10(void *, f32);
     void _baswim_entrypoint_8(void *, f32);
     void func_8009BC5C(struct player_state_s *, f32);
@@ -598,14 +601,14 @@ s32 bsbswim_entrypoint_6(s32 arg0) {
 void func_80800EC8_bsbswim(void *arg0) {
     void _baswim_entrypoint_10(void *, f32);
     void _baswim_entrypoint_8(void *, f32);
-    s32 baanim_playForDuration_onceSmooth(struct player_state_s *, s32, s32);
+    BT_IDO_ONLY(s32 baanim_playForDuration_onceSmooth(struct player_state_s *, s32, s32);)
     void func_8009B94C(u8 *, f32 *);
     void func_8009BFE4(struct player_state_s *, f32, f32);
     void func_8009D874(struct player_state_s *);
     s32 func_800C6DA0(s32);
     s32 yaw_setVelocityBounded(struct player_state_s *, s32, s32);
     func_800C6DA0(0x3F);
-    baanim_playForDuration_onceSmooth(arg0, 0x3C, 0x3FC00000);
+    baanim_playForDuration_onceSmooth(arg0, 0x3C, BT_IDO_ONLY(0x3FC00000) BT_NATIVE_ONLY(1.5f));
     func_80800000_bsbswim(arg0);
     yaw_setVelocityBounded(arg0, 0x43FA0000, 0x40A00000);
     func_8009B94C(arg0, 0);
@@ -678,7 +681,7 @@ s32 bsbswim_entrypoint_7(s32 arg0) {
 void func_808010B8_bsbswim(void *arg0) {
     void _basudie_entrypoint_1(struct player_state_s *);
     void _batimer_set(struct player_state_s *, s32, f32);
-    void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
+    BT_IDO_ONLY(void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);)
     void func_8009B94C(u8 *, f32 *);
     void func_8009BA9C(struct player_state_s *, f32 *);
     void func_8009BC5C(struct player_state_s *, f32);
@@ -787,7 +790,7 @@ s32 bsbswim_entrypoint_8(s32 arg0) {
 }
 
 void func_80801428_bsbswim(void *arg0) {
-    void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
+    BT_IDO_ONLY(void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);)
     void func_8009B94C(u8 *, f32 *);
     void _baswim_entrypoint_9(struct player_state_s *, f32);
     void func_8009BA9C(struct player_state_s *, f32 *);
@@ -982,11 +985,11 @@ void func_80801930_bsbswim(u8 *arg0) { void _baduo_entrypoint_7(void *arg0, s32 
 /* extern */
 
 void func_8080196C_bsbswim(struct player_state_s *arg0) {
-    s32 baanim_playForDuration_onceSmooth(struct player_state_s *, s32, s32);
+    BT_IDO_ONLY(s32 baanim_playForDuration_onceSmooth(struct player_state_s *, s32, s32);)
     void func_8009B94C(u8 *, f32 *);
     void func_8009BA9C(struct player_state_s *, f32 *);
     func_80800030_bsbswim(arg0);
-    baanim_playForDuration_onceSmooth(arg0, 0x131, 0x3FC00000);
+    baanim_playForDuration_onceSmooth(arg0, 0x131, BT_IDO_ONLY(0x3FC00000) BT_NATIVE_ONLY(1.5f));
     func_80800000_bsbswim((BtIntPtr) arg0);
     func_8009B94C(arg0, 0);
     func_8009BA9C(arg0, 0);
@@ -1069,7 +1072,7 @@ void func_80801ACC_bsbswim(struct player_state_s *arg0) {
 void func_80091104(s32 *, s32);
 
 void func_80801B84_bsbswim(void *arg0) {
-    void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
+    BT_IDO_ONLY(void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);)
     void func_8009B94C(u8 *, f32 *);
     void _baswim_entrypoint_9(struct player_state_s *, f32);
     void func_8009BA9C(struct player_state_s *, f32 *);

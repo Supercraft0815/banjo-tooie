@@ -1882,7 +1882,7 @@ void func_80803124_bsfirstp(void *arg0, s32 arg1) {
 
 void func_80803134_bsfirstp(void *arg0) {
     void _baeggsetup_entrypoint_7(u8 *arg0, s32 *arg1);
-    void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);
+    BT_IDO_ONLY(void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);)
     void func_800A0D94(void *, s32);
     void func_80800424_bsfirstp(struct player_state_s *, s32, f32);
     void func_8080261C_bsfirstp(void *, void **, void **);
@@ -2413,7 +2413,7 @@ void func_80803E84_bsfirstp(struct player_state_s *arg0) {
     void _bainvisible_entrypoint_7(Actor *, s32, f32, f32, f32);
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     void anctrl_setSubrange(struct anctrl_s *, f32, f32);
-    void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);
+    BT_IDO_ONLY(void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);)
     void func_8009BDAC(struct player_state_s *, f32);
     void func_8009D89C(struct player_state_s *, f32);
     void func_80807BB8_bsfirstp(void *);
@@ -2511,7 +2511,7 @@ BtFnWord bsfirstp_entrypoint_15(s32 arg0) {
 void func_80804104_bsfirstp(struct player_state_s *arg0, void *arg1, void *arg2) {
     void _bainvisible_entrypoint_3(struct player_state_s *);
     void _basudie_entrypoint_1(struct player_state_s *);
-    void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);
+    BT_IDO_ONLY(void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);)
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     void func_8009D89C(struct player_state_s *, f32);
     s32 func_800D3948(void);
@@ -2869,7 +2869,7 @@ void func_80804A64_bsfirstp(BtIntPtr arg0) {
 }
 
 void func_80804B10_bsfirstp(struct player_state_s *arg0) {
-    void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);
+    BT_IDO_ONLY(void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);)
     void func_800936E8(void *, s32);
     void func_800A3410(struct player_state_s *, s32);
     void func_80807BB8_bsfirstp(void *);
@@ -4671,7 +4671,7 @@ void func_808077E0_bsfirstp(void *arg0) {
     s32 _bsrest_entrypoint_16(void *);
     u32 func_800A3404(void *);
     BT_IDO_ONLY(void baanim_playForDuration_loop(struct player_state_s *, s32, f32);)
-    void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
+    BT_IDO_ONLY(void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);)
 
     func_80801B64_bsfirstp(arg0, 2);
     func_80807BB8_bsfirstp(arg0);
@@ -5212,7 +5212,7 @@ void func_80808678_bsfirstp(Actor *arg0, volatile BtIntPtr arg1) {
 void func_808086B0_bsfirstp(Actor *arg0, s32 arg1) {
     f32 baphysics_get_target_horizontal_velocity(struct player_state_s *);
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
-    void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);
+    BT_IDO_ONLY(void baanim_playForDuration_onceSmooth(struct player_state_s *, s32, f32);)
     void func_8009E55C(struct player_state_s *, s32, f32);
     void func_8009E5A4(struct player_state_s *, s32, s32);
     void func_8009E4E0(void *, s32, BtIntPtr);
@@ -5458,7 +5458,7 @@ void func_80808CAC_bsfirstp(struct player_state_s *arg0, s32 arg1) {
 /* extern */
 
 void func_80808D80_bsfirstp(void *arg0) {
-    void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
+    BT_IDO_ONLY(void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);)
     void *func_80802508_bsfirstp();
     void *temp_v0;
 

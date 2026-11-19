@@ -2,7 +2,7 @@
 #define __ANIM_H__
 
 #include "overlays/ba/playerstate.h"
-#include "overlays/ba/assets.h"
+#include "overlays/ba/anim_smooth.h"
 #include "core2/anctrl.h"
 
 typedef enum baanim_update_type_e {
@@ -53,14 +53,8 @@ AnimCtrl* baanim_getAnimCtrlPtr(PlayerState* self);
 f32 baanim_getTimer(PlayerState *self);
 int baanim_isStopped(PlayerState *self);
 int  baanim_isAt(PlayerState *self, f32 timer);
-#ifndef BT_NATIVE
-void baanim_playForDuration_loopSmooth(PlayerState *self, AssetId anim_id, f32 duration);
-#endif
 void baanim_playForDuration_loop(PlayerState *self, AssetId anim_id, f32 duration);
 void baanim_playForDuration_loopStartingAt(PlayerState *self, AssetId anim_id, f32 duration, f32 start);
-#ifndef BT_NATIVE
-void baanim_playForDuration_onceSmooth(PlayerState *self, AssetId anim_id, f32 duration);
-#endif
 void baanim_playForDuration_onceSmoothStartingAt(PlayerState *self, AssetId anim_id, f32 duration, f32 start);
 void baanim_playForDuration_once(PlayerState* self, AssetId anim_id, f32 duration);
 void baanim_playForDuration_onceStartingAt(PlayerState *self, AssetId anim_id, f32 duration, f32 start);
