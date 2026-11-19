@@ -1,4 +1,5 @@
 #include "core2/1EAAD80.h"
+#include "memory.h"
 #ifdef BT_NATIVE
 // The counters are stored XORed with the code bytes of func_800D1A04 (0x800D1A04..0x800D1AAC);
 // natively the code is not MIPS, so they come from this copy of the N64 halfwords.
@@ -16,78 +17,66 @@ static const s16 func_800D1A04_code[84] = {
 #define CODE_800D1A04 func_800D1A04
 #endif
 
+typedef struct { s16 *values; s32 heapSide; } CounterStorage;
+extern CounterStorage D_8012B250;
 extern struct { s16 value; s16 padding; } D_8011AF52[];
 
 void func_800D1490(void) {
-    extern s32 D_8012B250;
     s32 i;
 
     for (i = 0; i < 21; i++) {
-        ((s16 *)D_8012B250)[i] = ((s16 *)&CODE_800D1A04)[i * 4];
+        D_8012B250.values[i] = ((s16 *)&CODE_800D1A04)[i * 4];
     }
 }
 
 /* extern */
 
 void func_800D1510(void) {
-    extern s32 D_8012B250;
-    void* heap_alloc_sided(s32 size, s32 alloc_side);
-    void func_800D1490(void);
-    s32 *state = &D_8012B250;
-    state[1] = 0;
-    D_8012B250 = heap_alloc_sided(0x2A, state[1]);
+    D_8012B250.heapSide = 0;
+    D_8012B250.values = heap_alloc_sided(0x2A, D_8012B250.heapSide);
     func_800D1490();
 }
 
 void func_800D154C(void) {
     s32 func_8001210C(s32);
-    void *heap_alloc_sided(s32, s32);
-    void heap_free(void *memory);
-    void rare_memcpy(void *, void *, int);
-    extern s32 D_8012B250;
-    BtIntPtr sp1C;
+    s16 *oldValues;
     void *temp_v0;
     s32 var_a1;
 
     if (func_8001210C(0x3FF) == 0x1FF) {
-        sp1C = (*(s32 *)((s8 *)(&D_8012B250) + (0)));
-        var_a1 = ++(*(s32 *)((s8 *)(&D_8012B250) + (4)));
+        oldValues = D_8012B250.values;
+        var_a1 = ++D_8012B250.heapSide;
         if (var_a1 == 3) {
-            (*(s32 *)((s8 *)(&D_8012B250) + (4))) = 0;
+            D_8012B250.heapSide = 0;
             var_a1 = 0;
         }
         temp_v0 = heap_alloc_sided(0x2A, var_a1);
-        (*(s32 *)((s8 *)(&D_8012B250) + (0))) = (BtIntPtr)temp_v0;
-        rare_memcpy(temp_v0, (void *)sp1C, 0x2A);
-        heap_free(sp1C);
+        D_8012B250.values = temp_v0;
+        rare_memcpy(temp_v0, oldValues, 0x2A);
+        heap_free(oldValues);
     }
 }
 
 void func_800D15CC(void) {
-    BtIntPtr defrag(BtIntPtr);
-    extern s32 D_8012B250;
-    if (D_8012B250 != 0) {
-        D_8012B250 = defrag(D_8012B250);
+    if (D_8012B250.values != NULL) {
+        D_8012B250.values = defrag(D_8012B250.values);
     }
 }
 
 void func_800D1604(void) {
-    void heap_free(void *memory);
-    extern s32 D_8012B250;
-    heap_free(D_8012B250);
-    D_8012B250 = 0;
+    heap_free(D_8012B250.values);
+    D_8012B250.values = NULL;
 }
 
 extern struct { s16 padding; s16 value; } D_8011AF50[];
 
 void func_800D162C(void) {
     void func_800D2770(s32, s32);
-    extern s32 D_8012B250;
     s16 *var_s1;
     s32 var_s0;
     s32 var_s2;
 
-    var_s1 = (s16 *)D_8011AF50; var_s0 = 0; var_s2 = 0; do { func_800D2770(*var_s1, *(s16 *)((s8 *)D_8012B250 + var_s0) ^ *(s16 *)((s8 *)&CODE_800D1A04 + var_s2)); var_s0 += 2; var_s1 += 2; var_s2 += 8; } while (var_s0 != 0x2A);
+    var_s1 = (s16 *)D_8011AF50; var_s0 = 0; var_s2 = 0; do { func_800D2770(*var_s1, *(s16 *)((s8 *)D_8012B250.values + var_s0) ^ *(s16 *)((s8 *)&CODE_800D1A04 + var_s2)); var_s0 += 2; var_s1 += 2; var_s2 += 8; } while (var_s0 != 0x2A);
 }
 
 s32 func_800D16C4(s32 arg0)
@@ -96,14 +85,13 @@ s32 func_800D16C4(s32 arg0)
 }
 
 void func_800D16CC(s32 arg0, s32 arg1) {
-    extern s32 D_8012B250;
     s32 index;
     s16 limit;
 
     index = arg0 * 4;
     limit = *(s16 *)((u8 *)D_8011AF52 + index);
     if (limit == -2) {
-        ((s16 *)D_8012B250)[arg0] = *(s16 *)((u8 *)&CODE_800D1A04 + index * 2) ^ 0x3E7;
+        D_8012B250.values[arg0] = *(s16 *)((u8 *)&CODE_800D1A04 + index * 2) ^ 0x3E7;
         return;
     }
     if (arg1 < 0) {
@@ -112,18 +100,17 @@ void func_800D16CC(s32 arg0, s32 arg1) {
     if ((limit >= 0) && (limit < arg1)) {
         arg1 = limit;
     }
-    ((s16 *)D_8012B250)[arg0] = *(s16 *)((u8 *)&CODE_800D1A04 + index * 2) ^ arg1;
+    D_8012B250.values[arg0] = *(s16 *)((u8 *)&CODE_800D1A04 + index * 2) ^ arg1;
 }
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800D175C(s32 arg0, s32 arg1) {
     void func_800D16CC(s32, s32);
     s32 func_800D24E8(s32, s32, u32);
-    extern s32 D_8012B250;
     register s32 index;
 
     index = func_800D16C4(arg0);
-    func_800D16CC(index, (((s16 *)D_8012B250)[index] ^ ((s16 *)&CODE_800D1A04)[index * 4]) + arg1);
-    BT_NATIVE_ONLY(return) func_800D24E8(D_8011AF50[index].padding, ((s16 *)D_8012B250)[index] ^ ((s16 *)&CODE_800D1A04)[index * 4], 0);
+    func_800D16CC(index, (D_8012B250.values[index] ^ ((s16 *)&CODE_800D1A04)[index * 4]) + arg1);
+    BT_NATIVE_ONLY(return) func_800D24E8(D_8011AF50[index].padding, D_8012B250.values[index] ^ ((s16 *)&CODE_800D1A04)[index * 4], 0);
 }
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800D1804(s32 arg0) {
@@ -144,15 +131,14 @@ void func_800D1864(u32 arg0, u32 arg1, u32 arg2) {
     void func_800D16CC(s32, s32);
     s32 func_800D2498(u32, s32, u32);
     void func_800D2770(s32, s32);
-    extern s32 D_8012B250;
     s32 index;
 
     index = func_800D16C4(arg0);
     func_800D16CC(index, arg1);
     if (arg2 != 0) {
-        func_800D2498(D_8011AF50[index].padding, ((s16 *)D_8012B250)[index] ^ ((s16 *)&CODE_800D1A04)[index * 4], D_8011AF50[index].value);
+        func_800D2498(D_8011AF50[index].padding, D_8012B250.values[index] ^ ((s16 *)&CODE_800D1A04)[index * 4], D_8011AF50[index].value);
     } else {
-        func_800D2770(D_8011AF50[index].padding, ((s16 *)D_8012B250)[index] ^ ((s16 *)&CODE_800D1A04)[index * 4]);
+        func_800D2770(D_8011AF50[index].padding, D_8012B250.values[index] ^ ((s16 *)&CODE_800D1A04)[index * 4]);
     }
 }
 
@@ -162,7 +148,6 @@ void func_800D192C(s32 arg0, u32 arg1) {
 
 void func_800D1960(s32 arg0, s32 arg1, s32 arg2) {
     void func_800D16CC(s32, s32);
-    extern s32 D_8012B250;
     s32 index;
     u32 value;
 
@@ -174,20 +159,19 @@ void func_800D1960(s32 arg0, s32 arg1, s32 arg2) {
     if (arg2 != 0) {
         value = func_800D1A6C(arg0);
     } else {
-        value = ((s16 *)D_8012B250)[index] ^ ((s16 *)&CODE_800D1A04)[index * 4];
+        value = D_8012B250.values[index] ^ ((s16 *)&CODE_800D1A04)[index * 4];
     }
     func_800D16CC(index, value);
 }
 
 s32 func_800D1A04(s32 a0) {
-    extern s32 D_8012B250;
     s32 index;
 
     index = func_800D16C4(a0);
     if (D_8011AF52[index].value == -2) {
         return 0x3E7;
     }
-    return ((s16 *)D_8012B250)[index] ^ ((s16 *)&CODE_800D1A04)[index * 4];
+    return D_8012B250.values[index] ^ ((s16 *)&CODE_800D1A04)[index * 4];
 }
 
 u32 func_800D1A6C(u32 arg0) {
@@ -277,7 +261,6 @@ s32 func_800D1C70()
 }
 
 void func_800D1C78(u8 *arg0, u32 arg1) {
-    extern s32 D_8012B250;
     s32 i;
     s32 value;
     s32 count;
@@ -289,17 +272,16 @@ void func_800D1C78(u8 *arg0, u32 arg1) {
     }
     for (i = 0; i < count; i++) {
         value = (arg0[i * 2] << 8) | arg0[i * 2 + 1];
-        ((s16 *)D_8012B250)[i] = ((s16 *)&CODE_800D1A04)[i * 4] ^ value;
+        D_8012B250.values[i] = ((s16 *)&CODE_800D1A04)[i * 4] ^ value;
     }
 }
 
 void func_800D1DFC(u8 *arg0) {
-    extern s32 D_8012B250;
     s32 i;
 
     for (i = 0; i < 0x15; i++) {
-        arg0[i * 2] = ((((s16 *)D_8012B250)[i] ^ ((s16 *)&CODE_800D1A04)[i * 4]) >> 8) & 0xFF;
-        arg0[i * 2 + 1] = (((s16 *)D_8012B250)[i] ^ ((s16 *)&CODE_800D1A04)[i * 4]) & 0xFF;
+        arg0[i * 2] = ((D_8012B250.values[i] ^ ((s16 *)&CODE_800D1A04)[i * 4]) >> 8) & 0xFF;
+        arg0[i * 2 + 1] = (D_8012B250.values[i] ^ ((s16 *)&CODE_800D1A04)[i * 4]) & 0xFF;
     }
 }
 
@@ -327,5 +309,5 @@ s32 func_800D1F34(u8 *arg0, register s32 arg1) {
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
-s32 D_8012B250 BT_DATA(4, bss_core2bss1_1_counter_tail, 0xD0);
+CounterStorage D_8012B250 BT_DATA(4, bss_core2bss1_1_counter_tail, 0xD0);
 #endif
