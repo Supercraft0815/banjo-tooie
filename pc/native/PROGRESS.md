@@ -3513,3 +3513,11 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuite
 Die Zeichenroutine verwendet zusammengehörige Farbwerte, zwei Callback-Paare und die Mittelpunkt- und Radiusfelder des aktiven Assets. Der native Test prüft die Callback-Argumente in voller Zeigerbreite.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 68 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 4 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-render-packed*`.
+
+### 2026-11-20 – Dialogzustand ohne gemessenen Fremdsymbolzugriff (N1)
+
+Die beiden Dialogfunktionen greifen auf Felder desselben C-Objekts zu. Der Zustand belegt im Gast 0x234 Byte. Mit den zwölf Füllbytes entspricht der Speicherbereich exakt den 0x240 Byte bei `D_801288B0`. Die Größenprüfung im C-Code und der Eintrag in der Linker-Map belegen Größe und Lage unabhängig vom Laufzeitzähler.
+
+Im kumulierten Prüfstand nach 14 Paketen und dieser Korrektur melden beide Daten-Scans null verbliebene Module. Der Build mit `BT_NO_ASMDATA=1` besteht elf Gastsuiten und 74 Replays mit 447.849 identischen Retraces. Ein zweiter Build instrumentierte 6.465 Stellen und fand in denselben 74 Fällen null Zugriffe über eine Symbolgrenze. Vor der Dialogkorrektur waren es fünf Zugriffe in zwei Funktionen. Alle 75 Sanitizertests bestehen. Original-IDO bestätigt das Funktionsinventar, die Maschinenbefehle und Relokationen aller 16.401 Funktionen sowie beide vollständigen ROM-Abbilder. Die schrittweise Übernahme der geprüften Quellen in den Arbeitsbranch läuft.
+
+Die Einzelprotokolle stehen unter `build/acceptance/n1-2026-11-18/prefix14-dialog-owner-*`. Der unabhängige Vergleichsbuild unter `dialog-cumulative-prefix14-source/build/ilp32-xsym/` erreicht dieselben XSYM-Zahlen.
