@@ -2353,3 +2353,29 @@ Cleanup während eines Callbacks. Die Dateizuordnung und die Klassifikation
 der aktiven Zweige stehen in
 `build/acceptance/q5-inventory-2026-11-17/REPORT.md`. Der direkte LP64-Port
 verwendet die Ersatzdateien bis zur Abnahme von N4.
+
+## 2026-11-19 — Q2, HAG 1, Solo-Figuren und Weltübergänge
+
+Der Actor-Erzeuger `func_801084B0` übergab die Adresse einer einzelnen Koordinate
+als Position. Im IDO-Stack stehen die drei Koordinaten nebeneinander. Der Gast
+reserviert dafür jetzt ein Array. Beide Teile von HAG 1 erscheinen am
+gemeinsamen Startpunkt (0, 7500, 0). Im normalisierten IR änderte sich allein
+die lokale Reservierung dieser Funktion. 55 der 71 bisherigen Referenzen waren
+betroffen. Die alten Referenzen, Wiederholungsläufe und Bildbögen liegen unter
+`build/acceptance/q2-followup-2026-11-18/`.
+
+Solo-Banjo und Solo-Kazooie benutzen die Trennplatten in der Oogle-Boogle-Höhle.
+Der Test beobachtet beide Spielerpositionen und beide aktiven Platten. Die
+gesteuerte Figur legt jeweils mehr als 100 Spieleinheiten zurück, während die
+andere auf ihrer Platte bleibt. Beide Fälle liefen je dreimal über 5.245
+Retraces. Der Weltentest prüft zwölf Karten in ihrer vorgesehenen Reihenfolge
+über 27.093 Retraces.
+
+Der vollständige Lauf mit den für Q2 isolierten Quellen bestand alle elf
+Testsuiten und alle 74 Spielabläufe mit insgesamt 447.849 Retraces.
+`coverage74/summary.json` nennt die 84 besuchten Karten und für jede der
+145 übrigen benannten Karten den Grund. Der instrumentierte Lauf über dieselben
+74 Abläufe auf dem integrierten Quellenstand untersuchte 6.129 Zugriffsstellen.
+Davon wurden 1.740 in 424 Funktionen erreicht, mit 1.810 Paaren aus Zugriffsstelle
+und Ziel in 117 Gruppen. Die Berichte stehen unter
+`xsym-current74-source/build/ilp32/` und in `build/ilp32-xsym/`.

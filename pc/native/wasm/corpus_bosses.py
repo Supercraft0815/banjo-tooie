@@ -42,6 +42,7 @@ _BOSSES = (
     ('weldar', 0x110, 1, 95, (0x174,), retry_press, (0x817, 17)),
     ('chilli-billi', 0x12B, 2, 95, (0x1D4,), retry_press, (0x7FC, 10)),
     ('chilly-willy', 0x12C, 2, 95, (0x1D3,), retry_press, (0x7FD, 10)),
+    ('hag-1', 0x19A, 1, 95, (0x39B, 0x44), retry_press, (0x901, 6)),
 )
 
 CASES = {
@@ -52,3 +53,4 @@ CASES = {
     }
     for name, map_id, entrance, seconds, flags, press, actor_state in _BOSSES
 }
+CASES['hag-1']['expected_spawns'] = {0x901: (0, 7500, 0), 0x8FE: (0, 7500, 0)}

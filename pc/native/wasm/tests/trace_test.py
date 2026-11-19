@@ -5,6 +5,7 @@ import copy
 import io
 import json
 import os
+import struct
 from pathlib import Path
 import subprocess
 import sys
@@ -94,8 +95,16 @@ class TraceTest(unittest.TestCase):
                 corpus.trace_summary(out, dict(case, expected_player_state=176))
             with self.assertRaisesRegex(ValueError, 'got None'):
                 corpus.trace_summary(out, dict(case, expected_player_slot=1))
+            self.assertEqual(corpus.trace_summary(out, dict(case, expected_route=[395]))['retraces'], 3)
+            with self.assertRaisesRegex(ValueError, 'missed route map 0x42'):
+                corpus.trace_summary(out, dict(case, expected_route=[395, 0x42]))
             actor = rows[2]['actors'][0]
             state = actor['health_flags'][5] >> 10 & 63
+            self.assertEqual(corpus.trace_summary(out, dict(case, expected_spawns={0x42:(2,0,0)}))['retraces'], 3)
+            with self.assertRaisesRegex(ValueError, 'spawned at'):
+                corpus.trace_summary(out, dict(case, expected_spawns={0x42:(9,0,0)}))
+            with self.assertRaisesRegex(ValueError, 'missing actor spawns'):
+                corpus.trace_summary(out, dict(case, expected_spawns={0x41:(2,0,0)}))
             self.assertEqual(corpus.trace_summary(out, dict(case, expected_actor_state=(0x42, state)))['retraces'], 3)
             with self.assertRaisesRegex(ValueError, 'never reached state'):
                 corpus.trace_summary(out, dict(case, expected_actor_state=(0xAA, state)))
@@ -130,6 +139,26 @@ class TraceTest(unittest.TestCase):
             bad = subprocess.run([str(exe), str(rom)], cwd=tmp, env=env, capture_output=True)
             self.assertEqual(bad.returncode, 3)
             self.assertIn(b'requires BT_VCLOCK', bad.stderr)
+
+    def test_split_pad_movement(self):
+        def row(banjo, kazooie, pads):
+            return {
+                'players': [{'present': 1, 'position': struct.unpack('>3I', struct.pack('>3f', *point))}
+                            for point in (banjo, kazooie)],
+                'actors': [{'id': actor_id, 'health_flags': [0] * 5 + [2 << 10]} for actor_id in pads],
+            }
+
+        blue, red = (840, 0, -124), (841, 15, 124)
+        pads = (0x7E1, 0x7E2)
+        split = corpus.corpus_solo.SplitMovement(1)
+        for pad in pads:
+            split.observe(row(blue, red, [pad]))
+        self.assertIsNone(split.origin)
+        split.observe(row(blue, red, pads))
+        split.observe(row((943, 0, -124), (944, 15, 124), pads))
+        self.assertFalse(split.moved)
+        split.observe(row(blue, (944, 15, 124), pads))
+        self.assertTrue(split.moved)
 
     def test_invalid_files(self):
         with tempfile.TemporaryDirectory(prefix='bt-trace-invalid-') as tmp:

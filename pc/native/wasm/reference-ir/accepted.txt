@@ -65,3 +65,10 @@ Each resolves to the same original byte offset for every 32-bit index.
 The IDO data bytes and relocations are unchanged for all eleven modules.
 See proof/ir-tables-linked.json, ir-records-linked.json and records-aliases.json
 in build/acceptance/n1-2026-11-18/.
+
+2026-11-19  Q2 actor spawn position
+func_801084B0 allocates three consecutive i32 coordinates instead of one
+scalar. Its callee reads a full XYZ vector, as it does from the original IDO
+stack. The HAG 1 body and child now spawn at (0, 7500, 0). This is the only
+normalized game function change in the isolated Q2 comparison. See
+build/acceptance/q2-followup-2026-11-18/isolated-hag-ir.log.

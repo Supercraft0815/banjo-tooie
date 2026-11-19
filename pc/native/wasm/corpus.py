@@ -5,6 +5,7 @@ from concurrent.futures import ThreadPoolExecutor
 import json
 import os
 from pathlib import Path
+import struct
 import subprocess
 import sys
 
@@ -15,6 +16,7 @@ import corpus_worlds
 import corpus_bosses
 import corpus_mumbo
 import corpus_rides
+import corpus_solo
 import corpus_multiplayer
 import corpus_transformations
 
@@ -30,17 +32,21 @@ def script():
     return ','.join(events)
 
 
-# Hub maps of every world (and Isle o' Hags) in turn, 20 s each: stick circles, A and B.
+# Exercise each hub, then release the controls so its next warp can start.
 WORLDS = [0xB8, 0xC7, 0xD6, 0x1A7, 0x112, 0x100, 0x127, 0x128, 0x136, 0x15D, 0x142, 0x14F]
 
 
+WORLD_WARPS = [(36 + 36 * i, target) for i, target in enumerate(WORLDS)]
+
+
 def worlds_script():
-    events, sticks = ['0:0'], ['50000000', '00500000', 'B0000000', '00B00000']
-    events += [f'{t}:1000,{t}.2:0' for t in range(10, 23, 4)]  # Start through the logos to the file select
-    events += [f'{t}:8000,{t}.2:0' for t in range(26, 34, 2)]  # A: pick the file, skip dialogs
-    for i in range(2 * (20 * len(WORLDS) + 4)):
-        button = 0x8000 if i % 4 == 0 else 0x4000 if i % 10 == 5 else 0
-        events.append(f'{37 + i / 2}:{int(sticks[i // 4 % 4], 16) | button:x}')
+    events = [corpus_worlds.START_PRESS]
+    sticks = (0x50000000, 0x00500000, 0xB0000000, 0x00B00000)
+    for start, _ in WORLD_WARPS:
+        for i in range(30):
+            button = 0x8000 if i % 4 == 0 else 0x4000 if i % 10 == 5 else 0
+            events.append(f'{start + 1 + i / 2:g}:{sticks[i // 4 % 4] | button:x}')
+        events.append(f'{start + 16}:0')
     return ','.join(events)
 
 
@@ -60,15 +66,16 @@ CASES = {
     'intro': {'seconds': 45, 'press': '', 'expected_map': 395, 'flags': None},
     'new-game': {'seconds': 950, 'press': script(), 'expected_map': 175, 'flags': None},
     'edited-save': {'seconds': 180, 'press': script(), 'expected_map': 175, 'flags': list(range(0x392, 0x39B)) + save_editor.START_ABILITIES},
-    'worlds': {'seconds': 36 + 20 * len(WORLDS), 'press': worlds_script(), 'expected_map': WORLDS[-1],
+    'worlds': {'seconds': WORLD_WARPS[-1][0] + 20, 'press': worlds_script(), 'expected_map': WORLDS[-1], 'expected_route': WORLDS,
                'flags': list(range(0x392, 0x39B)) + save_editor.START_ABILITIES,
-               'warp': ','.join(f'{36 + 20 * i}:{m:X}:1' for i, m in enumerate(WORLDS))},
+               'warp': ','.join(f'{start}:{m:X}:1' for start, m in WORLD_WARPS)},
     **corpus_worlds.CASES,
     **corpus_bosses.CASES,
     **corpus_multiplayer.CASES,
     **corpus_transformations.CASES,
     **corpus_mumbo.CASES,
     **corpus_rides.CASES,
+    **corpus_solo.CASES,
 }
 
 
@@ -109,12 +116,27 @@ def trace_summary(directory, case):
     maps, last = {}, None
     encounter = case.get('expected_actor_state')
     saw_encounter = encounter is None
+    route = iter(case.get('expected_route', ()))
+    next_map = next(route, None)
+    split = corpus_solo.SplitMovement(case['solo_slot']) if 'solo_slot' in case else None
+    pending_spawns = dict(case.get('expected_spawns', {}))
     with (directory / 'trace.jsonl').open() as stream:
         header = trace_tools.read_trace(stream)
         for count, line in enumerate(stream, 1):
             last = trace_tools.read_retrace(line, count)
             key = str(last['map'])
             maps[key] = maps.get(key, 0) + 1
+            if last['map'] == next_map:
+                next_map = next(route, None)
+            if split and last['map'] == case['expected_map']:
+                split.observe(last)
+            if pending_spawns and last['map'] == case['expected_map']:
+                for actor in last['actors']:
+                    expected = pending_spawns.pop(actor['id'], None)
+                    if expected is not None:
+                        position = struct.unpack('>3f', struct.pack('>3I', *actor['position']))
+                        if position != expected:
+                            raise ValueError(f'{directory.name}: actor {actor["id"]:#x} spawned at {position}, expected {expected}')
             if not saw_encounter and last['map'] == case['expected_map']:
                 actor_id, state = encounter
                 # Actor.unk70_10 occupies bits 10..15 of the word at +0x70.
@@ -122,8 +144,14 @@ def trace_summary(directory, case):
                                     for actor in last['actors'])
     if last is None or last['map'] != case['expected_map']:
         raise ValueError(f'{directory.name}: expected final map {case["expected_map"]}, got {last and last["map"]}')
+    if next_map is not None:
+        raise ValueError(f'{directory.name}: missed route map {next_map:#x}')
+    if split and not split.moved:
+        raise ValueError(f'{directory.name}: player {split.active} never moved away from the parked partner')
     if not saw_encounter:
         raise ValueError(f'{directory.name}: actor {encounter[0]:#x} never reached state {encounter[1]}')
+    if pending_spawns:
+        raise ValueError(f'{directory.name}: missing actor spawns {list(map(hex, pending_spawns))}')
     players = case.get('expected_players', 0)
     if players and (len(last['players']) < players or not all(p['present'] for p in last['players'][:players])):
         raise ValueError(f'{directory.name}: expected {players} active players in the final scene')

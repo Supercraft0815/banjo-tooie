@@ -332,7 +332,7 @@ Actor *func_80108474(u32 arg0, f32 *arg1, s32 arg2) {
     return func_80108C90((s32) arg0, sp1C, (u32) arg2, NULL);
 }
 
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#ifdef BT_NATIVE /* IDO passes three consecutive stack words starting at a scalar. */
 Actor *func_801084B0(BtIntPtr arg0, Actor **arg1) {
     void func_800EE904(s32 [3], f32 [3]);
     Actor *func_80108C90(s32, s32 *, u32, Prop *);

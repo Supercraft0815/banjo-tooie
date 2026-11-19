@@ -2,59 +2,63 @@
   "cases": {
     "canary-mary-race": {
       "retrace_count": 4556,
-      "sha256": "1cf3d1243fe03365e4cf1fe2d1e3c05d45df3f40d0d6755504b1e8ff837ec39d"
+      "sha256": "1f1730d39118ed94c03d38494a7835349c969519ce84f3a87f13182c305327b6"
     },
     "ccl-entrance": {
       "retrace_count": 2638,
-      "sha256": "c75e7c51ddf33d25d527d319f21bbff0ff647a09d3d2b66ed5d92f628b56858f"
+      "sha256": "8aa3fdb5c5c1cb179aafa5fdd3a526994fb69ad1c928b0923d53335895a5b21e"
     },
     "ccl-interior": {
       "retrace_count": 2638,
-      "sha256": "c7b118a2907fbc58e98d52782ddf3a24cce7980117ce546e6a0c949d0efa9088"
+      "sha256": "bb8d2acb5e1e781bc51fa54054023570fd7e78019c6710383f6711e7df074122"
     },
     "chilli-billi": {
       "retrace_count": 5695,
-      "sha256": "747c0907a17e1d130112fd83c51c8703d9f7fd13ef48406cacb47ff0f5620aa3"
+      "sha256": "c3c3a873ebe2dafa89eb5a0592c0d70fa1d0a0b31e3e71422c5707c6374573e3"
     },
     "chilly-willy": {
       "retrace_count": 5695,
-      "sha256": "73f5a6b1ae4e46b35274014b1769ebf55943310c80839e846539ab36f975e095"
+      "sha256": "a3642e7d043845ecd780d428f75963df66471e9e9c616e2dbe9b37e8ccc26fd2"
     },
     "ck-entrance": {
       "retrace_count": 2638,
-      "sha256": "a5dc93cb6f3d3b43aa25a243758424ea06578719821895a720054ecf78afb03e"
+      "sha256": "f3f34480adb9302b085ba3d5935546a6570a6169428dc5944d6170590c3a2ba2"
     },
     "ck-interior": {
       "retrace_count": 2638,
-      "sha256": "87095e5c2d261634ae2520d0e819d85e37c716d8a2563413a86dbc9dd94b30b1"
+      "sha256": "4e9b119185bdb2088a38cb5b0e578051db7cacf5010731641f5343edb1d28a15"
     },
     "edited-save": {
       "retrace_count": 10790,
-      "sha256": "b78cf9ef017fea48150b711fda34a16a6fc8c35bdc712bd1f25f2ab6f6ec6e77"
+      "sha256": "d1ef27f8ceb948ddf32083e32b5feb935d70a51df1b6afadd562f6e5ef5c03fa"
     },
     "ggm-entrance": {
       "retrace_count": 2638,
-      "sha256": "0ccae00ab815e986d95ae36f713471b2c88b21368b77f6a5a4aca380a4731e9e"
+      "sha256": "9e4af56fea5c297c19e342927edc0e371728eddf95f590c44d7d3ee9a9cacbb0"
     },
     "ggm-interior": {
       "retrace_count": 2638,
-      "sha256": "bd218b0fecaa4c945cb06c10d4fd4232844986d02541d1ada1820e2eadab48b9"
+      "sha256": "727e0f3c534ca6b8d95d3a41eb988d74e3cf45bc06bec6fee6c12d4df19cd787"
     },
     "gi-entrance": {
       "retrace_count": 2638,
-      "sha256": "ce82ad755a4653576ff68ac26d1272072b2979855aa0a8392ebbfcf4ce53a36c"
+      "sha256": "9063f94e29e7995146e6afd6ae9b85ac8c593cd07afccea93875196a307567e4"
     },
     "gi-interior": {
       "retrace_count": 2638,
-      "sha256": "99efdaab02a77e70deec679c79251d8c384ef0df386cacbf8e47c5462cd9ead2"
+      "sha256": "bf7fac924e58df8b5172d4176dbdfc723466be2ffabb8a54491656b3ff11dc27"
+    },
+    "hag-1": {
+      "retrace_count": 5695,
+      "sha256": "4c8051d2e52e7c493edf21b2a97e7649567b762084ee557aea71c6834c54a5bf"
     },
     "hp-entrance": {
       "retrace_count": 2638,
-      "sha256": "7dff3cfbe839ceeed83b11222242479ecae71ae96409d1560c9a2318d4c27897"
+      "sha256": "4fcaddb5252c4d5649d3b22d170f3f5a6259f46791c4205726a2c6fffc4c4f6a"
     },
     "hp-interior": {
       "retrace_count": 2638,
-      "sha256": "d59169c70e9cc7d5446c21b189c14d257dde9d78d6ae6802c23c3c6ef5d2c26b"
+      "sha256": "90586119832e31d88b1c24b200a098fad15a7f2d66387cc7dfd17188943ae03f"
     },
     "intro": {
       "retrace_count": 2698,
@@ -62,27 +66,27 @@
     },
     "ioh-entrance": {
       "retrace_count": 2638,
-      "sha256": "6da45d20283d5e9072d43a8997d35fa95ee37ea9bebe0302bf44c4bf20071914"
+      "sha256": "0fc50b093d5eb88e8f081063ff4220cb1603ad44d31a3f8f275fa216431cbd95"
     },
     "ioh-interior": {
       "retrace_count": 2638,
-      "sha256": "75ce61324dea21a48ad9da8d281b4f74108d88cc6e75c3ff7f8aba404542b3ea"
+      "sha256": "12b73793104d37b0abedf421a1acaefa8a8fb73120e510af23e46bd22ac994c2"
     },
     "jrl-entrance": {
       "retrace_count": 2638,
-      "sha256": "a9562f8244f7971b79153ae810f1ac3e54fdd48dc32cffd10fe2156609c5138d"
+      "sha256": "08badcbb7a03bdc509a79c0a34ad5c245e9a2e6063e09af9855222a482e49fe2"
     },
     "jrl-interior": {
       "retrace_count": 2638,
-      "sha256": "ceece65b3994f330440d0b96854d32c7fa4c8764aacee4e4301586d1baa2432b"
+      "sha256": "ad0b56d9fafb3c12c252b87780b870387563d4310acd0c246fe14160b3394382"
     },
     "lord-woo-fak-fak": {
       "retrace_count": 7193,
-      "sha256": "aa5cdad115db8a29541fdba1c5e36c4a59a8acd0cbbbb6a904c07dacbcefab9d"
+      "sha256": "aae12c281e346d216eddddf112af543bf655f84b468ce5db9c63086a490de728"
     },
     "mingy-jongo": {
       "retrace_count": 7673,
-      "sha256": "524cfc39fce2736b33af9e21458e2079b17a33e6689fe6f5aadadd8efdc3c421"
+      "sha256": "fe62f14afbebe534cb614e96fe49ca2b90c0eae0ecdf30e62fbe80d8f9643bc1"
     },
     "mp-all-games": {
       "retrace_count": 4976,
@@ -110,7 +114,7 @@
     },
     "mp-dodgems": {
       "retrace_count": 4856,
-      "sha256": "f98b0aefdb52b925ae19c57c51a264befc80b6b9dab0603a52296b261fc5173c"
+      "sha256": "fc5f0a6f020d4ae24b73b54d0f28f52d3c232e33d670cedbdd4a715df07bcf31"
     },
     "mp-hoop-hurry": {
       "retrace_count": 4316,
@@ -130,7 +134,7 @@
     },
     "mp-packing": {
       "retrace_count": 5215,
-      "sha256": "9d84b2988fd131eab559edbdce668dfa7ed48b27de062021c7e6733015fb0120"
+      "sha256": "6a0fee80f9e80585e168e92471d5ae06a94938f22565eca2281f4c494b531e96"
     },
     "mp-quiz": {
       "retrace_count": 6234,
@@ -154,135 +158,143 @@
     },
     "mr-patch": {
       "retrace_count": 3837,
-      "sha256": "ba08d56e41a90c0288390b12336ec1ba843a0d24679f9e3fbb7893a92f2cb7c4"
+      "sha256": "5f33583a086ec22050510543cb32b8ca03bc45bbc037340ec914d53f59ff87a7"
     },
     "mt-entrance": {
       "retrace_count": 2638,
-      "sha256": "4fa3dbb663b4efa3155b99fedec7f0f6a0b860ae0b18f38b303d4e3a642473cc"
+      "sha256": "4fa8c6e32c4d49393f4354c6bd10a080acd32830e5428c21814d54597252a668"
     },
     "mt-interior": {
       "retrace_count": 2638,
-      "sha256": "71c609e62e32602446a6afb208cb03eca606412e30b59604e8b445ddd959f7a6"
+      "sha256": "a2df687d0a8d569c6a35a1ec2df42d757bb650e8ba3ae704449cf027a73d462d"
     },
     "mumbo-ccl": {
       "retrace_count": 7973,
-      "sha256": "34ed4855c27330bc6d1ab66a9df6ca50808e3609b9eed96dbb5120e915aa8908"
+      "sha256": "426d8de374cc51cd871fd7e8026bd447c27777a5b17ead14b3f981ff5cb0834c"
     },
     "mumbo-ggm": {
       "retrace_count": 7673,
-      "sha256": "d88f21b308304c11b79180ff8a9bbc5ddc28b0d85cb06fff74a0cca42056b543"
+      "sha256": "250ffbdaf4317ba0e84e2467bf02264097aaf91cae0971baf280bd43d86392d7"
     },
     "mumbo-gi": {
       "retrace_count": 7793,
-      "sha256": "c8a304ec24ad41ffd87db8f3e5b95c59133cf639435bb029310455b3a0399aea"
+      "sha256": "7fc09f066571bb889964a6696eec25ae5bd16b082c2bc4f192730daef1e4756e"
     },
     "mumbo-hfp": {
       "retrace_count": 7673,
-      "sha256": "8a3f56e5b0fcf0d4a786146a145e662c63c0729f29707a5d7a8c2a6907d1aaa6"
+      "sha256": "8f49feb2ade582c847f707c639807155d993fe331db8c055fc22ba95ce5a2a6b"
     },
     "mumbo-ioh": {
       "retrace_count": 7673,
-      "sha256": "501d367ed6463040c5547632f854b43fc507da2f40aaf6a2bf61bd6e8ef6bc1a"
+      "sha256": "8c4a7015303b394060ce566a6f863e63ec7429bdb1174524e481858934cb5916"
     },
     "mumbo-jrl": {
       "retrace_count": 7673,
-      "sha256": "3189b1b9d96e50fdf6a801a4355e46b5c4bc55355be88ef6d080b1af9befe78a"
+      "sha256": "c6ec1251b7cf1b18c23af9b775f90f976015b7b8e164c72494036d6bcf8bc893"
     },
     "mumbo-mt": {
       "retrace_count": 7673,
-      "sha256": "d7945b58998365f31c5efb3ecc32153c887706ca9a5eed089ebf4d5fec0ea102"
+      "sha256": "be1b32f90979958ed47e7eb611b5d4b2cb6be1d38767d035d0a850832d18b7df"
     },
     "mumbo-tdl": {
       "retrace_count": 7673,
-      "sha256": "00b8d29e94b0be90576449bc1c130d62d3b224c47141d37c8f609433736e0c0e"
+      "sha256": "704abf80ceeb725ada1009d7959444f8d951501021b0d382d920a217024b184a"
     },
     "mumbo-ww": {
       "retrace_count": 7853,
-      "sha256": "14600fadff5e7298480077ff15160271221472c22ecadd52e1fc1bbc862a1ec2"
+      "sha256": "06f9608d209a1a06d28aa768684cedec82b4c885aedc1f19502d1928aa5a9fd6"
     },
     "new-game": {
       "retrace_count": 56943,
-      "sha256": "751321b8272d22b7d1be66de0e70383452334176945e756b3ce90cfd917a0d17"
+      "sha256": "bb7db0fa0d58b0c96a3465c301fa275fb410462efb358a47d6fc0e2be3b7168f"
     },
     "old-king-coal": {
       "retrace_count": 3837,
-      "sha256": "eea9e3084364b1bf03ba0592828bab597eb34aaa0024114c94d4332087ab1bef"
+      "sha256": "4f4bb208e5e63926668a71ea539619e5be5742a98cefc3ea42fc54eff864e465"
     },
     "saucer-of-peril": {
       "retrace_count": 4496,
-      "sha256": "6cdc1f74ced6ae67590196a0eca9ed912b18089fb1912854a7ccb91ee3a60d9c"
+      "sha256": "7377e7fe23b8e3c75d88bfa92c5f27bb2b0caa6b5c662c3d71033e8f3e08e182"
+    },
+    "solo-banjo": {
+      "retrace_count": 5245,
+      "sha256": "58b4a3bba8bbccdfd22dfad896fa13295f2f61a7afb8a79dde5985d91d16d460"
+    },
+    "solo-kazooie": {
+      "retrace_count": 5245,
+      "sha256": "9507128cf4d9d4d984940a1399f3b472547a0aeeb42e2d964d9f65c1e14a8aae"
     },
     "targitzan": {
       "retrace_count": 3837,
-      "sha256": "5dc0eca4f8f486d2ef43443b69c0b434800b819ce9a2ba59f023ca6de9cb0bee"
+      "sha256": "6386152a26c88d6daa8614a3d066ce2f37ca6f6bf29c8311d32fe8444a369b41"
     },
     "tdl-entrance": {
       "retrace_count": 2638,
-      "sha256": "af7d8f608f68d98c5371f985f4f8c3a3c6d74b94d7c74f21e46d7a4657982320"
+      "sha256": "11bb0dda13c8fe96e2d3850a285d8a7d889226d8daa55fb689c2a2562fa651d5"
     },
     "tdl-interior": {
       "retrace_count": 2638,
-      "sha256": "ffc3a34446474051f87e44a6b7d4439f071ca7819f84d89a5d1e02b8590db6a6"
+      "sha256": "1d9fa8232faa7c33b09288abe0c415cf6854e8c36bea39904a9674c60a28636b"
     },
     "terry": {
       "retrace_count": 5695,
-      "sha256": "1df69c6adf2b4ecd72f22422b482801e9fe3dddcdb87b814c808eb8415b931b7"
+      "sha256": "b68b403c58df70bd17cd782d6bd6a2ca9d910edefc6b63fc6bc203de5f9909b6"
     },
     "weldar": {
       "retrace_count": 5695,
-      "sha256": "6884488116a8458e894380ec846aebe83c5f762e3940ce82e37a8cc4c11280e8"
+      "sha256": "3df0799543e8933c525662a82226903372ae6e75b8dee2479ff503747690bcd4"
     },
     "worlds": {
-      "retrace_count": 16544,
-      "sha256": "e5ccc908fe793a105d4335eaf7aa4d47c6fd93613cb4a34ab3c55a3049f4e35a"
+      "retrace_count": 27093,
+      "sha256": "92511eb49d3e9dfd22aadf792e310517fa1a1a0ecb46f624fd9736d1ecf13600"
     },
     "wumba-baby-t-rex": {
       "retrace_count": 7013,
-      "sha256": "712b62129090c33972d16bccb7fb3a8b7b1f184918c1c690f3a14b6ab6d8f83a"
+      "sha256": "0fb5941f7806a31efd579131f6d108fb589e6c291c6c2d8dd2237603dacb9308"
     },
     "wumba-bee": {
       "retrace_count": 7013,
-      "sha256": "83b3bd6db8d62ed97c1c765d8a2481ce7b2ccc8e0990bae120629f9967eec547"
+      "sha256": "6fc243a580d33f4362be7ffdb5aa189198460b5ed967d7d572ef5bc599aa4836"
     },
     "wumba-daddy-t-rex": {
       "retrace_count": 7013,
-      "sha256": "58bd61cda74b8c2706c8eb1803070fbd127e629c80f78a13a9d9c5542b773701"
+      "sha256": "633a2c1c011d69f490a0416fba69041c94f9afd11680c9344b47c543755c9539"
     },
     "wumba-detonator": {
       "retrace_count": 7013,
-      "sha256": "d8ee8a1e9e95c2626f6247d1f34d859225426013a09b70ea31039a09c0c4c148"
+      "sha256": "8350ff1ef2d0041149ec87771157bb718c664b2609986bc37906c2e2f7949931"
     },
     "wumba-dragon-kazooie": {
       "retrace_count": 7013,
-      "sha256": "7490bc643ddb44b248c690edc4c5249c76760265672d2a8b0513660f8caf6925"
+      "sha256": "0bc6351192977fca679581da4cd4c2d7cb33d14fcf7c198c2171f580ae532082"
     },
     "wumba-money-van": {
       "retrace_count": 7013,
-      "sha256": "10fb8233861134e7ea0bb7e5d3f4fa5fb57498b50894be436a5a1d39463f3680"
+      "sha256": "d9434e7df6524ebf2b1cb5e4f37daf30b3ab68e2cd04868be6c3d89fbb281e21"
     },
     "wumba-snowball": {
       "retrace_count": 7013,
-      "sha256": "3cccea427dc309054da51ef9fe683765d82331ed549d11c69e3b91a34c20d218"
+      "sha256": "c766b2266142eb88a21eee73ac996a91de205e5d8e50a3a80f47a7ffb6691d8b"
     },
     "wumba-stony": {
       "retrace_count": 7013,
-      "sha256": "030538ba2de741da42839660f899a327156ceadedd4c2872623479082122e609"
+      "sha256": "18ea6c4ea092c15bf264b224764e79b16beda5a460bc5a697917328bde0d16dd"
     },
     "wumba-submarine": {
       "retrace_count": 7013,
-      "sha256": "7336242cc6f374593475b441e81892a0b4cb3ebbbc6dc186b69554a0e7bf1b7f"
+      "sha256": "36979a8adb5c8ffb918881f6482adabf4a2dfef9ed18582bf70e874c2c1b163c"
     },
     "wumba-washer": {
       "retrace_count": 7013,
-      "sha256": "8750826359d35f499d99ace16cfcf38ce7654e77a28d0d8fe69c0b1df19c1bf7"
+      "sha256": "fa5edcce67d0ef82d078ccf9b246e8759171d70524344cce99afebc4f15de3d6"
     },
     "ww-entrance": {
       "retrace_count": 2638,
-      "sha256": "a01de6ab5a4f27c5c6a05a624f3a2a2eaa5c479f5f74b65e2b98e14c407c5567"
+      "sha256": "2681b98f6e3a9b3e15849e4ce495bc80bb8edce49d1ad87db927baad22ee4a84"
     },
     "ww-interior": {
       "retrace_count": 2638,
-      "sha256": "303082c706ce26fd24a3f386bdfc02122177bbc9ae74189e003cbfaa9e438acd"
+      "sha256": "f16b047d1123024f80f19257803769759625c7dddf40cbfad20d7269ac34e221"
     }
   },
   "format": "bt-reference-digests-1",

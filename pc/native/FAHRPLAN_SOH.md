@@ -17,7 +17,7 @@ Die Zahlen in der Vergleichstabelle und den Arbeitspaketen beschreiben den Ausga
 |---|---|---|
 | P0 | Arbeitsstand gesichert, bekanntes Fehlverhalten mit zehn Proben dokumentiert | abgeschlossen |
 | Q1 | 14 Bildbögen mit Startpunkt, Pause und Ego-Sicht | Emulatorvergleich und Abzeichnung auf Nutzerwunsch zurückgestellt |
-| Q2 | 71 akzeptierte Fälle mit 421.115 Retraces. Alle neun Mumbo-Schädel, zehn Humba-Verwandlungen, die acht Weltbosse, Saucer of Peril und das Rennen gegen Canary Mary sind erfasst | Solo-Banjo, Solo-Kazooie und HAG 1. Für die 147 unbesuchten benannten Karten ist je ein Grund verzeichnet |
+| Q2 | 74 akzeptierte Fälle mit 447.849 Retraces. Der Korpus erreicht 84 der 229 benannten Karten und führt für jede weitere Karte einen Grund auf. HAG 1, beide Solo-Figuren und die Weltübergänge sind geprüft | abgeschlossen |
 | Q3 | Acht Stunden mit Heapprüfung über 194 Karten, alle 46 Referenzen mit Host-Sanitizern bestanden | abgeschlossen |
 | Q4 | Menschlicher 100-%-Durchlauf | auf Nutzerwunsch zurückgestellt |
 | Q5 | Zonenbereinigung, Modell- und Blockpool-Zugriffe auf Originalcode. 1.109 übersetzte Spieldateien, keine der 27 LP64-Ersatzdateien im Gast aktiv. 229 Karten geprüft | ILP32-Inventar abgeschlossen. LP64-Aufräumen nach N4 |
