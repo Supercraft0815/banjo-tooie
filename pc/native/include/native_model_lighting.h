@@ -3,6 +3,21 @@
 #include "native_render.h"
 typedef struct {f32 direction[3];s32 color[3];f32 distance;} NativeModelLight;
 typedef struct {s32 ambient[3],capacity;NativeModelLight *used,*end;NativeModelLight entries[];} NativeModelLightList;
+typedef struct {
+    NativeRenderData *render;
+    s32 ambient[3];
+    u8 bones, count;
+    NativeModelLightList *lights;
+    NativeModelLight *start, *end;
+} NativeModelLighting;
+extern NativeModelLighting D_80137060;
+#if UINTPTR_MAX == UINT32_MAX
+_Static_assert(offsetof(NativeModelLighting, lights) == 0x14, "ILP32 model-light handle offset");
+_Static_assert(sizeof(NativeModelLighting) == 0x20, "ILP32 model-light state size");
+#elif UINTPTR_MAX == UINT64_MAX
+_Static_assert(offsetof(NativeModelLighting, lights) == 0x18, "LP64 model-light handle offset");
+_Static_assert(sizeof(NativeModelLighting) == 0x30, "LP64 model-light state size");
+#endif
 NativeModelLightList *func_800B3310(s32);
 void func_800B3370(void *);
 NativeModelLight *func_800B3390(NativeModelLightList *,f32);

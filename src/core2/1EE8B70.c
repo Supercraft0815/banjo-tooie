@@ -6,46 +6,45 @@
 #include "core2/geometry_callbacks.h"
 #endif
 
-typedef struct {
-    s32 *model;
-    s32 count;
-    s32 *current;
-    s32 *limit;
-} LightBuffer;
+typedef struct { s32 data[9]; s32 value; } GuestAdditiveLight; typedef struct { s32 *model; s32 count; s32 *current, *limit; GuestAdditiveLight entries[5]; } GuestLightBuffer; BT_NATIVE_ONLY(_Static_assert(offsetof(GuestLightBuffer, current) == 8, "guest additive current offset"); _Static_assert(offsetof(GuestLightBuffer, entries) == 0x10, "guest additive entries offset"); _Static_assert(sizeof(GuestLightBuffer) == 0xD8, "guest additive state"); GuestLightBuffer D_80137240 BT_DATA(4, bss_core2bss2_2_music_tail, 0x1820);) BT_IDO_ONLY(typedef struct { s32 *model; s32 count; s32 *current; s32 *limit; } LightBuffer;)
+
+
+
+
 
 void *func_8010F280(s32 arg0) {
     struct entry { s32 data[9]; s32 value; };
-    extern LightBuffer D_80137240;
-    extern s32 D_80137250;
+    BT_IDO_ONLY(extern LightBuffer D_80137240;)
+    BT_IDO_ONLY(extern s32 D_80137250;)
     s32 *dst;
     s32 *src;
     u32 cursor;
     s32 count;
 
-    for (cursor = (u32)&D_80137250; (s32 *)cursor < D_80137240.current; cursor += sizeof(struct entry)) {
+    for (cursor = (u32)BT_DATA_FIELD((s32 *)D_80137240.entries, &D_80137250); (s32 *)cursor < BT_DATA_FIELD(D_80137240.current, D_80137240.current); cursor += sizeof(struct entry)) {
         if (((struct entry *)cursor)->value < arg0) {
             break;
         }
     }
-    if ((s32 *)cursor == D_80137240.current) {
-        if (D_80137240.current < D_80137240.limit) {
-            D_80137240.current += 10;
+    if ((s32 *)cursor == BT_DATA_FIELD(D_80137240.current, D_80137240.current)) {
+        if (BT_DATA_FIELD(D_80137240.current, D_80137240.current) < BT_DATA_FIELD(D_80137240.limit, D_80137240.limit)) {
+            BT_DATA_FIELD(D_80137240.current, D_80137240.current) += 10;
             return (void *)cursor;
         }
         return NULL;
     }
-    if (D_80137240.current == D_80137240.limit) {
-        D_80137240.current -= 10;
+    if (BT_DATA_FIELD(D_80137240.current, D_80137240.current) == BT_DATA_FIELD(D_80137240.limit, D_80137240.limit)) {
+        BT_DATA_FIELD(D_80137240.current, D_80137240.current) -= 10;
     }
-    dst = D_80137240.current + 10;
-    count = ((struct entry *)D_80137240.current - (struct entry *)cursor) * sizeof(struct entry);
+    dst = BT_DATA_FIELD(D_80137240.current, D_80137240.current) + 10;
+    count = ((struct entry *)BT_DATA_FIELD(D_80137240.current, D_80137240.current) - (struct entry *)cursor) * sizeof(struct entry);
     dst--;
-    src = D_80137240.current - 1;
+    src = BT_DATA_FIELD(D_80137240.current, D_80137240.current) - 1;
     while (count > 0) {
         *dst-- = *src--;
         count -= 4;
     }
-    D_80137240.current += 10;
+    BT_DATA_FIELD(D_80137240.current, D_80137240.current) += 10;
     return (void *)cursor;
 }
 
@@ -64,7 +63,7 @@ void func_8010F384(s32 *arg0, s32 arg1, s32 arg2) {
     void func_800EE830(s32 *, s32 *);
     void mlMtxPop(void);
     f32 sqrtf(f32);
-    extern LightBuffer D_80137240;
+    BT_IDO_ONLY(extern LightBuffer D_80137240;)
     int count;
     f32 center[3];
     f32 norm;
@@ -78,7 +77,7 @@ void func_8010F384(s32 *arg0, s32 arg1, s32 arg2) {
     int colors[3];
     count = arg1 < 0 ? -arg1 : arg1;
     count *= 40;
-    D_80137240.limit = (s32 *)(count + (s32)D_80137240.current);
+    BT_DATA_FIELD(D_80137240.limit, D_80137240.limit) = (s32 *)(count + (s32)BT_DATA_FIELD(D_80137240.current, D_80137240.current));
     func_800B237C((void *)func_800DF8B4(arg0), center, &norm);
     scale = func_800DF8C4((void *)arg0);
     func_80019224(center, center);
@@ -115,16 +114,16 @@ void func_8010F384(s32 *arg0, s32 arg1, s32 arg2) {
         }
         while (light != 0);
     }
-    D_80137240.count = (s32)(((s32)D_80137240.current - (s32)&D_80137240 - 16) / 40);
+    BT_DATA_FIELD(D_80137240.count, D_80137240.count) = (s32)(((s32)BT_DATA_FIELD(D_80137240.current, D_80137240.current) - (s32)&D_80137240 - 16) / 40);
     mlMtxPop();
 }
 
 void func_8010F68C(s32 arg0, s32 arg1) {
     u32 func_800B2344(void *);
     f32 sqrtf(f32);
-    extern s32 D_80137244;
-    extern u32 D_80137248;
-    extern s32 D_80137250;
+    BT_IDO_ONLY(extern s32 D_80137244;)
+    BT_IDO_ONLY(extern u32 D_80137248;)
+    BT_IDO_ONLY(extern s32 D_80137250;)
     struct header { u8 pad[22]; BT_BITFIELD_ORDER(u16 other : 15, u16 active : 1); BT_BITFIELD_ORDER(u16 active : 1, u16 other : 15); };
     struct header *model;
     u32 end[1];
@@ -140,15 +139,15 @@ void func_8010F68C(s32 arg0, s32 arg1) {
     end[0] = limit;
     model = (struct header *)arg0;
     vertex = arg0 + 24;
-    if (D_80137244 != 0) {
+    if (BT_DATA_FIELD(D_80137240.count, D_80137244) != 0) {
         if ((u32)arg1 < limit) {
             do {
-                light = &D_80137250;
+                light = BT_DATA_FIELD((s32 *)D_80137240.entries, &D_80137250);
                 if (!(*(u16 *)(vertex + 6) & 0x1000)) {
                     red = ((u8 *)arg1)[6];
                     green = ((u8 *)arg1)[7];
                     blue = ((u8 *)arg1)[8];
-                    if ((u32)light < D_80137248) {
+                    if ((u32)light < BT_DATA_FIELD((u32)D_80137240.limit, D_80137248)) {
                         do {
                             x = light[0] - ((s16 *)vertex)[0];
                             y = light[1] - ((s16 *)vertex)[1];
@@ -171,7 +170,7 @@ void func_8010F68C(s32 arg0, s32 arg1) {
                                 blue += (light[8] * scale) >> 16;
                             }
                             light += 10;
-                        } while ((u32)light < D_80137248);
+                        } while ((u32)light < BT_DATA_FIELD((u32)D_80137240.limit, D_80137248));
                     }
                     if (red >= 256) red = 255;
                     ((u8 *)vertex)[12] = red;
@@ -202,20 +201,20 @@ void func_8010F68C(s32 arg0, s32 arg1) {
     }
 }
 
-void func_8010F950(BT_NATIVE_ONLY(struct GeometryRenderData *arg0) BT_IDO_ONLY(s32 *arg0), s32 arg1, BT_NATIVE_ONLY(void *arg2) BT_IDO_ONLY(volatile s32 arg2), BT_NATIVE_ONLY(const f32 *arg3) BT_IDO_ONLY(s32 arg3)) {
+void func_8010F950(s32 *arg0, s32 arg1, volatile s32 arg2, s32 arg3) {
     s32 func_800DF8B4(s32 *);
     s32 func_800DF8BC(s32 *);
     void func_8010F384(s32 *, s32, s32);
     void func_8010F68C(s32, s32);
-    extern LightBuffer D_80137240;
-    extern s32 D_80137250;
+    BT_IDO_ONLY(extern LightBuffer D_80137240;)
+    BT_IDO_ONLY(extern s32 D_80137250;)
     s32 temp;
     s32 sp18;
 
-    D_80137240.model = arg0;
-    D_80137240.current = &D_80137250;
+    BT_DATA_FIELD(D_80137240.model, D_80137240.model) = arg0;
+    BT_DATA_FIELD(D_80137240.current, D_80137240.current) = BT_DATA_FIELD((s32 *)D_80137240.entries, &D_80137250);
     func_8010F384(arg0, arg1, arg3);
-    sp18 = func_800DF8B4(D_80137240.model); temp = func_800DF8BC(D_80137240.model);
+    sp18 = func_800DF8B4(BT_DATA_FIELD(D_80137240.model, D_80137240.model)); temp = func_800DF8BC(BT_DATA_FIELD(D_80137240.model, D_80137240.model));
     func_8010F68C(sp18, temp);
 }
 

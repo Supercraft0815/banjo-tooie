@@ -12,7 +12,7 @@ static uintptr_t callback_value;
 static void callback(uintptr_t value) {callback_value=value;}
 static void near(f32 value,f32 expected) {CHECK(fabsf(value-expected)<0.0001f);}
 static void test_state(void) {
-    func_800DF38C();CHECK(*func_800DF330() && func_8010E3B8());CHECK(native_render.look_at.current==native_render.look_at.buffer && native_render.look_at.end==native_render.look_at.buffer+32);
+    func_800DF38C();CHECK(*func_800DF330() && func_8010E3B8());CHECK(D_80137060.lights==func_8010E3B8());if(sizeof(void *)==8)CHECK((uintptr_t)D_80137060.lights>UINT32_MAX);CHECK(native_render.look_at.current==native_render.look_at.buffer && native_render.look_at.end==native_render.look_at.buffer+32);
     CHECK(native_render.distance==30000 && native_render.range_scale==1 && native_render.cull && native_render.env[3]==255);
     CHECK(func_800DF33C(1)==1 && !func_800DF33C(2));
     BoneTransformList pose={0};NativeVertexList *vertices=heap_alloc(sizeof(*vertices));NativeBoneMatrices *bones=func_800ADF98();
@@ -83,14 +83,14 @@ static void test_vertex_lighting(void) {
     data.colors=colors;data.normals=normals;
     for(int i=0;i<2;++i){data.vertices->vertices[i].v.ob[0]=123;data.vertices->vertices[i].v.cn[3]=42;}
     NativeModelLightList *lights=func_800B3310(2);s32 ambient[3]={64,128,256};func_800B38A8(lights,ambient);
-    func_8010E2C4(&data,2,lights,0);s32 cursor=0;func_8010E4C4(NULL,&cursor,2);CHECK(cursor==2);
+    func_8010E2C4(&data,2,lights,0);CHECK(D_80137060.render==&data && D_80137060.lights!=NULL);CHECK(D_80137060.start==D_80137060.lights->entries && D_80137060.end==D_80137060.lights->used);s32 cursor=0;func_8010E4C4(NULL,&cursor,2);CHECK(cursor==2);
     CHECK(data.vertices->vertices[0].v.cn[0]==32 && data.vertices->vertices[0].v.cn[1]==32 && data.vertices->vertices[0].v.cn[2]==255);
     f32 direction[3]={1,0,0};s32 color[3]={100,100,100};CHECK(func_800B36C0(lights,direction,color,10));
     func_8010E2C4(&data,2,lights,0);cursor=0;func_8010E4C4(NULL,&cursor,2);
     CHECK(data.vertices->vertices[0].v.cn[0]==81 && data.vertices->vertices[0].v.cn[1]==56 && data.vertices->vertices[0].v.cn[2]==255);
     CHECK(data.vertices->vertices[1].v.cn[0]==50 && colors[0].light[0]==163 && colors[1].light[0]==64);
     for(int i=0;i<2;++i)CHECK(data.vertices->vertices[i].v.ob[0]==123 && data.vertices->vertices[i].v.cn[3]==42);
-    CHECK(func_800B36C0(lights,direction,color,30));func_8010E2C4(&data,2,lights,0);
+    CHECK(func_800B36C0(lights,direction,color,30));func_8010E358();CHECK(D_80137060.start==D_80137060.lights->entries && D_80137060.end==D_80137060.lights->used);func_8010E2C4(&data,2,lights,0);
     CHECK(func_8010E3B8()->entries[0].color[0]==75 && func_8010E3B8()->entries[1].color[0]==25);
     data.animation=*func_800DF330();MtxF rotate={.m={{0,1,0,0},{-1,0,0,0},{0,0,1,0},{0,0,0,1}}};
     normals[0]=0;normals[1]=-127;func_8010E2C4(&data,2,lights,0);cursor=0;func_8010E4C4(&rotate.m[0][0],&cursor,1);CHECK(data.vertices->vertices[0].v.cn[0]>32);

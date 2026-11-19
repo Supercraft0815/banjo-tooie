@@ -1,10 +1,10 @@
 #include "native_point_lighting.h"
 #include "native_lights.h"
 void func_80019224(f32 *,f32 *),func_800193C4(f32 *,f32 *);
-static NativePointLighting point_lighting;
-NativePointLighting *func_8010E810(void) {return &point_lighting;}
+NativePointLighting D_80137080;
+NativePointLighting *func_8010E810(void) {return &D_80137080;}
 NativePointLight *func_8010E81C(f32 distance) {
-    NativePointLighting *list=&point_lighting;
+    NativePointLighting *list=&D_80137080;
     if(!list->used || !list->end)return NULL;
     NativePointLight *entry=list->entries;
     for(;entry<list->used;++entry)if(distance<entry->distance)break;
@@ -27,7 +27,7 @@ NativePointLight *func_8010E924(s32 id,f32 *center,f32 radius,f32 scale) {
     entry->falloff=native_point_word(16384.0f/(range[1]-range[0]));func_800C8900(id,entry->color);return entry;
 }
 void func_8010EACC(NativeRenderData *data,s32 amount,f32 unused) {
-    (void)unused;NativePointLighting *list=&point_lighting;
+    (void)unused;NativePointLighting *list=&D_80137080;
     list->end=list->used+native_point_capacity(amount,list->entries+9-list->used);
     if(!data || !data->vertices || !isfinite(data->scale) || data->scale<=0){list->count=0;return;}
     f32 center[3],radius;func_800B237C(data->vertices,center,&radius);func_80019224(center,center);radius*=data->scale;
@@ -37,7 +37,7 @@ void func_8010EACC(NativeRenderData *data,s32 amount,f32 unused) {
 }
 void func_8010EBE4(NativeVertexList *vertices,s8 *normals,NativeVertexLight *colors) {
     (void)normals;if(!vertices || !colors)return;
-    NativePointLighting *list=&point_lighting;
+    NativePointLighting *list=&D_80137080;
     for(u32 i=0;i<func_800B2344(vertices);++i) {
         Vtx *vertex=vertices->vertices+i;if(vertex->v.flag&0x1000)continue;
         s32 rgb[3]={list->ambient[0],list->ambient[1],list->ambient[2]};
@@ -53,8 +53,8 @@ void func_8010EBE4(NativeVertexList *vertices,s8 *normals,NativeVertexLight *col
 }
 void func_8010EECC(NativeRenderData *data,s32 count,void *unused,const f32 *camera) {
     (void)unused;(void)camera;
-    point_lighting.render=data;point_lighting.bones=data ? func_800DF8D4(data) : 0;
-    point_lighting.used=point_lighting.entries;
-    func_8010EACC(data,count,0);func_800C87B8(point_lighting.ambient);
+    D_80137080.render=data;D_80137080.bones=data ? func_800DF8D4(data) : 0;
+    D_80137080.used=D_80137080.entries;
+    func_8010EACC(data,count,0);func_800C87B8(D_80137080.ambient);
     if(data)func_8010EBE4(data->vertices,data->normals,data->colors);
 }

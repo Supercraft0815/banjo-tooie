@@ -442,3 +442,10 @@ The 266 map slots, dialog cache, intro clock and overlay counters have their
 own C storage. All 9,703 runtime fixups retain the original addresses, both
 ROMs match byte for byte, and all 74 replays match. See
 n1-2026-11-18/current-section-storage-ir.log and current-section-storage-full.log.
+
+2026-11-19  Collision cells, heap handles and light tables
+Twenty-two guest functions change their address expressions, pointer
+handling or bounds. The cell cache, vertex samples, shared handle table,
+nine point lights and five additive lights have typed storage. All 9,703
+fixups, both complete ROM images and all 74 replays match. See
+n1-2026-11-18/current-collision-lights-ir.log and current-collision-lights-full.log.

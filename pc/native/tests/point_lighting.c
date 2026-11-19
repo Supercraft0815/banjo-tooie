@@ -2,6 +2,7 @@
 #include "native_lights.h"
 #include "native_assets.h"
 #include "memory.h"
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #define CHECK(x) do {if(!(x)){fprintf(stderr,"%s:%d: %s\n",__FILE__,__LINE__,#x);exit(1);}}while(0)
@@ -43,7 +44,7 @@ static void test_colors(void) {
     func_8010EECC(&data,0,0,NULL);rgb(0,0,255,255);CHECK(!func_8010E810()->count);
 
     reset();id=light(0,2,100,64,32);
-    func_8010F950(&data,1,0,NULL);CHECK(stack==mlMtx_get_stack_pointer());
+    func_8010F950(&data,1,0,NULL);CHECK(D_80137240.used!=NULL);if(sizeof(void *)==8)CHECK((uintptr_t)D_80137240.used>UINT32_MAX);CHECK(D_80137240.render==&data);CHECK(D_80137240.used>=D_80137240.entries && D_80137240.used<=D_80137240.end);CHECK(stack==mlMtx_get_stack_pointer());
     rgb(0,228,128,255);rgb(1,228,128,255);rgb(2,178,96,255);rgb(3,128,64,255);rgb(5,77,77,77);
     CHECK(data.vertices->count_flags==13);
     func_8010F950(&data,-1,0,NULL);rgb(0,228,128,255);
@@ -52,7 +53,7 @@ static void test_colors(void) {
 }
 static void test_selection(void) {
     reset();light(12,1,10,0,0);light(4,1,20,0,0);light(8,1,30,0,0);light(1,2,255,255,255);
-    NativePointLighting *list=func_8010E810();func_8010EECC(&data,-2,0,NULL);
+    NativePointLighting *list=func_8010E810();CHECK(list==&D_80137080);if(sizeof(void *)==8)CHECK((uintptr_t)list>UINT32_MAX);func_8010EECC(&data,-2,0,NULL);
     CHECK(list->count==2 && list->entries[0].distance==4 && list->entries[1].distance==8);rgb(0,89,16,31);
     CHECK(!func_8010E81C(8));NativePointLight *entry=func_8010E81C(6);CHECK(entry==list->entries+1);entry->distance=6;
     CHECK(list->used==list->entries+2 && list->entries[0].color[0]==20);

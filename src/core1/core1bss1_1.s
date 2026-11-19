@@ -59,13 +59,7 @@ dlabel D_8007BF00
 /* 1E93A30 8007BF00 */ .space 0x10
 
 dlabel D_8007BF10
-/* 1E93A40 8007BF10 */ .space 0x08
-
-dlabel D_8007BF18
-/* 1E93A48 8007BF18 */ .space 0x08
-
-dlabel D_8007BF20
-/* 1E93A50 8007BF20 */ .space 0x7C0
+/* 1E93A40 8007BF10 */ .space 0x7D0
 
 dlabel D_8007C6E0
 /* 1E94210 8007C6E0 */ .space 0x04

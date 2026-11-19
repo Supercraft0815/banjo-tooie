@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "memory.h"
+#include "core1/heap_handle.h"
+#include "bt_data.h"
 #include "native_rdram.h"
 
 /* Host allocations do not move during defragmentation. Handle zero is reserved.
    Blocks come from the rdram arena so they have 32-bit physical addresses. */
-static void *handles[250];
-static s32 handle_sizes[250];
+HeapHandle D_8007BF10[HEAP_HANDLE_COUNT] BT_DATA(4, bss_core1bss1_1, 0x250);
+static s32 handle_sizes[HEAP_HANDLE_COUNT];
 
 static void memory_error(const char *message) {
     fprintf(stderr, "Banjo-Tooie native memory: %s\n", message);
@@ -67,10 +69,10 @@ void *defrag(void *memory) {
 
 s16 func_8001B668(s32 type, s32 size) {
     s16 index;
-    (void)type; /* Type only selects pointer repair after N64 heap compaction. */
-    for (index = 1; index < 250; index++) {
-        if (!handles[index]) {
-            handles[index] = heap_alloc(size);
+    for (index = 1; index < HEAP_HANDLE_COUNT; index++) {
+        if (!D_8007BF10[index].ptr) {
+            D_8007BF10[index].ptr = heap_alloc(size);
+            D_8007BF10[index].type = type;
             handle_sizes[index] = size;
             return index;
         }
@@ -79,25 +81,25 @@ s16 func_8001B668(s32 type, s32 size) {
 }
 
 void *func_8001B798(s16 handle) {
-    if (handle <= 0 || handle >= 250 || !handles[handle]) {
+    if (handle <= 0 || handle >= HEAP_HANDLE_COUNT || !D_8007BF10[handle].ptr) {
         fprintf(stderr, "Banjo-Tooie native memory: handle %d\n", handle);
         memory_error("invalid allocation handle");
     }
-    return handles[handle];
+    return D_8007BF10[handle].ptr;
 }
 
 void *func_8001B710(s16 handle, s32 size) {
     void *memory = func_8001B798(handle);
-    handles[handle] = heap_realloc(memory, size);
+    D_8007BF10[handle].ptr = heap_realloc(memory, size);
     handle_sizes[handle] = size;
-    return handles[handle];
+    return D_8007BF10[handle].ptr;
 }
 
 void func_8001B754(s16 handle) {
     /* N64 handle zero contains NULL; cache purges also release empty slots. */
     if (handle == 0) return;
     heap_free(func_8001B798(handle));
-    handles[handle] = NULL;
+    D_8007BF10[handle].ptr = NULL;
     handle_sizes[handle] = 0;
 }
 

@@ -5,19 +5,10 @@
 .section .bss
 
 dlabel D_801277A0
-    /* 801277A0 */ .space 0x190
-
-dlabel D_80127930
-    /* 80127930 */ .space 0x08
+    /* 801277A0 */ .space 0x198
 
 dlabel D_80127938
-    /* 80127938 */ .space 0x24
-
-dlabel D_8012795C
-    /* 8012795C */ .space 0x0C
-
-dlabel D_80127968
-    /* 80127968 */ .space 0x24
+    /* 80127938 */ .space 0x54
 
 dlabel D_8012798C
     /* 8012798C */ .space 0x04

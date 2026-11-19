@@ -3341,3 +3341,23 @@ bestehen. Alle 16.401 Originalfunktionen, beide vollständigen ROMs und
 die Zieladressen aller 9.703 Laufzeit-Fixups stimmen mit der Referenz
 überein. Die 29 Änderungen im Gast-IR und die zugehörigen Vergleiche
 stehen unter `build/acceptance/n1-2026-11-18/current-section-storage*`.
+
+### 2026-11-19 – Kollisionscache, Heap-Handles und Lichttabellen (N1/N3)
+
+Bis zu 100 Kollisionszellen, drei Eckpunkte und zwölf Farbkanäle liegen im
+nativen Cache. Die LP64-Probe liest Position und RGBA jedes Eckpunkts
+über die drei Spielfunktionen zurück. Sie belegt außerdem alle 249
+verwendbaren Heap-Handles gleichzeitig, lässt die Kompaktierung die
+Tabelle durchlaufen und gibt einen Eintrag zur Wiederverwendung frei.
+Der Gasttest fügt Lichter in die beiden Originaltabellen ein und prüft
+ihre Sortierung bei neun Punktlichtern und fünf additiven Lichtern.
+
+Alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 66 Sanitizertests
+bestehen. Original-IDO bestätigt 16.401 Funktionen und beide ROMs. Die
+9.703 Laufzeit-Fixups haben dieselben Zieladressen. 22 Gastfunktionen
+ändern ihre IR. Belege unter `build/acceptance/n1-2026-11-18/current-collision-lights*`.
+
+Der instrumentierte Lauf des vorigen Kartenspeicherstands über alle 74 Fälle
+meldet 257 Zugriffsstellen in 77 Funktionen und 32 Symbolgruppen bei
+6.388 instrumentierten Stellen. Beim letzten Vergleich waren es 435 Stellen
+in 127 Funktionen und 43 Gruppen.

@@ -10,8 +10,6 @@ typedef struct NativeCollisionBlock {
 } NativeCollisionBlock;
 #define COLL_BLOCK_HEADER offsetof(NativeCollisionBlock,triangles)
 void *D_8012798C;
-f32 D_80127938[21];
-#define D_8012795C (D_80127938+9)
 
 void func_800AB9D0(void) {
     NativeCollisionBlock *block=D_8012798C;

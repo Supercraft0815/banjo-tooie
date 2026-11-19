@@ -1,15 +1,12 @@
-#include "common.h"
+#include "core1/heap_handle.h"
 
-typedef struct { void *ptr; s32 type; } Entry;
-extern Entry D_8007BF10[];
-
-void func_8001B4B0(void){extern s32 D_8007BF18,D_8007C6E0;s32 i;D_8007BF18=0;i=2;do{i+=4;D_8007BF10[i-3].ptr=0;D_8007BF10[i-2].ptr=0;D_8007BF10[i-1].ptr=0;D_8007BF10[i-4].ptr=0;}while((Entry *)&D_8007C6E0 != &D_8007BF10[i]);}
+void func_8001B4B0(void){extern s32 D_8007BF18,D_8007C6E0;s32 i;BT_DATA_FIELD(D_8007BF10[1].ptr, D_8007BF18)=0;i=2;do{i+=4;D_8007BF10[i-3].ptr=0;D_8007BF10[i-2].ptr=0;D_8007BF10[i-1].ptr=0;D_8007BF10[i-4].ptr=0;}while(BT_DATA_FIELD(i != HEAP_HANDLE_COUNT, (HeapHandle *)&D_8007C6E0 != &D_8007BF10[i]));}
 
 void func_8001B4E8(void)
 {
     s32 i;
 
-    for (i = 2; i < 250; i++) {
+    for (i = 2; i < HEAP_HANDLE_COUNT; i++) {
         if (D_8007BF10[i].ptr != NULL) {
         }
     }
@@ -33,7 +30,7 @@ void func_8001B518(s32 arg0)
     void *old;
     void *saved;
     void *moved;
-    Entry *entry;
+    HeapHandle *entry;
     s32 type;
     s32 i;
     s32 count;
@@ -41,13 +38,13 @@ void func_8001B518(s32 arg0)
     if (D_8007C6E0 == 0 || arg0 != 0) {
         D_8007C6E0 = 1;
         if (arg0 != 0) {
-            count = 250;
+            count = HEAP_HANDLE_COUNT;
         } else {
             count = 20;
         }
         for (i = 1; i < count; i++) {
             D_8007C6E4++;
-            if (D_8007C6E4 >= 250) {
+            if (D_8007C6E4 >= HEAP_HANDLE_COUNT) {
                 D_8007C6E4 = 0;
             }
             if (D_8007BF10[D_8007C6E4].ptr != 0) {
@@ -83,7 +80,7 @@ s16 func_8001B668(s32 arg0, s32 arg1) {
     s32 index;
 
     for (index = 1; D_8007BF10[index].ptr != 0; index++) {}
-    if (index < 250) {
+    if (index < HEAP_HANDLE_COUNT) {
         D_8007BF10[index].ptr = heap_alloc_sided(arg1, 2);
         D_8007BF10[index].type = arg0;
         func_8001B3A0(D_8007BF10[index].ptr);
@@ -127,8 +124,6 @@ void func_8001B7F0(s16 arg0, u8 arg1, int arg2) { u32 value = arg1;
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
-Entry D_8007BF10 [ 1 ] BT_DATA(4, bss_core1bss1_1, 0x250);
-s32 D_8007BF18 BT_DATA(4, bss_core1bss1_1, 0x258);
 s32 D_8007C6E0 BT_DATA(4, bss_core1bss1_1, 0xA20);
 s32 D_8007C6E4 BT_DATA(4, bss_core1bss1_1, 0xA24);
 #endif

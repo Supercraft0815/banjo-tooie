@@ -6,7 +6,7 @@
 #include "core2/geometry_callbacks.h"
 #endif
 
-extern s32 D_80137074;    typedef struct { s32 * unk0; u8 pad4[0xC]; s8 unk10; u8 pad11[0x3]; u8 * unk14; f32 * unk18; f32 * unk1C; } Obj1EE7960_D_80137060; /* offsets.py genstruct: fields from raw offsets on &D_80137060; rename once understood */
+typedef struct { s32 *render; s32 ambient[3]; u8 bones, count, pad[2]; s32 *lights; f32 *start, *end; } GuestModelLighting; BT_NATIVE_ONLY(_Static_assert(offsetof(GuestModelLighting, lights) == 0x14, "guest model-light handle"); _Static_assert(sizeof(GuestModelLighting) == 0x20, "guest model-light state"); GuestModelLighting D_80137060 BT_DATA(4, bss_core2bss2_2_music_tail, 0x1640);) BT_IDO_ONLY(extern s32 D_80137074;) typedef struct { s32 * unk0; u8 pad4[0xC]; s8 unk10; u8 pad11[0x3]; u8 * unk14; f32 * unk18; f32 * unk1C; } Obj1EE7960_D_80137060;
 
 s32 func_8010E070(void) {
     void func_800192FC(f32 *, f32 *);
@@ -14,39 +14,39 @@ s32 func_8010E070(void) {
     void func_800B37A4(u8 *, s32 *, s32 *);
     void func_800B37B8(s32, s32 *);
     void func_800EF368(f32 *, f32);
-    extern s32 D_80137060;
-    extern s32 D_80137064;
-    extern s32 D_80137078;
-    extern s32 D_8013707C;
+    BT_IDO_ONLY(extern s32 D_80137060;)
+    BT_IDO_ONLY(extern s32 D_80137064;)
+    BT_IDO_ONLY(extern s32 D_80137078;)
+    BT_IDO_ONLY(extern s32 D_8013707C;)
     BT_IDO_ONLY(f32 *p;) BT_NATIVE_ONLY(f32 sum;)
     BT_IDO_ONLY(f32 sum;) BT_NATIVE_ONLY(f32 *p;)
     f32 scale;
 
-    *((u8 *)&D_80137060 + 0x11) = func_800B3784(((Obj1EE7960_D_80137060 *)&D_80137060)->unk14);
-    func_800B37A4(((Obj1EE7960_D_80137060 *)&D_80137060)->unk14, &D_80137078, &D_8013707C);
-    if (*((u8 *)&D_80137060 + 0x10) == 0) {
-        for (p = ((Obj1EE7960_D_80137060 *)&D_80137060)->unk18;
-             p < ((Obj1EE7960_D_80137060 *)&D_80137060)->unk1C; p += 7) {
+    BT_DATA_FIELD(D_80137060.count, *((u8 *)&D_80137060 + 0x11)) = func_800B3784(BT_DATA_FIELD(D_80137060.lights, ((Obj1EE7960_D_80137060 *)&D_80137060)->unk14));
+    func_800B37A4(BT_DATA_FIELD(D_80137060.lights, ((Obj1EE7960_D_80137060 *)&D_80137060)->unk14), BT_DATA_FIELD((s32 *)&D_80137060.start, &D_80137078), BT_DATA_FIELD((s32 *)&D_80137060.end, &D_8013707C));
+    if (BT_DATA_FIELD(D_80137060.bones, *((u8 *)&D_80137060 + 0x10)) == 0) {
+        for (p = BT_DATA_FIELD(D_80137060.start, ((Obj1EE7960_D_80137060 *)&D_80137060)->unk18);
+             p < BT_DATA_FIELD(D_80137060.end, ((Obj1EE7960_D_80137060 *)&D_80137060)->unk1C); p += 7) {
             func_800192FC(p, p);
             func_800EF368(p, 256.0f);
         }
     }
-    if (*((u8 *)&D_80137060 + 0x11) >= 2) {
+    if (BT_DATA_FIELD(D_80137060.count, *((u8 *)&D_80137060 + 0x11)) >= 2) {
         sum = 0.0f;
-        for (p = ((Obj1EE7960_D_80137060 *)&D_80137060)->unk18;
-             p < ((Obj1EE7960_D_80137060 *)&D_80137060)->unk1C; p += 7) {
+        for (p = BT_DATA_FIELD(D_80137060.start, ((Obj1EE7960_D_80137060 *)&D_80137060)->unk18);
+             p < BT_DATA_FIELD(D_80137060.end, ((Obj1EE7960_D_80137060 *)&D_80137060)->unk1C); p += 7) {
             sum += p[6];
         }
         sum = 1.0f / sum;
-        for (p = ((Obj1EE7960_D_80137060 *)&D_80137060)->unk18;
-             p < ((Obj1EE7960_D_80137060 *)&D_80137060)->unk1C; p += 7) {
+        for (p = BT_DATA_FIELD(D_80137060.start, ((Obj1EE7960_D_80137060 *)&D_80137060)->unk18);
+             p < BT_DATA_FIELD(D_80137060.end, ((Obj1EE7960_D_80137060 *)&D_80137060)->unk1C); p += 7) {
             scale = 1.0f - p[6] * sum;
             ((s32 *)p)[3] *= scale;
             ((s32 *)p)[4] *= scale;
             ((s32 *)p)[5] *= scale;
         }
     }
-    func_800B37B8(*(s32 *)((u8 *)&D_80137060 + 0x14), &D_80137064); BT_NATIVE_ONLY(return 0;)
+    func_800B37B8(BT_DATA_FIELD(D_80137060.lights, *(s32 *)((u8 *)&D_80137060 + 0x14)), &BT_DATA_FIELD(D_80137060.ambient, D_80137064)); BT_NATIVE_ONLY(return 0;)
 }
 
 void func_8010E204(void *arg0, s32 arg1, f32 arg2) {
@@ -58,33 +58,33 @@ void func_8010E204(void *arg0, s32 arg1, f32 arg2) {
     void func_800B38C8(s32);
     s32 func_800DF8B4(s32 *);
     f32 func_800DF8C4(f32 *);
-    extern s32 D_80137074;
+    BT_IDO_ONLY(extern s32 D_80137074;)
     f32 sp24[3];
     f32 sp20;
     f32 sp1C;
-    func_800B388C(D_80137074, arg1 < 0 ? -arg1 : arg1);
+    func_800B388C(BT_DATA_FIELD(D_80137060.lights, D_80137074), arg1 < 0 ? -arg1 : arg1);
     func_800B237C(func_800DF8B4(arg0), sp24, &sp20);
     sp1C = func_800DF8C4(arg0);
     func_80019224(sp24, sp24);
     sp20 *= sp1C;
-    func_800B3494(D_80137074, sp24, sp20);
+    func_800B3494(BT_DATA_FIELD(D_80137060.lights, D_80137074), sp24, sp20);
     if (arg1 < 0) {
-        func_800B3748(D_80137074);
+        func_800B3748(BT_DATA_FIELD(D_80137060.lights, D_80137074));
     }
-    func_800B38C8(D_80137074);
+    func_800B38C8(BT_DATA_FIELD(D_80137060.lights, D_80137074));
 }
 
-void func_8010E2C4(BT_NATIVE_ONLY(struct GeometryRenderData *arg0) BT_IDO_ONLY(s32 *arg0), s32 arg1, BT_NATIVE_ONLY(void *arg2) BT_IDO_ONLY(s32 arg2), BT_NATIVE_ONLY(const f32 *arg3) BT_IDO_ONLY(f32 arg3)) {
+void func_8010E2C4(s32 *arg0, s32 arg1, s32 arg2, f32 arg3) {
     s32 func_800B37E4(s32, s32);
     int func_800DF8D4(s32 *);
     s32 func_8010E070();
-    extern s32 D_80137060;
-    (((Obj1EE7960_D_80137060 *)&D_80137060)->unk0) = arg0;
-    (((Obj1EE7960_D_80137060 *)&D_80137060)->unk10) = func_800DF8D4(arg0);
+    BT_IDO_ONLY(extern s32 D_80137060;)
+    (BT_DATA_FIELD(D_80137060.render, ((Obj1EE7960_D_80137060 *)&D_80137060)->unk0)) = arg0;
+    (BT_DATA_FIELD(D_80137060.bones, ((Obj1EE7960_D_80137060 *)&D_80137060)->unk10)) = func_800DF8D4(arg0);
     if (arg2 != 0) {
-        func_800B37E4((*(s32 *)((s8 *)(&D_80137060) + (0x14))), arg2);
+        func_800B37E4((BT_DATA_FIELD(D_80137060.lights, *(s32 *)((s8 *)(&D_80137060) + (0x14)))), arg2);
     } else {
-        func_8010E204(arg0, arg1, BT_DATA_FIELD(0.0f, arg3));
+        func_8010E204(arg0, arg1, arg3);
     }
     func_8010E070();
 }
@@ -93,28 +93,28 @@ void func_8010E2C4(BT_NATIVE_ONLY(struct GeometryRenderData *arg0) BT_IDO_ONLY(s
 
 void func_8010E334(void) {
     s32 func_800B3310(s32);
-    D_80137074 = func_800B3310(0x4);
+    BT_DATA_FIELD(D_80137060.lights, D_80137074) = func_800B3310(0x4);
 }
 
 /* extern */
 
 void func_8010E358(void) {
     s32 func_800B38E8(s32);
-    if (D_80137074 != 0) {
-        D_80137074 = func_800B38E8(D_80137074);
+    if (BT_DATA_FIELD(D_80137060.lights, D_80137074) != 0) {
+        BT_DATA_FIELD(D_80137060.lights, D_80137074) = func_800B38E8(BT_DATA_FIELD(D_80137060.lights, D_80137074));
     }
 }
 
 void func_8010E390(void) {
     s32 func_800B3370(s32);
-    extern s32 D_80137074;
-    func_800B3370(D_80137074);
-    D_80137074 = 0;
+    BT_IDO_ONLY(extern s32 D_80137074;)
+    func_800B3370(BT_DATA_FIELD(D_80137060.lights, D_80137074));
+    BT_DATA_FIELD(D_80137060.lights, D_80137074) = 0;
 }
 
 s32 func_8010E3B8()
 {
-    return D_80137074;
+    return BT_DATA_FIELD(D_80137060.lights, D_80137074);
 }
 
 void func_8010E3C4(f32 *arg0, s32 *arg1, f32 *arg2) {
@@ -142,7 +142,7 @@ void func_8010E4C4(f32 *arg0, s32 *arg1, s32 arg2) {
     s32 func_800DF8B4(s32 *);
     s32 func_800DF8BC(s32 *);
     s32 func_800DF8CC(s32 *);
-    extern s32 D_80137060;
+    BT_IDO_ONLY(extern s32 D_80137060;)
     typedef struct { s16 light[3]; u8 color[4]; } Color;
     Color *start, *end, *p;
     u8 *vertex;
@@ -157,27 +157,27 @@ void func_8010E4C4(f32 *arg0, s32 *arg1, s32 arg2) {
     s32 base;
     s32 lr, lg, lb;
 
-    base = func_800DF8B4(*(s32 **)&D_80137060);
+    base = func_800DF8B4(BT_DATA_FIELD(D_80137060.render, *(s32 **)&D_80137060));
     vertex = (u8 *)(*arg1 * 16 + base + 24);
-    base = func_800DF8CC(*(s32 **)&D_80137060);
+    base = func_800DF8CC(BT_DATA_FIELD(D_80137060.render, *(s32 **)&D_80137060));
     normals = (s8 *)(*arg1 * 4 + base);
-    start = (Color *)func_800DF8BC(*(s32 **)&D_80137060) + *arg1;
+    start = (Color *)func_800DF8BC(BT_DATA_FIELD(D_80137060.render, *(s32 **)&D_80137060)) + *arg1;
     end = start + arg2;
     *arg1 += arg2;
-    if (*((u8 *)&D_80137060 + 0x11)) {
-        r = *((s32 *)&D_80137060 + 1);
-        g = *((s32 *)&D_80137060 + 2);
-        b = *((s32 *)&D_80137060 + 3);
+    if (BT_DATA_FIELD(D_80137060.count, *((u8 *)&D_80137060 + 0x11))) {
+        r = BT_DATA_FIELD(D_80137060.ambient[0], *((s32 *)&D_80137060 + 1));
+        g = BT_DATA_FIELD(D_80137060.ambient[1], *((s32 *)&D_80137060 + 2));
+        b = BT_DATA_FIELD(D_80137060.ambient[2], *((s32 *)&D_80137060 + 3));
         for (p = start; p < end; p++) {
             p->light[0] = r;
             p->light[1] = g;
             p->light[2] = b;
         }
-        for (light = ((Obj1EE7960_D_80137060 *)&D_80137060)->unk18;
-             light < ((Obj1EE7960_D_80137060 *)&D_80137060)->unk1C; light += 7) {
+        for (light = BT_DATA_FIELD(D_80137060.start, ((Obj1EE7960_D_80137060 *)&D_80137060)->unk18);
+             light < BT_DATA_FIELD(D_80137060.end, ((Obj1EE7960_D_80137060 *)&D_80137060)->unk1C); light += 7) {
             p = start;
             normal = normals;
-            if (*((u8 *)&D_80137060 + 0x10)) {
+            if (BT_DATA_FIELD(D_80137060.bones, *((u8 *)&D_80137060 + 0x10))) {
                 func_8010E3C4(arg0, direction, light);
                 x = direction[0];
                 y = direction[1];
@@ -211,9 +211,9 @@ void func_8010E4C4(f32 *arg0, s32 *arg1, s32 arg2) {
             vertex[14] = value;
         }
     } else {
-        r = *((s32 *)&D_80137060 + 1);
-        g = *((s32 *)&D_80137060 + 2);
-        b = *((s32 *)&D_80137060 + 3);
+        r = BT_DATA_FIELD(D_80137060.ambient[0], *((s32 *)&D_80137060 + 1));
+        g = BT_DATA_FIELD(D_80137060.ambient[1], *((s32 *)&D_80137060 + 2));
+        b = BT_DATA_FIELD(D_80137060.ambient[2], *((s32 *)&D_80137060 + 3));
         for (; start < end; start++, vertex += 16) {
             vertex[12] = (start->color[0] * r) >> 8;
             vertex[13] = (start->color[1] * g) >> 8;
@@ -223,10 +223,10 @@ void func_8010E4C4(f32 *arg0, s32 *arg1, s32 arg2) {
 }
 
 void func_8010E7F4(void) {
-    extern s32 D_80137060;
-    (*(s32 *)((s8 *)(&D_80137060) + (0))) = 0;
-    (*(s32 *)((s8 *)(&D_80137060) + (0x18))) = 0;
-    (*(s32 *)((s8 *)(&D_80137060) + (0x1C))) = 0;
+    BT_IDO_ONLY(extern s32 D_80137060;)
+    BT_DATA_FIELD(D_80137060.render, *(s32 *)((s8 *)(&D_80137060) + (0))) = 0;
+    BT_DATA_FIELD(D_80137060.start, *(s32 *)((s8 *)(&D_80137060) + (0x18))) = 0;
+    BT_DATA_FIELD(D_80137060.end, *(s32 *)((s8 *)(&D_80137060) + (0x1C))) = 0;
 }
 
 #endif

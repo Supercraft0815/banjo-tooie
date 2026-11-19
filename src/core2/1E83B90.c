@@ -1,4 +1,9 @@
 #include "common.h"
+#ifdef BT_NATIVE
+/* Three vertex positions followed by three RGBA values with four channels each. */
+f32 D_80127938[3 * 3 + 3 * 4];
+#define D_8012795C (D_80127938 + 9)
+#endif
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "native_collision_geometry.h"
 #include "core1/mlmtx.h"
@@ -71,15 +76,15 @@ typedef struct {
     s32 data[1];
 } CollList;
 
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
-static
-#else
-extern
-#endif
-struct {
+typedef struct {
     void *list[100];
     void **current;
-} D_801277A0;
+} CollisionCellList;
+
+BT_IDO_ONLY(extern) CollisionCellList D_801277A0;
+#ifdef BT_ILP32
+_Static_assert(sizeof(CollisionCellList) == 0x194, "collision cell list and cursor");
+#endif
 
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
 void func_800AA4D4(void *mesh, f32 min[3], f32 max[3], void *begin, void *end) {
@@ -212,7 +217,7 @@ void func_800AAAE0(u8 *arg0) {
 void func_800AAD28(f32 *arg0) {
     void func_800EE7F8(f32 *, f32 *);
     extern f32 D_80127938[];
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
     extern f32 D_8012795C[];
 #endif
     f32 *var_s0;
@@ -469,7 +474,7 @@ s32 func_800AB868(s32 arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5,
     void *func_800AB0BC(u16 *, u16 *, f32 *, f32 *, f32 *, u32);
 #endif
     extern f32 D_80127938[];
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
     extern f32 D_8012795C[];
 #endif
     f32 sp44[3];
@@ -936,7 +941,7 @@ s32 func_800AC848(s32 arg0, s32 arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *arg5,
     s32 func_800AC638(s32, s32, f32 *, f32 *, f32, f32 *, s32, s32);
 #endif
     extern f32 D_80127938[];
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
     extern f32 D_8012795C[];
 #endif
     f32 sp4C[3];
@@ -1215,7 +1220,7 @@ void *func_800AD1AC(u16 *arg0, u16 *arg1, f32 *arg2, f32 *arg3, f32 arg4, f32 *a
     s32 func_80019CD4(void);
 #endif
     extern f32 D_80127938[];
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
     extern f32 D_8012795C[];
 #endif
     f32 sp3C[3];

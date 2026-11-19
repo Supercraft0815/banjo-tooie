@@ -9,9 +9,30 @@ typedef struct {
 } NativePointLight;
 _Static_assert(sizeof(NativePointLight)==40,"point-light scalar layout");
 typedef struct {
-    NativeRenderData *render;s32 ambient[3],bones,count;
+    NativeRenderData *render;
+    s32 ambient[3];
+    u8 bones, count, pad[2];
     NativePointLight *used,*end,entries[9];
 } NativePointLighting;
+extern NativePointLighting D_80137080;
+typedef struct {
+    NativeRenderData *render;
+    s32 count;
+    NativePointLight *used, *end;
+    NativePointLight entries[5];
+} NativeAdditiveLighting;
+extern NativeAdditiveLighting D_80137240;
+#if UINTPTR_MAX == UINT32_MAX
+_Static_assert(offsetof(NativePointLighting, entries) == 0x1C, "ILP32 point-light entries offset");
+_Static_assert(sizeof(NativePointLighting) == 0x184, "ILP32 point-light state size");
+_Static_assert(offsetof(NativeAdditiveLighting, entries) == 0x10, "ILP32 additive entries offset");
+_Static_assert(sizeof(NativeAdditiveLighting) == 0xD8, "ILP32 additive state size");
+#elif UINTPTR_MAX == UINT64_MAX
+_Static_assert(offsetof(NativePointLighting, entries) == 0x28, "LP64 point-light entries offset");
+_Static_assert(sizeof(NativePointLighting) == 0x190, "LP64 point-light state size");
+_Static_assert(offsetof(NativeAdditiveLighting, entries) == 0x20, "LP64 additive entries offset");
+_Static_assert(sizeof(NativeAdditiveLighting) == 0xE8, "LP64 additive state size");
+#endif
 NativePointLighting *func_8010E810(void);
 NativePointLight *func_8010E81C(f32);
 NativePointLight *func_8010E924(s32,f32 *,f32,f32);
