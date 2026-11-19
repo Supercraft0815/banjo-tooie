@@ -1,11 +1,11 @@
 #include "common.h"
-
+#include "cheat_code_settings.inc"
 s32 func_800D3DD0(s32 arg0) {
     s32 func_800DA298(s32);
-    extern u16 D_8011B5B8[][4];
+    BT_IDO_ONLY(extern u16 D_8011B5B8[][4];)
     u16 temp_v0;
 
-    temp_v0 = D_8011B5B8[arg0][0];
+    temp_v0 = BT_DATA_FIELD(cheatCodeSettings[arg0].typeableFlag, D_8011B5B8[arg0][0]);
     if (temp_v0 != 0) {
         return func_800DA298(temp_v0);
     }
@@ -14,24 +14,24 @@ s32 func_800D3DD0(s32 arg0) {
 
 s32 func_800D3E14(s32 arg0) {
     s32 func_800DA298(s32);
-    extern u16 D_8011B5BA[][4];
-    return func_800DA298(D_8011B5BA[arg0][0]);
+    BT_IDO_ONLY(extern u16 D_8011B5BA[][4];)
+    return func_800DA298(BT_DATA_FIELD(cheatCodeSettings[arg0].availableFlag, D_8011B5BA[arg0][0]));
 }
 
 s32 func_800D3E40(s32 arg0) {
     s32 func_800DA298(s32);
-    extern u16 D_8011B5BC[][4];
-    return func_800DA298(D_8011B5BC[arg0][0]);
+    BT_IDO_ONLY(extern u16 D_8011B5BC[][4];)
+    return func_800DA298(BT_DATA_FIELD(cheatCodeSettings[arg0].activeFlag, D_8011B5BC[arg0][0]));
 }
 
 s32 func_800D3E6C(s32 arg0) {
     s32 func_800DA298(s32);
-    extern u16 D_8011B5B8[][4];
+    BT_IDO_ONLY(extern u16 D_8011B5B8[][4];)
     u16 temp_v0;
     if (func_800D3E14(arg0) != 0) {
         return 0;
     }
-    temp_v0 = D_8011B5B8[arg0][0];
+    temp_v0 = BT_DATA_FIELD(cheatCodeSettings[arg0].typeableFlag, D_8011B5B8[arg0][0]);
     if (temp_v0 != 0) {
         return func_800DA298(temp_v0 & 0xFFFFFFFF);
     }
@@ -54,10 +54,10 @@ s32 func_800D3EC8(BT_PARAM_OR_VOID(s32 bt_a0)) {
 
 void func_800D3EF4(s32 arg0) {
     s32 func_800DA544(s32);
-    extern u16 D_8011B5B8[][4];
+    BT_IDO_ONLY(extern u16 D_8011B5B8[][4];)
     u16 temp_v0;
 
-    temp_v0 = D_8011B5B8[arg0][0];
+    temp_v0 = BT_DATA_FIELD(cheatCodeSettings[arg0].typeableFlag, D_8011B5B8[arg0][0]);
     if (temp_v0 != 0) {
         func_800DA544(temp_v0);
     }
@@ -65,29 +65,29 @@ void func_800D3EF4(s32 arg0) {
 
 s32 func_800D3F2C(s32 arg0) {
     s32 func_800DA544(s32);
-    extern u16 D_8011B5BA[][4];
-    return func_800DA544(D_8011B5BA[arg0][0]);
+    BT_IDO_ONLY(extern u16 D_8011B5BA[][4];)
+    return func_800DA544(BT_DATA_FIELD(cheatCodeSettings[arg0].availableFlag, D_8011B5BA[arg0][0]));
 }
 
 void func_800D3F58(BtIntPtr arg0, s32 arg1) {
     void func_800DA3B8(GameFlag, s32);
     BtUIntPtr func_800F54E4(void);
     void func_800F4924(BtIntPtr, s32);
-    extern u16 D_8011B5C0[][4];
-    extern u16 D_8011B608[][4];
-    u16 (*sp18)[4];
+    BT_IDO_ONLY(extern u16 D_8011B5C0[][4];)
+    BT_IDO_ONLY(extern u16 D_8011B608[][4];)
+    BT_NATIVE_ONLY(CheatCodeSetting *sp18;) BT_IDO_ONLY(u16 (*sp18)[4];)
 
-    sp18 = &D_8011B5C0[arg0];
-    func_800DA3B8(sp18[-1][2], arg1);
-    if ((sp18 == D_8011B608) && (arg1 != 0)) {
+    sp18 = BT_DATA_FIELD(&cheatCodeSettings[arg0 + 1], &D_8011B5C0[arg0]);
+    func_800DA3B8(BT_DATA_FIELD(sp18[-1].activeFlag, sp18[-1][2]), arg1);
+    if ((sp18 == BT_DATA_FIELD(&cheatCodeSettings[10], D_8011B608)) && (arg1 != 0)) {
         arg0 = func_800F54E4();
         func_800F4924(arg0, 0x3E7);
     }
 }
 
 u32 func_800D3FC0(s32 arg0) {
-    extern u16 D_8011B5BE[4][4];
-    return D_8011B5BE[arg0][0];
+    BT_IDO_ONLY(extern u16 D_8011B5BE[4][4];)
+    return BT_DATA_FIELD(cheatCodeSettings[arg0].menuValue, D_8011B5BE[arg0][0]);
 }
 
 void func_800D3FD4(u32 arg0) {
@@ -148,12 +148,12 @@ void func_800D3FD4(u32 arg0) {
 }
 
 s32 func_800D41D8(s32 arg0) {
-    extern s16 D_8011B620[][2];
+    BT_IDO_ONLY(extern s16 D_8011B620[][2];)
     s32 i;
 
     for (i = 0; i < 7; i++) {
-        if (arg0 == D_8011B620[i][0]) {
-            return D_8011B620[i][1];
+        if (arg0 == BT_DATA_FIELD(cheatInventoryAbilities[i].inventoryId, D_8011B620[i][0])) {
+            return BT_DATA_FIELD(cheatInventoryAbilities[i].abilityId, D_8011B620[i][1]);
         }
     }
     return 0x3C;

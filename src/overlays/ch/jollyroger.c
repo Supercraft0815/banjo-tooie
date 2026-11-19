@@ -1,11 +1,11 @@
 #include "common.h"
-
+#include "jollyroger_tail.h"
 void func_80800024_chjollyroger(Actor *arg0);
 void func_80105834(Actor *);
-void func_80101870(Actor *, void *);
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80101870(Actor *, void *);
 void func_80800DB8_chjollyroger(Actor* arg0);
 void func_808002E8_chjollyroger(BtIntPtr arg0);
-void *func_80107C2C(s32 *, s32, void *, s32, void *);
+#include "actor_factory_decl.h"
 s32 func_80800370_chjollyroger(Actor *arg0, s32 arg1, s32 arg2);
 
 s32 D_80801200_chjollyroger[] = {
@@ -67,14 +67,14 @@ OSThread *chjollyroger_entrypoint_0(void)
 
 OSThread *chjollyroger_entrypoint_1(void)
 {
-    extern u8 D_808013A0_chjollyroger[];
+    extern ActorData D_808013A0_chjollyroger[1];
 
     return (OSThread *) D_808013A0_chjollyroger;
 }
 
 OSThread *chjollyroger_entrypoint_2(void)
 {
-    extern u8 D_808013E8_chjollyroger[];
+    extern ActorData D_808013E8_chjollyroger[1];
 
     return (OSThread *) D_808013E8_chjollyroger;
 }
@@ -225,7 +225,7 @@ s32 func_80800370_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
         }
         return 3;
     case 0x2E:
-        func_80800624_chjollyroger(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+        func_80800624_chjollyroger(arg0, JOLLY_MESSAGE_HALF(arg2, 0), JOLLY_MESSAGE_HALF(arg2, 1));
         break;
     case 0x52:
         _gcdialogcamera_entrypoint_3(D_808012A8_chjollyroger, arg0->scale);
@@ -248,21 +248,21 @@ s32 func_80800370_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 void func_8080056C_chjollyroger(void *arg0) {
-    extern u32 D_80801430_chjollyroger;
-    extern u32 D_8080143C_chjollyroger;
-    _subaddieaudioquick_entrypoint_4(arg0, (u8 *)arg0 + 24, &D_80801430_chjollyroger, &D_8080143C_chjollyroger);
+    extern s16 D_80801430_chjollyroger[6];
+    extern f32 D_8080143C_chjollyroger[3];
+    _subaddieaudioquick_entrypoint_4(arg0, (u8 *)arg0 + 24, D_80801430_chjollyroger, D_8080143C_chjollyroger);
 }
 
 s32 func_8080059C_chjollyroger(Actor *arg0, s32 *arg1, s32 arg2, s32 arg3) {
-    s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, s32 *, s32 *, s32);
+    s32 _subaddiedialog_entrypoint_8(Actor *, f32 *, subaddiedialog_UnkStruct2 *, subaddiedialog_UnkStruct1 *, s32);
     s32 _subaddiedialog_entrypoint_9(BtIntPtr, s32, s32 *, s32);
     void func_80800E6C_chjollyroger(Actor *, s32, s32);
-    extern s32 D_80801448_chjollyroger;
-    extern s8 D_80801456_chjollyroger;
+    extern subaddiedialog_UnkStruct2 D_80801448_chjollyroger;
+    BT_IDO_ONLY(extern s8 D_80801456_chjollyroger;)
     s32 temp_v0;
 
-    D_80801456_chjollyroger = arg3;
-    temp_v0 = _subaddiedialog_entrypoint_8((BtIntPtr)arg0, (u8 *)arg0 + 4, &D_80801448_chjollyroger, arg1, arg2);
+    BT_DATA_FIELD(D_80801448_chjollyroger.unkE, D_80801456_chjollyroger) = arg3;
+    temp_v0 = _subaddiedialog_entrypoint_8(arg0, arg0->position, &D_80801448_chjollyroger, (subaddiedialog_UnkStruct1 *)arg1, arg2);
     if (temp_v0 == 0) {
         return 0;
     }
@@ -379,9 +379,9 @@ void func_80800930_chjollyroger(Actor *arg0) {
     void func_80800CC4_chjollyroger(Actor *);
     void func_80800E30_chjollyroger(void *);
     void func_80800F3C_chjollyroger(Actor *, s32, s32);
-    s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, s32 *, s32 *, s32);
+    s32 _subaddiedialog_entrypoint_8(Actor *, f32 *, subaddiedialog_UnkStruct2 *, subaddiedialog_UnkStruct1 *, s32);
     extern s32 func_8010D5DC;
-    extern s32 D_80801458_chjollyroger;
+    extern subaddiedialog_UnkStruct2 D_80801458_chjollyroger;
 
     _sudeflect_entrypoint_1(arg0->position, 230.0f, 0.0f, 100.0f, 10);
     _suexpression_entrypoint_10(_suexpression_entrypoint_20(arg0), arg0->unk0, 0);
@@ -415,7 +415,7 @@ void func_80800930_chjollyroger(Actor *arg0) {
             }
             break;
         case 5:
-            _subaddiedialog_entrypoint_8((BtIntPtr)arg0, arg0->position, &D_80801458_chjollyroger, D_80801270_chjollyroger, 7);
+            _subaddiedialog_entrypoint_8(arg0, arg0->position, &D_80801458_chjollyroger, (subaddiedialog_UnkStruct1 *)D_80801270_chjollyroger, 7);
             break;
     }
 }
@@ -445,7 +445,7 @@ void func_80800AEC_chjollyroger(Actor *arg0) {
     }
 }
 
-s32 func_80800BA0_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
+BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_80800BA0_chjollyroger(Actor *arg0, s32 arg1, BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtUIntPtr) arg2) {
 
     void _gcdialogcamera_entrypoint_3(u32 *, f32);
     BtIntPtr _suexpression_entrypoint_7(Actor *, s32, s32);
@@ -459,7 +459,7 @@ s32 func_80800BA0_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
 
     switch (arg1) {
         case 0x2E:
-            func_80800D28_chjollyroger(arg0, ((s16 *)&arg2)[0], ((s16 *)&arg2)[1]);
+            func_80800D28_chjollyroger(arg0, JOLLY_MESSAGE_HALF(arg2, 0), JOLLY_MESSAGE_HALF(arg2, 1));
             break;
         case 0x32:
             arg0->unk64_20 = 1;
@@ -617,7 +617,7 @@ void func_8080103C_chjollyroger(Actor *arg0) {
     func_8010A63C(arg0);
 }
 
-s32 func_808010A0_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
+BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_808010A0_chjollyroger(Actor *arg0, s32 arg1, BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtUIntPtr) arg2) {
     s32 _chdoor_entrypoint_1(Actor *, s32, BtIntPtr);
     void _chexploder_entrypoint_3(void *, void *, u32);
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0 *, u32, u32, f32 *, s16);
@@ -649,7 +649,7 @@ s32 func_808010A0_chjollyroger(Actor *arg0, s32 arg1, s32 arg2) {
 }
 
 /* extern */
-
+#include "jollyroger_tail_data.inc"
 void func_80801194_chjollyroger(BtIntPtr arg0) {
     void _chexploder_entrypoint_12(Actor *arg0, s32 arg1);
     s32 func_800DA544(s32);

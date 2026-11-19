@@ -209,3 +209,12 @@ func_80806C54_chgameselect
 func_80808F38_bsfirstp
 sumultiscore_entrypoint_2
 sumultiscore_entrypoint_3
+
+2026-11-19  N1 character, movement, music and cheat data
+The six stages strict-jollyroger1 through strict-cheats1 preserve the
+original linked data and all registered pointer targets. LLVM splits the
+last-hit record into five live fields. The complete 24-byte initializer
+also contains the write-only radius. strict-coresmall4-whole.json checks
+the initializer before optimization and each surviving guest field.
+The cumulative IDO and replay checks are under current-six-actors* in
+build/acceptance/n1-2026-11-18/.

@@ -2626,3 +2626,17 @@ Der gemeinsame Original-IDO-Neubau bestätigt 16.401 Funktionen und beide
 ROM-Abbilder. Die Protokolle liegen unter `build/acceptance/n2-2026-11-18/`
 in `stage6-mips-review.md`, `current-six-ir.log`, `current-six.log` und
 `current-six-ido/result.json`.
+
+## 2026-11-19 — N1, Figuren-, Musik- und Cheat-Tabellen
+
+Jolly Roger, der Alienvater und der Kesselboss verwenden ihre C-Tabellen.
+Vier Core-Module erhalten ihre Bewegungs-, Iterations-, Treffer- und
+Schrittgeräuschwerte aus C. Die anschließenden Pakete betreffen die
+Musikauswahl und die Cheat-Daten. Der strenge Scan fiel von 471 auf
+386 Einträge (330 Daten, 56 Rodata). Beim letzten Treffer prüft der
+Einzelnachweis auch das nur geschriebene Radiusfeld vor der Optimierung.
+
+Alle elf Testsuiten und 74 Replays mit 447.849 Retraces bestanden. Der
+gemeinsame Original-IDO-Neubau erhielt alle 16.401 Funktionen sowie beide
+ROM-Abbilder bytegenau. Die Belege liegen unter
+`build/acceptance/n1-2026-11-18/current-six-actors*`.

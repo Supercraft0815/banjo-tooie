@@ -1,13 +1,13 @@
 #include "core2/1ED68A0.h"
-
+#include "music_region_settings.inc"
 /* Fourteen music counters and the adjacent state bytes. */
 u8 D_80135A10[16];
 
-void func_800FCFB0(s32 arg0, s32 arg1, s32 *arg2, s32 arg3, f32 arg4) {
-    typedef struct {
-        s32 volume[2];
-        s16 tempo[2];
-    } MusicSettings;
+void func_800FCFB0(s32 arg0, s32 arg1, MusicRegionSettings *arg2, s32 arg3, f32 arg4) {
+    typedef MusicRegionSettings MusicSettings;
+
+
+
     s32 func_80017764(s32);
     void func_800FC688(s32, s32);
     void func_800FC97C(s32, f32, f32);
@@ -70,9 +70,9 @@ void func_800FCFB0(s32 arg0, s32 arg1, s32 *arg2, s32 arg3, f32 arg4) {
 void func_800FD2A0(f32 *arg0, s32 arg1) {
     extern s32 D_801359C0;
     extern u8 D_801359D1, D_80135A1E;
-    extern s32 *D_80135A04;
+    extern MusicRegionSettings *D_80135A04;
     extern f32 D_80135A44;
-    extern s32 D_80123E84, D_80123F68[], D_80123FC8[];
+    extern s32 D_80123F68[], D_80123FC8[];
     extern s32 D_80124004[], D_80124010, D_8012401C[];
     extern s32 D_80124028[], D_80124034[], D_80124040[];
     extern s32 D_801241CC[], D_801241D8[];
@@ -85,7 +85,7 @@ void func_800FD2A0(f32 *arg0, s32 arg1) {
     f32 func_800EEAD4(f32 *, f32 *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     s32 func_800EFFB4(f32 *, f32, f32 *);
-    void func_800FCFB0(s32, s32, s32 *, s32, f32);
+    void func_800FCFB0(s32, s32, MusicRegionSettings *, s32, f32);
     void func_800FEDC4(s32, s32, f32, f32);
     s32 section;
     f32 volume;
@@ -105,13 +105,13 @@ void func_800FD2A0(f32 *arg0, s32 arg1) {
                         section = region;
                     }
                     if (section == 2) {
-                        D_80135A04 = D_80123F68;
+                        D_80135A04 = MUSIC_REGION(19, D_80123F68);
                     }
                     break;
                 case 2:
                     if (arg0[1] > 2000.0f) {
-                        func_800FCFB0(0, 0x4A, &D_80123E84, arg1, 1.75f);
-                        D_80135A04 = D_80123FC8;
+                        func_800FCFB0(0, 0x4A, D_80123E84, arg1, 1.75f);
+                        D_80135A04 = MUSIC_REGION(27, D_80123FC8);
                     }
                     break;
             }
@@ -153,8 +153,8 @@ void func_800FD2A0(f32 *arg0, s32 arg1) {
                 case 2:
                 case 3:
                 case 4:
-                    func_800FCFB0(0, 0x4B, D_8012401C, arg1, 1.75f);
-                    D_80135A04 = &D_80124010;
+                    func_800FCFB0(0, 0x4B, MUSIC_REGION(34, D_8012401C), arg1, 1.75f);
+                    D_80135A04 = MUSIC_REGION(33, &D_80124010);
                     break;
             }
             break;
@@ -166,25 +166,25 @@ void func_800FD2A0(f32 *arg0, s32 arg1) {
             switch (((u8 *)&D_801359C0)[0x11]) {
                 case 3:
                     if (arg1) {
-                        func_800FCFB0(0, 0x4B, D_8012401C, arg1, 1.75f);
+                        func_800FCFB0(0, 0x4B, MUSIC_REGION(34, D_8012401C), arg1, 1.75f);
                     } else {
-                        func_800FCFB0(0, 0x4B, D_80124004, arg1, 1.75f);
+                        func_800FCFB0(0, 0x4B, MUSIC_REGION(32, D_80124004), arg1, 1.75f);
                     }
-                    D_80135A04 = &D_80124010;
+                    D_80135A04 = MUSIC_REGION(33, &D_80124010);
                     break;
                 case 0:
                 case 2:
-                    func_800FCFB0(0, 0x4B, D_8012401C, arg1, 1.75f);
-                    D_80135A04 = &D_80124010;
+                    func_800FCFB0(0, 0x4B, MUSIC_REGION(34, D_8012401C), arg1, 1.75f);
+                    D_80135A04 = MUSIC_REGION(33, &D_80124010);
                     D_80135A1E = 0;
                     break;
                 case 1:
                     if (D_80135A1E) {
-                        func_800FCFB0(0, 0x4B, D_80124028, arg1, 1.75f);
+                        func_800FCFB0(0, 0x4B, MUSIC_REGION(35, D_80124028), arg1, 1.75f);
                     } else {
-                        func_800FCFB0(0, 0x4B, D_8012401C, arg1, 1.75f);
+                        func_800FCFB0(0, 0x4B, MUSIC_REGION(34, D_8012401C), arg1, 1.75f);
                     }
-                    D_80135A04 = &D_80124010;
+                    D_80135A04 = MUSIC_REGION(33, &D_80124010);
                     break;
             }
             break;
@@ -199,52 +199,52 @@ void func_800FD2A0(f32 *arg0, s32 arg1) {
                 case 2:
                 case 3:
                     if (arg1) {
-                        func_800FCFB0(0, 0x4B, D_80124028, arg1, 1.75f);
+                        func_800FCFB0(0, 0x4B, MUSIC_REGION(35, D_80124028), arg1, 1.75f);
                     } else {
-                        func_800FCFB0(0, 0x4B, D_80124004, arg1, 1.75f);
+                        func_800FCFB0(0, 0x4B, MUSIC_REGION(32, D_80124004), arg1, 1.75f);
                     }
-                    D_80135A04 = &D_80124010;
+                    D_80135A04 = MUSIC_REGION(33, &D_80124010);
                     D_80135A1E = 1;
                     break;
             }
             break;
         case 22:
             if (arg1) {
-                func_800FCFB0(0, 0x4B, D_8012401C, arg1, 1.75f);
+                func_800FCFB0(0, 0x4B, MUSIC_REGION(34, D_8012401C), arg1, 1.75f);
             } else {
-                func_800FCFB0(0, 0x4B, D_80124004, arg1, 1.75f);
+                func_800FCFB0(0, 0x4B, MUSIC_REGION(32, D_80124004), arg1, 1.75f);
             }
-            D_80135A04 = &D_80124010;
+            D_80135A04 = MUSIC_REGION(33, &D_80124010);
             break;
         case 5:
             if (!((u8 *)&D_801359C0)[0x40]) {
-                func_800FCFB0(0, 0x4B, D_80124004, arg1, 1.75f);
+                func_800FCFB0(0, 0x4B, MUSIC_REGION(32, D_80124004), arg1, 1.75f);
             }
-            D_80135A04 = &D_80124010;
+            D_80135A04 = MUSIC_REGION(33, &D_80124010);
             break;
         case 6:
-            func_800FCFB0(0, 0x4B, D_80124040, arg1, 1.75f);
-            D_80135A04 = &D_80124010;
+            func_800FCFB0(0, 0x4B, MUSIC_REGION(37, D_80124040), arg1, 1.75f);
+            D_80135A04 = MUSIC_REGION(33, &D_80124010);
             break;
         case 8:
             if (func_800DA298(0x9F0)) {
-                func_800FCFB0(1, 0x50, &D_80123E84, arg1, 1.75f);
+                func_800FCFB0(1, 0x50, D_80123E84, arg1, 1.75f);
             } else {
-                func_800FCFB0(0, 0x4F, &D_80123E84, arg1, 1.75f);
+                func_800FCFB0(0, 0x4F, D_80123E84, arg1, 1.75f);
             }
-            D_80135A04 = &D_80124010;
+            D_80135A04 = MUSIC_REGION(33, &D_80124010);
             break;
         case 9:
-            func_800FCFB0(0, 0x4B, D_80124034, arg1, 1.75f);
-            D_80135A04 = &D_80124010;
+            func_800FCFB0(0, 0x4B, MUSIC_REGION(36, D_80124034), arg1, 1.75f);
+            D_80135A04 = MUSIC_REGION(33, &D_80124010);
             break;
         case 10:
-            func_800FCFB0(0, 0x4B, D_8012401C, arg1, 1.75f);
-            D_80135A04 = &D_80124010;
+            func_800FCFB0(0, 0x4B, MUSIC_REGION(34, D_8012401C), arg1, 1.75f);
+            D_80135A04 = MUSIC_REGION(33, &D_80124010);
             break;
         case 11:
-            func_800FCFB0(0, 0x4B, D_80124028, arg1, 1.75f);
-            D_80135A04 = &D_80124010;
+            func_800FCFB0(0, 0x4B, MUSIC_REGION(35, D_80124028), arg1, 1.75f);
+            D_80135A04 = MUSIC_REGION(33, &D_80124010);
             break;
         case 15:
             if (func_800DA298(0x360)) {
@@ -264,16 +264,16 @@ void func_800FD2A0(f32 *arg0, s32 arg1) {
                 }
                 if (current > 0.0f) {
                     if (current >= 0.5f) {
-                        D_80135A04 = D_801241CC;
+                        D_80135A04 = MUSIC_REGION(70, D_801241CC);
                     } else {
-                        D_80135A04 = D_801241D8;
+                        D_80135A04 = MUSIC_REGION(71, D_801241D8);
                     }
                 }
             }
             break;
         case 16:
             if (D_80135A44 >= 1.0f) {
-                func_800FCFB0(0, 0x8D, &D_80123E84, arg1, 1.75f);
+                func_800FCFB0(0, 0x8D, D_80123E84, arg1, 1.75f);
             }
             D_80135A44 = 1.0f;
             break;
@@ -281,12 +281,12 @@ void func_800FD2A0(f32 *arg0, s32 arg1) {
 }
 
 void func_800FDBB8(s32 arg0) {
-    void func_800FCFB0(s32, s32, s32 *, s32, f32);
-    extern s32 D_80123E84;
+    void func_800FCFB0(s32, s32, MusicRegionSettings *, s32, f32);
+
     extern s32 D_80124010;
     extern s32 D_80124224[][2];
     extern u8 D_80135A00[];
-    extern s32 *D_80135A04;
+    extern MusicRegionSettings *D_80135A04;
     s32 sp20;
     s32 temp_t9;
     s32 *temp_v0;
@@ -294,8 +294,8 @@ void func_800FDBB8(s32 arg0) {
     temp_t9 = D_80124224[D_80135A00[0]][0];
     sp20 = temp_t9;
     if (temp_t9 != -1) {
-        func_800FCFB0(temp_t9, D_80124224[D_80135A00[0]][1], &D_80123E84, arg0, 0.0f);
-        D_80135A04 = &D_80124010;
+        func_800FCFB0(temp_t9, D_80124224[D_80135A00[0]][1], D_80123E84, arg0, 0.0f);
+        D_80135A04 = MUSIC_REGION(33, &D_80124010);
     }
 }
 
@@ -312,10 +312,10 @@ u32 func_800FDC28(u32 arg0) {
 }
 
 void func_800FDC58(s32 arg0) {
-    typedef struct {
-        s32 volume[2];
-        s16 tempo[2];
-    } MusicSettings;
+    typedef MusicRegionSettings MusicSettings;
+
+
+
     typedef struct {
         f32 volume;
         f32 tempoScale;
@@ -344,9 +344,9 @@ void func_800FDC58(s32 arg0) {
     extern s32 D_801359C0;
     extern s32 D_801359E8;
     extern f32 D_801359EC;
-    extern s32 D_80123E84, D_80123FC8[], D_80124010, D_801241CC[], *D_80135A04;
+    extern s32 D_80123FC8[], D_80124010, D_801241CC[]; extern MusicRegionSettings *D_80135A04;
     extern s32 D_80124064, D_80124124, D_8012419C;
-    extern s32 *D_80135A08;
+    extern MusicRegionSettings *D_80135A08;
     extern u8 D_80135A1E;
     extern s32 D_80135A20[3];
     extern f32 D_80135A30[3];
@@ -397,7 +397,7 @@ void func_800FDC58(s32 arg0) {
     }
     if (!((u8 *)&D_801359C0)[23]) {
         if (((s16 *)&D_801359C0)[17] != -1) {
-            D_80135A04 = (s32 *)&((MusicSettings *)&D_80123E84)[((s16 *)&D_801359C0)[17]];
+            D_80135A04 = &D_80123E84[((s16 *)&D_801359C0)[17]];
         } else {
             D_80135A04 = 0;
         }
@@ -408,16 +408,16 @@ void func_800FDC58(s32 arg0) {
         if (func_800CCEF4(position, &D_801359E8, &D_801359EC, 0, 0)) {
             region = func_800CBBE0(((s32 *)&D_801359C0)[10]);
             if (!func_800CBC00(((s32 *)&D_801359C0)[10])) {
-                D_80135A04 = (s32 *)&((MusicSettings *)&D_80123E84)[region];
+                D_80135A04 = &D_80123E84[region];
             } else {
                 switch (func_800CBBE0(((s32 *)&D_801359C0)[10])) {
                     case 0:
-                        func_800FCFB0(0, 0x47, &D_80123E84, arg0, 1.75f);
-                        D_80135A04 = D_80123FC8;
+                        func_800FCFB0(0, 0x47, D_80123E84, arg0, 1.75f);
+                        D_80135A04 = MUSIC_REGION(27, D_80123FC8);
                         break;
                     case 1:
-                        func_800FCFB0(0, 0x4A, &D_80123E84, arg0, 1.75f);
-                        D_80135A04 = D_80123FC8;
+                        func_800FCFB0(0, 0x4A, D_80123E84, arg0, 1.75f);
+                        D_80135A04 = MUSIC_REGION(27, D_80123FC8);
                         break;
                     case 7:
                         D_80135A1E = 1;
@@ -426,36 +426,36 @@ void func_800FDC58(s32 arg0) {
                         D_80135A1E = 0;
                         break;
                     case 9:
-                        func_800FCFB0(0, 0x4A, &D_80123E84, arg0, 1.75f);
-                        D_80135A04 = &D_80124064;
+                        func_800FCFB0(0, 0x4A, D_80123E84, arg0, 1.75f);
+                        D_80135A04 = MUSIC_REGION(40, &D_80124064);
                         break;
                     case 12:
                         if (func_800DA298(0x360)) {
-                            D_80135A04 = D_801241CC;
+                            D_80135A04 = MUSIC_REGION(70, D_801241CC);
                         }
                         break;
                     case 13:
                         D_80135A44 = 0.0f;
                         break;
                     case 14:
-                        func_800FCFB0(0, 0x4A, &D_80123E84, arg0, 1.75f);
+                        func_800FCFB0(0, 0x4A, D_80123E84, arg0, 1.75f);
                         break;
                     case 15:
-                        func_800FCFB0(0, 0x8D, &D_80123E84, arg0, 1.75f);
-                        D_80135A04 = &D_8012419C;
+                        func_800FCFB0(0, 0x8D, D_80123E84, arg0, 1.75f);
+                        D_80135A04 = MUSIC_REGION(66, &D_8012419C);
                         break;
                     case 16:
                         if (func_800DA298(0x3B) && !func_800DA298(0x43)) {
-                            func_800FCFB0(0, 0x9A, &D_80123E84, arg0, 1.75f);
-                            D_80135A04 = &D_80124010;
+                            func_800FCFB0(0, 0x9A, D_80123E84, arg0, 1.75f);
+                            D_80135A04 = MUSIC_REGION(33, &D_80124010);
                         } else {
-                            D_80135A04 = &D_80124124;
+                            D_80135A04 = MUSIC_REGION(56, &D_80124124);
                         }
                         break;
                     case 17:
                         if (func_800DA298(0x3B) && !func_800DA298(0x43)) {
-                            func_800FCFB0(0, 0x9A, &D_80123E84, arg0, 1.75f);
-                            D_80135A04 = &D_80124010;
+                            func_800FCFB0(0, 0x9A, D_80123E84, arg0, 1.75f);
+                            D_80135A04 = MUSIC_REGION(33, &D_80124010);
                         }
                         break;
                 }
@@ -672,7 +672,7 @@ void func_800FE740(void) {
     s32 _cothemedll_entrypoint_3(s32 *, s32);
     s32 func_800EA05C();
     extern s16 D_801359E2;
-    extern s32 *D_80135A08;
+    extern MusicRegionSettings *D_80135A08;
     extern f32 D_80135A0C;
     s32 sp1C[2];
     s32 temp_a1;
@@ -955,12 +955,12 @@ void func_800FEDC4(s32 arg0, s32 arg1, f32 arg2, f32 arg3) {
     void func_800C3BDC(u8);
     s32 func_800EA05C();
     extern s32 D_801359C0;
-    extern s16 D_80123E5E;
-    extern s32 D_80123E64;
+    BT_IDO_ONLY(extern s16 D_80123E5E;)
+    extern MusicInstrumentPreset D_80123E64[4];
 
     if (arg1 == *(s16 *)((u8 *)&D_801359C0 + arg0 * 2 + 0x36) && arg1 != 0) {
         func_800C3648(*((u8 *)&D_801359C0 + arg0 + 0x34), func_800EA05C());
-        func_800C3058(*((u8 *)&D_801359C0 + arg0 + 0x34), (s32)(*(s16 *)((u8 *)&D_80123E5E + arg1 * 8) * arg2));
+        func_800C3058(*((u8 *)&D_801359C0 + arg0 + 0x34), (s32)(BT_DATA_FIELD(D_80123E64[arg1 - 1].volume, *(s16 *)((u8 *)&D_80123E5E + arg1 * 8)) * arg2));
         return;
     }
     if (*((u8 *)&D_801359C0 + arg0 + 0x34) != 0) {
@@ -974,9 +974,9 @@ void func_800FEDC4(s32 arg0, s32 arg1, f32 arg2, f32 arg3) {
     if (arg1 != 0) {
         *((u8 *)&D_801359C0 + arg0 + 0x34) = func_800C2E04();
         func_800C330C(*((u8 *)&D_801359C0 + arg0 + 0x34), 3);
-        func_800C301C(*((u8 *)&D_801359C0 + arg0 + 0x34), *(s16 *)((u8 *)&D_80123E64 + arg1 * 8 - 8));
-        func_800C3058(*((u8 *)&D_801359C0 + arg0 + 0x34), (s32)(*(s16 *)((u8 *)&D_80123E64 + arg1 * 8 - 6) * arg2));
-        func_800C31DC(*((u8 *)&D_801359C0 + arg0 + 0x34), *(f32 *)((u8 *)&D_80123E64 + arg1 * 8 - 4));
+        func_800C301C(*((u8 *)&D_801359C0 + arg0 + 0x34), BT_DATA_FIELD(D_80123E64[arg1 - 1].id, *(s16 *)((u8 *)&D_80123E64 + arg1 * 8 - 8)));
+        func_800C3058(*((u8 *)&D_801359C0 + arg0 + 0x34), (s32)(BT_DATA_FIELD(D_80123E64[arg1 - 1].volume, *(s16 *)((u8 *)&D_80123E64 + arg1 * 8 - 6)) * arg2));
+        func_800C31DC(*((u8 *)&D_801359C0 + arg0 + 0x34), BT_DATA_FIELD(D_80123E64[arg1 - 1].rate, *(f32 *)((u8 *)&D_80123E64 + arg1 * 8 - 4)));
         func_800C36F4(*((u8 *)&D_801359C0 + arg0 + 0x34), 0xFF);
         func_800C368C(*((u8 *)&D_801359C0 + arg0 + 0x34), 0);
         func_800C33DC(*((u8 *)&D_801359C0 + arg0 + 0x34), 0);
@@ -986,19 +986,19 @@ void func_800FEDC4(s32 arg0, s32 arg1, f32 arg2, f32 arg3) {
 }    typedef struct { u8 pad0[0x4]; s32 unk4; u8 pad8[0x2]; s16 unkA; } Obj1ED68A0_func_800FEF94_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { s32 unk0; u8 pad4[0x4]; s16 unk8; } Obj1ED68A0_func_800FEF94_temp_v0_2; /* offsets.py genstruct: fields from raw offsets on temp_v0_2; rename once understood */
 
 void func_800FEF94(s32 arg0, s32 arg1, s32 arg2, s32 *arg3, s16 *arg4) {
-    extern s32 D_80123E84;
+
     u8 *temp_v0;
     u8 *temp_v0_2;
 
     if (arg2 != 0) {
         temp_v0 = (arg1 * 0xC) + (u8 *)&D_80123E84;
-        *arg3 = (((Obj1ED68A0_func_800FEF94_temp_v0 *)temp_v0)->unk4);
-        *arg4 = (((Obj1ED68A0_func_800FEF94_temp_v0 *)temp_v0)->unkA);
+        *arg3 = BT_DATA_FIELD(D_80123E84[arg1].volume[1], (((Obj1ED68A0_func_800FEF94_temp_v0 *)temp_v0)->unk4));
+        *arg4 = BT_DATA_FIELD(D_80123E84[arg1].tempo[1], (((Obj1ED68A0_func_800FEF94_temp_v0 *)temp_v0)->unkA));
         return;
     }
     temp_v0_2 = (arg1 * 0xC) + (u8 *)&D_80123E84;
-    *arg3 = (((Obj1ED68A0_func_800FEF94_temp_v0_2 *)temp_v0_2)->unk0);
-    *arg4 = (((Obj1ED68A0_func_800FEF94_temp_v0_2 *)temp_v0_2)->unk8);
+    *arg3 = BT_DATA_FIELD(D_80123E84[arg1].volume[0], (((Obj1ED68A0_func_800FEF94_temp_v0_2 *)temp_v0_2)->unk0));
+    *arg4 = BT_DATA_FIELD(D_80123E84[arg1].tempo[0], (((Obj1ED68A0_func_800FEF94_temp_v0_2 *)temp_v0_2)->unk8));
 }
 
 void func_800FF000(s32 arg0) {
@@ -1152,8 +1152,8 @@ f32 D_801359EC BT_DATA(4, bss_core2bss2_2, 0x2B4C);
 f32 D_801359F0 BT_DATA(4, bss_core2bss2_2, 0x2B50);
 u8 D_80135A00 [ 1 ] BT_DATA(4, bss_core2bss2_2, 0x2B60);
 s8 D_80135A01 BT_DATA(4, bss_core2bss2_2, 0x2B61);
-s32 * D_80135A04 BT_DATA(4, bss_core2bss2_2, 0x2B64);
-s32 * D_80135A08 BT_DATA(4, bss_core2bss2_2, 0x2B68);
+MusicRegionSettings *D_80135A04 BT_DATA(4, bss_core2bss2_2, 0x2B64);
+MusicRegionSettings *D_80135A08 BT_DATA(4, bss_core2bss2_2, 0x2B68);
 f32 D_80135A0C BT_DATA(4, bss_core2bss2_2, 0x2B6C);
 s32 D_80135A20 [ 3 ] BT_DATA(16, bss_core2bss2_2_music_tail, 0x0);
 s32 D_80135A2C [ 1 ] BT_DATA(4, bss_core2bss2_2_music_tail, 0xC);

@@ -2,7 +2,7 @@
 #include "su/baddiedialog_descriptor.h"
 extern ActorAnimationEntry D_808025F4_chaliendad[15];
 void func_80105834(Actor *);
-void *func_80107C2C(s32 *, s32, void *, s32, void *);
+#include "actor_factory_decl.h"
 void func_80800024_chaliendad(Actor *arg0);
 void func_808000AC_chaliendad(Actor *arg0);
 void func_808008C8_chaliendad(Actor *arg0);
@@ -25,9 +25,9 @@ BtFnWord D_80802674_chaliendad[] = {
     (BtFnWord)func_80800A54_chaliendad, 0x00000000,
 };
 
-u8 D_808026BC_chaliendad[] = {
-    0x01, 0x58, 0x04, 0x67,
-};
+extern ActorData D_808026BC_chaliendad[1];
+/* The complete descriptor is defined with the other actors below. */
+
 
 OSThread *chaliendad_entrypoint_0(void)
 {
@@ -45,7 +45,7 @@ OSThread *chaliendad_entrypoint_1(void)
 
 OSThread *chaliendad_entrypoint_2(void)
 {
-    extern u8 D_80802704_chaliendad[];
+    extern ActorData D_80802704_chaliendad[1];
 
     return (OSThread *) D_80802704_chaliendad;
 }
@@ -105,15 +105,15 @@ void func_808000AC_chaliendad(Actor *arg0) {
     void func_80801C9C_chaliendad(Actor *, s32, s32);
     void func_80801D40_chaliendad(Actor *, s32, s32, Unk80132ED0 *);
     void func_808022CC_chaliendad(Actor *);
-    extern u32 D_8080274C_chaliendad[], D_80802764_chaliendad[];
-    extern u32 D_80802774_chaliendad[], D_80802784_chaliendad[];
-    extern u32 D_80802794_chaliendad[], D_808027A4_chaliendad[];
-    extern s32 D_808027B4_chaliendad[];
-    extern u32 D_808027C0_chaliendad[];
-    extern s32 D_808027CC_chaliendad[];
-    extern s32 D_808027D4_chaliendad[];
-    extern s32 D_808027FC_chaliendad[], D_80802808_chaliendad[];
-    extern s32 D_80802814_chaliendad[];
+    extern s16 D_8080274C_chaliendad[11], D_80802764_chaliendad[8];
+    extern s16 D_80802774_chaliendad[7], D_80802784_chaliendad[7];
+    extern s16 D_80802794_chaliendad[7], D_808027A4_chaliendad[7];
+    extern s16 D_808027B4_chaliendad[6];
+    extern s16 D_808027C0_chaliendad[5];
+    extern s16 D_808027CC_chaliendad[4];
+    extern s16 D_808027D4_chaliendad[19];
+    extern s16 D_808027FC_chaliendad[6], D_80802808_chaliendad[6];
+    extern s16 D_80802814_chaliendad[4];
     typedef struct {
         s16 position[3];
         s16 yaw;
@@ -194,7 +194,7 @@ void func_808000AC_chaliendad(Actor *arg0) {
                 func_80018820(0, 2.0f, 0.3f);
                 func_800EE7F8(sp60, arg0->position);
                 func_800EF1B8(sp60, arg0->rotation[1], -100.0f);
-                func_800BBCB8(sp60, NULL, 1.2f, 1, D_808027D4_chaliendad);
+                func_800BBCB8(sp60, NULL, 1.2f, 1, (s32 *)D_808027D4_chaliendad);
                 _subaddiedialog_entrypoint_11(arg0->unk0, 0x1289, 0x44, arg0->position, 0x62);
             }
             if (func_80101E14(arg0, 0.9f)) {
@@ -315,7 +315,7 @@ void func_80800918_chaliendad(Actor *arg0, void *arg1) {
     void func_800DF744(s32, s32);
     void func_800E39A8(f32 *, f32 *);
     void func_800EF214(f32 *, f32, f32, f32);
-    void func_80101870(Actor *, void *);
+    BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80101870(Actor *, void *);
     s32 *sp4C;
     f32 sp40[3];
     s32 sp34[3];
@@ -600,9 +600,9 @@ void func_80801110_chaliendad(Actor *arg0, s32 arg1, s32 arg2) {
 
 void func_80801220_chaliendad(void *arg0, s32 arg1, s32 arg2) {
     void _subaddieaudioquick_entrypoint_2(Actor *arg0, f32 arg1[3], void *arg2);
-    extern s32 D_8080281C_chaliendad;
+    extern s16 D_8080281C_chaliendad[4];
     if (arg1 == 0x12A0) {
-        _subaddieaudioquick_entrypoint_2(arg0, (u8 *)arg0 + 4, &D_8080281C_chaliendad);
+        _subaddieaudioquick_entrypoint_2(arg0, (u8 *)arg0 + 4, D_8080281C_chaliendad);
     }
 }
 
@@ -879,9 +879,9 @@ void func_80801868_chaliendad(Actor *arg0) {
 }
 
 void func_80801B9C_chaliendad(BtIntPtr arg0) {
-    s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, s32 *, subaddiedialog_UnkStruct1 *, s32);
+    s32 _subaddiedialog_entrypoint_8(BtIntPtr, void *, subaddiedialog_UnkStruct2 *, subaddiedialog_UnkStruct1 *, s32);
     extern subaddiedialog_UnkStruct1 D_808025C0_chaliendad[3];
-    extern s32 D_80802824_chaliendad;
+    extern subaddiedialog_UnkStruct2 D_80802824_chaliendad;
     _subaddiedialog_entrypoint_8(arg0, (s8 *)arg0 + 4, &D_80802824_chaliendad, D_808025C0_chaliendad, 3);
 }
 
@@ -1132,11 +1132,11 @@ void func_80802218_chaliendad(Actor *arg0) {
 void func_80802284_chaliendad(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor*, f32*, u32, u32*);
     void func_80103DFC(Actor*, f32*);
-    extern u32 D_80802834_chaliendad;
+    extern s16 D_80802834_chaliendad[9];
     f32 sp1C[3];
 
     func_80103DFC(arg0, sp1C);
-    _subaddieaudioloop_entrypoint_4(arg0, sp1C, (arg0->unk70_10 ^ 1) != 0, &D_80802834_chaliendad);
+    _subaddieaudioloop_entrypoint_4(arg0, sp1C, (arg0->unk70_10 ^ 1) != 0, D_80802834_chaliendad);
 }
 
 void func_808022CC_chaliendad(Actor *arg0) {
@@ -1150,10 +1150,10 @@ void func_808022CC_chaliendad(Actor *arg0) {
     sp1C[1] = 10.0f;
 }    typedef struct { u8 pad0[0x58]; f32 unk58; } Objaliendad_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
-void func_80802330_chaliendad(void *arg0) {
+void func_80802330_chaliendad(Actor *arg0) {
     (((Objaliendad_arg0 *)arg0)->unk58) = 0.85f;
 }
-
+#include "aliendad_tail_data.inc"
 void func_80802340_chaliendad(Actor *arg0) {
     void _subaddiefade_entrypoint_3(Actor *);
     s32 _subaddieskeleton_entrypoint_2(Unk80132ED0 *, s32, f32 *);

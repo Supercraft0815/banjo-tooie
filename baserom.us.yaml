@@ -646,10 +646,19 @@ segments:
       - [0x1EF1590, data]
       - [0x1EF4E50, .data, 1EACD90]
       - [0x1EF4E70, data]
+      - [0x1EF4EB0, .data, 1EAD6C0]
+      - [0x1EF4F30, data]
       - [0x1EF5200, .data, 1EAF950]
       - [0x1EF5210, data]
+      - [0x1EF5250, .data, 1EB2130]
       - [0x1EF5280, .data, 1EB3750]
       - [0x1EF5290, data]
+      - [0x1EFD750, .data, 1ED68A0]
+      - [0x1EFDC80, .data, 1ED8C80]
+      - [0x1EFDC90, data]
+      - [0x1EFDCF0, .data, 1EDD9C0]
+      - [0x1EFDD10, .data, 1EDDC40]
+      - [0x1EFDD30, data]
       - [0x1EFE380, .rodata, anctrl]
       - [0x1EFE3A0, .rodata, baanim]
       - [0x1EFE3C0, .rodata, 1E66990]
@@ -5094,7 +5103,6 @@ segments:
       - [0x01FAC1F0, .rodata, boss]
       - [0x01FAC400, .data, boss_tables]
       - [0x01FAC560, .data, boss]
-      - [0x01FAC5C0, data, boss_data_tail]
       - [0x01FAC8D0, bss, boss]
   - name: chburgerstand_header
     dir: overlays/chburgerstand
@@ -5589,7 +5597,6 @@ segments:
       - [0x01FBF320, c, jollyroger]
       - [0x01FC04F0, .rodata, jollyroger]
       - [0x01FC0520, .data, jollyroger]
-      - [0x01FC06C0, data, jollyroger_tail]
       - [0x01FC07D0, bss, jollyroger]
   - name: chdinofoot_header
     dir: overlays/chdinofoot
@@ -7151,7 +7158,6 @@ segments:
       - [0x0200D9D0, .rodata, aliendad]
       - [0x0200DB10, .data, aliendad_tables]
       - [0x0200DBC0, .data, aliendad]
-      - [0x0200DC10, data, aliendad_data_tail]
       - [0x0200DDA0, bss, aliendad]
   - name: chalienbeam_header
     dir: overlays/chalienbeam

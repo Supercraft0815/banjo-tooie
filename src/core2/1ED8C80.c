@@ -703,7 +703,7 @@ s32 func_8010038C(Actor *arg0, f32 *arg1) {
     return func_800EFFB4(arg0->position, (f32)(s32)range->radius, arg1);
 }
 #endif
-
+#include "actor_iteration_cursors.inc"
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"

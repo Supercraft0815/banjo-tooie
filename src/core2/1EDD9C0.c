@@ -1,5 +1,5 @@
 #include "core2/1EDD9C0.h"
-
+#include "actor_last_hit.inc"
 typedef struct { s32 * unk0; s32 unk4; } Obj1EDD9C0_D_80135AB0; /* offsets.py genstruct: fields from raw offsets on &D_80135AB0; rename once understood */ BtIntPtr func_801040D0(void) {
     void func_800DFAD0(void *this);
     extern s32 D_80135AB0;
@@ -24,11 +24,11 @@ OSThread *func_80104118(void)
     return (OSThread *) D_80136BE8;
 }
 
-OSThread *func_80104124(void)
+BT_IDO_ONLY(OSThread *) BT_ILP32_ONLY(OSThread *) BT_LP64_ONLY(NativeActorHit *) func_80104124(void)
 {
-    extern u8 D_80124400[];
+    extern ActorHitData D_80124400;
 
-    return (OSThread *) D_80124400;
+    return (void *)&D_80124400;
 }
 
 OSThread *func_80104130(void)

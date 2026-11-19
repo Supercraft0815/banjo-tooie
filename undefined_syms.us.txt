@@ -23,6 +23,35 @@ D_B0000040 = 0xB0000040;
 D_A02FB1F4 = 0xA02FB1F4;
 D_A02FE1C0 = 0xA02FE1C0;
 
+/* Fields of the five player movement settings. */
+D_8011B961 = playerMovementDefaults + 1;
+D_8011B964 = playerMovementDefaults + 4;
+
+/* Starting records in the original music-region table. */
+D_80123F68 = D_80123E84 + 0xE4;
+D_80123FC8 = D_80123E84 + 0x144;
+D_80124004 = D_80123E84 + 0x180;
+D_80124010 = D_80123E84 + 0x18C;
+D_8012401C = D_80123E84 + 0x198;
+D_80124028 = D_80123E84 + 0x1A4;
+D_80124034 = D_80123E84 + 0x1B0;
+D_80124040 = D_80123E84 + 0x1BC;
+D_80124064 = D_80123E84 + 0x1E0;
+D_80124124 = D_80123E84 + 0x2A0;
+D_8012419C = D_80123E84 + 0x318;
+D_801241CC = D_80123E84 + 0x348;
+D_801241D8 = D_80123E84 + 0x354;
+
+/* Cheato code records and inventory ability fields. */
+D_8011B5C0 = cheatCodeSettings + 0x0;
+D_8011B608 = cheatCodeSettings + 0x48;
+D_8011B620 = cheatInventoryAbilities + 0x0;
+D_8011B622 = cheatInventoryAbilities + 0x2;
+D_8011B624 = cheatInventoryAbilities + 0x4;
+D_8011B626 = cheatInventoryAbilities + 0x6;
+D_8011B628 = cheatInventoryAbilities + 0x8;
+D_8011B62A = cheatInventoryAbilities + 0xA;
+
 /* Aliases within audio storage. */
 D_80079FA2 = D_80079FA0 + 0x2;
 D_80079FA3 = D_80079FA0 + 0x3;
@@ -207,6 +236,18 @@ SECTIONS
         D_80800FD4_chfactoryworkerdirty = D_80800FD0_chfactoryworkerdirty + 0x4;
         D_80800FD6_chfactoryworkerdirty = D_80800FD0_chfactoryworkerdirty + 0x6;
         D_8080100C_chfactoryworkerdirty = D_80801008_chfactoryworkerdirty + 0x4;
+    }
+    .chjollyroger :
+    {
+        D_80801456_chjollyroger = D_80801448_chjollyroger + 0xE;
+    }
+    .chaliendad :
+    {
+        D_808026C0_chaliendad = D_808026BC_chaliendad + 0x4;
+    }
+    .chboilerboss :
+    {
+        D_80802C60_chboilerboss = D_80802C54_chboilerboss + 0xC;
     }
 }
 

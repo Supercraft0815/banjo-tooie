@@ -1,5 +1,5 @@
 #include "common.h"
-
+#include "footstep_defaults.inc"
 s32 *func_800BEF00(f32[3], f32[3], f32[3], s32);
 
 void func_80104350(void) {
@@ -513,8 +513,8 @@ s32 func_80105230(Actor *arg0, f32 *arg1) {
     s32 func_801053D4();
     void func_8010D640(BtIntPtr);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
-    extern f32 D_80124420;
-    extern s32 D_8012442C;
+    extern f32 D_80124420[3];
+    extern s16 D_8012442C[7];
 
     f32 *values;
     f32 position[3];
@@ -532,14 +532,14 @@ s32 func_80105230(Actor *arg0, f32 *arg1) {
     if (2.25e+06f <= func_800EEB40(position, actorPosition = arg0->position)) {
         return 0;
     }
-    values = arg1 != NULL ? arg1 : &D_80124420;
+    values = arg1 != NULL ? arg1 : D_80124420;
     for (; *values != -1.0f; values++, i++) {
         if (func_80101E14(arg0, *values) != 0) {
             if (_fxstep_entrypoint_15(func_801053D4(arg0), i & 1, &sp50, &sp4C, &sp48) != 0) {
                 func_800C4B64(sp48);
                 func_800C4B70(sp4C);
                 func_800C4B7C(sp50);
-                func_8010D930(2, arg0->unk70_0, actorPosition, &D_8012442C);
+                func_8010D930(2, arg0->unk70_0, actorPosition, (s32 *)D_8012442C);
             }
             return 1;
         }

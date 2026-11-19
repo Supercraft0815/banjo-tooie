@@ -1,13 +1,14 @@
 #include "common.h"
 #include "core2/1EB2130.h"
+#include "movement_defaults.inc"
 f32 func_800D8840(s32 arg0) {
-    extern f32 D_8011B964[][2];
-    return D_8011B964[arg0][0];
+    BT_IDO_ONLY(extern f32 D_8011B964[][2];)
+    return BT_DATA_FIELD(playerMovementDefaults[arg0].value, D_8011B964[arg0][0]);
 }
 
 s32 func_800D8854(s32 arg0) {
-    extern u8 D_8011B961[];
-    return D_8011B961[arg0 * 8] & 1;
+    BT_IDO_ONLY(extern u8 D_8011B961[];)
+    return BT_DATA_FIELD(playerMovementDefaults[arg0].flags, D_8011B961[arg0 * 8]) & 1;
 }
 
 void func_800D8870(void) {
