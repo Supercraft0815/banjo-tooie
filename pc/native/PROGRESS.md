@@ -2488,3 +2488,11 @@ Die kanonische Gast-IR der Vektoränderung ist identisch. Original-IDO prüfte
 2.384 Funktionen in 100 Modulen und beide vollständigen ROMs. Die Ergebnisse
 stehen in `build/acceptance/n3-2026-11-18/` in `gate-vector.log`,
 `vector-native-tests.log`, `vector-ir.log` und `vector-ido/result.json`.
+
+## 2026-11-19 — A8, Befehl für Befehl durch den vollständigen Korpus
+
+Im Debug-Build liefen alle 74 Replays mit `BT_AUDIO_CHECK=1`. Der
+RSP-Interpreter und der C-Mixer verglichen nach jedem Audiobefehl den
+DMEM-Inhalt sowie Adresse, Länge und Inhalt der DMA-Schreibvorgänge. Alle
+elf Testsuiten und 447.849 Retraces bestanden. Das Protokoll liegt in
+`build/acceptance/a8-2026-11-17/audio-74.log`.
