@@ -45,10 +45,7 @@ dlabel D_80069A30
 /* 1E81560 80069A30 */ .space 0x10
 
 dlabel D_80069A40
-/* 1E81570 80069A40 */ .space 0x14
-
-dlabel D_80069A54
-/* 1E81584 80069A54 */ .space 0x6F4
+/* 1E81570 80069A40 */ .space 0x708
 
 dlabel D_8006A148
 /* 1E81C78 8006A148 */ .space 0x04

@@ -33,10 +33,7 @@ dlabel D_800769F8
 /* 1E8E528 800769F8 */ .space 0x08
 
 dlabel D_80076A00
-/* 1E8E530 80076A00 */ .space 0x08
-
-dlabel D_80076A08
-/* 1E8E538 80076A08 */ .space 0x10
+/* 1E8E530 80076A00 */ .space 0x18
 
 dlabel D_80076A18
 /* 1E8E548 80076A18 */ .space 0x08
@@ -234,28 +231,13 @@ dlabel D_800799C0
 /* 1E914F0 800799C0 */ .space 0x20
 
 dlabel D_800799E0
-/* 1E91510 800799E0 */ .space 0x18
-
-dlabel D_800799F8
-/* 1E91528 800799F8 */ .space 0x0C
-
-dlabel D_80079A04
-/* 1E91534 80079A04 */ .space 0x10
-
-dlabel D_80079A14
-/* 1E91544 80079A14 */ .space 0xAC
+/* 1E91510 800799E0 */ .space 0xE0
 
 dlabel D_80079AC0
-/* 1E915F0 80079AC0 */ .space 0x34
-
-dlabel D_80079AF4
-/* 1E91624 80079AF4 */ .space 0x04
+/* 1E915F0 80079AC0 */ .space 0x38
 
 dlabel D_80079AF8
-/* 1E91628 80079AF8 */ .space 0x04
-
-dlabel D_80079AFC
-/* 1E9162C 80079AFC */ .space 0x3C
+/* 1E91628 80079AF8 */ .space 0x40
 
 dlabel D_80079B38
 /* 1E91668 80079B38 */ .space 0x04
@@ -276,10 +258,7 @@ dlabel D_80079B78
 /* 1E916A8 80079B78 */ .space 0x18
 
 dlabel D_80079B90
-/* 1E916C0 80079B90 */ .space 0x03
-
-dlabel D_80079B93
-/* 1E916C3 80079B93 */ .space 0x0D
+/* 1E916C0 80079B90 */ .space 0x10
 
 dlabel D_80079BA0
 /* 1E916D0 80079BA0 */ .space 0x08
@@ -303,10 +282,7 @@ dlabel D_80079D70
 /* 1E918A0 80079D70 */ .space 0x200
 
 dlabel D_80079F70
-/* 1E91AA0 80079F70 */ .space 0x08
-
-dlabel D_80079F78
-/* 1E91AA8 80079F78 */ .space 0x10
+/* 1E91AA0 80079F70 */ .space 0x18
 
 dlabel D_80079F88
 /* 1E91AB8 80079F88 */ .space 0x18

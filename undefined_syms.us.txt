@@ -42,6 +42,9 @@ D_8012419C = D_80123E84 + 0x318;
 D_801241CC = D_80123E84 + 0x348;
 D_801241D8 = D_80123E84 + 0x354;
 
+/* Legacy split label inside the unified audio DMA node array. */
+D_80069A54 = D_80069A40 + 0x14;
+
 /* Legacy relocation names within the unified SpriteSettings BSS object. */
 D_8012D474 = D_8012D470 + 0x4;
 D_8012D480 = D_8012D470 + 0x10;
@@ -214,6 +217,13 @@ D_8013255C = D_8012D690 + 0x4ECC;
 
 /* Typed view and aliases within the music state storage. */
 D_801359C0_storage = D_801359C0;
+D_800799F8 = D_800799E0 + 0x18;
+D_80079A04 = D_800799E0 + 0x24;
+D_80079A14 = D_800799E0 + 0x34;
+D_80079AF4 = D_80079AC0 + 0x34;
+D_80079AFC = D_80079AF8 + 0x4;
+D_80079B93 = D_80079B90 + 0x3;
+D_80079F78 = D_80079F70 + 0x8;
 D_80127092 = D_80127090 + 0x2;
 D_80127094 = D_80127090 + 0x4;
 D_80127097 = D_80127090 + 0x7;

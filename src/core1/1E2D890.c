@@ -17,21 +17,25 @@ typedef struct {
 } unkD_800799C0;
 
 typedef struct {
-    s32 unk0[14];
-} unkD_800799E0;
+    s32 held[14];
+} ControllerButtonFrames;
 
 typedef struct {
-    u16 unk0;
-    u16 unk2;
-    u16 unk4;
-    u16 unk6;
-    f32 unk8;
-    f32 unkC;
-} unkD_80079AF8;
+    u16 current, previous, pressed, released;
+    f32 stick_x, stick_y;
+} ControllerSnapshot;
 
 extern unkD_800799C0 D_800799C0[4];
-extern unkD_800799E0 D_800799E0[4];
-extern unkD_80079AF8 D_80079AF8[4];
+extern ControllerButtonFrames D_800799E0[4], D_80079AC0;
+extern ControllerSnapshot D_80079AF8[4];
+#ifdef BT_NATIVE
+_Static_assert(sizeof(ControllerButtonFrames) == 0x38, "controller button timers");
+_Static_assert(sizeof(ControllerSnapshot) == 0x10, "controller snapshot");
+_Static_assert(sizeof(OSContStatus[4]) == 0x10, "controller status array");
+#ifdef BT_ILP32
+_Static_assert(sizeof(OSMesgQueue) == 0x18, "controller queue");
+#endif
+#endif
 
 // si_mesg
 extern OSMesg D_80079B38;
@@ -89,25 +93,24 @@ f32 func_80015D60(s32 arg0, s32 arg1, s32 arg2) {
 }
 
 void func_80015E80(s32 arg0, void *arg1) {
-    unkD_800799E0 *temp_v0;
+    ControllerButtonFrames *temp_v0;
 
     temp_v0 = &D_800799E0[arg0];
-    (*(s32 *)((s8 *)(arg1) + (0))) = (s32) temp_v0->unk0[0];
-    (*(s32 *)((s8 *)(arg1) + (4))) = (s32) temp_v0->unk0[1];
-    (*(s32 *)((s8 *)(arg1) + (8))) = (s32) temp_v0->unk0[2];
-    (*(s32 *)((s8 *)(arg1) + (0xC))) = (s32) temp_v0->unk0[3];
-    (*(s32 *)((s8 *)(arg1) + (0x10))) = (s32) temp_v0->unk0[4];
-    (*(s32 *)((s8 *)(arg1) + (0x14))) = (s32) temp_v0->unk0[5];
+    (*(s32 *)((s8 *)(arg1) + (0))) = (s32) temp_v0->held[0];
+    (*(s32 *)((s8 *)(arg1) + (4))) = (s32) temp_v0->held[1];
+    (*(s32 *)((s8 *)(arg1) + (8))) = (s32) temp_v0->held[2];
+    (*(s32 *)((s8 *)(arg1) + (0xC))) = (s32) temp_v0->held[3];
+    (*(s32 *)((s8 *)(arg1) + (0x10))) = (s32) temp_v0->held[4];
+    (*(s32 *)((s8 *)(arg1) + (0x14))) = (s32) temp_v0->held[5];
 }
 
 void func_80015ECC(s32 arg0, void *arg1) {
-    extern s32 D_80079AC0;
-    (*(s32 *)((s8 *)(arg1) + (0))) = (s32) (*(s32 *)((s8 *)(&D_80079AC0) + (0)));
-    (*(s32 *)((s8 *)(arg1) + (4))) = (s32) (*(s32 *)((s8 *)(&D_80079AC0) + (4)));
-    (*(s32 *)((s8 *)(arg1) + (8))) = (s32) (*(s32 *)((s8 *)(&D_80079AC0) + (8)));
-    (*(s32 *)((s8 *)(arg1) + (0xC))) = (s32) (*(s32 *)((s8 *)(&D_80079AC0) + (0xC)));
-    (*(s32 *)((s8 *)(arg1) + (0x10))) = (s32) (*(s32 *)((s8 *)(&D_80079AC0) + (0x10)));
-    (*(s32 *)((s8 *)(arg1) + (0x14))) = (s32) (*(s32 *)((s8 *)(&D_80079AC0) + (0x14)));
+    (*(s32 *)((s8 *)(arg1) + (0))) = (s32) D_80079AC0.held[0];
+    (*(s32 *)((s8 *)(arg1) + (4))) = (s32) D_80079AC0.held[1];
+    (*(s32 *)((s8 *)(arg1) + (8))) = (s32) D_80079AC0.held[2];
+    (*(s32 *)((s8 *)(arg1) + (0xC))) = (s32) D_80079AC0.held[3];
+    (*(s32 *)((s8 *)(arg1) + (0x10))) = (s32) D_80079AC0.held[4];
+    (*(s32 *)((s8 *)(arg1) + (0x14))) = (s32) D_80079AC0.held[5];
 }
 
 s32 func_80015F0C(s32 controller, s32 combo) {
@@ -115,68 +118,66 @@ s32 func_80015F0C(s32 controller, s32 combo) {
 }
 
 void func_80015F28(s32 arg0, void *arg1) {
-    unkD_800799E0 *temp_v0;
+    ControllerButtonFrames *temp_v0;
 
     temp_v0 = &D_800799E0[arg0];
-    (*(s32 *)((s8 *)(arg1) + (0))) = (s32) temp_v0->unk0[6];
-    (*(s32 *)((s8 *)(arg1) + (4))) = (s32) temp_v0->unk0[7];
-    (*(s32 *)((s8 *)(arg1) + (8))) = (s32) temp_v0->unk0[8];
+    (*(s32 *)((s8 *)(arg1) + (0))) = (s32) temp_v0->held[6];
+    (*(s32 *)((s8 *)(arg1) + (4))) = (s32) temp_v0->held[7];
+    (*(s32 *)((s8 *)(arg1) + (8))) = (s32) temp_v0->held[8];
 }
 
 void func_80015F5C(s32 arg0, void *arg1) {
-    extern s32 D_80079AC0;
-    (*(s32 *)((s8 *)(arg1) + (0))) = (s32) (*(s32 *)((s8 *)(&D_80079AC0) + (0x18)));
-    (*(s32 *)((s8 *)(arg1) + (4))) = (s32) (*(s32 *)((s8 *)(&D_80079AC0) + (0x1C)));
-    (*(s32 *)((s8 *)(arg1) + (8))) = (s32) (*(s32 *)((s8 *)(&D_80079AC0) + (0x20)));
+    (*(s32 *)((s8 *)(arg1) + (0))) = (s32) D_80079AC0.held[6];
+    (*(s32 *)((s8 *)(arg1) + (4))) = (s32) D_80079AC0.held[7];
+    (*(s32 *)((s8 *)(arg1) + (8))) = (s32) D_80079AC0.held[8];
 }
 
 s32 func_80015F84(s32 arg0) {
-    extern s32 D_80079A14;
-    return BT_DATA_FIELD(D_800799E0[arg0].unk0[13], *(s32 *)((u8 *)&D_80079A14 + ((arg0 * 7) * 8)));
+    BT_IDO_ONLY(extern s32 D_80079A14;)
+    return BT_DATA_FIELD(D_800799E0[arg0].held[13], *(s32 *)((u8 *)&D_80079A14 + ((arg0 * 7) * 8)));
 }
 
 s32 func_80015FA0(s32 arg0) {
-    extern s32 D_80079A14;
-    extern s32 D_80079AF4;
-    extern u8 D_80079B93;
+    BT_IDO_ONLY(extern s32 D_80079A14;)
+    BT_IDO_ONLY(extern s32 D_80079AF4;)
+    BT_IDO_ONLY(extern u8 D_80079B93;)
     extern u8 D_80079D69;
     s32 var_v1;
 
-    if ((D_80079D69 == 0) || (D_80079B93 != 0)) {
+    if ((D_80079D69 == 0) || (BT_DATA_FIELD(D_80079B90[0].errno, D_80079B93) != 0)) {
         return 0U;
     }
     if (arg0 != 0) {
-        var_v1 = BT_DATA_FIELD(D_800799E0[arg0].unk0[13], *(s32 *)((u8 *)&D_80079A14 + ((arg0 * 7) * 8)));
+        var_v1 = BT_DATA_FIELD(D_800799E0[arg0].held[13], *(s32 *)((u8 *)&D_80079A14 + ((arg0 * 7) * 8)));
     } else {
-        var_v1 = D_80079AF4;
+        var_v1 = BT_DATA_FIELD(D_80079AC0.held[13], D_80079AF4);
     }
     return var_v1;
 }
 
 void func_80015FFC(s32 arg0, void *arg1) {
-    unkD_800799E0 *temp_v0;
+    ControllerButtonFrames *temp_v0;
 
     temp_v0 = &D_800799E0[arg0];
-    (*(s32 *)((s8 *)(arg1) + (0))) = (s32) temp_v0->unk0[9];
-    (*(s32 *)((s8 *)(arg1) + (4))) = (s32) temp_v0->unk0[0xA];
-    (*(s32 *)((s8 *)(arg1) + (8))) = (s32) temp_v0->unk0[0xB];
-    (*(s32 *)((s8 *)(arg1) + (0xC))) = (s32) temp_v0->unk0[0xC];
+    (*(s32 *)((s8 *)(arg1) + (0))) = (s32) temp_v0->held[9];
+    (*(s32 *)((s8 *)(arg1) + (4))) = (s32) temp_v0->held[0xA];
+    (*(s32 *)((s8 *)(arg1) + (8))) = (s32) temp_v0->held[0xB];
+    (*(s32 *)((s8 *)(arg1) + (0xC))) = (s32) temp_v0->held[0xC];
 }
 
 void func_80016038(s32 arg0, void *arg1) {
-    extern s32 D_80079AC0;
-    (*(s32 *)((s8 *)(arg1) + (0))) = (s32) (*(s32 *)((s8 *)(&D_80079AC0) + (0x24)));
-    (*(s32 *)((s8 *)(arg1) + (4))) = (s32) (*(s32 *)((s8 *)(&D_80079AC0) + (0x28)));
-    (*(s32 *)((s8 *)(arg1) + (8))) = (s32) (*(s32 *)((s8 *)(&D_80079AC0) + (0x2C)));
-    (*(s32 *)((s8 *)(arg1) + (0xC))) = (s32) (*(s32 *)((s8 *)(&D_80079AC0) + (0x30)));
+    (*(s32 *)((s8 *)(arg1) + (0))) = (s32) D_80079AC0.held[9];
+    (*(s32 *)((s8 *)(arg1) + (4))) = (s32) D_80079AC0.held[10];
+    (*(s32 *)((s8 *)(arg1) + (8))) = (s32) D_80079AC0.held[11];
+    (*(s32 *)((s8 *)(arg1) + (0xC))) = (s32) D_80079AC0.held[12];
 }
 
 void func_80016068(u32 arg0, f32 *arg1) {
-    unkD_80079AF8 *temp_v0;
+    ControllerSnapshot *temp_v0;
 
     temp_v0 = &D_80079AF8[arg0];
-    (*(f32 *)((s8 *)(arg1) + (0))) = temp_v0->unk8;
-    (*(f32 *)((s8 *)(arg1) + (4))) = (f32) temp_v0->unkC;
+    (*(f32 *)((s8 *)(arg1) + (0))) = temp_v0->stick_x;
+    (*(f32 *)((s8 *)(arg1) + (4))) = (f32) temp_v0->stick_y;
 }
 
 void func_8001608C(void) {
@@ -185,7 +186,6 @@ void func_8001608C(void) {
     void func_800A9CDC(void);
     void func_800D8FA0(s32 arg0);
     f32 func_800DC0C0(void);
-    extern s32 D_80079AC0;
     extern u8 D_80079D69;
     s32 j;
     s32 i;
@@ -224,145 +224,145 @@ void func_8001608C(void) {
             }
         }
         if (D_80079B40[i].button & 0x8000) {
-            D_800799E0[i].unk0[0]++;
+            D_800799E0[i].held[0]++;
         } else {
-            D_800799E0[i].unk0[0] = 0;
+            D_800799E0[i].held[0] = 0;
         }
         if (D_80079B40[i].button & 0x4000) {
-            D_800799E0[i].unk0[1]++;
+            D_800799E0[i].held[1]++;
         } else {
-            D_800799E0[i].unk0[1] = 0;
+            D_800799E0[i].held[1] = 0;
         }
         if (D_80079B40[i].button & 0x2) {
-            D_800799E0[i].unk0[2]++;
+            D_800799E0[i].held[2]++;
         } else {
-            D_800799E0[i].unk0[2] = 0;
+            D_800799E0[i].held[2] = 0;
         }
         if (D_80079B40[i].button & 0x4) {
-            D_800799E0[i].unk0[3]++;
+            D_800799E0[i].held[3]++;
         } else {
-            D_800799E0[i].unk0[3] = 0;
+            D_800799E0[i].held[3] = 0;
         }
         if (D_80079B40[i].button & 0x8) {
-            D_800799E0[i].unk0[4]++;
+            D_800799E0[i].held[4]++;
         } else {
-            D_800799E0[i].unk0[4] = 0;
+            D_800799E0[i].held[4] = 0;
         }
         if (D_80079B40[i].button & 0x1) {
-            D_800799E0[i].unk0[5]++;
+            D_800799E0[i].held[5]++;
         } else {
-            D_800799E0[i].unk0[5] = 0;
+            D_800799E0[i].held[5] = 0;
         }
         if (D_80079B40[i].button & 0x2000) {
-            D_800799E0[i].unk0[6]++;
+            D_800799E0[i].held[6]++;
         } else {
-            D_800799E0[i].unk0[6] = 0;
+            D_800799E0[i].held[6] = 0;
         }
         if (D_80079B40[i].button & 0x20) {
-            D_800799E0[i].unk0[7]++;
+            D_800799E0[i].held[7]++;
         } else {
-            D_800799E0[i].unk0[7] = 0;
+            D_800799E0[i].held[7] = 0;
         }
         if (D_80079B40[i].button & 0x10) {
-            D_800799E0[i].unk0[8]++;
+            D_800799E0[i].held[8]++;
         } else {
-            D_800799E0[i].unk0[8] = 0;
+            D_800799E0[i].held[8] = 0;
         }
         if (D_80079B40[i].button & 0x800) {
-            D_800799E0[i].unk0[9]++;
+            D_800799E0[i].held[9]++;
         } else {
-            D_800799E0[i].unk0[9] = 0;
+            D_800799E0[i].held[9] = 0;
         }
         if (D_80079B40[i].button & 0x400) {
-            D_800799E0[i].unk0[10]++;
+            D_800799E0[i].held[10]++;
         } else {
-            D_800799E0[i].unk0[10] = 0;
+            D_800799E0[i].held[10] = 0;
         }
         if (D_80079B40[i].button & 0x200) {
-            D_800799E0[i].unk0[11]++;
+            D_800799E0[i].held[11]++;
         } else {
-            D_800799E0[i].unk0[11] = 0;
+            D_800799E0[i].held[11] = 0;
         }
         if (D_80079B40[i].button & 0x100) {
-            D_800799E0[i].unk0[12]++;
+            D_800799E0[i].held[12]++;
         } else {
-            D_800799E0[i].unk0[12] = 0;
+            D_800799E0[i].held[12] = 0;
         }
         if (D_80079B40[i].button & 0x1000) {
-            D_800799E0[i].unk0[13]++;
+            D_800799E0[i].held[13]++;
         } else {
-            D_800799E0[i].unk0[13] = 0;
+            D_800799E0[i].held[13] = 0;
         }
         if (i == 0) {
             if (D_80079B58.button & 0x8000) {
-                (&D_80079AC0)[0]++;
+                D_80079AC0.held[0]++;
             } else {
-                (&D_80079AC0)[0] = 0;
+                D_80079AC0.held[0] = 0;
             }
             if (D_80079B58.button & 0x4000) {
-                (&D_80079AC0)[1]++;
+                D_80079AC0.held[1]++;
             } else {
-                (&D_80079AC0)[1] = 0;
+                D_80079AC0.held[1] = 0;
             }
             if (D_80079B58.button & 0x2) {
-                (&D_80079AC0)[2]++;
+                D_80079AC0.held[2]++;
             } else {
-                (&D_80079AC0)[2] = 0;
+                D_80079AC0.held[2] = 0;
             }
             if (D_80079B58.button & 0x4) {
-                (&D_80079AC0)[3]++;
+                D_80079AC0.held[3]++;
             } else {
-                (&D_80079AC0)[3] = 0;
+                D_80079AC0.held[3] = 0;
             }
             if (D_80079B58.button & 0x8) {
-                (&D_80079AC0)[4]++;
+                D_80079AC0.held[4]++;
             } else {
-                (&D_80079AC0)[4] = 0;
+                D_80079AC0.held[4] = 0;
             }
             if (D_80079B58.button & 0x1) {
-                (&D_80079AC0)[5]++;
+                D_80079AC0.held[5]++;
             } else {
-                (&D_80079AC0)[5] = 0;
+                D_80079AC0.held[5] = 0;
             }
             if (D_80079B58.button & 0x2000) {
-                (&D_80079AC0)[6]++;
+                D_80079AC0.held[6]++;
             } else {
-                (&D_80079AC0)[6] = 0;
+                D_80079AC0.held[6] = 0;
             }
             if (D_80079B58.button & 0x20) {
-                (&D_80079AC0)[7]++;
+                D_80079AC0.held[7]++;
             } else {
-                (&D_80079AC0)[7] = 0;
+                D_80079AC0.held[7] = 0;
             }
             if (D_80079B58.button & 0x10) {
-                (&D_80079AC0)[8]++;
+                D_80079AC0.held[8]++;
             } else {
-                (&D_80079AC0)[8] = 0;
+                D_80079AC0.held[8] = 0;
             }
             if (D_80079B58.button & 0x800) {
-                (&D_80079AC0)[9]++;
+                D_80079AC0.held[9]++;
             } else {
-                (&D_80079AC0)[9] = 0;
+                D_80079AC0.held[9] = 0;
             }
             if (D_80079B58.button & 0x400) {
-                (&D_80079AC0)[10]++;
+                D_80079AC0.held[10]++;
             } else {
-                (&D_80079AC0)[10] = 0;
+                D_80079AC0.held[10] = 0;
             }
             if (D_80079B58.button & 0x200) {
-                (&D_80079AC0)[11]++;
+                D_80079AC0.held[11]++;
             } else {
-                (&D_80079AC0)[11] = 0;
+                D_80079AC0.held[11] = 0;
             }
             if (D_80079B58.button & 0x100) {
-                (&D_80079AC0)[12]++;
+                D_80079AC0.held[12]++;
             } else {
-                (&D_80079AC0)[12] = 0;
+                D_80079AC0.held[12] = 0;
             }
             if (D_80079B58.button & 0x1000) {
-                (&D_80079AC0)[13]++;
+                D_80079AC0.held[13]++;
             } else {
-                (&D_80079AC0)[13] = 0;
+                D_80079AC0.held[13] = 0;
             }
             if ((D_80079B58.button & 0x20) && (D_80079B58.button & 0x10)) {
                 if (D_80079B58.button & 0x4000) {
@@ -372,14 +372,14 @@ void func_8001608C(void) {
                 }
             }
         }
-        j = D_80079AF8[i].unk0;
+        j = D_80079AF8[i].current;
         curr_buttons = D_80079B40[i].button;
-        D_80079AF8[i].unk0 = curr_buttons;
-        D_80079AF8[i].unk4 = (u16)~j & curr_buttons;
-        D_80079AF8[i].unk6 = ~curr_buttons & j;
-        D_80079AF8[i].unk2 = j;
-        D_80079AF8[i].unk8 = func_80015D60(D_80079B40[i].stick_x, 7, 0x3B);
-        D_80079AF8[i].unkC = func_80015D60(D_80079B40[i].stick_y, 7, 0x3D);
+        D_80079AF8[i].current = curr_buttons;
+        D_80079AF8[i].pressed = (u16)~j & curr_buttons;
+        D_80079AF8[i].released = ~curr_buttons & j;
+        D_80079AF8[i].previous = j;
+        D_80079AF8[i].stick_x = func_80015D60(D_80079B40[i].stick_x, 7, 0x3B);
+        D_80079AF8[i].stick_y = func_80015D60(D_80079B40[i].stick_y, 7, 0x3D);
     }
     D_80079D69 = 1;
     osSetThreadPri(&D_80079BA8, pri);
@@ -447,25 +447,25 @@ void func_80016864(void) {
     s32 j;
 
     for (i = 0; i < 4; i++) {
-        D_80079AF8[i].unk0 = 0;
-        D_80079AF8[i].unk2 = 0;
-        D_80079AF8[i].unk4 = 0;
-        D_80079AF8[i].unk6 = 0;
-        D_80079AF8[i].unk8 = 0.0f;
-        D_80079AF8[i].unkC = 0.0f;
+        D_80079AF8[i].current = 0;
+        D_80079AF8[i].previous = 0;
+        D_80079AF8[i].pressed = 0;
+        D_80079AF8[i].released = 0;
+        D_80079AF8[i].stick_x = 0.0f;
+        D_80079AF8[i].stick_y = 0.0f;
         
         for (j = 0; j < (s32)ARRLEN(D_800799C0[i].unk0); j++) {
             D_800799C0[i].unk0[j] = 0;
         }
         
-        for (j = 0; j < ARRLEN(D_800799E0[i].unk0); j++) {
-            D_800799E0[i].unk0[j] = 0;
+        for (j = 0; j < ARRLEN(D_800799E0[i].held); j++) {
+            D_800799E0[i].held[j] = 0;
         }
     }
 }
 
 void func_8001690C(s32 arg0, s32 arg1) {
-    D_800799E0[arg0].unk0[6] = arg1;
+    D_800799E0[arg0].held[6] = arg1;
 }
 
 OSMesgQueue* func_80016928(void) {
@@ -530,26 +530,26 @@ s32 func_80016A74(u32 arg0, f32 *arg1) {
 }
 
 s32 func_80016B30(s32 arg0, s32 arg1) {
-    return D_800799E0[arg0].unk0[arg1];
+    return D_800799E0[arg0].held[arg1];
 }
 
 s32 func_80016B54(s32 arg0, s32 arg1) {
-    extern s32 D_800799F8[][14];
-    return D_800799F8[arg0][arg1];
+    BT_IDO_ONLY(extern s32 D_800799F8[][14];)
+    return BT_DATA_FIELD(D_800799E0[arg0].held[6 + arg1], D_800799F8[arg0][arg1]);
 }
 
 s32 func_80016B78(s32 arg0, s32 arg1) {
-    extern s32 D_80079A04[][14];
-    return D_80079A04[arg0][arg1];
+    BT_IDO_ONLY(extern s32 D_80079A04[][14];)
+    return BT_DATA_FIELD(D_800799E0[arg0].held[9 + arg1], D_80079A04[arg0][arg1]);
 }
 
 s32 func_80016B9C(s32 arg0, u16 arg1) {
-    return D_80079AF8[arg0].unk0 & arg1;
+    return D_80079AF8[arg0].current & arg1;
 }
 
 s32 func_80016BBC(s32 arg0, u16 arg1) {
-    extern u16 D_80079AFC[][8];
-    return D_80079AFC[arg0][0] & arg1;
+    BT_IDO_ONLY(extern u16 D_80079AFC[][8];)
+    return BT_DATA_FIELD(D_80079AF8[arg0].pressed, D_80079AFC[arg0][0]) & arg1;
 }
 
 void func_80016BDC(s32 arg0) {
@@ -560,12 +560,9 @@ void func_80016BDC(s32 arg0) {
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
 unkD_800799C0 D_800799C0 [ 4 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x3080);
-unkD_800799E0 D_800799E0 [ 4 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x30A0);
-s32 D_80079A14 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x30D4);
-s32 D_80079AC0 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x3180);
-s32 D_80079AF4 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x31B4);
-unkD_80079AF8 D_80079AF8 [ 4 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x31B8);
-u16 D_80079AFC [ 3 ] [ 8 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x31BC);
+ControllerButtonFrames D_800799E0 [ 4 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x30A0);
+ControllerButtonFrames D_80079AC0 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x3180);
+ControllerSnapshot D_80079AF8 [ 4 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x31B8);
 OSMesg D_80079B38 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x31F8);
 OSMesg D_80079B3C BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x31FC);
 OSContPad D_80079B40 [ 4 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x3200);
@@ -573,7 +570,6 @@ OSContPad D_80079B58 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x3218);
 OSMesgQueue D_80079B60 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x3220);
 OSMesgQueue D_80079B78 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x3238);
 OSContStatus D_80079B90 [ 4 ] BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x3250);
-u8 D_80079B93 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x3253);
 volatile s32 D_80079BA0 BT_DATA(4, bss_core1bss1_0_audio_frame_tail, 0x3260);
 OSThread D_80079BA8 BT_DATA(8, bss_core1bss1_0_audio_frame_tail, 0x3268);
 __OSThreadOddFpStorage D_80079D58 BT_DATA(8, bss_core1bss1_0_audio_frame_tail, 0x3418);

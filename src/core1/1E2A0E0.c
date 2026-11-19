@@ -16,6 +16,23 @@ struct AudioVolume {
     s16 master;
     s16 channels[2];
 };
+struct AudioDmaNode {
+    ALLink link;
+    u32 addr;
+    u32 time;
+    void *heap;
+};
+struct AudioDmaState {
+    u8 initialized;
+    u8 pad[3];
+    struct AudioDmaNode *allocated;
+    struct AudioDmaNode *free;
+    u8 padC[4];
+};
+#ifdef BT_ILP32
+_Static_assert(sizeof(struct AudioDmaNode) == 0x14, "N64 audio DMA node layout");
+_Static_assert(sizeof(struct AudioDmaState) == 0x10, "N64 audio DMA list state layout");
+#endif
 struct AudioVolume D_8006A1CC;
 s8 D_8006A1D2;
 Acmd D_8006A1D8[2][2500];
@@ -72,15 +89,17 @@ void func_800125B0(void) {
     func_80012F34(1, 4);
     func_80012EA0();
 #endif
-}    typedef struct { u8 pad0[0x4]; s32 unk4; } Obj1E2A0E0_D_80069A40; /* offsets.py genstruct: fields from raw offsets on &D_80069A40; rename once understood */
+}
 
 #if !defined(BT_NATIVE) || defined(BT_ILP32) // synthesizer setup and audio thread: see the native note in func_800125B0
 
 void func_8001268C(void) {
+#ifndef BT_NATIVE
     struct DMAState {
         ALLink link;
         s32 unk8, unkC, heap;
     };
+#endif
     struct AudioInfo {
         u8 *data;
         s32 unk4;
@@ -93,7 +112,7 @@ void func_8001268C(void) {
     void func_80020D80(s32, s32);
 #endif
     void func_80020E40(ALLink *, ALLink *);
-    s32 func_80020EE4(s32, s32, void *, s32, s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_80020EE4(s32, s32, void *, s32, s32);
     void func_800128C0(void *);
     s32 *func_80012D4C(s32 **);
     BT_IDO_ONLY(extern s32 D_8003CA44[];)
@@ -107,10 +126,12 @@ void func_8001268C(void) {
     extern ALHeap D_80046A78;
     extern u8 D_80069488[];
     extern OSMesg D_800694A0[];
-    extern s32 D_80069A40;
-    extern struct DMAState D_80069A54;
+    BT_NATIVE_ONLY(extern struct AudioDmaNode D_80069A40[90];)
+    BT_IDO_ONLY(extern s32 D_80069A40;)
+    BT_IDO_ONLY(extern struct DMAState D_80069A54;)
     extern u8 D_80076938[];
-    struct DMAState *dma, *next;
+    BT_NATIVE_ONLY(struct AudioDmaNode *dma;)
+    BT_IDO_ONLY(struct DMAState *dma;)
     int i;
     s32 *cmd, *info;
     u8 *buffer, *samples;
@@ -133,7 +154,17 @@ void func_8001268C(void) {
 #else
     func_80020D80((s32)&D_8006A158, (s32)&D_8006A1A8);
 #endif
-    ((Obj1E2A0E0_D_80069A40 *)&D_80069A40)->unk4 = 0;
+#ifdef BT_NATIVE
+    D_80069A40[0].link.prev = NULL;
+    D_80069A40[0].link.next = NULL;
+    for (i = 0; i < 89; i++) {
+        dma = &D_80069A40[i];
+        func_80020E40(&D_80069A40[i + 1].link, &dma->link);
+        dma->heap = (void *)func_80020EE4(0, 0, D_8006A1A8.heap, 1, 0x200);
+    }
+    D_80069A40[89].heap = (void *)func_80020EE4(0, 0, D_8006A1A8.heap, 1, 0x200);
+#else
+    ((s32 *)&D_80069A40)[1] = 0;
     D_80069A40 = 0;
     for (i = 0; i < 89; i++) {
         dma = (struct DMAState *)((u8 *)&D_80069A40 + i * sizeof(struct DMAState));
@@ -141,6 +172,7 @@ void func_8001268C(void) {
         ((s32 *)((u8 *)&D_80069A40 + i * sizeof(struct DMAState)))[4] = func_80020EE4(0, 0, D_8006A1A8.heap, 1, 0x200);
     }
     ((s32 *)((u8 *)&D_80069A40 + i * sizeof(struct DMAState)))[4] = func_80020EE4(0, 0, D_8006A1A8.heap, 1, 0x200);
+#endif
     i = 0;
     do {
         D_800459E0[i] = (s32)((u8 *)D_8006A1D8 + i * 0x4E20);
@@ -243,30 +275,24 @@ void func_80012B74(s32 arg0) {
             BT_DATA_FIELD(core1_audio_config.ai_buffer, D_8003CC64)[i] = 0;
         }
     }
-} typedef struct { u8 unk0; u8 pad1[0x3]; union { struct dma_node * unk4; void * unk4_voidp; }; union { void * unk8; s32 * unk8_s32p; struct dma_node * unk8_structdma_nodep; }; } Obj1E2A0E0_D_80069A30; /* offsets.py genstruct: fields from raw offsets on &D_80069A30; rename once understood */
+}
 
 s32 func_80012BB4(s32 addr, s32 len, void *state) {
     void func_80020E40(ALLink *, ALLink *);
     void func_80020E74(ALLink *);
     extern u8 D_80069488[];
     extern OSIoMesg D_80069580[];
-    extern s32 D_80069A30;
+    extern struct AudioDmaState D_80069A30;
     extern u32 D_8006A148;
     extern u32 D_8006A14C;
-    struct dma_node {
-        ALLink link;
-        u32 addr;
-        u32 time;
-        void *heap;
-    };
     void *dest_vaddr;
     s32 low_bit;
     s32 addr_end;
-    struct dma_node *node, *head, *prev;
+    struct AudioDmaNode *node, *head, *prev;
 
-    head = ((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk4;
+    head = D_80069A30.allocated;
     prev = NULL;
-    for (node = head; node != NULL; node = (struct dma_node *)node->link.next) {
+    for (node = head; node != NULL; node = (struct AudioDmaNode *)node->link.next) {
         addr_end = node->addr + 0x200;
         if (node->addr > addr) {
             break;
@@ -278,23 +304,23 @@ s32 func_80012BB4(s32 addr, s32 len, void *state) {
             return osVirtualToPhysical((void *)low_bit);
         }
     }
-    node = ((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk8_structdma_nodep;
+    node = D_80069A30.free;
     if (node == NULL) {
         return osVirtualToPhysical(head);
     }
-    ((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk8_structdma_nodep = (struct dma_node *)node->link.next;
+    D_80069A30.free = (struct AudioDmaNode *)node->link.next;
     func_80020E74(&node->link);
     if (prev != NULL) {
         func_80020E40(&node->link, &prev->link);
     } else {
-        head = ((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk4;
+        head = D_80069A30.allocated;
         if (head != NULL) {
-            ((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk4 = node;
+            D_80069A30.allocated = node;
             node->link.next = (ALLink *)head;
             node->link.prev = NULL;
             head->link.prev = (ALLink *)node;
         } else {
-            ((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk4 = node;
+            D_80069A30.allocated = node;
             node->link.next = NULL;
             node->link.prev = NULL;
         }
@@ -310,29 +336,28 @@ s32 func_80012BB4(s32 addr, s32 len, void *state) {
 }
 
 s32 *func_80012D4C(s32 **arg0) {
-    extern s32 D_80069A30;
-    extern s32 D_80069A40;
+    extern struct AudioDmaState D_80069A30;
+    BT_NATIVE_ONLY(extern struct AudioDmaNode D_80069A40[90];) BT_IDO_ONLY(extern s32 D_80069A40;)
     extern s32 func_80012BB4(s32, s32, void *);
-    if ((((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk0) == 0) {
-        (*(s32 *)((s8 *)(&D_80069A30) + (4))) = 0;
-        (((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk8_s32p) = &D_80069A40;
-        (((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk0) = 1U;
+    if (D_80069A30.initialized == 0) {
+        D_80069A30.allocated = NULL;
+        D_80069A30.free = BT_DATA_FIELD(&D_80069A40[0], (struct AudioDmaNode *)&D_80069A40);
+        D_80069A30.initialized = 1U;
     }
     *arg0 = &D_80069A30;
     return &func_80012BB4;
-}    typedef struct { u8 pad0[0x4]; void * unk4; u8 pad8[0x4]; s32 unkC; } Obj1E2A0E0_func_80012D84_node; /* offsets.py genstruct: fields from raw offsets on node; rename once understood */
-
+}
 void func_80012D84(void) {
     void func_80020E40(ALLink *, ALLink *);
     void func_80020E74(ALLink *);
     extern u8 D_80069488[];
-    extern s32 D_80069A30;
+    extern struct AudioDmaState D_80069A30;
     extern u32 D_8006A148;
     extern u32 D_8006A14C;
     OSMesg msg[2];
     u32 i;
-    void *next;
-    void *node;
+    struct AudioDmaNode *next;
+    struct AudioDmaNode *node;
 
     msg[0] = NULL;
     i = 0;
@@ -342,21 +367,21 @@ void func_80012D84(void) {
             i++;
         } while (i < D_8006A14C);
     }
-    node = ((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk4_voidp;
+    node = D_80069A30.allocated;
     if (node != NULL) {
         do {
-            next = *(void **)node;
-            if ((u32)(((Obj1E2A0E0_func_80012D84_node *)node)->unkC + 1) < D_8006A148) {
-                if (node == ((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk4_voidp) {
-                    ((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk4_voidp = *(void **)node;
+            next = (struct AudioDmaNode *)node->link.next;
+            if (node->time + 1 < D_8006A148) {
+                if (node == D_80069A30.allocated) {
+                    D_80069A30.allocated = (struct AudioDmaNode *)node->link.next;
                 }
-                func_80020E74(node);
-                if (((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk8 != NULL) {
-                    func_80020E40(node, ((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk8);
+                func_80020E74(&node->link);
+                if (D_80069A30.free != NULL) {
+                    func_80020E40(&node->link, &D_80069A30.free->link);
                 } else {
-                    ((Obj1E2A0E0_D_80069A30 *)&D_80069A30)->unk8 = node;
-                    *(void **)node = NULL;
-                    ((Obj1E2A0E0_func_80012D84_node *)node)->unk4 = NULL;
+                    D_80069A30.free = node;
+                    node->link.next = NULL;
+                    node->link.prev = NULL;
                 }
             }
             node = next;
@@ -557,8 +582,11 @@ u8 D_80069488 [ 24 ] BT_DATA(4, bss_core1bss1_0_startup_tail, 0x23AA8);
 OSMesg D_800694A0 [ 50 ] BT_DATA(4, bss_core1bss1_0_startup_tail, 0x23AC0);
 u8 D_80069568 [ 24 ] BT_DATA(4, bss_core1bss1_0_startup_tail, 0x23B88);
 OSIoMesg D_80069580 [ 50 ] BT_DATA(4, bss_core1bss1_0_startup_tail, 0x23BA0);
-s32 D_80069A30 BT_DATA(4, bss_core1bss1_0_startup_tail, 0x24050);
-s32 D_80069A40 BT_DATA(4, bss_core1bss1_0_startup_tail, 0x24060);
+struct AudioDmaState D_80069A30 BT_DATA(4, bss_core1bss1_0_startup_tail, 0x24050);
+struct AudioDmaNode D_80069A40[90] BT_DATA(4, bss_core1bss1_0_startup_tail, 0x24060);
+#ifdef BT_ILP32
+_Static_assert(sizeof(D_80069A40) == 0x708, "N64 audio DMA nodes 0..89");
+#endif
 u32 D_8006A148 BT_DATA(4, bss_core1bss1_0_startup_tail, 0x24768);
 u32 D_8006A14C BT_DATA(4, bss_core1bss1_0_startup_tail, 0x2476C);
 #endif

@@ -428,3 +428,10 @@ sky layers, particle handles and corrected return types. The 9,703 runtime
 fixups retain their original addresses. Both complete ROM images and all
 74 reference replays match. See n1-2026-11-18/current-particle-sky-ir.log
 and current-particle-sky-full.log.
+
+2026-11-19  Controller input state and audio DMA pool
+Five guest functions change their address expressions. The DMA manager and
+all 90 nodes, button counters and input snapshots retain their original
+layout. All 9,703 fixups, both complete ROM images and all 74 replays
+match. See n1-2026-11-18/current-controller-retail-ir.log and
+current-controller-retail-full.log.

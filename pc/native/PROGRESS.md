@@ -3306,3 +3306,24 @@ Alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 66 Sanitizertests
 bestehen. Original-IDO bestätigt alle 16.401 Funktionen und beide ROMs.
 Die 9.703 Laufzeit-Fixups behalten ihre Originaladresse. Belege unter
 `build/acceptance/n1-2026-11-18/current-particle-sky*`.
+
+### 2026-11-19 – Controllerzustände und Audio-DMA (N1)
+
+Jeder der vier Controller hat 14 Tastenzähler und eigene Felder für die
+aktuelle und vorherige Eingabe, neue Tastendrücke, losgelassene Tasten und
+beide Achsen. Eine Gastprobe ersetzt die Eingabe von Controller 0 durch
+Replaydaten und prüft zusätzlich den gespeicherten physischen Zustand.
+
+Der Audio-DMA-Pool besteht aus 90 verketteten Einträgen. Die Gastprobe
+initialisiert den Pool zweimal und kontrolliert die Listenzeiger sowie den
+Erhalt der gespeicherten ROM-Adresse im ersten Eintrag. Sie verfolgt die
+90 verschiedenen Puffer durch Cachetreffer, DMA-Anforderungen, Alterung und
+Wiederverwendung. Dabei laufen die ursprünglichen Listen- und Heapfunktionen.
+Die OS- und PI-Aufrufe übernimmt der Test.
+
+Alle 74 Replays (447.849 Retraces), elf Gastsuiten und 66 Sanitizertests
+bestehen. Original-IDO bestätigt alle 16.401 Funktionen und beide ROMs.
+Alle 9.703 Fixups behalten ihre Originaladresse. Die erste Gastlinkung
+deckte gemischte ROM- und RAM-Adresskommentare in der Assemblerdatei auf.
+Die korrigierte Fassung und ihre Belege liegen unter
+`build/acceptance/n1-2026-11-18/current-controller-retail*`.
