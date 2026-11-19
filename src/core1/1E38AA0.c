@@ -1,3 +1,4 @@
+#include "core1/audio_bus_flags.h"
 #include "common.h"
 
 typedef struct SynthVoice {
@@ -271,37 +272,37 @@ void func_80021A00(u8 arg0) {
 void func_80021AD0(s32 arg0, s32 arg1) {
     extern u8 D_8007EA30;
     extern u8 D_8007EA31;
-    extern u8 D_8007EA33;
-    extern u8 D_8007EA34;
-    extern u8 D_8007EA35;
+    BT_IDO_ONLY(extern u8 D_8007EA33;)
+    BT_IDO_ONLY(extern u8 D_8007EA34;)
+    BT_IDO_ONLY(extern u8 D_8007EA35;)
 
     if (arg1 == 0) {
-        arg1 = (&D_8007EA35)[arg0];
+        arg1 = BT_DATA_FIELD(BUS_MODE(arg0), (&D_8007EA35)[arg0]);
     }
-    (&D_8007EA33)[arg0] = 0;
-    (&D_8007EA34)[arg0] = 0;
+    BT_DATA_FIELD(BUS_ROUTING(arg0), (&D_8007EA33)[arg0]) = 0;
+    BT_DATA_FIELD(BUS_PHASE(arg0), (&D_8007EA34)[arg0]) = 0;
     switch (arg1) {
         case 2:
             if (D_8007EA30 != 0) {
-                (&D_8007EA34)[arg0] = 1;
+                BT_DATA_FIELD(BUS_PHASE(arg0), (&D_8007EA34)[arg0]) = 1;
             }
             break;
         case 3:
             if (D_8007EA30 != 0) {
-                (&D_8007EA33)[arg0] = 1;
+                BT_DATA_FIELD(BUS_ROUTING(arg0), (&D_8007EA33)[arg0]) = 1;
             }
             break;
         case 4:
             if (D_8007EA31 == 0) {
-                (&D_8007EA33)[arg0] = 1;
+                BT_DATA_FIELD(BUS_ROUTING(arg0), (&D_8007EA33)[arg0]) = 1;
             }
             break;
         case 5:
             if (D_8007EA31 == 0) {
-                (&D_8007EA33)[arg0] = 1;
-                (&D_8007EA34)[arg0] = 1;
+                BT_DATA_FIELD(BUS_ROUTING(arg0), (&D_8007EA33)[arg0]) = 1;
+                BT_DATA_FIELD(BUS_PHASE(arg0), (&D_8007EA34)[arg0]) = 1;
             }
             break;
     }
-    (&D_8007EA35)[arg0] = arg1;
+    BT_DATA_FIELD(BUS_MODE(arg0), (&D_8007EA35)[arg0]) = arg1;
 }

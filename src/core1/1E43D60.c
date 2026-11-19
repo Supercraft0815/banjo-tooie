@@ -1,3 +1,4 @@
+#include "core1/audio_bus_flags.h"
 #include "common.h"
 
 Acmd *func_8002C230(s32 arg0, Acmd *arg1) {
@@ -28,21 +29,21 @@ Acmd *func_8002C230(s32 arg0, Acmd *arg1) {
     } Synth;
     void func_80028C04(void *, f32);
     extern Synth *D_800411F4;
-    extern u8 D_8007EA33[], D_8007EA34[];
+    BT_IDO_ONLY(extern u8 D_8007EA33[];) BT_IDO_ONLY(extern u8 D_8007EA34[];)
     Acmd *commands = arg1;
     s32 i;
 
     aClearBuffer(commands++, 0x4E0, 0x2E0);
     for (i = 0; i < D_800411F4->count; i++) {
         commands = D_800411F4->renderer->render(arg0, commands, i);
-        if (D_8007EA33[i]) {
-            if (D_8007EA34[i]) {
+        if (BT_DATA_FIELD(BUS_ROUTING(i), D_8007EA33[i])) {
+            if (BT_DATA_FIELD(BUS_PHASE(i), D_8007EA34[i])) {
                 aMix(commands++, 0, 0x8000, 0x7C0, 0x4E0);
             } else {
                 aMix(commands++, 0, 0x7FFF, 0x7C0, 0x650);
             }
         } else {
-            if (D_8007EA34[i]) {
+            if (BT_DATA_FIELD(BUS_PHASE(i), D_8007EA34[i])) {
                 aMix(commands++, 0, 0x8000, 0x7C0, 0x650);
             } else {
                 aMix(commands++, 0, 0x7FFF, 0x7C0, 0x650);

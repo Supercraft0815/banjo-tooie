@@ -1,3 +1,4 @@
+#include "core1/audio_bus_flags.h"
 #include "common.h"
 
 typedef struct {
@@ -47,8 +48,8 @@ void *func_800272B0(s32 arg0, void *arg1, s32 arg2) {
         u8 pad24[0x24];
     } Bus;
 
-    extern u8 D_8007EA33;
-    extern u8 D_8007EA34;
+    BT_IDO_ONLY(extern u8 D_8007EA33;)
+    BT_IDO_ONLY(extern u8 D_8007EA34;)
 
     extern s32 *func_8002BD40(s32, s32 *, s32, s32 *);
     extern Gfx *func_80028520(s32 *, s32, BtUIntPtr, s32, Gfx *);
@@ -78,7 +79,7 @@ void *func_800272B0(s32 arg0, void *arg1, s32 arg2) {
     sp6E = 0x930;
     sp74 = 0;
     sp72 = 0x170;
-    if ((&D_8007EA33)[arg2] == 0) {
+    if (BT_DATA_FIELD(BUS_ROUTING(arg2), (&D_8007EA33)[arg2]) == 0) {
         {
             Command *command = sp7C++;
             command->w0 = 0x0C00C000;
@@ -91,10 +92,10 @@ void *func_800272B0(s32 arg0, void *arg1, s32 arg2) {
         }
     }
     sp7C = func_80028520(sp78, 0, sp78->position[0], sp70, sp7C);
-    if ((&D_8007EA33)[arg2] != 0) {
+    if (BT_DATA_FIELD(BUS_ROUTING(arg2), (&D_8007EA33)[arg2]) != 0) {
         sp7C = func_80028520(sp78, 1, sp78->position[1], 0x930, sp7C);
     }
-    for (sp54 = 0; sp54 <= (&D_8007EA33)[arg2]; sp54++) {
+    for (sp54 = 0; sp54 <= BT_DATA_FIELD(BUS_ROUTING(arg2), (&D_8007EA33)[arg2]); sp54++) {
         {
             Command *command = sp7C++;
             command->w0 = (sp6E & 0xFFFFFF) | 0x02000000;
@@ -104,7 +105,7 @@ void *func_800272B0(s32 arg0, void *arg1, s32 arg2) {
             sp5C = &sp78->sections[sp76];
             sp68 = sp78->position[sp54] + -sp5C->input;
             sp64 = sp78->position[sp54] + -sp5C->output;
-            if ((&D_8007EA34)[arg2] && (&D_8007EA33)[arg2]) {
+            if (BT_DATA_FIELD(BUS_PHASE(arg2), (&D_8007EA34)[arg2]) && BT_DATA_FIELD(BUS_ROUTING(arg2), (&D_8007EA33)[arg2])) {
                 sp5C->feedback = -sp5C->feedback;
                 sp5C->feedforward = -sp5C->feedforward;
             }
@@ -142,7 +143,7 @@ void *func_800272B0(s32 arg0, void *arg1, s32 arg2) {
                 sp7C = func_80028520(sp78, sp54, sp64, sp72, sp7C);
             }
             if (sp5C->gain != 0) {
-                if ((&D_8007EA33)[arg2] != 0) {
+                if (BT_DATA_FIELD(BUS_ROUTING(arg2), (&D_8007EA33)[arg2]) != 0) {
                     Command *command = sp7C++;
                     command->w0 = ((u16)sp5C->gain & 0xFFFF) | 0x0C000000;
                     command->w1 = ((sp72 & 0xFFFF) << 16) | (sp6E & 0xFFFF);
@@ -161,9 +162,9 @@ void *func_800272B0(s32 arg0, void *arg1, s32 arg2) {
             }
             sp60 = sp78->position[sp54] + sp5C->output;
         }
-        if ((&D_8007EA33)[arg2] && sp54 == 0) {
+        if (BT_DATA_FIELD(BUS_ROUTING(arg2), (&D_8007EA33)[arg2]) && sp54 == 0) {
             sp7C = func_80028328(sp78, 1, sp78->position[1], sp70, 0xB8, sp7C);
-            if ((&D_8007EA34)[arg2]) {
+            if (BT_DATA_FIELD(BUS_PHASE(arg2), (&D_8007EA34)[arg2])) {
                 Command *command = sp7C++;
                 command->w0 = 0x0C005A82;
                 command->w1 = ((sp6E & 0xFFFF) << 16) | 0x650;

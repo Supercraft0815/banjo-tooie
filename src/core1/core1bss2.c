@@ -10,6 +10,9 @@ u8 pad1[8];
 u8 D_8007EA30;
 u8 D_8007EA31;
 u8 D_8007EA32;
+#ifdef BT_NATIVE
+u8 D_8007EA33[13];
+#else
 u8 D_8007EA33;
 u8 D_8007EA34;
 u8 D_8007EA35;
@@ -23,6 +26,7 @@ u8 pad2_C;
 u8 pad2_D;
 u8 pad2_E;
 u8 pad2_F;
+#endif
 
 s32 D_8007EA40;
 s32 D_8007EA44;

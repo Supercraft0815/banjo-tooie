@@ -37,6 +37,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Markersuche und Attract-Zustand. Gast- und LP64-Proben prüfen alle 200 Markerplätze, Wiederverwendung und Generation, Positionsfilter und die zugehörigen Weltdaten. Sie prüfen auch den Attract-Zustand und die Demo-Auswahl.
 
+- Tempeltüren und Audiobusse. Die Tore verwenden zwölf Paare aus Tür-ID und Auslösedistanz. Die beiden Audiobusse lesen die überlappenden Routing-Bytes aus einem gemeinsamen C-Objekt. Gast- und LP64-Proben prüfen die erzeugten Mischbefehle.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

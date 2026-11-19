@@ -3471,3 +3471,9 @@ Programm-Hashes, Spielkonfiguration und Zähler stehen unter `build/acceptance/a
 ### 2026-11-19 – Kartenausgang ohne FixCalls (N2)
 
 Mit der vom Aufrufer übergebenen Ausgangsnummer besteht der kumulative Diagnosebuild ohne FixCalls sechs vollständige Replays. Intro, Spielstand, die Innenräume von Glitter Gulch Mine, Witchyworld und Terrydactyland sowie das Mehrspielermenü stimmen mit ihren Referenzen überein. Die übrigen 68 Fälle zeigen Abweichungen oder brechen ab. Alle Einzelergebnisse stehen unter `build/acceptance/n2-cumulative-nopass-2026-11-19/gate74-canonical48/`.
+
+### 2026-11-19 – Tempeltüren und Audiobusse (N1/N3)
+
+Die Tore verwenden zwölf Paare aus Tür-ID und Auslösedistanz. Die beiden Audiobusse lesen die überlappenden Routing-Bytes aus einem gemeinsamen C-Objekt. Gast- und LP64-Proben prüfen die erzeugten Mischbefehle.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 68 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 6 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-door-audio*`.
