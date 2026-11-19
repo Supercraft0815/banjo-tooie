@@ -3132,3 +3132,15 @@ beider ROM-Abbilder. Alle 9.703 zur Laufzeit korrigierten Zeigerwörter sind
 ihren Originaladressen zugeordnet. Belege unter
 `build/acceptance/n1-2026-11-18/current-fixed-camera*` und
 `current-world-methods-xsym.log`.
+
+### 2026-11-19 – A2 auf dem entsperrten Mac bei 1080p und 60 Hz
+
+SDL meldete zwei aktive LG-UltraGear-Displays mit 1920 × 1080 bei 60 Hz.
+Der GPU-Lauf nutzte denselben Spielstand und dieselbe Eingabefolge wie die
+vorherige 75-Sekunden-Probe. Bis Retrace 4.346 übersprang die Ausgabe 196
+Retraces, davon 173 nach der ersten Sekunde. Der Prozess lief 76,99 Sekunden.
+Mehrere Kompilierungen und Korpusläufe liefen zeitgleich. Die Diagnose erfasst
+sowohl die Zeit zwischen zwei Bildwechseln als auch die Wartezeit in
+`SDL_GL_SwapWindow`. Die Messung überschreitet die A2-Grenze von einem Retrace.
+Messdaten, Displayzustand und Laststichproben stehen unter
+`build/acceptance/a2-2026-11-17/diag-2026-11-19/active-display-20261119-163145/`.
