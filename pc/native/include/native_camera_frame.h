@@ -2,7 +2,7 @@
 #define BT_NATIVE_CAMERA_FRAME_H
 #include "native_camera.h"
 #include "native_graphics_memory.h"
-typedef struct {
+typedef struct NativeGraphicsContext {
     Gfx *gfx;
     Mtx *mtx;
     Gfx *gfx_end;

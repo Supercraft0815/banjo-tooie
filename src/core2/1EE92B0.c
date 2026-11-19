@@ -120,7 +120,7 @@ void func_8010FBD4(void *arg0) {
     heap_free(arg0);
 }
 
-s32 func_8010FC38(u8 *arg0) {
+BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_8010FC38(u8 *arg0) {
     struct player_state_s;
     void func_80110588(struct player_state_s *);
     void _ncfixposrot_entrypoint_6(BtIntPtr arg0, BtIntPtr arg1);
@@ -154,11 +154,11 @@ s32 func_8010FC38(u8 *arg0) {
     func_800CA628(CAMERA_FIELD(arg0, camera, *(f32 **)arg0), sp3C, sp30);
     temp_a0 = CAMERA_FIELD(arg0, effect, *(void **)(arg0 + 0xC));
     if (temp_a0 != 0) {
-        func_801151C4(temp_a0); BT_NATIVE_ONLY(return 0;)
-    } BT_LP64_ONLY(return 0;)
+        func_801151C4(temp_a0);
+    }
 }
 
-void func_8010FD08(u8 *arg0) { s32 func_8010FC38(u8 *); CAMERA_FIELD(arg0, updating, arg0[0x19]) = 1; func_8010FC38(arg0); CAMERA_FIELD(arg0, updating, arg0[0x19]) = 0; }
+void func_8010FD08(u8 *arg0) { BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_8010FC38(u8 *); CAMERA_FIELD(arg0, updating, arg0[0x19]) = 1; func_8010FC38(arg0); CAMERA_FIELD(arg0, updating, arg0[0x19]) = 0; }
 
 void func_8010FD38(BtIntPtr arg0, f32 arg1) {
     void func_80114CB0(void *arg0, f32 arg1);

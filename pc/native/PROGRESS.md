@@ -3243,3 +3243,19 @@ sowie Bytegleichheit beider ROM-Abbilder. Die 9.703 Laufzeit-Zeigerwörter
 liegen an ihren ursprünglichen Adressen. Belege unter
 `build/acceptance/n1-2026-11-18/current-grid-retail*`. Die Abweichungen des
 ersten Versuchs stehen in `current-grid-font-full.log`.
+
+### 2026-11-19 – Kartengrenzen, Spiegelung und Sprites (N1/N3)
+
+Der Gast liest die Grenzen beider Kartenebenen aus dem Kartenzustand. Dabei
+verwendet er für die Obergrenze die zweite Hälfte des Sechserfelds. Spiegelung
+und Sprites besitzen eigene Felder für Matrizen, Farben und Grafikdaten.
+Die Gastkamera behält beim Abkoppeln und Verschieben die Viewport-Zuordnung
+des Originals. Der LP64-Pfad berücksichtigt alle vier Viewports.
+
+Vier Schrift-Assets oberhalb von 4 GiB durchlaufen den echten Zeichensatz-
+und Breitenzugriff. Der Test prüft auch den RGBA-Befehl und den erneuten
+Ladeversuch nach einem leeren Cache-Eintrag. Alle 74 Referenzen mit 447.849
+Retraces stimmen überein. Elf Gastsuiten und 64 Sanitizertests bestehen.
+Original-IDO bestätigt 16.401 Funktionen und beide vollständigen ROMs. Alle
+9.703 Fixups behalten ihre Originaladresse. Belege unter
+`build/acceptance/n1-2026-11-18/current-map-sprites*`.

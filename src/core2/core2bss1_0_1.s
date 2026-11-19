@@ -125,43 +125,7 @@ dlabel D_801276C4
     /* 801276C4 */ .space 0x0C
 
 dlabel D_801276D0
-    /* 801276D0 */ .space 0x02
-
-dlabel D_801276D2
-    /* 801276D2 */ .space 0x02
-
-dlabel D_801276D4
-    /* 801276D4 */ .space 0x01
-
-dlabel D_801276D5
-    /* 801276D5 */ .space 0x01
-
-dlabel D_801276D6
-    /* 801276D6 */ .space 0x01
-
-dlabel D_801276D7
-    /* 801276D7 */ .space 0x09
-
-dlabel D_801276E0
-    /* 801276E0 */ .space 0x08
-
-dlabel D_801276E8
-    /* 801276E8 */ .space 0x04
-
-dlabel D_801276EC
-    /* 801276EC */ .space 0x04
-
-dlabel D_801276F0
-    /* 801276F0 */ .space 0x04
-
-dlabel D_801276F4
-    /* 801276F4 */ .space 0x14
-
-dlabel D_80127708
-    /* 80127708 */ .space 0x20
-
-dlabel D_80127728
-    /* 80127728 */ .space 0x28
+    /* 801276D0 */ .space 0x80
 
 dlabel D_80127750
     /* 80127750 */ .space 0x02

@@ -137,55 +137,7 @@ dlabel D_8012D468
     /* 8012D468 */ .space 0x08
 
 dlabel D_8012D470
-    /* 8012D470 */ .space 0x04
-
-dlabel D_8012D474
-    /* 8012D474 */ .space 0x0C
-
-dlabel D_8012D480
-    /* 8012D480 */ .space 0x0C
-
-dlabel D_8012D48C
-    /* 8012D48C */ .space 0x02
-
-dlabel D_8012D48E
-    /* 8012D48E */ .space 0x01
-
-dlabel D_8012D48F
-    /* 8012D48F */ .space 0x01
-
-dlabel D_8012D490
-    /* 8012D490 */ .space 0x01
-
-dlabel D_8012D491
-    /* 8012D491 */ .space 0x01
-
-dlabel D_8012D492
-    /* 8012D492 */ .space 0x01
-
-dlabel D_8012D493
-    /* 8012D493 */ .space 0x01
-
-dlabel D_8012D494
-    /* 8012D494 */ .space 0x04
-
-dlabel D_8012D498
-    /* 8012D498 */ .space 0x08
-
-dlabel D_8012D4A0
-    /* 8012D4A0 */ .space 0x04
-
-dlabel D_8012D4A4
-    /* 8012D4A4 */ .space 0x04
-
-dlabel D_8012D4A8
-    /* 8012D4A8 */ .space 0x48
-
-dlabel D_8012D4F0
-    /* 8012D4F0 */ .space 0x04
-
-dlabel D_8012D4F4
-    /* 8012D4F4 */ .space 0x0C
+    /* 8012D470 */ .space 0x90
 
 dlabel D_8012D500
     /* 8012D500 */ .space 0x04

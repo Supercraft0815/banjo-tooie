@@ -17,26 +17,38 @@ void func_800BED18(s32 *lower,s32 *upper) {
     for(int i=0;i<3;++i){lower[i]=native_map.combined_minimum[i];upper[i]=native_map.combined_maximum[i];}
 }
 #else
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+void func_800BEC4C(s32 *arg0, s32 *arg1, s32 arg2) {
+    s32 i;
+    func_800BECE0(arg0, arg1);
+    func_800E37E8(arg0, arg1, arg2);
+    for (i = 0; i < 3; i++) {
+        arg0[i] += native_map.config.padding[i];
+        arg1[i] += native_map.config.padding[i + 3];
+    }
+}
+#else
 void func_800BECE0(s32 *arg0, s32 *arg1);
-void func_800BEC4C(s32 *arg0, s32 *arg1, s32 arg2) { extern s8 D_801285B3; s8 *var_v0; s32 *var_v1; s32 *var_a0; s8 *end; func_800BECE0(arg0, arg1); func_800E37E8(arg0, arg1, arg2); end = &D_801285B3; var_v0 = (s8 *)&D_801285B0; var_v1 = arg0; var_a0 = arg1; do { *var_v1 += var_v0[0x5E]; var_v0++; var_v1++; *var_a0 += var_v0[0x60]; var_a0++; if (var_v0 == end) break; } while (1); }
+void func_800BEC4C(s32 *arg0, s32 *arg1, s32 arg2) { extern s8 D_801285B3; s8 *var_v0; s32 *var_v1; s32 *var_a0; s8 *end; func_800BECE0(arg0, arg1); func_800E37E8(arg0, arg1, arg2); end = &D_801285B3; var_v0 = (s8 *)&MAP_COLLISION_BITS; var_v1 = arg0; var_a0 = arg1; do { *var_v1 += var_v0[0x5E]; var_v0++; var_v1++; *var_a0 += var_v0[0x60]; var_a0++; if (var_v0 == end) break; } while (1); }
+#endif
 
 f32 func_800BECCC(void) {
-    extern s32 D_80128734;
+    BT_IDO_ONLY(extern s32 D_80128734;)
     return (f32) D_80128734;
 }
 
 void func_800BECE0(s32 *arg0, s32 *arg1) {
     void func_800EE830(s32 dst[3], s32 src[3]);
-    extern s32 D_80128730;
-    extern s32 D_8012873C;
+    BT_IDO_ONLY(extern s32 D_80128730;)
+    BT_IDO_ONLY(extern s32 D_8012873C;)
     func_800EE830(arg0, &D_80128730);
     func_800EE830(arg1, &D_8012873C);
 }
 
 void func_800BED18(s32 *arg0, s32 *arg1) {
     void func_800EE830(s32 dst[3], s32 src[3]);
-    extern s32 D_80128748;
-    extern s32 D_80128754;
+    BT_IDO_ONLY(extern s32 D_80128748;)
+    BT_IDO_ONLY(extern s32 D_80128754;)
     func_800EE830(arg0, &D_80128748);
     func_800EE830(arg1, &D_80128754);
 }

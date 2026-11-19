@@ -1,12 +1,12 @@
-#include "common.h"
+#include "core2/1EAF950.h"
 typedef struct {
     s16 id;
     u8 size;
     u8 pad;
-    s32 value;
-} EntryData;
+    s16 *font;
+} FontCacheEntry;
 
-EntryData D_8011B560[4] = {
+FontCacheEntry D_8011B560[4] = {
     {0x0C21, 8, 0, 0},
     {0x0C22, 16, 0, 0},
     {0x0C20, 16, 0, 0},
@@ -37,12 +37,12 @@ void func_800D34A0(void) {
 }
 
 s16 *func_800D3524(s32 arg0) {
-    BtIntPtr func_800D674C(s32);
 
-    if (D_8011B560[arg0].value == 0) {
-        D_8011B560[arg0].value = func_800D674C(D_8011B560[arg0].id);
+
+    if (D_8011B560[arg0].font == 0) {
+        D_8011B560[arg0].font = (s16 *)func_800D674C(D_8011B560[arg0].id);
     }
-    return (s16 *) D_8011B560[arg0].value;
+    return D_8011B560[arg0].font;
 }
 
 int func_800D3574(s32 arg0) {
@@ -93,7 +93,7 @@ void func_800D36A8(void) {
     s32 i;
 
     for (i = 0; i < 4; i++) {
-        D_8011B560[i].value = 0;
+        D_8011B560[i].font = 0;
     }
 }
 
@@ -113,16 +113,16 @@ int func_800D36C4(s32 arg0, s32 arg1) {
         return func_800D3574(arg0);
     }
     return (*(u8 *)((s8 *)(func_800B0D6C(temp_v0, sp18)) + (2)));
-}    typedef struct { u8 pad0[0x4]; s32 unk4; } Obj1EAC810_func_800D3724_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
+}
 
 s32 func_800D3724(s32 arg0) {
     s32 func_800D6C34(s32 arg0);
     s32 var_v1;
-    u8 *temp_v0;
+    FontCacheEntry *temp_v0;
 
-    temp_v0 = (u8 *)D_8011B560 + arg0 * 8;
-    if ((((Obj1EAC810_func_800D3724_temp_v0 *)temp_v0)->unk4) != 0) {
-        var_v1 = func_800D6C34(*(s16 *)(temp_v0 + 0));
+    temp_v0 = &D_8011B560[arg0];
+    if (temp_v0->font != 0) {
+        var_v1 = func_800D6C34(temp_v0->id);
     } else {
         var_v1 = 1;
     }

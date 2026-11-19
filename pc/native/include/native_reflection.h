@@ -2,16 +2,7 @@
 #define BT_NATIVE_REFLECTION_H
 #include "native_camera_frame.h"
 enum {NATIVE_REFLECTION_PACKETS=3000};
-typedef struct {
-    Gfx *buffers[2],*saved_gfx,*saved_end;
-    Mtx *saved_mtx;
-    NativeGraphicsContext *frame;
-    u8 index,active,bounds_valid,bounds_cached,cull_enabled,alpha;
-    s16 model;
-    MtxF matrix;Mtx fixed;
-    f32 point[3],normal[3],minimum[3],maximum[3];
-    Gfx restore[2][6];
-} NativeReflection;
+#include "core2/reflection_planes.h"
 extern NativeReflection native_reflection;
 int native_reflection_load_map(s32);
 void func_800BC690(void);

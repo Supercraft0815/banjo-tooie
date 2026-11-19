@@ -1,5 +1,5 @@
 #include "player_viewports.inc"
-#if !defined(BT_NATIVE) || defined(BT_ILP32)
+#ifndef BT_NATIVE
 void func_800A8D70(s32 arg0, s32 arg1) {
     BtIntPtr _gcsectionDll_entrypoint_2(s32);
     s32 _gcsectionDll_entrypoint_3(BtIntPtr, s32);
@@ -47,7 +47,7 @@ void func_800A8D70(s32 arg0, s32 arg1) {
 void func_800A8E9C(void) {
     extern s16 D_801276D0;
     extern s16 D_801276F0;
-    s32 func_8010FC38(u8 *);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_8010FC38(u8 *);
     s16 *var_s0;
     BtIntPtr temp_a0;
     var_s0 = &D_801276D0; do { temp_a0 = ((Obj1E82660_func_800A8E9C_var_s0 *)var_s0)->unk58; if (temp_a0 != 0) { func_8010FC38((u8 *)temp_a0); } var_s0 += 2; } while (var_s0 != &D_801276F0);
@@ -455,19 +455,6 @@ BtIntPtr func_800A989C(void) {
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
-s16 D_801276D0 BT_DATA(4, bss_core2bss1_0_1, 0x670);
-s16 D_801276D2 BT_DATA(4, bss_core2bss1_0_1, 0x672);
-u8 D_801276D4 BT_DATA(4, bss_core2bss1_0_1, 0x674);
-u8 D_801276D5 BT_DATA(4, bss_core2bss1_0_1, 0x675);
-u8 D_801276D6 BT_DATA(4, bss_core2bss1_0_1, 0x676);
-u8 D_801276D7 BT_DATA(4, bss_core2bss1_0_1, 0x677);
-s16 D_801276E0 BT_DATA(4, bss_core2bss1_0_1, 0x680);
-s32 D_801276E8 [ 1 ] BT_DATA(4, bss_core2bss1_0_1, 0x688);
-s32 D_801276EC [ 1 ] BT_DATA(4, bss_core2bss1_0_1, 0x68C);
-s16 D_801276F0 BT_DATA(4, bss_core2bss1_0_1, 0x690);
-s32 D_801276F4 [ 5 ] BT_DATA(4, bss_core2bss1_0_1, 0x694);
-s32 D_80127708 [ 8 ] BT_DATA(4, bss_core2bss1_0_1, 0x6A8);
-s32 D_80127728 [ 10 ] BT_DATA(4, bss_core2bss1_0_1, 0x6C8);
 s16 D_80127750 BT_DATA(4, bss_core2bss1_0_1, 0x6F0);
 s16 D_80127752 BT_DATA(4, bss_core2bss1_0_1, 0x6F2);
 s32 D_80127754 BT_DATA(4, bss_core2bss1_0_1, 0x6F4);

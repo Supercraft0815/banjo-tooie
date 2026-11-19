@@ -74,6 +74,14 @@ static void test_loading(const char *path) {
     CHECK(gcmapDll_entrypoint_3(&native_map) && !native_map.section_count && !native_map.section_update);
     CHECK(!gcmapDll_entrypoint_3(&native_map));
     CHECK(native_map.config.id==level && native_map.layers[0].model && native_map.layers[1].model);
+#if UINTPTR_MAX > UINT32_MAX
+    /* These are the real consumers of the old D_801285B0 map block. */
+    CHECK((uintptr_t)native_map.layers[0].model > UINT32_MAX);
+    CHECK((uintptr_t)native_map.layers[0].collision > UINT32_MAX);
+    CHECK((uintptr_t)native_map.layers[0].vertices[0] > UINT32_MAX);
+    CHECK((uintptr_t)native_map.layers[0].zones > UINT32_MAX);
+    CHECK((uintptr_t)native_map.vectors > UINT32_MAX);
+#endif
     CHECK(func_800D7138(0x1CF9)==1 && func_800D7138(0x1CFA)==1);
     CHECK(native_map.minimum[0]==-1000 && native_map.maximum[1]==5000 && native_map.combined_minimum[0]==-4000 && native_map.combined_maximum[2]==10000);
     CHECK(native_map.zone_state && native_map.vectors && native_map.color[2]==255 && native_map.layers[0].collides);
@@ -84,6 +92,10 @@ static void test_loading(const char *path) {
     test_zones(native_map.layers[0].zones,native_map.zone_state);
     native_map.config.clone[0]=native_map.config.clone[1]=1;gcmapDll_entrypoint_1(&native_map);
     CHECK(map_test_lights==2 && map_test_modules==2 && map_test_instances==2);
+#if UINTPTR_MAX > UINT32_MAX
+    CHECK((uintptr_t)native_map.layers[0].instances > UINT32_MAX);
+    CHECK((uintptr_t)native_map.layers[1].instances > UINT32_MAX);
+#endif
     CHECK(native_map.layers[0].vertices[1]!=native_map.layers[0].vertices[0]);
     gcmapDll_entrypoint_4(&native_map);gcmapDll_entrypoint_4(&native_map);
     CHECK(!native_map.vectors && !native_map.layers[0].model && !map_test_lights && !map_test_modules && !map_test_instances);

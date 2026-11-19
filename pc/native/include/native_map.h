@@ -6,7 +6,8 @@
 typedef MapConfig NativeMapConfig;
 _Static_assert(sizeof(NativeMapConfig)==14,"map configuration layout");
 typedef struct {
-    void *collision,*instances,*light,*model;
+    union { void *collision; s32 collision_bits; };
+    void *instances,*light,*model;
     NativeVertexList *vertices[2];
     void *vpl,*module,*zones,*texture;
     u8 animation,index,collides,enabled;
@@ -24,9 +25,10 @@ struct NativeMap {
     s8 lighting_type;
     u8 color[3];
     s32 switches[60];
-    void *vectors,*zone_state;
+    void *vectors;
+    union { void *zone_state; s32 zone_state_bits; };
     s32 minimum[3],maximum[3],combined_minimum[3],combined_maximum[3];
-    void *collision_model;
+    union { void *collision_model; s32 collision_model_bits; };
     u8 sections_failed;
 };
 extern NativeMap native_map;

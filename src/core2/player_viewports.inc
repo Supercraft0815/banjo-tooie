@@ -1,17 +1,22 @@
 #include "core2/1E82660.h"
 
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#ifdef BT_NATIVE
 #include "native_camera.h"
 
 typedef struct PlayerCameraController PlayerCameraController;
-static struct {
+typedef struct {
     s16 players, views;
     u8 controllerUsers[4];
     s16 controllerId[8];
     s32 viewId[8];
     NativeCamera *camera[8];
     PlayerCameraController *controller[8];
-} playerViews;
+} PlayerViewState;
+PlayerViewState D_801276D0;
+#define playerViews D_801276D0
+#ifdef BT_ILP32
+_Static_assert(sizeof(PlayerViewState) == 0x78 && offsetof(PlayerViewState, controller) == 0x58, "player view state");
+#endif
 
 BtIntPtr _gcsectionDll_entrypoint_2(s32);
 s32 _gcsectionDll_entrypoint_3(BtIntPtr, s32);
@@ -24,7 +29,7 @@ BtIntPtr func_800A8948(s32);
 BtIntPtr func_800A8984(s32);
 void *func_8010FB34(void *, s32);
 void func_8010FBD4(void *);
-s32 func_8010FC38(u8 *);
+void func_8010FC38(u8 *);
 void func_8010FAEC(BtIntPtr, void *);
 void func_8010FE00(void *, s32, s32);
 s32 func_8010FE34(BtIntPtr, s32);
@@ -108,9 +113,13 @@ void func_800A91F4(s32 player) {
     s32 id = playerViews.controllerId[player];
     func_8010FBD4(playerViews.controller[player]);
     playerViews.controller[player] = NULL;
+#ifdef BT_ILP32
+    if ((NativeCamera *)func_800A8984(id) == playerViews.camera[player]) func_800A8948(id);
+#else
     for (s32 view = 0; view < 4; view++) {
         if ((NativeCamera *)func_800A8984(view) == playerViews.camera[player]) func_800A8948(view);
     }
+#endif
     func_800CA364(playerViews.camera[player]);
     playerViews.camera[player] = NULL;
     playerViews.controllerUsers[id]--;
@@ -176,6 +185,12 @@ void func_800A95C4(s32 unused0, s32 unused1, s32 unused2) {
         NativeCamera *old = playerViews.camera[i];
         if (old) {
             BtUIntPtr address = (BtUIntPtr)old;
+#ifdef BT_ILP32
+            s32 view = playerViews.viewId[i];
+            playerViews.camera[i] = func_800CA384(old);
+            if ((BtUIntPtr)playerViews.camera[i] != address && (BtUIntPtr)func_800A8984(view) == address)
+                func_800A88C4(view, (BtIntPtr)playerViews.camera[i], 0);
+#else
             u8 attached[4];
             for (s32 view = 0; view < 4; view++) attached[view] = (NativeCamera *)func_800A8984(view) == old;
             playerViews.camera[i] = func_800CA384(old);
@@ -184,6 +199,7 @@ void func_800A95C4(s32 unused0, s32 unused1, s32 unused2) {
                     if (attached[view]) func_800A88C4(view, (BtIntPtr)playerViews.camera[i], 0);
                 }
             }
+#endif
         }
         if (playerViews.controller[i]) {
             playerViews.controller[i] = func_80110068(playerViews.controller[i], playerViews.camera[i]);

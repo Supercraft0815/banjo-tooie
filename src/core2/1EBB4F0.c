@@ -8,12 +8,13 @@ typedef struct {
     s32 period;
     f32 angle, scaleX, scaleY, depth;
     f32 matrix[4][4];
-    s32 (*callback)(s32);
-    s32 callbackArg;
+    BT_NATIVE_ONLY(void (*callback)(void *);) BT_IDO_ONLY(s32 (*callback)(s32);)
+    BT_NATIVE_ONLY(void *callbackArg;) BT_IDO_ONLY(s32 callbackArg;)
     void *sprite;
     void *frameSprite;
+    u8 tail[8];
 } SpriteSettings;                                typedef struct { u8 pad0[0x4]; s16 unk4; s16 unk6; } Obj1EBB4F0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
-#include "core2/1EBB4F0.h"
+#include "core2/sprite_state_aliases.h"
 #include "sprite_render_setup.inc"
 s32 func_800E1C00(void *arg0, BtIntPtr arg1, f32 arg2, f32 arg3, BtIntPtr arg4)
 {
@@ -62,7 +63,7 @@ s32 func_800E1C00(void *arg0, BtIntPtr arg1, f32 arg2, f32 arg3, BtIntPtr arg4)
     temp_f0 = sp18 - 500.0f;
     if (temp_f0 < sp24)
     {
-      D_8012D48C = (s16) (((s32) ((D_8012D470.alpha) * ((s32) ((1.0f - ((sp24 - temp_f0) / 500.0f)) * 256.0f)))) / 256);
+      SPRITE_ALPHA = (s16) (((s32) ((D_8012D470.alpha) * ((s32) ((1.0f - ((sp24 - temp_f0) / 500.0f)) * 256.0f)))) / 256);
     }
   }
   return 1;
@@ -131,10 +132,10 @@ void func_800E204C(u8 *arg0, u8 *arg1) {
     if ((globalWidth != width && globalWidth != 0) ||
         (*(s16 *)((u8 *)&D_8012D470 + 2) != *(s16 *)(arg1 + 6) && *(s16 *)((u8 *)&D_8012D470 + 2) != 0) ||
         *(f32 *)((u8 *)&D_8012D470 + 0x2C) != 1.0f || *(f32 *)((u8 *)&D_8012D470 + 0x30) != 1.0f) {
-        func_800F26B0((f32 (*)[4])D_8012D4A8,
+        func_800F26B0((f32 (*)[4])SPRITE_MATRIX,
             (f32)globalWidth * *(f32 *)((u8 *)&D_8012D470 + 0x2C) / (f32)width,
             D_8012D470.scaleY * (f32)*&D_8012D470.height / (f32)*(s16 *)(arg1 + 6), 1.0f);
-        guMtxF2L((f32 (*)[4])D_8012D4A8, *(Mtx **)(arg0 + 4));
+        guMtxF2L((f32 (*)[4])SPRITE_MATRIX, *(Mtx **)(arg0 + 4));
         ptr = (*(Gfx **)arg0)++;
         ptr->words.w0 = 0xDA380000;
         ptr->words.w1 = (BtUIntPtr)*(Mtx **)(arg0 + 4);
@@ -221,66 +222,66 @@ void func_800E23A4(void) {
     *(f32 *)((u8 *)&D_8012D470 + 0x28) = 0.0f;
     *(f32 *)((u8 *)&D_8012D470 + 0x2C) = *(f32 *)((u8 *)&D_8012D470 + 0x30) = 1.0f;
     *(f32 *)((u8 *)&D_8012D470 + 0x34) = -10.0f;
-}    typedef struct { s8 unk0; } Obj1EBB4F0_D_8012D490; /* offsets.py genstruct: fields from raw offsets on &D_8012D490; rename once understood */
+}    typedef struct { s8 unk0; } Obj1EBB4F0_D_8012D490; /* offsets.py genstruct: fields from raw offsets on &SPRITE_UNK20; rename once understood */
 
 void func_800E2434(s32 arg0) {
     extern s8 D_8012D490;
-    ((Obj1EBB4F0_D_8012D490 *)&D_8012D490)->unk0 = arg0;
+    ((Obj1EBB4F0_D_8012D490 *)&SPRITE_UNK20)->unk0 = arg0;
 }
 
 void func_800E2440(s32 arg0, s32 arg1, s32 arg2) {
     void func_800F31DC(void *arg0, s32 arg1, s32 arg2, s32 arg3);
     extern s32 D_8012D474;
-    func_800F31DC(&D_8012D474, arg0, arg1, arg2);
+    func_800F31DC(&SPRITE_POS, arg0, arg1, arg2);
 }
 
-void func_800E2478(s32 arg0) { void func_800E24F8(s32, s32, s32); func_800E24F8(arg0, arg0, arg0); }    typedef struct { s32 unk0; } Obj1EBB4F0_D_8012D494; /* offsets.py genstruct: fields from raw offsets on &D_8012D494; rename once understood */
+void func_800E2478(s32 arg0) { void func_800E24F8(s32, s32, s32); func_800E24F8(arg0, arg0, arg0); }    typedef struct { s32 unk0; } Obj1EBB4F0_D_8012D494; /* offsets.py genstruct: fields from raw offsets on &SPRITE_PERIOD; rename once understood */
 
 void func_800E249C(s32 arg0) {
     extern s32 D_8012D494;
-    ((Obj1EBB4F0_D_8012D494 *)&D_8012D494)->unk0 = arg0;
-}    typedef struct { f32 unk0; } Obj1EBB4F0_D_8012D4A4; /* offsets.py genstruct: fields from raw offsets on &D_8012D4A4; rename once understood */
+    ((Obj1EBB4F0_D_8012D494 *)&SPRITE_PERIOD)->unk0 = arg0;
+}    typedef struct { f32 unk0; } Obj1EBB4F0_D_8012D4A4; /* offsets.py genstruct: fields from raw offsets on &SPRITE_DEPTH; rename once understood */
 
 void func_800E24A8(f32 arg0) {
     extern f32 D_8012D4A4;
-    ((Obj1EBB4F0_D_8012D4A4 *)&D_8012D4A4)->unk0 = arg0;
+    ((Obj1EBB4F0_D_8012D4A4 *)&SPRITE_DEPTH)->unk0 = arg0;
 }
 
 void func_800E24B4(s32 arg0) {
     extern u8 D_8012D48F;
-    D_8012D48F = arg0;
+    SPRITE_UNK1F = arg0;
 }
 
 void func_800E24C0(s32 arg0) {
     extern u8 D_8012D492;
-    D_8012D492 = arg0;
+    SPRITE_UNK22 = arg0;
 }
 
 void func_800E24CC(s32 arg0) {
     extern u8 D_8012D493;
-    D_8012D493 = arg0;
+    SPRITE_UNK23 = arg0;
 }
 
 void func_800E24D8(s32 arg0) {
     extern u8 D_8012D491;
-    D_8012D491 = arg0;
+    SPRITE_UNK21 = arg0;
 }
 
 void func_800E24E4(BtIntPtr arg0, BtIntPtr arg1) {
     extern SpriteSettings D_8012D470;
-    (*(s32 *)((s8 *)(&D_8012D470) + (0x78))) = arg0;
-    (D_8012D470.callbackArg) = arg1;
+    BT_NATIVE_ONLY(D_8012D470.callback = (void (*)(void *))(BtUIntPtr)arg0;) BT_IDO_ONLY((*(s32 *)((s8 *)(&D_8012D470) + (0x78))) = arg0;)
+    BT_NATIVE_ONLY(D_8012D470.callbackArg = (void *)arg1;) BT_IDO_ONLY((D_8012D470.callbackArg) = arg1;)
 }
 
 void func_800E24F8(s32 arg0, s32 arg1, s32 arg2) {
     void func_800F31DC(void *arg0, s32 arg1, s32 arg2, s32 arg3);
     extern s32 D_8012D480;
-    func_800F31DC(&D_8012D480, arg0, arg1, arg2);
-}    typedef struct { f32 unk0; } Obj1EBB4F0_D_8012D498; /* offsets.py genstruct: fields from raw offsets on &D_8012D498; rename once understood */
+    func_800F31DC(&SPRITE_COLOR, arg0, arg1, arg2);
+}    typedef struct { f32 unk0; } Obj1EBB4F0_D_8012D498; /* offsets.py genstruct: fields from raw offsets on &SPRITE_ANGLE; rename once understood */
 
 void func_800E2530(f32 arg0) {
     extern f32 D_8012D498;
-    ((Obj1EBB4F0_D_8012D498 *)&D_8012D498)->unk0 = arg0;
+    ((Obj1EBB4F0_D_8012D498 *)&SPRITE_ANGLE)->unk0 = arg0;
 }
 
 void func_800E253C(f32 arg0) {
@@ -299,19 +300,19 @@ void func_800E2568(s32 arg0, s32 arg1) {
     extern SpriteSettings D_8012D470;
     (D_8012D470.width) = (s16) arg0;
     (D_8012D470.height) = (s16) arg1;
-}    typedef struct { s16 unk0; } Obj1EBB4F0_D_8012D48C; /* offsets.py genstruct: fields from raw offsets on &D_8012D48C; rename once understood */
+}    typedef struct { s16 unk0; } Obj1EBB4F0_D_8012D48C; /* offsets.py genstruct: fields from raw offsets on &SPRITE_ALPHA; rename once understood */
 
 void func_800E257C(s32 arg0) {
     extern s16 D_8012D48C;
-    ((Obj1EBB4F0_D_8012D48C *)&D_8012D48C)->unk0 = arg0;
+    ((Obj1EBB4F0_D_8012D48C *)&SPRITE_ALPHA)->unk0 = arg0;
 }
 
 void func_800E2588(u32 arg0) {
     extern s8 D_8012D48E;
-    D_8012D48E = (s8) arg0;
+    SPRITE_UNK1E = (s8) arg0;
 }
 
-void func_800E2594(BtUIntPtr arg0, void *arg1) { u8 *func_800AF5D8(s16 *); void *func_800AF5E4(void *); void func_800E1DF4(u8 *, u8 *); extern s32 D_8012D4F0; Gfx *first; Gfx *second; Gfx **gfx = (Gfx **)arg0; func_800E1DF4((u8 *)gfx, arg1); first = (*gfx)++; first->words.w0 = 0xDB060008; first->words.w1 = osVirtualToPhysical(func_800AF5D8(arg1)); second = (*gfx)++; second->words.w0 = 0xDB060004; second->words.w1 = osVirtualToPhysical(func_800AF5E4(arg1)); D_8012D4F0 = (BtIntPtr)arg1; }
+void func_800E2594(BtUIntPtr arg0, void *arg1) { u8 *func_800AF5D8(s16 *); void *func_800AF5E4(void *); void func_800E1DF4(u8 *, u8 *); extern s32 D_8012D4F0; Gfx *first; Gfx *second; Gfx **gfx = (Gfx **)arg0; func_800E1DF4((u8 *)gfx, arg1); first = (*gfx)++; first->words.w0 = 0xDB060008; first->words.w1 = osVirtualToPhysical(func_800AF5D8(arg1)); second = (*gfx)++; second->words.w0 = 0xDB060004; second->words.w1 = osVirtualToPhysical(func_800AF5E4(arg1)); BT_NATIVE_ONLY(D_8012D470.sprite = arg1;) BT_IDO_ONLY(SPRITE_SPRITE = (BtIntPtr)arg1;) }
 
 void func_800E2630(u8 *arg0, s32 arg1, s32 arg2) {
     void *func_800AF5F0(void *);
@@ -367,12 +368,12 @@ s32 func_800E2720(u8 *arg0, s32 arg1, s32 arg2, f32 *arg3, f32 *arg4, s32 arg5) 
     } else {
         sx = sy = sz = 1.0f;
     }
-    if (func_800E1C00((void *)D_8012D4F0, (BtIntPtr)arg3, sx, sy, (BtIntPtr)position) == 0) {
+    if (func_800E1C00((void *)SPRITE_SPRITE, (BtIntPtr)arg3, sx, sy, (BtIntPtr)position) == 0) {
         return 0;
     }
     mlMtxSet(func_800E401C());
-    if (D_8012D498 != 0.0f) {
-        mlMtxRotRoll(D_8012D498);
+    if (SPRITE_ANGLE != 0.0f) {
+        mlMtxRotRoll(SPRITE_ANGLE);
     }
     func_800191F8(position[0], position[1], position[2]);
     if (arg4 != NULL || arg2 != 0) {
@@ -412,7 +413,7 @@ s32 func_800E28A4(u8 *arg0, s32 arg1, s32 arg2, f32 *arg3, f32 *arg4, f32 *arg5,
     } else {
         sx = sy = sz = 1.0f;
     }
-    if (func_800E1C00((void *)D_8012D4F0, (BtIntPtr)arg3, sx, sy, (BtIntPtr)position) == 0) {
+    if (func_800E1C00((void *)SPRITE_SPRITE, (BtIntPtr)arg3, sx, sy, (BtIntPtr)position) == 0) {
         return 0;
     }
     func_80019CD4();
@@ -438,8 +439,8 @@ s32 func_800E28A4(u8 *arg0, s32 arg1, s32 arg2, f32 *arg3, f32 *arg4, f32 *arg5,
 void func_800E2A14(BtIntPtr arg0) {
     s32 func_800E22F0(BtIntPtr, BtIntPtr);
     extern s32 D_8012D4F0;
-    func_800E22F0(arg0, D_8012D4F0);
-    D_8012D4F0 = 0;
+    func_800E22F0(arg0, BT_NATIVE_ONLY((BtIntPtr)SPRITE_SPRITE) BT_IDO_ONLY(SPRITE_SPRITE));
+    SPRITE_SPRITE = 0;
 }
 
 /* extern */
@@ -477,8 +478,8 @@ void func_800E2AA4(u8 *arg0, u8 *resource, s32 index, s32 flip, f32 *positionArg
     }
     func_800E1DF4(arg0, resource);
     mlMtxSet(func_800E401C());
-    if (D_8012D498 != 0.0f) {
-        mlMtxRotRoll(D_8012D498);
+    if (SPRITE_ANGLE != 0.0f) {
+        mlMtxRotRoll(SPRITE_ANGLE);
     }
     func_800191F8(position[0], position[1], position[2]);
     if (scale != NULL || flip != 0) {
@@ -665,7 +666,7 @@ void func_800E3220(Gfx **arg0, void *arg1) {
     second = (*arg0)++;
     second->words.w0 = 0xDB060004;
     second->words.w1 = osVirtualToPhysical(func_800AF5E4(arg1));
-    D_8012D4F4 = (BtIntPtr)arg1;
+    BT_NATIVE_ONLY(D_8012D470.frameSprite = arg1;) BT_IDO_ONLY(SPRITE_FRAME = (BtIntPtr)arg1;)
     func_800E42F0(arg0, 0);
 }
 
@@ -762,8 +763,8 @@ void func_800E35E0(s32 arg0, s32 arg1, s32 *arg2, s32 arg3) {
 }
 
 void func_800E368C(BtIntPtr arg0) { s32 func_800E22F0(BtIntPtr, BtIntPtr); extern s32 D_8012D4F4;
-    func_800E22F0(arg0, D_8012D4F4);
-    D_8012D4F4 = 0;
+    func_800E22F0(arg0, BT_NATIVE_ONLY((BtIntPtr)SPRITE_FRAME) BT_IDO_ONLY(SPRITE_FRAME));
+    SPRITE_FRAME = 0;
     func_800E4640((Gfx **)arg0);
 }
 
@@ -771,19 +772,4 @@ void func_800E368C(BtIntPtr arg0) { s32 func_800E22F0(BtIntPtr, BtIntPtr); exter
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
 SpriteSettings D_8012D470 BT_DATA(4, bss_core2bss2_1, 0xB30);
-s32 D_8012D474 BT_DATA(4, bss_core2bss2_1, 0xB34);
-s32 D_8012D480 BT_DATA(4, bss_core2bss2_1, 0xB40);
-s16 D_8012D48C BT_DATA(4, bss_core2bss2_1, 0xB4C);
-s8 D_8012D48E BT_DATA(4, bss_core2bss2_1, 0xB4E);
-u8 D_8012D48F BT_DATA(4, bss_core2bss2_1, 0xB4F);
-s8 D_8012D490 BT_DATA(4, bss_core2bss2_1, 0xB50);
-u8 D_8012D491 BT_DATA(4, bss_core2bss2_1, 0xB51);
-u8 D_8012D492 BT_DATA(4, bss_core2bss2_1, 0xB52);
-u8 D_8012D493 BT_DATA(4, bss_core2bss2_1, 0xB53);
-s32 D_8012D494 BT_DATA(4, bss_core2bss2_1, 0xB54);
-f32 D_8012D498 BT_DATA(4, bss_core2bss2_1, 0xB58);
-f32 D_8012D4A4 BT_DATA(4, bss_core2bss2_1, 0xB64);
-f32 D_8012D4A8 [ 4 ] BT_DATA(4, bss_core2bss2_1, 0xB68);
-s32 D_8012D4F0 BT_DATA(4, bss_core2bss2_1, 0xBB0);
-s32 D_8012D4F4 BT_DATA(4, bss_core2bss2_1, 0xBB4);
 #endif

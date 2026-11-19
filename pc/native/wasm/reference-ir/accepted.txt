@@ -406,3 +406,11 @@ arrays and the fallback cell. The original linker addresses of all 9,703
 fixups are unchanged. The 125-cell guest probe checks lookup and the ordered
 contents of all three neighbor lists. All 74 reference replays match. See
 n1-2026-11-18/current-grid-retail-ir.log and current-grid-retail-full.log.
+
+2026-11-19  Map layers, reflection, player camera and sprites
+The guest now uses named fields for both map layers, the sprite draw state,
+reflection planes and the player camera records. The camera finalizer has
+its actual void return type. The comparison lists 73 functions. All 9,703
+fixups retain their original address. All 74 replays and both original ROM
+images match. See n1-2026-11-18/current-map-sprites-ir.log and
+current-map-sprites-full.log.
