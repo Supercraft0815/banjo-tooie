@@ -1,4 +1,5 @@
 #include "common.h"
+#include "core2/weather_effects.h"
 #ifdef BT_NATIVE
 #include "core2/particle_script.h"
 #endif
@@ -82,10 +83,7 @@ void func_8080003C_chrainbow(Actor *arg0) {
 s32 func_80800270_chrainbow(BtIntPtr actor, s32 arg1) {
     s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     void _chglowbo_entrypoint_6(void);
-    void _fxrain_entrypoint_7(BtIntPtr arg0);
-    void _fxrain_entrypoint_8(u8 *arg0);
     void _subaddieDll_entrypoint_0(void *arg0);
-    BtIntPtr func_800B7C54(void);
     void func_800DA524(s32 index);
     void func_800DA544(s32 index);
     u32 *func_80100074(Actor *, u32, u32);

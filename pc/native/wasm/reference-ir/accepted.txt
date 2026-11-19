@@ -474,3 +474,8 @@ The ten revised source units produce identical normalized guest IR with
 FixCalls. All 9,706 fixup slots retain their addresses. Both complete
 ROM images and all 74 regular replays match. See
 n1-2026-11-18/current-dialog-forwarded-ir-status.txt and current-dialog-forwarded-full.log.
+
+2026-11-19  Weather effects and emitter storage
+Seven guest functions change how they index weather records, test emitter
+pointers or use their storage. Both complete ROMs, all 74 replays and all
+9,706 fixup addresses match. See n1-2026-11-18/current-weather-emitters-ir.log.

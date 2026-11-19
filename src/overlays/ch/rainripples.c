@@ -1,4 +1,5 @@
 #include "common.h"
+#include "core2/weather_effects.h"
 
 OSThread *chrainripples_entrypoint_0(void)
 {
@@ -15,8 +16,6 @@ void func_8080000C_chrainripples(void *arg0) {
 }
 
 void func_80800040_chrainripples(Actor *arg0) {
-    int _fxrain_entrypoint_3(void *arg0);
-    s32 func_800B7C98(void);
     BtIntPtr func_800B5BE4(s32);
     BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
     u32 func_800CC5F4(s32);
@@ -33,7 +32,7 @@ void func_80800040_chrainripples(Actor *arg0) {
     s32 total;
     s32 i;
     BtIntPtr effect;
-    BtIntPtr rain;
+    RainEmitter *rain;
     f32 position[3];
     struct RainPoint *point;
     f32 delta;

@@ -1,4 +1,5 @@
 #include "core2/1E8F430.h"
+#include "core2/weather_effects.h"
 #include "core2/particle_draw_data.h"
 #ifdef BT_NATIVE
 #include "vector.h"
@@ -44,7 +45,8 @@ _Static_assert(sizeof(TextEntry) == 0x14 && sizeof(TextCommandState) == 0x2C, "t
 #endif
 
 
-extern s32 D_801282B4;
+extern LeafEmitter *D_801282B0;
+extern RainEmitter *D_801282B4;
 
 #ifdef BT_NATIVE
 void func_800B5B40(void) {
@@ -764,11 +766,8 @@ void func_800B7BA4(f32 arg0) {
 }
 
 void func_800B7BB0(void) {
-    s32 _fxleaves_entrypoint_1(s32);
-    s32 _fxrain_entrypoint_1(s32);
     s32 func_800B956C();
     extern s32 D_80127128;
-    extern s32 D_801282B0;
     if (D_801282B0 != 0) {
         _fxleaves_entrypoint_1(D_801282B0);
     }
@@ -780,9 +779,7 @@ void func_800B7BB0(void) {
     }
 }
 
-s32 func_800B7C10(void) {
-    extern s32 D_801282B0;
-    void *_fxleaves_entrypoint_4(s32 arg0);
+LeafEmitter *func_800B7C10(void) {
 
     if (D_801282B0 == 0) {
         D_801282B0 = _fxleaves_entrypoint_4(0x32);
@@ -790,9 +787,7 @@ s32 func_800B7C10(void) {
     return D_801282B0;
 }
 
-BtIntPtr func_800B7C54(void) {
-    extern s32 D_801282B4;
-    u8 *_fxrain_entrypoint_5(s32 arg0);
+RainEmitter *func_800B7C54(void) {
 
     if (D_801282B4 == 0) {
         D_801282B4 = _fxrain_entrypoint_5(0x1E);
@@ -800,7 +795,7 @@ BtIntPtr func_800B7C54(void) {
     return D_801282B4;
 }
 
-s32 func_800B7C98()
+RainEmitter *func_800B7C98(void)
 {
     return D_801282B4;
 }
@@ -811,10 +806,7 @@ void func_800B7CA4()
 }
 
 void func_800B7CC4(void) {
-    s32 _fxleaves_entrypoint_3(s32);
-    s32 _fxrain_entrypoint_4(s32);
     s32 func_800B8FEC();
-    extern s32 D_801282B0;
     if (D_801282B0 != 0) {
         _fxleaves_entrypoint_3(D_801282B0);
     }
@@ -825,16 +817,12 @@ void func_800B7CC4(void) {
 }    typedef struct { s32 unk0; s32 unk4; } Obj1E8F430_D_801282B0; /* offsets.py genstruct: fields from raw offsets on &D_801282B0; rename once understood */
 
 void func_800B7D14(void) {
-    extern s32 D_801282B0;
-    (((Obj1E8F430_D_801282B0 *)&D_801282B0)->unk0) = 0;
-    (((Obj1E8F430_D_801282B0 *)&D_801282B0)->unk4) = 0;
+    D_801282B0 = NULL;
+    BT_DATA_FIELD(D_801282B4, ((Obj1E8F430_D_801282B0 *)&D_801282B0)->unk4) = 0;
 }
 
 void func_800B7D28(void) {
-    void _fxleaves_entrypoint_5(BtIntPtr arg0);
-    void _fxrain_entrypoint_7(BtIntPtr arg0);
     void func_800B90C8(void);
-    extern s32 D_801282B0;
     if (D_801282B0 != 0) {
         _fxleaves_entrypoint_5(D_801282B0);
     }
@@ -845,10 +833,7 @@ void func_800B7D28(void) {
 }
 
 void func_800B7D78(void) {
-    s32 _fxleaves_entrypoint_6(BtIntPtr);
-    s32 _fxrain_entrypoint_8(s32);
     s32 func_800B90E8();
-    extern s32 D_801282B0;
     if (D_801282B0 != 0) {
         _fxleaves_entrypoint_6(D_801282B0);
     }
@@ -859,13 +844,8 @@ void func_800B7D78(void) {
 }
 
 void func_800B7DC8(void) {
-    s32 _fxleaves_entrypoint_0(s32);
-    s32 _fxleaves_entrypoint_6(BtIntPtr);
-    s32 _fxrain_entrypoint_0(s32);
-    s32 _fxrain_entrypoint_8(s32);
     s32 func_800B8FE0();
     s32 func_800B90E8();
-    extern s32 D_801282B0;
     if (D_801282B0 != 0) {
         _fxleaves_entrypoint_0(D_801282B0);
         _fxleaves_entrypoint_6(D_801282B0);
@@ -879,11 +859,8 @@ void func_800B7DC8(void) {
 }
 
 void func_800B7E38(void) {
-    s32 _fxleaves_entrypoint_7(s32);
-    s32 _fxrain_entrypoint_9(s32);
     s32 func_800B9170();
     extern s32 D_80127128;
-    extern s32 D_801282B0;
     if (D_801282B0 != 0) {
         _fxleaves_entrypoint_7(D_801282B0);
     }
@@ -901,6 +878,6 @@ void func_800B7E38(void) {
 s32 D_80127128 BT_DATA(4, bss_core2bss1_0_1, 0xC8);
 u8 D_80128150[41] BT_DATA(4, bss_core2bss1_0_2, 0x9B0);
 u8 D_801281B0 [ 256 ] BT_DATA(4, bss_core2bss1_0_2, 0xA10);
-s32 D_801282B0 BT_DATA(4, bss_core2bss1_0_2, 0xB10);
-s32 D_801282B4 BT_DATA(4, bss_core2bss1_0_2, 0xB14);
+LeafEmitter *D_801282B0 BT_DATA(4, bss_core2bss1_0_2, 0xB10);
+RainEmitter *D_801282B4 BT_DATA(4, bss_core2bss1_0_2, 0xB14);
 #endif

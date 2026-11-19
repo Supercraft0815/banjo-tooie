@@ -3428,3 +3428,18 @@ Die separate Instrumentierung des Spline-Stands prüfte 6.415 Stellen
 23 Gruppen. Beim Kartenspeicher-Stand waren es 257 in 77 Funktionen
 und 32 Gruppen. Die einzelnen Adressen und auslösenden Replays stehen
 unter `current-spline-storage-source/build/ilp32-xsym/xsym_report.tsv`.
+
+### 2026-11-19 – Wetter, Blätter und Regen (N1/N3)
+
+Die sechs Wettertypen teilen sich typsichere Schnittstellen für Blatt- und
+Regenemitter. Die Gastprobe und der LP64-Test prüfen die Auswahl nach
+Wettertyp sowie Erzeugen, Zeichnen und Zurücksetzen von 50 Blättern und
+30 Regentropfen. Der LP64-Test verwendet beide Emitter oberhalb von 4 GiB
+und prüft die vier rotierenden Modelle. 93 Funktionen in den sechs berührten
+Originalmodulen behalten ihre Instruktionen und Relocations.
+
+Der kumulative Build besteht alle 74 Replays mit 447.849 Retraces, elf
+Gastsuiten und 67 Sanitizertests. Sieben Gastfunktionen ändern ihre IR.
+Alle 9.706 Laufzeit-Fixups behalten ihre Adressen. Original-IDO bestätigt
+alle 16.401 Funktionen und beide vollständigen ROMs. Belege unter
+`build/acceptance/n1-2026-11-18/current-weather-emitters*`.
