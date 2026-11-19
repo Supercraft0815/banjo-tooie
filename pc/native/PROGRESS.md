@@ -31,10 +31,8 @@ Pipeline (`pc/native/wasm/`):
    pointers, so every struct keeps its N64 layout. `BT_NATIVE` and `BT_ILP32` are set.
    Per-file LLVM passes are off (`-Xclang -disable-llvm-passes`), so FixCalls sees the
    calls as written before anything is inlined.
-2. `bitfields.py` rewrites the preprocessed files: IDO allocates bitfields from the most
-   significant bit, clang from the least, so each field is mirrored inside its unit, and
-   neighbouring units are fenced with `char : 0;` (clang would merge two `u8` units into
-   one `i16` access, which the byte swap below breaks).
+2. The C headers and sources use `BT_BITFIELD_ORDER` to account for the compilers'
+   opposite bit allocation order. The guest now compiles those declarations directly.
 3. `data.py` turns the asm data (`asm/data`, bss files) into one LLVM IR module, one
    block per file with N64 offsets; data/rodata/bss files of one module that touch on
    the N64 become one block (code reaches a neighbour's table through another label).
@@ -2427,3 +2425,21 @@ erläutert. Die IDO-Prüfung verglich in der gemeinsamen Quellfassung 2.053
 Funktionen sowie beide vollständigen ROMs. Belege liegen unter
 `build/acceptance/n3-2026-11-18/` und in
 `build/acceptance/n1-2026-11-18/root-current47-ido/result.json`.
+
+## 2026-11-19 — N3, räumliche Begrenzungen
+
+Die drei Gruppen von Begrenzungen in `gcboundDll` teilen sich einen Speicherpool.
+Der PC-Code führt Gruppen, Aktivierungsflags und Pool in einer Struktur mit
+Zeigern in Hostbreite. Im N64-Layout liegen die fünf Teilobjekte weiterhin bei
++4, +12, +20, +24 und +224. Die 19 betroffenen ILP32-Funktionen wurden auf
+gleiche Adressberechnungen und Speicherzugriffe geprüft. Der einzige Aufrufer
+der Abschlussroutine verwendet ihren Rückgabewert nicht.
+
+Der neue native Test baut alle drei Gruppen auf, verbindet zwei räumlich
+überlappende Bereiche und prüft ihre Positionen, die Punktabfrage und das
+Freigeben. Alle 54 nativen Tests und 74 Replays mit 447.849 Retraces bestehen.
+Die Zahl der LP64-Warnstellen sank von 1.016 auf 985. Der Original-IDO-Lauf
+verglich 2.245 Funktionen in 88 Modulen sowie beide vollständigen ROMs.
+Die Belege stehen in `build/acceptance/n3-2026-11-18/bounds-address-proof.log`,
+`gate-bounds.log` im selben Ordner und
+`build/acceptance/n1-2026-11-18/root-strict-bounds-ido/result.json`.

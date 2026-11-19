@@ -439,11 +439,11 @@ void gccubeDll_entrypoint_5(struct gccubeDll_entrypoint_5_arg *arg0) {
 
 /* extern */
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) gccubeDll_entrypoint_6(void *arg0) {
+void gccubeDll_entrypoint_6(void *arg0) {
     s32 _gspropsDll_entrypoint_2(s32, s32);
-    s32 func_800CB9FC();
-    s32 func_800CBA20();
-    s32 func_800CBA44();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800CB9FC(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800CBA20(void);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800CBA44(void);
     s32 var_s0;
 
     var_s0 = 0;
@@ -462,7 +462,7 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) gccubeDll_entrypoint_6(void *arg0) {
         } while (var_s0 < (*(s32 *)((s8 *)(arg0) + (0x24))));
     }
     func_800CB9FC();
-    BT_NATIVE_ONLY(return) func_800CBA44();
+    func_800CBA44();
 }
 
 /* extern */

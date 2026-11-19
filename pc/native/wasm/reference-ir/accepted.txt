@@ -81,3 +81,12 @@ func_800139F8 returns the binary32 constants -2^127 and +2^127 directly
 in its zero-cosine branch. These are exactly the former bit patterns
 0xff000000 and 0x7f000000. These are the only changes in the comparison
 with 0ecf2e0c5. See build/acceptance/n3-2026-11-18/native-74-canonical.log.
+
+2026-11-19  N3 collision bounds context
+D_8012AE80 occupies the same guest address, 0x80d23ca0. Five earlier aliases
+refer to its fields at offsets 4, 12, 20, 24 and 224. Byte-pointer indexing
+and the old integer additions compute the same 32-bit addresses. Initialization
+stores the same values in the same order. func_800CB9FC, func_800CBA20,
+func_800CBA44 and gccubeDll_entrypoint_6 now return void. The final caller
+func_800BDD00 discards the result. The symbolic comparison covers all 19
+changed canonical functions in build/acceptance/n3-2026-11-18/bounds-address-proof.log.

@@ -149,6 +149,8 @@ add_library(bt_native_core STATIC
     "${BT_ROOT}/src/core2/1EE1510.c"
     "${BT_ROOT}/src/core2/1EC4CC0.c"
     "${BT_ROOT}/src/core2/1E8D2C0.c"
+    "${BT_ROOT}/src/core2/1EA5180.c"
+    "${BT_ROOT}/src/overlays/gc/boundDll.c"
     "${BT_ROOT}/src/core2/1EC2FD0.c"
     "${BT_ROOT}/src/core2/1E96E60.c"
     "${BT_ROOT}/src/core2/1E7F4D0.c"
@@ -375,6 +377,15 @@ add_test(NAME native_markers COMMAND "${Python3_EXECUTABLE}"
 add_executable(bt_native_block_pool_test tests/block_pool.c)
 target_link_libraries(bt_native_block_pool_test PRIVATE bt_native_core)
 add_test(NAME native_block_pool COMMAND bt_native_block_pool_test)
+
+add_executable(bt_native_bounds_test tests/bounds.c)
+target_link_libraries(bt_native_bounds_test PRIVATE bt_native_core)
+if(APPLE)
+    target_link_options(bt_native_bounds_test PRIVATE -Wl,-dead_strip)
+elseif(UNIX)
+    target_link_options(bt_native_bounds_test PRIVATE -Wl,--gc-sections)
+endif()
+add_test(NAME native_bounds COMMAND bt_native_bounds_test)
 
 add_executable(bt_native_world_props_test tests/world_props.c tests/marker_world.c)
 target_link_libraries(bt_native_world_props_test PRIVATE bt_native_core)

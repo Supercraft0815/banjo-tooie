@@ -1,11 +1,11 @@
-#include "common.h"
+#include "core2/bounds.h"
 
-extern s32 D_8012AE80;
+
 
 BtIntPtr func_800CB890(s16 *arg0) {
-    extern u8 *D_8012AF60;
+    BT_IDO_ONLY(extern u8 *D_8012AF60;)
     void *func_800B42A0(u8 *data, s16 *range);
-    return func_800B42A0(D_8012AF60, arg0 + 12);
+    return (BtIntPtr)func_800B42A0(BT_DATA_FIELD(D_8012AE80.pool, D_8012AF60), arg0 + 12);
 }
 
 BtIntPtr func_800CB8BC(s16 *arg0) {
@@ -23,7 +23,7 @@ BtIntPtr func_800CB910(s16 *arg0) {
 
 void *func_800CB948(s16 *arg0)
 {
-    BT_NATIVE_ONLY(return) func_800CB910(arg0);
+    BT_NATIVE_ONLY(return (void *)) func_800CB910(arg0);
 }
 
 BtIntPtr func_800CB968(s16 *arg0)
@@ -49,49 +49,49 @@ void func_800CB9D8()
     _gcboundDll_entrypoint_2(&D_8012AE80);
 }
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800CB9FC()
+void func_800CB9FC(void)
 {
-    BT_NATIVE_ONLY(return) _gcboundDll_entrypoint_6(&D_8012AE80);
+    _gcboundDll_entrypoint_6(&D_8012AE80);
 }
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800CBA20()
+void func_800CBA20(void)
 {
-    BT_NATIVE_ONLY(return) _gcboundDll_entrypoint_7(&D_8012AE80);
+    _gcboundDll_entrypoint_7(&D_8012AE80);
 }
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800CBA44()
+void func_800CBA44(void)
 {
-    BT_NATIVE_ONLY(return) _gcboundDll_entrypoint_8(&D_8012AE80);
+    _gcboundDll_entrypoint_8(&D_8012AE80);
 }
 
 /* extern */
 
 void func_800CBA68(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6) {
-    void _gcboundDll_entrypoint_3(u8 *arg0, s32 arg1, s16 *arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7);
-    _gcboundDll_entrypoint_3(&D_8012AE80, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+    BT_IDO_ONLY(void _gcboundDll_entrypoint_3(u8 *arg0, s32 arg1, s16 *arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7);)
+    _gcboundDll_entrypoint_3(&D_8012AE80, arg0, (s16 *)arg1, arg2, arg3, arg4, arg5, arg6);
 }
 
 /* extern */
 
 void func_800CBAC8(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3, s32 arg4) {
-    void _gcboundDll_entrypoint_4(u8 *arg0, s32 arg1, s16 *arg2, s32 arg3, s32 arg4, s32 arg5);
-    _gcboundDll_entrypoint_4(&D_8012AE80, arg0, arg1, arg2, arg3, arg4);
+    BT_IDO_ONLY(void _gcboundDll_entrypoint_4(u8 *arg0, s32 arg1, s16 *arg2, s32 arg3, s32 arg4, s32 arg5);)
+    _gcboundDll_entrypoint_4(&D_8012AE80, arg0, (s16 *)arg1, arg2, arg3, arg4);
 }
 
 /* extern */
 
 void func_800CBB18(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
-    void _gcboundDll_entrypoint_5(u8 *arg0, s32 arg1, s16 *arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6);
-    _gcboundDll_entrypoint_5(&D_8012AE80, arg0, arg1, arg2, arg3, arg4, arg5);
+    BT_IDO_ONLY(void _gcboundDll_entrypoint_5(u8 *arg0, s32 arg1, s16 *arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6);)
+    _gcboundDll_entrypoint_5(&D_8012AE80, arg0, (s16 *)arg1, arg2, arg3, arg4, arg5);
 }
 
 void func_800CBB70(s32 arg0, s32 arg1) {
-    extern s32 D_8012AE98;
-    *(s8 *)((u8 *)&D_8012AE98 + arg0) = arg1;
+    BT_IDO_ONLY(extern s32 D_8012AE98;)
+    *(s8 *)(BT_DATA_FIELD(D_8012AE80.enabled, (u8 *)&D_8012AE98) + arg0) = arg1;
 }
 
 void func_800CBB80(s32 arg0, s32 arg1) {
-    extern s32 D_8012AE8C;
+    BT_IDO_ONLY(extern s32 D_8012AE8C;)
     struct Entry {
         u16 prefix;
         BT_BITFIELD_ORDER(u8 other : 7, u8 flag : 1);
@@ -99,7 +99,7 @@ void func_800CBB80(s32 arg0, s32 arg1) {
         u8 rest[25];
     } *entry;
 
-    entry = (struct Entry *)(D_8012AE8C + arg0 * 0x1C);
+    entry = (struct Entry *)(BT_DATA_FIELD(D_8012AE80.groups[1].entries, D_8012AE8C) + arg0 * 0x1C);
     if (arg1 != 0) {
         entry->flag = 1;
         return;
@@ -108,22 +108,22 @@ void func_800CBB80(s32 arg0, s32 arg1) {
 }
 
 s32 func_800CBBC0(s32 arg0) {
-    extern s32 D_8012AE8C;
+    BT_IDO_ONLY(extern s32 D_8012AE8C;)
     s32 *entry;
-    entry = (s32 *)(D_8012AE8C + arg0 * 0x1C);
+    entry = (s32 *)(BT_DATA_FIELD(D_8012AE80.groups[1].entries, D_8012AE8C) + arg0 * 0x1C);
     return entry[5];
 }
 
 s32 func_800CBBE0(s32 arg0) {
-    extern s32 D_8012AE94;
+    BT_IDO_ONLY(extern s32 D_8012AE94;)
     s32 *entry;
-    entry = (s32 *)(D_8012AE94 + arg0 * 0x1C);
+    entry = (s32 *)(BT_DATA_FIELD(D_8012AE80.groups[2].entries, D_8012AE94) + arg0 * 0x1C);
     return entry[5];
 }
 
 s32 func_800CBC00(s32 arg0) {
-    extern s32 D_8012AE94;
-    return (*(u16 *)((s8 *)(func_800CB8F0((arg0 * 0x1C) + D_8012AE94)) + (0x14))) & 1;
+    BT_IDO_ONLY(extern s32 D_8012AE94;)
+    return (*(u16 *)((s8 *)(func_800CB8F0((s16 *)((arg0 * 0x1C) + BT_DATA_FIELD(D_8012AE80.groups[2].entries, D_8012AE94)))) + (0x14))) & 1;
 }
 
 s32 func_800CBC3C(void *arg0) {
@@ -144,7 +144,7 @@ s32 func_800CBC3C(void *arg0) {
             positionY = ((f32 *)arg0)[1];
             if (y - radius < positionY && positionY < y + radius &&
                 func_800EFC7C((void *)item, arg0) < *(f32 *)(item + 0x10)) {
-                return entry - ((struct Table *)&D_8012AE80)->entries;
+                return (s32)(entry - ((struct Table *)&D_8012AE80)->entries);
             }
         }
     }
@@ -194,11 +194,11 @@ s32 func_800CBDD4(BtIntPtr positionAddress, s32 arg1, s32 arg2) {
         BT_BITFIELD_ORDER(u32 rest : 17, u32 unused : 12);
     };
     struct Table {
-        s32 pad[2];
+        BoundGroup preceding;
         s32 count;
         struct Entry *entries;
-        s32 tail[2];
-        u8 enabled[1];
+        BoundGroup last;
+        u8 enabled[200];
     };
     f32 *arg0 = (f32 *)positionAddress;
     f32 half, upper, lower;
@@ -226,7 +226,7 @@ s32 func_800CBDD4(BtIntPtr positionAddress, s32 arg1, s32 arg2) {
                             y = item->position[1];
                             if (y <= upper && lower < y &&
                                 func_800EFC7C(item, arg0) < item->radius) {
-                                return entry - ((struct Table *)&D_8012AE80)->entries;
+                                return (s32)(entry - ((struct Table *)&D_8012AE80)->entries);
                             }
                         }
                     }
@@ -237,7 +237,7 @@ s32 func_800CBDD4(BtIntPtr positionAddress, s32 arg1, s32 arg2) {
                              (y = item->position[1], positionY = arg0[1], extent = item->extent,
                               y - extent <= positionY && positionY < y + extent)) &&
                             func_800EFC7C(item, arg0) < item->radius) {
-                            return entry - ((struct Table *)&D_8012AE80)->entries;
+                            return (s32)(entry - ((struct Table *)&D_8012AE80)->entries);
                         }
                     }
                 }
@@ -267,7 +267,7 @@ s32 func_800CC078(BtIntPtr positionAddress) {
         BT_BITFIELD_ORDER(u32 rest : 17, u32 unused : 12);
     };
     struct Table {
-        s32 pad[4];
+        BoundGroup preceding[2];
         s32 count;
         struct Entry *entries;
     };
@@ -286,7 +286,7 @@ s32 func_800CC078(BtIntPtr positionAddress) {
                 switch (item->flags) {
                     case 0:
                         if (func_800EFC7C(item, arg0) < item->radius) {
-                            return entry - ((struct Table *)&D_8012AE80)->entries;
+                            return (s32)(entry - ((struct Table *)&D_8012AE80)->entries);
                         }
                         break;
                     case 1:
@@ -295,19 +295,19 @@ s32 func_800CC078(BtIntPtr positionAddress) {
                         positionY = arg0[1];
                         if (y - extent < positionY && positionY < y + extent &&
                             func_800EFC7C(item, arg0) < item->radius) {
-                            return entry - ((struct Table *)&D_8012AE80)->entries;
+                            return (s32)(entry - ((struct Table *)&D_8012AE80)->entries);
                         }
                         break;
                     case 2:
                         if (item->position[1] - item->extent < arg0[1] &&
                             func_800EFC7C(item, arg0) < item->radius) {
-                            return entry - ((struct Table *)&D_8012AE80)->entries;
+                            return (s32)(entry - ((struct Table *)&D_8012AE80)->entries);
                         }
                         break;
                     case 3:
                         if (arg0[1] < item->position[1] + item->extent &&
                             func_800EFC7C(item, arg0) < item->radius) {
-                            return entry - ((struct Table *)&D_8012AE80)->entries;
+                            return (s32)(entry - ((struct Table *)&D_8012AE80)->entries);
                         }
                         break;
                 }
@@ -320,7 +320,7 @@ s32 func_800CC078(BtIntPtr positionAddress) {
 s32 func_800CC338(f32 *arg0, s32 arg1, s32 arg2) {
     s32 func_800CC4D4(f32 *, BtIntPtr);
     f32 func_800EFC7C(void *, void *);
-    extern s32 D_8012AE84;
+    BT_IDO_ONLY(extern s32 D_8012AE84;)
     s32 pad[2];
     s8 *start;
     f32 y;
@@ -330,7 +330,7 @@ s32 func_800CC338(f32 *arg0, s32 arg1, s32 arg2) {
     s8 *cur;
     BtUIntPtr end;
 
-    region = (s16 *)(arg1 * 0x1C + D_8012AE84);
+    region = (s16 *)(arg1 * 0x1C + BT_DATA_FIELD(D_8012AE80.groups[0].entries, D_8012AE84));
     if (func_800CC4D4(arg0, arg1) != -1) {
         return -1;
     }
@@ -350,14 +350,14 @@ s32 func_800CC338(f32 *arg0, s32 arg1, s32 arg2) {
         extent = *(s16 *)(cur + 0xE);
         if (center - extent < y && y < center + extent &&
             func_800EFC7C(cur, arg0) < *(f32 *)(cur + 0x10)) {
-            return (cur - start) / 24;
+            return (s32)((cur - start) / 24);
         }
     }
     return -1;
 }
 
 s32 func_800CC4D4(f32 *arg0, BtIntPtr arg1) {
-    extern s32 D_8012AE84;
+    BT_IDO_ONLY(extern s32 D_8012AE84;)
     f32 func_800EFC7C(void *, void *);
     s32 pad[3];
     s8 *start;
@@ -366,19 +366,19 @@ s32 func_800CC4D4(f32 *arg0, BtIntPtr arg1) {
     f32 extent;
     s8 *cur;
 
-    cur = (s8 *)(D_8012AE84 + arg1 * 0x1C);
+    cur = (s8 *)(BT_DATA_FIELD(D_8012AE80.groups[0].entries, D_8012AE84) + arg1 * 0x1C);
     if (*(u8 *)(cur + 3) == 0) {
         return -1;
     }
     start = func_800CB948((s16 *)cur);
     arg1 = func_800CB968((s16 *)cur);
-    for (cur = start; (BtUIntPtr)cur < (u32)arg1; cur += 0x18) {
+    for (cur = start; (BtUIntPtr)cur < (BtUIntPtr)arg1; cur += 0x18) {
         center = *(f32 *)(cur + 4);
         extent = *(s16 *)(cur + 0xE);
         y = arg0[1];
         if (center - extent < y && y < center + extent &&
             func_800EFC7C(cur, arg0) < *(f32 *)(cur + 0x10)) {
-            return (cur - start) / 24;
+            return (s32)((cur - start) / 24);
         }
     }
     return -1;
@@ -386,26 +386,26 @@ s32 func_800CC4D4(f32 *arg0, BtIntPtr arg1) {
 
 s32 func_800CC5E8()
 {
-    return D_8012AE80;
+    return D_8012AE80.groups[0].count;
 }
 
-u32 func_800CC5F4(s32 arg0) { extern s32 D_8012AE84; return (u32)*(u32 *)(D_8012AE84 + arg0 * 0x1C) >> 9; }
+u32 func_800CC5F4(s32 arg0) { BT_IDO_ONLY(extern s32 D_8012AE84;) return (u32)*(u32 *)(BT_DATA_FIELD(D_8012AE80.groups[0].entries, D_8012AE84) + arg0 * 0x1C) >> 9; }
 
 u8 func_800CC61C(s32 arg0) {
-    extern s32 D_8012AE84;
-    return (*(u8 *)((s8 *)(((arg0 * 0x1C) + D_8012AE84)) + (3)));
+    BT_IDO_ONLY(extern s32 D_8012AE84;)
+    return (*(u8 *)((s8 *)(((arg0 * 0x1C) + BT_DATA_FIELD(D_8012AE80.groups[0].entries, D_8012AE84))) + (3)));
 }
 
 void *func_800CC63C(s32 arg0, s32 arg1)
 {
-    extern s32 D_8012AE84;
-    return (s8 *)func_800CB8F0((arg0 * 0x1C) + D_8012AE84) + (arg1 * 0x18);
+    BT_IDO_ONLY(extern s32 D_8012AE84;)
+    return (s8 *)func_800CB8F0((s16 *)((arg0 * 0x1C) + BT_DATA_FIELD(D_8012AE80.groups[0].entries, D_8012AE84))) + (arg1 * 0x18);
 }
 
 void *func_800CC684(s32 arg0, s32 arg1)
 {
-    extern s32 D_8012AE84;
-    return (s8 *)func_800CB948((arg0 * 0x1C) + D_8012AE84) + (arg1 * 0x18);
+    BT_IDO_ONLY(extern s32 D_8012AE84;)
+    return (s8 *)func_800CB948((s16 *)((arg0 * 0x1C) + BT_DATA_FIELD(D_8012AE80.groups[0].entries, D_8012AE84))) + (arg1 * 0x18);
 }
 
 /* extern */
@@ -429,14 +429,14 @@ s32 func_800CC6F4(BtIntPtr arg0, s32 arg1, s32 arg2) {
         u32 type : 3;
         BT_BITFIELD_ORDER(u32 unk14_15 : 17, u32 unk14 : 12);
     } Region;
-    extern s32 D_8012AE94;
+    BT_IDO_ONLY(extern s32 D_8012AE94;)
     f32 func_800EFC7C(void *, void *);
     s16 *group;
     Region *cur;
     Region *base;
     Region *end;
 
-    group = (s16 *)(arg1 * 0x1C + D_8012AE94);
+    group = (s16 *)(arg1 * 0x1C + BT_DATA_FIELD(D_8012AE80.groups[2].entries, D_8012AE94));
     base = (Region *)func_800CB8F0(group);
     cur = base + arg2;
     switch (cur->type) {
@@ -471,26 +471,26 @@ s32 func_800CC6F4(BtIntPtr arg0, s32 arg1, s32 arg2) {
         switch (cur->type) {
             case 0:
                 if (func_800EFC7C(cur->position, (void *)arg0) < cur->radius) {
-                    return cur - base;
+                    return (s32)(cur - base);
                 }
                 break;
             case 1:
                 if (cur->position[1] - cur->height < ((f32 *)arg0)[1] &&
                     ((f32 *)arg0)[1] < cur->position[1] + cur->height &&
                     func_800EFC7C(cur->position, (void *)arg0) < cur->radius) {
-                    return cur - base;
+                    return (s32)(cur - base);
                 }
                 break;
             case 2:
                 if (cur->position[1] - cur->height < ((f32 *)arg0)[1] &&
                     func_800EFC7C(cur->position, (void *)arg0) < cur->radius) {
-                    return cur - base;
+                    return (s32)(cur - base);
                 }
                 break;
             case 3:
                 if (((f32 *)arg0)[1] < cur->position[1] + cur->height &&
                     func_800EFC7C(cur->position, (void *)arg0) < cur->radius) {
-                    return cur - base;
+                    return (s32)(cur - base);
                 }
                 break;
         }
@@ -509,10 +509,10 @@ s32 func_800CCAB0(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
         BT_BITFIELD_ORDER(u32 unk16 : 17, u32 unk14 : 12);
     } Entry;
     typedef struct {
-        s32 pad0[3];
+        BoundGroup first; s32 count;
         u8 *regions;
-        s32 pad10[2];
-        u8 active[1];
+        BoundGroup last;
+        u8 active[200];
     } State;
     f32 func_800EFC7C(void *, void *);
     f32 upper;
@@ -553,7 +553,7 @@ s32 func_800CCAB0(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
             if ((entry->flags & arg4) && entry->position[1] <= upper &&
                 lower < entry->position[1] &&
                 func_800EFC7C(entry->position, (void *)arg0) < entry->radius_squared) {
-                return entry - start;
+                return (s32)(entry - start);
             }
         }
     } else {
@@ -562,7 +562,7 @@ s32 func_800CCAB0(BtIntPtr arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
                 (entry->position[1] - entry->height <= ((f32 *)arg0)[1] &&
                  ((f32 *)arg0)[1] < entry->position[1] + entry->height)) &&
                 func_800EFC7C(entry->position, (void *)arg0) < entry->radius_squared) {
-                return entry - start;
+                return (s32)(entry - start);
             }
         }
     }
@@ -643,22 +643,22 @@ s32 func_800CCEF4(BtIntPtr arg0, s32 *arg1, s32 *arg2, s32 arg3) {
     }
     *arg1 = -1;
     return 0;
-}    typedef struct { u8 pad0[0x4]; BtIntPtr unk4; u8 pad8[0x4]; BtIntPtr unkC; u8 pad10[0x4]; BtIntPtr unk14; u8 pad18[0xC8]; BtIntPtr unkE0; } Obj1EA5180_D_8012AE80; /* offsets.py genstruct: fields from raw offsets on &D_8012AE80; rename once understood */
+}
 
 void func_800CCFEC(void) {
-    BtIntPtr defrag(BtIntPtr);
-    extern s32 D_8012AE80;
-    if ((((Obj1EA5180_D_8012AE80 *)&D_8012AE80)->unk4) != 0) {
-        (((Obj1EA5180_D_8012AE80 *)&D_8012AE80)->unk4) = defrag((((Obj1EA5180_D_8012AE80 *)&D_8012AE80)->unk4));
+    void *defrag(void *);
+
+    if (D_8012AE80.groups[0].entries != 0) {
+        D_8012AE80.groups[0].entries = defrag(D_8012AE80.groups[0].entries);
     }
-    if ((((Obj1EA5180_D_8012AE80 *)&D_8012AE80)->unkC) != 0) {
-        (((Obj1EA5180_D_8012AE80 *)&D_8012AE80)->unkC) = defrag((((Obj1EA5180_D_8012AE80 *)&D_8012AE80)->unkC));
+    if (D_8012AE80.groups[1].entries != 0) {
+        D_8012AE80.groups[1].entries = defrag(D_8012AE80.groups[1].entries);
     }
-    if ((((Obj1EA5180_D_8012AE80 *)&D_8012AE80)->unk14) != 0) {
-        (((Obj1EA5180_D_8012AE80 *)&D_8012AE80)->unk14) = defrag((((Obj1EA5180_D_8012AE80 *)&D_8012AE80)->unk14));
+    if (D_8012AE80.groups[2].entries != 0) {
+        D_8012AE80.groups[2].entries = defrag(D_8012AE80.groups[2].entries);
     }
-    if ((((Obj1EA5180_D_8012AE80 *)&D_8012AE80)->unkE0) != 0) {
-        (((Obj1EA5180_D_8012AE80 *)&D_8012AE80)->unkE0) = defrag((((Obj1EA5180_D_8012AE80 *)&D_8012AE80)->unkE0));
+    if (D_8012AE80.pool != 0) {
+        D_8012AE80.pool = defrag(D_8012AE80.pool);
     }
 }    typedef struct { u8 pad0[0xC]; s16 unkC; s16 unkE; } Obj1EA5180_func_800CD08C_temp_a1; /* offsets.py genstruct: fields from raw offsets on temp_a1; rename once understood */
 
@@ -668,7 +668,7 @@ void func_800CD08C(s32 arg0, f32 *arg1) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
 
-    extern s32 D_8012AE84;
+    BT_IDO_ONLY(extern s32 D_8012AE84;)
     f32 temp_f20;
     f32 temp_f24;
     s16 *temp_a0;
@@ -677,12 +677,12 @@ void func_800CD08C(s32 arg0, f32 *arg1) {
     u32 temp_s7;
     void *temp_a1;
 
-    temp_a0 = (arg0 * 0x1C) + D_8012AE84;
+    temp_a0 = (s16 *)((arg0 * 0x1C) + BT_DATA_FIELD(D_8012AE80.groups[0].entries, D_8012AE84));
     temp_s7 = *(u32 *)temp_a0 >> 9;
     temp_s2 = func_800CB8F0(temp_a0);
     temp_f24 = 359.0f;
     do {
-        temp_a1 = (func_800DC128(0, temp_s7) * 0x18) + temp_s2;
+        temp_a1 = (void *)((func_800DC128(0, temp_s7) * 0x18) + temp_s2);
         func_800EE7F8(arg1, temp_a1);
         temp_f20 = func_800DC178(0.0f, temp_f24);
         func_800EF1B8(arg1, temp_f20, func_800DC178(0.0f, (f32) ((((Obj1EA5180_func_800CD08C_temp_a1 *)temp_a1)->unkC) - 5)));
@@ -694,7 +694,7 @@ void func_800CD08C(s32 arg0, f32 *arg1) {
 /* extern */
 
 void func_800CD1E0(s32 arg0, u8 *arg1, f32 arg2) {
-    func_800CD08C(arg0, arg1);
+    func_800CD08C(arg0, (f32 *)arg1);
     if ((((Obj1EA5180_arg1 *)arg1)->unk4) < arg2) {
         (((Obj1EA5180_arg1 *)arg1)->unk4) = arg2;
     }
@@ -703,10 +703,10 @@ void func_800CD1E0(s32 arg0, u8 *arg1, f32 arg2) {
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
-s32 D_8012AE80 BT_DATA(4, bss_core2bss1_1, 0x3A0);
-s32 D_8012AE84 BT_DATA(4, bss_core2bss1_1, 0x3A4);
-s32 D_8012AE8C BT_DATA(4, bss_core2bss1_1, 0x3AC);
-s32 D_8012AE94 BT_DATA(4, bss_core2bss1_1, 0x3B4);
-s32 D_8012AE98 BT_DATA(4, bss_core2bss1_1, 0x3B8);
-u8 * D_8012AF60 BT_DATA(4, bss_core2bss1_1, 0x480);
+BoundContext D_8012AE80 BT_DATA(4, bss_core2bss1_1, 0x3A0);
+
+
+
+
+
 #endif
