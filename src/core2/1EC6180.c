@@ -269,12 +269,12 @@ int func_800EDA2C(void *self, f32 arg1[3]) {
 /* extern */
 
 void func_800EDAF4(u8 *arg0) {
-    s32 func_800C2FDC();
+    BT_IDO_ONLY(s32 func_800C2FDC();) BT_NATIVE_ONLY(s32 func_800C2FDC(u8);)
     s32 temp_a1;
 
     temp_a1 = *arg0;
     if (temp_a1 != 0) {
-        func_800C2FDC(temp_a1 & 0xFF, temp_a1);
+        BT_IDO_ONLY(func_800C2FDC(temp_a1 & 0xFF, temp_a1);) BT_NATIVE_ONLY(func_800C2FDC(temp_a1 & 0xFF);)
     }
 }
 
@@ -480,7 +480,7 @@ void func_800EE108(MeshEffect *arg0, BtIntPtr model, s32 mesh_id) {
     s32 func_800DC214(s32, s32);
     void func_800C31DC(u8, f32);
     void func_800C3058(u8, s32);
-    s32 func_800C2FDC();
+    BT_IDO_ONLY(s32 func_800C2FDC();) BT_NATIVE_ONLY(s32 func_800C2FDC(u8);)
     void func_800ECD60();
     void func_800ECEEC();
     void func_800ED064();

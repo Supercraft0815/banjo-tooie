@@ -144,9 +144,9 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
 #ifndef BT_NATIVE
     void func_800AE160(u8 **, u8 *, s32);
 #endif
-#ifndef BT_NATIVE
-    void _dbzone_entrypoint_1(u8 *, void *, f32, f32 *);
-#endif
+    BT_IDO_ONLY(void _dbzone_entrypoint_1(u8 *, void *, f32, f32 *);)
+    BT_NATIVE_ONLY(void _dbzone_entrypoint_1(u8 *, f32 *, f32, f32 *);)
+
 #ifndef BT_NATIVE
     void _glzone_entrypoint_2(s32);
 #endif
@@ -336,7 +336,7 @@ void *func_800DE498(GraphicsBuffers *arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 *
         D_8012C948.animation = *(u8 **)&D_8012C840;
     }
     if (D_8012C948.zones) {
-        _dbzone_entrypoint_1(D_8012C948.zones, &D_8012CE98, arg3, object_position);
+        _dbzone_entrypoint_1(D_8012C948.zones, BT_NATIVE_ONLY((f32 *))&D_8012CE98, arg3, object_position);
         if (D_8012C848) {
             _glzone_entrypoint_2(D_8012C848);
         }

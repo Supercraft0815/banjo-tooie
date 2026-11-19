@@ -15,12 +15,12 @@ typedef struct { u8 pad0[0x34]; u8 unk34; } Objhalo_arg0; /* offsets.py genstruc
 /* extern */
 
 void func_80800030_chlighthalo(void *arg0) {
-    s32 func_800E87E0(s32, u8, void *);
+    BT_IDO_ONLY(s32 func_800E87E0(s32, u8, void *);) BT_NATIVE_ONLY(void func_800E87E0(u8);)
     u8 temp_a1;
 
     temp_a1 = (((Objhalo_arg0 *)arg0)->unk34);
     if (temp_a1 != 0) {
-        func_800E87E0(temp_a1 & 0xFF, temp_a1, arg0);
+        BT_IDO_ONLY(func_800E87E0(temp_a1 & 0xFF, temp_a1, arg0);) BT_NATIVE_ONLY(func_800E87E0((u8)temp_a1);)
         (((Objhalo_arg0 *)arg0)->unk34) = 0U;
     }
 }

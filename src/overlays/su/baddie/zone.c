@@ -4,10 +4,10 @@
 
 typedef struct { u8 pad0[0x78]; u8 unk78; } Objzone_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ void subaddiezone_entrypoint_0(u8 *arg0) {
     struct Flags { u8 pad[0x70]; BT_BITFIELD_ORDER(unsigned int : 13, unsigned int  : 18); unsigned int disabled : 1; BT_BITFIELD_ORDER(unsigned int : 18, unsigned int  : 13); };
-    u8 _glzone_entrypoint_5(s32, u8 *, u8, u8 *);
+    BT_IDO_ONLY(u8 _glzone_entrypoint_5(s32, u8 *, u8, u8 *);) BT_NATIVE_ONLY(s32 _glzone_entrypoint_5(u8 *, f32 *, s32);)
     s32 func_800BEC28(s32);
     if (((struct Flags *)arg0)->disabled) return;
-    (((Objzone_arg0 *)arg0)->unk78) = _glzone_entrypoint_5(func_800BEC28(0), arg0 + 4, (((Objzone_arg0 *)arg0)->unk78), arg0);
+    (((Objzone_arg0 *)arg0)->unk78) = BT_IDO_ONLY(_glzone_entrypoint_5(func_800BEC28(0), arg0 + 4, (((Objzone_arg0 *)arg0)->unk78), arg0)) BT_NATIVE_ONLY(_glzone_entrypoint_5((u8 *)(BtIntPtr)func_800BEC28(0), (f32 *)(arg0 + 4), (((Objzone_arg0 *)arg0)->unk78)));
 }
 
 /* extern */

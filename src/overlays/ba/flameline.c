@@ -40,12 +40,12 @@ void func_80800184_baflameline(void *arg0, f32 arg1[3]) { void func_800BA77C(BtI
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) baflameline_entrypoint_2(void *arg0) {
     s32 func_800B5450(s32, void *);
-    s32 func_800C2FDC(u8, void *);
+    BT_IDO_ONLY(s32 func_800C2FDC(u8, void *);) BT_NATIVE_ONLY(s32 func_800C2FDC(u8);)
     s32 func_800C8B84(s32, void *);
     s32 temp_a0;
     void *var_v0;
 
-    func_800C2FDC((*(u8 *)((s8 *)((((Objflameline_arg0 *)arg0)->unk84_voidp)) + (0x20))), arg0);
+    BT_IDO_ONLY(func_800C2FDC((*(u8 *)((s8 *)((((Objflameline_arg0 *)arg0)->unk84_voidp)) + (0x20))), arg0);) BT_NATIVE_ONLY(func_800C2FDC((*(u8 *)((s8 *)((((Objflameline_arg0 *)arg0)->unk84_voidp)) + (0x20))));)
     var_v0 = (((Objflameline_arg0 *)arg0)->unk84_voidp);
     temp_a0 = (((Objflameline_baflameline_entrypoint_2_var_v0 *)var_v0)->unk24);
     if (temp_a0 != 0) {

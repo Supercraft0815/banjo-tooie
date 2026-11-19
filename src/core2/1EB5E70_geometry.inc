@@ -973,13 +973,13 @@ void func_800DDFA0(volatile s32 arg0, u8 *arg1) {
 void func_800DE03C(s32 arg0, u8 *arg1) {
     struct camera_command { u8 pad[12]; BT_BITFIELD_ORDER(unsigned int zone : 8, unsigned int : 24; unsigned int zone : 8); };
     void func_800DE2A4(s32, u8 *);
-    s32 _dbzone_entrypoint_0(s32, u8 *, u8, u8 *);
+    BT_IDO_ONLY(s32 _dbzone_entrypoint_0(s32, u8 *, u8, u8 *);) BT_NATIVE_ONLY(s32 _dbzone_entrypoint_0(u8 *, u8 *, u32);)
     s32 _glzone_entrypoint_3(s32, s32);
     extern s32 D_8012C848;
     extern s32 D_8012C970;
     s32 temp_v0;
 
-    temp_v0 = _dbzone_entrypoint_0(D_8012C970, arg1 + 0xD, (*(u8 *)((s8 *)(arg1) + (0xA))), arg1);
+    temp_v0 = BT_IDO_ONLY(_dbzone_entrypoint_0(D_8012C970, arg1 + 0xD, (*(u8 *)((s8 *)(arg1) + (0xA))), arg1)) BT_NATIVE_ONLY(_dbzone_entrypoint_0((u8 *)(BtIntPtr)D_8012C970, arg1 + 0xD, (*(u8 *)((s8 *)(arg1) + (0xA)))));
     if (((temp_v0 == 0) && ((*(u8 *)((s8 *)(arg1) + (0xB))) & 1)) || ((temp_v0 != 0) && ((*(u8 *)((s8 *)(arg1) + (0xB))) & 2))) {
         if (D_8012C848 != 0) {
             if (((struct camera_command *)arg1)->zone != 0) {

@@ -89,12 +89,12 @@ s32 func_8010D930(s32 arg0, s32 arg1, f32 *arg2, s32 *arg3) {
 /* extern */
 
 void func_8010DA30(u8 *arg0) {
-    s32 func_800C2FDC(s32, u8 *, u8);
+    BT_IDO_ONLY(s32 func_800C2FDC(s32, u8 *, u8);) BT_NATIVE_ONLY(s32 func_800C2FDC(u8);)
     u8 temp_a2;
 
     temp_a2 = (*(u8 *)((s8 *)(arg0) + (0)));
     if (temp_a2 != 0) {
-        func_800C2FDC(temp_a2 & 0xFF, arg0, temp_a2);
+        BT_IDO_ONLY(func_800C2FDC(temp_a2 & 0xFF, arg0, temp_a2);) BT_NATIVE_ONLY(func_800C2FDC(temp_a2 & 0xFF);)
         (*(u8 *)((s8 *)(arg0) + (0))) = 0;
     }
     (((Entry *)arg0)->value) = -1;

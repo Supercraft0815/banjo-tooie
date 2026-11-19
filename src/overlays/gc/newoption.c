@@ -323,7 +323,7 @@ void gcnewoption_entrypoint_1(u8 *arg0, BtIntPtr arg1) {
     s32 _gczoombox_entrypoint_2(s32, BtIntPtr);
     void _gczoombox_entrypoint_28(s32, s16);
     s32 _gczoombox_entrypoint_29(s32);
-    s32 _gczoombox_entrypoint_38(s32, s32);
+    BT_IDO_ONLY(s32 _gczoombox_entrypoint_38(s32, s32);) BT_NATIVE_ONLY(void _gczoombox_entrypoint_38(u8 *, s32);)
     f32 savedPosition;
     s32 savedHeight;
     s32 index;
@@ -1233,7 +1233,7 @@ void func_80801B5C_gcnewoption(void *arg0) {
     };
     void _gczoombox_entrypoint_28(s32, s16);
     s32 _gczoombox_entrypoint_29(s32);
-    s32 _gczoombox_entrypoint_38(s32, s32);
+    BT_IDO_ONLY(s32 _gczoombox_entrypoint_38(s32, s32);) BT_NATIVE_ONLY(void _gczoombox_entrypoint_38(u8 *, s32);)
     s32 i;
     s32 index;
     s32 next;

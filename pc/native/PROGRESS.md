@@ -2510,3 +2510,17 @@ und die vollständig aufgefüllte Cartridge stimmen byteweise mit den Originalen
 überein. Alle elf Testsuiten und die 74 Replays mit 447.849 Retraces bestanden.
 Die Belege liegen in `build/acceptance/n1-2026-11-18/current-five-ido/result.json`,
 `current-five-74.log` und den acht Einzelprüfungen unter `proof/`.
+
+## 2026-11-19 — N2, Zonen, Routen und Animationsdauer
+
+Der Build ohne Aufrufkorrektur zählt 98 statt 113 ungültige Varianten.
+Zonenabfragen, die Routenwahl der Gegner, Zoomdialoge und zwei
+Animationsfunktionen erhalten die Parameter ihres tatsächlichen Ziels.
+Vier Gastfunktionen erweitern dabei ein Byte oder Halbwort wie die
+Originalbefehle `lbu` und `lhu` vorzeichenlos. Die übrigen Funktionen
+behalten ihre kanonische IR.
+
+Alle elf Testsuiten und 74 Replays mit 447.849 Retraces bestanden. Original-IDO
+bestätigte 3.763 Funktionen in 142 Modulen und beide vollständigen ROMs.
+Die Belege stehen in `build/acceptance/n2-2026-11-18/signature-four-gate.log`,
+`signature-four-original-loads.log` und `signature-four-ido/result.json`.

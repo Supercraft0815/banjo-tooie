@@ -114,14 +114,14 @@ int fxrain_entrypoint_3(void *arg0) {
 /* extern */
 
 void fxrain_entrypoint_4(u8 *arg0) {
-    s32 func_800C2FDC();
+    BT_IDO_ONLY(s32 func_800C2FDC();) BT_NATIVE_ONLY(s32 func_800C2FDC(u8);)
     void heap_free(void *memory);
     s32 vector_free(s32, u8 *);
     u8 temp_a2;
 
     temp_a2 = (((Objrain_arg0 *)arg0)->unk0);
     if (temp_a2 != 0) {
-        func_800C2FDC(temp_a2 & 0xFF, arg0, (u32)temp_a2);
+        BT_IDO_ONLY(func_800C2FDC(temp_a2 & 0xFF, arg0, (u32)temp_a2);) BT_NATIVE_ONLY(func_800C2FDC(temp_a2 & 0xFF);)
         (((Objrain_arg0 *)arg0)->unk0) = 0;
     }
     vector_free((((Objrain_arg0 *)arg0)->unk20), arg0);
@@ -207,7 +207,7 @@ void fxrain_entrypoint_9(void *arg0) {
     } RainParticle;
     s32 func_800A5490(void);
     u8 func_800C2E04(void);
-    s32 func_800C2FDC();
+    BT_IDO_ONLY(s32 func_800C2FDC();) BT_NATIVE_ONLY(s32 func_800C2FDC(u8);)
     void func_800C301C(u8, s32);
     void func_800C316C(u8, s32, s32, f32);
     void func_800C330C(u8, s32);

@@ -102,7 +102,7 @@ s32 func_800C0284(void) {
 }
 
 void func_800C0308(void) {
-    s32 _gczoombox_entrypoint_38(s32, s16);
+    BT_IDO_ONLY(s32 _gczoombox_entrypoint_38(s32, s16);) BT_NATIVE_ONLY(void _gczoombox_entrypoint_38(u8 *, s32);)
     extern s8 D_8011A7C0[];
     struct DialogFlags {
         BT_BITFIELD_ORDER(u32 unused:18, u32 rest : 12);

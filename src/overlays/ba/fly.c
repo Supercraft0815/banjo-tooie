@@ -51,12 +51,12 @@ u32 bafly_entrypoint_3(void *arg0) {
 /* extern */
 
 void bafly_entrypoint_4(void *arg0) {
-    s32 func_800C2FDC(s32, u8, void *);
+    BT_IDO_ONLY(s32 func_800C2FDC(s32, u8, void *);) BT_NATIVE_ONLY(s32 func_800C2FDC(u8);)
     u8 temp_a1;
 
     temp_a1 = (*(u8 *)((s8 *)((((Objfly_arg0 *)arg0)->unk8C)) + (9)));
     if (temp_a1 != 0) {
-        func_800C2FDC(temp_a1 & 0xFF, temp_a1, arg0);
+        BT_IDO_ONLY(func_800C2FDC(temp_a1 & 0xFF, temp_a1, arg0);) BT_NATIVE_ONLY(func_800C2FDC(temp_a1 & 0xFF);)
         (*(s8 *)((s8 *)((((Objfly_arg0 *)arg0)->unk8C)) + (9))) = 0;
     }
 }

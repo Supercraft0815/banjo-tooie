@@ -213,12 +213,12 @@ void func_80800624_chfantasyonion(Actor *arg0, void *arg1) {
 /* extern */
 
 void func_808006E0_chfantasyonion(void *arg0) {
-    s32 func_800E87E0(s32, void *);
+    BT_IDO_ONLY(s32 func_800E87E0(s32, void *);) BT_NATIVE_ONLY(void func_800E87E0(u8);)
     s32 temp_v0;
 
     temp_v0 = (((Objonion_arg0 *)arg0)->unk18);
     if (temp_v0 != 0) {
-        func_800E87E0(temp_v0 & 0xFF, arg0);
+        BT_IDO_ONLY(func_800E87E0(temp_v0 & 0xFF, arg0);) BT_NATIVE_ONLY(func_800E87E0((u8)temp_v0);)
         (((Objonion_arg0 *)arg0)->unk18) = 0;
     }
 }

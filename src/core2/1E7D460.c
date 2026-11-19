@@ -101,10 +101,10 @@ void func_800A3DB8(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
 /* extern */
 
 void func_800A3EC8(PlayerState *arg0, s32 arg1) {
-    s32 func_80110D08(PlayerState *, u8, PlayerState *);
+    BT_IDO_ONLY(s32 func_80110D08(PlayerState *, u8, PlayerState *);) BT_NATIVE_ONLY(s32 func_80110D08(void *, s32);)
     if (arg1 != (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x38)))) + (7)))) {
         (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x38)))) + (7))) = arg1;
-        func_80110D08(func_800A4CA8(arg0), (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x38)))) + (7))), arg0);
+        BT_IDO_ONLY(func_80110D08(func_800A4CA8(arg0), (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x38)))) + (7))), arg0);) BT_NATIVE_ONLY(func_80110D08(func_800A4CA8(arg0), (*(u8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x38)))) + (7))));)
     }
 }    typedef struct { u8 pad0[0x3A]; u8 unk3A; } Obj1E7D460_func_800A3F14_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 

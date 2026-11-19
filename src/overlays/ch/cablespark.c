@@ -93,12 +93,12 @@ void func_8080024C_chcablespark(Actor *arg0) {
 /* extern */
 
 void func_808002BC_chcablespark(void *arg0) {
-    s32 func_800E87E0(s32, u8);
+    BT_IDO_ONLY(s32 func_800E87E0(s32, u8);) BT_NATIVE_ONLY(void func_800E87E0(u8);)
     u8 temp_a1;
 
     temp_a1 = (((Objcablespark_arg0 *)arg0)->unk18);
     if (temp_a1 != 0) {
-        func_800E87E0(temp_a1 & 0xFF, temp_a1);
+        BT_IDO_ONLY(func_800E87E0(temp_a1 & 0xFF, temp_a1);) BT_NATIVE_ONLY(func_800E87E0((u8)temp_a1);)
     }
 }
 

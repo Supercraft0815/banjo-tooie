@@ -3016,7 +3016,7 @@ BtFnWord bsfirstp_entrypoint_21(s32 arg0) {
 void func_80804F28_bsfirstp(struct player_state_s *arg0) {
     void func_80807BB8_bsfirstp(void *);
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
-    void baanim_playForDuration_onceSmoothStartingAt(void *, s32, f32, f32);
+    BT_IDO_ONLY(void baanim_playForDuration_onceSmoothStartingAt(void *, s32, f32, f32);)
     void func_8008B188(struct anctrl_s *, s32);
     struct anctrl_s *func_8008D04C(struct player_state_s *);
     func_80807BB8_bsfirstp(arg0);
@@ -3091,7 +3091,7 @@ void func_8080511C_bsfirstp(struct player_state_s *arg0) {
     void func_80807BB8_bsfirstp(void *);
     u32 func_800A3404(void *);
     void func_80807F24_bsfirstp(BtIntPtr);
-    void baanim_playForDuration_loop(struct player_state_s *, s32, f32);
+    BT_IDO_ONLY(void baanim_playForDuration_loop(struct player_state_s *, s32, f32);)
     void func_8008C990(struct player_state_s *, f32);
 
     _bsdrone_entrypoint_0((BtIntPtr)arg0);
@@ -4508,7 +4508,7 @@ void func_80807394_bsfirstp(struct player_state_s *arg0) {
     s32 bs_setState(void *, s32);
     void func_80807EEC_bsfirstp(BtIntPtr);
     void func_80807F24_bsfirstp(BtIntPtr);
-    void baanim_playForDuration_loop(struct player_state_s *, s32, f32);
+    BT_IDO_ONLY(void baanim_playForDuration_loop(struct player_state_s *, s32, f32);)
     s32 pad;
     s32 sp20;
     s32 state;
@@ -4561,7 +4561,7 @@ void func_80807504_bsfirstp(struct player_state_s *arg0) {
     int func_800DB9B0(void);
     s32 bs_getPreviousState(struct player_state_s *);
     s32 _bsrest_entrypoint_16(void *);
-    void baanim_playForDuration_loop(struct player_state_s *, s32, f32);
+    BT_IDO_ONLY(void baanim_playForDuration_loop(struct player_state_s *, s32, f32);)
     void func_800936E8(void *, s32);
     void func_8009337C(void *, s32);
     s32 state;
@@ -4670,7 +4670,7 @@ void func_808077E0_bsfirstp(void *arg0) {
     void func_80807BB8_bsfirstp(void *);
     s32 _bsrest_entrypoint_16(void *);
     u32 func_800A3404(void *);
-    void baanim_playForDuration_loop(struct player_state_s *, s32, f32);
+    BT_IDO_ONLY(void baanim_playForDuration_loop(struct player_state_s *, s32, f32);)
     void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);
 
     func_80801B64_bsfirstp(arg0, 2);

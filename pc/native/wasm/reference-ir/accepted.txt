@@ -105,3 +105,11 @@ gcdialogexec_entrypoint_10 and subaddieDll_entrypoint_12 move pure integer
 conversions past independent loads. Inlining these conversions gives identical
 canonical instructions in each complete function. See
 build/acceptance/n2-2026-11-18/signature-three-proof.log.
+
+2026-11-19  N2 zone and route argument widths
+func_800A3EC8, func_800DE03C and subaddiezone_entrypoint_0 pass unsigned
+bytes from offsets 7, 10 and 0x78 to their callees (IDO lbu).
+func_808002F4_chglowbo passes the unsigned halfword at offset 0x14 as
+argument 3 (IDO lhu). Each complete canonical function differs by one
+sext-to-zext substitution. See signature-four-ir.log and
+signature-four-original-loads.log under build/acceptance/n2-2026-11-18/.

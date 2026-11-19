@@ -840,7 +840,7 @@ void func_808018A0_chfactorytwinklies(Actor *arg0) {
     f32 _subaddiejoy_entrypoint_9(void *, void *, s32);
     s32 _subaddierouteDll_entrypoint_4(Actor *);
     void _subaddierouteDll_entrypoint_5(Actor *, void *, s32, f32, f32, f32);
-    void _subaddierouteDll_entrypoint_6(Actor *, void *, s32, s32, f32, s32, s32);
+    BT_IDO_ONLY(void _subaddierouteDll_entrypoint_6(Actor *, void *, s32, s32, f32, s32, s32);) BT_NATIVE_ONLY(s32 _subaddierouteDll_entrypoint_6(Actor *, void *, s32, s32, f32, s32, s32);)
     s32 _subaddierouteDll_entrypoint_7(Actor *, void *, f32, f32, f32, s32);
     f32 func_80013970(f32);
     void func_800C8CB8(s32, f32 *);
