@@ -3659,3 +3659,11 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuite
 Die Markersuche erhält den angeforderten Ausgang. Kamera und Goldstatue erhalten ihre ursprünglichen Argumente. Die Mimik verwendet beim Setzen, Lesen und Freigeben dieselben beiden Bits am Actor.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 74 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 2 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-camera-spawn*`.
+
+### 2026-11-20 – Karteneinstiege mit vier abgeschalteten Compilerhilfen (N2/N3)
+
+Im Stand `gameplay-combined-camera` reproduziert der Weltenlauf allein mit ausgeschaltetem FixCalls den ersten abweichenden Actor bei Retrace 21.710. Mit ausschließlich abgeschaltetem DataGroup stimmen alle 27.093 Retraces bis zur Zielkarte 0x14F überein. Die beiden Protokolle liegen unter `build/acceptance/n1-2026-11-18/combined-worlds-no-*.log`.
+
+Beim direkten Einstieg in alle 229 Karten mit vier abgeschalteten Hilfen erreichen 167 ihre Zielkarte, 32 wechseln die Karte und 15 zeigen ein statisches Bild. Zu den fünf bekannten Sonderfällen kommen acht Abstürze auf BA, BB, 10C, 152, 153, 161, 179 und 187. Auf E4 und 181 bricht die Kamera beim Auflösen eines Speicherhandles ab. Der Bericht mit Karten-IDs und Aufrufstapeln liegt unter `build/acceptance/n1-2026-11-18/combined-four-off-map-sweep/summary.json`.
+
+Der isolierte Folgestand `gameplay-deflection-query` besteht im regulären Build alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 90 native Sanitizertests. Original-IDO bestätigt das Inventar mit 16.401 Funktionen und beide vollständigen ROM-Abbilder. Der LP64-Compiler meldet 473 Stellen in 209 Dateien und übersetzt alle geprüften Spieldateien. Belege unter `build/acceptance/n1-2026-11-18/gameplay-deflection-*`.
