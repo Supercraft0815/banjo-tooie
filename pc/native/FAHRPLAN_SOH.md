@@ -153,6 +153,8 @@ Weitere geprüfte N2-/N3-Pakete am 20. November
 
 - Kugelsteuerungen. Beide Steuerungen behalten die Figurenmarker in nativer Zeigerbreite.
 
+- Freezys Modelle. Freezys vier Modellplätze bewahren die vollständigen Asset-Zeiger bis zum Zeichnen.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

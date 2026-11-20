@@ -699,13 +699,13 @@ Actor *chnewfreezy_entrypoint_0(Unk80132ED0 *marker, s32 x, s32 y, s32 z) {
 
 void func_808016B4_chnewfreezy(Actor *arg0, s32 arg1) {
     s32 _subaddiefade_entrypoint_0(Actor *);
-    BtIntPtr func_800D674C(s32);
-    void *func_800DE448(f32 *, f32 *, f32, f32 *, BtIntPtr);
+    struct ImageStruct *func_800D674C(s32);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, u8 *);
     void func_800DF410(s32);
     void func_800DF830(s32);
     s32 func_800E3E8C(f32 *, f32);
     void *func_80100094(Actor *, u32);
-    s32 models[4];
+    struct ImageStruct *models[4];
     u32 i;
     struct FreezyRenderPart {
         u8 pad00[0xC];
@@ -733,7 +733,7 @@ void func_808016B4_chnewfreezy(Actor *arg0, s32 arg1) {
                         func_800DF410(_subaddiefade_entrypoint_0(arg0));
                     }
                     func_800DF830(2);
-                    func_800DE448(part->position, part->rotation, part->scale, 0, models[part->model]);
+                    func_800DE448(part->position, part->rotation, part->scale, 0, (u8 *)models[part->model]);
                 }
                 i++;
                 part++;
