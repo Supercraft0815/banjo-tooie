@@ -747,6 +747,26 @@ else()
 endif()
 add_test(NAME native_render_state COMMAND bt_native_render_state_test)
 
+add_executable(bt_native_firstperson_camera_state_test tests/firstperson_camera_state.c "${BT_ROOT}/src/core2/1E7D460.c")
+add_dependencies(bt_native_firstperson_camera_state_test bt_native_overlay_aliases)
+target_compile_definitions(bt_native_firstperson_camera_state_test PRIVATE
+    BT_NATIVE=1 BT_NATIVE_LITTLE_ENDIAN=1 _LANGUAGE_C BUILD_VERSION=VERSION_J _FINALROM F3DEX_GBI_2)
+target_include_directories(bt_native_firstperson_camera_state_test PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}/include" "${BT_ROOT}/include"
+    "${BT_ROOT}/lib/ultralib/include" "${BT_ROOT}/src")
+target_compile_options(bt_native_firstperson_camera_state_test PRIVATE -std=gnu89 -ffunction-sections -fdata-sections
+    "SHELL:-include \"${BT_OVERLAY_ALIASES}\""
+    "SHELL:-include \"${CMAKE_CURRENT_SOURCE_DIR}/include/native_prototypes.h\""
+    -fno-builtin -fno-strict-aliasing -fwrapv -Wno-deprecated-non-prototype
+    -Wno-error=implicit-function-declaration -Wno-error=int-conversion
+    -Wno-error=incompatible-pointer-types -Wno-error=int-to-pointer-cast -Wno-error=pointer-to-int-cast)
+if(APPLE)
+    target_link_options(bt_native_firstperson_camera_state_test PRIVATE -Wl,-dead_strip)
+else()
+    target_link_options(bt_native_firstperson_camera_state_test PRIVATE -Wl,--gc-sections)
+endif()
+add_test(NAME native_firstperson_camera_state COMMAND bt_native_firstperson_camera_state_test)
+
 add_executable(bt_native_graphics_abi_test tests/graphics_abi.c)
 target_link_libraries(bt_native_graphics_abi_test PRIVATE bt_native_core)
 if(APPLE)

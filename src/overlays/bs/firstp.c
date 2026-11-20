@@ -945,7 +945,7 @@ void bsfirstp_entrypoint_2(struct player_state_s *arg0) {
 }
 
 void func_8080187C_bsfirstp(void *arg0) {
-    void func_800A5004(void *);
+    BT_IDO_ONLY(void func_800A5004(void *);) BT_NATIVE_ONLY(void func_800A5004(PlayerState *);)
     BtIntPtr func_800A5090(void *);
     void func_800CA6C0(void *, f32, f32);
     if (func_800A5090(arg0) == 0) {
@@ -961,11 +961,11 @@ void func_808018E0_bsfirstp(BtIntPtr arg0) {
     s16 *func_800A4C88(void *);
     struct player_state_s *func_800A4CA8();
     void func_8010FD38(BtIntPtr, f32);
-    void func_800A5044(u8 *arg0);
+    BT_IDO_ONLY(void func_800A5044(u8 *arg0);) BT_NATIVE_ONLY(void func_800A5044(PlayerState *arg0);)
     void func_80110730(BtIntPtr, s32);
     func_80110730(func_800A4CA8(), 0);
     func_8010FD38(func_800A4C88(arg0), 0.0f);
-    func_800A5044(arg0);
+    func_800A5044(BT_IDO_ONLY((u8 *)arg0) BT_NATIVE_ONLY((PlayerState *)arg0));
 }
 
 void func_80801928_bsfirstp(struct player_state_s *arg0) {

@@ -141,6 +141,10 @@ Weitere geprüfte N2-Pakete am 20. November
 
 - Tabellen für Licht und Figureneffekte. Die Fabrik liest vier Lichtpositionen und speichert die Eingabeposition im eigenen Vektor. Die Mine liest neun Lichtkennungen, der Treibsandgegner zehn Ereignispaare und der Schneeball vier Partikelversätze.
 
+Weitere geprüfte N2-/N3-Pakete am 20. November
+
+- Ego-Kamera. Die Kamera behält den Zustandszeiger auch auf LP64. Die Hochadressprobe prüft die drei Zugriffspfade.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

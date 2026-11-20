@@ -3867,3 +3867,9 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten
 Die Fabrik liest vier Lichtpositionen und speichert die Eingabeposition im eigenen Vektor. Die Mine liest neun Lichtkennungen, der Treibsandgegner zehn Ereignispaare und der Schneeball vier Partikelversätze.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 79 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 4 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-actor-array-bounds*`.
+
+### 2026-11-20 – Ego-Kamera (N2/N3)
+
+Die Kamera behält den Zustandszeiger auch auf LP64. Die Hochadressprobe prüft die drei Zugriffspfade.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 80 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-firstperson-camera*`.

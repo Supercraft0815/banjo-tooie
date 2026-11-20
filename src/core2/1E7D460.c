@@ -2,7 +2,7 @@
 
 s32 func_800A3B70() 
 {
-    return 0x40;
+    return BT_IDO_ONLY(0x40) BT_NATIVE_ONLY(sizeof(FirstPersonCameraState));
 }
 
 /* extern */
@@ -187,14 +187,14 @@ void func_800A4160(BtIntPtr arg0)
 }
 /* extern */
 
-void func_800A4168(u8 *arg0) {
+void func_800A4168(PlayerState *arg0) {
     void func_800A4074(PlayerState *, s32);
     (*(s32 *)((s8 *)((((Obj1E7D460_arg0 *)arg0)->unk38)) + (0x3C))) = 0;
     func_800A4074(arg0, 2);
 }
 
-void func_800A4190(arg) {
-    PlayerState *arg0 = (PlayerState *)arg;
+BT_IDO_ONLY(void func_800A4190(arg)) BT_NATIVE_ONLY(void func_800A4190(PlayerState *arg0)) {
+    BT_IDO_ONLY(PlayerState *arg0 = (PlayerState *)arg;)
     s32 func_800A4D40(void *);
     s32 func_800F65D0(BtIntPtr);
     s32 func_8009CC68(PlayerState *);
@@ -237,7 +237,7 @@ void func_800A4190(arg) {
     }
 }
 
-s32 func_800A4338(arg0) {
+BT_IDO_ONLY(s32 func_800A4338(arg0)) BT_NATIVE_ONLY(s32 func_800A4338(PlayerState *self)) {
     typedef struct {
         u8 pad0[2];
         u8 mode;
@@ -256,7 +256,7 @@ s32 func_800A4338(arg0) {
     s32 bs_getCurrentState(PlayerState *);
     s32 func_8009CA70(PlayerState *, s32, s32);
     void func_800A3EC8(PlayerState *, s32);
-    void func_800A4190();
+    BT_IDO_ONLY(void func_800A4190();) BT_NATIVE_ONLY(void func_800A4190(PlayerState *);)
     s8 func_800A5B6C(void);
     s8 func_800A5B7C(void);
     f32 func_800A5B8C(void);
@@ -282,7 +282,7 @@ s32 func_800A4338(arg0) {
     void _ncbafixpos_entrypoint_4(PlayerState *, s32);
     void _ncbaspiral_entrypoint_5(PlayerState *, s32);
     s32 id;
-    PlayerState *self = (PlayerState *)arg0;
+    BT_IDO_ONLY(PlayerState *self = (PlayerState *)arg0;)
     s32 mode;
     s32 flag;
     s32 value1;
@@ -486,9 +486,9 @@ s32 func_800A4978(PlayerState *arg0) {
     return 1;
 }
 
-void func_800A4A14(BtIntPtr arg0) { if (func_800A4338(BT_NATIVE_ONLY(arg0)) != 0) return; func_800A4190(arg0); func_800A4878(arg0); }
+BT_IDO_ONLY(void func_800A4A14(BtIntPtr arg0)) BT_NATIVE_ONLY(void func_800A4A14(PlayerState *arg0)) { if (func_800A4338(BT_NATIVE_ONLY(arg0)) != 0) return; func_800A4190(arg0); func_800A4878(arg0); }
 
-void func_800A4A4C(BtIntPtr arg0)
+BT_IDO_ONLY(void func_800A4A4C(BtIntPtr arg0)) BT_NATIVE_ONLY(void func_800A4A4C(PlayerState *arg0))
 {
     func_800A4190(BT_NATIVE_ONLY(arg0));
     func_800A4878(arg0);
@@ -677,29 +677,29 @@ void func_800A4EFC(void *arg0, f32 arg1) {
 
 /* extern */
 
-void func_800A5004(void *arg0) {
+BT_IDO_ONLY(void func_800A5004(void *arg0)) BT_NATIVE_ONLY(void func_800A5004(PlayerState *arg0)) {
     s32 func_800A4E94(void *);
     void * func_800CA334(void);
-    if ((*(s32 *)((s8 *)((((Obj1E7D460_arg0 *)arg0)->unk38_voidp)) + (0x3C))) == 0) {
-        (*(s32 *)((s8 *)((((Obj1E7D460_arg0 *)arg0)->unk38_voidp)) + (0x3C))) = func_800CA334();
+    if (BT_IDO_ONLY((*(s32 *)((s8 *)((((Obj1E7D460_arg0 *)arg0)->unk38_voidp)) + (0x3C))) == 0) BT_NATIVE_ONLY(FIRSTPERSON_CAMERA_HANDLE(arg0) == NULL)) {
+        BT_IDO_ONLY((*(s32 *)((s8 *)((((Obj1E7D460_arg0 *)arg0)->unk38_voidp)) + (0x3C))) = func_800CA334();) BT_NATIVE_ONLY(FIRSTPERSON_CAMERA_HANDLE(arg0) = func_800CA334();)
         func_800A4E94(arg0);
     }
 }
 
 /* extern */
 
-void func_800A5044(u8 *arg0) {
+BT_IDO_ONLY(void func_800A5044(u8 *arg0)) BT_NATIVE_ONLY(void func_800A5044(PlayerState *arg0)) {
     s32 func_800A4EC8(void *);
-    s32 func_800CA364(s32);
-    if ((*(s32 *)((s8 *)((((Obj1E7D460_arg0 *)arg0)->unk38)) + (0x3C))) != 0) {
+    s32 func_800CA364(BtIntPtr);
+    if (BT_IDO_ONLY((*(s32 *)((s8 *)((((Obj1E7D460_arg0 *)arg0)->unk38)) + (0x3C))) != 0) BT_NATIVE_ONLY(FIRSTPERSON_CAMERA_HANDLE_U8(arg0) != NULL)) {
         func_800A4EC8(arg0);
-        func_800CA364((*(s32 *)((s8 *)((((Obj1E7D460_arg0 *)arg0)->unk38)) + (0x3C))));
-        (*(s32 *)((s8 *)((((Obj1E7D460_arg0 *)arg0)->unk38)) + (0x3C))) = 0;
+        func_800CA364(BT_IDO_ONLY((*(s32 *)((s8 *)((((Obj1E7D460_arg0 *)arg0)->unk38)) + (0x3C)))) BT_NATIVE_ONLY((BtIntPtr)FIRSTPERSON_CAMERA_HANDLE_U8(arg0)));
+        BT_IDO_ONLY((*(s32 *)((s8 *)((((Obj1E7D460_arg0 *)arg0)->unk38)) + (0x3C))) = 0;) BT_NATIVE_ONLY(FIRSTPERSON_CAMERA_HANDLE_U8(arg0) = NULL;)
     }
 }
 
 BtIntPtr func_800A5090(void *arg0) {
-    return *(s32 *)((u8 *)*(void **)((u8 *)arg0 + 56) + 60);
+    return BT_IDO_ONLY(*(s32 *)((u8 *)*(void **)((u8 *)arg0 + 56) + 60)) BT_NATIVE_ONLY(FIRSTPERSON_CAMERA_RESULT(arg0));
 }
 
 void func_800A509C(void *arg0) {
