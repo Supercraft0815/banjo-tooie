@@ -166,6 +166,8 @@ Weitere geprüfte N2-/N3-Pakete am 20. November
 
 - Lavaschalter und Dampf. Die Schalter erhalten ihren Actor und das zugehörige Flag. Der Dampfeffekt verwendet den Figurenmarker beim Entfernen.
 
+- Mehrspielerspiele. Die Abfragen für die Ego-Mehrspielerspiele erhalten ihren Spieler aus dem Aufrufer.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

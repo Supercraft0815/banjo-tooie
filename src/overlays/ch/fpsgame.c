@@ -385,12 +385,12 @@ void func_8080075C_chfpsgame(Actor *arg0) {
 
 /* extern */
 
-void func_808008D4_chfpsgame(s32 arg0) {
+void func_808008D4_chfpsgame(BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) arg0) {
     s32 func_80800FF4_chfpsgame(BtIntPtr);
-    s32 func_808015EC_chfpsgame();
+    s32 func_808015EC_chfpsgame(BT_NATIVE_ONLY(Actor *));
     s32 func_80801758_chfpsgame(BtIntPtr);
     s32 func_808018E0_chfpsgame(BtIntPtr);
-    func_808015EC_chfpsgame();
+    func_808015EC_chfpsgame(BT_NATIVE_ONLY((Actor *)arg0));
     func_80800FF4_chfpsgame(arg0);
     func_80801758_chfpsgame(arg0);
     func_808018E0_chfpsgame(arg0);
