@@ -77,6 +77,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Kartenausgang und Actor-Slots. Die Markersuche erhält den angeforderten Ausgang. Kamera und Goldstatue erhalten ihre ursprünglichen Argumente. Die Mimik verwendet beim Setzen, Lesen und Freigeben dieselben beiden Bits am Actor.
 
+- Zeichnen der HUD-Stile. Der Test ruft alle neun Zeichenroutinen mit dem realen HUD-Eintrag auf und prüft Text, Symbole, Breite und Displaylistenübergabe.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

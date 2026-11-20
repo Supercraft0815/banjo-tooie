@@ -1,20 +1,20 @@
 /* data_to_c.py: from asm/data/overlays/sc/infobar.data.s */
-void _sccustom_entrypoint_0();
+BT_NATIVE_ONLY(void _sccustom_entrypoint_0(Gfx **, void *, s32, s32);) BT_IDO_ONLY(void _sccustom_entrypoint_0();)
 BT_NATIVE_ONLY(s32 _sccustom_entrypoint_3(BtIntPtr);) BT_IDO_ONLY(void _sccustom_entrypoint_3();)
-void _sccustom_entrypoint_2();
+BT_NATIVE_ONLY(void _sccustom_entrypoint_2(Gfx **, void *, s32, s32);) BT_IDO_ONLY(void _sccustom_entrypoint_2();)
 BT_NATIVE_ONLY(s32 _sccustom_entrypoint_5(BtIntPtr);) BT_IDO_ONLY(void _sccustom_entrypoint_5();)
-void _sccustom_banjo_entrypoint_0();
+BT_NATIVE_ONLY(void _sccustom_banjo_entrypoint_0(Gfx **, void *, s32, s32);) BT_IDO_ONLY(void _sccustom_banjo_entrypoint_0();)
 BT_NATIVE_ONLY(s32 _sccustom_banjo_entrypoint_2(BtIntPtr);) BT_IDO_ONLY(void _sccustom_banjo_entrypoint_2();)
-void _sccustom_banjo_entrypoint_1();
+BT_NATIVE_ONLY(void _sccustom_banjo_entrypoint_1(Gfx **, void *, s32, s32);) BT_IDO_ONLY(void _sccustom_banjo_entrypoint_1();)
 BT_NATIVE_ONLY(s32 _sccustom_banjo_entrypoint_3(BtIntPtr);) BT_IDO_ONLY(void _sccustom_banjo_entrypoint_3();)
-void _sccustom_entrypoint_6();
+BT_NATIVE_ONLY(void _sccustom_entrypoint_6(Gfx **, void *, s32, s32);) BT_IDO_ONLY(void _sccustom_entrypoint_6();)
 BT_NATIVE_ONLY(s32 _sccustom_entrypoint_7(BtIntPtr);) BT_IDO_ONLY(void _sccustom_entrypoint_7();)
-void _sccustom_big_entrypoint_0();
+BT_NATIVE_ONLY(void _sccustom_big_entrypoint_0(Gfx **, void *, s32, s32);) BT_IDO_ONLY(void _sccustom_big_entrypoint_0();)
 BT_NATIVE_ONLY(s32 _sccustom_big_entrypoint_2(BtIntPtr);) BT_IDO_ONLY(void _sccustom_big_entrypoint_2();)
-void _sccustom_big_entrypoint_1();
+BT_NATIVE_ONLY(void _sccustom_big_entrypoint_1(Gfx **, void *, s32, s32);) BT_IDO_ONLY(void _sccustom_big_entrypoint_1();)
 BT_NATIVE_ONLY(s32 _sccustom_big_entrypoint_3(BtIntPtr);) BT_IDO_ONLY(void _sccustom_big_entrypoint_3();)
-void _chhoneyb_entrypoint_2();
-void _sccustom_entrypoint_1();
+BT_NATIVE_ONLY(void _chhoneyb_entrypoint_2(Gfx **, void *, s32, s32);) BT_IDO_ONLY(void _chhoneyb_entrypoint_2();)
+BT_NATIVE_ONLY(void _sccustom_entrypoint_1(Gfx **, void *, s32, s32);) BT_IDO_ONLY(void _sccustom_entrypoint_1();)
 BT_NATIVE_ONLY(s32 _sccustom_entrypoint_4(BtIntPtr);) BT_IDO_ONLY(void _sccustom_entrypoint_4();)
 InfobarEntry D_808008B0_scinfobar[99] BT_DATA(4, overlays_sc_infobar, 0x0) = {
     {0, 0, 0, {{0, 0}}, 0},           {2896, 0, 0, {{0, 0}}, 0},
@@ -68,12 +68,12 @@ InfobarEntry D_808008B0_scinfobar[99] BT_DATA(4, overlays_sc_infobar, 0x0) = {
     {2900, 0, 0, {{0, 0}}, 0},        {2901, 0, 0, {{0, 0}}, 0},
     {2902, 0, 0, {{0, 0}}, 0}};
 InfobarStyle D_80800D54_scinfobar[9] BT_DATA(4, overlays_sc_infobar, 0x4A4) = {
-    {(InfobarDraw)_sccustom_entrypoint_0, (InfobarValue)_sccustom_entrypoint_3, 0.65f},
-    {(InfobarDraw)_sccustom_entrypoint_2, (InfobarValue)_sccustom_entrypoint_5, 0.65f},
-    {(InfobarDraw)_sccustom_banjo_entrypoint_0, (InfobarValue)_sccustom_banjo_entrypoint_2, 0.65f},
-    {(InfobarDraw)_sccustom_banjo_entrypoint_1, (InfobarValue)_sccustom_banjo_entrypoint_3, 0.65f},
-    {(InfobarDraw)_sccustom_entrypoint_6, (InfobarValue)_sccustom_entrypoint_7, 0.9f},
-    {(InfobarDraw)_sccustom_big_entrypoint_0, (InfobarValue)_sccustom_big_entrypoint_2, 0.9f},
-    {(InfobarDraw)_sccustom_big_entrypoint_1, (InfobarValue)_sccustom_big_entrypoint_3, 0.9f},
-    {(InfobarDraw)_chhoneyb_entrypoint_2, (InfobarValue)_sccustom_banjo_entrypoint_2, 0.65f},
-    {(InfobarDraw)_sccustom_entrypoint_1, (InfobarValue)_sccustom_entrypoint_4, 0.65f}};
+    {BT_IDO_ONLY((InfobarDraw))_sccustom_entrypoint_0, (InfobarValue)_sccustom_entrypoint_3, 0.65f},
+    {BT_IDO_ONLY((InfobarDraw))_sccustom_entrypoint_2, (InfobarValue)_sccustom_entrypoint_5, 0.65f},
+    {BT_IDO_ONLY((InfobarDraw))_sccustom_banjo_entrypoint_0, (InfobarValue)_sccustom_banjo_entrypoint_2, 0.65f},
+    {BT_IDO_ONLY((InfobarDraw))_sccustom_banjo_entrypoint_1, (InfobarValue)_sccustom_banjo_entrypoint_3, 0.65f},
+    {BT_IDO_ONLY((InfobarDraw))_sccustom_entrypoint_6, (InfobarValue)_sccustom_entrypoint_7, 0.9f},
+    {BT_IDO_ONLY((InfobarDraw))_sccustom_big_entrypoint_0, (InfobarValue)_sccustom_big_entrypoint_2, 0.9f},
+    {BT_IDO_ONLY((InfobarDraw))_sccustom_big_entrypoint_1, (InfobarValue)_sccustom_big_entrypoint_3, 0.9f},
+    {BT_IDO_ONLY((InfobarDraw))_chhoneyb_entrypoint_2, (InfobarValue)_sccustom_banjo_entrypoint_2, 0.65f},
+    {BT_IDO_ONLY((InfobarDraw))_sccustom_entrypoint_1, (InfobarValue)_sccustom_entrypoint_4, 0.65f}};

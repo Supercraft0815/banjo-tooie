@@ -326,7 +326,7 @@ void scinfobar_entrypoint_24(BtIntPtr arg0, void *arg1, s32 arg2, s32 arg3) {
     func_808006EC_scinfobar(arg0, arg1, arg2, arg3);
     if ((((Objinfobar_arg1 *)arg1)->unk0) != 0x64) {
         if (D_80800D54_scinfobar[((Objinfobar_arg1 *)arg1)->unk1C].draw != NULL) {
-            (D_80800D54_scinfobar[((Objinfobar_arg1 *)arg1)->unk1C].draw)(arg0, arg1, arg2, arg3);
+            (D_80800D54_scinfobar[((Objinfobar_arg1 *)arg1)->unk1C].draw)(BT_NATIVE_ONLY((Gfx **))arg0, arg1, arg2, arg3);
         }
     }
     var_v0 = ((Objinfobar_arg1 *)arg1)->unk2;

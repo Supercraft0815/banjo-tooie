@@ -548,3 +548,6 @@ pointers or use their storage. Both complete ROMs, all 74 replays and all
 
 2026-11-19  Camera, spawn and expression slots
 2 guest functions change their normalized IR. The 9,706 fixup addresses, both complete ROM images and all 74 replays match. See n1-2026-11-18/current-camera-spawn-ir.log.
+
+2026-11-19  Nine HUD draw callbacks
+0 guest functions change their normalized IR. The 9,706 fixup addresses, both complete ROM images and all 74 replays match. See n1-2026-11-18/current-hud-drawing-ir.log.

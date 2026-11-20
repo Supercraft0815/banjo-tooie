@@ -510,7 +510,14 @@ target_link_libraries(bt_native_gameselect_roles_test PRIVATE bt_native_options)
 set_source_files_properties("${BT_ROOT}/src/core2/player_contact_vectors.inc" PROPERTIES LANGUAGE C)
 add_executable(bt_native_player_vectors_test tests/player_vectors.c "${BT_ROOT}/src/core2/player_contact_vectors.inc" "${BT_ROOT}/src/core2/1E75920.c")
 target_link_libraries(bt_native_player_vectors_test PRIVATE bt_native_core)
-foreach(registry_test IN ITEMS particle_registry transition_registry timer_queue gameselect_roles player_vectors)
+set_source_files_properties("${BT_ROOT}/src/overlays/ch/honeyb_hud.inc" PROPERTIES LANGUAGE C)
+add_executable(bt_native_hud_draw_test tests/hud_draw.c
+    "${BT_ROOT}/src/overlays/sc/infobar.c" "${BT_ROOT}/src/overlays/sc/custom.c"
+    "${BT_ROOT}/src/overlays/sc/custom_big.c" "${BT_ROOT}/src/overlays/sc/custom_banjo.c"
+    "${BT_ROOT}/src/overlays/ch/honeyb_hud.inc" "${BT_ROOT}/src/core2/1EC0300.c"
+    "${BT_ROOT}/src/core2/1EB45C0.c")
+target_link_libraries(bt_native_hud_draw_test PRIVATE bt_native_options)
+foreach(registry_test IN ITEMS particle_registry transition_registry timer_queue gameselect_roles player_vectors hud_draw)
     if(MSVC)
         target_compile_options(bt_native_${registry_test}_test PRIVATE /Gy /Gw)
         target_link_options(bt_native_${registry_test}_test PRIVATE /OPT:REF)

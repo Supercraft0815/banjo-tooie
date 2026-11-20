@@ -350,7 +350,7 @@ void func_800E7368(BtIntPtr arg0, s32 arg1) {
         } else {
             var_v0 = 0x30;
         }
-        func_800E6A58(arg0, var_v0);
+        func_800E6A58(BT_NATIVE_ONLY((char *))arg0, var_v0);
         var_s0 -= 1;
     } while (var_s0 >= 0);
 }

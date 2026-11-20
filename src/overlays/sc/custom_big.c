@@ -5,8 +5,8 @@ BtIntPtr func_80800000_sccustom_big(BtIntPtr arg0) {
     void func_800E6DB4(char *, s32);
     void func_800E73D4(s8 *);
     extern char B_808003F0_sccustom_big[];
-    func_800E73D4(B_808003F0_sccustom_big);
-    func_800E6DB4(B_808003F0_sccustom_big, _scinfobar_entrypoint_19(arg0));
+    func_800E73D4(BT_NATIVE_ONLY((s8 *))B_808003F0_sccustom_big);
+    func_800E6DB4(B_808003F0_sccustom_big, _scinfobar_entrypoint_19(BT_NATIVE_ONLY((s32 *))arg0));
     return (BtIntPtr) &B_808003F0_sccustom_big;
 }
 
@@ -17,14 +17,14 @@ BtIntPtr func_80800044_sccustom_big(BtIntPtr arg0, u8 arg1) {
     void func_800E6DB4(char *, s32);
     void func_800E73D4(s8 *);
     extern char B_80800400_sccustom_big[];
-    func_800E73D4(B_80800400_sccustom_big);
-    func_800E6DB4(B_80800400_sccustom_big, _scinfobar_entrypoint_19(arg0));
+    func_800E73D4(BT_NATIVE_ONLY((s8 *))B_80800400_sccustom_big);
+    func_800E6DB4(B_80800400_sccustom_big, _scinfobar_entrypoint_19(BT_NATIVE_ONLY((s32 *))arg0));
     func_800E6A58(B_80800400_sccustom_big, arg1);
-    func_800E6DB4(B_80800400_sccustom_big, _scinfobar_entrypoint_20(arg0));
+    func_800E6DB4(B_80800400_sccustom_big, _scinfobar_entrypoint_20(BT_NATIVE_ONLY((s32 *))arg0));
     return (BtIntPtr) B_80800400_sccustom_big;
 }
 
-s32 func_808000B4_sccustom_big(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3, BtIntPtr arg4) {
+s32 func_808000B4_sccustom_big(BT_NATIVE_ONLY(Gfx **) BT_IDO_ONLY(BtIntPtr) arg0, BT_NATIVE_ONLY(void *) BT_IDO_ONLY(BtIntPtr) arg1, s32 arg2, s32 arg3, BtIntPtr arg4) {
     s32 _scinfobar_entrypoint_11(void *arg0);
     u32 _scinfobar_entrypoint_15(u8 *arg0);
     f32 _scinfobar_entrypoint_18(f32 *arg0);
@@ -87,18 +87,18 @@ s32 func_808000B4_sccustom_big(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3,
 
 /* extern */
 
-void sccustom_big_entrypoint_0(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+void sccustom_big_entrypoint_0(BT_NATIVE_ONLY(Gfx **) BT_IDO_ONLY(s32) arg0, BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32) arg1, s32 arg2, s32 arg3) {
     BtIntPtr func_80800000_sccustom_big(BtIntPtr);
-    s32 func_808000B4_sccustom_big(BtIntPtr, BtIntPtr, s32, s32, BtIntPtr);
-    func_808000B4_sccustom_big(arg0, arg1, arg2, arg3, func_80800000_sccustom_big(arg1));
+    BT_IDO_ONLY(s32 func_808000B4_sccustom_big(BtIntPtr, BtIntPtr, s32, s32, BtIntPtr);)
+    func_808000B4_sccustom_big(arg0, arg1, arg2, arg3, func_80800000_sccustom_big(BT_NATIVE_ONLY((BtIntPtr))arg1));
 }
 
 /* extern */
 
-void sccustom_big_entrypoint_1(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+void sccustom_big_entrypoint_1(BT_NATIVE_ONLY(Gfx **) BT_IDO_ONLY(s32) arg0, BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32) arg1, s32 arg2, s32 arg3) {
     BtIntPtr func_80800044_sccustom_big(BtIntPtr, u8);
-    s32 func_808000B4_sccustom_big(BtIntPtr, BtIntPtr, s32, s32, BtIntPtr);
-    func_808000B4_sccustom_big(arg0, arg1, arg2, arg3, func_80800044_sccustom_big(arg1, 0x2F));
+    BT_IDO_ONLY(s32 func_808000B4_sccustom_big(BtIntPtr, BtIntPtr, s32, s32, BtIntPtr);)
+    func_808000B4_sccustom_big(arg0, arg1, arg2, arg3, func_80800044_sccustom_big(BT_NATIVE_ONLY((BtIntPtr))arg1, 0x2F));
 }
 
 /* extern */
@@ -110,8 +110,8 @@ s32 func_80800314_sccustom_big(BtIntPtr arg0, BtIntPtr arg1) {
     f32 temp_f0;
     int var_v1;
 
-    sp1C = func_800E7188(arg1);
-    temp_f0 = _scinfobar_entrypoint_18(arg0);
+    sp1C = func_800E7188(BT_NATIVE_ONLY((u8 *))arg1);
+    temp_f0 = _scinfobar_entrypoint_18(BT_NATIVE_ONLY((f32 *))arg0);
     var_v1 = sp1C;
     if (var_v1 < 2) {
         var_v1 = 2;

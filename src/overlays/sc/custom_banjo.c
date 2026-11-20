@@ -1,16 +1,16 @@
 #include "common.h"
 
-void sccustom_banjo_entrypoint_0(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
+void sccustom_banjo_entrypoint_0(BT_NATIVE_ONLY(Gfx **) BT_IDO_ONLY(s32) arg0, BT_NATIVE_ONLY(void *) BT_IDO_ONLY(BtIntPtr) arg1, s32 arg2, s32 arg3) {
     s32 _scinfobar_entrypoint_11(void *arg0);
     s32 _scinfobar_entrypoint_14(s32 *arg0);
     f32 _scinfobar_entrypoint_18(f32 *arg0);
     s32 _scinfobar_entrypoint_19(s32 *arg0);
     s32 _scinfobar_entrypoint_20(s32 *arg0);
-    BtIntPtr func_800D674C(s32);
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(BtIntPtr) func_800D674C(s32);
     void func_800E253C(f32);
     void func_800E257C(s32);
     void func_800E30E0(BtIntPtr arg0, void *arg1, s32 arg2, void *arg3);
-    BtIntPtr sp8C;
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(BtIntPtr) sp8C;
     f32 temp_f20;
     s32 temp_f10;
     s32 temp_s1;
@@ -67,23 +67,23 @@ void sccustom_banjo_entrypoint_0(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
             func_800E253C(temp_f20);
             sp60[1] = arg3 * 4;
             sp60[0] = (arg2 + var_s1) * 4;
-            func_800E30E0(arg0, sp8C, 0, sp60);
+            func_800E30E0(BT_NATIVE_ONLY((BtIntPtr))arg0, sp8C, 0, sp60);
     }
 }
 
 /* extern */
 
-void sccustom_banjo_entrypoint_1(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
+void sccustom_banjo_entrypoint_1(BT_NATIVE_ONLY(Gfx **) BT_IDO_ONLY(s32) arg0, BT_NATIVE_ONLY(void *) BT_IDO_ONLY(BtIntPtr) arg1, s32 arg2, s32 arg3) {
     s32 _scinfobar_entrypoint_11(void *arg0);
     f32 _scinfobar_entrypoint_18(f32 *arg0);
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(s16) func_800CF6B0();
     s32 func_800CF6D0();
-    BtIntPtr func_800D674C(s32);
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(BtIntPtr) func_800D674C(s32);
     void func_800E24F8(s32, s32, s32);
     void func_800E253C(f32);
     void func_800E257C(s32);
     void func_800E30E0(BtIntPtr arg0, void *arg1, s32 arg2, void *arg3);
-    BtIntPtr sp84;
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(BtIntPtr) sp84;
     f32 temp_f20;
     s32 temp_f10;
     s32 temp_s3;
@@ -124,7 +124,7 @@ void sccustom_banjo_entrypoint_1(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
             func_800E253C(temp_f20);
             sp5C[0] = arg2 * 4;
             sp5C[1] = (arg3 + var_s2) * 4;
-            func_800E30E0(arg0, sp84, 0, sp5C);
+            func_800E30E0(BT_NATIVE_ONLY((BtIntPtr))arg0, sp84, 0, sp5C);
     }
 }
 
@@ -135,7 +135,7 @@ s32 sccustom_banjo_entrypoint_2(BtIntPtr arg0)
   s32 sp1C;
   f32 new_var;
   sp1C = _scinfobar_entrypoint_20(BT_NATIVE_ONLY((s32 *)arg0)) - 1;
-  new_var = _scinfobar_entrypoint_18(arg0);
+  new_var = _scinfobar_entrypoint_18(BT_NATIVE_ONLY((f32 *))arg0);
   return (s32) (((f32) ((sp1C * 0x14) + 0x28)) * new_var);
   if (sp1C)
   {
@@ -149,7 +149,7 @@ s32 sccustom_banjo_entrypoint_3(BtIntPtr arg0)
   s32 sp1C;
   f32 new_var;
   sp1C = func_800CF6D0() - 1;
-  new_var = _scinfobar_entrypoint_18(arg0);
+  new_var = _scinfobar_entrypoint_18(BT_NATIVE_ONLY((f32 *))arg0);
   return (s32) (((f32) ((sp1C * 0x14) + 0x28)) * new_var);
   if (sp1C)
   {

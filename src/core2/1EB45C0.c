@@ -1,6 +1,6 @@
 #include "core2/1EB45C0.h"
 
-s16 func_800A8184(void);
+s16 func_800A8184(void); BT_NATIVE_ONLY(s32 func_80090128(void); s32 _glgamedata_entrypoint_3(u8 *, s32, s32 *, u32 *);)
 f32 func_800D9004(void);
 
 extern u8 D_8012762C;
