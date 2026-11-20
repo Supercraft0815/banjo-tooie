@@ -9,11 +9,11 @@ OSThread *chfactorylight_entrypoint_0(void)
 
 /* extern */
 
-void func_8080000C_chfactorylight(BtIntPtr arg0) {
+void func_8080000C_chfactorylight(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(BtIntPtr) arg0) {
     void func_8010A800(void **arg0, s32 arg1);
-    void func_80800830_chfactorylight();
-    func_80800830_chfactorylight();
-    func_8010A800(arg0, 0x2);
+    void func_80800830_chfactorylight(BT_NATIVE_ONLY(Actor *));
+    func_80800830_chfactorylight(BT_NATIVE_ONLY(arg0));
+    func_8010A800(BT_NATIVE_ONLY((void **))arg0, 0x2);
 }
 
 void func_80800038_chfactorylight(Actor *arg0) {

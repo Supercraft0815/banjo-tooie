@@ -147,6 +147,8 @@ Weitere geprüfte N2-/N3-Pakete am 20. November
 
 - Figurenschatten. Beim Erzeugen, Zeichnen und Entfernen des Schattens bleiben beide Marker in voller Zeigerbreite erhalten. Der Test ruft den registrierten Callback über die fünf Wörter der Spawn-Warteschlange auf und prüft beide Zeichenmodi.
 
+- Fabrikbeleuchtung. Beide Aufrufstellen der Beleuchtung erhalten ihren Actor. Der Fabrik-Innenraum besteht ohne FixCalls alle 2.638 Retraces im Vergleich zur Kontrolle desselben Quellstands.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026
