@@ -1,34 +1,38 @@
 #include "common.h"
 #include "footstep_defaults.inc"
+#ifdef BT_NATIVE
+#include "freelist.h"
+extern FreeList *D_80136E80;
+#endif
 s32 *func_800BEF00(f32[3], f32[3], f32[3], s32);
 
 void func_80104350(void) {
-    void * freelist_new(s32 element_size, s32 capacity);
-    extern s32 D_80136E80;
+    BT_IDO_ONLY(void * freelist_new(s32 element_size, s32 capacity);)
+    BT_IDO_ONLY(extern s32 D_80136E80;)
     D_80136E80 = freelist_new(0x2C, 8);
 }
 
 void func_80104378(void) {
-    void freelist_free(void *list);
-    extern s32 D_80136E80;
+    BT_IDO_ONLY(void freelist_free(void *list);)
+    BT_IDO_ONLY(extern s32 D_80136E80;)
     freelist_free(D_80136E80);
     D_80136E80 = 0;
 }
 
 void func_801043A0(void) {
-    BtIntPtr freelist_defrag(BtIntPtr);
-    extern s32 D_80136E80;
+    BT_IDO_ONLY(BtIntPtr freelist_defrag(BtIntPtr);)
+    BT_IDO_ONLY(extern s32 D_80136E80;)
     if (D_80136E80 != 0) {
         D_80136E80 = freelist_defrag(D_80136E80);
     }
 }
 
-void *func_801043D8(BtIntPtr arg0) {
-    void * freelist_at(void *list, s32 index);
-    extern s32 D_80136E80;
+void *func_801043D8(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(BtIntPtr) arg0) {
+    BT_IDO_ONLY(void * freelist_at(void *list, s32 index);)
+    BT_IDO_ONLY(extern s32 D_80136E80;)
     s16 temp_a1;
 
-    temp_a1 = (*(s16 *)((s8 *)(arg0) + (0x8E)));
+    temp_a1 = BT_DATA_FIELD(((Actor *)arg0)->expression_handle, (*(s16 *)((s8 *)(arg0) + (0x8E))));
     if (temp_a1 == 0) {
         return NULL;
     }
@@ -36,15 +40,15 @@ void *func_801043D8(BtIntPtr arg0) {
 }
 
 s32 *func_80104410(void *arg0) {
-    void * freelist_at(void *list, s32 index);
-    extern s32 D_80136E80;
+    BT_IDO_ONLY(void * freelist_at(void *list, s32 index);)
+    BT_IDO_ONLY(extern s32 D_80136E80;)
     extern s32 D_80136E88;
     extern s8 D_80136E8B;
     extern s32 D_80136EAC;
     extern s8 D_80136EB0;
     s16 temp_a1;
 
-    temp_a1 = (*(s16 *)((s8 *)(arg0) + (0x8E)));
+    temp_a1 = BT_DATA_FIELD(((Actor *)arg0)->expression_handle, (*(s16 *)((s8 *)(arg0) + (0x8E))));
     if (temp_a1 == 0) {
         D_80136E8B = 0;
         D_80136EAC = 0;
@@ -55,9 +59,9 @@ s32 *func_80104410(void *arg0) {
 }
 
 void func_80104460(u8 *arg0) {
-    void *freelist_next(s32 *, s32 *);
+    BT_IDO_ONLY(void *freelist_next(s32 *, s32 *);)
     void func_800EFD4C(s16 vec[3]);
-    extern s32 D_80136E80;
+    BT_IDO_ONLY(extern s32 D_80136E80;)
     s32 index;
     struct Entry {
         u8 header[3];
@@ -74,7 +78,7 @@ void func_80104460(u8 *arg0) {
 
     index = 0;
     entry = freelist_next(&D_80136E80, &index);
-    *(s16 *)(arg0 + 0x8E) = index;
+    BT_DATA_FIELD(((Actor *)arg0)->expression_handle, *(s16 *)(arg0 + 0x8E)) = index;
     entry->active = 0;
     entry->value = 0;
     entry->flag = 0;
@@ -87,22 +91,22 @@ void func_80104460(u8 *arg0) {
 }
 
 void func_80104504(void *arg0) {
-    BT_IDO_ONLY(s32 freelist_erase(s32, s16, void *);) BT_NATIVE_ONLY(void freelist_erase(s32, s32);)
-    extern s32 D_80136E80;
+    BT_IDO_ONLY(s32 freelist_erase(s32, s16, void *);)
+    BT_IDO_ONLY(extern s32 D_80136E80;)
     s16 temp_a1;
 
-    temp_a1 = (*(s16 *)((s8 *)(arg0) + (0x8E)));
+    temp_a1 = BT_DATA_FIELD(((Actor *)arg0)->expression_handle, (*(s16 *)((s8 *)(arg0) + (0x8E))));
     if (temp_a1 != 0) {
         BT_IDO_ONLY(freelist_erase(D_80136E80, temp_a1, arg0);) BT_NATIVE_ONLY(freelist_erase(D_80136E80, temp_a1);)
-        (*(s16 *)((s8 *)(arg0) + (0x8E))) = 0;
+        BT_DATA_FIELD(((Actor *)arg0)->expression_handle, (*(s16 *)((s8 *)(arg0) + (0x8E)))) = 0;
     }
 }    typedef struct { u8 pad0[0x3]; u8 unk3; } Obj1EDDC40_func_80104544_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
-int func_80104544(BT_NATIVE_ONLY(s32 bt_a0)) {
-    void *func_801043D8();
+int func_80104544(BT_NATIVE_ONLY(Actor *actor)) {
+    BT_IDO_ONLY(void *func_801043D8();)
     void *temp_v0;
 #ifdef BT_NATIVE
-    temp_v0 = ((void * (*)(s32))func_801043D8)(bt_a0);
+    temp_v0 = func_801043D8(actor);
 #else
     temp_v0 = func_801043D8();
 #endif
@@ -111,12 +115,12 @@ int func_80104544(BT_NATIVE_ONLY(s32 bt_a0)) {
 
 /* extern */
 
-void func_80104580(BT_PARAM_OR_VOID(s32 bt_a0)) {
-    void *func_801043D8();
+void func_80104580(BT_PARAM_OR_VOID(Actor *actor)) {
+    BT_IDO_ONLY(void *func_801043D8();)
     void *temp_v0;
 
 #ifdef BT_NATIVE
-    temp_v0 = ((void * (*)(s32))func_801043D8)(bt_a0);
+    temp_v0 = func_801043D8(actor);
 #else
     temp_v0 = func_801043D8();
 #endif
@@ -153,7 +157,7 @@ void func_801045AC(Actor *arg0, f32 *arg1, f32 *arg2, s32 arg3) {
     }
 }
 
-s32 func_80104668(BtIntPtr arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 *arg4) {
+s32 func_80104668(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(BtIntPtr) arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 *arg4) {
     void func_800EE7F8(f32 *, f32 *);
     f32 func_800F0E00(f32, f32);
     int func_800F1988(f32 *arg0, f32 *arg1, f32 *arg2);
@@ -180,7 +184,7 @@ s32 func_80104668(BtIntPtr arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 *arg4) {
 /* extern */
 
 f32 func_8010473C(Actor *arg0, f32 *arg1) {
-    void *func_801043D8();
+    BT_IDO_ONLY(void *func_801043D8();)
     void func_801048E4(s8 *, f32 *);
     void *var_a0;
 
@@ -209,7 +213,7 @@ void func_80104780(BtIntPtr arg0) {
     s32 sp2C[3];
     s32 i;
 
-    data = func_801043D8(arg0);
+    data = func_801043D8(BT_NATIVE_ONLY((Actor *))arg0);
     if (((struct Flags *)(arg0 + 0x78))->bit1 &&
         !((struct Flags *)(arg0 + 0x74))->bit5 && data[3]) {
         func_801049B4(data, (f32 *)(arg0 + 4), sp38);
@@ -483,8 +487,8 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_80105138(u8 *arg0, BtIntPtr arg1, f32
 
 /* extern */
 
-s32 func_8010518C(BtIntPtr arg0) {
-    void *func_801043D8(BtIntPtr);
+s32 func_8010518C(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(BtIntPtr) arg0) {
+    BT_IDO_ONLY(void *func_801043D8(BtIntPtr);)
     int func_80104544();
     if (func_80104544(BT_NATIVE_ONLY(arg0)) == 0) {
         return 0;
@@ -510,7 +514,7 @@ s32 func_80105230(Actor *arg0, f32 *arg1) {
     s32 func_800D3948(void);
     f32 func_800EEB40(f32 *, f32 *);
     s32 func_80101E14(Actor *, f32);
-    s32 func_801053D4();
+    s32 func_801053D4(BT_NATIVE_ONLY(Actor *));
     void func_8010D640(BtIntPtr);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
     extern f32 D_80124420[3];
@@ -559,17 +563,17 @@ void func_80105390(u8 *arg0, u8 *arg1) {
 /* extern */
 
 #ifdef BT_NATIVE
-s32 func_801053D4(s32 bt_a0) {
+s32 func_801053D4(Actor *actor) {
 #else
 s32 func_801053D4(void) {
 #endif
     s32 func_800C84B0(s32);
-    s32 func_8010518C();
+    BT_IDO_ONLY(s32 func_8010518C();)
     s32 temp_v0;
     s32 var_v1;
 
 #ifdef BT_NATIVE
-    temp_v0 = func_800C84B0(((s32 (*)())func_8010518C)());
+    temp_v0 = func_800C84B0(func_8010518C(actor));
 #else
     temp_v0 = func_800C84B0(func_8010518C());
 #endif
@@ -583,7 +587,7 @@ s32 func_801053D4(void) {
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
-s32 D_80136E80 BT_DATA(4, bss_core2bss2_2_music_tail, 0x1460);
+FreeList *D_80136E80 BT_DATA(4, bss_core2bss2_2_music_tail, 0x1460);
 s32 D_80136E88 BT_DATA(4, bss_core2bss2_2_music_tail, 0x1468);
 s8 D_80136E8B BT_DATA(4, bss_core2bss2_2_music_tail, 0x146B);
 s32 D_80136EAC BT_DATA(4, bss_core2bss2_2_music_tail, 0x148C);

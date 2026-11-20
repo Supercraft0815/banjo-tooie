@@ -91,6 +91,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Zustand der Schritteffekte. Der Test setzt und liest Effekt, Modus und Stärke unabhängig und verwendet einen Effektzeiger oberhalb von 4 GiB.
 
+- Schrittgeräusche von Actors. Die Routinen für das Schrittgeräusch erhalten den ursprünglichen Actor. Die Freiliste verwendet ihren nativen Zeigertyp.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

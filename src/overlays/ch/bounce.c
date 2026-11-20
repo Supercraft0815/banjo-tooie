@@ -383,7 +383,7 @@ void chbounce_entrypoint_8(Actor *arg0) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     void func_800FFAB0(Actor *);
     s32 func_8010108C(Actor *, s32, BtIntPtr);
-    void func_80104580(void);
+    void func_80104580(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(void));
     void *func_80105494(Actor *);
     void func_8010A63C(Actor *);
     s32 func_8010D930(s32, s32, f32 *, s32 *);
@@ -418,7 +418,7 @@ void chbounce_entrypoint_8(Actor *arg0) {
     f32 speed;
     f32 factor;
 
-    func_80104580();
+    func_80104580(BT_NATIVE_ONLY(arg0));
     dt = func_800D8FF8();
     data = func_80100094(arg0, 2);
     config = &D_80800FE0_chbounce[data->type];

@@ -3725,3 +3725,9 @@ Die Physik schreibt den Geschwindigkeitsvektor mit drei Komponenten. Vier Aufruf
 Die Bedingung wurde für 24 Eingabekombinationen direkt aus den Original-MIPS-Instruktionen ausgewertet. Ein Kontrolllauf, in dem allein die Abfrage zurückgesetzt wurde, reproduziert beide bisherigen Referenzen bis zum Ende. Die korrigierten Aufzeichnungen ändern 349 von 4.316 und 350 von 4.736 Retraces. Alle übrigen Referenzen behalten ihren Digest. Die vorherigen Aufzeichnungen liegen unter `build/acceptance/n1-2026-11-18/kazooie-velocity-oracle/backup/`, der Vergleich und die zwei neuen Digests in `proof.json` im übergeordneten Verzeichnis.
 
 Ein frischer Build von `gameplay-kazooie-velocity-verified` besteht mit den korrigierten Referenzen alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 104 Sanitizertests. Original-IDO bestätigt 16.401 Funktionen und beide vollständigen ROMs. Für fünf bereits gelaufene Folgestände wurden die beiden aufbewahrten vollständigen Aufzeichnungen mit den neuen Referenzen verglichen. Die übrigen 72 Fälle hatten in jedem dieser Läufe bereits übereingestimmt. Die Zuordnung zu Programm- und Protokoll-Digests steht in `kazooie-velocity-oracle/descendant-comparisons.json`. Die gemeinsamen Referenzen wechseln bei der Übernahme der zugehörigen Quellstufe.
+
+### 2026-11-19 – Schrittgeräusche von Actors (N1/N3)
+
+Die Routinen für das Schrittgeräusch erhalten den ursprünglichen Actor. Die Freiliste verwendet ihren nativen Zeigertyp.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 76 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-footstep-actors*`.

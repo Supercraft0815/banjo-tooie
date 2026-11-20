@@ -112,8 +112,8 @@ void func_808000E0_chbadshad(Actor *arg0, s32 arg1) {
 f32 func_8080028C_chbadshad(Actor *arg0, Actor *arg1, f32 *arg2) {
     void func_800EE7F8(f32 *, f32 *);
     void func_8010279C(void *, void *);
-    s32 func_80104668(BtIntPtr, f32 *, f32 *, f32 *, f32 *);
-    s32 func_8010518C(BtIntPtr);
+    s32 func_80104668(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(BtIntPtr), f32 *, f32 *, f32 *, f32 *);
+    s32 func_8010518C(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(BtIntPtr));
     void *func_80105494(Actor *);
     s32 func_8080086C_chbadshad();
     struct MovementFlags {
@@ -151,7 +151,7 @@ f32 func_8080028C_chbadshad(Actor *arg0, Actor *arg1, f32 *arg2) {
     func_800EE7F8(arg1->position, arg2);
     return 0.0f;
     }
-    if (((s16 *)&arg0->pad8C)[1] != 0 && func_80105494(arg0) == NULL && func_80104668(arg0, arg2, arg1->position, sp34, &sp30) != 0) {
+    if (BT_DATA_FIELD(arg0->expression_handle, ((s16 *)&arg0->pad8C)[1]) != 0 && func_80105494(arg0) == NULL && func_80104668(arg0, arg2, arg1->position, sp34, &sp30) != 0) {
     arg1->actorData[1] = func_8010518C(arg0);
     func_8010279C(arg1, sp34);
     if ((arg1->actorData[1] & 0x80000000)) {
