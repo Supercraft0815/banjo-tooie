@@ -87,6 +87,43 @@ static void test_sdk(void) {
     native_graphics_dispose(&memory);
 }
 
+void func_800AF614(Gfx **, s16 *, s32, s32, s32, s32, s32, s32 *, s32 *);
+
+static void test_texture_frames(void) {
+    struct TextureFixture {
+        s16 header[14];
+        struct { s16 unused[3], palette; s32 offset; } frames[2];
+        u8 texels[256];
+    } texture = {0};
+    const s16 formats[] = {0x800, 0x400, 0x200, 4, 0x100, 0x40, 1, 0x80, 0x20};
+    NativeGraphicsMemory memory = {0};
+    u32 base = native_graphics_register(&memory, &texture, sizeof(texture));
+    CHECK(base != 0 && (uintptr_t)&texture > UINT32_MAX);
+    native_graphics_bind(&memory);
+    texture.header[4] = 8;
+    texture.header[5] = 4;
+    texture.header[9] = offsetof(struct TextureFixture, texels);
+    texture.frames[1].offset = 16;
+    texture.frames[1].palette = 32;
+    for (size_t i = 0; i < sizeof(formats) / sizeof(formats[0]); ++i) {
+        Gfx commands[32], *cursor = commands;
+        s32 width = 0, height = 0, images = 0;
+        texture.header[1] = formats[i];
+        func_800AF614(&cursor, texture.header, 1, 0, 0, 0, 0, &width, &height);
+        CHECK(width == 8 && height == 4 && cursor <= commands + 32);
+        for (Gfx *g = commands; g < cursor; ++g) {
+            if ((g->words.w0 >> 24) != G_SETTIMG) continue;
+            int palette = (formats[i] & 5) && images == 0;
+            const u8 *expected = texture.texels + 16 + (palette ? 32 : 0);
+            CHECK(native_graphics_resolve(&memory, g->words.w1, 1) == expected);
+            ++images;
+        }
+        CHECK(images == ((formats[i] & 5) ? 2 : 1));
+    }
+    native_graphics_bind(NULL);
+    native_graphics_dispose(&memory);
+}
+
 static void test_look_at(void) {
     NativeGraphicsMemory memory={0};struct {Mtx matrix;LookAt look;u64 guard;} data={.guard=0xABCDEF0123456789ULL};
     CHECK(sizeof(LookAt)==32 && native_graphics_register(&memory,&data,sizeof(data)));native_graphics_bind(&memory);
@@ -154,6 +191,6 @@ static void test_archive(const char *path) {
 }
 
 int main(int argc,char **argv) {
-    test_ranges();test_sdk();test_look_at();if(argc==2)test_archive(argv[1]);else CHECK(argc==1);
+    test_ranges();test_sdk();test_texture_frames();test_look_at();if(argc==2)test_archive(argv[1]);else CHECK(argc==1);
     puts("native graphics pointer registration, segmented addressing and SDK packets passed");return 0;
 }

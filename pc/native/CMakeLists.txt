@@ -749,7 +749,8 @@ else()
 endif()
 add_test(NAME native_sky_state COMMAND bt_native_sky_state_test)
 
-add_executable(bt_native_graphics_memory_test tests/graphics_memory.c)
+add_executable(bt_native_graphics_memory_test tests/graphics_memory.c
+    "${BT_ROOT}/src/core2/1E88E90.c")
 target_link_libraries(bt_native_graphics_memory_test PRIVATE bt_native_core)
 if(APPLE)
     target_link_options(bt_native_graphics_memory_test PRIVATE -Wl,-dead_strip)

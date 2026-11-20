@@ -3571,3 +3571,9 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuite
 Im isolierten Quellstand `dialog-dart-sound` stimmen mit und ohne DataGroup dieselben 74 Replays über sämtliche 447.849 Retraces überein. Der letzte Unterschied betraf den Weltenlauf. Die Pfeilfalle übergibt ein Array mit dem Tonbefehl `0x001304AC` und dem abschließenden Nullwort. Solange beide Wörter in getrennten C-Objekten lagen, konnte der Tondecoder ohne DataGroup über das Ende des Befehls hinaus lesen. Nach der Korrektur erreicht der Weltenlauf nach 27.093 Retraces Karte 0x14F.
 
 Der reguläre Build besteht elf Gastsuiten und 75 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROM-Abbilder. Die 9.706 Fixup-Adressen bleiben erhalten. Der Beleg für die beiden vollständigen Korpusläufe liegt in `build/acceptance/n1-2026-11-18/dialog-dart-sound-full.log` und `dart-sound-full-without-datagroup.log`. Die Einzelpakete werden in ihrer Reihenfolge übernommen.
+
+### 2026-11-19 – Texturadressen (N1/N3)
+
+Alle neun Texturformate geben Bilddaten und gegebenenfalls die Palette mit der registrierten Grafikadresse weiter. Die LP64-Probe verwendet Adressen oberhalb von vier GiB.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 72 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 1 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-texture-addresses*`.

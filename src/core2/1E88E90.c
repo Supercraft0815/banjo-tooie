@@ -1,5 +1,9 @@
 #include "common.h"
 
+#ifndef BT_GFX_ADDRESS
+#define BT_GFX_ADDRESS(data) ((BtUIntPtr)(data))
+#endif
+
 s32 func_800AF5A0(s16 *arg0) {
     return arg0[0];
 }
@@ -98,7 +102,7 @@ void func_800AF614(Gfx **gfx, s16 *texture, s32 frameIndex, s32 tmem, s32 tile, 
         {
             Gfx *g = (*gfx)++;
             g->words.w0 = _SHIFTL(G_SETTIMG, 24, 8) | _SHIFTL(G_IM_FMT_RGBA, 21, 3) | _SHIFTL(G_IM_SIZ_32b_LOAD_BLOCK, 19, 2);
-            g->words.w1 = (BtUIntPtr)data;
+            g->words.w1 = BT_GFX_ADDRESS(data);
         }
         gDPSetTile((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_32b_LOAD_BLOCK, 0, tmem, G_TX_LOADTILE, 0, cmt, maskt, 0, cms, masks, 0);
         gDPLoadSync((*gfx)++);
@@ -114,7 +118,7 @@ void func_800AF614(Gfx **gfx, s16 *texture, s32 frameIndex, s32 tmem, s32 tile, 
         {
             Gfx *g = (*gfx)++;
             g->words.w0 = _SHIFTL(G_SETTIMG, 24, 8) | _SHIFTL(G_IM_FMT_RGBA, 21, 3) | _SHIFTL(G_IM_SIZ_16b_LOAD_BLOCK, 19, 2);
-            g->words.w1 = (BtUIntPtr)data;
+            g->words.w1 = BT_GFX_ADDRESS(data);
         }
         gDPSetTile((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 0, tmem, G_TX_LOADTILE, 0, cmt, maskt, 0, cms, masks, 0);
         gDPLoadSync((*gfx)++);
@@ -130,7 +134,7 @@ void func_800AF614(Gfx **gfx, s16 *texture, s32 frameIndex, s32 tmem, s32 tile, 
         {
             Gfx *g = (*gfx)++;
             g->words.w0 = _SHIFTL(G_SETTIMG, 24, 8) | _SHIFTL(G_IM_FMT_IA, 21, 3) | _SHIFTL(G_IM_SIZ_16b_LOAD_BLOCK, 19, 2);
-            g->words.w1 = (BtUIntPtr)data;
+            g->words.w1 = BT_GFX_ADDRESS(data);
         }
         gDPSetTile((*gfx)++, G_IM_FMT_IA, G_IM_SIZ_16b_LOAD_BLOCK, 0, tmem, G_TX_LOADTILE, 0, cmt, maskt, 0, cms, masks, 0);
         gDPLoadSync((*gfx)++);
@@ -146,7 +150,7 @@ void func_800AF614(Gfx **gfx, s16 *texture, s32 frameIndex, s32 tmem, s32 tile, 
         {
             Gfx *g = (*gfx)++;
             g->words.w0 = _SHIFTL(G_SETTIMG, 24, 8) | _SHIFTL(G_IM_FMT_CI, 21, 3) | _SHIFTL(G_IM_SIZ_8b_LOAD_BLOCK, 19, 2);
-            g->words.w1 = (BtUIntPtr)data;
+            g->words.w1 = BT_GFX_ADDRESS(data);
         }
         gDPSetTile((*gfx)++, G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, tmem, G_TX_LOADTILE, 0, cmt, maskt, 0, cms, masks, 0);
         gDPLoadSync((*gfx)++);
@@ -162,7 +166,7 @@ void func_800AF614(Gfx **gfx, s16 *texture, s32 frameIndex, s32 tmem, s32 tile, 
         {
             Gfx *g = (*gfx)++;
             g->words.w0 = _SHIFTL(G_SETTIMG, 24, 8) | _SHIFTL(G_IM_FMT_IA, 21, 3) | _SHIFTL(G_IM_SIZ_8b_LOAD_BLOCK, 19, 2);
-            g->words.w1 = (BtUIntPtr)data;
+            g->words.w1 = BT_GFX_ADDRESS(data);
         }
         gDPSetTile((*gfx)++, G_IM_FMT_IA, G_IM_SIZ_8b_LOAD_BLOCK, 0, tmem, G_TX_LOADTILE, 0, cmt, maskt, 0, cms, masks, 0);
         gDPLoadSync((*gfx)++);
@@ -178,7 +182,7 @@ void func_800AF614(Gfx **gfx, s16 *texture, s32 frameIndex, s32 tmem, s32 tile, 
         {
             Gfx *g = (*gfx)++;
             g->words.w0 = _SHIFTL(G_SETTIMG, 24, 8) | _SHIFTL(G_IM_FMT_I, 21, 3) | _SHIFTL(G_IM_SIZ_8b_LOAD_BLOCK, 19, 2);
-            g->words.w1 = (BtUIntPtr)data;
+            g->words.w1 = BT_GFX_ADDRESS(data);
         }
         gDPSetTile((*gfx)++, G_IM_FMT_I, G_IM_SIZ_8b_LOAD_BLOCK, 0, tmem, G_TX_LOADTILE, 0, cmt, maskt, 0, cms, masks, 0);
         gDPLoadSync((*gfx)++);
@@ -194,7 +198,7 @@ void func_800AF614(Gfx **gfx, s16 *texture, s32 frameIndex, s32 tmem, s32 tile, 
         {
             Gfx *g = (*gfx)++;
             g->words.w0 = _SHIFTL(G_SETTIMG, 24, 8) | _SHIFTL(G_IM_FMT_RGBA, 21, 3) | _SHIFTL(G_IM_SIZ_16b, 19, 2);
-            g->words.w1 = (BtUIntPtr)data;
+            g->words.w1 = BT_GFX_ADDRESS(data);
         }
         gDPSetTile((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, tmem, G_TX_LOADTILE, 0, cmt, maskt, 0, cms, masks, 0);
         gDPLoadSync((*gfx)++);
@@ -210,7 +214,7 @@ void func_800AF614(Gfx **gfx, s16 *texture, s32 frameIndex, s32 tmem, s32 tile, 
         {
             Gfx *g = (*gfx)++;
             g->words.w0 = _SHIFTL(G_SETTIMG, 24, 8) | _SHIFTL(G_IM_FMT_IA, 21, 3) | _SHIFTL(G_IM_SIZ_16b, 19, 2);
-            g->words.w1 = (BtUIntPtr)data;
+            g->words.w1 = BT_GFX_ADDRESS(data);
         }
         gDPSetTile((*gfx)++, G_IM_FMT_IA, G_IM_SIZ_16b, 0, tmem, G_TX_LOADTILE, 0, cmt, maskt, 0, cms, masks, 0);
         gDPLoadSync((*gfx)++);
@@ -226,7 +230,7 @@ void func_800AF614(Gfx **gfx, s16 *texture, s32 frameIndex, s32 tmem, s32 tile, 
         {
             Gfx *g = (*gfx)++;
             g->words.w0 = _SHIFTL(G_SETTIMG, 24, 8) | _SHIFTL(G_IM_FMT_I, 21, 3) | _SHIFTL(G_IM_SIZ_16b, 19, 2);
-            g->words.w1 = (BtUIntPtr)data;
+            g->words.w1 = BT_GFX_ADDRESS(data);
         }
         gDPSetTile((*gfx)++, G_IM_FMT_I, G_IM_SIZ_16b, 0, tmem, G_TX_LOADTILE, 0, cmt, maskt, 0, cms, masks, 0);
         gDPLoadSync((*gfx)++);
