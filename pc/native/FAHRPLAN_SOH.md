@@ -17,8 +17,10 @@ Für diesen Fahrplan gilt eine Reserve von 20 GiB auf dem Arbeitsvolume. Sobald 
 ist, halten die laufenden Arbeiten an. Nach jeder Übernahme wird der Paketstand gegen den
 lokalen Git-Commit geprüft. Im Belegordner bleiben Patch, Logs und `proof.json` erhalten. Die Quell-
 und Build-Kopien werden entfernt, sobald ihr letzter laufender Verbraucher beendet ist.
-Die N-Pakete liegen unter `build/acceptance/n1-2026-11-18/retained/<Paket>/`. Die erste
-Verbrauchsmessung steht in `build/acceptance/space-before-2026-11-20.log`.
+Die Belege der laufenden N-Serie liegen unter `build/acceptance/n1-2026-11-18/retained/<Paket>/`.
+Am 20. November sank der mit `du -kx` gemessene Verbrauch von `build/acceptance` von
+1.058,59 auf 899,71 GiB. Die Messprotokolle stehen dort unter `space-before-2026-11-20.log`
+und `space-after-2026-11-20.log`. Für die Haltegrenze zählt der freie Platz laut `df`.
 
 | Paket | Geprüfter Stand | Offene Abnahme |
 |---|---|---|
