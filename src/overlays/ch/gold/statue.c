@@ -105,20 +105,20 @@ s32 func_80800150_chgoldstatue(BtIntPtr arg0, s32 arg1) {
 
 /* extern */
 
-void func_808002C8_chgoldstatue(s32 arg0) {
+void func_808002C8_chgoldstatue(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(s32) arg0) {
     s32 _glcutDll_entrypoint_20();
-    s32 _subaddieDll_entrypoint_1();
+    s32 _subaddieDll_entrypoint_1(BT_NATIVE_ONLY(Actor *));
     s32 func_800DA524(s32);
     s32 func_8010D278();
     s32 func_80800150_chgoldstatue(BtIntPtr, s32);
-    _subaddieDll_entrypoint_1();
+    _subaddieDll_entrypoint_1(BT_NATIVE_ONLY(arg0));
     if (func_8010D278() == 0xE) {
-        func_80800150_chgoldstatue(arg0, 6);
+        func_80800150_chgoldstatue(BT_NATIVE_ONLY((BtIntPtr))arg0, 6);
         return;
     }
     func_800DA524(0x9DE);
     if (_glcutDll_entrypoint_20() != 0) {
-        func_80800150_chgoldstatue(arg0, 7);
+        func_80800150_chgoldstatue(BT_NATIVE_ONLY((BtIntPtr))arg0, 7);
     }
 }
 typedef struct { f32 v[3]; } Vector;

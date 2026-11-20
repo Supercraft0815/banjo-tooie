@@ -149,7 +149,7 @@ void *suexpression_entrypoint_7(Actor *arg0, s32 arg1, s16 arg2) {
     suexpression_entrypoint_3(arg2, &sp28, &sp24, &sp20);
     data = func_80100074(arg0, arg1, sp24 + sp28 + sp20);
     suexpression_entrypoint_6(data, arg2, sp20, sp28, sp24);
-    ((struct ExpressionFlags *)&arg0->pad94)->index = arg1 + 1;
+    BT_NATIVE_ONLY(arg0->pad94 = (arg0->pad94 & ~0xC0000u) | (((arg1 + 1u) & 3u) << 18);) BT_IDO_ONLY(((struct ExpressionFlags *)&arg0->pad94)->index = arg1 + 1;)
     return data;
 }
 
@@ -157,7 +157,7 @@ void *suexpression_entrypoint_7(Actor *arg0, s32 arg1, s16 arg2) {
 
 void suexpression_entrypoint_8(void *arg0, s32 arg1) {
     u32 *func_80100074(Actor *, u32, u32);
-#if defined(BT_NATIVE) && defined(BT_ILP32)
+#ifdef BT_NATIVE
     void *func_80100094(Actor *, u32);
     if (func_80100094((Actor *)arg0, arg1) != 0) {
 #else
@@ -166,7 +166,7 @@ void suexpression_entrypoint_8(void *arg0, s32 arg1) {
 #endif
         func_80100074(arg0, arg1, 0);
     }
-    (((Objexpression_arg0 *)arg0)->unk95) = (u8) ((((Objexpression_arg0 *)arg0)->unk95) & 0xFFF3);
+    BT_NATIVE_ONLY(((Actor *)arg0)->pad94 &= ~0xC0000u;) BT_IDO_ONLY((((Objexpression_arg0 *)arg0)->unk95) = (u8) ((((Objexpression_arg0 *)arg0)->unk95) & 0xFFF3);)
 }
 
 void suexpression_entrypoint_9(void *arg0) {

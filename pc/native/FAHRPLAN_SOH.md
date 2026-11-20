@@ -75,6 +75,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Wurf- und Sturzzustände. Wurf und Sturz verwenden den Animationscontroller und den Todeszustand des aktuellen Spielers. Der native Test prüft die Zustandswechsel mit Spieleradressen oberhalb von 4 GiB.
 
+- Kartenausgang und Actor-Slots. Die Markersuche erhält den angeforderten Ausgang. Kamera und Goldstatue erhalten ihre ursprünglichen Argumente. Die Mimik verwendet beim Setzen, Lesen und Freigeben dieselben beiden Bits am Actor.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

@@ -285,8 +285,8 @@ Prop *func_808006F0_basetup(s32 bt_a0) {
 Prop *func_808006F0_basetup() {
 #endif
     void *_gccubesearch_entrypoint_14(s32 actor_id, s32 *position);
-    s32 _gemarkersDll_entrypoint_1();
-    BT_NATIVE_ONLY(return) _gccubesearch_entrypoint_14(_gemarkersDll_entrypoint_1(), 0);
+    s32 _gemarkersDll_entrypoint_1(BT_NATIVE_ONLY(s32));
+    BT_NATIVE_ONLY(return) _gccubesearch_entrypoint_14(_gemarkersDll_entrypoint_1(BT_NATIVE_ONLY(bt_a0)), 0);
 }
 
 Prop *func_8080071C_basetup(s32 arg0) {

@@ -3653,3 +3653,9 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuite
 Wurf und Sturz verwenden den Animationscontroller und den Todeszustand des aktuellen Spielers. Der native Test prüft die Zustandswechsel mit Spieleradressen oberhalb von 4 GiB.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 74 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 1 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-throw-fall*`.
+
+### 2026-11-19 – Kartenausgang und Actor-Slots (N1/N3)
+
+Die Markersuche erhält den angeforderten Ausgang. Kamera und Goldstatue erhalten ihre ursprünglichen Argumente. Die Mimik verwendet beim Setzen, Lesen und Freigeben dieselben beiden Bits am Actor.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 74 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 2 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-camera-spawn*`.

@@ -89,7 +89,7 @@ void *func_80110424(s32 *arg0, s32 arg1) {
 
 void func_801104F4(PlayerState *arg0) {
     s32 func_801106A8(PlayerState *, s32);
-    s32 func_80113410();
+    BT_NATIVE_ONLY(void func_80113410(void *);) BT_IDO_ONLY(s32 func_80113410();)
     void heap_free(void* mem);
     func_801106A8(arg0, 0);
     func_80113410(arg0);
@@ -305,7 +305,7 @@ void func_80110728(s8 *arg0, s32 arg1) {
 
 void func_80110730(BtIntPtr arg0, s32 arg1) {
     void func_8011337C(PlayerState *);
-    s32 func_80113410();
+    BT_NATIVE_ONLY(void func_80113410(void *);) BT_IDO_ONLY(s32 func_80113410();)
     (*(s8 *)((s8 *)(arg0) + (0x72))) = arg1;
     func_80113410((void *) arg0);
     if (arg1 == 0) {
@@ -492,12 +492,12 @@ void func_80110BF0(PlayerState *self) {
 /* extern */
 
 void func_80110C2C(PlayerState *self) {
-    s32 _ncba1p_entrypoint_10();
+    s32 _ncba1p_entrypoint_10(BT_NATIVE_ONLY(void *));
     void _ncba1p_entrypoint_13(f32 **volatile arg0, f32 *arg1, f32 *arg2);
     void _ncba1p_entrypoint_5(void **arg0, s32 arg1);
     s32 temp_v0;
 
-    temp_v0 = _ncba1p_entrypoint_10();
+    temp_v0 = _ncba1p_entrypoint_10(BT_NATIVE_ONLY(self));
     if ((temp_v0 != 0) && (temp_v0 != 3)) {
         if (self->pad58[0x1A] != 0) {
             _ncba1p_entrypoint_13(self, &self->pad58[0x1C], &self->flag);
@@ -643,10 +643,10 @@ s32 *func_80110FCC(s32 *arg0, BtIntPtr arg1) {
 void func_80111018(BtIntPtr arg0, BtIntPtr arg1) {
     void _ncba1p_entrypoint_1(u8 **arg0);
     void func_8011337C(PlayerState *);
-    s32 func_80113410();
+    BT_NATIVE_ONLY(void func_80113410(void *);) BT_IDO_ONLY(s32 func_80113410();)
     void rare_memcpy(void* dst, void* src, int length);
     extern s16 D_80137372;
-    func_80113410();
+    func_80113410(BT_NATIVE_ONLY((void *)arg0));
     rare_memcpy(arg0 + 0x98, arg1 + 0x98, D_80137372 - 0x98);
     func_8011337C((PlayerState *)arg0);
     _ncba1p_entrypoint_1(arg0);
