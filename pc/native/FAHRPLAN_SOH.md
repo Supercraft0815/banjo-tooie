@@ -131,6 +131,8 @@ Weitere geprüfte N2-Pakete am 20. November
 
 - Kartenabschnitte am Lagunengrund. Der Gast und der native Kartenaufbau verwenden dieselben vier Datensätze für Position, Grenzen, Höhe und Assets. Die Liste der abgeschalteten Abschnitte endet nach vier Einträgen.
 
+- Kartengrenzen der oberen Lagune. Die obere Lagune schaltet die Abschnitte drei und vier anhand der Länge ihrer Tabelle ab. Vier Sichtpunkte bilden jeweils einen vollständigen Vektor.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

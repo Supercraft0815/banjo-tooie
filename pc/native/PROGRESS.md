@@ -3837,3 +3837,9 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten
 Der Gast und der native Kartenaufbau verwenden dieselben vier Datensätze für Position, Grenzen, Höhe und Assets. Die Liste der abgeschalteten Abschnitte endet nach vier Einträgen.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 79 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 2 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-lagoon-bottom*`.
+
+### 2026-11-20 – Kartengrenzen der oberen Lagune (N2)
+
+Die obere Lagune schaltet die Abschnitte drei und vier anhand der Länge ihrer Tabelle ab. Vier Sichtpunkte bilden jeweils einen vollständigen Vektor.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 79 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 2 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-lagoon-top-bounds*`.

@@ -39,7 +39,7 @@ void gcmapsects_lagoontop_entrypoint_1(NativeMap *arg0) {
     if ((arg0->sections[0].flags & SEC_VISIBLE)) {
         if (position[1] < 4200.0f && rotation[0] < 0.0f) {
             arg0->sections[0].flags &= ~SEC_VISIBLE;
-        } else if (position[1] < 5050.0f && !func_800E3E8C(lagoon_points[0], 1250.0f)) {
+        } else if (position[1] < 5050.0f && !func_800E3E8C(lagoonTopPoints[0], 1250.0f)) {
             arg0->sections[0].flags &= ~SEC_VISIBLE;
             arg0->sections[0].flags &= ~SEC_COLLIDABLE;
         }
@@ -52,7 +52,7 @@ void gcmapsects_lagoontop_entrypoint_1(NativeMap *arg0) {
         if (position[2] > 0.0f && rotation[1] > 160.0f && rotation[1] < 320.0f) {
             arg0->sections[2].flags &= ~SEC_VISIBLE;
             arg0->sections[2].flags &= ~SEC_COLLIDABLE;
-        } else if (position[1] > 5150.0f && !func_800E3E8C(lagoon_points[1], 1000.0f)) {
+        } else if (position[1] > 5150.0f && !func_800E3E8C(lagoonTopPoints[1], 1000.0f)) {
             arg0->sections[2].flags &= ~SEC_VISIBLE;
             arg0->sections[2].flags &= ~SEC_COLLIDABLE;
         } else if (position[0] > -4700.0f && position[1] < 10000.0f) {
@@ -66,7 +66,7 @@ void gcmapsects_lagoontop_entrypoint_1(NativeMap *arg0) {
                 arg0->sections[4].flags &= ~SEC_VISIBLE;
                 arg0->sections[4].flags &= ~SEC_COLLIDABLE;
             }
-        } else if (!(arg0->sections[4].flags & SEC_COLLIDABLE) && !func_800E3E8C(lagoon_points[2], 450.0f)) {
+        } else if (!(arg0->sections[4].flags & SEC_COLLIDABLE) && !func_800E3E8C(lagoonTopPoints[2], 450.0f)) {
             arg0->sections[4].flags &= ~SEC_VISIBLE;
             arg0->sections[4].flags &= ~SEC_COLLIDABLE;
         }
@@ -77,7 +77,7 @@ void gcmapsects_lagoontop_entrypoint_1(NativeMap *arg0) {
         active = arg0->section_flags[S_SECONDARY] = 0;
     }
     if (active && position[1] < 4000.0f && rotation[0] >= 0.0f) {
-        arg0->section_flags[S_SECONDARY] = func_800E3E8C(lagoon_points[3], 982.0f);
+        arg0->section_flags[S_SECONDARY] = func_800E3E8C(lagoonTopPoints[3], 982.0f);
     }
     if ((arg0->sections[0].flags & SEC_COLLIDABLE)) {
         arg0->sections[1].flags |= SEC_COLLIDABLE;
@@ -87,7 +87,7 @@ void gcmapsects_lagoontop_entrypoint_1(NativeMap *arg0) {
 #else
 #include "common.h"
 #include "gc/map_section_config.h"
-void gcmapsects_lagoontop_entrypoint_0(void) { BT_NATIVE_ONLY(extern MapSectionConfig lagoonTopSections[5];) BT_IDO_ONLY(void _gcmapsects_entrypoint_0(s32, s32, void *, void *, void *, f32);) BT_NATIVE_ONLY(void _gcmapsects_entrypoint_0(s16, s16, f32 *, f32 *, f32 *, f32);) BT_IDO_ONLY(void _gcmapsects_entrypoint_1(s32, s32);) BT_NATIVE_ONLY(void _gcmapsects_entrypoint_1(s16, s32);) BT_IDO_ONLY(void _gcmapsects_entrypoint_2(s32, s32);) BT_NATIVE_ONLY(void _gcmapsects_entrypoint_2(s16, s32);) BT_IDO_ONLY(void _gcmapsects_entrypoint_3(s32, s32);) BT_NATIVE_ONLY(void _gcmapsects_entrypoint_3(s16, s16);) void _gcmapsects_entrypoint_10(s32); void _gcmapsects_entrypoint_12(void (*)(u8 *)); void _gcmapsects_lagoontop_entrypoint_1(u8 *); extern s16 D_80800630_gcmapsects_lagoontop[]; extern s16 D_8080063C_gcmapsects_lagoontop[]; extern s16 D_80800648_gcmapsects_lagoontop[]; extern s16 D_8080070C_gcmapsects_lagoontop[]; extern s16 D_8080071C_gcmapsects_lagoontop[]; extern s32 D_80800720_gcmapsects_lagoontop; extern s32 D_80800724_gcmapsects_lagoontop[2]; s16 *section; s16 *scale; u32 limit; s32 i; s16 *rotation; _gcmapsects_entrypoint_10(5); i = 0; do { _gcmapsects_entrypoint_0(BT_DATA_FIELD(lagoonTopSections[i].assets[0], D_80800630_gcmapsects_lagoontop[i * 22 + 19]), BT_DATA_FIELD(lagoonTopSections[i].assets[1], D_80800630_gcmapsects_lagoontop[i * 22 + 20]), BT_DATA_FIELD(lagoonTopSections[i].position, &D_80800630_gcmapsects_lagoontop[i * 22]), BT_DATA_FIELD(lagoonTopSections[i].minimum, &D_8080063C_gcmapsects_lagoontop[i * 22]), BT_DATA_FIELD(lagoonTopSections[i].maximum, &D_80800648_gcmapsects_lagoontop[i * 22]), BT_DATA_FIELD(lagoonTopSections[i].height, D_80800630_gcmapsects_lagoontop[i * 22 + 18])); i++; } while (BT_DATA_FIELD(i < 5, (void *)&D_80800648_gcmapsects_lagoontop[i * 22] < (void *)D_80800724_gcmapsects_lagoontop)); section = D_8080070C_gcmapsects_lagoontop; i = 0; do { _gcmapsects_entrypoint_3(section[0], section[1]); section += 2; i++; limit = (u32)i < 4; } while (limit); section = D_8080071C_gcmapsects_lagoontop; do { _gcmapsects_entrypoint_1(*section, 0); _gcmapsects_entrypoint_2(*section, 0); section++; } while ((void *)section != &D_80800720_gcmapsects_lagoontop); _gcmapsects_entrypoint_12(_gcmapsects_lagoontop_entrypoint_1); }
+void gcmapsects_lagoontop_entrypoint_0(void) { BT_NATIVE_ONLY(extern MapSectionConfig lagoonTopSections[5];) BT_IDO_ONLY(void _gcmapsects_entrypoint_0(s32, s32, void *, void *, void *, f32);) BT_NATIVE_ONLY(void _gcmapsects_entrypoint_0(s16, s16, f32 *, f32 *, f32 *, f32);) BT_IDO_ONLY(void _gcmapsects_entrypoint_1(s32, s32);) BT_NATIVE_ONLY(void _gcmapsects_entrypoint_1(s16, s32);) BT_IDO_ONLY(void _gcmapsects_entrypoint_2(s32, s32);) BT_NATIVE_ONLY(void _gcmapsects_entrypoint_2(s16, s32);) BT_IDO_ONLY(void _gcmapsects_entrypoint_3(s32, s32);) BT_NATIVE_ONLY(void _gcmapsects_entrypoint_3(s16, s16);) void _gcmapsects_entrypoint_10(s32); void _gcmapsects_entrypoint_12(void (*)(u8 *)); void _gcmapsects_lagoontop_entrypoint_1(u8 *); extern s16 D_80800630_gcmapsects_lagoontop[]; extern s16 D_8080063C_gcmapsects_lagoontop[]; extern s16 D_80800648_gcmapsects_lagoontop[]; extern s16 D_8080070C_gcmapsects_lagoontop[]; extern s16 D_8080071C_gcmapsects_lagoontop[BT_NATIVE_ONLY(2)]; extern s32 D_80800720_gcmapsects_lagoontop; extern s32 D_80800724_gcmapsects_lagoontop[2]; s16 *section; s16 *scale; u32 limit; s32 i; s16 *rotation; _gcmapsects_entrypoint_10(5); i = 0; do { _gcmapsects_entrypoint_0(BT_DATA_FIELD(lagoonTopSections[i].assets[0], D_80800630_gcmapsects_lagoontop[i * 22 + 19]), BT_DATA_FIELD(lagoonTopSections[i].assets[1], D_80800630_gcmapsects_lagoontop[i * 22 + 20]), BT_DATA_FIELD(lagoonTopSections[i].position, &D_80800630_gcmapsects_lagoontop[i * 22]), BT_DATA_FIELD(lagoonTopSections[i].minimum, &D_8080063C_gcmapsects_lagoontop[i * 22]), BT_DATA_FIELD(lagoonTopSections[i].maximum, &D_80800648_gcmapsects_lagoontop[i * 22]), BT_DATA_FIELD(lagoonTopSections[i].height, D_80800630_gcmapsects_lagoontop[i * 22 + 18])); i++; } while (BT_DATA_FIELD(i < 5, (void *)&D_80800648_gcmapsects_lagoontop[i * 22] < (void *)D_80800724_gcmapsects_lagoontop)); section = D_8080070C_gcmapsects_lagoontop; i = 0; do { _gcmapsects_entrypoint_3(section[0], section[1]); section += 2; i++; limit = (u32)i < 4; } while (limit); section = D_8080071C_gcmapsects_lagoontop; do { _gcmapsects_entrypoint_1(*section, 0); _gcmapsects_entrypoint_2(*section, 0); section++; } while (BT_DATA_FIELD(section != D_8080071C_gcmapsects_lagoontop + ARRLEN(D_8080071C_gcmapsects_lagoontop), (void *)section != &D_80800720_gcmapsects_lagoontop)); _gcmapsects_entrypoint_12(_gcmapsects_lagoontop_entrypoint_1); }
 
 void gcmapsects_lagoontop_entrypoint_1(u8 *arg0) {
     typedef struct {
@@ -101,7 +101,7 @@ void gcmapsects_lagoontop_entrypoint_1(u8 *arg0) {
     f32 func_80013728(f32);
     void func_800E39A8(s32, s32);
     BT_IDO_ONLY(u8 func_800E3E8C(void *, f32);) BT_NATIVE_ONLY(s32 func_800E3E8C(f32 *, f32);)
-    extern s32 D_80800720_gcmapsects_lagoontop;
+    BT_NATIVE_ONLY(extern f32 lagoonTopPoints[4][3];) BT_IDO_ONLY(extern s32 D_80800720_gcmapsects_lagoontop;)
     extern s32 D_8080072C_gcmapsects_lagoontop[3];
     extern s32 D_80800738_gcmapsects_lagoontop[3];
     extern s32 D_80800744_gcmapsects_lagoontop[3];
@@ -125,7 +125,7 @@ void gcmapsects_lagoontop_entrypoint_1(u8 *arg0) {
     if ((*(Section **)(arg0 + 0x68))[0].visible) {
         if (position[1] < 4200.0f && rotation[0] < 0.0f) {
             (*(Section **)(arg0 + 0x68))[0].visible = 0;
-        } else if (position[1] < 5050.0f && !func_800E3E8C(&D_80800720_gcmapsects_lagoontop, 1250.0f)) {
+        } else if (position[1] < 5050.0f && !func_800E3E8C(BT_DATA_FIELD(lagoonTopPoints[0], &D_80800720_gcmapsects_lagoontop), 1250.0f)) {
             (*(Section **)(arg0 + 0x68))[0].visible = 0;
             (*(Section **)(arg0 + 0x68))[0].active = 0;
         }
@@ -138,7 +138,7 @@ void gcmapsects_lagoontop_entrypoint_1(u8 *arg0) {
         if (position[2] > 0.0f && rotation[1] > 160.0f && rotation[1] < 320.0f) {
             (*(Section **)(arg0 + 0x68))[2].visible = 0;
             (*(Section **)(arg0 + 0x68))[2].active = 0;
-        } else if (position[1] > 5150.0f && !func_800E3E8C(D_8080072C_gcmapsects_lagoontop, 1000.0f)) {
+        } else if (position[1] > 5150.0f && !func_800E3E8C(BT_DATA_FIELD(lagoonTopPoints[1], D_8080072C_gcmapsects_lagoontop), 1000.0f)) {
             (*(Section **)(arg0 + 0x68))[2].visible = 0;
             (*(Section **)(arg0 + 0x68))[2].active = 0;
         } else if (position[0] > -4700.0f && position[1] < 10000.0f) {
@@ -152,7 +152,7 @@ void gcmapsects_lagoontop_entrypoint_1(u8 *arg0) {
                 (*(Section **)(arg0 + 0x68))[4].visible = 0;
                 (*(Section **)(arg0 + 0x68))[4].active = 0;
             }
-        } else if (!(*(Section **)(arg0 + 0x68))[4].active && !func_800E3E8C(D_80800738_gcmapsects_lagoontop, 450.0f)) {
+        } else if (!(*(Section **)(arg0 + 0x68))[4].active && !func_800E3E8C(BT_DATA_FIELD(lagoonTopPoints[2], D_80800738_gcmapsects_lagoontop), 450.0f)) {
             (*(Section **)(arg0 + 0x68))[4].visible = 0;
             (*(Section **)(arg0 + 0x68))[4].active = 0;
         }
@@ -163,7 +163,7 @@ void gcmapsects_lagoontop_entrypoint_1(u8 *arg0) {
         active = arg0[0x7E] = 0;
     }
     if (active && position[1] < 4000.0f && rotation[0] >= 0.0f) {
-        arg0[0x7E] = BT_NATIVE_ONLY((u8)) func_800E3E8C(D_80800744_gcmapsects_lagoontop, 982.0f);
+        arg0[0x7E] = BT_NATIVE_ONLY((u8)) func_800E3E8C(BT_DATA_FIELD(lagoonTopPoints[3], D_80800744_gcmapsects_lagoontop), 982.0f);
     }
     if ((*(Section **)(arg0 + 0x68))[0].active) {
         (*(Section **)(arg0 + 0x68))[1].active = 1;
@@ -175,8 +175,8 @@ void gcmapsects_lagoontop_entrypoint_1(u8 *arg0) {
 #include "lagoon_top_sections.inc"
 s16 D_8080070C_gcmapsects_lagoontop [8] BT_DATA(4, overlays_gc_mapsects__lagoontop, 0xDC) = { 1, 0, 0, 2, 2, 4, 2, 3 };
 s16 D_8080071C_gcmapsects_lagoontop [2] BT_DATA(4, overlays_gc_mapsects__lagoontop, 0xEC) = { 3, 4 };
-s32 D_80800720_gcmapsects_lagoontop BT_DATA(4, overlays_gc_mapsects__lagoontop, 0xF0) = -972206080;
-s32 D_80800724_gcmapsects_lagoontop[2] BT_DATA(4, overlays_gc_mapsects__lagoontop, 0xF4) = { 1167970304, -984838144 };
-s32 D_8080072C_gcmapsects_lagoontop[3] BT_DATA(4, overlays_gc_mapsects__lagoontop, 0xFC) = { -972206080, 1168175104, -984838144 };
-s32 D_80800738_gcmapsects_lagoontop[3] BT_DATA(4, overlays_gc_mapsects__lagoontop, 0x108) = { -975996928, -1006501888, -1026686976 };
-s32 D_80800744_gcmapsects_lagoontop[3] BT_DATA(4, overlays_gc_mapsects__lagoontop, 0x114) = { -972206080, 1169879040, -984838144 };
+f32 lagoonTopPoints[4][3] BT_DATA(4, overlays_gc_mapsects__lagoontop, 0xF0) = {
+    {-9044.0f, 5050.0f, -3273.0f},
+    {-9044.0f, 5150.0f, -3273.0f},
+    {-6767.0f, -520.0f, -103.0f},
+    {-9044.0f, 5982.0f, -3273.0f}, };

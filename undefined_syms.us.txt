@@ -580,6 +580,11 @@ SECTIONS
         D_80800630_gcmapsects_lagoontop = lagoonTopSections + 0x0;
         D_8080063C_gcmapsects_lagoontop = lagoonTopSections + 0xC;
         D_80800648_gcmapsects_lagoontop = lagoonTopSections + 0x18;
+        D_80800720_gcmapsects_lagoontop = lagoonTopPoints + 0x0;
+        D_80800724_gcmapsects_lagoontop = lagoonTopPoints + 0x4;
+        D_8080072C_gcmapsects_lagoontop = lagoonTopPoints + 0xC;
+        D_80800738_gcmapsects_lagoontop = lagoonTopPoints + 0x18;
+        D_80800744_gcmapsects_lagoontop = lagoonTopPoints + 0x24;
     }
     .chaliendad :
     {
