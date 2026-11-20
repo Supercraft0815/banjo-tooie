@@ -25,7 +25,7 @@ OSThread *chmadamegrunty_entrypoint_1(void)
 
 void func_80800018_chmadamegrunty(void *arg0) {
     s32 func_800DA298(s32);
-    s32 func_80101FDC(void *, s32);
+    BT_IDO_ONLY(s32 func_80101FDC(void *, s32);) BT_NATIVE_ONLY(void func_80101FDC(Actor *, u32);)
     if (func_800DA298(0xA02) != 0) {
         func_80101FDC(arg0, 7);
         (((Objmadamegrunty_arg0 *)arg0)->unk58) = 20.0f;
@@ -239,7 +239,7 @@ void func_80800670_chmadamegrunty(Actor *arg0) {
     void func_800F4924(BtIntPtr, s32);
     u32 func_800F54E4(void);
     s32 func_800FC660(s32);
-    s32 func_80101FDC(void *, s32);
+    BT_IDO_ONLY(s32 func_80101FDC(void *, s32);) BT_NATIVE_ONLY(void func_80101FDC(Actor *, u32);)
 
     extern struct FortuneEntry D_80800AF0_chmadamegrunty[];
     s32 sp34[3];
@@ -309,9 +309,9 @@ void func_80800784_chmadamegrunty(Actor *arg0, s32 arg1, s16 arg2) {
 void func_8080082C_chmadamegrunty(void *arg0, s32 arg1) {
     void _subaddieDll_entrypoint_4(void *arg0, s32 arg1);
     u32 _subaddiedialog_entrypoint_11(Unk80132ED0* arg0, u32 DialogId, u32 arg2, f32* CameraTarget, s16 arg4);
-    s32 func_80101FDC();
+    BT_IDO_ONLY(s32 func_80101FDC();) BT_NATIVE_ONLY(void func_80101FDC(Actor *, u32);)
     Actor *actor = arg0;
-    func_80101FDC();
+    func_80101FDC(BT_PASS2((Actor *)arg0, arg1));
     if (arg1 == 7) {
         _subaddieDll_entrypoint_4(arg0, 1);
         (((Actor *)arg0)->unk58) = 60.0f;

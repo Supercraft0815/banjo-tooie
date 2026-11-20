@@ -181,6 +181,8 @@ Weitere geprüfte N2-/N3-Pakete am 20. November
 
 - Solo-Spieler und Duo-Zustand. Die Duo-Abfrage erhält den Spieler des Zustandsaufrufs.
 
+- Autoscooter-Animationen. Autoscooter und Madame Grunty erhalten beim Animationswechsel den Actor und den Zielzustand. Das Autoscooter-Replay erreicht auch ohne FixCalls seine Zielkarte nach 4.856 Retraces.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

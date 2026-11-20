@@ -1,8 +1,8 @@
 #include "common.h"
 #ifdef BT_NATIVE
 #include "core2/particle_script.h"
+#include "core2/anctrl.h"
 #endif
-
 struct DodgemValues { s32 values[4]; };
 struct dodgem_vector { f32 v[3]; };
 typedef struct { f32 values[4]; } DodgemValues;
@@ -1311,38 +1311,38 @@ void func_80802180_chdodgemcontrol(Actor *arg0) {
     func_808039B8_chdodgemcontrol(arg0);
 }
 
-s32 func_808026D0_chdodgemcontrol(BtIntPtr arg0) {
-    BtIntPtr func_80104248();
-    s32 anctrl_setPlaybackType(BtIntPtr, s32);
-    s32 anctrl_start(BtIntPtr);
-    void func_8008B188(void *arg0, s32 arg1);
-    anctrl_setPlaybackType(func_80104248(), 1);
-    func_8008B188(func_80104248(arg0), 1);
-    return anctrl_start(func_80104248(arg0));
+BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_808026D0_chdodgemcontrol(BtIntPtr arg0) {
+    BT_IDO_ONLY(BtIntPtr func_80104248();) BT_NATIVE_ONLY(AnimCtrl *func_80104248(void *);)
+    BT_IDO_ONLY(s32 anctrl_setPlaybackType(BtIntPtr, s32);)
+    BT_IDO_ONLY(s32 anctrl_start(BtIntPtr);)
+    BT_IDO_ONLY(void func_8008B188(void *arg0, s32 arg1);)
+    anctrl_setPlaybackType(func_80104248(BT_NATIVE_ONLY((void *)arg0)), 1);
+    func_8008B188(func_80104248(BT_NATIVE_ONLY((void *))arg0), 1);
+    BT_IDO_ONLY(return) anctrl_start(func_80104248(BT_NATIVE_ONLY((void *))arg0));
 }
 
 /* extern */
 
 void func_80802720_chdodgemcontrol(BtIntPtr arg0) {
-    s32 anctrl_setIndex(BtIntPtr, s32);
-    s32 func_80101CDC(BtIntPtr, s32);
-    BtIntPtr func_80104248();
-    s32 func_808026D0_chdodgemcontrol(BtIntPtr);
-    anctrl_setIndex(func_80104248(), 0x105);
-    func_80101CDC(arg0, 0x4B189680);
+    BT_IDO_ONLY(s32 anctrl_setIndex(BtIntPtr, s32);)
+    BT_IDO_ONLY(s32 func_80101CDC(BtIntPtr, s32);) BT_NATIVE_ONLY(void func_80101CDC(Actor *, f32);)
+    BT_IDO_ONLY(BtIntPtr func_80104248();) BT_NATIVE_ONLY(AnimCtrl *func_80104248(void *);)
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_808026D0_chdodgemcontrol(BtIntPtr);
+    anctrl_setIndex(func_80104248(BT_NATIVE_ONLY((void *)arg0)), 0x105);
+    func_80101CDC(BT_DATA_FIELD((Actor *)arg0, arg0), BT_DATA_FIELD(10000000.0f, 0x4B189680));
     func_808026D0_chdodgemcontrol(arg0);
 }
 
 /* extern */
 
 void func_80802764_chdodgemcontrol(Actor *arg0) {
-    s32 anctrl_setIndex(BtIntPtr, s32);
-    s32 func_80101CDC(BtIntPtr, s32);
-    BtIntPtr func_80104248();
-    s32 func_808026D0_chdodgemcontrol(BtIntPtr);
+    BT_IDO_ONLY(s32 anctrl_setIndex(BtIntPtr, s32);)
+    BT_IDO_ONLY(s32 func_80101CDC(BtIntPtr, s32);) BT_NATIVE_ONLY(void func_80101CDC(Actor *, f32);)
+    BT_IDO_ONLY(BtIntPtr func_80104248();) BT_NATIVE_ONLY(AnimCtrl *func_80104248(void *);)
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_808026D0_chdodgemcontrol(BtIntPtr);
     s32 func_808000B8_chdodgemcontrol(s32);
-    anctrl_setIndex(func_80104248(), 0x10B);
-    func_80101CDC((BtIntPtr)arg0, 0x3F666666);
+    anctrl_setIndex(func_80104248(BT_NATIVE_ONLY((void *)arg0)), 0x10B);
+    func_80101CDC(BT_DATA_FIELD((Actor *)arg0, (BtIntPtr)arg0), BT_DATA_FIELD(0.9f, 0x3F666666));
     func_808026D0_chdodgemcontrol((BtIntPtr)arg0);
     if (arg0->unk64_20) {
         func_808000B8_chdodgemcontrol(0);
@@ -1358,12 +1358,12 @@ void func_808027C4_chdodgemcontrol(BtIntPtr arg0) {
         u32 active : 1;
         BT_BITFIELD_ORDER(u32 : 20, u32  : 11);
     };
-    s32 anctrl_setIndex(BtIntPtr, s32);
-    s32 func_80101CDC(BtIntPtr, s32);
-    BtIntPtr func_80104248();
+    BT_IDO_ONLY(s32 anctrl_setIndex(BtIntPtr, s32);)
+    BT_IDO_ONLY(s32 func_80101CDC(BtIntPtr, s32);) BT_NATIVE_ONLY(void func_80101CDC(Actor *, f32);)
+    BT_IDO_ONLY(BtIntPtr func_80104248();) BT_NATIVE_ONLY(AnimCtrl *func_80104248(void *);)
     s32 func_808000B8_chdodgemcontrol(s32);
-    anctrl_setIndex(func_80104248(), 0x108);
-    func_80101CDC(arg0, 0x3F666666);
+    anctrl_setIndex(func_80104248(BT_NATIVE_ONLY((void *)arg0)), 0x108);
+    func_80101CDC(BT_DATA_FIELD((Actor *)arg0, arg0), BT_DATA_FIELD(0.9f, 0x3F666666));
     func_808026D0_chdodgemcontrol(arg0);
     if (((struct Flags *)arg0)->active) {
         func_808000B8_chdodgemcontrol(1);
@@ -1373,13 +1373,13 @@ void func_808027C4_chdodgemcontrol(BtIntPtr arg0) {
 /* extern */
 
 void func_80802824_chdodgemcontrol(Actor *arg0) {
-    s32 anctrl_setIndex(BtIntPtr, s32);
-    s32 func_80101CDC(BtIntPtr, s32);
-    BtIntPtr func_80104248();
-    s32 func_808026D0_chdodgemcontrol(BtIntPtr);
+    BT_IDO_ONLY(s32 anctrl_setIndex(BtIntPtr, s32);)
+    BT_IDO_ONLY(s32 func_80101CDC(BtIntPtr, s32);) BT_NATIVE_ONLY(void func_80101CDC(Actor *, f32);)
+    BT_IDO_ONLY(BtIntPtr func_80104248();) BT_NATIVE_ONLY(AnimCtrl *func_80104248(void *);)
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_808026D0_chdodgemcontrol(BtIntPtr);
     s32 func_808000B8_chdodgemcontrol(s32);
-    anctrl_setIndex(func_80104248(), 0x109);
-    func_80101CDC((BtIntPtr)arg0, 0x3F666666);
+    anctrl_setIndex(func_80104248(BT_NATIVE_ONLY((void *)arg0)), 0x109);
+    func_80101CDC(BT_DATA_FIELD((Actor *)arg0, (BtIntPtr)arg0), BT_DATA_FIELD(0.9f, 0x3F666666));
     func_808026D0_chdodgemcontrol((BtIntPtr)arg0);
     if (arg0->unk64_20) {
         func_808000B8_chdodgemcontrol(2);
@@ -1389,13 +1389,13 @@ void func_80802824_chdodgemcontrol(Actor *arg0) {
 /* extern */
 
 void func_80802884_chdodgemcontrol(Actor *arg0) {
-    s32 anctrl_setIndex(BtIntPtr, s32);
-    s32 func_80101CDC(BtIntPtr, s32);
-    BtIntPtr func_80104248();
-    s32 func_808026D0_chdodgemcontrol(BtIntPtr);
+    BT_IDO_ONLY(s32 anctrl_setIndex(BtIntPtr, s32);)
+    BT_IDO_ONLY(s32 func_80101CDC(BtIntPtr, s32);) BT_NATIVE_ONLY(void func_80101CDC(Actor *, f32);)
+    BT_IDO_ONLY(BtIntPtr func_80104248();) BT_NATIVE_ONLY(AnimCtrl *func_80104248(void *);)
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_808026D0_chdodgemcontrol(BtIntPtr);
     s32 func_808000B8_chdodgemcontrol(s32);
-    anctrl_setIndex(func_80104248(), 0x10A);
-    func_80101CDC((BtIntPtr)arg0, 0x3F666666);
+    anctrl_setIndex(func_80104248(BT_NATIVE_ONLY((void *)arg0)), 0x10A);
+    func_80101CDC(BT_DATA_FIELD((Actor *)arg0, (BtIntPtr)arg0), BT_DATA_FIELD(0.9f, 0x3F666666));
     func_808026D0_chdodgemcontrol((BtIntPtr)arg0);
     if (arg0->unk64_20) {
         func_808000B8_chdodgemcontrol(3);
@@ -1409,17 +1409,17 @@ void func_808028E4_chdodgemcontrol(BtIntPtr arg0) {
         u32 active : 1;
         BT_BITFIELD_ORDER(u32 : 20, u32  : 11);
     };
-    s32 anctrl_isStopped(BtIntPtr);
-    s32 anctrl_setIndex(BtIntPtr, s32);
-    s32 anctrl_setPlaybackType(BtIntPtr, s32);
-    s32 anctrl_start(BtIntPtr);
-    void func_8008B188(void *arg0, s32 arg1);
-    s32 func_8008B28C(void *arg0);
+    BT_IDO_ONLY(s32 anctrl_isStopped(BtIntPtr);)
+    BT_IDO_ONLY(s32 anctrl_setIndex(BtIntPtr, s32);)
+    BT_IDO_ONLY(s32 anctrl_setPlaybackType(BtIntPtr, s32);)
+    BT_IDO_ONLY(s32 anctrl_start(BtIntPtr);)
+    BT_IDO_ONLY(void func_8008B188(void *arg0, s32 arg1);)
+    BT_IDO_ONLY(s32 func_8008B28C(void *arg0);)
     void func_800904C8(s32);
     f32 func_800F1DCC(f32, f32);
-    s32 func_80101CDC(BtIntPtr, s32);
+    BT_IDO_ONLY(s32 func_80101CDC(BtIntPtr, s32);) BT_NATIVE_ONLY(void func_80101CDC(Actor *, f32);)
     s32 func_801022E4(BtIntPtr);
-    BtIntPtr func_80104248();
+    BT_IDO_ONLY(BtIntPtr func_80104248();) BT_NATIVE_ONLY(AnimCtrl *func_80104248(void *);)
     f32 difference;
 
     difference = func_800F1DCC(*(f32 *)(arg0 + 0x48), *(f32 *)(arg0 + 0x54));
@@ -1434,17 +1434,17 @@ void func_808028E4_chdodgemcontrol(BtIntPtr arg0) {
     } else if (difference > 10.0f) {
         switch (func_801022E4(arg0)) {
         case 0x105:
-            anctrl_setIndex(func_80104248(arg0), 0x106);
-            func_80101CDC(arg0, 0x3F000000);
-            anctrl_setPlaybackType(func_80104248(arg0), 1);
-            func_8008B188(func_80104248(arg0), 1);
-            anctrl_start(func_80104248(arg0));
+            anctrl_setIndex(func_80104248(BT_NATIVE_ONLY((void *))arg0), 0x106);
+            func_80101CDC(BT_DATA_FIELD((Actor *)arg0, arg0), BT_DATA_FIELD(0.5f, 0x3F000000));
+            anctrl_setPlaybackType(func_80104248(BT_NATIVE_ONLY((void *))arg0), 1);
+            func_8008B188(func_80104248(BT_NATIVE_ONLY((void *))arg0), 1);
+            anctrl_start(func_80104248(BT_NATIVE_ONLY((void *))arg0));
             break;
         case 0x107:
-            if (func_8008B28C(func_80104248(arg0))) {
-                func_8008B188(func_80104248(arg0), 0);
-                func_80101CDC(arg0, 0x40400000);
-            } else if (anctrl_isStopped(func_80104248(arg0))) {
+            if (func_8008B28C(func_80104248(BT_NATIVE_ONLY((void *))arg0))) {
+                func_8008B188(func_80104248(BT_NATIVE_ONLY((void *))arg0), 0);
+                func_80101CDC(BT_DATA_FIELD((Actor *)arg0, arg0), BT_DATA_FIELD(3.0f, 0x40400000));
+            } else if (anctrl_isStopped(func_80104248(BT_NATIVE_ONLY((void *))arg0))) {
                 func_80802720_chdodgemcontrol(arg0);
             }
             break;
@@ -1452,7 +1452,7 @@ void func_808028E4_chdodgemcontrol(BtIntPtr arg0) {
         case 0x109:
         case 0x10A:
         case 0x10B:
-            if (anctrl_isStopped(func_80104248(arg0))) {
+            if (anctrl_isStopped(func_80104248(BT_NATIVE_ONLY((void *))arg0))) {
                 func_80802720_chdodgemcontrol(arg0);
             }
             break;
@@ -1460,17 +1460,17 @@ void func_808028E4_chdodgemcontrol(BtIntPtr arg0) {
     } else if (difference < -10.0f) {
         switch (func_801022E4(arg0)) {
         case 0x105:
-            anctrl_setIndex(func_80104248(arg0), 0x107);
-            func_80101CDC(arg0, 0x3F000000);
-            anctrl_setPlaybackType(func_80104248(arg0), 1);
-            func_8008B188(func_80104248(arg0), 1);
-            anctrl_start(func_80104248(arg0));
+            anctrl_setIndex(func_80104248(BT_NATIVE_ONLY((void *))arg0), 0x107);
+            func_80101CDC(BT_DATA_FIELD((Actor *)arg0, arg0), BT_DATA_FIELD(0.5f, 0x3F000000));
+            anctrl_setPlaybackType(func_80104248(BT_NATIVE_ONLY((void *))arg0), 1);
+            func_8008B188(func_80104248(BT_NATIVE_ONLY((void *))arg0), 1);
+            anctrl_start(func_80104248(BT_NATIVE_ONLY((void *))arg0));
             break;
         case 0x106:
-            if (func_8008B28C(func_80104248(arg0))) {
-                func_80101CDC(arg0, 0x40400000);
-                func_8008B188(func_80104248(arg0), 0);
-            } else if (anctrl_isStopped(func_80104248(arg0))) {
+            if (func_8008B28C(func_80104248(BT_NATIVE_ONLY((void *))arg0))) {
+                func_80101CDC(BT_DATA_FIELD((Actor *)arg0, arg0), BT_DATA_FIELD(3.0f, 0x40400000));
+                func_8008B188(func_80104248(BT_NATIVE_ONLY((void *))arg0), 0);
+            } else if (anctrl_isStopped(func_80104248(BT_NATIVE_ONLY((void *))arg0))) {
                 func_80802720_chdodgemcontrol(arg0);
             }
             break;
@@ -1478,7 +1478,7 @@ void func_808028E4_chdodgemcontrol(BtIntPtr arg0) {
         case 0x109:
         case 0x10A:
         case 0x10B:
-            if (anctrl_isStopped(func_80104248(arg0))) {
+            if (anctrl_isStopped(func_80104248(BT_NATIVE_ONLY((void *))arg0))) {
                 func_80802720_chdodgemcontrol(arg0);
             }
             break;
@@ -1488,18 +1488,18 @@ void func_808028E4_chdodgemcontrol(BtIntPtr arg0) {
         case 0x105:
             break;
         case 0x106:
-            if (func_8008B28C(func_80104248(arg0))) {
-                func_80101CDC(arg0, 0x40400000);
-                func_8008B188(func_80104248(arg0), 0);
-            } else if (anctrl_isStopped(func_80104248(arg0))) {
+            if (func_8008B28C(func_80104248(BT_NATIVE_ONLY((void *))arg0))) {
+                func_80101CDC(BT_DATA_FIELD((Actor *)arg0, arg0), BT_DATA_FIELD(3.0f, 0x40400000));
+                func_8008B188(func_80104248(BT_NATIVE_ONLY((void *))arg0), 0);
+            } else if (anctrl_isStopped(func_80104248(BT_NATIVE_ONLY((void *))arg0))) {
                 func_80802720_chdodgemcontrol(arg0);
             }
             break;
         case 0x107:
-            if (func_8008B28C(func_80104248(arg0))) {
-                func_80101CDC(arg0, 0x40400000);
-                func_8008B188(func_80104248(arg0), 0);
-            } else if (anctrl_isStopped(func_80104248(arg0))) {
+            if (func_8008B28C(func_80104248(BT_NATIVE_ONLY((void *))arg0))) {
+                func_80101CDC(BT_DATA_FIELD((Actor *)arg0, arg0), BT_DATA_FIELD(3.0f, 0x40400000));
+                func_8008B188(func_80104248(BT_NATIVE_ONLY((void *))arg0), 0);
+            } else if (anctrl_isStopped(func_80104248(BT_NATIVE_ONLY((void *))arg0))) {
                 func_80802720_chdodgemcontrol(arg0);
             }
             break;
@@ -1507,7 +1507,7 @@ void func_808028E4_chdodgemcontrol(BtIntPtr arg0) {
         case 0x109:
         case 0x10A:
         case 0x10B:
-            if (anctrl_isStopped(func_80104248(arg0))) {
+            if (anctrl_isStopped(func_80104248(BT_NATIVE_ONLY((void *))arg0))) {
                 func_80802720_chdodgemcontrol(arg0);
             }
             break;
@@ -1519,7 +1519,7 @@ void func_80802D04_chdodgemcontrol(Actor *arg0) {
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
     void _subaddieaudioquick_entrypoint_2(Actor *arg0, f32 arg1[3], void *arg2);
     s32 _subaddiejoy_entrypoint_2(void *arg0, s32 arg1, BtIntPtr arg2);
-    s32 anctrl_isStopped(BtIntPtr);
+    BT_IDO_ONLY(s32 anctrl_isStopped(BtIntPtr);)
     void func_800C3058(u8, s32);
     void func_800C31DC(u8, f32);
     void func_800C4B70(s32);
@@ -1529,7 +1529,7 @@ void func_80802D04_chdodgemcontrol(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     s32 func_80101E14(Actor *, f32);
     s32 func_80101E4C(Actor *, f32 *);
-    BtIntPtr func_80104248();
+    BT_IDO_ONLY(BtIntPtr func_80104248();) BT_NATIVE_ONLY(AnimCtrl *func_80104248(void *);)
     s32 func_8010D930(s32, s32, f32 *, s32 *);
     void func_80803200_chdodgemcontrol(Actor *);
     void func_8080349C_chdodgemcontrol(Actor *);
@@ -1626,7 +1626,7 @@ void func_80802D04_chdodgemcontrol(Actor *arg0) {
         if (func_80101E4C(arg0, &D_80804F74_chdodgemcontrol)) {
             _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80804D5C_chdodgemcontrol);
         }
-        if (anctrl_isStopped(func_80104248(arg0))) {
+        if (anctrl_isStopped(func_80104248(BT_NATIVE_ONLY((void *))arg0))) {
             func_8080422C_chdodgemcontrol((BtIntPtr)arg0, 4);
         }
         break;
@@ -1634,7 +1634,7 @@ void func_80802D04_chdodgemcontrol(Actor *arg0) {
         if (func_80101E4C(arg0, &D_80804F84_chdodgemcontrol)) {
             _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80804D74_chdodgemcontrol);
         }
-        if (anctrl_isStopped(func_80104248(arg0))) {
+        if (anctrl_isStopped(func_80104248(BT_NATIVE_ONLY((void *))arg0))) {
             func_8080422C_chdodgemcontrol((BtIntPtr)arg0, 4);
         }
         break;
@@ -1645,7 +1645,7 @@ void func_80802D04_chdodgemcontrol(Actor *arg0) {
         if (func_80101E14(arg0, 0.39f)) {
             _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80804D48_chdodgemcontrol);
         }
-        if (anctrl_isStopped(func_80104248(arg0))) {
+        if (anctrl_isStopped(func_80104248(BT_NATIVE_ONLY((void *))arg0))) {
             func_8080422C_chdodgemcontrol((BtIntPtr)arg0, 4);
         }
         break;
@@ -1982,15 +1982,15 @@ void func_808039B8_chdodgemcontrol(Actor *arg0) {
 /* extern */
 
 void func_8080422C_chdodgemcontrol(BtIntPtr arg0, s32 arg1) {
-    s32 anctrl_setPlaybackType(BtIntPtr, s32);
-    s32 func_80101FDC();
-    BtIntPtr func_80104248(BtIntPtr, s32);
-    func_80101FDC();
+    BT_IDO_ONLY(s32 anctrl_setPlaybackType(BtIntPtr, s32);)
+    BT_IDO_ONLY(s32 func_80101FDC();) BT_NATIVE_ONLY(void func_80101FDC(Actor *, u32);)
+    BT_IDO_ONLY(BtIntPtr func_80104248(BtIntPtr, s32);) BT_NATIVE_ONLY(AnimCtrl *func_80104248(void *);)
+    func_80101FDC(BT_PASS2((Actor *)arg0, arg1));
     if ((arg1 == 5) || (arg1 == 6) || (arg1 == 7)) {
-        anctrl_setPlaybackType(func_80104248(arg0, arg1), 2);
+        anctrl_setPlaybackType(BT_DATA_FIELD(func_80104248((void *)arg0), func_80104248(arg0, arg1)), 2);
         return;
     }
-    anctrl_setPlaybackType(func_80104248(arg0, arg1), 1);
+    anctrl_setPlaybackType(BT_DATA_FIELD(func_80104248((void *)arg0), func_80104248(arg0, arg1)), 1);
 }
 
 s32 func_808042A4_chdodgemcontrol(BtIntPtr arg0, s32 arg1) {
