@@ -127,6 +127,8 @@ Weitere geprüfte N2-Pakete am 20. November
 
 - Spielstandtabelle. Die Initialisierung verarbeitet genau die sieben gespeicherten Abschnitte. Ohne DataGroup läuft das Intro seit dieser Korrektur vollständig durch.
 
+- Globale Spielstandabschnitte. Die zwei Anbieter übergeben jeweils die Bytezahl und die Adresse ihres Speicherbereichs. Der zweite Abschnitt enthält 23 Halbwortwerte. Die LP64-Probe prüft Länge, Inhalt und Zeiger beider Abschnitte.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

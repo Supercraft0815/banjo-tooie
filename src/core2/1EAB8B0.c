@@ -5,12 +5,12 @@ s16 D_8012B260[23];
 s16 *func_800D1FC0(s32 arg0) {
     s32 func_800D395C(void);
     extern s16 D_8012B260[];
-    extern s32 D_8012B290;
+    BT_NATIVE_ONLY(extern s16 D_8012B290[23];) BT_IDO_ONLY(extern s32 D_8012B290;)
     s16 *result;
 
     arg0 -= 0x80;
     if (func_800D395C() != 0) {
-        result = (s16 *) &D_8012B290 + arg0;
+        result = BT_DATA_FIELD(D_8012B290, (s16 *) &D_8012B290) + arg0;
     } else {
         result = (s16 *) D_8012B260 + arg0;
     }
@@ -85,14 +85,14 @@ void func_800D2188(u8 *arg0) {
     rare_memcpy(arg0, D_8012B260, 0x2E);
 }
 
-void func_800D21B0(s32 *arg0, s32 **arg1) {
-    extern s32 D_8012B290;
-    *arg0 = 0x2E;
-    *arg1 = &D_8012B290;
+void func_800D21B0(s32 *arg0, BT_NATIVE_ONLY(u8 **) BT_IDO_ONLY(s32 **) arg1) {
+    BT_NATIVE_ONLY(extern s16 D_8012B290[23];) BT_IDO_ONLY(extern s32 D_8012B290;)
+    *arg0 = BT_DATA_FIELD(sizeof(D_8012B290), 0x2E);
+    *arg1 = BT_DATA_FIELD((u8 *)D_8012B290, &D_8012B290);
 }
 
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
-s32 D_8012B290 BT_DATA(16, bss_core2bss1_2, 0x0);
+s16 D_8012B290[23] BT_DATA(16, bss_core2bss1_2, 0x0);
 #endif
