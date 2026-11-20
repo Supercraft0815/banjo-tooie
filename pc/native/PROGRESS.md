@@ -3873,3 +3873,9 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten
 Die Kamera behält den Zustandszeiger auch auf LP64. Die Hochadressprobe prüft die drei Zugriffspfade.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 80 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-firstperson-camera*`.
+
+### 2026-11-20 – Figurenschatten (N2/N3)
+
+Beim Erzeugen, Zeichnen und Entfernen des Schattens bleiben beide Marker in voller Zeigerbreite erhalten. Der Test ruft den registrierten Callback über die fünf Wörter der Spawn-Warteschlange auf und prüft beide Zeichenmodi.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 81 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 5 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-shadow-links*`.

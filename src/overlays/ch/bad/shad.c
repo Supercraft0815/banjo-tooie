@@ -1,5 +1,5 @@
 #include "common.h"
-
+#define SHADOW_LINK(actor) BT_DATA_FIELD((actor)->parent_marker, (actor)->pad40)
 OSThread *chbadshad_entrypoint_0(void)
 {
     extern ActorData D_80800A10_chbadshad[];
@@ -16,15 +16,15 @@ typedef union {
     } shadow;
 } ShadActor;
 
-void func_8080000C_chbadshad(ShadActor *arg0) {
+void func_8080000C_chbadshad(BT_NATIVE_ONLY(Actor *actor) BT_IDO_ONLY(ShadActor *arg0)) {
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_80102F74(Unk80132ED0 *, s32);
     void func_8010A800(Actor *, s32);
     Unk80132ED0 *marker;
     void *parent;
 
-    func_8010A800(&arg0->actor, 5);
-    marker = arg0->actor.pad40;
+    func_8010A800(BT_DATA_FIELD(actor, &arg0->actor), 5);
+    marker = SHADOW_LINK(BT_DATA_FIELD(actor, &arg0->actor));
     if (marker != NULL) {
         parent = func_80106790(marker);
     } else {
@@ -32,9 +32,9 @@ void func_8080000C_chbadshad(ShadActor *arg0) {
     }
     if (parent != NULL) {
         if (func_80102F74(parent, 0x82000000)) {
-            arg0->shadow.shadowState = 3;
+            BT_NATIVE_ONLY(actor->flags7A = (actor->flags7A & 0x3fff) | 0xc000;) BT_IDO_ONLY(arg0->shadow.shadowState = 3;)
         } else {
-            arg0->shadow.shadowState = 2;
+            BT_NATIVE_ONLY(actor->flags7A = (actor->flags7A & 0x3fff) | 0x8000;) BT_IDO_ONLY(arg0->shadow.shadowState = 2;)
         }
     }
 }
@@ -44,9 +44,9 @@ s32 func_8001211C(void);
 
 void func_80800090_chbadshad(Actor *arg0) { if (!arg0->unk64_17 && (s32) arg0->actorData[0] < func_8001211C() - 1) func_8080082C_chbadshad(arg0); }
 
-void func_808000E0_chbadshad(Actor *arg0, s32 arg1) {
+void func_808000E0_chbadshad(Actor *arg0, BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) arg1) {
     s32 _subaddiefade_entrypoint_0(Actor *);
-    void *func_800DE448(f32 *, f32 *, f32, f32 *, BtIntPtr);
+    void *func_800DE448(f32 *, f32 *, f32, f32 *, BT_NATIVE_ONLY(u8 *) BT_IDO_ONLY(BtIntPtr));
     void func_800DF410(s32);
     f32 func_800DF428(f32);
     void func_800DF470(s32);
@@ -77,22 +77,22 @@ void func_808000E0_chbadshad(Actor *arg0, s32 arg1) {
     parent = NULL;
     if (!arg0->unk64_17) {
         scale[0] = arg0->scale;
-        marker = arg0->pad40;
+        marker = SHADOW_LINK(arg0);
         if (marker != NULL) {
             parent = func_80106790(marker);
         }
         if (parent != NULL) {
             func_800DF410(_subaddiefade_entrypoint_0(parent));
         }
-        if (parent == NULL || !((ShadowRenderActor *)parent)->shadow.halfScale) {
+        if (parent == NULL || !BT_DATA_FIELD((parent->flags74 >> 26) & 1, ((ShadowRenderActor *)parent)->shadow.halfScale)) {
             scale[0] *= func_800F10B4(*(f32 *)&arg0->actorData[3], 0.0f, 800.0f, 0.53f, 0.18f);
         } else {
             scale[0] *= 0.5f;
         }
         func_800DF470(1);
         func_800DF428(4000.0f);
-        func_800DF830(((ShadowRenderActor *)arg0)->shadow.state);
-        if (((ShadowRenderActor *)arg0)->shadow.state == 3) {
+        func_800DF830(BT_DATA_FIELD(arg0->flags7A >> 14, ((ShadowRenderActor *)arg0)->shadow.state));
+        if (BT_DATA_FIELD(arg0->flags7A >> 14, ((ShadowRenderActor *)arg0)->shadow.state) == 3) {
             if (func_800DE448(arg0->position, arg0->rotation, scale[0], NULL, func_801039E4(arg0->unk0))) {
                 arg0->unk7C_12 = 1;
             } else {
@@ -142,16 +142,16 @@ f32 func_8080028C_chbadshad(Actor *arg0, Actor *arg1, f32 *arg2) {
     f32 sp30;
     f32 temp_f0;
     sp30 = 0.0f;
-    if (!((struct PositionFlags *)&arg0->unk78)->changed && !(arg1->actorData[1] & 0x80008000) && ((struct PositionFlags *)&arg1->unk78)->floor != 0 && (s32)arg1->position[0] == (s32)arg2[0] && (s32)arg1->position[2] == (s32)arg2[2]) {
+    if (!BT_DATA_FIELD(arg0->flags7A & 8, ((struct PositionFlags *)&arg0->unk78)->changed) && !(arg1->actorData[1] & 0x80008000) && BT_DATA_FIELD(arg1->flags7C & 0x8000, ((struct PositionFlags *)&arg1->unk78)->floor) != 0 && (s32)arg1->position[0] == (s32)arg2[0] && (s32)arg1->position[2] == (s32)arg2[2]) {
     arg1->position[0] = arg2[0];
     arg1->position[2] = arg2[2];
     goto done;
     }
-    if (((struct MovementFlags *)arg0)->direct) {
+    if (BT_DATA_FIELD((arg0->flags70 >> 19) & 1, ((struct MovementFlags *)arg0)->direct)) {
     func_800EE7F8(arg1->position, arg2);
     return 0.0f;
     }
-    if (BT_DATA_FIELD(arg0->expression_handle, ((s16 *)&arg0->pad8C)[1]) != 0 && func_80105494(arg0) == NULL && func_80104668(arg0, arg2, arg1->position, sp34, &sp30) != 0) {
+    if (BT_DATA_FIELD(arg0->expression_handle, BT_DATA_FIELD(arg0->expression_handle, ((s16 *)&arg0->pad8C)[1])) != 0 && func_80105494(arg0) == NULL && func_80104668(arg0, arg2, arg1->position, sp34, &sp30) != 0) {
     arg1->actorData[1] = func_8010518C(arg0);
     func_8010279C(arg1, sp34);
     if ((arg1->actorData[1] & 0x80000000)) {
@@ -173,9 +173,9 @@ f32 func_8080028C_chbadshad(Actor *arg0, Actor *arg1, f32 *arg2) {
     }
     done: return sp30;
     }
-
-
-
+#ifdef BT_NATIVE
+#include "native_spawn_queue.h"
+#endif
 /* extern */
 
 void chbadshad_entrypoint_1(void *arg0, void *arg1, f32 arg2) {
@@ -188,7 +188,7 @@ void chbadshad_entrypoint_1(void *arg0, void *arg1, f32 arg2) {
     }
 }
 
-s32 chbadshad_entrypoint_2(Actor *arg0, s32 arg1, f32 arg2, f32 *arg3) { s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *); void func_800EE7F8(f32 *, f32 *); Actor *func_80106790(Unk80132ED0 *); f32 sp2C[3]; f32 *var_s0; Unk80132ED0 *marker;  var_s0 = arg3; if (arg3 == NULL) { var_s0 = sp2C; } if (_subaddieskeleton_entrypoint_0(arg0, arg1, var_s0) != 0) { chbadshad_entrypoint_1(arg0, var_s0, arg2); marker = arg0->pad40; if (marker != NULL) { func_800EE7F8(var_s0, func_80106790(marker)->position); } return 1; } return 0; }
+s32 chbadshad_entrypoint_2(Actor *arg0, s32 arg1, f32 arg2, f32 *arg3) { s32 _subaddieskeleton_entrypoint_0(Actor *, s32, f32 *); void func_800EE7F8(f32 *, f32 *); Actor *func_80106790(Unk80132ED0 *); f32 sp2C[3]; f32 *var_s0; Unk80132ED0 *marker;  var_s0 = arg3; if (arg3 == NULL) { var_s0 = sp2C; } if (_subaddieskeleton_entrypoint_0(arg0, arg1, var_s0) != 0) { chbadshad_entrypoint_1(arg0, var_s0, arg2); marker = SHADOW_LINK(arg0); if (marker != NULL) { func_800EE7F8(var_s0, func_80106790(marker)->position); } return 1; } return 0; }
 
 /* extern */
 
@@ -205,8 +205,8 @@ void chbadshad_entrypoint_3(Actor *arg0, void *arg1, s32 arg2, f32 arg3, s16 *ar
     chbadshad_entrypoint_1(arg0, arg1, arg3);
 }
 
-struct ShadowSource { Unk80132ED0 *marker; };
-void chbadshad_entrypoint_4(struct ShadowSource arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
+struct ShadowSource { Unk80132ED0 *marker; }; BT_NATIVE_ONLY(typedef union { u32 bits; f32 value; } ShadowFloat;)
+void BT_IDO_ONLY(chbadshad_entrypoint_4(struct ShadowSource arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4)) BT_NATIVE_ONLY(chbadshad_entrypoint_4(uintptr_t marker, uintptr_t scale, uintptr_t x, uintptr_t y, uintptr_t z)) {
     Actor *func_80106790(Unk80132ED0 *);
     Actor *func_801084B0(BtIntPtr, Actor **);
     f32 func_8080028C_chbadshad(Actor *, Actor *, f32 *);
@@ -221,21 +221,21 @@ void chbadshad_entrypoint_4(struct ShadowSource arg0, f32 arg1, f32 arg2, f32 ar
     volatile f32 sp20;
     Actor *sp1C;
 
-    sp28 = arg0.marker;
-    sp24 = func_80106790(arg0.marker);
-    sp2C[0] = arg2;
-    sp2C[1] = arg3;
-    sp2C[2] = arg4;
+    sp28 = BT_DATA_FIELD((Unk80132ED0 *)marker, arg0.marker);
+    sp24 = func_80106790(BT_DATA_FIELD((Unk80132ED0 *)marker, arg0.marker));
+    sp2C[0] = BT_DATA_FIELD(((ShadowFloat){ .bits = (u32)x }).value, arg2);
+    sp2C[1] = BT_DATA_FIELD(((ShadowFloat){ .bits = (u32)y }).value, arg3);
+    sp2C[2] = BT_DATA_FIELD(((ShadowFloat){ .bits = (u32)z }).value, arg4);
     if (!sp24->unk64_17) {
-        sp20 = arg1;
+        sp20 = BT_DATA_FIELD(((ShadowFloat){ .bits = (u32)scale }).value, arg1);
         sp1C = func_801084B0(0x243, &sp24);
         if (sp1C != NULL) {
             sp1C->unk14 = sp24->unk14;
             ((struct ShadowData *)sp1C->actorData)->height = func_8080028C_chbadshad(sp24, sp1C, sp2C);
             if (!sp1C->unk64_17) {
-                sp24->pad40 = (BtIntPtr)sp1C->unk0;
+                SHADOW_LINK(sp24) = BT_IDO_ONLY((BtIntPtr))sp1C->unk0;
                 sp1C->scale = sp20;
-                sp1C->pad40 = (BtIntPtr)sp28;
+                SHADOW_LINK(sp1C) = BT_IDO_ONLY((BtIntPtr))sp28;
                 sp1C->actorData[0] = func_8001211C();
             }
         }
@@ -243,7 +243,7 @@ void chbadshad_entrypoint_4(struct ShadowSource arg0, f32 arg1, f32 arg2, f32 ar
 }
 
 Actor *func_80800664_chbadshad(void *arg0, void *arg1, f32 arg2) {
-    void _chbaddiesetup_entrypoint_5(void *, BtIntPtr, s32, s32, s32, s32);
+    BT_IDO_ONLY(void _chbaddiesetup_entrypoint_5(void *, BtIntPtr, s32, s32, s32, s32);)
 #ifndef BT_NATIVE
     extern s32 _chbadshad_entrypoint_4;
 #endif
@@ -259,20 +259,20 @@ Actor *func_80800664_chbadshad(void *arg0, void *arg1, f32 arg2) {
     Actor *shadow;
 
     if (((Actor *)arg0)->unk64_17) {
-        Unk80132ED0 *marker = (Unk80132ED0 *)((Actor *)arg0)->pad40;
+        Unk80132ED0 *marker = BT_IDO_ONLY((Unk80132ED0 *))SHADOW_LINK((Actor *)arg0);
         if (marker != NULL) {
             func_8080082C_chbadshad(func_80106790(marker));
 
         }
         return NULL;
     }
-    else if ((Unk80132ED0 *)((Actor *)arg0)->pad40 == NULL) {
+    else if (BT_IDO_ONLY((Unk80132ED0 *))SHADOW_LINK((Actor *)arg0) == NULL) {
         _chbaddiesetup_entrypoint_5(&_chbadshad_entrypoint_4,
-            (BtIntPtr)((Actor *)arg0)->unk0, *(s32 *)&arg2, ((s32 *)arg1)[0],
-            ((s32 *)arg1)[1], ((s32 *)arg1)[2]);
+            (BT_NATIVE_ONLY(uintptr_t) BT_IDO_ONLY(BtIntPtr))((Actor *)arg0)->unk0, BT_DATA_FIELD(((ShadowFloat){ .value = arg2 }).bits, *(s32 *)&arg2), BT_DATA_FIELD(((ShadowFloat){ .value = ((f32 *)arg1)[0] }).bits, ((s32 *)arg1)[0]),
+            BT_DATA_FIELD(((ShadowFloat){ .value = ((f32 *)arg1)[1] }).bits, ((s32 *)arg1)[1]), BT_DATA_FIELD(((ShadowFloat){ .value = ((f32 *)arg1)[2] }).bits, ((s32 *)arg1)[2]));
     }
     else {
-    shadow = func_80106790((Unk80132ED0 *)((Actor *)arg0)->pad40);
+    shadow = func_80106790(BT_IDO_ONLY((Unk80132ED0 *))SHADOW_LINK((Actor *)arg0));
     if (shadow->unk64_17) {
         return NULL;
     } else {
@@ -310,7 +310,7 @@ int func_8080078C_chbadshad(Actor *arg0, BtIntPtr arg1) {
     };
     int func_800DB9B0();
     int func_80104544();
-    if (!((struct ShadowFlags *)&arg0->unk78)->unk7E_15) {
+    if (!BT_DATA_FIELD(arg0->flags7C & 0x8000, ((struct ShadowFlags *)&arg0->unk78)->unk7E_15)) {
         return 1;
     }
     if (func_80104544(arg1) != 0) {
@@ -319,10 +319,10 @@ int func_8080078C_chbadshad(Actor *arg0, BtIntPtr arg1) {
     if (func_800DB9B0() != 0) {
         return 1;
     }
-    if (((struct ShadowFlags *)&arg0->unk78)->unk7A_14 == 3) {
+    if (BT_DATA_FIELD(arg0->flags7A >> 14, ((struct ShadowFlags *)&arg0->unk78)->unk7A_14) == 3) {
         return 1;
     }
-    return ((func_8001211C() ^ ((struct ShadowMarkerBits *)&arg0->unk0->unk18)->unk1A_5) & 3) == 0;
+    return ((func_8001211C() ^ BT_DATA_FIELD((arg0->unk0->unk18 >> 5) & 0x7ff, ((struct ShadowMarkerBits *)&arg0->unk0->unk18)->unk1A_5)) & 3) == 0;
 }
 
 void func_8080082C_chbadshad(Actor *arg0) {
@@ -330,9 +330,9 @@ void func_8080082C_chbadshad(Actor *arg0) {
     Actor* func_80106790(Unk80132ED0 *);
     Unk80132ED0 *temp_a1;
 
-    temp_a1 = arg0->pad40;
+    temp_a1 = SHADOW_LINK(arg0);
     if (temp_a1 != NULL) {
-        func_80106790(temp_a1)->pad40 = 0;
+        SHADOW_LINK(func_80106790(temp_a1)) = 0;
     }
     func_800FFAB0(arg0);
 }
@@ -380,12 +380,12 @@ s32 func_8080086C_chbadshad(Actor *arg0, Actor *arg1, f32 *arg2, f32 *arg3) {
     func_800F1988(sp3C, &sp30[0], &sp30[1]);
     sp30[2] = 0.0f;
     func_8010279C(arg0, sp30);
-    if (((s16 *)&arg1->pad8C)[1] != 0) {
+    if (BT_DATA_FIELD(arg1->expression_handle, ((s16 *)&arg1->pad8C)[1]) != 0) {
         func_801045AC(arg1, sp3C, arg0->position, sp28->flags);
     }
     return 1;
 }
 /* data_to_c.py: from asm/data/overlays/ch/bad/shad.data.s */
 void func_80105834(Actor*);
-void func_80107C2C();
-ActorData D_80800A10_chbadshad [1] BT_DATA(4, overlays_ch_bad_shad, 0x0) = { { 155, 579, 1591, 1, 0, (void (*)(struct Actor *))func_80800090_chbadshad, (void (*)(struct Actor *))func_80105834, (void (*)(long, long))func_808000E0_chbadshad, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, (void (*)(struct Actor *))func_8080000C_chbadshad, (void (*)(void *, long, void *, long, void *))func_80107C2C, -32768, 2, 0, 0 } };
+BT_NATIVE_ONLY(Actor *func_80107C2C(s32 *, s32, ActorData *, NativeActorFactory, Prop *);) BT_IDO_ONLY(void func_80107C2C();)
+ActorData D_80800A10_chbadshad [1] BT_DATA(4, overlays_ch_bad_shad, 0x0) = { { 155, 579, 1591, 1, 0, (void (*)(struct Actor *))func_80800090_chbadshad, (void (*)(struct Actor *))func_80105834, BT_NATIVE_ONLY({ .draw_actor = func_808000E0_chbadshad }) BT_IDO_ONLY((void (*)(long, long))func_808000E0_chbadshad), 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, BT_NATIVE_ONLY(func_8080000C_chbadshad) BT_IDO_ONLY((void (*)(struct Actor *))func_8080000C_chbadshad), BT_NATIVE_ONLY(func_80107C2C) BT_IDO_ONLY((void (*)(void *, long, void *, long, void *))func_80107C2C), -32768, 2, 0, 0 } };

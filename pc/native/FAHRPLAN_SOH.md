@@ -145,6 +145,8 @@ Weitere geprüfte N2-/N3-Pakete am 20. November
 
 - Ego-Kamera. Die Kamera behält den Zustandszeiger auch auf LP64. Die Hochadressprobe prüft die drei Zugriffspfade.
 
+- Figurenschatten. Beim Erzeugen, Zeichnen und Entfernen des Schattens bleiben beide Marker in voller Zeigerbreite erhalten. Der Test ruft den registrierten Callback über die fünf Wörter der Spawn-Warteschlange auf und prüft beide Zeichenmodi.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026
