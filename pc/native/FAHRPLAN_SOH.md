@@ -13,6 +13,13 @@ Aufwand: S = Tage, M = 1–2 Wochen, L = Wochen, XL = Monate (Agent-Zeit, grob).
 Die Zahlen in der Vergleichstabelle und den Arbeitspaketen beschreiben den Ausgangsstand vom
 16. November. Die Messergebnisse der einzelnen Änderungen stehen chronologisch in `PROGRESS.md`.
 
+Für diesen Fahrplan gilt eine Reserve von 20 GiB auf dem Arbeitsvolume. Sobald weniger frei
+ist, halten die laufenden Arbeiten an. Nach jeder Übernahme wird der Paketstand gegen den
+lokalen Git-Commit geprüft. Im Belegordner bleiben Patch, Logs und `proof.json` erhalten. Die Quell-
+und Build-Kopien werden entfernt, sobald ihr letzter laufender Verbraucher beendet ist.
+Die N-Pakete liegen unter `build/acceptance/n1-2026-11-18/retained/<Paket>/`. Die erste
+Verbrauchsmessung steht in `build/acceptance/space-before-2026-11-20.log`.
+
 | Paket | Geprüfter Stand | Offene Abnahme |
 |---|---|---|
 | P0 | Arbeitsstand gesichert, bekanntes Fehlverhalten mit zehn Proben dokumentiert | abgeschlossen |
