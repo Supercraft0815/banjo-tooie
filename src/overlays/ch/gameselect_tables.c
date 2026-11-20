@@ -38,17 +38,17 @@ s32 func_8080413C_chgameselect(Actor *);
 s32 func_808041C8_chgameselect(void *);
 void func_80804220_chgameselect(void *);
 int func_808042A8_chgameselect(Actor *, s32, s32 *);
-void func_80804404_chgameselect(u8 *, s32);
+void func_80804404_chgameselect BT_IDO_ONLY((u8 *, s32)) BT_NATIVE_ONLY((Actor *, s32 *));
 s32 func_8080444C_chgameselect(void *);
 void func_808044A4_chgameselect(void *);
 s32 func_8080450C_chgameselect(Actor *, s32, s32 *);
-void func_808045E4_chgameselect(u8 *, s32);
+void func_808045E4_chgameselect BT_IDO_ONLY((u8 *, s32)) BT_NATIVE_ONLY((Actor *, s32 *));
 s32 func_8080462C_chgameselect(u8 *);
 void func_80804694_chgameselect(void *);
 void func_808046D0_chgameselect(s32, s32);
 s32 func_80804750_chgameselect(Actor *, s32, s32);
 void func_80804878_chgameselect(Actor *, s32, s32);
-void func_808048F8_chgameselect(u8 *, s32 *);
+void func_808048F8_chgameselect BT_IDO_ONLY((u8 *, s32 *)) BT_NATIVE_ONLY((Actor *, s32 *));
 void func_80804A8C_chgameselect(u8 *, s32, s32);
 void func_80804AF0_chgameselect(u8 *, s32, s32);
 s32 func_80804B4C_chgameselect(void *);
@@ -64,7 +64,7 @@ void func_8080569C_chgameselect(Actor *, BT_IDO_ONLY(s32) BT_PASS2(s32, BT_PASS2
 s32 func_8080595C_chgameselect(Actor *, OptionState *, s32);
 void func_80805AC0_chgameselect(Actor *, s32, s32);
 void func_808064E8_chgameselect(s32, s32, s32, s32);
-void func_80806800_chgameselect(void *, s32);
+void func_80806800_chgameselect BT_IDO_ONLY((void *, s32)) BT_NATIVE_ONLY((Actor *, s32 *));
 void func_80806B5C_chgameselect(s32, s32, s32);
 void func_80806BD4_chgameselect(s32, s32, s32);
 void func_80806C54_chgameselect(Actor *);
@@ -91,22 +91,22 @@ GameSelectState D_80807DD0_chgameselect[10] BT_DATA(4, overlays_ch_gameselect, 0
      NULL, NULL, NULL, NULL},
     {(GameSelectInit)func_808041C8_chgameselect, (GameSelectExit)func_80804220_chgameselect,
      (GameSelectChange)func_808042A8_chgameselect, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
-     (GameSelectGetOption)func_80804404_chgameselect, NULL, NULL},
+     BT_IDO_ONLY((GameSelectGetOption))func_80804404_chgameselect, NULL, NULL},
     {(GameSelectInit)func_8080444C_chgameselect, (GameSelectExit)func_808044A4_chgameselect,
      (GameSelectChange)func_8080450C_chgameselect, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
-     (GameSelectGetOption)func_808045E4_chgameselect, NULL, NULL},
+     BT_IDO_ONLY((GameSelectGetOption))func_808045E4_chgameselect, NULL, NULL},
     {(GameSelectInit)func_80804E34_chgameselect, (GameSelectExit)func_80804F14_chgameselect, NULL,
      (GameSelectOpen)func_80805498_chgameselect, (GameSelectSelect)func_8080595C_chgameselect,
      (GameSelectEvent5)func_80805AC0_chgameselect, (GameSelectEvent3)func_80804F38_chgameselect,
      (GameSelectEventCallback)func_808051B4_chgameselect,
      (GameSelectOpen)func_8080569C_chgameselect, (GameSelectOpen)func_808064E8_chgameselect,
-     (GameSelectGetOption)func_80806800_chgameselect,
+     BT_IDO_ONLY((GameSelectGetOption))func_80806800_chgameselect,
      (GameSelectEventCallback)func_80806B5C_chgameselect,
      (GameSelectEventCallback)func_80806BD4_chgameselect},
     {(GameSelectInit)func_8080462C_chgameselect, (GameSelectExit)func_80804694_chgameselect, NULL,
      (GameSelectOpen)func_808046D0_chgameselect, (GameSelectSelect)func_80804750_chgameselect,
      (GameSelectEvent5)func_80804878_chgameselect, NULL, NULL, NULL, NULL,
-     (GameSelectGetOption)func_808048F8_chgameselect,
+     BT_IDO_ONLY((GameSelectGetOption))func_808048F8_chgameselect,
      (GameSelectEventCallback)func_80804A8C_chgameselect,
      (GameSelectEventCallback)func_80804AF0_chgameselect},
     {(GameSelectInit)func_80804B4C_chgameselect, (GameSelectExit)func_80804B90_chgameselect, NULL,

@@ -191,6 +191,8 @@ Weitere geprüfte N2-/N3-Pakete am 20. November
 
 - Actor- und Markerargumente. Die Aufrufer von Figuren-, Kamera- und Kernfunktionen übergeben den zugehörigen Actor, Marker oder Zustand.
 
+- Mehrspielerauswahl. Die vier Menü-Callbacks übernehmen den Actor und den Ausgabewert über denselben Typ. Beim Übergang zur Spielauswahl bleibt der Actor erhalten.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

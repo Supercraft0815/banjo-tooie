@@ -2155,7 +2155,7 @@ void func_80803B3C_chgameselect(BtIntPtr arg0) {
 }
 
 
-void func_80803B84_chgameselect(s32 arg0) { s32 func_800AA120(void);   GameSelectAction *var_v1; GameSelectAction *end; s32 temp_v0; temp_v0 = func_800AA120(); end = D_80808370_chgameselect.enter + 6; var_v1 = D_80808370_chgameselect.enter; loop_1: if (temp_v0 == var_v1->id) { var_v1->callback(end); } else { var_v1++; if (var_v1 != end) { goto loop_1; } } func_80803B3C_chgameselect(arg0); }
+void func_80803B84_chgameselect(BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) arg0) { s32 func_800AA120(void);   GameSelectAction *var_v1; GameSelectAction *end; s32 temp_v0; temp_v0 = func_800AA120(); end = D_80808370_chgameselect.enter + 6; var_v1 = D_80808370_chgameselect.enter; loop_1: if (temp_v0 == var_v1->id) { var_v1->callback(end); } else { var_v1++; if (var_v1 != end) { goto loop_1; } } func_80803B3C_chgameselect(arg0); }
 
 void func_80803BE8_chgameselect(Actor *arg0) { void func_800AA054(s32); void func_800AA074(); s32 func_800AA120(void);   GameSelectAction *var_v1; GameSelectAction *end; s32 temp_v0;  func_800AA074(); func_800AA054(*(s32 *)&arg0->unk54); temp_v0 = func_800AA120(); end = D_80808370_chgameselect.resume + 5; var_v1 = D_80808370_chgameselect.resume; loop_1: if (temp_v0 == var_v1->id) { var_v1->callback(end); } else { var_v1++; if (var_v1 != end) { goto loop_1; } } func_80803B3C_chgameselect((BtIntPtr)arg0); }
 
@@ -2460,13 +2460,13 @@ int func_808042A8_chgameselect(Actor *arg0, s32 arg1, s32 *arg2) {
     return result;
     }
 
-void func_80804404_chgameselect(u8 *arg0, s32 arg1) {
+void func_80804404_chgameselect BT_IDO_ONLY((u8 *arg0, s32 arg1)) BT_NATIVE_ONLY((Actor *arg0, s32 *arg1)) {
     void func_80800478_chgameselect();
 
-    if (*(s32 *)(arg0 + 0x18) >= 3) {
+    if (BT_DATA_FIELD(arg0->actorData[0], *(s32 *)(arg0 + 0x18)) >= 3) {
         func_80800478_chgameselect((BtIntPtr)arg0, 1);
     } else {
-        arg0[0x65] &= ~0x10;
+        BT_NATIVE_ONLY(arg0->unk64_20 = 0;) BT_IDO_ONLY(arg0[0x65] &= ~0x10;)
     }
 }
 
@@ -2530,13 +2530,13 @@ s32 func_8080450C_chgameselect(Actor *arg0, s32 arg1, s32 *arg2) {
 
 /* extern */
 
-void func_808045E4_chgameselect(u8 *arg0, s32 arg1) {
+void func_808045E4_chgameselect BT_IDO_ONLY((u8 *arg0, s32 arg1)) BT_NATIVE_ONLY((Actor *arg0, s32 *arg1)) {
     void func_80800478_chgameselect(BtIntPtr, s32);
-    if ((((Objgameselect_arg0 *)arg0)->unk18) >= 2) {
+    if (BT_DATA_FIELD(arg0->actorData[0], ((Objgameselect_arg0 *)arg0)->unk18) >= 2) {
         func_80800478_chgameselect((BtIntPtr)arg0, 1);
         return;
     }
-    (((Objgameselect_arg0 *)arg0)->unk65) = (u8) ((((Objgameselect_arg0 *)arg0)->unk65) & 0xFFEF);
+    BT_NATIVE_ONLY(arg0->unk64_20 = 0;) BT_IDO_ONLY((((Objgameselect_arg0 *)arg0)->unk65) = (u8) ((((Objgameselect_arg0 *)arg0)->unk65) & 0xFFEF);)
 }
 
 s32 func_8080462C_chgameselect(u8 *arg0) {
@@ -2647,11 +2647,11 @@ void func_80804878_chgameselect(GAME_SELECT_ROW6_EVENT5_PARAMS(arg0, arg1, arg2)
     func_80802C7C_chgameselect(game_select_root_child(arg0, 6));
 }
 
-void func_808048F8_chgameselect(u8 *arg0, s32 *arg1) {
+void func_808048F8_chgameselect BT_IDO_ONLY((u8 *arg0, s32 *arg1)) BT_NATIVE_ONLY((Actor *arg0, s32 *arg1)) {
     s32 func_80802C48_chgameselect(Unk80132ED0 *);
-    if ((((Objgameselect_arg0 *)arg0)->unk18) < -1) {
+    if (BT_DATA_FIELD(arg0->actorData[0], ((Objgameselect_arg0 *)arg0)->unk18) < -1) {
         func_80802C48_chgameselect(GAME_SELECT_LP64(game_select_root_child((Actor *)arg0, 6), (*(Unk80132ED0 **)((s8 *)(arg0) + (0x30)))));
-        (((Objgameselect_arg0 *)arg0)->unk18) = 0;
+        BT_DATA_FIELD(arg0->actorData[0], ((Objgameselect_arg0 *)arg0)->unk18) = 0;
         *arg1 = 1;
     }
 }
@@ -3797,14 +3797,14 @@ void func_80806744_chgameselect(void *arg0) {
 
 /* extern */
 
-void func_80806800_chgameselect(void *arg0, s32 arg1) {
-    void func_80803B84_chgameselect();
-    if ((((Objgameselect_arg0 *)arg0)->unk18) == 9) {
-#ifdef BT_NATIVE
-        ((void (*)())func_80803B84_chgameselect)();
-#else
-        func_80803B84_chgameselect();
-#endif
+void func_80806800_chgameselect BT_IDO_ONLY((void *arg0, s32 arg1)) BT_NATIVE_ONLY((Actor *arg0, s32 *arg1)) {
+    void func_80803B84_chgameselect(BT_NATIVE_ONLY(BtIntPtr));
+    if (BT_DATA_FIELD(arg0->actorData[0], ((Objgameselect_arg0 *)arg0)->unk18) == 9) {
+        func_80803B84_chgameselect(BT_NATIVE_ONLY((BtIntPtr)arg0));
+
+
+
+
     }
 }
 

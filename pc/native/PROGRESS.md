@@ -3987,3 +3987,9 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten
 Die Aufrufer von Figuren-, Kamera- und Kernfunktionen übergeben den zugehörigen Actor, Marker oder Zustand.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 86 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-forward-actor-entries*`.
+
+### 2026-11-20 – Mehrspielerauswahl (N2/N3)
+
+Die vier Menü-Callbacks übernehmen den Actor und den Ausgabewert über denselben Typ. Beim Übergang zur Spielauswahl bleibt der Actor erhalten.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 86 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 3 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-menu-selection*`.
