@@ -107,6 +107,8 @@ Weitere geprüfte N-Pakete am 20. November
 
 - Spieler beim Zustandswechsel. Neunzehn Zustandsroutinen erhalten ihren Spieler für Bewegung und Blicksteuerung. Zwei Bienen-Rücksprünge geben den Spieler wie im Original-MIPS an den Overlay-Aufruf weiter.
 
+- Blickrichtung des Spielers. Pitch, Yaw und Roll werden beim selben Spieler abgefragt. Der LP64-Test prüft die Spielerauswahl und die benachbarten Werte des Ausgabevektors.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

@@ -1,4 +1,4 @@
-#include "common.h"
+#include "core2/1ECD170.h"
 typedef struct player_state_s PlayerState; 
 
 s32 baeggsetup_entrypoint_0() 
@@ -65,7 +65,7 @@ void baeggsetup_entrypoint_2(PlayerState *arg0, s32 arg1, f32 arg2, f32 arg3) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EEB9C(f32[3], f32, f32);
     void func_800EF04C(f32 *, f32 *);
-    void func_800F3E84();
+    BT_IDO_ONLY(void func_800F3E84();)
 #ifndef BT_NATIVE
     extern s32 _baeggsetup_entrypoint_1;
 #endif
@@ -156,7 +156,7 @@ void baeggsetup_entrypoint_5(PlayerState *arg0, s32 arg1, f32 arg2, f32 arg3) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EEB9C(f32[3], f32, f32);
     void func_800EF04C(f32 *, f32 *);
-    void func_800F3E84();
+    BT_IDO_ONLY(void func_800F3E84();)
 #ifndef BT_NATIVE
     extern s32 _baeggsetup_entrypoint_4;
 #endif

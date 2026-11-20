@@ -193,7 +193,7 @@ s32 func_8008FF18()
 
 void func_8008FF40(f32 arg0[3])
 {
-    func_800F5B38(func_800F54E4(),arg0);
+    BT_NATIVE_ONLY(void func_800F5B38(BtIntPtr, f32 *);) func_800F5B38(func_800F54E4(),arg0);
 }
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_8008FF6C()

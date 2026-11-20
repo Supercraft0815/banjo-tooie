@@ -3771,3 +3771,9 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten
 Neunzehn Zustandsroutinen erhalten ihren Spieler für Bewegung und Blicksteuerung. Zwei Bienen-Rücksprünge geben den Spieler wie im Original-MIPS an den Overlay-Aufruf weiter.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 79 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-player-callbacks*`.
+
+### 2026-11-20 – Blickrichtung des Spielers (N1/N3)
+
+Pitch, Yaw und Roll werden beim selben Spieler abgefragt. Der LP64-Test prüft die Spielerauswahl und die benachbarten Werte des Ausgabevektors.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 79 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 1 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-player-orientation*`.

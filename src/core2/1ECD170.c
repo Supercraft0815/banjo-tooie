@@ -234,13 +234,13 @@ void func_800F3BD0(void *self, s32 arg1, f32 dst[3]) {
 
 /* extern */
 
-void func_800F3E84(BtIntPtr arg0, void *arg1) {
-    f32 baroll_get(BtIntPtr);
-    f32 func_8009BFCC();
-    f32 yaw_get(BtIntPtr);
-    (((Vec3f *)arg1)->pos.x) = func_8009BFCC();
-    (((Vec3f *)arg1)->pos.y) = yaw_get(arg0);
-    (((Vec3f *)arg1)->pos.z) = baroll_get(arg0);
+void func_800F3E84(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0, BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(void *) arg1) {
+    f32 baroll_get(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr));
+    f32 func_8009BFCC(BT_NATIVE_ONLY(struct player_state_s *));
+    f32 yaw_get(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr));
+    BT_DATA_FIELD(arg1[0], (((Vec3f *)arg1)->pos.x)) = func_8009BFCC(BT_NATIVE_ONLY(arg0));
+    BT_DATA_FIELD(arg1[1], (((Vec3f *)arg1)->pos.y)) = yaw_get(arg0);
+    BT_DATA_FIELD(arg1[2], (((Vec3f *)arg1)->pos.z)) = baroll_get(arg0);
 }
 
 s32 func_800F3ED0(void *arg0) {

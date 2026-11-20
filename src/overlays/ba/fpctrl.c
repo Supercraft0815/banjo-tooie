@@ -1,4 +1,4 @@
-#include "common.h"
+#include "core2/1ECD170.h"
 
 s32 bafpctrl_entrypoint_0() 
 {
@@ -78,7 +78,7 @@ void _ncba1p_entrypoint_7(PlayerState *, f32[3]);
 void func_8080022C_bafpctrl(PlayerState *arg0) {
     f32 baroll_get(PlayerState *);
     f32 func_8009BFCC(PlayerState *);
-    void func_800F3E84(BtIntPtr, void *);
+    BT_IDO_ONLY(void func_800F3E84(BtIntPtr, void *);)
     f32 yaw_getIdeal(PlayerState *);
     f32 sp24[3];
 
@@ -239,7 +239,7 @@ void func_80800704_bafpctrl(PlayerState *arg0) {
     void func_80099A7C(PlayerState *, f32 *);
     s32 func_8009E674(PlayerState *, s32);
     void func_800A516C(f32 *, f32 *, f32 *);
-    void func_800F3E84(BtIntPtr, void *);
+    BT_IDO_ONLY(void func_800F3E84(BtIntPtr, void *);)
     s32 func_8010D930(s32, s32, BtIntPtr, s32 *);
     void func_80110BF0(PlayerState *);
     void yaw_applyIdeal(PlayerState *);
@@ -260,7 +260,7 @@ void func_80800704_bafpctrl(PlayerState *arg0) {
         _badrone_entrypoint_33(arg0, drone);
         func_800A516C(rotation, drone, position);
     } else {
-        func_800F3E84((BtIntPtr)arg0, rotation);
+        func_800F3E84(BT_IDO_ONLY((BtIntPtr))arg0, rotation);
         rotation[0] = 0.0f;
         rotation[2] = 0.0f;
         rotation[1] += 180.0f;

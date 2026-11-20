@@ -652,7 +652,7 @@ f32 func_800F5AD0(s32 arg0) {
 }
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F5AE0(s32 arg0)
-{ BT_NATIVE_ONLY(f32 func_8009BFCC();)
+{ BT_NATIVE_ONLY(f32 func_8009BFCC(PlayerState *);)
     BT_IDO_ONLY(func_8009BFCC(D_80135490.players[arg0]);) BT_NATIVE_ONLY(return ((union { f32 f; s32 i; }){ .f = func_8009BFCC(D_80135490.players[arg0]) }).i;)
 }
 
@@ -661,9 +661,9 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F5B0C(BtIntPtr arg0)
     BT_NATIVE_ONLY(return) func_8009CC68(D_80135490.players[arg0]);
 }
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800F5B38(BtIntPtr arg0, f32 *arg1)
+void func_800F5B38(BtIntPtr arg0, f32 *arg1)
 {
-    BT_NATIVE_ONLY(return) func_800F3E84(D_80135490.players[arg0], arg1);
+    func_800F3E84(D_80135490.players[arg0], arg1);
 }
 
 f32 func_800F5B64(s32 arg0, f32 *arg1) {
