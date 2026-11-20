@@ -64,9 +64,9 @@ s32 chmumbopad_entrypoint_0(s32 arg0) {
 /* extern */
 
 void func_80800014_chmumbopad(BtIntPtr arg0, BtIntPtr arg1, s32 arg2) {
-    s32 _gccubesearch_entrypoint_1(s32);
-    s32 _gspropctrl_entrypoint_11(BtIntPtr, BtIntPtr);
-    _gspropctrl_entrypoint_11(_gccubesearch_entrypoint_1(arg2), arg1);
+    BT_NATIVE_ONLY(void *_gccubesearch_entrypoint_1(s32, f32 *);) BT_IDO_ONLY(s32 _gccubesearch_entrypoint_1(s32);)
+    BT_NATIVE_ONLY(void _gspropctrl_entrypoint_11(void *, void *);) BT_IDO_ONLY(s32 _gspropctrl_entrypoint_11(BtIntPtr, BtIntPtr);)
+    _gspropctrl_entrypoint_11(BT_NATIVE_ONLY(_gccubesearch_entrypoint_1(arg2, (f32 *)arg1)) BT_IDO_ONLY(_gccubesearch_entrypoint_1(arg2)), BT_NATIVE_ONLY((void *))arg1);
 }
 
 s32 func_80800048_chmumbopad(void *arg0) { s32 func_800DA298(s32); extern s16 D_808010C8_chmumbopad[]; s16 temp_a1; temp_a1 = D_808010C8_chmumbopad[(*(s32 *)((s8 *)arg0 + 0x6C)) & 0x1FF]; if (temp_a1 != -1) { return func_800DA298(temp_a1); } else { return 0; } }

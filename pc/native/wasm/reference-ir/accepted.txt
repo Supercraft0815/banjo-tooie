@@ -626,3 +626,6 @@ The combined change preserves the original byte clear in the dialog reset. The c
 
 2026-11-20  Coaster actor profiles
 3 guest functions change their normalized IR. The 9,706 fixup addresses, both complete ROM images and all 74 replays match. See n1-2026-11-18/current-coaster-tracks-ir.log.
+
+2026-11-20  Mumbo pad position search
+0 guest functions change their normalized IR. The 9,706 fixup addresses, both complete ROM images and all 74 replays match. See n1-2026-11-18/current-mumbo-pad-ir.log.

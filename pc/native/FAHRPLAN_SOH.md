@@ -135,6 +135,8 @@ Weitere geprüfte N2-Pakete am 20. November
 
 - Bewegungsprofile der Figuren. Neun Profile mit je 92 Bytes enthalten Figurenkennung, Sounds und Bewegungswerte. Die LP64-Probe findet alle neun IDs und prüft den Rückfall auf das erste Profil bei einer unbekannten ID.
 
+- Mumbo-Pad in Cloud Cuckooland. Die räumliche Suche erhält den Positionsvektor des Pads im zweiten Argument. Das Eingangsreplay von Cloud Cuckooland stimmt in der isolierten Probe ohne FixCalls über alle 2.638 Retraces mit der Referenz und dem Kontrolllauf überein.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026
