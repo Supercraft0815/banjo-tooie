@@ -6,7 +6,7 @@ typedef struct {
     void (*unknown)(u8 *, s32);
     void (*write)(u8 *, s32, u32, s32 *);
 } GameDataEntry;
-extern GameDataEntry D_808004F0_glgamedata[];
+extern GameDataEntry D_808004F0_glgamedata[BT_NATIVE_ONLY(7)];
 
 s32 func_80800000_glgamedata() 
 {
@@ -26,7 +26,7 @@ void glgamedata_entrypoint_0(void) {
     GameDataCallback callback;
 
     total = 4;
-    entry = D_808004F0_glgamedata; end = &D_80800544_glgamedata;
+    entry = D_808004F0_glgamedata; end = BT_DATA_FIELD(entry + sizeof(D_808004F0_glgamedata) / sizeof(*entry), &D_80800544_glgamedata);
     do {
         callback = entry->getSize;
         size = callback != NULL ? callback() : 0;

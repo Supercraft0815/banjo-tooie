@@ -125,6 +125,8 @@ Weitere geprüfte N2-Pakete am 20. November
 
 - Figurenzeichnung und Schneeballrotation. Der Höhlenwächter, der Fabrikroboter und der Star-Spinner übergeben ihren Actor an die Zeichenroutine. Die Schneeballform liest die Rotation ihres Spielers.
 
+- Spielstandtabelle. Die Initialisierung verarbeitet genau die sieben gespeicherten Abschnitte. Ohne DataGroup läuft das Intro seit dieser Korrektur vollständig durch.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026
