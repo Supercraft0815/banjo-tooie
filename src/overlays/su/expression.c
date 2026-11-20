@@ -157,8 +157,13 @@ void *suexpression_entrypoint_7(Actor *arg0, s32 arg1, s16 arg2) {
 
 void suexpression_entrypoint_8(void *arg0, s32 arg1) {
     u32 *func_80100074(Actor *, u32, u32);
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    void *func_80100094(Actor *, u32);
+    if (func_80100094((Actor *)arg0, arg1) != 0) {
+#else
     void *func_80100094();
     if (func_80100094() != 0) {
+#endif
         func_80100074(arg0, arg1, 0);
     }
     (((Objexpression_arg0 *)arg0)->unk95) = (u8) ((((Objexpression_arg0 *)arg0)->unk95) & 0xFFF3);

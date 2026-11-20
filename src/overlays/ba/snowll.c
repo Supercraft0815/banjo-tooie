@@ -381,7 +381,7 @@ void basnowball_entrypoint_12(void *arg0) {
     } SnowPlayer;
     f32 func_800D8FF8(void);
     s32 func_800EA068(s32);
-    s32 func_8008DE50();
+    s32 func_8008DE50(BT_NATIVE_ONLY(struct player_state_s *));
     s32 func_800A1760(void *);
     void func_8009919C(void *, BtIntPtr, s32);
     s32 func_800A1718(void *);

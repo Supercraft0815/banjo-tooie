@@ -65,6 +65,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - EEPROM-Transport. Lese- und Schreibaufrufe erhalten die Speicheradresse, den Datenpuffer und die Länge. Der Test prüft vier Spielstände, beide globalen Blöcke, Prüfsummen und Fehler beim Lesen und Schreiben.
 
+- Kamera und Spieleranimation. Die Splinekamera erhält den dritten Vektor. Spielerroutinen geben den Animationscontroller, Explosionsmarker und Kamerapositionen an die zugehörigen Funktionen weiter.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

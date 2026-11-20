@@ -515,7 +515,7 @@ void func_80800DF4_bsbtrot(BtIntPtr arg0) {
     s32 pad[2];
     s32 func_8008C9F0(BtIntPtr, f32, f32, f32, f32);
     s32 func_8008CA30(BtIntPtr, f32);
-    s32 func_8008E1A0(BtIntPtr);
+    s32 func_8008E1A0(BT_NATIVE_ONLY(PlayerState *) BT_IDO_ONLY(BtIntPtr));
     f32 func_8009BBB8(BtIntPtr);
     f32 func_800F10B4(f32, f32, f32, s32, f32);
     f32 func_80800164_bsbtrot(PlayerState *);
@@ -533,7 +533,7 @@ void func_80800DF4_bsbtrot(BtIntPtr arg0) {
     sp30 = func_80800164_bsbtrot(arg0);
     sp34 = func_80800248_bsbtrot(arg0);
     func_8008C9F0(arg0, sp2C, sp30, sp34, func_808001EC_bsbtrot(arg0));
-    if (func_8008E1A0(arg0) != 0) {
+    if (func_8008E1A0(BT_NATIVE_ONLY((PlayerState *))arg0) != 0) {
         func_8008CA30(arg0, func_800F10B4(func_8009BBB8(arg0), 0.0f, 1.0f, 0x3F19999A, 0.9f));
         return;
     }

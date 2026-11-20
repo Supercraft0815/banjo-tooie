@@ -525,7 +525,7 @@ s32 ncpod_entrypoint_20(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
     BtIntPtr temp_v0_2;
     void *temp_v0;
 
-    temp_v0 = func_80110024();
+    temp_v0 = func_80110024(BT_NATIVE_ONLY((s16 *)arg0));
     sp1C = temp_v0;
     ncpod_entrypoint_12(temp_v0, 2);
     temp_v0_2 = _ncpoducam_entrypoint_1((((Objpod_ncpod_entrypoint_20_sp1C *)sp1C)->unk2));
@@ -684,7 +684,7 @@ s32 ncpod_entrypoint_32(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
     BtIntPtr temp_v0_2;
     void *temp_v0;
 
-    temp_v0 = func_80110024();
+    temp_v0 = func_80110024(BT_NATIVE_ONLY((s16 *)arg0));
     sp1C = temp_v0;
     ncpod_entrypoint_12(temp_v0, 3);
     temp_v0_2 = _ncpodfixpos_entrypoint_2((((Objpod_ncpod_entrypoint_32_sp1C *)sp1C)->unk4));

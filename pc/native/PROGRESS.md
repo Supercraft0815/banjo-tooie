@@ -3615,3 +3615,9 @@ Der XSYM-Korpus von `dialog-dart-sound` umfasst 74 Fälle und 6.466 instrumentie
 Lese- und Schreibaufrufe erhalten die Speicheradresse, den Datenpuffer und die Länge. Der Test prüft vier Spielstände, beide globalen Blöcke, Prüfsummen und Fehler beim Lesen und Schreiben.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 73 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-save-transport*`.
+
+### 2026-11-19 – Kamera und Spieleranimation (N1/N3)
+
+Die Splinekamera erhält den dritten Vektor. Spielerroutinen geben den Animationscontroller, Explosionsmarker und Kamerapositionen an die zugehörigen Funktionen weiter.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 73 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-camera-player-calls*`.

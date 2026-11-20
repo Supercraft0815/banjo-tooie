@@ -62,11 +62,11 @@ void func_80800000_bswalk(BT_NATIVE_ONLY(PlayerState *) self) {
 
 void func_8080016C_bswalk(PlayerState *self) {
     void func_8008CA30(PlayerState *, f32);
-    s32 func_8008E1A0(void);
+    s32 func_8008E1A0(BT_PARAM_OR_VOID(PlayerState *));
     f32 func_8009BBB8(PlayerState *);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
 
-    if (func_8008E1A0()) {
+    if (func_8008E1A0(BT_NATIVE_ONLY(self))) {
         func_8008CA30(self, func_800F10B4(func_8009BBB8(self), 0.0f, 1.0f, 0.5f, 0.9f));
     } else {
         func_8008CA30(self, 1.0f);

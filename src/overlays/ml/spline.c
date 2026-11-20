@@ -227,7 +227,7 @@ void mlspline_entrypoint_5(f32 arg0, s32 arg1, f32 *arg2, volatile f32 *arg3)
 
 /* extern */
 
-#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#ifdef BT_NATIVE
 void mlspline_entrypoint_6(f32 arg0, s32 arg1, void *arg2, f32 *arg3) {
     void func_800EFB24(void *, void *, void *);
     func_800EFB24(arg3, (u8 *)arg2 + 12, arg2);

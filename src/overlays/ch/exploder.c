@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "core2/1EDFED0.h"
+#endif
 
 OSThread *chexploder_entrypoint_0(void)
 {
@@ -576,7 +579,7 @@ void func_80801188_chexploder(u8 *arg0, u8 *arg1, BtIntPtr arg2) {
 
 /* extern */
 
-void chexploder_entrypoint_1(s32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
+void chexploder_entrypoint_1(BT_NATIVE_ONLY(Unk80132ED0 *) BT_IDO_ONLY(s32) arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     s32 pad;
     void func_80800A18_chexploder(Actor *arg0);
     void func_80800D7C_chexploder(Actor *arg0, BtIntPtr arg1, f32 *arg2, s32 arg3);
@@ -591,7 +594,7 @@ void chexploder_entrypoint_1(s32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     s32 func_80103140(Actor *, u32, u16);
     u8 * func_801039E4(Unk80132ED0 *);
     void * func_80104248(void *data);
-    void *func_80106790();
+    BT_IDO_ONLY(void *func_80106790();)
     u8 *func_801084B0(BtIntPtr, void **);
     s32 func_80108944(u8 *, void *);
     BtIntPtr func_80800AC8_chexploder(u8 *, void *, u8 *, s32);
@@ -599,7 +602,7 @@ void chexploder_entrypoint_1(s32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     u8 *temp_v0;
     void *temp_s1;
 
-    sp30 = func_80106790();
+    sp30 = func_80106790(BT_NATIVE_ONLY(arg0));
     temp_v0 = func_801084B0(0x1FF, &sp30);
     temp_s1 = func_80100094(temp_v0, 0);
     (((Objexploder_chexploder_entrypoint_1_temp_v0 *)temp_v0)->unk18) = arg1;
@@ -645,7 +648,7 @@ void chexploder_entrypoint_2(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s
     s32 func_80103140(Actor *, u32, u16);
     u8 *func_801039E4(Unk80132ED0 *);
     void * func_80104248(void *data);
-    void *func_80106790();
+    BT_IDO_ONLY(void *func_80106790();)
     Actor *func_80108474(u32, f32 *, s32);
     s32 func_80108944(u8 *, void *);
     f32 position[3];
@@ -672,7 +675,7 @@ void chexploder_entrypoint_2(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s
     actor = func_80108474(0x1FF, position, (s32)rotation);
     data = func_80100094(actor, 0);
     if (parent != NULL) {
-        parent = func_80106790(parent);
+        parent = func_80106790(BT_NATIVE_ONLY((Unk80132ED0 *))parent);
     } else {
         parent = NULL;
     }

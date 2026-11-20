@@ -342,9 +342,9 @@ s32 func_8008DE44(u8 arg0)
 
 /* extern */
 
-s32 func_8008DE50(BT_PARAM_OR_VOID(s32 bt_a0)) {
-    s32 func_80096694(BT_NATIVE_ONLY(s32 bt_a0));
-    return func_80096694(BT_NATIVE_ONLY(bt_a0)) == 3;
+s32 func_8008DE50(BT_PARAM_OR_VOID(PlayerState *player)) {
+    s32 func_80096694(BT_NATIVE_ONLY(PlayerState *));
+    return func_80096694(BT_NATIVE_ONLY(player)) == 3;
 }
 
 /* extern */
@@ -416,9 +416,9 @@ int func_8008E148(PlayerState *player) {
 
 /* extern */
 
-s32 func_8008E1A0(BT_PARAM_OR_VOID(s32 bt_a0)) {
-    s32 func_80096694(BT_NATIVE_ONLY(s32 bt_a0));
-    return func_80096694(BT_NATIVE_ONLY(bt_a0)) == 24;
+s32 func_8008E1A0(BT_PARAM_OR_VOID(PlayerState *player)) {
+    s32 func_80096694(BT_NATIVE_ONLY(PlayerState *));
+    return func_80096694(BT_NATIVE_ONLY(player)) == 24;
 }
 
 int func_8008E1C4(PlayerState *player) {

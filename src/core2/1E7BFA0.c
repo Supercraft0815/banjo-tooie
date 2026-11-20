@@ -1,4 +1,8 @@
 #include "core2/1E7BFA0.h"
+#ifdef BT_NATIVE
+#include "core2/anctrl.h"
+AnimCtrl *baanim_getAnimCtrlPtr(PlayerState *);
+#endif
 #include "player_contact_vectors.inc"
 s32 func_800A26B0() 
 {
@@ -212,10 +216,10 @@ s32 func_800A2C84(PlayerState *arg0) {
 /* extern */
 
 void func_800A2CE8(PlayerState *arg0, f32 arg1, s32 arg2) {
-    s32 anctrl_isAt(BtIntPtr, f32);
-    s32 baanim_getAnimCtrlPtr();
+    BT_IDO_ONLY(s32 anctrl_isAt(BtIntPtr, f32);)
+    BT_IDO_ONLY(s32 baanim_getAnimCtrlPtr();)
     void func_800A2EEC(PlayerState *, s32);
-    if (anctrl_isAt(baanim_getAnimCtrlPtr(), arg1) != 0) {
+    if (anctrl_isAt(baanim_getAnimCtrlPtr(BT_NATIVE_ONLY(arg0)), arg1) != 0) {
         func_800A2EEC(arg0, arg2);
     }
 }
@@ -223,10 +227,10 @@ void func_800A2CE8(PlayerState *arg0, f32 arg1, s32 arg2) {
 /* extern */
 
 void func_800A2D2C(PlayerState *arg0, f32 arg1, s32 arg2) {
-    s32 anctrl_isAt(BtIntPtr, f32);
-    s32 baanim_getAnimCtrlPtr();
+    BT_IDO_ONLY(s32 anctrl_isAt(BtIntPtr, f32);)
+    BT_IDO_ONLY(s32 baanim_getAnimCtrlPtr();)
     s32 func_800A2FCC(PlayerState *, s32);
-    if (anctrl_isAt(baanim_getAnimCtrlPtr(), arg1) != 0) {
+    if (anctrl_isAt(baanim_getAnimCtrlPtr(BT_NATIVE_ONLY(arg0)), arg1) != 0) {
         func_800A2FCC(arg0, arg2);
     }
 }    typedef struct { u8 pad0[0xA0]; void * unkA0; u8 padA4[0x80]; s32 * unk124; u8 pad128[0x5C]; s32 unk184; } Obj1E7BFA0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
