@@ -5,14 +5,14 @@ BT_NATIVE_ONLY(struct player_state_s; int _babounce_entrypoint_2(struct player_s
 /* extern */
 
 f32 func_80800000_bssnowball(BtIntPtr arg0) {
-    f32 _basnowball_entrypoint_3();
+    f32 _basnowball_entrypoint_3(BT_NATIVE_ONLY(void *));
     void func_8008C990(void *self, f32 arg1);
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F13C4(f32, f32);
     f32 sp20;
     f32 temp_f0;
 
-    temp_f0 = func_800F13C4(func_800F10B4(_basnowball_entrypoint_3(), 0.0f, 360.0f, 0.0f, 1.0f), 1.0f);
+    temp_f0 = func_800F13C4(func_800F10B4(_basnowball_entrypoint_3(BT_NATIVE_ONLY((void *)arg0)), 0.0f, 360.0f, 0.0f, 1.0f), 1.0f);
     sp20 = temp_f0;
     func_8008C990(arg0, temp_f0);
     return temp_f0;
@@ -357,7 +357,7 @@ void func_80800930_bssnowball(PlayerState *arg0) {
 }
 
 void func_808009B0_bssnowball(PlayerState *arg0) {
-    f32 _basnowball_entrypoint_3();
+    f32 _basnowball_entrypoint_3(BT_NATIVE_ONLY(void *));
     s32 bakey_pressed(BtIntPtr, s32);
     s32 bastick_getZone(PlayerState *);
     s32 bs_setState(BtIntPtr, s32);

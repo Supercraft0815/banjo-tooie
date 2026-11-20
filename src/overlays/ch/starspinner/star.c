@@ -173,11 +173,11 @@ void func_808005F8_chstarspinnerstar(void **arg0, s32 arg1) {
     BT_IDO_ONLY(u8 func_800D731C(u16);) BT_NATIVE_ONLY(s32 func_800D731C(s32);)
     s32 func_800DA298(s32);
     s32 func_800DBE60(u8, s32, s32);
-    s32 func_801015D0();
+    s32 func_801015D0(BT_NATIVE_ONLY(Actor *));
     u8 sp1F;
     u8 temp_v0;
 
-    func_801015D0();
+    func_801015D0(BT_NATIVE_ONLY((Actor *)arg0));
     temp_v0 = func_800D731C((*(u16 *)((s8 *)(*arg0) + (0x14))));
     sp1F = temp_v0;
     if ((temp_v0 != 0) && (func_800DA298(0xEA) == 0) && (_glcutDll_entrypoint_20() == 0)) {

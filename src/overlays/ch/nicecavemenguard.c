@@ -267,10 +267,10 @@ s32 func_808003A8_chnicecavemenguard(Actor *arg0, s32 arg1, s32 arg2) {
 void func_808004FC_chnicecavemenguard(void *arg0)
 {
   void func_800DF744(s32 index,s32 value);
-  s32 func_801015D0();
+  s32 func_801015D0(BT_NATIVE_ONLY(Actor *));
   f32 func_80101F24(void *);
   u32 temp_t6;
-  func_801015D0();
+  func_801015D0(BT_NATIVE_ONLY((Actor *)arg0));
   func_800DF744(5, 1);
   func_800DF744(6, 1);
   func_800DF744(8, 3);

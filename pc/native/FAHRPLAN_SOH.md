@@ -123,6 +123,8 @@ Weitere geprüfte N2-Pakete am 20. November
 
 - Kanone und Jiggy. Der Kanonen-Callback übergibt beide Parameter an die Zeichenroutine. Der Jiggy reicht seinen Actor an den ursprünglichen Anbieter weiter. In den Eingangsreplays für Isle o’ Hags und Cloud Cuckooland entfallen die beiden bisherigen Abstürze ohne FixCalls.
 
+- Figurenzeichnung und Schneeballrotation. Der Höhlenwächter, der Fabrikroboter und der Star-Spinner übergeben ihren Actor an die Zeichenroutine. Die Schneeballform liest die Rotation ihres Spielers.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026
