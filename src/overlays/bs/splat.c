@@ -94,9 +94,9 @@ void func_80800114_bssplat(struct player_state_s *arg0) {
     bs_setState((BtIntPtr)arg0, sp24);
 }
 
-void func_80800274_bssplat(s32 arg0)
+void func_80800274_bssplat(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) arg0)
 {
-    func_8008E95C();
+    func_8008E95C(BT_NATIVE_ONLY((void *)arg0));
     func_8009BD88(arg0);
 }
 BsScript bssplat_entrypoint_1(BsScriptType arg0) {

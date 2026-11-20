@@ -308,7 +308,7 @@ void bsclimb_entrypoint_9(struct player_state_s *arg0) {
     s32 var_a1;
 
     var_a1 = 0;
-    if (func_8009CC68() == 0) {
+    if (func_8009CC68(BT_NATIVE_ONLY(arg0)) == 0) {
         var_a1 = 0x4F;
     }
     bs_setState(arg0, var_a1);

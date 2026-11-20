@@ -50,7 +50,7 @@ void badust_entrypoint_1(void *arg0) {
     f32 sp24;
     void *temp_v0;
 
-    if ((func_80096544() == 0) || (sp24 = func_800964DC(arg0), !(func_8009C150(arg0) < sp24))) {
+    if ((func_80096544(BT_NATIVE_ONLY(arg0)) == 0) || (sp24 = func_800964DC(arg0), !(func_8009C150(arg0) < sp24))) {
         temp_v0 = (((Objdust_arg0 *)arg0)->unk5C);
         if ((((Objdust_badust_entrypoint_1_temp_v0 *)temp_v0)->unk4) != 0) {
             (((Objdust_badust_entrypoint_1_temp_v0 *)temp_v0)->unk4) = 0;

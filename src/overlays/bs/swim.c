@@ -16,7 +16,7 @@ s32 func_80800000_bsswim() {
     s32 func_8008E23C();
     s32 var_v1;
 
-    if (func_8008E23C() != 0) {
+    if (func_8008E23C(BT_NATIVE_ONLY((void *)bt_a0)) != 0) {
         var_v1 = 0x6D;
     } else {
         var_v1 = 0x30;

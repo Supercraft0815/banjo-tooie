@@ -127,7 +127,7 @@ void bsjig_entrypoint_4(BtIntPtr arg0) {
     BtIntPtr func_80106790(BtIntPtr);
     s32 temp_v0;
 
-    temp_v0 = func_800A32F8();
+    temp_v0 = func_800A32F8(BT_NATIVE_ONLY((void *)arg0));
     if (temp_v0 != 0) {
         _chjigsawdance_entrypoint_1(func_80106790(temp_v0), 5);
         func_800A34D8(arg0, 0);

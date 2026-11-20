@@ -190,7 +190,7 @@ void basudie_entrypoint_12(BtIntPtr arg0) {
     s32 baphysics_reset_terminal_velocity(BtIntPtr);
     s32 baphysics_set_terminal_velocity(BtIntPtr, s32);
     s32 player_inWater();
-    if (player_inWater() != 0) {
+    if (player_inWater(BT_NATIVE_ONLY((void *)arg0)) != 0) {
         baphysics_set_terminal_velocity(arg0, 0xC37A0000);
         return;
     }

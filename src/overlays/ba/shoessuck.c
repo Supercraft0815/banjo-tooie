@@ -146,7 +146,7 @@ void bashoessuck_entrypoint_4(struct player_state_s *arg0) {
 }
 
 s32 bashoessuck_entrypoint_5(struct player_state_s *arg0, f32 *arg1) {
-    s32 _bashoes_entrypoint_9(void);
+    s32 _bashoes_entrypoint_9(BT_NATIVE_ONLY(void *) BT_IDO_ONLY(void));
     void _bashoes_entrypoint_11(struct player_state_s *, s32);
     void _bamovespline_entrypoint_7(struct player_state_s *, s32);
     void _bamovespline_entrypoint_8(struct player_state_s *);
@@ -182,7 +182,7 @@ s32 bashoessuck_entrypoint_5(struct player_state_s *arg0, f32 *arg1) {
     u16 itemID;
     s32 sp24;
 
-    if (_bashoes_entrypoint_9() != 0) {
+    if (_bashoes_entrypoint_9(BT_NATIVE_ONLY(arg0)) != 0) {
         return 0;
     }
     func_8009BB24(arg0, sp58);

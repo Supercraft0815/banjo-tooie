@@ -224,7 +224,7 @@ void func_808004C4_bsdronebitten(void *arg0, s32 arg1, s32 arg2) {
     BtIntPtr temp_v0;
 
 #ifdef BT_NATIVE
-    temp_v0 = ((AnimCtrl* (*)())baanim_getAnimCtrlPtr)();
+    temp_v0 = baanim_getAnimCtrlPtr(arg0);
 #else
     temp_v0 = baanim_getAnimCtrlPtr();
 #endif

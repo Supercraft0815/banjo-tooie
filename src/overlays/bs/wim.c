@@ -523,7 +523,7 @@ void func_80800C0C_bsbswim(struct player_state_s *arg0) {
     bs_setState(arg0, sp44);
 }
 
-void func_80800CE4_bsbswim(BtIntPtr arg0) { func_8009BD88(); func_8008E95C(arg0); func_800951B4(arg0); func_80800104_bsbswim(arg0); }
+void func_80800CE4_bsbswim(BtIntPtr arg0) { func_8009BD88(BT_NATIVE_ONLY((void *)arg0)); func_8008E95C(arg0); func_800951B4(arg0); func_80800104_bsbswim(arg0); }
 
 BsScript bsbswim_entrypoint_4(BsScriptType arg0) {
     extern BtIntPtr D_80801EA0_bsbswim[];
@@ -532,7 +532,7 @@ BsScript bsbswim_entrypoint_4(BsScriptType arg0) {
 
 void func_80800D30_bsbswim(BtIntPtr arg0)
 {
-    _baspin_entrypoint_1();
+    _baspin_entrypoint_1(BT_NATIVE_ONLY((void *)arg0));
     func_80800104_bsbswim(arg0);
 }
 /* extern */
@@ -1124,14 +1124,14 @@ void func_80801C64_bsbswim(struct player_state_s *arg0) {
 
 /* extern */
 
-void func_80801CE4_bsbswim(s32 arg0) {
+void func_80801CE4_bsbswim(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) arg0) {
     s32 _baswim_entrypoint_3(BtIntPtr);
     s32 baanim_isStopped();
     s32 bs_setState(BtIntPtr, s32);
     s32 sp1C;
 
     sp1C = 0;
-    if ((baanim_isStopped() != 0) || (_baswim_entrypoint_3(arg0) != 0)) {
+    if ((baanim_isStopped(BT_NATIVE_ONLY((void *)arg0)) != 0) || (_baswim_entrypoint_3(arg0) != 0)) {
         sp1C = 0x2B;
     }
     bs_setState(arg0, sp1C);

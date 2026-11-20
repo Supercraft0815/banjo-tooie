@@ -56,9 +56,9 @@ void bstimeout_entrypoint_1(struct player_state_s *arg0) {
     }
 }
 
-void bstimeout_entrypoint_2(s32 arg0)
+void bstimeout_entrypoint_2(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) arg0)
 {
-    func_800951B4();
+    func_800951B4(BT_NATIVE_ONLY((void *)arg0));
     func_800A4E30(arg0);
 }
 BsScript bstimeout_entrypoint_3(BsScriptType arg0) {

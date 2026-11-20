@@ -772,7 +772,7 @@ BsScript bswasher_entrypoint_5(BsScriptType arg0) {
 
 void func_808011B4_bswasher(BtIntPtr arg0)
 {
-    _baspin_entrypoint_1();
+    _baspin_entrypoint_1(BT_NATIVE_ONLY((void *)arg0));
     func_808000F0_bswasher(arg0);
 }
 void func_808011DC_bswasher(BtIntPtr arg0) { func_808001A8_bswasher(arg0); _baspin_entrypoint_2(arg0, 0x358, 0x3FE66666, 2, 0); }

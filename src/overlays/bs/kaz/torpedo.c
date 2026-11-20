@@ -571,7 +571,7 @@ BsScript bskaztorpedo_entrypoint_5(BsScriptType idx) {
 }
 
 void func_80801380_bskaztorpedo(PlayerState *self) {
-    _baspin_entrypoint_1();
+    _baspin_entrypoint_1(BT_NATIVE_ONLY(self));
     _bakaztorpedo_entrypoint_6(self, 2);
     func_80800508_bskaztorpedo(self);
 }

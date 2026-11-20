@@ -198,7 +198,7 @@ void func_808004B0_bsbansack(PlayerState *arg0) {
 
     sp1C = 0;
     var_a1 = sp1C;
-    if (bastick_getZone() > 0) {
+    if (bastick_getZone(BT_NATIVE_ONLY(arg0)) > 0) {
         var_a1 = 0x166;
     }
     bs_setState(arg0, func_80800084_bsbansack(arg0, var_a1));

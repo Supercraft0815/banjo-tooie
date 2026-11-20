@@ -219,7 +219,7 @@ void func_808005F4_bstnt(struct player_state_s *arg0) {
 void func_80800668_bstnt(BtIntPtr arg0) {
     void baflag_clear(void *self, s32 id);
     s32 func_8009E474();
-    func_8009E474();
+    func_8009E474(BT_NATIVE_ONLY((void *)arg0));
     baflag_clear(arg0, 0x32);
 }
 
@@ -604,7 +604,7 @@ void func_80801080_bstnt(struct player_state_s *arg0) {
 
 void func_80801190_bstnt(BtIntPtr arg0)
 {
-    _basudie_entrypoint_10();
+    _basudie_entrypoint_10(BT_NATIVE_ONLY((void *)arg0));
     bstnt_entrypoint_4(arg0);
 }
 BsScript bstnt_entrypoint_5(BsScriptType arg0) {

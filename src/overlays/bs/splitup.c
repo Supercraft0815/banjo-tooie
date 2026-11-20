@@ -29,7 +29,7 @@ void bssplitup_entrypoint_1(void *arg0) {
     s32 sp1C;
 
     sp1C = 0;
-    if (baanim_isStopped() != 0) {
+    if (baanim_isStopped(BT_NATIVE_ONLY(arg0)) != 0) {
         sp1C = 1;
         if (func_800F54E4() != (((PlayerState *)arg0)->unk184)) {
             func_800F457C(arg0, 2);
@@ -230,7 +230,7 @@ void bssplitup_entrypoint_13(BtIntPtr arg0) {
     s32 sp1C;
 
     sp1C = 0;
-    if (baanim_isStopped() != 0) {
+    if (baanim_isStopped(BT_NATIVE_ONLY((void *)arg0)) != 0) {
         sp1C = 1;
     }
     bs_setState(arg0, sp1C);
@@ -270,7 +270,7 @@ void bssplitup_entrypoint_17(void *arg0) {
     s32 unused;
 
     next_state = 0;
-    if (baanim_isStopped() != 0) {
+    if (baanim_isStopped(BT_NATIVE_ONLY(arg0)) != 0) {
         next_state = 1;
     }
     bs_setState(arg0, next_state);

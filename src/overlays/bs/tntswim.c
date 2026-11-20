@@ -80,7 +80,7 @@ void func_808001CC_bstntswim(struct player_state_s *arg0) {
     void _bstnt_entrypoint_2(void *arg0);
     void func_800961AC(struct player_state_s *, s32);
     s32 func_8009BC34();
-    func_8009BC34();
+    func_8009BC34(BT_NATIVE_ONLY(arg0));
     func_800961AC(arg0, 1);
     _bstnt_entrypoint_2((BtIntPtr)arg0);
 }

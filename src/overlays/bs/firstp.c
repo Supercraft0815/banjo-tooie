@@ -963,7 +963,7 @@ void func_808018E0_bsfirstp(BtIntPtr arg0) {
     void func_8010FD38(BtIntPtr, f32);
     BT_IDO_ONLY(void func_800A5044(u8 *arg0);) BT_NATIVE_ONLY(void func_800A5044(PlayerState *arg0);)
     void func_80110730(BtIntPtr, s32);
-    func_80110730(func_800A4CA8(), 0);
+    func_80110730(func_800A4CA8(BT_NATIVE_ONLY((void *)arg0)), 0);
     func_8010FD38(func_800A4C88(arg0), 0.0f);
     func_800A5044(BT_IDO_ONLY((u8 *)arg0) BT_NATIVE_ONLY((PlayerState *)arg0));
 }
@@ -1007,7 +1007,7 @@ void func_808019EC_bsfirstp(BtIntPtr arg0) {
     s32 func_800A4D40();
     BtIntPtr func_800A5090(void *);
     void func_8080175C_bsfirstp(void *);
-    if ((func_800A4D40() != 0) && (func_800A5090(arg0) != 0)) {
+    if ((func_800A4D40(BT_NATIVE_ONLY((void *)arg0)) != 0) && (func_800A5090(arg0) != 0)) {
         func_808019B0_bsfirstp(arg0);
         func_8080175C_bsfirstp(arg0);
     }

@@ -653,7 +653,7 @@ void func_808010AC_bsbabykaz(BtIntPtr arg0) {
 
     sp24 = 0;
 #ifdef BT_NATIVE
-    ((void (*)())bsbabykaz_entrypoint_5)();
+    bsbabykaz_entrypoint_5((void *)arg0);
 #else
     bsbabykaz_entrypoint_5();
 #endif
@@ -730,7 +730,7 @@ void func_808011EC_bsbabykaz(struct player_state_s *arg0) {
 
 void func_808012C4_bsbabykaz(BtIntPtr arg0)
 {
-    func_80091E6C();
+    func_80091E6C(BT_NATIVE_ONLY((void *)arg0));
     bsbabykaz_entrypoint_3(arg0);
 }
 void func_808012EC_bsbabykaz(struct player_state_s *arg0) {

@@ -710,7 +710,7 @@ BsScript bsstonehead_entrypoint_23(BsScriptType arg0) {
 
 void bsstonehead_entrypoint_24(PlayerState *arg0)
 {
-    _baspin_entrypoint_1();
+    _baspin_entrypoint_1(BT_NATIVE_ONLY(arg0));
     func_80800000_bsstonehead(arg0);
 }
 void bsstonehead_entrypoint_25(PlayerState *arg0) { void _baattach_entrypoint_6(PlayerState *, s32, s32, s32); void _baspin_entrypoint_2(PlayerState *, s32, f32, s32, s32); func_80800060_bsstonehead(arg0); _baattach_entrypoint_6(arg0, 3, 0, 0); _baspin_entrypoint_2(arg0, 0x63, 1.8f, 2, 0); }

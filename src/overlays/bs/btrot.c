@@ -75,7 +75,7 @@ void func_80800120_bsbtrot(PlayerState *arg0) {
 f32 func_80800164_bsbtrot(PlayerState *arg0) {
     s32 func_8008DE24();
     f32 func_80800070_bsbtrot(PlayerState *, f32, f32, f32, f32);
-    if (func_8008DE24() != 0) {
+    if (func_8008DE24(BT_NATIVE_ONLY(arg0)) != 0) {
         return 300.0f;
     }
     return func_80800070_bsbtrot(arg0, 700.0f, 1000.0f, 700.0f, 700.0f);
@@ -88,7 +88,7 @@ f32 func_808001B8_bsbtrot(PlayerState *arg0) { f32 func_80800070_bsbtrot(PlayerS
 f32 func_808001EC_bsbtrot(PlayerState *arg0) {
     s32 func_8008DE24();
     f32 func_80800070_bsbtrot(PlayerState *, f32, f32, f32, f32);
-    if (func_8008DE24() != 0) {
+    if (func_8008DE24(BT_NATIVE_ONLY(arg0)) != 0) {
         return 0.7f;
     }
     return func_80800070_bsbtrot(arg0, 0.34f, 0.29f, 0.7f, 0.53f);
@@ -99,7 +99,7 @@ f32 func_808001EC_bsbtrot(PlayerState *arg0) {
 f32 func_80800248_bsbtrot(PlayerState *arg0) {
     s32 func_8008DE24();
     f32 func_80800070_bsbtrot(PlayerState *, f32, f32, f32, f32);
-    if (func_8008DE24() != 0) {
+    if (func_8008DE24(BT_NATIVE_ONLY(arg0)) != 0) {
         return 0.8f;
     }
     return func_80800070_bsbtrot(arg0, 0.56f, 0.51f, 1.2f, 1.4f);
@@ -372,7 +372,7 @@ void func_808008D0_bsbtrot(PlayerState *arg0) {
     f32 sp1C;
     s32 sp18;
 
-    sp24 = baanim_getAnimCtrlPtr();
+    sp24 = baanim_getAnimCtrlPtr(BT_NATIVE_ONLY(arg0));
     sp18 = 1;
     sp20 = 0.7781f;
     sp1C = 0.2781f;
@@ -526,7 +526,7 @@ void func_80800DF4_bsbtrot(BtIntPtr arg0) {
     f32 sp2C;
 
 #ifdef BT_NATIVE
-    sp2C = ((f32 (*)())func_808001B8_bsbtrot)();
+    sp2C = func_808001B8_bsbtrot((void *)arg0);
 #else
     sp2C = func_808001B8_bsbtrot();
 #endif
@@ -1482,7 +1482,7 @@ void func_808029D8_bsbtrot(void *arg0) {
     s32 func_8009CA70(PlayerState *, s32, s32);
     void func_800A2018(PlayerState *, s32);
     void func_800A4DA4(PlayerState *arg0, s32 arg1);
-    if (func_8009CA70(arg0, bs_getPreviousState(), 0x800) == 0) {
+    if (func_8009CA70(arg0, bs_getPreviousState(BT_NATIVE_ONLY(arg0)), 0x800) == 0) {
         _bashoessuck_entrypoint_3(arg0);
         (((Objbtrot_arg0 *)arg0)->unk160) = 1;
         func_80092880(arg0, 0);
@@ -1544,7 +1544,7 @@ void bsbtrot_entrypoint_49(PlayerState *arg0) {
     s32 sp28[3];
 
     var_s1 = 0;
-    func_800956B8();
+    func_800956B8(BT_NATIVE_ONLY(arg0));
     func_80800120_bsbtrot(arg0);
     func_80800DF4_bsbtrot((BtIntPtr) arg0);
     func_808004B4_bsbtrot(arg0);

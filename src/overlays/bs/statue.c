@@ -539,7 +539,7 @@ void func_80800D84_bsstatue(BtIntPtr arg0) {
     void baflag_set(void *self, s32 id);
     void func_8009EBD0(void);
     s32 func_800A05DC();
-    func_800A05DC();
+    func_800A05DC(BT_NATIVE_ONLY((void *)arg0));
     func_8009EBD0();
     baflag_set(arg0, 0x40);
 }
@@ -574,9 +574,9 @@ void func_80800DB8_bsstatue(PlayerState *arg0, s32 arg1) {
     }
 }
 
-void func_80800EAC_bsstatue(s32 arg0)
+void func_80800EAC_bsstatue(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) arg0)
 {
-    func_8008E95C();
+    func_8008E95C(BT_NATIVE_ONLY((void *)arg0));
     func_80800130_bsstatue(arg0);
 }
 /* extern */

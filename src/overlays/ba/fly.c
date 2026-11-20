@@ -316,7 +316,7 @@ void bafly_entrypoint_14(PlayerState *arg0, s32 arg1, s32 arg2) {
     s32 sp1C;
 
     sp1C = 0;
-    if (anctrl_isStopped(baanim_getAnimCtrlPtr()) != 0) {
+    if (anctrl_isStopped(baanim_getAnimCtrlPtr(BT_NATIVE_ONLY(arg0))) != 0) {
         sp1C = arg1;
     }
     if (player_isStable(arg0) != 0) {
@@ -413,7 +413,7 @@ void bafly_entrypoint_19(BtIntPtr arg0) {
     s32 _bafpctrl_entrypoint_9(BtIntPtr, s32);
     int baflag_isTrue(PlayerState *, s32);
     s32 func_800C6E38(s32);
-    if (_bafpctrl_entrypoint_4() != 3) {
+    if (_bafpctrl_entrypoint_4(BT_NATIVE_ONLY((void *)arg0)) != 3) {
         if (baflag_isTrue(arg0, 0x2F) != 0) {
             _bafpctrl_entrypoint_14(arg0, 3);
         } else {

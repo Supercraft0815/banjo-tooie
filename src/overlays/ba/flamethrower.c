@@ -59,7 +59,7 @@ void baflamethrower_entrypoint_1(BtIntPtr arg0)
     _baflameline_entrypoint_2(arg0);
 }
 
-void baflamethrower_entrypoint_2(BtIntPtr arg0, BtIntPtr arg1) { _baflameline_entrypoint_3(); (*(s32 *)((s8 *)(((Objflamethrower_arg0 *)arg0)->unk88_u8p) + 0)) = arg1; (*(s8 *)((s8 *)(((Objflamethrower_arg0 *)arg0)->unk88_u8p) + 0xC)) = 0; func_80800088_baflamethrower(arg0, 1); }
+void baflamethrower_entrypoint_2(BtIntPtr arg0, BtIntPtr arg1) { _baflameline_entrypoint_3(BT_NATIVE_ONLY((void *)arg0)); (*(s32 *)((s8 *)(((Objflamethrower_arg0 *)arg0)->unk88_u8p) + 0)) = arg1; (*(s8 *)((s8 *)(((Objflamethrower_arg0 *)arg0)->unk88_u8p) + 0xC)) = 0; func_80800088_baflamethrower(arg0, 1); }
 
 void baflamethrower_entrypoint_3(BtIntPtr arg0)
 {

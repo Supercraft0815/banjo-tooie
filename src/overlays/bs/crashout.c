@@ -61,7 +61,7 @@ void func_808000B0_bscrashout(struct player_state_s *self, s32 state) {
 
 void bscrashout_entrypoint_0(BtIntPtr arg0)
 {
-    func_8009BD88();
+    func_8009BD88(BT_NATIVE_ONLY((void *)arg0));
     func_8008E95C(arg0);
     func_800951B4(arg0);
 }
@@ -77,7 +77,7 @@ void bscrashout_entrypoint_1(void *arg0) {
     void func_808000B0_bscrashout(struct player_state_s *, s32);
     void yaw_applyIdeal(void *self);
     void yaw_setIdeal(void *self, f32 arg1);
-    yaw_setIdeal(arg0, func_80099A34());
+    yaw_setIdeal(arg0, func_80099A34(BT_NATIVE_ONLY(arg0)));
     yaw_applyIdeal(arg0);
     func_8009D89C(arg0, 1.0f);
     _bamotor_entrypoint_1(arg0, 1.0f, 0.5f, 0.5f);

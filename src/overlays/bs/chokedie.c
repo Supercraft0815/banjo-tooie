@@ -78,7 +78,7 @@ void bschokedie_entrypoint_2(BtIntPtr arg0) {
     s32 func_800951B4();
     void func_8009BF5C(void *arg0, f32 arg1);
     void func_800A4E30(void *arg0);
-    func_800951B4();
+    func_800951B4(BT_NATIVE_ONLY((void *)arg0));
     func_8009BF5C(arg0, 0.0f);
     baroll_setIdeal(arg0, 0.0f);
     func_800A4E30(arg0);

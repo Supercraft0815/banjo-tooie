@@ -9,7 +9,7 @@ void bskaz_entrypoint_0(PlayerState *self, s32 arg1, s32 arg2) {
 }
 
 void bskaz_entrypoint_1(PlayerState *self) {
-    _bashoes_entrypoint_15();
+    _bashoes_entrypoint_15(BT_NATIVE_ONLY(self));
     _bashoes_entrypoint_7(self, &_bskaz_entrypoint_0);
     _bashoes_entrypoint_8(self, &_bskazmove_entrypoint_11);
     bastick_func_8009F258(self);
@@ -24,7 +24,7 @@ void bskaz_entrypoint_2(PlayerState *self) {
 }
 
 BanjoStateId bskaz_entrypoint_3(PlayerState *self) {
-    if (func_8008E430() != 0) {
+    if (func_8008E430(BT_NATIVE_ONLY(self)) != 0) {
         return BS_STATE_186;
     }
     

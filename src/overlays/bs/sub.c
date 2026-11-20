@@ -623,7 +623,7 @@ BsScript bssub_entrypoint_2(BsScriptType arg0) {
 
 void func_8080121C_bssub(BtIntPtr arg0)
 {
-    _baspin_entrypoint_1();
+    _baspin_entrypoint_1(BT_NATIVE_ONLY((void *)arg0));
     func_808008D8_bssub(arg0);
 }
 /* extern */
@@ -658,7 +658,7 @@ BsScript bssub_entrypoint_3(BsScriptType arg0) {
 
 void func_808012F0_bssub(BtIntPtr arg0)
 {
-    _baspin_entrypoint_1();
+    _baspin_entrypoint_1(BT_NATIVE_ONLY((void *)arg0));
     func_808008D8_bssub(arg0);
 }
 /* extern */

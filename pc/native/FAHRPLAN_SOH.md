@@ -187,6 +187,8 @@ Weitere geprüfte N2-/N3-Pakete am 20. November
 
 - Eier-Erzeuger. Zwölf Erzeuger übergeben beide Vektoren der Bewegung. Die Probe prüft auch die Ablage am Actor auf LP64.
 
+- Spielerargumente. Die Aufrufer der Bewegungs- und Spielformroutinen geben den Spieler aus dem ursprünglichen Argumentregister weiter.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

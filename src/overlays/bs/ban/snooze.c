@@ -206,7 +206,7 @@ void func_80800588_bsbansnooze(BtIntPtr arg0)
   extern s32 D_80800A60_bsbansnooze[6];
   s32 var_s1;
   struct anctrl_s *new_var;
-  new_var = baanim_getAnimCtrlPtr();
+  new_var = baanim_getAnimCtrlPtr(BT_NATIVE_ONLY((void *)arg0));
   var_s1 = 0;
   func_80800128_bsbansnooze(arg0, func_800F3780(anctrl_getAnimTimer(new_var), D_80800A60_bsbansnooze, 3));
   if ((bastick_getZone(arg0) == 0) && (func_8009BCD4(arg0, 0x40400000) != 0))
@@ -284,7 +284,7 @@ BsScript bsbansnooze_entrypoint_4(BsScriptType arg0) {
 
 void func_8080076C_bsbansnooze(BtIntPtr arg0)
 {
-    func_800951B4();
+    func_800951B4(BT_NATIVE_ONLY((void *)arg0));
     func_80800000_bsbansnooze(arg0);
 }
 void func_80800794_bsbansnooze(PlayerState *arg0) {
