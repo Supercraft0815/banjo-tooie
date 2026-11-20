@@ -137,6 +137,8 @@ Weitere geprüfte N2-Pakete am 20. November
 
 - Mumbo-Pad in Cloud Cuckooland. Die räumliche Suche erhält den Positionsvektor des Pads im zweiten Argument. Das Eingangsreplay von Cloud Cuckooland stimmt in der isolierten Probe ohne FixCalls über alle 2.638 Retraces mit der Referenz und dem Kontrolllauf überein.
 
+- Wasserhöhe der Regentropfen. Die Routine prüft die Wasseroberfläche an der Position des Actors. Die Hochadressprobe deckt einen Treffer und den Rückfall auf die Ausgangshöhe ab.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

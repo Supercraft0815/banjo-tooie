@@ -6,13 +6,13 @@ OSThread *chrainripples_entrypoint_0(void)
     extern ActorData D_80800290_chrainripples[];
 
     return (OSThread *) D_80800290_chrainripples;
-}    typedef struct { u8 pad0[0x2C]; f32 unk2C; } Objrainripples_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+} struct RippleData { s32 pad[4]; s32 index; f32 height; }; typedef struct { u8 pad0[0x2C]; f32 unk2C; } Objrainripples_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
 
-void func_8080000C_chrainripples(void *arg0) {
-    f32 func_808001FC_chrainripples();
-    (((Objrainripples_arg0 *)arg0)->unk2C) = (f32) (func_808001FC_chrainripples() + 4.0f);
+void func_8080000C_chrainripples(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(void *) arg0) {
+    f32 func_808001FC_chrainripples(BT_NATIVE_ONLY(Actor *));
+    BT_DATA_FIELD(((struct RippleData *)arg0->actorData)->height, ((Objrainripples_arg0 *)arg0)->unk2C) = (f32) (func_808001FC_chrainripples(BT_NATIVE_ONLY(arg0)) + 4.0f);
 }
 
 void func_80800040_chrainripples(Actor *arg0) {
@@ -25,7 +25,7 @@ void func_80800040_chrainripples(Actor *arg0) {
     void func_800EE7F8(f32 *, f32 *);
     void func_800EF1B8(f32 *, f32, f32);
     extern s32 D_808002D8_chrainripples[];
-    struct RippleData { s32 pad[4]; s32 index; f32 height; };
+    /* actorData stores the current rain point and surface height. */
     struct RainPoint { f32 position[3]; s16 radius; };
     f32 angle;
     s32 count;
@@ -62,21 +62,21 @@ void func_80800040_chrainripples(Actor *arg0) {
 
 /* extern */
 
-f32 func_808001FC_chrainripples(f32 *arg0) {
+f32 func_808001FC_chrainripples(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(f32 *) arg0) {
     void *func_800BEF00(f32 *a,f32 *b,f32 *out,u32 flags);
     void func_800EE7F8(f32 *, f32 *);
     f32 sp34[3];
     f32 sp28[3];
     f32 sp1C[3];
 
-    func_800EE7F8(sp34, arg0 + 1);
-    func_800EE7F8(sp28, arg0 + 1);
+    func_800EE7F8(sp34, BT_DATA_FIELD(arg0->position, arg0 + 1));
+    func_800EE7F8(sp28, BT_DATA_FIELD(arg0->position, arg0 + 1));
     sp34[1] += 100.0f;
     sp28[1] -= 100.0f;
     if (func_800BEF00(sp34, sp28, sp1C, 0x1F00) != 0) {
         return sp28[1];
     }
-    return arg0[2];
+    return BT_DATA_FIELD(arg0->position[1], arg0[2]);
 }
 /* data_to_c.py: from asm/data/overlays/ch/rainripples.data.s */
 void func_80105834(Actor*);
