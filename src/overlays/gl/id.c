@@ -1,4 +1,4 @@
-#include "common.h"
+#include "core2/model_mesh.h"
 
 void glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3) {
     void *func_800B2190(void *);
@@ -10,9 +10,9 @@ void glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32
     u8 *var_s1;
     u8 *var_s2;
 
-    temp_s4 = func_800B2190(*(void **)(arg0 + 0x14));
+    temp_s4 = func_800B2190(BT_DATA_FIELD(((ModelMesh *)arg0)->vertices, *(void **)(arg0 + 0x14)));
     temp_a0 = *(s32 *)(arg0 + 4);
-    var_s1 = arg0 + 0x1C;
+    var_s1 = BT_DATA_FIELD(((ModelMesh *)arg0)->meshes, arg0 + 0x1C);
     var_v1 = 0;
     while ((s32)var_v1 < temp_a0) {
         var_v1 += 1;
@@ -48,10 +48,10 @@ void glid_entrypoint_1(u8 *arg0, s32 arg1, BT_IDO_ONLY(s32 (*arg2)(u8 *, u8 *, u
     u8 *var_s1;
     u8 *var_v1;
 
-    temp_s3 = func_800B2190(*(void **)(arg0 + 0x14));
-    temp_s4 = func_800B2190(*(void **)(arg0 + 0x18));
+    temp_s3 = func_800B2190(BT_DATA_FIELD(((ModelMesh *)arg0)->vertices, *(void **)(arg0 + 0x14)));
+    temp_s4 = func_800B2190(BT_DATA_FIELD(((ModelMesh *)arg0)->other_vertices, *(void **)(arg0 + 0x18)));
     temp_a1 = (((Objid_arg0 *)arg0)->unk4);
-    var_v1 = arg0 + 0x1C;
+    var_v1 = BT_DATA_FIELD(((ModelMesh *)arg0)->meshes, arg0 + 0x1C);
     var_a0 = 0;
     while ((s32)var_a0 < temp_a1) {
         var_a0++;
@@ -75,7 +75,7 @@ void glid_entrypoint_1(u8 *arg0, s32 arg1, BT_IDO_ONLY(s32 (*arg2)(u8 *, u8 *, u
 
 /* extern */
 
-void glid_entrypoint_2(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s32), BtIntPtr arg3) {
+void glid_entrypoint_2 BT_IDO_ONLY((u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s32), BtIntPtr arg3)) BT_NATIVE_ONLY((u8 *arg0, s32 arg1, MeshVertexVisitor arg2, u8 *arg3)) {
     void *func_800B2190(void *);
     s32 temp_a0;
     u8 *temp_fp;
@@ -87,9 +87,9 @@ void glid_entrypoint_2(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s32), Bt
     u8 *var_s3;
     u8 *var_s6;
 
-    temp_fp = func_800B2190(*(void **)(arg0 + 0x14));
+    temp_fp = func_800B2190(BT_DATA_FIELD(((ModelMesh *)arg0)->vertices, *(void **)(arg0 + 0x14)));
     temp_a0 = (((Objid_arg0 *)arg0)->unk4);
-    var_s3 = arg0 + 0x1C;
+    var_s3 = BT_DATA_FIELD(((ModelMesh *)arg0)->meshes, arg0 + 0x1C);
     var_v1 = 0;
     if (temp_a0 > 0) {
 loop_1:
@@ -104,7 +104,7 @@ loop_1:
                     temp_s2 = ((((Objid_glid_entrypoint_2_var_s6 *)var_s6)->unk2) * 0x10) + var_s0;
                     if (var_s0 < temp_s2) {
                         do {
-                            arg2((((Objid_glid_entrypoint_2_var_s3 *)var_s3)->unk0), var_s1, var_s0, arg3);
+                            arg2((((Objid_glid_entrypoint_2_var_s3 *)var_s3)->unk0), BT_NATIVE_ONLY((s16 *))var_s1, var_s0, arg3);
                             var_s0 += 0x10;
                             var_s1 += 0x10;
                         } while (var_s0 < temp_s2);
@@ -123,7 +123,7 @@ loop_1:
 
 void glid_entrypoint_3(u8 *arg0, s32 arg1, s32 (*arg2)(u8 *, u8 *, s32, s32), BtIntPtr arg3) {
     void *func_800B2190(void *);
-    u8 *func_800B27A0(u8 *);
+    u8 *func_800B27A0(u8 *); BT_NATIVE_ONLY(struct ImageStruct *func_800D674C(s32);)
     s8 *_dbvtxnormal_entrypoint_0(BtIntPtr, s32);
     u8 * volatile sp44;
     s32 temp_a1_2;
@@ -137,10 +137,10 @@ void glid_entrypoint_3(u8 *arg0, s32 arg1, s32 (*arg2)(u8 *, u8 *, s32, s32), Bt
     u8 *var_s6;
     u8 *var_v1;
 
-    sp44 = func_800B2190(*(void **)(arg0 + 0x14));
+    sp44 = func_800B2190(BT_DATA_FIELD(((ModelMesh *)arg0)->vertices, *(void **)(arg0 + 0x14)));
     temp_fp = (BtIntPtr)func_800B27A0((u8 *)func_800D674C(*(s32 *)arg0));
     temp_a1 = *(s32 *)(arg0 + 4);
-    var_v1 = arg0 + 0x1C;
+    var_v1 = BT_DATA_FIELD(((ModelMesh *)arg0)->meshes, arg0 + 0x1C);
     var_a0 = 0;
     while ((s32)var_a0 < temp_a1) {
         var_a0 += 1;
@@ -187,10 +187,10 @@ void glid_entrypoint_4(u8 *arg0, s32 (*arg1)(s16, u8 *, u8 *, s32), s32 arg2) {
     u8 *var_s3;
     u8 *var_s6;
 
-    temp_v0 = func_800B2190(*(void **)(arg0 + 0x14));
+    temp_v0 = func_800B2190(BT_DATA_FIELD(((ModelMesh *)arg0)->vertices, *(void **)(arg0 + 0x14)));
     sp44[0] = 0;
     var_v1 = (((Objid_arg0 *)arg0)->unk4);
-    var_s3 = arg0 + 0x1C;
+    var_s3 = BT_DATA_FIELD(((ModelMesh *)arg0)->meshes, arg0 + 0x1C);
     if (var_v1 > 0) {
         do {
             var_s6 = var_s3 + 8;
@@ -217,10 +217,10 @@ void glid_entrypoint_4(u8 *arg0, s32 (*arg1)(s16, u8 *, u8 *, s32), s32 arg2) {
     }
 }
 
-void glid_entrypoint_5(s32 *arg0, s32 arg1) {
-    arg0[5] = arg1;
+void glid_entrypoint_5(BT_IDO_ONLY(s32 *) BT_NATIVE_ONLY(void *) arg0, BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void *) arg1) {
+    BT_DATA_FIELD(((ModelMesh *)arg0)->vertices, arg0[5]) = arg1;
 }
 
-void glid_entrypoint_6(s32 *arg0, s32 arg1) {
-    arg0[6] = arg1;
+void glid_entrypoint_6(BT_IDO_ONLY(s32 *) BT_NATIVE_ONLY(void *) arg0, BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void *) arg1) {
+    BT_DATA_FIELD(((ModelMesh *)arg0)->other_vertices, arg0[6]) = arg1;
 }

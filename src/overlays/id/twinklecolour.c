@@ -1,8 +1,8 @@
-#include "common.h"
+#include "core2/model_mesh.h"
 
 #include "core2/world_effect.h"
 
-void idtwinklecolour_entrypoint_0(s32 arg0, s16 *arg1, s32 arg2, u8 *arg3) {
+void idtwinklecolour_entrypoint_0 BT_IDO_ONLY((s32 arg0, s16 *arg1, s32 arg2, u8 *arg3)) BT_NATIVE_ONLY((s32 arg0, s16 *arg1, u8 *arg2, u8 *arg3)) {
     BT_IDO_ONLY(s16 func_800DC214(s16, s16);) BT_NATIVE_ONLY(s32 func_800DC214(s32, s32);)
     struct Entry {
         f32 value;
@@ -49,7 +49,7 @@ void idtwinklecolour_entrypoint_0(s32 arg0, s16 *arg1, s32 arg2, u8 *arg3) {
     }
 }        
 
-void idtwinklecolour_entrypoint_1(s32 arg0, void *arg1, s32 arg2, void *arg3) {
+void idtwinklecolour_entrypoint_1 BT_IDO_ONLY((s32 arg0, void *arg1, s32 arg2, void *arg3)) BT_NATIVE_ONLY((s32 arg0, s16 *arg1, u8 *arg2, u8 *arg3)) {
     if ((*(s16 *)((s8 *)(arg3) + (0x1E))) == (*(s16 *)((s8 *)(arg3) + (0x1C)))) {
         (*(s16 *)((s8 *)(arg3) + (0xE))) = (s16) (*(s16 *)((s8 *)(arg1) + (0)));
         (*(s16 *)((s8 *)(arg3) + (0x10))) = (s16) (*(s16 *)((s8 *)(arg1) + (2)));
@@ -94,7 +94,7 @@ void idtwinklecolour_entrypoint_2(s32 arg0, u8 *arg1, u8 *arg2, s32 arg3, u8 *ar
 }
 
 void func_80800574_idtwinklecolour(void *arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
-    void _glid_entrypoint_2(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s32), BtIntPtr arg3);
+    BT_IDO_ONLY(void _glid_entrypoint_2(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s32), BtIntPtr arg3);)
     BT_IDO_ONLY(s16 func_800DC214(s16, s16);) BT_NATIVE_ONLY(s32 func_800DC214(s32, s32);)
 #ifndef BT_NATIVE
     extern s32 _idtwinklecolour_entrypoint_0;
@@ -107,10 +107,10 @@ void func_80800574_idtwinklecolour(void *arg0, BtIntPtr arg1, s32 arg2, s32 arg3
     (((TwinkleColorEffect *)arg0)->unk1E) = func_800DC214(0, (((TwinkleColorEffect *)arg0)->unkC));
     (((TwinkleColorEffect *)arg0)->unk1C) = 0;
     (((TwinkleColorEffect *)arg0)->unk20) = (s16) arg3;
-    _glid_entrypoint_2(arg1, arg2, &_idtwinklecolour_entrypoint_1, arg0);
+    _glid_entrypoint_2(BT_NATIVE_ONLY((u8 *))arg1, arg2, &_idtwinklecolour_entrypoint_1, BT_NATIVE_ONLY((u8 *))arg0);
     temp_v0 = func_800DC214((((TwinkleColorEffect *)arg0)->unk18), (((TwinkleColorEffect *)arg0)->unk1A));
     (((TwinkleColorEffect *)arg0)->unk14) = (s32) (temp_v0 * temp_v0);
-    _glid_entrypoint_2(arg1, arg2, &_idtwinklecolour_entrypoint_0, arg0);
+    _glid_entrypoint_2(BT_NATIVE_ONLY((u8 *))arg1, arg2, &_idtwinklecolour_entrypoint_0, BT_NATIVE_ONLY((u8 *))arg0);
 }
 
 /* extern */

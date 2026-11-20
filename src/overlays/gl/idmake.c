@@ -1,4 +1,4 @@
-#include "common.h"
+#include "core2/model_mesh.h"
 #include "core1/heap.h"
 BtIntPtr func_80800000_glidmake(BtIntPtr arg0) {
     int func_800EEEA8(f32 vec[3]);
@@ -54,7 +54,7 @@ void glidmake_entrypoint_2(void *arg0, s32 arg1, s16 *arg2, s16 *arg3) {
     asset = func_800D674C(*(s32 *)arg0);
     mesh = _dbid_entrypoint_2(func_800B274C(asset), arg1);
     if (mesh != NULL) {
-        vertices = func_800B2190(((Objidmake_arg0 *)arg0)->unk14);
+        vertices = func_800B2190(BT_DATA_FIELD(((ModelMesh *)arg0)->vertices, ((Objidmake_arg0 *)arg0)->unk14));
         index = (BtUIntPtr)mesh + 4;
         end = (BtUIntPtr)mesh + mesh[1] * 2 + 4;
         for (; index < end; index += 2) {
@@ -94,9 +94,9 @@ s16 glidmake_entrypoint_3(s32 *arg0, s32 arg1) {
     return var_v1;
 }
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) glidmake_entrypoint_4(void* arg0) 
+void glidmake_entrypoint_4(void* arg0)
 {
-    BT_NATIVE_ONLY(return) heap_free(arg0);
+    BT_NATIVE_ONLY(void heap_free(void *);) heap_free(arg0);
 }
 void *glidmake_entrypoint_5(s32 arg0, f32 *arg1) {
     BtIntPtr func_800D674C(s32);
@@ -136,7 +136,7 @@ void *glidmake_entrypoint_5(s32 arg0, f32 *arg1) {
     vertices = (u8 *)func_800B2840(model);
     total = _dbid_entrypoint_1(data);
     count = data[0];
-    size = total * 16 + count * 8 + 28;
+    size = total * 16 + BT_DATA_FIELD(count * 8 + (s32)offsetof(ModelMesh, meshes), count * 8 + 28);
     first = data + 1;
     cursor = first;
     i = 0;
@@ -158,9 +158,9 @@ void *glidmake_entrypoint_5(s32 arg0, f32 *arg1) {
     } else {
         func_800EFD24((f32 *)(result + 8));
     }
-    *(u8 **)(result + 20) = vertices;
-    *(s32 *)(result + 24) = 0;
-    entry = result + 28;
+    BT_DATA_FIELD(((ModelMesh *)result)->vertices, *(u8 **)(result + 20)) = vertices;
+    BT_DATA_FIELD(((ModelMesh *)result)->other_vertices, *(s32 *)(result + 24)) = 0;
+    entry = BT_DATA_FIELD(((ModelMesh *)result)->meshes, result + 28);
     if (data[0] > 0) {
         do {
             run = 1;

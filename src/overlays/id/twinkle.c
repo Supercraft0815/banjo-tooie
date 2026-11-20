@@ -1,7 +1,7 @@
-#include "common.h"
+#include "core2/model_mesh.h"
 #include "core2/world_effect.h"
 
- void idtwinkle_entrypoint_0(s32 arg0, s16 *arg1, u8 *arg2, void *arg3) {
+ void idtwinkle_entrypoint_0 BT_IDO_ONLY((s32 arg0, s16 *arg1, u8 *arg2, void *arg3)) BT_NATIVE_ONLY((s32 arg0, s16 *arg1, u8 *arg2, u8 *arg3)) {
     s32 i;
     s32 distance;
     s32 delta[3];
@@ -33,7 +33,7 @@
     }
 }
 
-void idtwinkle_entrypoint_1(s32 arg0, void *arg1, s32 arg2, void *arg3) {
+void idtwinkle_entrypoint_1 BT_IDO_ONLY((s32 arg0, void *arg1, s32 arg2, void *arg3)) BT_NATIVE_ONLY((s32 arg0, s16 *arg1, u8 *arg2, u8 *arg3)) {
     if ((*(s16 *)((s8 *)(arg3) + (0x26))) == (*(s16 *)((s8 *)(arg3) + (0x24)))) {
         (*(s16 *)((s8 *)(arg3) + (0xE))) = (s16) (*(s16 *)((s8 *)(arg1) + (0)));
         (*(s16 *)((s8 *)(arg3) + (0x10))) = (s16) (*(s16 *)((s8 *)(arg1) + (2)));
@@ -74,7 +74,7 @@ void idtwinkle_entrypoint_2(s32 arg0, u8 *arg1, u8 *arg2, s32 arg3, u8 *arg4) {
 }
 
 void func_80800478_idtwinkle(void *arg0, BtIntPtr arg1, s32 arg2) {
-    void _glid_entrypoint_2(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s32), BtIntPtr arg3);
+    BT_IDO_ONLY(void _glid_entrypoint_2(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s32), BtIntPtr arg3);)
     s32 func_800DC214(s32, s32);
     f32 func_800DC264(f32, f32);
 #ifndef BT_NATIVE
@@ -89,11 +89,11 @@ void func_80800478_idtwinkle(void *arg0, BtIntPtr arg1, s32 arg2) {
 
     ((TwinkleEffect *)arg0)->unk26 = func_800DC214(0, ((TwinkleEffect *)arg0)->unkC);
     ((TwinkleEffect *)arg0)->unk24 = 0;
-    _glid_entrypoint_2(arg1, arg2, &_idtwinkle_entrypoint_1, arg0);
+    _glid_entrypoint_2(BT_NATIVE_ONLY((u8 *))arg1, arg2, &_idtwinkle_entrypoint_1, BT_NATIVE_ONLY((u8 *))arg0);
     temp = func_800DC214(((TwinkleEffect *)arg0)->unk18, ((TwinkleEffect *)arg0)->unk1A);
     ((TwinkleEffect *)arg0)->unk14 = temp * temp;
     ((TwinkleEffect *)arg0)->count = 0;
-    _glid_entrypoint_2(arg1, arg2, &_idtwinkle_entrypoint_0, arg0);
+    _glid_entrypoint_2(BT_NATIVE_ONLY((u8 *))arg1, arg2, &_idtwinkle_entrypoint_0, BT_NATIVE_ONLY((u8 *))arg0);
     i = 0;
     offset = 0;
     while (i < ((TwinkleEffect *)arg0)->count) {

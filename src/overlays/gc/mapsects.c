@@ -134,7 +134,7 @@ void func_8080035C_gcmapsects(void *arg0, s32 arg1) {
 
 void func_808003F4_gcmapsects(void *arg0, s32 arg1)
 {
-  s32 _glidmake_entrypoint_4(s32);
+  BT_IDO_ONLY(s32 _glidmake_entrypoint_4(s32);) BT_NATIVE_ONLY(void _glidmake_entrypoint_4(void *);)
   s32 _idworldmake_entrypoint_2(s32);
   s32 func_800D6CEC(s32);
   s32 func_800D70F8(s32, s32);
@@ -188,7 +188,7 @@ void func_808003F4_gcmapsects(void *arg0, s32 arg1)
     if (map->sections[arg1].objects[i])
     {
       _idworldmake_entrypoint_2(map->sections[arg1].objects[i]);
-      _glidmake_entrypoint_4(map->sections[arg1].objects[i]);
+      _glidmake_entrypoint_4(BT_NATIVE_ONLY((void *))map->sections[arg1].objects[i]);
       map->sections[arg1].objects[i] = 0;
     }
   }
@@ -197,7 +197,7 @@ void func_808003F4_gcmapsects(void *arg0, s32 arg1)
 
 void func_808005D0_gcmapsects(void *arg0, s32 arg1, s32 arg2) {
     s32 _glid_entrypoint_5(s32, s32);
-    s32 _glidmake_entrypoint_4(s32);
+    BT_IDO_ONLY(s32 _glidmake_entrypoint_4(s32);) BT_NATIVE_ONLY(void _glidmake_entrypoint_4(void *);)
     BT_IDO_ONLY(s32 _glidmake_entrypoint_5(u16, s32);) BT_NATIVE_ONLY(void *_glidmake_entrypoint_5(s32, f32 *);)
     s32 _idworldmake_entrypoint_0(s32, s32);
     s32 _idworldmake_entrypoint_2(s32);
@@ -223,7 +223,7 @@ void func_808005D0_gcmapsects(void *arg0, s32 arg1, s32 arg2) {
         for (i = 0; i < 2; i++) {
             if (map->sections[arg1].objects[i]) {
                 _idworldmake_entrypoint_2(map->sections[arg1].objects[i]);
-                _glidmake_entrypoint_4(map->sections[arg1].objects[i]);
+                _glidmake_entrypoint_4(BT_NATIVE_ONLY((void *))map->sections[arg1].objects[i]);
                 map->sections[arg1].objects[i] = 0;
             }
         }

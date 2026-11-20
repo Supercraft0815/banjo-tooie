@@ -1,4 +1,4 @@
-#include "common.h"
+#include "core2/model_mesh.h"
 
 extern struct {
     s16 *start;
@@ -54,7 +54,7 @@ void idflame_entrypoint_0(s32 arg0, u32 arg1, u8 *arg2, s32 arg3, u8 *arg4) {
     }
 }
 
-void idflame_entrypoint_1(s32 arg0, s16 *arg1, s32 arg2, s32 arg3) {
+void idflame_entrypoint_1 BT_IDO_ONLY((s32 arg0, s16 *arg1, s32 arg2, s32 arg3)) BT_NATIVE_ONLY((s32 arg0, s16 *arg1, u8 *arg2, u8 *arg3)) {
     s16 value;
     s16 *pos;
     s16 *end;
@@ -91,13 +91,13 @@ void idflame_entrypoint_3(void *data, s32 arg1, void *arg2, s32 arg3, s32 flags)
 #else
 void idflame_entrypoint_3(u8 *arg0, s32 arg1, BtIntPtr arg2, s32 arg3) {
 #endif
-    void _glid_entrypoint_2(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s32), BtIntPtr arg3);
+    BT_IDO_ONLY(void _glid_entrypoint_2(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s32), BtIntPtr arg3);)
     void _glidmake_entrypoint_2(void *arg0, s32 arg1, s16 *arg2, s16 *arg3);
     s16 _glidmake_entrypoint_3(s32 *arg0, s32 arg1);
     f32 func_800DC264(f32 arg0, f32 arg1);
     void *heap_alloc(s32 size);
     void heap_free(void *mem);
-    void _idflame_entrypoint_1(s32 arg0, s16 *arg1, s32 arg2, s32 arg3);
+    BT_IDO_ONLY(void _idflame_entrypoint_1(s32 arg0, s16 *arg1, s32 arg2, s32 arg3);)
     s32 value;
     s32 count;
     f32 height;
@@ -117,7 +117,7 @@ void idflame_entrypoint_3(u8 *arg0, s32 arg1, BtIntPtr arg2, s32 arg3) {
     B_80800560_idflame.start = heap_alloc(count * 2);
     B_80800560_idflame.end = B_80800560_idflame.start;
     B_80800560_idflame.limit = B_80800560_idflame.start + count;
-    _glid_entrypoint_2((u8 *)arg2, arg3, _idflame_entrypoint_1, arg0);
+    _glid_entrypoint_2((u8 *)arg2, arg3, _idflame_entrypoint_1, BT_NATIVE_ONLY((u8 *))arg0);
     threshold = (f32)(max[0] - min[0]) * 0.11f;
     arg0[0xA] = 0;
     pos = B_80800560_idflame.start + 1;

@@ -183,6 +183,8 @@ Weitere geprüfte N2-/N3-Pakete am 20. November
 
 - Autoscooter-Animationen. Autoscooter und Madame Grunty erhalten beim Animationswechsel den Actor und den Zielzustand. Das Autoscooter-Replay erreicht auch ohne FixCalls seine Zielkarte nach 4.856 Retraces.
 
+- Mesh- und Effektzugriffe. Sechs Wasser-, Flammen- und Glitzer-Callbacks nutzen die gemeinsame Vertex-Signatur. Ein Sanitizertest prüft den Aufbau der Mesh-Tabelle und den Wechsel der Vertexlisten mit hoch liegenden Zeigern.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

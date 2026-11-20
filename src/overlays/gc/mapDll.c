@@ -570,7 +570,7 @@ void gcmapDll_entrypoint_3(u8 *arg0) {
 
 void func_80800A94_gcmapDll(s32 arg0[][11], s32 arg1) {
     s32 _dbtex_entrypoint_1(s32);
-    s32 _glidmake_entrypoint_4(s32);
+    BT_IDO_ONLY(s32 _glidmake_entrypoint_4(s32);) BT_NATIVE_ONLY(void _glidmake_entrypoint_4(void *);)
     s32 _rtlight_entrypoint_0(s32);
     s32 _vpmodule_entrypoint_1(s32, s32);
     void func_800B23E0(void *);
@@ -593,7 +593,7 @@ void func_80800A94_gcmapDll(s32 arg0[][11], s32 arg1) {
     }
     temp_a0_2 = (*(s32 *)((s8 *)(temp_s0) + (4)));
     if (temp_a0_2 != 0) {
-        _glidmake_entrypoint_4(temp_a0_2);
+        _glidmake_entrypoint_4(BT_NATIVE_ONLY((void *))temp_a0_2);
     }
     temp_a0_3 = (*(s32 *)((s8 *)(temp_s0) + (8)));
     if (temp_a0_3 != 0) {

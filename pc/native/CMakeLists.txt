@@ -180,6 +180,22 @@ if(UNIX AND NOT APPLE)
 endif()
 target_compile_options(bt_native_core PRIVATE -ffunction-sections -fdata-sections)
 
+if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+    add_executable(bt_native_model_mesh_test tests/model_mesh.c
+        "${BT_ROOT}/src/overlays/gl/id.c" "${BT_ROOT}/src/overlays/gl/idmake.c"
+        "${BT_ROOT}/src/overlays/db/id.c" "${BT_ROOT}/src/overlays/id/water.c")
+    target_link_libraries(bt_native_model_mesh_test PRIVATE bt_native_options)
+    if(CMAKE_C_COMPILER_ID MATCHES "Clang|GNU")
+        target_compile_options(bt_native_model_mesh_test PRIVATE -ffunction-sections -fdata-sections)
+        if(APPLE)
+            target_link_options(bt_native_model_mesh_test PRIVATE -Wl,-dead_strip)
+        else()
+            target_link_options(bt_native_model_mesh_test PRIVATE -Wl,--gc-sections)
+        endif()
+    endif()
+    add_test(NAME native_model_mesh_vertices COMMAND bt_native_model_mesh_test)
+endif()
+
 add_executable(bt_native_core_test tests/core.c)
 target_link_libraries(bt_native_core_test PRIVATE bt_native_core)
 add_test(NAME native_core COMMAND bt_native_core_test)

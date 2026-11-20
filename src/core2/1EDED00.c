@@ -667,7 +667,7 @@ void func_801060E4(s16 arg0) {
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
     void _glidmake_entrypoint_4(void *);
 #else
-    s32 _glidmake_entrypoint_4(s32);
+    BT_IDO_ONLY(s32 _glidmake_entrypoint_4(s32);) BT_NATIVE_ONLY(void _glidmake_entrypoint_4(void *);)
 #endif
     extern FreeList *D_80136ED0;
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
@@ -678,7 +678,7 @@ void func_801060E4(s16 arg0) {
 
     entry = freelist_at(D_80136ED0, arg0);
     vector_free(ITEM_ENTRY(entry, items, entry[1]));
-    _glidmake_entrypoint_4(ITEM_ENTRY(entry, model, entry[0]));
+    _glidmake_entrypoint_4(BT_NATIVE_ONLY((void *))ITEM_ENTRY(entry, model, entry[0]));
     freelist_erase(D_80136ED0, arg0);
 }
 
