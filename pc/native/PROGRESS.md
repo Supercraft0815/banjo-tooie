@@ -3673,3 +3673,9 @@ Der isolierte Folgestand `gameplay-deflection-query` besteht im regulären Build
 Der Test ruft alle neun Zeichenroutinen mit dem realen HUD-Eintrag auf und prüft Text, Symbole, Breite und Displaylistenübergabe.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 75 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-hud-drawing*`.
+
+### 2026-11-19 – Geführte Spielerbewegung (N1/N3)
+
+Start und Abschluss der geführten Bewegung greifen auf den aktuellen Spieler zu. Bewegung und Sturzübergang lesen ihren Fortschritt aus demselben Feld.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 75 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-drone-walk*`.

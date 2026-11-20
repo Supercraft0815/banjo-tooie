@@ -79,6 +79,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Zeichnen der HUD-Stile. Der Test ruft alle neun Zeichenroutinen mit dem realen HUD-Eintrag auf und prüft Text, Symbole, Breite und Displaylistenübergabe.
 
+- Geführte Spielerbewegung. Start und Abschluss der geführten Bewegung greifen auf den aktuellen Spieler zu. Bewegung und Sturzübergang lesen ihren Fortschritt aus demselben Feld.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

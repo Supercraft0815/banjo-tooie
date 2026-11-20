@@ -1,13 +1,17 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "transition.h"
+#include "core2/1E7BFA0.h"
+#endif
 
 s32 func_80800000_bsdronegoto(void *arg0, s32 arg1) {
-    void func_808000C0_bsdronegoto();
+    void func_808000C0_bsdronegoto(BT_NATIVE_ONLY(PlayerState *));
     void func_80800148_bsdronegoto(BtIntPtr);
     void func_80800150_bsdronegoto(void *);
     void func_8080032C_bsdronegoto(void *);
     s32 state;
 
-    state = *(s32 *)((s8 *)arg0 + 0x190);
+    state = BT_DATA_FIELD(((PlayerDroneTransition *)arg0)->step, *(s32 *)((s8 *)arg0 + 0x190));
     switch (state) {
     case 1:
         func_80800148_bsdronegoto((BtIntPtr)arg0);
@@ -16,10 +20,10 @@ s32 func_80800000_bsdronegoto(void *arg0, s32 arg1) {
         func_8080032C_bsdronegoto(arg0);
         break;
     }
-    *(s32 *)((s8 *)arg0 + 0x190) = arg1;
+    BT_DATA_FIELD(((PlayerDroneTransition *)arg0)->step, *(s32 *)((s8 *)arg0 + 0x190)) = arg1;
     switch (arg1) {
     case 1:
-        func_808000C0_bsdronegoto(arg0, arg1);
+        BT_NATIVE_ONLY(func_808000C0_bsdronegoto(arg0);) BT_IDO_ONLY(func_808000C0_bsdronegoto(arg0, arg1);)
         return;
     case 2:
         func_80800150_bsdronegoto(arg0);
@@ -30,35 +34,35 @@ s32 func_80800000_bsdronegoto(void *arg0, s32 arg1) {
 /* extern */
 
 #ifdef BT_NATIVE
-s32 func_8080009C_bsdronegoto(s32 bt_a0) {
+s32 func_8080009C_bsdronegoto(PlayerState *self) {
 #else
 s32 func_8080009C_bsdronegoto(void) {
 #endif
-    s32 func_800A3274();
-    return func_800A3274() != 0x12;
+    BT_IDO_ONLY(s32 func_800A3274();)
+    return func_800A3274(BT_NATIVE_ONLY(self)) != 0x12;
 }
 
 #ifdef BT_NATIVE
-void func_808000C0_bsdronegoto(s32 bt_a0)
+void func_808000C0_bsdronegoto(PlayerState *self)
 #else
 void func_808000C0_bsdronegoto()
 #endif
 {
-    void func_8009B7C0();
-    func_8009B7C0();
+    void func_8009B7C0(BT_NATIVE_ONLY(PlayerState *));
+    func_8009B7C0(BT_NATIVE_ONLY(self));
 }
 
 struct player_state_s;
 void func_808000E0_bsdronegoto(struct player_state_s *arg0) {
     void func_8009B7C0(struct player_state_s *);
-    s32 func_8080009C_bsdronegoto();
+    BT_IDO_ONLY(s32 func_8080009C_bsdronegoto();)
     s32 player_inWater(struct player_state_s *);
     int player_isStable(struct player_state_s *);
     s32 var_v1;
 
     func_8009B7C0(arg0);
 #ifdef BT_NATIVE
-    var_v1 = ((s32 (*)())func_8080009C_bsdronegoto)(arg0) != 0;
+    var_v1 = func_8080009C_bsdronegoto(arg0) != 0;
 #else
     var_v1 = func_8080009C_bsdronegoto(arg0) != 0;
 #endif
@@ -108,7 +112,7 @@ void func_80800150_bsdronegoto(void *arg0) {
         _bamovegoto_entrypoint_8(arg0, sp38);
     }
     func_8009FFD8(arg0, 1, 1, 3, 0);
-    (((Objgoto_arg0 *)arg0)->unk198) = func_80095898(arg0);
+    BT_DATA_FIELD(((PlayerDroneTransition *)arg0)->saved_collision, (((Objgoto_arg0 *)arg0)->unk198)) = func_80095898(arg0);
     if (_badrone_entrypoint_7(arg0) != 0) {
         func_800961A0(arg0, 0);
         _bamovegoto_entrypoint_10(arg0, 1);
@@ -143,9 +147,9 @@ void func_8080026C_bsdronegoto(void *arg0) {
     }
     func_8009FF00(arg0);
     if (_bamovegoto_entrypoint_4(arg0) != 0) {
-        temp_v0 = (*(s32 *)((s8 *)(arg0) + (0x194)));
+        temp_v0 = BT_DATA_FIELD(((PlayerDroneTransition *)arg0)->finish_handled, (*(s32 *)((s8 *)(arg0) + (0x194))));
         if (temp_v0 == 0) {
-            (*(s32 *)((s8 *)(arg0) + (0x194))) = (s32) (temp_v0 + 1);
+            BT_DATA_FIELD(((PlayerDroneTransition *)arg0)->finish_handled, (*(s32 *)((s8 *)(arg0) + (0x194)))) = (s32) (temp_v0 + 1);
             if (_badrone_entrypoint_9(arg0) == 1) {
                 if (func_8008E124(arg0) != 0) {
                     var_v0 = _badata_entrypoint_32(arg0);
@@ -163,7 +167,7 @@ void func_8080026C_bsdronegoto(void *arg0) {
 
 void func_8080032C_bsdronegoto(void *arg0) {
     s32 func_800961A0(s32 *, s32);
-    func_800961A0(arg0, (((Objgoto_arg0 *)arg0)->unk198));
+    func_800961A0(arg0, BT_DATA_FIELD(((PlayerDroneTransition *)arg0)->saved_collision, (((Objgoto_arg0 *)arg0)->unk198)));
 }
 
 /* extern */
@@ -174,8 +178,8 @@ void bsdronegoto_entrypoint_0(BT_IDO_ONLY(void *) BT_NATIVE_ONLY(struct player_s
     s32 func_80091E48(void *, s32);
     s32 func_80800000_bsdronegoto(void *, s32);
     int player_isStable(struct player_state_s *);
-    (((Objgoto_arg0 *)arg0)->unk190) = 0;
-    (((Objgoto_arg0 *)arg0)->unk194) = 0;
+    BT_DATA_FIELD(((PlayerDroneTransition *)arg0)->step, (((Objgoto_arg0 *)arg0)->unk190)) = 0;
+    BT_DATA_FIELD(((PlayerDroneTransition *)arg0)->finish_handled, (((Objgoto_arg0 *)arg0)->unk194)) = 0;
     _gcgoto_entrypoint_14(1);
     func_80091E48(arg0, 0x3F);
     if ((player_isStable(arg0) == 0) && (_badata_entrypoint_14(arg0) != 0)) {
@@ -186,7 +190,7 @@ void bsdronegoto_entrypoint_0(BT_IDO_ONLY(void *) BT_NATIVE_ONLY(struct player_s
 }
 
 void bsdronegoto_entrypoint_1(struct player_state_s *arg0) {
-    switch (*(s32 *)((u8 *)arg0 + 0x190)) {
+    switch (BT_DATA_FIELD(((PlayerDroneTransition *)arg0)->step, *(s32 *)((u8 *)arg0 + 0x190))) {
         case 1:
             func_808000E0_bsdronegoto(arg0);
             break;
@@ -212,9 +216,9 @@ void bsdronegoto_entrypoint_3(struct player_state_s *arg0) {
     void func_80099B94(struct player_state_s *);
     s32 func_8009E6EC(struct player_state_s *);
     void func_8009E830(struct player_state_s *, s32);
-    s32 func_80099AA8();
+    BT_IDO_ONLY(s32 func_80099AA8();) BT_NATIVE_ONLY(void func_80099AA8(PlayerState *);)
 
-    if (*(s32 *)((u8 *)arg0 + 0x194) != 0) {
+    if (BT_DATA_FIELD(((PlayerDroneTransition *)arg0)->finish_handled, *(s32 *)((u8 *)arg0 + 0x194)) != 0) {
         func_80099B94(arg0);
         return;
     }
