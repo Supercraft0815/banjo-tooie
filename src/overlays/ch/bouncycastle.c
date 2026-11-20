@@ -77,18 +77,18 @@ void chbouncycastle_entrypoint_4(Actor *arg0) {
 
 /* extern */
 
-void func_80800148_chbouncycastle(void **arg0) {
+void func_80800148_chbouncycastle(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(void **) arg0) {
     void _glidmake_entrypoint_4(void* arg0);
     void *_glidmake_entrypoint_5(s32 arg0, f32 *arg1);
-    s32 func_8010647C(void **, BtIntPtr);
-    BtIntPtr func_801065A4();
-    BtIntPtr temp_v0;
+    BT_IDO_ONLY(s32 func_8010647C(void **, BtIntPtr);) BT_NATIVE_ONLY(void func_8010647C(void *, BT_LP64_ONLY(void *) BT_ILP32_ONLY(s32));)
+    BT_LP64_ONLY(void *) BT_ILP32_ONLY(s32) BT_IDO_ONLY(BtIntPtr) func_801065A4(BT_NATIVE_ONLY(void *));
+    BT_LP64_ONLY(void *) BT_ILP32_ONLY(s32) BT_IDO_ONLY(BtIntPtr) temp_v0;
 
-    temp_v0 = func_801065A4();
+    temp_v0 = func_801065A4(BT_NATIVE_ONLY(arg0));
     if (temp_v0 != 0) {
         _glidmake_entrypoint_4(temp_v0);
     }
-    func_8010647C(arg0, _glidmake_entrypoint_5((*(u16 *)((s8 *)(*arg0) + (0x14))), 0));
+    func_8010647C(arg0, _glidmake_entrypoint_5(BT_DATA_FIELD(arg0->unk0->unk14, (*(u16 *)((s8 *)(*arg0) + (0x14)))), 0));
 }
 
 void func_80800198_chbouncycastle(Actor *arg0, s32 arg1) {
@@ -108,7 +108,7 @@ void func_80800198_chbouncycastle(Actor *arg0, s32 arg1) {
         if (arg0->unk79_4 != 0) {
             arg0->unk79_4--;
             if (arg0->unk79_4 == 0) {
-                func_80800148_chbouncycastle((void **)arg0);
+                func_80800148_chbouncycastle(BT_IDO_ONLY((void **))arg0);
             }
         }
     }

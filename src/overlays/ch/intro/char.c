@@ -1321,7 +1321,7 @@ void func_80803F7C_chintrochar(Actor *arg0) {
     f32 func_800F1DF4(f32 *, f32 *);
     void *func_80100094(Actor *, u32);
     void func_80804054_chintrochar(Actor *, s32, f32, f32 *);
-    void func_80804238_chintrochar(s32 *);
+    void func_80804238_chintrochar(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(s32 *));
     extern f32 D_8080537C_chintrochar[];
     extern f32 D_80805388_chintrochar[];
     u8 *data;
@@ -1335,7 +1335,7 @@ void func_80803F7C_chintrochar(Actor *arg0) {
     }
     func_80804054_chintrochar(arg0, 0, -1.0f, D_80805388_chintrochar);
     func_80804054_chintrochar(arg0, 1, 1.0f, D_8080537C_chintrochar);
-    func_80804238_chintrochar((s32 *)arg0);
+    func_80804238_chintrochar(BT_IDO_ONLY((s32 *))arg0);
     func_800EE7F8((f32 *)(data + 0xF4), (f32 *)(data + 0xE4));
     *(f32 *)(data + 0x100) = *(f32 *)(data + 0xF0);
 }
@@ -1383,19 +1383,19 @@ void func_80804054_chintrochar(Actor *actor, s32 index, f32 orientation, f32 *of
     ((f32 *)(data + 0xD0))[index] += angleDelta;
 }
 
-void func_80804238_chintrochar(s32 *arg0) {
+void func_80804238_chintrochar(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(s32 *) arg0) {
     void _glid_entrypoint_0(u8 *arg0, s32 arg1, s32 (*arg2)(s16, u8 *, u8 *, s16, s32), BtIntPtr arg3);
-    BtIntPtr func_801065A4(BT_ILP32_ONLY(void *));
+    BT_LP64_ONLY(void *) BT_ILP32_ONLY(s32) BT_IDO_ONLY(BtIntPtr) func_801065A4(BT_NATIVE_ONLY(void *));
 #ifdef BT_NATIVE
     void chintrochar_entrypoint_1(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4);
 #else
     s32 _chintrochar_entrypoint_1();
 #endif
-    BtIntPtr sp1C;
-    sp1C = func_801065A4(BT_ILP32_ONLY(arg0));
+    BT_LP64_ONLY(void *) BT_ILP32_ONLY(s32) BT_IDO_ONLY(BtIntPtr) sp1C;
+    sp1C = func_801065A4(BT_NATIVE_ONLY(arg0));
     if (sp1C != 0) {
-        _glid_entrypoint_0(sp1C, 1, (s32 *)_chintrochar_entrypoint_1, *arg0);
-        _glid_entrypoint_0(sp1C, 2, (s32 *)_chintrochar_entrypoint_1, *arg0);
+        _glid_entrypoint_0(sp1C, 1, (s32 *)_chintrochar_entrypoint_1, BT_DATA_FIELD((BtIntPtr)arg0->unk0, *arg0));
+        _glid_entrypoint_0(sp1C, 2, (s32 *)_chintrochar_entrypoint_1, BT_DATA_FIELD((BtIntPtr)arg0->unk0, *arg0));
     }
 }
 

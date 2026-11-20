@@ -168,6 +168,8 @@ Weitere geprüfte N2-/N3-Pakete am 20. November
 
 - Mehrspielerspiele. Die Abfragen für die Ego-Mehrspielerspiele erhalten ihren Spieler aus dem Aufrufer.
 
+- Modellsuche der Figuren. Digger-Boss, Introfigur und Hüpfburg erhalten ihre Modelldaten über den Actor. Die Mesh-Callbacks der ersten beiden Figuren erhalten den Marker.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

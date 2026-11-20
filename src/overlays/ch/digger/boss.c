@@ -5031,7 +5031,7 @@ void func_80808CD0_chdiggerboss(Actor *arg0) {
     void *func_80100094(Actor *, u32);
     void func_800EE7F8(f32 *, f32 *);
     void func_80808D54_chdiggerboss(Actor *, s32, f32, f32 *);
-    void func_80808F44_chdiggerboss(s32 *);
+    void func_80808F44_chdiggerboss(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(s32 *));
     extern f32 D_8080A1DC_chdiggerboss[];
     extern f32 D_8080A1E8_chdiggerboss[];
     u8 *data;
@@ -5039,7 +5039,7 @@ void func_80808CD0_chdiggerboss(Actor *arg0) {
     data = func_80100094(arg0, 0);
     func_80808D54_chdiggerboss(arg0, 0, -1.0f, D_8080A1E8_chdiggerboss);
     func_80808D54_chdiggerboss(arg0, 1, 1.0f, D_8080A1DC_chdiggerboss);
-    func_80808F44_chdiggerboss((s32 *)arg0);
+    func_80808F44_chdiggerboss(BT_IDO_ONLY((s32 *))arg0);
     func_800EE7F8((f32 *)(data + 0xD4), &arg0->position[0]);
     *(f32 *)(data + 0xE0) = arg0->rotation[1];
 }
@@ -5086,19 +5086,19 @@ void func_80808D54_chdiggerboss(Actor *arg0, s32 arg1, f32 arg2, f32 *arg3) {
     *(f32 *)(element + 0xC0) += sp44 * 0.013333334f * var_f2 * 57.29578f;
 }
 
-void func_80808F44_chdiggerboss(s32 *arg0) {
-    s32 _glid_entrypoint_0(BtIntPtr, s32, s32 *, BtIntPtr);
-    BtIntPtr func_801065A4();
+void func_80808F44_chdiggerboss(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(s32 *) arg0) {
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) _glid_entrypoint_0(BT_LP64_ONLY(void *) BT_ILP32_ONLY(s32) BT_IDO_ONLY(BtIntPtr), s32, s32 *, BtIntPtr);
+    BT_LP64_ONLY(void *) BT_ILP32_ONLY(s32) BT_IDO_ONLY(BtIntPtr) func_801065A4(BT_NATIVE_ONLY(void *));
 #ifdef BT_NATIVE
     void chdiggerboss_entrypoint_3(s32 arg0, Vtx *arg1, Vtx *arg2, s32 arg3, Unk80132ED0 *arg4);
 #else
     s32 _chdiggerboss_entrypoint_3();
 #endif
-    BtIntPtr sp1C;
-    sp1C = func_801065A4();
+    BT_LP64_ONLY(void *) BT_ILP32_ONLY(s32) BT_IDO_ONLY(BtIntPtr) sp1C;
+    sp1C = func_801065A4(BT_NATIVE_ONLY(arg0));
     if (sp1C != 0) {
-        _glid_entrypoint_0(sp1C, 1, (s32 *)_chdiggerboss_entrypoint_3, *arg0);
-        _glid_entrypoint_0(sp1C, 2, (s32 *)_chdiggerboss_entrypoint_3, *arg0);
+        _glid_entrypoint_0(sp1C, 1, (s32 *)_chdiggerboss_entrypoint_3, BT_DATA_FIELD((BtIntPtr)arg0->unk0, *arg0));
+        _glid_entrypoint_0(sp1C, 2, (s32 *)_chdiggerboss_entrypoint_3, BT_DATA_FIELD((BtIntPtr)arg0->unk0, *arg0));
     }
 }
 
