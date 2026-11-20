@@ -19,12 +19,12 @@ void baeggsetup_entrypoint_1(s32 arg0) {
     void func_800EE7F8(f32 *, f32 *);
     u8 *func_800F53D0(BtIntPtr);
     void _bababykaz_entrypoint_13(u8 *);
-    void _cheggnormal_entrypoint_1(f32 *, f32 *, f32 *, s32);
-    void _cheggfire_entrypoint_1(f32 *, f32 *, f32 *, s32);
-    void _cheggice_entrypoint_1(f32 *, f32 *, f32 *, s32);
-    void _chegggrenade_entrypoint_2(f32 *, f32 *, f32 *, s32);
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(void) _cheggnormal_entrypoint_1(f32 *, f32 *, f32 *, s32);
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(void) _cheggfire_entrypoint_1(f32 *, f32 *, f32 *, s32);
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(void) _cheggice_entrypoint_1(f32 *, f32 *, f32 *, s32);
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(void) _chegggrenade_entrypoint_2(f32 *, f32 *, f32 *, s32);
     Actor *_cheggclockwork_entrypoint_1(f32 *, f32 *, f32 *, s32, s32);
-    void _chegggolden_entrypoint_1(f32 *, f32 *, f32 *, s32);
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(void) _chegggolden_entrypoint_1(f32 *, f32 *, f32 *, s32);
     f32 sp54[3];
     f32 sp48[3];
     f32 sp3C[3];
@@ -102,39 +102,39 @@ s32 baeggsetup_entrypoint_3(s32 arg0, s32 arg1, u8 *arg2, u8 *arg3, u8 *arg4) {
     u8 *func_800F53D0(BtIntPtr);
     void _bababykaz_entrypoint_13(u8 *);
     Actor *_cheggclockwork_entrypoint_1(f32 *, f32 *, f32 *, s32, s32);
-    s32 _cheggfire_entrypoint_2(u8 *, u8 *, u8 *, s32);
-    s32 _chegggolden_entrypoint_2(u8 *, u8 *, u8 *, s32);
-    s32 _chegggrenade_entrypoint_3(u8 *, u8 *, u8 *, s32);
-    s32 _cheggice_entrypoint_2(u8 *, u8 *, u8 *, s32);
-    s32 _cheggnormal_entrypoint_2(u8 *, u8 *, u8 *, s32);
-    s32 _cheggproximity_entrypoint_1(u8 *, u8 *, u8 *, s32);
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32) _cheggfire_entrypoint_2(BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(u8 *), BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(u8 *), BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(u8 *), s32);
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32) _chegggolden_entrypoint_2(BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(u8 *), BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(u8 *), BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(u8 *), s32);
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32) _chegggrenade_entrypoint_3(BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(u8 *), BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(u8 *), BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(u8 *), s32);
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32) _cheggice_entrypoint_2(BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(u8 *), BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(u8 *), BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(u8 *), s32);
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32) _cheggnormal_entrypoint_2(BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(u8 *), BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(u8 *), BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(u8 *), s32);
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32) _cheggproximity_entrypoint_1(BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(u8 *), BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(u8 *), BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(u8 *), s32);
     u8 *player;
 
     player = func_800F53D0(arg0);
     switch (arg1) {
     case 1:
-        _cheggnormal_entrypoint_2(arg2, arg3, arg4, arg0);
-        BT_NATIVE_ONLY(return 0;) return;
+        _cheggnormal_entrypoint_2(BT_NATIVE_ONLY((f32 *))arg2, BT_NATIVE_ONLY((f32 *))arg3, BT_NATIVE_ONLY((f32 *))arg4, arg0);
+        BT_NATIVE_ONLY(return 0;) BT_IDO_ONLY(return;)
     case 2:
-        _cheggfire_entrypoint_2(arg2, arg3, arg4, arg0);
-        BT_NATIVE_ONLY(return 0;) return;
+        _cheggfire_entrypoint_2(BT_NATIVE_ONLY((f32 *))arg2, BT_NATIVE_ONLY((f32 *))arg3, BT_NATIVE_ONLY((f32 *))arg4, arg0);
+        BT_NATIVE_ONLY(return 0;) BT_IDO_ONLY(return;)
     case 3:
-        _cheggice_entrypoint_2(arg2, arg3, arg4, arg0);
-        BT_NATIVE_ONLY(return 0;) return;
+        _cheggice_entrypoint_2(BT_NATIVE_ONLY((f32 *))arg2, BT_NATIVE_ONLY((f32 *))arg3, BT_NATIVE_ONLY((f32 *))arg4, arg0);
+        BT_NATIVE_ONLY(return 0;) BT_IDO_ONLY(return;)
     case 4:
-        _chegggrenade_entrypoint_3(arg2, arg3, arg4, arg0);
-        BT_NATIVE_ONLY(return 0;) return;
+        _chegggrenade_entrypoint_3(BT_NATIVE_ONLY((f32 *))arg2, BT_NATIVE_ONLY((f32 *))arg3, BT_NATIVE_ONLY((f32 *))arg4, arg0);
+        BT_NATIVE_ONLY(return 0;) BT_IDO_ONLY(return;)
     case 5:
         _bababykaz_entrypoint_13(player);
-        _cheggclockwork_entrypoint_1(arg2, arg3, arg4, arg0, func_80800008_baeggsetup(player));
-        BT_NATIVE_ONLY(return 0;) return;
+        _cheggclockwork_entrypoint_1(BT_NATIVE_ONLY((f32 *))arg2, BT_NATIVE_ONLY((f32 *))arg3, BT_NATIVE_ONLY((f32 *))arg4, arg0, func_80800008_baeggsetup(player));
+        BT_NATIVE_ONLY(return 0;) BT_IDO_ONLY(return;)
     case 7:
-        _chegggolden_entrypoint_2(arg2, arg3, arg4, arg0);
-        BT_NATIVE_ONLY(return 0;) return;
+        _chegggolden_entrypoint_2(BT_NATIVE_ONLY((f32 *))arg2, BT_NATIVE_ONLY((f32 *))arg3, BT_NATIVE_ONLY((f32 *))arg4, arg0);
+        BT_NATIVE_ONLY(return 0;) BT_IDO_ONLY(return;)
     case 6:
-        _cheggproximity_entrypoint_1(arg2, arg3, arg4, arg0);
+        _cheggproximity_entrypoint_1(BT_NATIVE_ONLY((f32 *))arg2, BT_NATIVE_ONLY((f32 *))arg3, BT_NATIVE_ONLY((f32 *))arg4, arg0);
     default:
-        BT_NATIVE_ONLY(return 0;) return;
+        BT_NATIVE_ONLY(return 0;) BT_IDO_ONLY(return;)
     }
 }    typedef struct { u8 pad0[0x24]; u8 unk24; } Objsetup_baeggsetup_entrypoint_4_temp_a2; /* offsets.py genstruct: fields from raw offsets on temp_a2; rename once understood */
 

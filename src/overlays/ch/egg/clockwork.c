@@ -164,13 +164,13 @@ OSThread *cheggclockwork_entrypoint_0(void)
     return (OSThread *) D_808008C0_cheggclockwork;
 }
 
-Actor *cheggclockwork_entrypoint_1(f32 *arg0, BtIntPtr arg1, s32 arg2, s32 arg3, s32 arg4) {
+Actor *cheggclockwork_entrypoint_1(f32 *arg0, BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(BtIntPtr) arg1, BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(s32) arg2, s32 arg3, s32 arg4) {
     void _suegg_entrypoint_1(Actor *arg0, f32 arg1);
     Actor *_suegg_entrypoint_11(u32 arg0, f32 *arg1, s32 arg2);
-    s32 _sueggmove_entrypoint_10(BtIntPtr);
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32) _sueggmove_entrypoint_10(BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(BtIntPtr) BT_PASS2(, f32 *));
     void _sueggmove_entrypoint_5(Actor *arg0, s32 arg1);
     void _sueggmove_entrypoint_6(void *arg0, f32 arg1, f32 arg2);
-    s32 _sueggmove_entrypoint_7(void *, BtIntPtr);
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) _sueggmove_entrypoint_7(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(void *), BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(BtIntPtr));
     void *func_80100094(Actor *, u32);
     void func_808007DC_cheggclockwork(Actor *, f32 *);
     Actor *actor;
@@ -181,7 +181,7 @@ Actor *cheggclockwork_entrypoint_1(f32 *arg0, BtIntPtr arg1, s32 arg2, s32 arg3,
         BT_BITFIELD_ORDER(u32 unk38_13 : 19, u32 unk38_0 : 12);
     } *data;
 
-    _sueggmove_entrypoint_10(arg0);
+    _sueggmove_entrypoint_10(arg0 BT_PASS2(, arg1));
     actor = _suegg_entrypoint_11(0x15E, arg1, arg3);
     data = func_80100094(actor, 0);
     func_808007DC_cheggclockwork(actor, arg0);

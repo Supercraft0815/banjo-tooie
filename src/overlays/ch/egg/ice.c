@@ -94,16 +94,16 @@ OSThread *cheggice_entrypoint_0(void)
 
 /* extern */
 
-void *cheggice_entrypoint_1(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
+void *cheggice_entrypoint_1(BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(s32) arg0, BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(BtIntPtr) arg1, BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(s32) arg2, s32 arg3) {
     void _suegg_entrypoint_1(Actor *arg0, f32 arg1);
     Actor *_suegg_entrypoint_11(u32 arg0, f32 *arg1, s32 arg2);
-    s32 _sueggmove_entrypoint_10(BtIntPtr);
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32) _sueggmove_entrypoint_10(BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(BtIntPtr) BT_PASS2(, f32 *));
     void _sueggmove_entrypoint_5(Actor *arg0, s32 arg1);
     void _sueggmove_entrypoint_6(void *arg0, f32 arg1, f32 arg2);
-    s32 _sueggmove_entrypoint_7(void *, BtIntPtr);
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) _sueggmove_entrypoint_7(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(void *), BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(BtIntPtr));
     Actor *temp_v0;
 
-    _sueggmove_entrypoint_10(arg0);
+    _sueggmove_entrypoint_10(arg0 BT_PASS2(, arg1));
     temp_v0 = _suegg_entrypoint_11(0x15C, arg1, arg3);
     temp_v0->scale = 0.134f;
     _suegg_entrypoint_1(temp_v0, 30.0f);
@@ -116,16 +116,16 @@ void *cheggice_entrypoint_1(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
 
 /* extern */
 
-void *cheggice_entrypoint_2(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
+void *cheggice_entrypoint_2(BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(s32) arg0, BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(BtIntPtr) arg1, BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(s32) arg2, s32 arg3) {
     void _suegg_entrypoint_1(Actor *arg0, f32 arg1);
     Actor *_suegg_entrypoint_11(u32 arg0, f32 *arg1, s32 arg2);
-    s32 _sueggmove_entrypoint_10(BtIntPtr);
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32) _sueggmove_entrypoint_10(BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(BtIntPtr) BT_PASS2(, f32 *));
     void _sueggmove_entrypoint_5(Actor *arg0, s32 arg1);
     void _sueggmove_entrypoint_6(void *arg0, f32 arg1, f32 arg2);
-    s32 _sueggmove_entrypoint_7(void *, BtIntPtr);
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) _sueggmove_entrypoint_7(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(void *), BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(BtIntPtr));
     Actor *temp_v0;
 
-    _sueggmove_entrypoint_10(arg0);
+    _sueggmove_entrypoint_10(arg0 BT_PASS2(, arg1));
     temp_v0 = _suegg_entrypoint_11(0x15C, arg1, arg3);
     temp_v0->scale = 0.25f;
     _sueggmove_entrypoint_5(temp_v0, 0);

@@ -113,13 +113,13 @@ OSThread *cheggnormal_entrypoint_0(void)
     return (OSThread *) D_808004D0_cheggnormal;
 }
 
-void *cheggnormal_entrypoint_1(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
+void *cheggnormal_entrypoint_1(BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(s32) arg0, BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(BtIntPtr) arg1, BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(s32) arg2, s32 arg3) {
     void _suegg_entrypoint_1(Actor *arg0, f32 arg1);
     Actor *_suegg_entrypoint_11(u32 arg0, f32 *arg1, s32 arg2);
-    s32 _sueggmove_entrypoint_10(BtIntPtr);
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32) _sueggmove_entrypoint_10(BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(BtIntPtr) BT_PASS2(, f32 *));
     void _sueggmove_entrypoint_5(Actor *arg0, s32 arg1);
     void _sueggmove_entrypoint_6(void *arg0, f32 arg1, f32 arg2);
-    s32 _sueggmove_entrypoint_7(void *, BtIntPtr);
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) _sueggmove_entrypoint_7(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(void *), BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(BtIntPtr));
     void *func_80100094(Actor *, u32);
     Actor *temp_v0;
     struct NormalData {
@@ -130,7 +130,7 @@ void *cheggnormal_entrypoint_1(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
         BT_BITFIELD_ORDER(u8 pad39_0 : 4, u8 pad39_5 : 3);
     } *data;
 
-    _sueggmove_entrypoint_10(arg0);
+    _sueggmove_entrypoint_10(arg0 BT_PASS2(, arg1));
     temp_v0 = _suegg_entrypoint_11(0x15A, arg1, arg3);
     data = func_80100094(temp_v0, 0);
     data->unk38 = 1;
@@ -144,14 +144,14 @@ void *cheggnormal_entrypoint_1(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
     return temp_v0;
 }
 
-void *cheggnormal_entrypoint_2(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
+void *cheggnormal_entrypoint_2(BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(s32) arg0, BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(BtIntPtr) arg1, BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(s32) arg2, s32 arg3) {
     void *func_80100094(Actor *, u32);
     void _suegg_entrypoint_1(Actor *arg0, f32 arg1);
     Actor *_suegg_entrypoint_11(u32 arg0, f32 *arg1, s32 arg2);
-    s32 _sueggmove_entrypoint_10(BtIntPtr);
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32) _sueggmove_entrypoint_10(BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(BtIntPtr) BT_PASS2(, f32 *));
     void _sueggmove_entrypoint_5(Actor *arg0, s32 arg1);
     void _sueggmove_entrypoint_6(void *arg0, f32 arg1, f32 arg2);
-    s32 _sueggmove_entrypoint_7(void *, BtIntPtr);
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) _sueggmove_entrypoint_7(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(void *), BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(BtIntPtr));
     s32 func_800F693C(BtIntPtr);
     Actor *actor;
     struct NormalData {
@@ -162,7 +162,7 @@ void *cheggnormal_entrypoint_2(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
         BT_BITFIELD_ORDER(u8 pad39_0 : 4, u8 pad39_5 : 3);
     } *data;
 
-    _sueggmove_entrypoint_10(arg0);
+    _sueggmove_entrypoint_10(arg0 BT_PASS2(, arg1));
     actor = _suegg_entrypoint_11(0x15A, arg1, arg3);
     data = func_80100094(actor, 0);
     actor->scale = 0.25f;

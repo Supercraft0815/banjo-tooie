@@ -124,9 +124,9 @@ void sueggmove_entrypoint_6(void *arg0, f32 arg1, f32 arg2) {
 
 /* extern */
 
-void sueggmove_entrypoint_7(s32 arg0 BT_PASS2(, s32 bt_a1)) {
-    void func_800EE7F8();
-    func_800EE7F8(arg0 + 0x28 BT_PASS2(, bt_a1));
+void sueggmove_entrypoint_7(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(s32) arg0 BT_PASS2(, f32 *bt_a1)) {
+    void func_800EE7F8(BT_PASS2(f32 *, f32 *));
+    func_800EE7F8(BT_NATIVE_ONLY((f32 *)&arg0->actorData[4]) BT_IDO_ONLY(arg0 + 0x28) BT_PASS2(, bt_a1));
 }
 
 void sueggmove_entrypoint_8(Actor *arg0, s32 arg1) {

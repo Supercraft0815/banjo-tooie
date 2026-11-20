@@ -3969,3 +3969,9 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten
 Sechs Wasser-, Flammen- und Glitzer-Callbacks nutzen die gemeinsame Vertex-Signatur. Ein Sanitizertest prüft den Aufbau der Mesh-Tabelle und den Wechsel der Vertexlisten mit hoch liegenden Zeigern.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 86 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 3 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-mesh-visitors*`.
+
+### 2026-11-20 – Eier-Erzeuger (N2/N3)
+
+Zwölf Erzeuger übergeben beide Vektoren der Bewegung. Die Probe prüft auch die Ablage am Actor auf LP64.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 86 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-egg-vectors*`.

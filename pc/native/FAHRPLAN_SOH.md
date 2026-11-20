@@ -185,6 +185,8 @@ Weitere geprüfte N2-/N3-Pakete am 20. November
 
 - Mesh- und Effektzugriffe. Sechs Wasser-, Flammen- und Glitzer-Callbacks nutzen die gemeinsame Vertex-Signatur. Ein Sanitizertest prüft den Aufbau der Mesh-Tabelle und den Wechsel der Vertexlisten mit hoch liegenden Zeigern.
 
+- Eier-Erzeuger. Zwölf Erzeuger übergeben beide Vektoren der Bewegung. Die Probe prüft auch die Ablage am Actor auf LP64.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026
