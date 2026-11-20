@@ -3685,3 +3685,9 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuite
 Der isolierte Build mit korrigierten Actor-Aufrufen und der benutzergesteuerten Kamera erreicht auf 176 Karten den angeforderten Einstieg. 33 Einstiege führen zu anderen Karten, 15 zeigen das erwartete statische Bild und fünf sind bekannte Sonderfälle. Die vorherigen acht Abstürze und zwei Aufruffehler sind im vollständigen Lauf behoben. Karte 0x152 wechselt regulär nach 0x142. Der Lauf über alle 74 Replays desselben Programms bestätigt 73 Referenzen mit 420.756 Retraces. Der Weltenlauf erreicht nach 27.093 Retraces 0x14F. Sein erster Unterschied liegt weiterhin bei Retrace 21.710 auf 0x15D im Flagwort von Actor 2018. Ein separater Vergleich auf dem früheren Kamerastand besteht alle 27.093 Retraces, sobald der erste FixCalls-Durchgang aktiv ist. Der zweite bleibt in diesem Vergleich aus.
 
 Die beiden Läufe des neueren Stands verwenden das Spielprogramm mit SHA-256 `7e299ccade27dbc036cd7274477ada5a1ffb0313b63456eb47a5aca710c3df1b`. Kartenbeleg und Replayprotokoll liegen unter `build/acceptance/n1-2026-11-18/user-camera-four-off-all-maps/summary.json` und `user-camera-four-off-all-replays.log`. Der LP64-Quellscan im separaten Stand `gameplay-wand-glow` meldet 449 Warnstellen in 205 Dateien und kann alle geprüften Spieldateien übersetzen.
+
+### 2026-11-19 – Zugriffe auf die Spielerregistrierung (N1/N3)
+
+Drei Zugriffe verwenden die ganzzahlige Spielernummer. Beim Auflösen eines Markers bleibt der Actor-Zeiger in voller Breite erhalten.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 75 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-player-registry-accessors*`.

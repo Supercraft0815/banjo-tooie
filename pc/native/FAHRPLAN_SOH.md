@@ -81,6 +81,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Geführte Spielerbewegung. Start und Abschluss der geführten Bewegung greifen auf den aktuellen Spieler zu. Bewegung und Sturzübergang lesen ihren Fortschritt aus demselben Feld.
 
+- Zugriffe auf die Spielerregistrierung. Drei Zugriffe verwenden die ganzzahlige Spielernummer. Beim Auflösen eines Markers bleibt der Actor-Zeiger in voller Breite erhalten.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

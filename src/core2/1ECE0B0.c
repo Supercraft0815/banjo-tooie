@@ -16,6 +16,7 @@ PlayerReturnState D_801354F8;
 _Static_assert(sizeof(PlayerReturnState) == 0x28, "player return state");
 
 void func_800F3BB0(PlayerState *, f32[3]);
+Actor *func_80106790(Unk80132ED0 *);
 #endif
 
 BT_IDO_ONLY(extern) PlayerRegistry D_80135490;
@@ -2564,7 +2565,7 @@ s32 func_800F929C(void) {
 
 void func_800F92CC(u32 *arg0, s32 *arg1, s32 *arg2, s32 *arg3) {
     s32 _plsu_entrypoint_1(s32);
-    BtUIntPtr temp_v0;
+    u32 temp_v0;
     s32 temp_v0_2;
 
     temp_v0 = func_800F54E4();
@@ -2583,7 +2584,7 @@ void func_800F92CC(u32 *arg0, s32 *arg1, s32 *arg2, s32 *arg3) {
 }
 
 void func_800F9354(u32 *arg0, s32 *arg1, s32 *arg2) {
-    BtUIntPtr temp_v0;
+    u32 temp_v0;
     s32 temp_v0_2;
 
     temp_v0 = func_800F54E4();
@@ -2601,7 +2602,7 @@ void func_800F9354(u32 *arg0, s32 *arg1, s32 *arg2) {
 }
 
 void func_800F93C4(u32 *arg0, s32 *arg1) {
-    BtUIntPtr temp_v0;
+    u32 temp_v0;
 
     temp_v0 = func_800F54E4();
     *arg0 = temp_v0;
