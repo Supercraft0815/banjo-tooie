@@ -3753,3 +3753,9 @@ Der erste Dialogstand bestand den Korpus. Der IR-Vergleich zeigte dennoch einen 
 Die Kamera erhält den vollständigen Positionszeiger und beide Höhen als Gleitkommazahlen.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 79 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-camera-deflect*`.
+
+### 2026-11-20 – Initialisierung und Kontakt der Actors (N2/N3)
+
+Münzkasten, Fabriktor und Lagunenwand reichen den Actor an seine Initialisierung weiter. Roboter und Essenswarnung übergeben ihn beim Kontakt, der Jahrmarktarbeiter an die Achterbahnsteuerung.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 79 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-actor-initializers*`.

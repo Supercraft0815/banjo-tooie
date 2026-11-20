@@ -1,5 +1,5 @@
 #include "common.h"
-
+BT_NATIVE_ONLY(void func_8010A63C(Actor *);)
 OSThread *chfactoryprop_entrypoint_0(void)
 {
     extern ActorData D_80800C20_chfactoryprop[];
@@ -23,11 +23,11 @@ OSThread *chfactoryprop_entrypoint_2(void)
 
 void func_80800024_chfactoryprop(u8 *arg0 BT_PASS2(, s32 bt_a1) BT_PASS2(, s32 bt_a2) BT_PASS2(, s32 bt_a3)) {
     s32 _subaddiefade_entrypoint_14(BtIntPtr);
-    s32 func_8010A63C(BtIntPtr);
+    BT_IDO_ONLY(s32 func_8010A63C(BtIntPtr);)
     (((Objprop_arg0 *)arg0)->unk34) = 1.0f;
     (((Objprop_arg0 *)arg0)->unk24) = 1.0f;
     _subaddiefade_entrypoint_14((BtIntPtr) arg0);
-    func_8010A63C((BtIntPtr) arg0);
+    func_8010A63C(BT_NATIVE_ONLY((Actor *)) BT_IDO_ONLY((BtIntPtr)) arg0);
     (((Objprop_arg0 *)arg0)->unk44) = 30.0f;
 }
 
@@ -322,8 +322,8 @@ void func_80800B44_chfactoryprop(BtIntPtr arg0) {
     s32 _glcutDll_entrypoint_19(s32);
     s32 func_800DA298(s32);
     void func_800FFAB0(Actor *actor);
-    s32 func_8010A63C();
-    func_8010A63C();
+    BT_IDO_ONLY(s32 func_8010A63C();)
+    func_8010A63C(BT_NATIVE_ONLY((Actor *)arg0));
     if (_chdoormake_entrypoint_3(arg0, 0.0f, 90.0f, 200.0f, 0x20, 0x18C) != 0) {
         _chdoormake_entrypoint_6(arg0, 2.25f);
         _chdoormake_entrypoint_12(arg0, 0, 0x45);

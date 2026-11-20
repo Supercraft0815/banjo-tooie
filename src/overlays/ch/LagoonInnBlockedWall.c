@@ -1,5 +1,5 @@
 #include "common.h"
-
+BT_NATIVE_ONLY(void func_8010A63C(Actor *);)
 /* extern */
 
 void func_80800000_chLagoonInnBlockedWall(Actor *arg0) {
@@ -33,9 +33,9 @@ void func_80800000_chLagoonInnBlockedWall(Actor *arg0) {
     }
 }
 
-void func_808000C0_chLagoonInnBlockedWall(BT_NATIVE_ONLY(s32 bt_a0))
+void func_808000C0_chLagoonInnBlockedWall(BT_NATIVE_ONLY(Actor *actor))
 {
-    func_8010A63C();
+    func_8010A63C(BT_NATIVE_ONLY(actor));
 }
 
 s32 func_808000E0_chLagoonInnBlockedWall(Actor *arg0, s32 arg1, s32 arg2) {

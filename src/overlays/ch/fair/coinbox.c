@@ -1,5 +1,5 @@
 #include "common.h"
-
+BT_NATIVE_ONLY(void func_8010A63C(Actor *);)
 s32 func_80800000_chfaircoinbox(u8 *arg0) {
     struct CoinboxData { u8 pad[0x76]; BT_BITFIELD_ORDER(unsigned short index : 9, unsigned short rest : 7); BT_BITFIELD_ORDER(unsigned short rest : 7, unsigned short index : 9); };
     extern s16 D_80800488_chfaircoinbox[3];
@@ -65,10 +65,10 @@ void func_8080016C_chfaircoinbox(s32 arg0)
 
 void func_80800174_chfaircoinbox(BtIntPtr arg0) {
     s32 func_800DA298(s32);
-    s32 func_8010A63C();
+    BT_IDO_ONLY(s32 func_8010A63C();)
     s32 func_80800050_chfaircoinbox(BtIntPtr);
     void func_808000A4_chfaircoinbox(Actor *, u32);
-    func_8010A63C();
+    func_8010A63C(BT_NATIVE_ONLY((Actor *)arg0));
     if (func_800DA298(func_80800050_chfaircoinbox(arg0)) != 0) {
         func_808000A4_chfaircoinbox((Actor *)arg0, 4);
         return;

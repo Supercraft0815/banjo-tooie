@@ -23,12 +23,12 @@ OSThread *chfactoryrobot_entrypoint_2(void)
 
 /* extern */
 
-void func_80800024_chfactoryrobot(void *arg0) {
-    s32 func_80105010();
-    (((Objrobot_arg0 *)arg0)->unk2C) = 0.0f;
-    (((Objrobot_arg0 *)arg0)->unk34) = 0.0f;
-    (((Objrobot_arg0 *)arg0)->unk30) = 20.0f;
-    func_80105010();
+void func_80800024_chfactoryrobot(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(void *) arg0) {
+    s32 func_80105010(BT_NATIVE_ONLY(Actor *));
+    BT_DATA_FIELD(((f32 *)arg0->actorData)[5], (((Objrobot_arg0 *)arg0)->unk2C)) = 0.0f;
+    BT_DATA_FIELD(((f32 *)arg0->actorData)[7], (((Objrobot_arg0 *)arg0)->unk34)) = 0.0f;
+    BT_DATA_FIELD(((f32 *)arg0->actorData)[6], (((Objrobot_arg0 *)arg0)->unk30)) = 20.0f;
+    func_80105010(BT_NATIVE_ONLY(arg0));
 }
 
 u32 func_800F54E4(void);

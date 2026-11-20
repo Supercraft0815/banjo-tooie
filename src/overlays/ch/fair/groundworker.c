@@ -44,11 +44,11 @@ void func_80800030_chfairgroundworker(Actor *arg0) {
 
 void func_80800098_chfairgroundworker(Actor *arg0) {
     void _chbadshad_entrypoint_3(Actor *arg0, void *arg1, s32 arg2, f32 arg3, s16 *arg4);
-    s32 _sucoaster_entrypoint_2();
+    BT_NATIVE_ONLY(void _sucoaster_entrypoint_2(Actor *);) BT_IDO_ONLY(s32 _sucoaster_entrypoint_2();)
     extern s32 D_80800428_chfairgroundworker[2];
-    _sucoaster_entrypoint_2();
+    _sucoaster_entrypoint_2(BT_NATIVE_ONLY(arg0));
     if (arg0->unk7C_12) {
-        _chbadshad_entrypoint_3(arg0, (u8 *)arg0 + 4, 3, arg0->scale * 1.5294117f, D_80800428_chfairgroundworker);
+        _chbadshad_entrypoint_3(arg0, BT_DATA_FIELD(arg0->position, (u8 *)arg0 + 4), 3, arg0->scale * 1.5294117f, D_80800428_chfairgroundworker);
     }
 }
 

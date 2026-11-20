@@ -101,6 +101,8 @@ Weitere geprüfte N-Pakete am 20. November
 
 - Kamera bei Ablenkungen. Die Kamera erhält den vollständigen Positionszeiger und beide Höhen als Gleitkommazahlen.
 
+- Initialisierung und Kontakt der Actors. Münzkasten, Fabriktor und Lagunenwand reichen den Actor an seine Initialisierung weiter. Roboter und Essenswarnung übergeben ihn beim Kontakt, der Jahrmarktarbeiter an die Achterbahnsteuerung.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

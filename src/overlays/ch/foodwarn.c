@@ -61,11 +61,11 @@ void func_808000D4_chfoodwarn(Actor *arg0) {
 /* extern */
 
 s32 func_808001F4_chfoodwarn(Actor *arg0, s32 arg1, s32 arg2) {
-    s32 func_80105010();
+    s32 func_80105010(BT_NATIVE_ONLY(Actor *));
     s32 func_8010C500(Actor *);
     if (arg1 != 0x2E) {
         if (arg1 == 0x95) {
-            func_80105010();
+            func_80105010(BT_NATIVE_ONLY(arg0));
             arg0->unk6C_0 = func_8010C500(arg0);
             goto block_4;
         }
