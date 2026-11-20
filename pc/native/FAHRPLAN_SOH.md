@@ -59,6 +59,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Musikspuren. Alle sechs Musikspuren verfügen über ihren eigenen Freilistenzeiger. Die Speichergröße jedes Eintrags folgt der jeweiligen Wortbreite.
 
+- Aufrufe für Figuren und Audio. Weitere Spielroutinen übergeben ihre Originalargumente für Sound, Kamera, Dialoge und Figuren explizit.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

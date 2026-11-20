@@ -102,9 +102,17 @@ void func_80800194_chcheatopage(Actor *arg0, BtIntPtr arg1) {
 /* extern */
 
 void func_808002A0_chcheatopage(void *arg0 BT_PASS2(, s32 bt_a1)) {
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    s32 func_80101870(void *, void *);
+#else
     s32 func_80101870();
+#endif
     void func_80103110(void *, s32);
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    func_80101870(arg0, (void *)(BtIntPtr)bt_a1);
+#else
     func_80101870();
+#endif
     if ((((struct { BT_BITFIELD_ORDER(unsigned int : 19, unsigned int  : 12); unsigned int active : 1; BT_BITFIELD_ORDER(unsigned int : 12, unsigned int  : 19); } *)((s8 *)arg0 + 0x7C))->active) && (((u32) (((Objeatopage_arg0 *)arg0)->unk72) >> 0xA) == 1)) {
         func_80103110(arg0, 1);
     }

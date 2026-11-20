@@ -122,13 +122,21 @@ void func_80800358_chtntbox(Actor *arg0 BT_PASS2(, s32 bt_a1)) {
     void *func_800DE448(f32 *, f32 *, f32, f32 *, BtIntPtr);
     void func_800DF410(s32);
     void func_800DF830(s32);
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    s32 func_80101870(Actor *, void *);
+#else
     s32 func_80101870();
+#endif
     s32 func_80101970();
     f32 *func_801027F4(Actor *);
     s32 pad;
     f32 *sp28;
 
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    func_80101870(arg0, (void *)(BtIntPtr)bt_a1);
+#else
     func_80101870();
+#endif
     if (arg0->unk7C_12) {
         func_80101970(arg0);
         func_800DF830(3);

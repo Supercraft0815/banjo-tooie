@@ -900,7 +900,12 @@ void sucoaster_entrypoint_19(Actor *arg0) {
 
 void sucoaster_entrypoint_20(BT_PASS2(s32 bt_a0, s32 bt_a1))
 {
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    void func_80101870(Actor *, void *);
+    func_80101870((Actor *)(BtIntPtr)bt_a0, (void *)(BtIntPtr)bt_a1);
+#else
     func_80101870();
+#endif
 }
 
 s32 sucoaster_entrypoint_21(Actor *arg0, s32 arg1, s32 arg2) {

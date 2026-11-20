@@ -8,9 +8,9 @@ s32 func_800A06E0()
 /* extern */
 
 void func_800A06E8(BtIntPtr arg0) {
-    s32 func_80092B80();
+    s32 func_80092B80(BT_ILP32_ONLY(void *));
     void func_800A0714(BtIntPtr, s32);
-    func_800A0714(arg0, func_80092B80());
+    func_800A0714(arg0, func_80092B80(BT_ILP32_ONLY((void *)arg0)));
 }
 
 void func_800A0714(BtIntPtr arg0, s32 arg1) {

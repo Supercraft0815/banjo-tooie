@@ -150,10 +150,10 @@ int func_8008D6D4(PlayerState *player) {
 }
 
 int func_8008D714(PlayerState *arg0) {
-    s32 _baduo_entrypoint_3();
+    s32 _baduo_entrypoint_3(BT_ILP32_ONLY(PlayerState *));
     s32 func_800A3304(PlayerState *);
 
-    return _baduo_entrypoint_3() && func_800A3304(arg0);
+    return _baduo_entrypoint_3(BT_ILP32_ONLY(arg0)) && func_800A3304(arg0);
 }
 
 int func_8008D750(PlayerState *player) {
@@ -163,12 +163,16 @@ int func_8008D750(PlayerState *player) {
 }
 
 int func_8008D790(PlayerState *player) {
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    s32 _baduo_entrypoint_4(PlayerState *);
+#else
     s32 _baduo_entrypoint_4(void);
+#endif
     s32 func_800C954C(void);
     int func_800DB9B0(void);
     s32 func_800F6D24(BtIntPtr);
     int func_800F8004(BtIntPtr);
-    return _baduo_entrypoint_4()
+    return _baduo_entrypoint_4(BT_ILP32_ONLY(player))
         && !func_8008E39C(player)
         && player_isStable(player)
         && !func_800C954C()
@@ -438,10 +442,12 @@ s32 func_8008E23C(PlayerState *arg0) {
 
 s32 func_8008E260(PlayerState *arg0) {
     s32 func_800954E8(PlayerState *, s32 *);
-    int player_isStable();
+    int player_isStable(BT_ILP32_ONLY(PlayerState *));
     s32 sp1C;
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    if (player_isStable(arg0) != 0) {
+#elif defined(BT_NATIVE)
     if (((int (*)())player_isStable)() != 0) {
 #else
     if (player_isStable() != 0) {

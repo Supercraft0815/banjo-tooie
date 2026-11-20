@@ -7,7 +7,8 @@ void func_80800000_chbottlesdead(Actor *arg0) {
 
 void func_80800034_chbottlesdead(BT_NATIVE_ONLY(Actor *bt_a0))
 {
-    func_8010C964();
+    BT_ILP32_ONLY(void func_8010C964(u8 *);)
+    func_8010C964(BT_ILP32_ONLY((u8 *)bt_a0));
 }
 
 /* extern */

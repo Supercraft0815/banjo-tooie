@@ -812,11 +812,11 @@ void func_808019A0_sucoasterfly(Actor *arg0) {
     s32 func_8010B990(Actor *, s32);
     s32 func_808014AC_sucoasterfly(Actor *, s32);
     void func_808018BC_sucoasterfly(Actor *);
-    f32 func_80801E5C_sucoasterfly();
+    f32 func_80801E5C_sucoasterfly(BT_ILP32_ONLY(Actor *));
     f32 sp24;
     s32 sp20;
 
-    sp24 = func_80801E5C_sucoasterfly();
+    sp24 = func_80801E5C_sucoasterfly(BT_ILP32_ONLY(arg0));
     sp20 = (arg0->unk64_29) ? 0x404027 : 0x504327;
     func_808018BC_sucoasterfly(arg0);
     func_800EEB9C(&((f32 *)arg0->actorData)[4], arg0->rotation[1], ((f32 *)arg0->actorData)[3]);

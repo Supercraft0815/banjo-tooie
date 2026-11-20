@@ -431,7 +431,7 @@ void func_800C191C(s32 arg0, s32 arg1) {
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800DC4B0(s32, s32);
     if (arg0 != 0) {
 #ifdef BT_NATIVE
-        func_800DC4B0(((s32 (*)())func_800C1448)(), arg1);
+        func_800DC4B0(func_800C1448(arg0), arg1);
 #else
         func_800DC4B0(func_800C1448(), arg1);
 #endif
@@ -445,7 +445,7 @@ void func_800C1950(s32 arg0, s32 arg1) {
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800DC42C(s32, s32);
     if (arg0 != 0) {
 #ifdef BT_NATIVE
-        func_800DC42C(((s32 (*)())func_800C1448)(), arg1);
+        func_800DC42C(func_800C1448(arg0), arg1);
 #else
         func_800DC42C(func_800C1448(), arg1);
 #endif

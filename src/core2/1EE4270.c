@@ -550,7 +550,7 @@ s32 func_8010B94C(Actor *arg0, f32 *arg1, s32 arg2, s32 arg3) {
 
 s32 func_8010B990(Actor *arg0, s32 arg1) {
     void func_800EE7F8(f32 *, f32 *);
-    void func_80104580(void);
+    void func_80104580(BT_ILP32_ONLY(Actor *));
 
     s32 result;
     s32 i;
@@ -559,7 +559,7 @@ s32 func_8010B990(Actor *arg0, s32 arg1) {
     s32 nibble;
 
     flags = 0;
-    func_80104580();
+    func_80104580(BT_ILP32_ONLY(arg0));
     func_800EE7F8(saved, arg0->position);
     for (i = 0; i != 6; i++) {
         nibble = ((u32)arg1 >> (i << 2)) & 0xF;

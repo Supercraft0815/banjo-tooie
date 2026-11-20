@@ -150,7 +150,7 @@ s32 func_8009239C(u8 **arg0) {
 /* extern */
 
 void func_800923A8(void *arg0, s32 arg1) {
-    s32 func_80092258();
+    s32 func_80092258(BT_ILP32_ONLY(void *));
     void func_800A2540(void *arg0, s32 arg1);
     void func_800DF464(f32);
     void func_800DF5D8(u32, u32, u32, s32);
@@ -161,7 +161,9 @@ void func_800923A8(void *arg0, s32 arg1) {
     void *temp_v0_2;
     void *temp_v0_3;
 
-#ifdef BT_NATIVE
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    temp_v0 = func_80092258(arg0);
+#elif defined(BT_NATIVE)
     temp_v0 = ((s32 (*)())func_80092258)();
 #else
     temp_v0 = func_80092258();

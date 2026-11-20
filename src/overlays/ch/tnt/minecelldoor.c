@@ -9,7 +9,12 @@ OSThread *chtntminecelldoor_entrypoint_0(void)
 
 void func_8080000C_chtntminecelldoor(s32 arg0 BT_PASS2(, s32 bt_a1) BT_PASS2(, s32 bt_a2) BT_PASS2(, s32 bt_a3))
 {
+#if defined(BT_NATIVE) && defined(BT_ILP32)
+    void _subaddiefade_entrypoint_14(u8 *, s32, s32, s32);
+    _subaddiefade_entrypoint_14((u8 *)(BtIntPtr)arg0, bt_a1, bt_a2, bt_a3);
+#else
     _subaddiefade_entrypoint_14();
+#endif
     func_8010A63C(arg0 BT_PASS2(, bt_a1) BT_PASS2(, bt_a2) BT_PASS2(, bt_a3));
 }
 s32 func_80800034_chtntminecelldoor(Actor *arg0, s32 arg1, volatile s32 arg2) {
