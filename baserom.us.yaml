@@ -11897,7 +11897,7 @@ segments:
       - [0x020CE070, c, drillfield]
       - [0x020CE920, .rodata, drillfield]
       - [0x020CE920, .data, drillfield]
-      - [0x020CEA80, bss, drillfield]
+      - [0x020CEA80, .bss, drillfield]
   - name: chfantasytrashcanbits_header
     dir: overlays/chfantasytrashcanbits
     type: bin

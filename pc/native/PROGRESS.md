@@ -3553,3 +3553,9 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuite
 Der Diagnoselauf verbindet die Korrekturen für Spielformen, Bewegung, Türen, Kanone und Mumbo-Pad in einem Quellstand. Gegen die separat geprüften HUD-Bildspuren stimmen 37 Replays vollständig überein, darunter der Geldtransporter, Stony und die Biene. Zehn weitere Läufe erreichen das Programmende mit Abweichungen. In 27 Fällen bricht der Gast ab. Vier dieser Abstürze führen auf denselben fehlenden Spielerzeiger in der Ego-Sicht.
 
 Der Bericht enthält für jede Karte die Rückgabe, die Zielkarte, den Stack beim Abbruch und den Vergleich mit beiden Referenzständen. Der Build hat die Linked-Bitcode-Prüfsumme `68ab5c603c8fcc8b16a0ff782333667d854037fb354547aac28c6735e422610b`. Belege unter `build/acceptance/n2-cumulative-nopass-2026-11-19/form-composite/gate-off/`, insbesondere `summary.tsv`, `summary.json` und `manifest.json`.
+
+### 2026-11-19 – Belohnungen des Bohrfelds (N1/N3)
+
+Der Test prüft acht Objekt- und Belohnungspaare und das Ende der Liste.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 71 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 3 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-drill-field*`.

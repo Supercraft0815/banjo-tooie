@@ -51,6 +51,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Optionsmenü und Digger-Fly. Zwei neue Tests prüfen den Optionszustand und den Digger-Fly-Ablauf mit den Produktionsfunktionen.
 
+- Belohnungen des Bohrfelds. Der Test prüft acht Objekt- und Belohnungspaare und das Ende der Liste.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

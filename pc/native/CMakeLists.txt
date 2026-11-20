@@ -320,6 +320,17 @@ endif()
 add_test(NAME native_assets COMMAND "${Python3_EXECUTABLE}"
     "${CMAKE_CURRENT_SOURCE_DIR}/tests/assets_fixture.py" "$<TARGET_FILE:bt_native_assets_test>")
 
+add_executable(bt_native_drill_field_test tests/drill_field.c
+    "${BT_ROOT}/src/overlays/ch/fantasy/drillfield.c")
+target_link_libraries(bt_native_drill_field_test PRIVATE bt_native_options)
+target_compile_options(bt_native_drill_field_test PRIVATE -ffunction-sections -fdata-sections)
+if(APPLE)
+    target_link_options(bt_native_drill_field_test PRIVATE -Wl,-dead_strip)
+else()
+    target_link_options(bt_native_drill_field_test PRIVATE -Wl,--gc-sections)
+endif()
+add_test(NAME native_drill_field COMMAND bt_native_drill_field_test)
+
 add_executable(bt_native_asset_decoder_test tests/asset_decoder.c memory.c platform/rdram.c
     "${BT_ROOT}/src/core2/1EBE020.c")
 target_link_libraries(bt_native_asset_decoder_test PRIVATE bt_native_options)

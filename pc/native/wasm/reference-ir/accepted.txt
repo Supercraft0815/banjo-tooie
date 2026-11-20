@@ -509,3 +509,6 @@ pointers or use their storage. Both complete ROMs, all 74 replays and all
 
 2026-11-19  Options and Digger Fly
 9 guest functions change their normalized IR. The 9,706 fixup addresses, both complete ROM images and all 74 replays match. See n1-2026-11-18/current-option-width-ir.log.
+
+2026-11-19  Drill field rewards
+3 guest functions change their normalized IR. The 9,706 fixup addresses, both complete ROM images and all 74 replays match. See n1-2026-11-18/current-drill-field-ir.log.
