@@ -20,7 +20,8 @@ und Build-Kopien werden entfernt, sobald ihr letzter laufender Verbraucher beend
 Die Belege der laufenden N-Serie liegen unter `build/acceptance/n1-2026-11-18/retained/<Paket>/`.
 Am 20. November sank der mit `du -kx` gemessene Verbrauch von `build/acceptance` von
 1.058,59 auf 899,71 GiB. Die Messprotokolle stehen dort unter `space-before-2026-11-20.log`
-und `space-after-2026-11-20.log`. Für die Haltegrenze zählt der freie Platz laut `df`.
+und `space-after-2026-11-20.log`. Während die nächsten Stände gebaut wurden, ergab die
+Folgemessung 900,99 GiB (`space-recheck-2026-11-20.log`). Für die Haltegrenze zählt der freie Platz laut `df`.
 
 | Paket | Geprüfter Stand | Offene Abnahme |
 |---|---|---|
@@ -172,7 +173,7 @@ Weitere geprüfte N2-/N3-Pakete am 20. November
 
 - Modellsuche der Figuren. Digger-Boss, Introfigur und Hüpfburg erhalten ihre Modelldaten über den Actor. Die Mesh-Callbacks der ersten beiden Figuren erhalten den Marker.
 
-- Spielerzugriffe für Winkel und Physik. 27 im Original-MIPS geprüfte Aufrufe aus 19 Dateien übergeben den Spieler an ihren Empfänger.
+- Spielerzugriffe für Winkel und Physik. 28 am Original-MIPS geprüfte Aufrufe aus 20 Dateien übergeben den Spieler an ihren Empfänger. Der kumulative Stand enthält zusätzlich den Schwerkraft-Reset des Schneeballs.
 
 ---
 
