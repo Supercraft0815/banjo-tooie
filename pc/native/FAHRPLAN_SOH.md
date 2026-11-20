@@ -57,6 +57,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Texturadressen. Alle neun Texturformate geben Bilddaten und gegebenenfalls die Palette mit der registrierten Grafikadresse weiter. Die LP64-Probe verwendet Adressen oberhalb von vier GiB.
 
+- Musikspuren. Alle sechs Musikspuren verfügen über ihren eigenen Freilistenzeiger. Die Speichergröße jedes Eintrags folgt der jeweiligen Wortbreite.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

@@ -3583,3 +3583,9 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuite
 Im isolierten Stand `dialog-gameplay-providers` stimmen ohne beide Pässe 53 von 74 Replays vollständig mit den HUD-Referenzen überein, darunter Detonator, Waschmaschine und U-Boot. `new-game` erreicht das Ende mit dem ersten Bildunterschied bei Retrace 16.916. Weitere 20 Fälle brechen ab. Mit den regulären Pässen besteht derselbe Stand alle 74 Replays. Die Einzelergebnisse stehen in `build/acceptance/n1-2026-11-18/gameplay-providers-no-fixcalls-datagroup.log` und `dialog-gameplay-providers-full.log`.
 
 Der separate Kartentest im Stand `dialog-dart-sound` ohne DataGroup umfasst alle 229 benannten Karten. 174 erreichen die Zielkarte mit Bewegung, 31 wechseln zu einer anderen Karte, 15 bleiben statisch und fünf zeigen ihr bekanntes Verhalten bei ungültigem Direkteinstieg. Die vier unerwarteten Abbrüche betreffen den Keller des Kraftwerks (0xCF) und drei Einstiege in Jolly Roger’s Lagoon (0xF6, 0xFA, 0x1A8). Im regulären Kontrollbuild laufen alle vier bis zum Ende. 0xF6 und 0xFA wechseln regulär nach Atlantis (0x1A8). Die Berichte liegen in `dart-sound-no-datagroup-sweep/summary.json` und `dart-four-maps-control/summary.json` im selben Belegverzeichnis.
+
+### 2026-11-19 – Musikspuren (N1/N3)
+
+Alle sechs Musikspuren verfügen über ihren eigenen Freilistenzeiger. Die Speichergröße jedes Eintrags folgt der jeweiligen Wortbreite.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 72 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 15 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-music-tracks*`.
