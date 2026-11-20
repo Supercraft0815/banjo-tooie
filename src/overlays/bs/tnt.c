@@ -99,14 +99,14 @@ struct player_state_s;
 
 s32 func_80800218_bstnt(void *arg0, s32 arg1) {
     s32 _badrone_entrypoint_24(void *);
-    s32 bainput_should_enter_first_person();
+    BT_NATIVE_ONLY(int bainput_should_enter_first_person(struct player_state_s *);) BT_IDO_ONLY(s32 bainput_should_enter_first_person();)
     int bakey_pressed(struct player_state_s *, int);
     s32 bstnt_entrypoint_8(struct player_state_s *);
     int player_isStable(void *);
     s32 var_s1;
 
     var_s1 = arg1;
-    if (bainput_should_enter_first_person() != 0) {
+    if (bainput_should_enter_first_person(BT_NATIVE_ONLY(arg0)) != 0) {
         var_s1 = _badrone_entrypoint_24(arg0);
     }
     if (bakey_pressed(arg0, 8) != 0) {

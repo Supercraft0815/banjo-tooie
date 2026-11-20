@@ -137,9 +137,9 @@ void func_80800000_bswasher(struct player_state_s *arg0) {
 
 s32 func_80800064_bswasher(BtIntPtr arg0, s32 arg1) {
     s32 _badrone_entrypoint_24(BtIntPtr);
-    s32 bainput_should_enter_first_person();
+    BT_NATIVE_ONLY(int bainput_should_enter_first_person(struct player_state_s *);) BT_IDO_ONLY(s32 bainput_should_enter_first_person();)
     int bakey_pressed(struct player_state_s *, int);
-    if (bainput_should_enter_first_person() != 0) {
+    if (bainput_should_enter_first_person(BT_NATIVE_ONLY((struct player_state_s *)arg0)) != 0) {
         arg1 = _badrone_entrypoint_24(arg0);
     }
     if (bakey_pressed(arg0, 8) != 0) {

@@ -588,12 +588,12 @@ s32 func_80801110_chdippy(Actor *arg0, s32 arg1, s32 arg2) {
     f32 func_800F10B4(f32, f32, f32, f32, f32);
     f32 func_800F1DF4(f32 *, f32 *);
     s32 func_801015D0(Actor *);
-    s32 func_80801200_chdippy();
+    BT_NATIVE_ONLY(s32 func_80801200_chdippy(Actor *);) BT_IDO_ONLY(s32 func_80801200_chdippy();)
     f32 sp34[3];
 
     switch (arg1) {
         case 0x95:
-            func_80801200_chdippy();
+            func_80801200_chdippy(BT_NATIVE_ONLY(arg0));
             return 1;
         case 0x1F:
             if (arg0->unk64_16) {

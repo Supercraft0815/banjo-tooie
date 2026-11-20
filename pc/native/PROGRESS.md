@@ -3795,3 +3795,9 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten
 81 Aufrufstellen in 31 Modulen reichen das im Original-MIPS belegte erste Argument weiter. Die Biene und Stony erreichen im Diagnosebuild ohne FixCalls über je 7.013 Retraces die Referenz.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 79 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 1 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-form-transitions*`.
+
+### 2026-11-20 – Ereignisse der Spielformen (N2)
+
+Die Eingabe- und Physikabfragen erhalten den Spielerzeiger. Pool Kids wertet das dritte Ereignisargument als Modellzeiger oder als zwei vorzeichenbehaftete Halbwörter aus.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 79 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 1 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-form-events*`.

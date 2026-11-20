@@ -170,7 +170,7 @@ void func_80800290_chpoolkids(Actor *arg0) {
 
 typedef union { s32 word; struct { s16 first, second; } halves; } PoolKidsMessage;
 
-s32 func_808003DC_chpoolkids(Actor *arg0, s32 arg1, PoolKidsMessage arg2) {
+s32 func_808003DC_chpoolkids(Actor *arg0, s32 arg1, BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(PoolKidsMessage) arg2) {
     s32 _capod_entrypoint_13(BtIntPtr arg0, BtIntPtr arg1, s32 arg2, s32 arg3);
     void _dbmorph_entrypoint_3(void *arg0, void *arg1, void *arg2, s32 arg3, f32 *weights);
     void _gcdialogcamera_entrypoint_3(f32 *arg0, f32 arg1);
@@ -190,7 +190,7 @@ s32 func_808003DC_chpoolkids(Actor *arg0, s32 arg1, PoolKidsMessage arg2) {
 
     switch (arg1) {
     case 0x2E:
-        func_808007F0_chpoolkids(arg0, arg2.halves.first, arg2.halves.second);
+        func_808007F0_chpoolkids(arg0, BT_DATA_FIELD((s16)((u32)arg2 >> 16), arg2.halves.first), BT_DATA_FIELD((s16)(u32)arg2, arg2.halves.second));
         break;
     case 0xC:
         flag1 = func_800DA298(0x166);
@@ -206,7 +206,7 @@ s32 func_808003DC_chpoolkids(Actor *arg0, s32 arg1, PoolKidsMessage arg2) {
         _subaddiedialog_entrypoint_11(arg0->unk0, 0x1020, 6, arg0->position, 0xA0);
         return 3;
     case 0x1F:
-        object = arg2.word;
+        object = BT_DATA_FIELD(arg2, arg2.word);
         values[0] = values[1] = ((f32 *)arg0->actorData)[5];
         _dbmorph_entrypoint_3(func_800B2768((u8 *)object), (u8 *)func_80103CB8(arg0, object), func_800B2840(object), 1, (u8 *)values);
         func_801015D0(arg0);

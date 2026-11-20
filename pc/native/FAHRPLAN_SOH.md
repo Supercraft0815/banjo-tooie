@@ -117,6 +117,8 @@ Weitere geprüfte N2-Pakete am 20. November
 
 - Übergänge für Spielformen und Figuren. 81 Aufrufstellen in 31 Modulen reichen das im Original-MIPS belegte erste Argument weiter. Die Biene und Stony erreichen im Diagnosebuild ohne FixCalls über je 7.013 Retraces die Referenz.
 
+- Ereignisse der Spielformen. Die Eingabe- und Physikabfragen erhalten den Spielerzeiger. Pool Kids wertet das dritte Ereignisargument als Modellzeiger oder als zwei vorzeichenbehaftete Halbwörter aus.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

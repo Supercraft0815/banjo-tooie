@@ -1,7 +1,7 @@
 #include "bs_script.h"
 #include "common.h"
 BT_NATIVE_ONLY(struct player_state_s; int _babounce_entrypoint_2(struct player_state_s *); void _babounce_entrypoint_3(struct player_state_s *); void _bsrest_entrypoint_14(struct player_state_s *); s32 _bsrest_entrypoint_20(struct player_state_s *);) struct anctrl_s;
-
+#include "transformations.h"
 /* extern */
 
 f32 func_80800000_bssnowball(BtIntPtr arg0) {
@@ -45,9 +45,9 @@ void func_80800064_bssnowball(struct player_state_s *arg0, s32 arg1) {
 
 s32 func_8080010C_bssnowball(BtIntPtr arg0, s32 arg1) {
     s32 _badrone_entrypoint_24(BtIntPtr);
-    s32 bainput_should_enter_first_person();
+    BT_NATIVE_ONLY(int bainput_should_enter_first_person(struct player_state_s *);) BT_IDO_ONLY(s32 bainput_should_enter_first_person();)
     s32 bakey_pressed(BtIntPtr, s32);
-    if (bainput_should_enter_first_person() != 0) {
+    if (bainput_should_enter_first_person(BT_NATIVE_ONLY((struct player_state_s *)arg0)) != 0) {
         arg1 = _badrone_entrypoint_24(arg0);
     }
     if (bakey_pressed(arg0, 8) != 0) {
@@ -125,8 +125,8 @@ void bssnowball_entrypoint_2(void *arg0) {
     void _basnowball_entrypoint_9(void *arg0, f32 arg1);
     f32 baphysics_get_target_horizontal_velocity(PlayerState *);
     f32 func_8009BB5C(void *);
-    s32 func_800A3274();
-    if (func_800A3274() == 2) {
+    BT_NATIVE_ONLY(TransformationId func_800A3274(struct player_state_s *);) BT_IDO_ONLY(s32 func_800A3274();)
+    if (func_800A3274(BT_NATIVE_ONLY(arg0)) == 2) {
         if ((*(u8 *)((s8 *)(arg0) + (0x165))) != 0) {
             _basnowball_entrypoint_9(arg0, 0.0f);
         } else {

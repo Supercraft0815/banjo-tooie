@@ -6,7 +6,7 @@ typedef struct { u8 pad0[0x44]; f32 unk44; } Objdoubloon_arg0; /* offsets.py gen
 
 /* extern */
 
-void func_8080000C_chdoubloon(BtIntPtr arg0) {
+void func_8080000C_chdoubloon(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(BtIntPtr) arg0) {
     void func_80103110(void *arg0, s32 arg1);
 #ifdef BT_NATIVE
 #ifdef BT_NATIVE
@@ -34,7 +34,7 @@ void func_8080000C_chdoubloon(BtIntPtr arg0) {
     s32 chdoubloon_entrypoint_1();
 #endif
 #ifdef BT_NATIVE
-    ((s32 (*)())chdoubloon_entrypoint_1)();
+    chdoubloon_entrypoint_1(arg0);
 #else
     chdoubloon_entrypoint_1();
 #endif

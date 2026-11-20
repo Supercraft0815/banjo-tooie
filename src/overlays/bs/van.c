@@ -7,7 +7,7 @@
 #endif
 #include "overlays/ba/playerstate.h"
 #include "bs_script.h"
-BT_NATIVE_ONLY(struct player_state_s; int _babounce_entrypoint_2(struct player_state_s *); void _babounce_entrypoint_3(struct player_state_s *); void _bsrest_entrypoint_14(struct player_state_s *); s32 _bsrest_entrypoint_20(struct player_state_s *);) void func_80800000_bsvan(struct player_state_s *arg0) {
+BT_NATIVE_ONLY(struct player_state_s; int _babounce_entrypoint_2(struct player_state_s *); void _babounce_entrypoint_3(struct player_state_s *); void _bsrest_entrypoint_14(struct player_state_s *); s32 _bsrest_entrypoint_20(struct player_state_s *);) BT_NATIVE_ONLY(void baphysics_reset_gravity(struct player_state_s *);) void func_80800000_bsvan(struct player_state_s *arg0) {
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     s32 bastick_getZone(struct player_state_s *);
     f32 bastick_getZonePosition(struct player_state_s *);
@@ -535,10 +535,10 @@ void func_80800BDC_bsvan(struct player_state_s *arg0) {
     bs_setState(arg0, sp34);
 }
 
-void func_80800E0C_bsvan(struct player_state_s *arg0) {
+void func_80800E0C_bsvan(struct player_state_s *arg0) { BT_NATIVE_ONLY(void baphysics_reset_gravity(struct player_state_s *);)
     void func_8009BF5C(struct player_state_s *, f32);
     void baroll_setIdeal(struct player_state_s *, f32);
-    baphysics_reset_gravity();
+    baphysics_reset_gravity(BT_NATIVE_ONLY(arg0));
     func_8009BF5C(arg0, 0.0f);
     baroll_setIdeal(arg0, 0.0f);
     bsvan_entrypoint_0(arg0);

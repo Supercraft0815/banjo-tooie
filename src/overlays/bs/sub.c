@@ -21,11 +21,11 @@ void func_80800064_bssub(BtIntPtr arg0) {
     void func_800995B8(void *arg0, s32 arg1);
     s32 func_80099A58(BtIntPtr);
     void func_80099B94(void *arg0);
-    s32 func_8009E6EC();
+    BT_NATIVE_ONLY(s32 func_8009E6EC(struct player_state_s *);) BT_IDO_ONLY(s32 func_8009E6EC();)
     s32 func_8009E830(BtIntPtr, s32);
     s32 temp_v0;
 
-    temp_v0 = func_8009E6EC();
+    temp_v0 = func_8009E6EC(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     switch (temp_v0) {
         case 0x85:
             _basub_entrypoint_15(arg0, func_80099A58(arg0));
@@ -498,15 +498,15 @@ void func_80800E98_bssub(void *arg0) {
 
 /* extern */
 
-void func_80800EE0_bssub(s32 arg0) {
+void func_80800EE0_bssub(BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) arg0) {
     s32 _basudie_entrypoint_11(s32);
     s32 bs_setState(BtIntPtr, s32);
     s32 func_80093370(s32, s32);
     f32 func_80099A34(BtIntPtr);
     s32 func_8009BDAC(s32, f32);
-    s32 func_8009E6EC();
+    BT_NATIVE_ONLY(s32 func_8009E6EC(struct player_state_s *);) BT_IDO_ONLY(s32 func_8009E6EC();)
     s32 func_8009E830(BtIntPtr, s32);
-    if (func_8009E6EC() == 0x83) {
+    if (func_8009E6EC(BT_NATIVE_ONLY((struct player_state_s *)arg0)) == 0x83) {
         func_8009BDAC(arg0, func_80099A34(arg0));
         func_80093370(arg0, 1);
         bs_setState(arg0, 0x131);

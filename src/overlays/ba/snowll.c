@@ -48,23 +48,23 @@ s32 func_80800098_basnowball(BtIntPtr arg0, s32 arg1, f32 *arg2, f32 *arg3) {
 void func_808000C0_basnowball(BtIntPtr arg0) {
     void func_8009590C(struct player_state_s *, f32);
     void func_800959C8(struct player_state_s *, f32, f32);
-    s32 func_800A1718();
+    BT_NATIVE_ONLY(s32 func_800A1718(struct player_state_s *);) BT_IDO_ONLY(s32 func_800A1718();)
     s32 func_80800098_basnowball(BtIntPtr, s32, f32 *, f32 *);
     f32 sp24;
     f32 sp20;
 
-    func_80800098_basnowball(arg0, func_800A1718(), &sp24, &sp20);
+    func_80800098_basnowball(arg0, func_800A1718(BT_NATIVE_ONLY((struct player_state_s *)arg0)), &sp24, &sp20);
     func_800959C8(arg0, sp24, sp20);
     func_8009590C(arg0, sp24);
 }
 
 void func_80800110_basnowball(BtIntPtr arg0) {
-    s32 func_800A1718();
+    BT_NATIVE_ONLY(s32 func_800A1718(struct player_state_s *);) BT_IDO_ONLY(s32 func_800A1718();)
     void func_800A4D6C(u8 *, f32, f32);
     extern s32 D_80801068_basnowball[12];
     u8 *temp_v1;
 
-    temp_v1 = ((u8 *)D_80801068_basnowball) + (func_800A1718() * 8);
+    temp_v1 = ((u8 *)D_80801068_basnowball) + (func_800A1718(BT_NATIVE_ONLY((struct player_state_s *)arg0)) * 8);
     func_800A4D6C((u8 *)arg0, (*(f32 *)(temp_v1 + 0)), (*(f32 *)(temp_v1 + 4)));
 }    typedef struct { u8 pad0[0xC]; f32 unkC; u8 pad10[0x4]; u8 unk14; } Objsnowll_func_80800150_basnowball_var_v0; /* offsets.py genstruct: fields from raw offsets on var_v0; rename once understood */
 
@@ -194,7 +194,7 @@ f32 basnowball_entrypoint_4(void *arg0) {
     return *(f32 *)((u8 *)*&((Objsnowll_arg0 *)arg0)->unk110 + 28);
 }
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(f32) basnowball_entrypoint_5(BT_PARAM_OR_VOID(BT_NATIVE_ONLY(s32 bt_a0))) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(f32) basnowball_entrypoint_5(BT_PARAM_OR_VOID(BT_NATIVE_ONLY(struct player_state_s *bt_a0))) {
     s32 func_800A1718();
     f32 func_800F10B4(f32 value, f32 in_min, f32 in_max, f32 out_min, f32 out_max);
     BT_NATIVE_ONLY(return) func_800F10B4((f32) func_800A1718(BT_NATIVE_ONLY(bt_a0)), 1.0f, 5.0f, 0.0f, 1.0f);
@@ -202,7 +202,7 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(f32) basnowball_entrypoint_5(BT_PARAM_OR_VOID(B
 
 /* extern */
 
-s32 basnowball_entrypoint_6(BT_PARAM_OR_VOID(BT_NATIVE_ONLY(s32 bt_a0))) {
+s32 basnowball_entrypoint_6(BT_PARAM_OR_VOID(BT_NATIVE_ONLY(struct player_state_s *bt_a0))) {
     s32 func_800A1718();
     return func_800A1718(BT_NATIVE_ONLY(bt_a0)) >= 5;
 }
@@ -285,7 +285,7 @@ void basnowball_entrypoint_10(void *arg0)
 void func_808007CC_basnowball(struct player_state_s *arg0) {
     f32 func_800136E4(f32);
     void func_8009C128(struct player_state_s *, f32[3]);
-    s32 func_800A1718(void *);
+    s32 func_800A1718(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(void *));
     BtIntPtr func_800B5BE4(s32);
     void func_800BA7C4(void *, f32, f32);
     BtIntPtr func_800BABB8(BtIntPtr, f32[3], f32[3], f32, s32[]);
@@ -384,7 +384,7 @@ void basnowball_entrypoint_12(void *arg0) {
     s32 func_8008DE50(BT_NATIVE_ONLY(struct player_state_s *));
     s32 func_800A1760(void *);
     void func_8009919C(void *, BtIntPtr, s32);
-    s32 func_800A1718(void *);
+    s32 func_800A1718(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(void *));
     s32 func_800A17A8(BtIntPtr, s32);
     s32 func_800958A4(void *, s32, s32);
     void func_80096394(void *, f32 *);
