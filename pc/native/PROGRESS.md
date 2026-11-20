@@ -3933,3 +3933,9 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten
 Digger-Boss, Introfigur und Hüpfburg erhalten ihre Modelldaten über den Actor. Die Mesh-Callbacks der ersten beiden Figuren erhalten den Marker.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 83 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-actor-model-lookup*`.
+
+### 2026-11-20 – Spielerzugriffe für Winkel und Physik (N2/N3)
+
+27 im Original-MIPS geprüfte Aufrufe aus 19 Dateien übergeben den Spieler an ihren Empfänger.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 83 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-player-accessors*`.

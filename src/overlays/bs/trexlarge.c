@@ -103,12 +103,12 @@ void func_80800270_bstrexlarge(s32 *arg0) {
 
 /* extern */
 
-void func_80800294_bstrexlarge(s32 arg0) {
-    s32 func_8009E6EC();
+void func_80800294_bstrexlarge(BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) arg0) {
+    s32 func_8009E6EC(BT_NATIVE_ONLY(struct player_state_s *));
     s32 func_8080024C_bstrexlarge(BtIntPtr);
     s32 temp_v0;
 
-    temp_v0 = func_8009E6EC();
+    temp_v0 = func_8009E6EC(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     if ((temp_v0 != 0x1C) && (temp_v0 != 0x1D) && (temp_v0 != 0x1E) && (temp_v0 != 0x25)) {
         func_8080024C_bstrexlarge(arg0);
     }

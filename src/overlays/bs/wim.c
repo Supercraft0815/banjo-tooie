@@ -974,11 +974,11 @@ BsScript bsbswim_entrypoint_11(BsScriptType arg0) {
 
 /* extern */
 
-void func_808018EC_bsbswim(s32 arg0) {
+void func_808018EC_bsbswim(BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) arg0) {
     s32 func_80099AA8(s32);
     s32 func_80099B94(BtIntPtr);
-    s32 func_8009E6EC();
-    if (func_8009E6EC() == 0x11) {
+    s32 func_8009E6EC(BT_NATIVE_ONLY(struct player_state_s *));
+    if (func_8009E6EC(BT_NATIVE_ONLY((struct player_state_s *)arg0)) == 0x11) {
         func_80099B94(arg0);
         return;
     }

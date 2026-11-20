@@ -98,9 +98,9 @@ void bsturn_entrypoint_2(BtIntPtr arg0) {
     void baroll_setIdeal(void *self, f32 arg1);
     f32 func_800136E4(f32);
     void func_8009BF5C(BtIntPtr, f32);
-    f32 yaw_get();
+    f32 yaw_get(BT_NATIVE_ONLY(struct player_state_s *));
     void yaw_set(void *self, f32 arg1);
-    yaw_set(arg0, func_800136E4(yaw_get() - 180.0f));
+    yaw_set(arg0, func_800136E4(yaw_get(BT_NATIVE_ONLY((struct player_state_s *)arg0)) - 180.0f));
     func_8009BF5C(arg0, 0.0f);
     baroll_setIdeal(arg0, 0.0f);
 }

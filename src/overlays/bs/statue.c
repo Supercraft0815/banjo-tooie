@@ -520,10 +520,10 @@ BsScript bsstatue_entrypoint_5(BsScriptType arg0) {
 
 void func_80800D20_bsstatue(void *arg0) {
     s32 func_80099A58(void *);
-    s32 func_8009E6EC();
+    s32 func_8009E6EC(BT_NATIVE_ONLY(struct player_state_s *));
     void func_8009E830(void *arg0, s32 arg1);
     s32 func_808003B4_bsstatue(void *);
-    if (func_8009E6EC() == 0x81) {
+    if (func_8009E6EC(BT_NATIVE_ONLY(arg0)) == 0x81) {
         if (func_80099A58(arg0) == 0x11E8) {
             (((Objstatue_arg0 *)arg0)->unk164) = (s32) ((((Objstatue_arg0 *)arg0)->unk164) + 1);
         }

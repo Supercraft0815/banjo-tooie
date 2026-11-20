@@ -172,6 +172,8 @@ Weitere geprüfte N2-/N3-Pakete am 20. November
 
 - Modellsuche der Figuren. Digger-Boss, Introfigur und Hüpfburg erhalten ihre Modelldaten über den Actor. Die Mesh-Callbacks der ersten beiden Figuren erhalten den Marker.
 
+- Spielerzugriffe für Winkel und Physik. 27 im Original-MIPS geprüfte Aufrufe aus 19 Dateien übergeben den Spieler an ihren Empfänger.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

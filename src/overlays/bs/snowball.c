@@ -3,7 +3,7 @@
 BT_NATIVE_ONLY(struct player_state_s; int _babounce_entrypoint_2(struct player_state_s *); void _babounce_entrypoint_3(struct player_state_s *); void _bsrest_entrypoint_14(struct player_state_s *); s32 _bsrest_entrypoint_20(struct player_state_s *);) struct anctrl_s;
 #include "transformations.h"
 /* extern */
-
+BT_NATIVE_ONLY(struct player_state_s; void baphysics_reset_gravity(struct player_state_s *);)
 f32 func_80800000_bssnowball(BtIntPtr arg0) {
     f32 _basnowball_entrypoint_3(BT_NATIVE_ONLY(void *));
     void func_8008C990(void *self, f32 arg1);
@@ -321,7 +321,7 @@ void func_808007D8_bssnowball(PlayerState *arg0) {
 void func_8080089C_bssnowball(BtIntPtr arg0) {
     void func_8009BF5C(struct player_state_s *, f32);
     void baroll_setIdeal(struct player_state_s *, f32);
-    baphysics_reset_gravity();
+    baphysics_reset_gravity(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_8009BF5C(arg0, 0.0f);
     baroll_setIdeal(arg0, 0.0f);
     bssnowball_entrypoint_0(arg0);

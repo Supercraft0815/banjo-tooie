@@ -11,7 +11,7 @@
 struct anctrl_s;
 enum asset_e;
 struct player_state_s;
-
+BT_NATIVE_ONLY(struct player_state_s; void baphysics_reset_gravity(struct player_state_s *);)
 void func_80800000_bstaxi(struct player_state_s *arg0) {
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     s32 bastick_getZone(struct player_state_s *);
@@ -196,11 +196,11 @@ s32 func_80800420_bstaxi(struct player_state_s *arg0) {
 
 void func_808004A8_bstaxi(struct player_state_s *arg0) {
     void func_80099B94(void *arg0);
-    s32 func_8009E6EC();
+    s32 func_8009E6EC(BT_NATIVE_ONLY(struct player_state_s *));
     s32 func_80800420_bstaxi(struct player_state_s *);
     s32 temp_v0;
 
-    temp_v0 = func_8009E6EC();
+    temp_v0 = func_8009E6EC(BT_NATIVE_ONLY(arg0));
     switch (temp_v0) {
     case 0x1F:
     case 0x20:
@@ -733,7 +733,7 @@ void bstaxi_entrypoint_17(struct player_state_s *arg0) {
     void func_8009BF5C(struct player_state_s *, f32);
     void baroll_setIdeal(struct player_state_s *, f32);
 #ifdef BT_NATIVE
-    ((void (*)())baphysics_reset_gravity)();
+    baphysics_reset_gravity(arg0);
 #else
     baphysics_reset_gravity();
 #endif
@@ -939,11 +939,11 @@ void bstaxi_entrypoint_29(struct player_state_s *arg0) {
     BtIntPtr func_80099A4C(struct player_state_s *);
     s32 func_80099A58(void *self);
     void func_80099B94(void *arg0);
-    s32 func_8009E6EC();
+    s32 func_8009E6EC(BT_NATIVE_ONLY(struct player_state_s *));
     void func_8009E830(void *arg0, s32 arg1);
     s32 temp_v0;
 
-    temp_v0 = func_8009E6EC();
+    temp_v0 = func_8009E6EC(BT_NATIVE_ONLY(arg0));
     switch (temp_v0) {
     case 0x1F:
     case 0x20:

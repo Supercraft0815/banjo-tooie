@@ -113,10 +113,10 @@ s32 func_808000F0_bsride(BtIntPtr arg0) { func_8009EAE8(0); func_8080008C_bsride
 
 void func_8080011C_bsride(BtIntPtr arg0) {
     void func_80099B94(PlayerState *);
-    s32 func_8009E6EC();
+    s32 func_8009E6EC(BT_NATIVE_ONLY(struct player_state_s *));
     void func_8009E830(PlayerState *, s32);
     s32 func_808000F0_bsride(BtIntPtr);
-    if (func_8009E6EC() == 0x28) {
+    if (func_8009E6EC(BT_NATIVE_ONLY((struct player_state_s *)arg0)) == 0x28) {
         func_808000F0_bsride(arg0);
         func_8009E830(arg0, 2);
         return;
@@ -328,10 +328,10 @@ void func_8080060C_bsride(void *arg0) {
 
 void func_8080066C_bsride(BtIntPtr arg0) {
     void func_80099B94(PlayerState *);
-    s32 func_8009E6EC();
+    s32 func_8009E6EC(BT_NATIVE_ONLY(struct player_state_s *));
     void func_8009E830(PlayerState *, s32);
     s32 func_808000F0_bsride(BtIntPtr);
-    if (func_8009E6EC() == 0x28) {
+    if (func_8009E6EC(BT_NATIVE_ONLY((struct player_state_s *)arg0)) == 0x28) {
         func_808000F0_bsride(arg0);
         func_8009E830(arg0, 2);
         return;

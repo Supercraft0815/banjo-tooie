@@ -7,7 +7,7 @@ BT_NATIVE_ONLY(struct player_state_s; void _babounce_entrypoint_3(struct player_
 void _babee_entrypoint_2(struct player_state_s *self);
 extern s32 _badrone_entrypoint_3(struct player_state_s *self);
 extern void _bsdrone_entrypoint_1(struct player_state_s *self);
-
+BT_NATIVE_ONLY(struct player_state_s; void baphysics_reset_gravity(struct player_state_s *);)
 void func_80800000_bsbeemain(BtIntPtr arg0) {
     s32 func_8009DF18(BtIntPtr, s32, f32, s32);
     func_8009DF18(arg0, 0x41F, 1.4f, 0x1F40);
@@ -212,7 +212,7 @@ void func_80800548_bsbeemain(struct player_state_s *arg0) {
     int bakey_released(struct player_state_s *, s32);
     int bakey_held(struct player_state_s *, s32);
     int bakey_pressed(struct player_state_s *, s32);
-    int baphysics_reset_gravity();
+    BT_IDO_ONLY(int baphysics_reset_gravity();) BT_NATIVE_ONLY(void baphysics_reset_gravity(struct player_state_s *);)
     int func_8008DF8C(struct player_state_s *, s32);
     void baanim_setEndAndDuration(struct player_state_s *, f32, f32);
     s32 anctrl_isStopped(struct anctrl_s *);
@@ -562,19 +562,19 @@ void func_80800E0C_bsbeemain(struct player_state_s *arg0) {
     bs_setState(arg0, 0);
 }
 
-void func_80800FB8_bsbeemain(s32 arg0) { baphysics_reset_gravity(); func_800A4E30(arg0); func_800951B4(arg0); _bsbee_entrypoint_0(arg0); }
+void func_80800FB8_bsbeemain(BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) arg0) { baphysics_reset_gravity(BT_NATIVE_ONLY((struct player_state_s *)arg0)); func_800A4E30(arg0); func_800951B4(arg0); _bsbee_entrypoint_0(arg0); }
 
 /* extern */
 
-void func_80800FF0_bsbeemain(s32 arg0) {
+void func_80800FF0_bsbeemain(BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) arg0) {
     void _basudie_entrypoint_11(s32 arg0);
     s32 bs_setState(BtIntPtr, s32);
     s32 func_80093370(s32, s32);
     f32 func_80099A34(BtIntPtr);
     s32 func_8009BDAC(s32, f32);
-    s32 func_8009E6EC();
+    s32 func_8009E6EC(BT_NATIVE_ONLY(struct player_state_s *));
     s32 func_8009E830(BtIntPtr, s32);
-    if (func_8009E6EC() == 0x83) {
+    if (func_8009E6EC(BT_NATIVE_ONLY((struct player_state_s *)arg0)) == 0x83) {
         func_8009BDAC(arg0, func_80099A34(arg0));
         func_80093370(arg0, 1);
         bs_setState(arg0, 0x85);

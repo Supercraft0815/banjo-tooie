@@ -207,9 +207,9 @@ void func_80800480_bsbeefly(PlayerState *arg0) {
 void func_808005B0_bsbeefly(BtIntPtr arg0) {
     s32 _baboost_entrypoint_2(PlayerState *self, f32 arg1);
     void func_80099B94(PlayerState *arg0);
-    s32 func_8009E6EC();
+    s32 func_8009E6EC(BT_NATIVE_ONLY(struct player_state_s *));
     void func_8009E830(PlayerState *arg0, s32 arg1);
-    if (func_8009E6EC() == 0x18) {
+    if (func_8009E6EC(BT_NATIVE_ONLY((struct player_state_s *)arg0)) == 0x18) {
         _baboost_entrypoint_2(arg0, 1.0f);
         func_8009E830(arg0, 2);
         return;

@@ -11,7 +11,7 @@
 #include "bs_script.h"
 BT_NATIVE_ONLY(struct player_state_s; int _babounce_entrypoint_2(struct player_state_s *); void _babounce_entrypoint_3(struct player_state_s *); void _bsrest_entrypoint_14(struct player_state_s *); s32 _bsrest_entrypoint_20(struct player_state_s *);) struct player_state_s;
 s32 func_8009D454(struct player_state_s *, volatile u8, s32 *);
-
+BT_NATIVE_ONLY(struct player_state_s; void baphysics_reset_gravity(struct player_state_s *);)
 void _basudie_entrypoint_11();
 void _bsdrone_entrypoint_3();
 void func_80099AA8();
@@ -645,7 +645,7 @@ void func_80800C70_bswasher(struct player_state_s *arg0) {
 void func_80800E74_bswasher(BtIntPtr arg0) {
     void func_8009BF5C(struct player_state_s *, f32);
     void baroll_setIdeal(struct player_state_s *, f32);
-    baphysics_reset_gravity();
+    baphysics_reset_gravity(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_8009BF5C(arg0, 0.0f);
     baroll_setIdeal(arg0, 0.0f);
     func_808000F0_bswasher(arg0);

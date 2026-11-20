@@ -8,7 +8,7 @@
 #include "bs_script.h"
 BT_NATIVE_ONLY(struct player_state_s; void _babounce_entrypoint_3(struct player_state_s *); void _bsrest_entrypoint_14(struct player_state_s *); s32 _bsrest_entrypoint_20(struct player_state_s *);) struct anctrl_s;
 enum asset_e;     
-
+BT_NATIVE_ONLY(struct player_state_s; void baphysics_reset_gravity(struct player_state_s *);)
 void func_80800000_bstnt(void *arg0) {
     void func_8009DF94(void *, s32, f32, s32);
     func_8009DF94(arg0, 0x504, 1.0f, 0x7FFF);
@@ -885,7 +885,7 @@ void func_8080166C_bstnt(struct player_state_s *arg0) {
 void func_808018D0_bstnt(BtIntPtr arg0) {
     void func_8009BF5C(BtIntPtr, f32);
     void baroll_setIdeal(BtIntPtr, f32);
-    baphysics_reset_gravity();
+    baphysics_reset_gravity(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_8009BF5C(arg0, 0.0f);
     baroll_setIdeal(arg0, 0.0f);
     bstnt_entrypoint_2(arg0);
@@ -901,9 +901,9 @@ BsScript bstnt_entrypoint_9(BsScriptType arg0) {
 void bstnt_entrypoint_10(void *arg0) {
     BtIntPtr func_80099A4C(void *);
     void func_80099B94(void *arg0);
-    s32 func_8009E6EC();
+    s32 func_8009E6EC(BT_NATIVE_ONLY(struct player_state_s *));
     void func_8009E830(void *arg0, s32 arg1);
-    if (func_8009E6EC() == 0x42) {
+    if (func_8009E6EC(BT_NATIVE_ONLY(arg0)) == 0x42) {
         (((Objtnt_arg0 *)arg0)->unk164) = func_80099A4C(arg0);
         (((Objtnt_arg0 *)arg0)->unk168) = 1;
         func_8009E830(arg0, 2);

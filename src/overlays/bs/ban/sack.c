@@ -281,9 +281,9 @@ void func_80800710_bsbansack(BtIntPtr arg0) {
     f32 anctrl_getAnimTimer(BtIntPtr);
     struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
     void func_80099B94(PlayerState *arg0);
-    s32 func_8009E6EC();
+    s32 func_8009E6EC(BT_NATIVE_ONLY(struct player_state_s *));
     s32 func_80800168_bsbansack(BtIntPtr);
-    if (func_8009E6EC() == 0xC) {
+    if (func_8009E6EC(BT_NATIVE_ONLY((struct player_state_s *)arg0)) == 0xC) {
         if (anctrl_getAnimTimer(baanim_getAnimCtrlPtr(arg0)) > 0.42f) {
             func_80099B94(arg0);
         }

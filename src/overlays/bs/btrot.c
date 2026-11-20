@@ -2,10 +2,10 @@
 #include "common.h"
 BT_NATIVE_ONLY(struct player_state_s; void _bsrest_entrypoint_14(struct player_state_s *);) typedef struct anctrl_s AnimCtrl;
 void bs_setState();
-
+BT_NATIVE_ONLY(struct player_state_s; void baphysics_reset_gravity(struct player_state_s *);)
 /* extern */
 
-typedef struct PlayerState PlayerState;
+BT_NATIVE_ONLY(typedef struct player_state_s PlayerState;) BT_IDO_ONLY(typedef struct PlayerState PlayerState;)
 void func_8009FE58(PlayerState *);
 void _bashoes_entrypoint_20(PlayerState *);
 void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
@@ -168,9 +168,9 @@ void func_80800308_bsbtrot(PlayerState *arg0) {
 
 void func_808003F0_bsbtrot(void *arg0) {
     void func_80099B94(PlayerState *);
-    s32 func_8009E6EC();
+    s32 func_8009E6EC(BT_NATIVE_ONLY(struct player_state_s *));
     void func_80800308_bsbtrot(PlayerState *);
-    if (func_8009E6EC() == 0x8D) {
+    if (func_8009E6EC(BT_NATIVE_ONLY(arg0)) == 0x8D) {
         (((Objbtrot_arg0 *)arg0)->unk164) = 1;
         func_80800308_bsbtrot(arg0);
         return;
@@ -793,7 +793,7 @@ void bsbtrot_entrypoint_13(void *arg0) {
 void baphysics_reset_gravity();
 void bsbtrot_entrypoint_14(BtIntPtr arg0)
 {
-    baphysics_reset_gravity();
+    baphysics_reset_gravity(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_8080061C_bsbtrot(arg0);
 }
 BsScript bsbtrot_entrypoint_15(BsScriptType arg0) {
@@ -804,11 +804,11 @@ BsScript bsbtrot_entrypoint_15(BsScriptType arg0) {
 /* extern */
 
 void func_8080163C_bsbtrot(BtIntPtr arg0) {
-    s32 func_8009E6EC();
+    s32 func_8009E6EC(BT_NATIVE_ONLY(struct player_state_s *));
     void func_80099B94(PlayerState *);
     s32 temp_v0;
 
-    temp_v0 = func_8009E6EC();
+    temp_v0 = func_8009E6EC(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     if ((temp_v0 != 0x1A) && (temp_v0 != 0x1B) && (temp_v0 != 0x29) && (temp_v0 != 0x2B)) {
         func_80099B94(arg0);
     }
@@ -1400,7 +1400,7 @@ s32 func_808025D8_bsbtrot(BtIntPtr arg0, s32 arg1) {
 
 void bsbtrot_entrypoint_44(BtIntPtr arg0)
 {
-    baphysics_reset_gravity();
+    baphysics_reset_gravity(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_8080061C_bsbtrot(arg0);
 }
 /* extern */

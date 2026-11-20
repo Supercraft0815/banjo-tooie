@@ -3,7 +3,7 @@
 BT_NATIVE_ONLY(struct player_state_s; void _bsrest_entrypoint_14(struct player_state_s *); s32 _bsrest_entrypoint_20(struct player_state_s *);) struct anctrl_s;
 #include "bs_script.h"
 /* extern */
-
+BT_NATIVE_ONLY(struct player_state_s; void baphysics_reset_gravity(struct player_state_s *);)
 void bsbabykaz_entrypoint_0(u8 *arg0) {
     s32 _bababykaz_entrypoint_4(u8 *);
     s32 _cheggclockwork_entrypoint_3(f32 *, f32, s32, s32);
@@ -392,7 +392,7 @@ BsScript bsbabykaz_entrypoint_7(BsScriptType arg0) {
 
 void func_808009C4_bsbabykaz(BtIntPtr arg0)
 {
-    baphysics_reset_gravity();
+    baphysics_reset_gravity(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     bsbabykaz_entrypoint_3(arg0);
 }
 void func_808009EC_bsbabykaz(struct player_state_s *arg0) {

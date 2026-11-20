@@ -40,9 +40,9 @@ void func_8080003C_bssilowait(struct player_state_s *arg0) {
 void func_808000D0_bssilowait(BtIntPtr arg0) {
     void bs_setState(void *self, s32 nextState);
     void func_80099AA8(void *arg0);
-    s32 func_8009E6EC();
+    s32 func_8009E6EC(BT_NATIVE_ONLY(struct player_state_s *));
     void func_8009E830(void *arg0, s32 arg1);
-    if (func_8009E6EC() == 0x90) {
+    if (func_8009E6EC(BT_NATIVE_ONLY((struct player_state_s *)arg0)) == 0x90) {
         bs_setState(arg0, 1);
         func_8009E830(arg0, 2);
         return;

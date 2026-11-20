@@ -65,9 +65,9 @@ BsScript bstalk_entrypoint_3(BsScriptType arg0) {
 
 void bstalk_entrypoint_4(void *arg0) {
     void func_80099B94(void *arg0);
-    s32 func_8009E6EC();
+    s32 func_8009E6EC(BT_NATIVE_ONLY(struct player_state_s *));
     void func_8009E830(void *arg0, s32 arg1);
-    if (func_8009E6EC() == 8) {
+    if (func_8009E6EC(BT_NATIVE_ONLY(arg0)) == 8) {
         (((PlayerState *)arg0)->unk15C.word) = 1;
         func_8009E830(arg0, 2);
         return;

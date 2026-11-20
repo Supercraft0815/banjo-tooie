@@ -43,11 +43,11 @@ BT_NATIVE_ONLY(struct player_state_s; void _bsrest_entrypoint_14(struct player_s
 
 void func_808000D0_bscarry(BtIntPtr arg0) {
     void _bsdrone_entrypoint_3(struct player_state_s *arg0);
-    s32 func_8009E6EC();
+    s32 func_8009E6EC(BT_NATIVE_ONLY(struct player_state_s *));
     void func_80800000_bscarry(PlayerState *);
     s32 temp_v0;
 
-    temp_v0 = func_8009E6EC();
+    temp_v0 = func_8009E6EC(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     if ((temp_v0 == 8) || (temp_v0 == 0x12) || (temp_v0 == 0x16)) {
         func_80800000_bscarry(arg0);
         return;

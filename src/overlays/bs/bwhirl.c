@@ -15,7 +15,7 @@ struct anctrl_s;
 void func_80800000_bsbwhirl(void *arg0) {
     *(s32 *)((u8 *)arg0 + 0x160) = 0;
 }
-
+BT_NATIVE_ONLY(struct player_state_s; void baphysics_reset_gravity(struct player_state_s *);)
 void func_80800008_bsbwhirl(PlayerState *arg0) {
     f32 func_80092B8C(PlayerState *, f32 *);
     f32 func_80092BE8(PlayerState *);
@@ -462,7 +462,7 @@ void bsbwhirl_entrypoint_13(PlayerState *arg0) {
 
 void bsbwhirl_entrypoint_14(BtIntPtr arg0)
 {
-    baphysics_reset_gravity();
+    baphysics_reset_gravity(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_8080017C_bsbwhirl(arg0);
 }
 BsScript bsbwhirl_entrypoint_15(BsScriptType arg0) {

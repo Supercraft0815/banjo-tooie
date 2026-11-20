@@ -2,7 +2,7 @@
 #include "bs/blongleg.h"
 BT_NATIVE_ONLY(struct player_state_s; void _bsrest_entrypoint_14(struct player_state_s *);) BT_NATIVE_ONLY(s32 func_800C2FDC(u8);)
 struct anctrl_s;
-
+BT_NATIVE_ONLY(struct player_state_s; void baphysics_reset_gravity(struct player_state_s *);)
 s32 func_80800000_bsblongleg(PlayerState* arg0)
 {
     return player_inWater(arg0);
@@ -534,7 +534,7 @@ void bsblongleg_entrypoint_17(PlayerState *arg0) {
     struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
     int bakey_pressed(PlayerState *, int);
     int bakey_released(PlayerState *, int);
-    int baphysics_reset_gravity();
+    BT_IDO_ONLY(int baphysics_reset_gravity();) BT_NATIVE_ONLY(void baphysics_reset_gravity(struct player_state_s *);)
     void func_8008B10C(struct anctrl_s *, f32);
     f32 func_80096364(PlayerState *);
     void func_8009BB24(void *, f32 *);
@@ -612,7 +612,7 @@ void bsblongleg_entrypoint_17(PlayerState *arg0) {
 
 void bsblongleg_entrypoint_18(BtIntPtr arg0)
 {
-    baphysics_reset_gravity();
+    baphysics_reset_gravity(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_80800204_bsblongleg(arg0);
 }
 BsScript bsblongleg_entrypoint_19(BsScriptType arg0) {

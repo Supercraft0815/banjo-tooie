@@ -161,8 +161,8 @@ BsScript bsjig_entrypoint_6(BsScriptType arg0) {
 void bsjig_entrypoint_7(BtIntPtr arg0) {
     void func_80099AA8(void *arg0);
     void func_80099B94(void *arg0);
-    s32 func_8009E6EC();
-    if (func_8009E6EC() == 0x26) {
+    s32 func_8009E6EC(BT_NATIVE_ONLY(struct player_state_s *));
+    if (func_8009E6EC(BT_NATIVE_ONLY((struct player_state_s *)arg0)) == 0x26) {
         func_80099B94(arg0);
         return;
     }
