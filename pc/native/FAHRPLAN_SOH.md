@@ -155,6 +155,8 @@ Weitere geprüfte N2-/N3-Pakete am 20. November
 
 - Freezys Modelle. Freezys vier Modellplätze bewahren die vollständigen Asset-Zeiger bis zum Zeichnen.
 
+- Tonbefehl der Pfeilfalle. Der Tonbefehl und sein abschließendes Nullwort stehen in einem gemeinsamen Array.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

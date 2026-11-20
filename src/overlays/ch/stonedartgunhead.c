@@ -44,7 +44,7 @@ void func_808000A8_chstonedartgunhead(Actor *arg0) {
     f32 func_800F1828(f32 *, f32 *);
     Actor *func_801084B0(BtIntPtr, Actor **);
     void func_8010D254(f32 *);
-    extern s32 D_80800E78_chstonedartgunhead;
+    extern s32 D_80800E78_chstonedartgunhead[2];
     struct StoneDartGunHeadData {
         f32 distance;
         f32 count;
@@ -70,7 +70,7 @@ void func_808000A8_chstonedartgunhead(Actor *arg0) {
     } else if (actor->rotation[0] < -10.0f) {
         actor->rotation[0] = -10.0f;
     }
-    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, &D_80800E78_chstonedartgunhead);
+    _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80800E78_chstonedartgunhead);
 }
 
 /* extern */
@@ -439,8 +439,8 @@ void func_80108ED0();
 void func_80107C2C();
 void func_80101870 ( Actor * , void * );
 u8 D_80800E20_chstonedartgunhead[88] BT_DATA(4, overlays_ch_stonedartgunhead, 0x0) = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xA2, 0x00, 0x84, 0x40, 0x40, 0x00, 0x00, 0x01, 0xA2, 0x00, 0x92, 0x00, 0x00, 0x00, 0x00, 0x01, 0xA2, 0x00, 0x0C, 0x3F, 0x80, 0x00, 0x00, 0x01, 0xA1, 0x00, 0x42, 0x40, 0x40, 0x00, 0x00, 0x01, 0xA2, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x01, 0xA2, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x01, 0xA2, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x01, 0xA2, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x01, 0xA2, 0x00, 0x4A, 0x00, 0x00, 0x00, 0x00, 0x01, 0xA2, 0x00, 0x04 };
-s32 D_80800E78_chstonedartgunhead BT_DATA(4, overlays_ch_stonedartgunhead, 0x58) = 1246380;
-u8 D_80800E78_chstonedartgunhead__gap[4] BT_DATA(4, overlays_ch_stonedartgunhead, 0x5C) = { 0 };
+s32 D_80800E78_chstonedartgunhead[2] BT_DATA(4, overlays_ch_stonedartgunhead, 0x58) = { 0x001304AC, 0 };
+
 s32 D_80800E80_chstonedartgunhead[3] BT_DATA(4, overlays_ch_stonedartgunhead, 0x60) = { 1246394, 852147, 11796480 };
 s32 D_80800E8C_chstonedartgunhead[4] BT_DATA(4, overlays_ch_stonedartgunhead, 0x6C) = { 1246394, 1461792, 852121, 10092544 };
 s32 D_80800E9C_chstonedartgunhead[4] BT_DATA(4, overlays_ch_stonedartgunhead, 0x7C) = { 1246394, 1456792, 852096, 8454144 };
