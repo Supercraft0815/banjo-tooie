@@ -1,6 +1,6 @@
 #include "bs_script.h"
 #include "bs/blongleg.h"
-BT_NATIVE_ONLY(s32 func_800C2FDC(u8);)
+BT_NATIVE_ONLY(struct player_state_s; void _bsrest_entrypoint_14(struct player_state_s *);) BT_NATIVE_ONLY(s32 func_800C2FDC(u8);)
 struct anctrl_s;
 
 s32 func_80800000_bsblongleg(PlayerState* arg0)
@@ -718,7 +718,7 @@ BsScript bsblongleg_entrypoint_23(BsScriptType arg0) {
 
 void bsblongleg_entrypoint_24(BtIntPtr arg0)
 {
-    _bsrest_entrypoint_14();
+    _bsrest_entrypoint_14(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_80800204_bsblongleg(arg0);
 }
 void bsblongleg_entrypoint_25(PlayerState *arg0)

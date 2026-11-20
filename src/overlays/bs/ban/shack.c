@@ -4,7 +4,7 @@
 #endif
 #include "overlays/ba/playerstate.h"
 #include "bs_script.h"
-struct anctrl_s;
+BT_NATIVE_ONLY(struct player_state_s; void _bsrest_entrypoint_14(struct player_state_s *); s32 _bsrest_entrypoint_20(struct player_state_s *);) struct anctrl_s;
 
 /* extern */
 
@@ -419,7 +419,7 @@ BsScript bsbanshack_entrypoint_4(BsScriptType arg0) {
 
 void func_80800B54_bsbanshack(BtIntPtr arg0)
 {
-    _bsrest_entrypoint_14();
+    _bsrest_entrypoint_14(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_80800164_bsbanshack(arg0);
 }
 void func_80800B7C_bsbanshack(PlayerState *arg0)
@@ -428,13 +428,13 @@ void func_80800B7C_bsbanshack(PlayerState *arg0)
     _bsrest_entrypoint_16(arg0);
 }
 void func_80800BA4_bsbanshack(PlayerState *arg0) {
-    s32 _bsrest_entrypoint_20();
+    BT_IDO_ONLY(s32 _bsrest_entrypoint_20();)
     void bs_setState(void *self, s32 nextState);
     s32 next_state;
     s32 unused;
 
     next_state = 0;
-    if (_bsrest_entrypoint_20() != 0) {
+    if (_bsrest_entrypoint_20(BT_NATIVE_ONLY(arg0)) != 0) {
         next_state = 0x16C;
     }
     bs_setState(arg0, next_state);

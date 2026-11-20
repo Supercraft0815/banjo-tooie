@@ -3789,3 +3789,9 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten
 Die neun Matrixkomponenten erreichen den ursprünglichen Matrixanbieter auch bei einer Adresse über 4 GiB. Der Lauf ohne FixCalls erreicht in beiden Mumbo-Fällen dieselbe Position wie der Lauf mit eingeschaltetem Pass.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 79 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-collision-matrix*`.
+
+### 2026-11-20 – Übergänge für Spielformen und Figuren (N2)
+
+81 Aufrufstellen in 31 Modulen reichen das im Original-MIPS belegte erste Argument weiter. Die Biene und Stony erreichen im Diagnosebuild ohne FixCalls über je 7.013 Retraces die Referenz.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 79 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 1 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-form-transitions*`.

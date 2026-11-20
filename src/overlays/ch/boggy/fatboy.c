@@ -2,7 +2,7 @@
 #include "ch/boggy/fatboy.h"
 
 u32 D_80801154_chboggyfatboy[];
-void func_80101870(Actor *, void *);
+BT_NATIVE_ONLY(struct player_state_s; s32 _chboggykids_entrypoint_0(Actor *);) void func_80101870(Actor *, void *);
 void *func_80107C2C(s32 *, s32, void *, s32, void *);
 OSThread *func_80108ED0(void);
 void func_808000AC_chboggyfatboy(Actor *arg0);
@@ -143,11 +143,11 @@ OSThread *chboggyfatboy_entrypoint_1(void)
 }
 
 s32 func_80800018_chboggyfatboy(Actor *arg0) {
-    s32 _chboggykids_entrypoint_0(void);
+    BT_IDO_ONLY(s32 _chboggykids_entrypoint_0(void);)
     s32 func_800DA298(s32);
     void func_800FFAB0(Actor *);
 
-    if (_chboggykids_entrypoint_0() == 0) {
+    if (_chboggykids_entrypoint_0(BT_NATIVE_ONLY(arg0)) == 0) {
         func_800FFAB0(arg0);
         return 0;
     }

@@ -42,7 +42,7 @@ OSThread *chlagoonbits_entrypoint_5(void)
     return (OSThread *) D_8080096C_chlagoonbits;
 }
 
-void func_80800048_chlagoonbits(s32 arg0) 
+BT_NATIVE_ONLY(struct player_state_s; s32 _subaddiesect_entrypoint_1(Actor *);) void func_80800048_chlagoonbits(s32 arg0)
 {
 }
 void func_80800050_chlagoonbits(Actor *arg0) {
@@ -59,11 +59,11 @@ void func_808000A4_chlagoonbits(s32 arg0)
 /* extern */
 
 void func_808000AC_chlagoonbits(void *arg0) {
-    s32 _subaddiesect_entrypoint_1();
+    BT_IDO_ONLY(s32 _subaddiesect_entrypoint_1();)
     s32 func_800DA298(s32);
     void func_80101FDC(Actor *, u32);
     void func_80108B04(Actor *, u32);
-    (((Objbits_arg0 *)arg0)->unk28) = _subaddiesect_entrypoint_1();
+    (((Objbits_arg0 *)arg0)->unk28) = _subaddiesect_entrypoint_1(BT_NATIVE_ONLY((Actor *)arg0));
     if (func_800DA298(0xCF) != 0) {
         func_80108B04(arg0, 0);
         func_80101FDC(arg0, 3);

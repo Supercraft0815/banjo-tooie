@@ -9,7 +9,7 @@
 #include "overlays/ba/assets.h"
 #endif
 #include "bs_script.h"
-struct player_state_s; 
+BT_NATIVE_ONLY(struct player_state_s; int _babounce_entrypoint_2(struct player_state_s *); void _babounce_entrypoint_3(struct player_state_s *); void _bsrest_entrypoint_14(struct player_state_s *); s32 _bsrest_entrypoint_20(struct player_state_s *);) struct player_state_s;
 s32 func_8009D454(struct player_state_s *, volatile u8, s32 *);
 
 void _basudie_entrypoint_11();
@@ -807,7 +807,7 @@ BsScript bswasher_entrypoint_6(BsScriptType arg0) {
 
 void func_80801294_bswasher(BtIntPtr arg0)
 {
-    _babounce_entrypoint_3();
+    _babounce_entrypoint_3(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_808000F0_bswasher(arg0);
 }
 /* extern */
@@ -826,14 +826,14 @@ void func_808012BC_bswasher(struct player_state_s *arg0) {
 /* extern */
 
 void func_80801314_bswasher(BtIntPtr arg0) {
-    s32 _babounce_entrypoint_2();
+    BT_IDO_ONLY(s32 _babounce_entrypoint_2();)
     s32 _babounce_entrypoint_9(BtIntPtr);
     void bs_setState(struct player_state_s *, int);
     void func_80800000_bswasher(struct player_state_s *);
     s32 sp1C;
 
     sp1C = 0;
-    if (_babounce_entrypoint_2() != 0) {
+    if (_babounce_entrypoint_2(BT_NATIVE_ONLY((struct player_state_s *)arg0)) != 0) {
         func_80800000_bswasher(arg0);
     }
     if (_babounce_entrypoint_9(arg0) != 0) {
@@ -849,7 +849,7 @@ BsScript bswasher_entrypoint_7(BsScriptType arg0) {
 
 void func_8080137C_bswasher(BtIntPtr arg0)
 {
-    _bsrest_entrypoint_14();
+    _bsrest_entrypoint_14(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_808000F0_bswasher(arg0);
 }
 void func_808013A4_bswasher(BtIntPtr arg0)
@@ -861,13 +861,13 @@ void func_808013A4_bswasher(BtIntPtr arg0)
 
 void func_808013CC_bswasher(BtIntPtr arg0) {
     s32 _bsrest_entrypoint_13(BtIntPtr);
-    s32 _bsrest_entrypoint_20();
+    BT_IDO_ONLY(s32 _bsrest_entrypoint_20();)
     void bs_setState(struct player_state_s *, int);
     s32 func_80800300_bswasher(BtIntPtr);
     s32 sp1C;
 
     sp1C = 0;
-    if (_bsrest_entrypoint_20() != 0) {
+    if (_bsrest_entrypoint_20(BT_NATIVE_ONLY((struct player_state_s *)arg0)) != 0) {
         sp1C = _bsrest_entrypoint_13(arg0);
     }
     func_80800300_bswasher(arg0);

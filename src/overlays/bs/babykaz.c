@@ -1,6 +1,6 @@
 #include "common.h"
 #include "overlays/ba/playerstate.h"
-struct anctrl_s;
+BT_NATIVE_ONLY(struct player_state_s; void _bsrest_entrypoint_14(struct player_state_s *); s32 _bsrest_entrypoint_20(struct player_state_s *);) struct anctrl_s;
 #include "bs_script.h"
 /* extern */
 
@@ -514,7 +514,7 @@ BsScript bsbabykaz_entrypoint_8(BsScriptType arg0) {
 
 void func_80800D18_bsbabykaz(BtIntPtr arg0)
 {
-    _bsrest_entrypoint_14();
+    _bsrest_entrypoint_14(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     bsbabykaz_entrypoint_3(arg0);
 }
 void func_80800D40_bsbabykaz(BtIntPtr arg0)
@@ -526,13 +526,13 @@ void func_80800D40_bsbabykaz(BtIntPtr arg0)
 
 void func_80800D68_bsbabykaz(BtIntPtr arg0) {
     s32 _bababykaz_entrypoint_3(struct player_state_s *);
-    s32 _bsrest_entrypoint_20();
+    BT_IDO_ONLY(s32 _bsrest_entrypoint_20();)
     s32 bs_setState(BtIntPtr, s32);
     void bsbabykaz_entrypoint_5();
     s32 sp1C;
 
     sp1C = 0;
-    if (_bsrest_entrypoint_20() != 0) {
+    if (_bsrest_entrypoint_20(BT_NATIVE_ONLY((struct player_state_s *)arg0)) != 0) {
         sp1C = 0x136;
     }
     bsbabykaz_entrypoint_5(arg0);

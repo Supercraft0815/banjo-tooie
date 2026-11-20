@@ -1,5 +1,5 @@
 #include "common.h"
-struct anctrl_s; 
+BT_NATIVE_ONLY(struct player_state_s; void _babounce_entrypoint_3(struct player_state_s *); void _bsrest_entrypoint_14(struct player_state_s *);) struct anctrl_s;
 #include "overlays/ba/playerstate.h"
 void func_80800000_bssub(BtIntPtr arg0) {
     func_8009FFD8(arg0, 0x1, 0x3, 0x3, 0xF);
@@ -693,7 +693,7 @@ BsScript bssub_entrypoint_4(BsScriptType arg0) {
 
 void func_808013C4_bssub(BtIntPtr arg0)
 {
-    _babounce_entrypoint_3();
+    _babounce_entrypoint_3(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_808008D8_bssub(arg0);
 }
 /* extern */
@@ -730,7 +730,7 @@ BsScript bssub_entrypoint_5(BsScriptType arg0) {
 
 void func_80801490_bssub(BtIntPtr arg0)
 {
-    _bsrest_entrypoint_14();
+    _bsrest_entrypoint_14(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_808008D8_bssub(arg0);
 }
 void func_808014B8_bssub(BtIntPtr arg0) {

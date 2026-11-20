@@ -3,7 +3,7 @@
 #include "overlays/ba/anim_smooth.h"
 #endif
 #include "bs_script.h"
-void func_80800000_bsbswim(BtIntPtr arg0) {
+BT_NATIVE_ONLY(struct player_state_s; void _babounce_entrypoint_3(struct player_state_s *); s32 _babounce_entrypoint_9(struct player_state_s *);) void func_80800000_bsbswim(BtIntPtr arg0) {
     func_8009FFD8(arg0, 0x1, 0x3, 0x3, 0x9);
 }
 
@@ -565,7 +565,7 @@ BsScript bsbswim_entrypoint_5(BsScriptType arg0) {
     return (BsScript)D_80801EB0_bsbswim[arg0];
 }
 
-void func_80800DFC_bsbswim(u8 *arg0) { _babounce_entrypoint_3(); func_800961AC((BtIntPtr)arg0, 3); func_80800104_bsbswim(arg0); }
+void func_80800DFC_bsbswim(u8 *arg0) { _babounce_entrypoint_3(BT_NATIVE_ONLY((struct player_state_s *)arg0)); func_800961AC((BtIntPtr)arg0, 3); func_80800104_bsbswim(arg0); }
 
 /* extern */
 
@@ -581,13 +581,13 @@ void func_80800E30_bsbswim(BtIntPtr arg0) {
 
 /* extern */
 
-void func_80800E7C_bsbswim(s32 arg0) {
-    s32 _babounce_entrypoint_9();
+void func_80800E7C_bsbswim(BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) arg0) {
+    BT_IDO_ONLY(s32 _babounce_entrypoint_9();)
     s32 bs_setState(BtIntPtr, s32);
     s32 sp1C;
 
     sp1C = 0;
-    if (_babounce_entrypoint_9() != 0) {
+    if (_babounce_entrypoint_9(BT_NATIVE_ONLY((struct player_state_s *)arg0)) != 0) {
         sp1C = 0x2B;
     }
     bs_setState(arg0, sp1C);

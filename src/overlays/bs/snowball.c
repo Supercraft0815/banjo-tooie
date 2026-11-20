@@ -1,6 +1,6 @@
 #include "bs_script.h"
 #include "common.h"
-struct anctrl_s;
+BT_NATIVE_ONLY(struct player_state_s; int _babounce_entrypoint_2(struct player_state_s *); void _babounce_entrypoint_3(struct player_state_s *); void _bsrest_entrypoint_14(struct player_state_s *); s32 _bsrest_entrypoint_20(struct player_state_s *);) struct anctrl_s;
 
 /* extern */
 
@@ -430,7 +430,7 @@ BsScript bssnowball_entrypoint_8(BsScriptType arg0) {
 
 void func_80800C18_bssnowball(BtIntPtr arg0)
 {
-    _babounce_entrypoint_3();
+    _babounce_entrypoint_3(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     bssnowball_entrypoint_0(arg0);
 }
 /* extern */
@@ -449,14 +449,14 @@ void func_80800C40_bssnowball(struct player_state_s *arg0) {
 /* extern */
 
 void func_80800C98_bssnowball(BtIntPtr arg0) {
-    s32 _babounce_entrypoint_2();
+    BT_IDO_ONLY(s32 _babounce_entrypoint_2();)
     s32 _babounce_entrypoint_9(BtIntPtr);
     s32 bs_setState(BtIntPtr, s32);
     void func_80800064_bssnowball(struct player_state_s *, s32);
     s32 sp1C;
 
     sp1C = 0;
-    if (_babounce_entrypoint_2() != 0) {
+    if (_babounce_entrypoint_2(BT_NATIVE_ONLY((struct player_state_s *)arg0)) != 0) {
         func_80800064_bssnowball(arg0, 0);
     }
     if (_babounce_entrypoint_9(arg0) != 0) {
@@ -472,7 +472,7 @@ BsScript bssnowball_entrypoint_9(BsScriptType arg0) {
 
 void func_80800D00_bssnowball(BtIntPtr arg0)
 {
-    _bsrest_entrypoint_14();
+    _bsrest_entrypoint_14(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     bssnowball_entrypoint_0(arg0);
 }
 void func_80800D28_bssnowball(BtIntPtr arg0)
@@ -484,12 +484,12 @@ void func_80800D28_bssnowball(BtIntPtr arg0)
 
 void func_80800D50_bssnowball(BtIntPtr arg0) {
     s32 _bsrest_entrypoint_13(BtIntPtr);
-    s32 _bsrest_entrypoint_20();
+    BT_IDO_ONLY(s32 _bsrest_entrypoint_20();)
     s32 bs_setState(BtIntPtr, s32);
     s32 sp1C;
 
     sp1C = 0;
-    if (_bsrest_entrypoint_20() != 0) {
+    if (_bsrest_entrypoint_20(BT_NATIVE_ONLY((struct player_state_s *)arg0)) != 0) {
         sp1C = _bsrest_entrypoint_13(arg0);
     }
     bssnowball_entrypoint_2(arg0);

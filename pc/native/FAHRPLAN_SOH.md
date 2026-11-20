@@ -113,6 +113,10 @@ Weitere geprüfte N-Pakete am 20. November
 
 - Kollisionsmatrix. Die neun Matrixkomponenten erreichen den ursprünglichen Matrixanbieter auch bei einer Adresse über 4 GiB. Der Lauf ohne FixCalls erreicht in beiden Mumbo-Fällen dieselbe Position wie der Lauf mit eingeschaltetem Pass.
 
+Weitere geprüfte N2-Pakete am 20. November
+
+- Übergänge für Spielformen und Figuren. 81 Aufrufstellen in 31 Modulen reichen das im Original-MIPS belegte erste Argument weiter. Die Biene und Stony erreichen im Diagnosebuild ohne FixCalls über je 7.013 Retraces die Referenz.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

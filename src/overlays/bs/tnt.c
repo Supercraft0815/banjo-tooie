@@ -6,7 +6,7 @@
 #include "overlays/ba/assets.h"
 #endif
 #include "bs_script.h"
-struct anctrl_s; 
+BT_NATIVE_ONLY(struct player_state_s; void _babounce_entrypoint_3(struct player_state_s *); void _bsrest_entrypoint_14(struct player_state_s *); s32 _bsrest_entrypoint_20(struct player_state_s *);) struct anctrl_s;
 enum asset_e;     
 
 void func_80800000_bstnt(void *arg0) {
@@ -1091,7 +1091,7 @@ void func_80801EA0_bstnt(struct player_state_s *arg0) {
 
 void func_80801F20_bstnt(BtIntPtr arg0)
 {
-    _babounce_entrypoint_3();
+    _babounce_entrypoint_3(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     bstnt_entrypoint_2(arg0);
 }
 BsScript bstnt_entrypoint_12(BsScriptType arg0) {
@@ -1122,7 +1122,7 @@ void func_80801F9C_bstnt(struct player_state_s *arg0) {
 
 void func_80802000_bstnt(BtIntPtr arg0)
 {
-    _babounce_entrypoint_3();
+    _babounce_entrypoint_3(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     bstnt_entrypoint_2(arg0);
 }
 BsScript bstnt_entrypoint_13(BsScriptType arg0) {
@@ -1132,7 +1132,7 @@ BsScript bstnt_entrypoint_13(BsScriptType arg0) {
 
 void func_8080203C_bstnt(BtIntPtr arg0)
 {
-    _bsrest_entrypoint_14();
+    _bsrest_entrypoint_14(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     bstnt_entrypoint_2(arg0);
 }
 void func_80802064_bstnt(BtIntPtr arg0)
@@ -1144,12 +1144,12 @@ void func_80802064_bstnt(BtIntPtr arg0)
 
 void func_8080208C_bstnt(BtIntPtr arg0) {
     s32 _bsrest_entrypoint_13(BtIntPtr);
-    s32 _bsrest_entrypoint_20();
+    BT_IDO_ONLY(s32 _bsrest_entrypoint_20();)
     s32 bs_setState(BtIntPtr, s32);
     s32 sp1C;
 
     sp1C = 0;
-    if (_bsrest_entrypoint_20() != 0) {
+    if (_bsrest_entrypoint_20(BT_NATIVE_ONLY((struct player_state_s *)arg0)) != 0) {
         sp1C = _bsrest_entrypoint_13(arg0);
     }
     bstnt_entrypoint_4(arg0);

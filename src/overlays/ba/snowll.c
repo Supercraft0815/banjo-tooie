@@ -1,6 +1,6 @@
 #include "common.h"
 
-struct player_state_s;
+BT_NATIVE_ONLY(struct player_state_s; void _bawobble_entrypoint_3(struct player_state_s *);) struct player_state_s;
 
 s32 basnowball_entrypoint_0() 
 {
@@ -161,12 +161,12 @@ void basnowball_entrypoint_1(void *arg0) {
 }
 
 void basnowball_entrypoint_2(void *arg0) {
-    s32 _bawobble_entrypoint_3();
+    BT_IDO_ONLY(s32 _bawobble_entrypoint_3();)
     void func_80093230(struct player_state_s *, f32);
     void func_8009E4AC(struct player_state_s *);
     void func_8009E55C(struct player_state_s *, s32, f32);
 
-    _bawobble_entrypoint_3();
+    _bawobble_entrypoint_3(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     *(f32 *)((u8 *)*&((Objsnowll_arg0 *)arg0)->unk110 + 0) = 0.0f;
     *(f32 *)((u8 *)*&((Objsnowll_arg0 *)arg0)->unk110 + 4) = 7.5f;
     *(s8 *)((u8 *)*&((Objsnowll_arg0 *)arg0)->unk110 + 0x2D) = 0;

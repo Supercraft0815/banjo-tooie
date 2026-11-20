@@ -73,7 +73,7 @@ void bsbee_entrypoint_1(struct player_state_s *arg0) {
 
 /* extern */
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) bsbee_entrypoint_2(BT_PARAM_OR_VOID(s32 bt_a0)) {
-    s32 _babee_entrypoint_8();
-    BT_NATIVE_ONLY(return) _babee_entrypoint_8();
+void bsbee_entrypoint_2(BT_PARAM_OR_VOID(struct player_state_s *self)) {
+    BT_NATIVE_ONLY(void _babee_entrypoint_8(struct player_state_s *);) BT_IDO_ONLY(s32 _babee_entrypoint_8();)
+    _babee_entrypoint_8(BT_NATIVE_ONLY(self));
 }

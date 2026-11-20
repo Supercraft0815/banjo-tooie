@@ -23,12 +23,12 @@ OSThread *chpoolkids_entrypoint_2(void)
 
 /* extern */
 
-void func_80800024_chpoolkids(void *arg0) {
-    s32 _subaddiesect_entrypoint_1();
+BT_NATIVE_ONLY(struct player_state_s; s32 _subaddiesect_entrypoint_1(Actor *);) void func_80800024_chpoolkids(void *arg0) {
+    BT_IDO_ONLY(s32 _subaddiesect_entrypoint_1();)
     s32 _subaddiesect_entrypoint_2(void *, s32, s32);
     s32 temp_v0;
 
-    temp_v0 = _subaddiesect_entrypoint_1();
+    temp_v0 = _subaddiesect_entrypoint_1(BT_NATIVE_ONLY((Actor *)arg0));
     (((Objpoolkids_arg0 *)arg0)->unk30) = temp_v0;
     _subaddiesect_entrypoint_2(arg0, temp_v0, 1);
 }

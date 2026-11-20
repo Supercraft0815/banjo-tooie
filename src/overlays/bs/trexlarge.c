@@ -1,6 +1,6 @@
 #include "bs_script.h"
 #include "bs/trexlarge.h"
-struct anctrl_s;
+BT_NATIVE_ONLY(struct player_state_s; void _babounce_entrypoint_3(struct player_state_s *); void _bsrest_entrypoint_14(struct player_state_s *); s32 _bsrest_entrypoint_20(struct player_state_s *);) struct anctrl_s;
 
 void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
 
@@ -585,7 +585,7 @@ BsScript bstrexlarge_entrypoint_9(BsScriptType arg0) {
 
 void func_80800FA0_bstrexlarge(BtIntPtr arg0)
 {
-    _babounce_entrypoint_3();
+    _babounce_entrypoint_3(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     bstrexlarge_entrypoint_1(arg0);
 }
 void func_80800FC8_bstrexlarge(BtIntPtr arg0) { bstrexlarge_entrypoint_2(arg0); _babounce_entrypoint_4(arg0, 2); _babounce_entrypoint_5(arg0, 0x147, (s32) 0x3F30A3D7); }
@@ -612,7 +612,7 @@ BsScript bstrexlarge_entrypoint_10(BsScriptType arg0) {
 
 void func_80801060_bstrexlarge(BtIntPtr arg0)
 {
-    _bsrest_entrypoint_14();
+    _bsrest_entrypoint_14(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     bstrexlarge_entrypoint_1(arg0);
 }
 void func_80801088_bstrexlarge(BtIntPtr arg0)
@@ -624,12 +624,12 @@ void func_80801088_bstrexlarge(BtIntPtr arg0)
 
 void func_808010B0_bstrexlarge(BtIntPtr arg0) {
     s32 _bsrest_entrypoint_13(BtIntPtr);
-    s32 _bsrest_entrypoint_20();
+    BT_IDO_ONLY(s32 _bsrest_entrypoint_20();)
     void bs_setState(void *self, s32 nextState);
     s32 sp1C;
 
     sp1C = 0;
-    if (_bsrest_entrypoint_20() != 0) {
+    if (_bsrest_entrypoint_20(BT_NATIVE_ONLY((struct player_state_s *)arg0)) != 0) {
         sp1C = _bsrest_entrypoint_13(arg0);
     }
     bstrexlarge_entrypoint_3(arg0);

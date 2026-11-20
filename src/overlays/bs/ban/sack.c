@@ -1,7 +1,7 @@
 #include "bs_script.h"
 #include "common.h"
 #include "overlays/ba/playerstate.h"
-void baanim_playForDuration_onceSmooth(PlayerState *, s32, f32);
+BT_NATIVE_ONLY(struct player_state_s; int _babounce_entrypoint_2(struct player_state_s *); void _bsrest_entrypoint_14(struct player_state_s *); s32 _bsrest_entrypoint_20(struct player_state_s *);) void baanim_playForDuration_onceSmooth(PlayerState *, s32, f32);
 
 /* extern */
 
@@ -670,7 +670,7 @@ void func_80801348_bsbansack(PlayerState *arg0) { func_808002D4_bsbansack(arg0);
 
 void func_80801390_bsbansack(PlayerState *arg0) {
     s32 _babounce_entrypoint_10();
-    s32 _babounce_entrypoint_2();
+    BT_IDO_ONLY(s32 _babounce_entrypoint_2();)
     s32 bastick_getZone(PlayerState *);
     void bs_setState(PlayerState *, int);
     s32 func_8008DF8C(PlayerState *, s32);
@@ -678,7 +678,7 @@ void func_80801390_bsbansack(PlayerState *arg0) {
     s32 var_s1;
 
     var_s1 = 0;
-    if (_babounce_entrypoint_2() != 0) {
+    if (_babounce_entrypoint_2(BT_NATIVE_ONLY(arg0)) != 0) {
         func_808001D4_bsbansack(arg0);
     }
     _babounce_entrypoint_10(arg0);
@@ -712,7 +712,7 @@ void func_8080146C_bsbansack(PlayerState *arg0) { func_808002D4_bsbansack(arg0);
 
 void func_808014B4_bsbansack(PlayerState *arg0) {
     s32 _babounce_entrypoint_10();
-    s32 _babounce_entrypoint_2();
+    BT_IDO_ONLY(s32 _babounce_entrypoint_2();)
     s32 bastick_getZone(PlayerState *);
     void bs_setState(PlayerState *, int);
     s32 func_8008DF8C(PlayerState *, s32);
@@ -720,7 +720,7 @@ void func_808014B4_bsbansack(PlayerState *arg0) {
     s32 var_s1;
 
     var_s1 = 0;
-    if (_babounce_entrypoint_2() != 0) {
+    if (_babounce_entrypoint_2(BT_NATIVE_ONLY(arg0)) != 0) {
         func_808001D4_bsbansack(arg0);
     }
     _babounce_entrypoint_10(arg0);
@@ -767,7 +767,7 @@ BsScript bsbansack_entrypoint_6(BsScriptType arg0) {
 
 void func_808015E4_bsbansack(BtIntPtr arg0)
 {
-    _bsrest_entrypoint_14();
+    _bsrest_entrypoint_14(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_80800238_bsbansack(arg0);
 }
 void func_8080160C_bsbansack(PlayerState *arg0)
@@ -779,11 +779,11 @@ void func_8080160C_bsbansack(PlayerState *arg0)
 
 void func_80801634_bsbansack(BtIntPtr arg0) {
     void bs_setState(PlayerState *, int);
-    s32 _bsrest_entrypoint_20();
+    BT_IDO_ONLY(s32 _bsrest_entrypoint_20();)
     s32 sp1C;
 
     sp1C = 0;
-    if (_bsrest_entrypoint_20() != 0) {
+    if (_bsrest_entrypoint_20(BT_NATIVE_ONLY((struct player_state_s *)arg0)) != 0) {
         sp1C = 0x165;
     }
     bs_setState(arg0, sp1C);

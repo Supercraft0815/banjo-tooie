@@ -7,7 +7,7 @@
 #endif
 #include "overlays/ba/playerstate.h"
 #include "bs_script.h"
-void func_80800000_bsvan(struct player_state_s *arg0) {
+BT_NATIVE_ONLY(struct player_state_s; int _babounce_entrypoint_2(struct player_state_s *); void _babounce_entrypoint_3(struct player_state_s *); void _bsrest_entrypoint_14(struct player_state_s *); s32 _bsrest_entrypoint_20(struct player_state_s *);) void func_80800000_bsvan(struct player_state_s *arg0) {
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     s32 bastick_getZone(struct player_state_s *);
     f32 bastick_getZonePosition(struct player_state_s *);
@@ -661,7 +661,7 @@ BsScript bsvan_entrypoint_10(BsScriptType arg0) {
 
 void func_80801118_bsvan(BtIntPtr arg0)
 {
-    _babounce_entrypoint_3();
+    _babounce_entrypoint_3(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     bsvan_entrypoint_0(arg0);
 }
 /* extern */
@@ -707,7 +707,7 @@ BsScript bsvan_entrypoint_11(BsScriptType arg0) {
 
 void func_80801224_bsvan(BtIntPtr arg0)
 {
-    _babounce_entrypoint_3();
+    _babounce_entrypoint_3(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     bsvan_entrypoint_0(arg0);
 }
 void func_8080124C_bsvan(struct player_state_s *arg0) {
@@ -725,13 +725,13 @@ void func_8080124C_bsvan(struct player_state_s *arg0) {
 
 void func_808012A4_bsvan(BtIntPtr arg0) {
     void bs_setState(struct player_state_s *, int);
-    int _babounce_entrypoint_2();
+    BT_IDO_ONLY(int _babounce_entrypoint_2();)
     s32 _babounce_entrypoint_9(struct player_state_s *);
     void func_80800000_bsvan(struct player_state_s *);
     s32 sp1C;
 
     sp1C = 0;
-    if (_babounce_entrypoint_2() != 0) {
+    if (_babounce_entrypoint_2(BT_NATIVE_ONLY((struct player_state_s *)arg0)) != 0) {
         func_80800000_bsvan(arg0);
     }
     if (_babounce_entrypoint_9(arg0) != 0) {
@@ -747,7 +747,7 @@ BsScript bsvan_entrypoint_12(BsScriptType arg0) {
 
 void func_8080130C_bsvan(BtIntPtr arg0)
 {
-    _bsrest_entrypoint_14();
+    _bsrest_entrypoint_14(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     bsvan_entrypoint_0(arg0);
 }
 void func_80801334_bsvan(struct player_state_s *arg0)
@@ -758,11 +758,11 @@ void func_80801334_bsvan(struct player_state_s *arg0)
 void func_8080135C_bsvan(u8 *arg0) {
     void bs_setState(struct player_state_s *, int);
     s32 _bsrest_entrypoint_13(BtIntPtr);
-    s32 _bsrest_entrypoint_20();
+    BT_IDO_ONLY(s32 _bsrest_entrypoint_20();)
     s32 sp1C;
 
     sp1C = 0;
-    if (_bsrest_entrypoint_20() != 0) {
+    if (_bsrest_entrypoint_20(BT_NATIVE_ONLY((struct player_state_s *)arg0)) != 0) {
         sp1C = _bsrest_entrypoint_13(arg0);
     }
     bsvan_entrypoint_3(arg0);

@@ -3,7 +3,7 @@
 #ifdef BT_NATIVE // complete the enum forward declarations below
 #include "overlays/ba/assets.h"
 #endif
-struct player_state_s;
+BT_NATIVE_ONLY(struct player_state_s; void _bsrest_entrypoint_14(struct player_state_s *); s32 _bsrest_entrypoint_20(struct player_state_s *);) struct player_state_s;
 struct anctrl_s;
 enum asset_e;
 /* extern */
@@ -362,7 +362,7 @@ BsScript bsswim_entrypoint_1(BsScriptType arg0) {
 
 void func_80800A24_bsswim(struct player_state_s *arg0)
 {
-    _bsrest_entrypoint_14();
+    _bsrest_entrypoint_14(BT_NATIVE_ONLY(arg0));
     func_80800270_bsswim(arg0);
 }
 void func_80800A4C_bsswim(struct player_state_s *arg0)
@@ -375,13 +375,13 @@ void func_80800A4C_bsswim(struct player_state_s *arg0)
 void func_80800A74_bsswim(BtIntPtr arg0) {
     s32 _bsrest_entrypoint_13(BtIntPtr);
     void bs_setState(void *self, s32 nextState);
-    s32 _bsrest_entrypoint_20();
+    BT_IDO_ONLY(s32 _bsrest_entrypoint_20();)
     s32 var_a1;
     s32 sp1C;
 
     sp1C = 0;
     var_a1 = sp1C;
-    if (_bsrest_entrypoint_20() != 0) {
+    if (_bsrest_entrypoint_20(BT_NATIVE_ONLY((struct player_state_s *)arg0)) != 0) {
         var_a1 = _bsrest_entrypoint_13(arg0);
     }
     bs_setState(arg0, var_a1);

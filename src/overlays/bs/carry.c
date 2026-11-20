@@ -8,7 +8,7 @@
 #ifdef BT_NATIVE // complete the enum forward declarations below
 #include "overlays/ba/anim.h"
 #endif
-void func_80800000_bscarry(PlayerState *arg0) {
+BT_NATIVE_ONLY(struct player_state_s; void _bsrest_entrypoint_14(struct player_state_s *); s32 _bsrest_entrypoint_20(struct player_state_s *);) void func_80800000_bscarry(PlayerState *arg0) {
     int bastatetimer_isDone(PlayerState *, s32);
     void bs_setState(PlayerState *, s32);
     s32 func_8008E9AC(void *);
@@ -266,7 +266,7 @@ BsScript bscarry_entrypoint_3(BsScriptType arg0) {
 
 void func_808006E0_bscarry(BtIntPtr arg0)
 {
-    _bsrest_entrypoint_14();
+    _bsrest_entrypoint_14(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_808001D4_bscarry(arg0);
 }
 void func_80800708_bscarry(BtIntPtr arg0)
@@ -277,13 +277,13 @@ void func_80800708_bscarry(BtIntPtr arg0)
 /* extern */
 
 void func_80800730_bscarry(BtIntPtr arg0) {
-    s32 _bsrest_entrypoint_20();
+    BT_IDO_ONLY(s32 _bsrest_entrypoint_20();)
     void bs_setState(PlayerState *, s32);
     Unk80132ED0 *_bahold_entrypoint_5(BtIntPtr);
     s32 sp1C;
 
     sp1C = 0;
-    if (_bsrest_entrypoint_20() != 0) {
+    if (_bsrest_entrypoint_20(BT_NATIVE_ONLY((struct player_state_s *)arg0)) != 0) {
         sp1C = 0x3A;
     }
     if (_bahold_entrypoint_5(arg0) == 0) {

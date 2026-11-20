@@ -48,9 +48,9 @@ s32 subaddiesect_entrypoint_0(Actor *arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) subaddiesect_entrypoint_1(BtIntPtr arg0) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) subaddiesect_entrypoint_1(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(BtIntPtr) arg0) {
     s32 _gcmapsects_entrypoint_4(f32 *point);
-    BT_NATIVE_ONLY(return) _gcmapsects_entrypoint_4(arg0 + 0x4);
+    BT_NATIVE_ONLY(return) _gcmapsects_entrypoint_4(BT_DATA_FIELD(arg0->position, arg0 + 0x4));
 }
 
 s32 subaddiesect_entrypoint_2(Actor *arg0, s32 arg1, s32 arg2) {

@@ -1,6 +1,6 @@
 #include "bs_script.h"
 #include "common.h"
-typedef struct anctrl_s AnimCtrl;
+BT_NATIVE_ONLY(struct player_state_s; void _bsrest_entrypoint_14(struct player_state_s *);) typedef struct anctrl_s AnimCtrl;
 void bs_setState();
 
 /* extern */
@@ -1108,7 +1108,7 @@ BsScript bsbtrot_entrypoint_27(BsScriptType arg0) {
 
 void bsbtrot_entrypoint_28(BtIntPtr arg0)
 {
-    _bsrest_entrypoint_14();
+    _bsrest_entrypoint_14(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_8080061C_bsbtrot(arg0);
 }
 void bsbtrot_entrypoint_29(PlayerState *arg0) {

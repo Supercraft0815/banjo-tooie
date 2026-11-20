@@ -4,7 +4,7 @@
 #endif
 #include "overlays/ba/playerstate.h"
 #include "bs_script.h"
-void func_8009C128(PlayerState *, f32[3]);
+BT_NATIVE_ONLY(struct player_state_s; void _bsbee_entrypoint_0(struct player_state_s *); void _bsbee_entrypoint_1(struct player_state_s *); void _bsbee_entrypoint_2(struct player_state_s *); void _bsrest_entrypoint_14(struct player_state_s *);) void func_8009C128(PlayerState *, f32[3]);
 
 void func_80800000_bsbeefly(PlayerState *arg0) {
     BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
@@ -34,7 +34,7 @@ void func_808000A4_bsbeefly(BtIntPtr arg0) {
 /* extern */
 
 void func_8080010C_bsbeefly(PlayerState *arg0) {
-    s32 _bsbee_entrypoint_1();
+    BT_IDO_ONLY(s32 _bsbee_entrypoint_1();)
     void baanim_playForDuration_once(void *self, s32 anim_id, f32 duration);
     void baphysics_set_gravity(PlayerState *, f32);
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
@@ -44,7 +44,7 @@ void func_8080010C_bsbeefly(PlayerState *arg0) {
     void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
     f32 yaw_getIdeal(PlayerState *);
     void yaw_setIdeal(PlayerState *, f32);
-    _bsbee_entrypoint_1();
+    _bsbee_entrypoint_1(BT_NATIVE_ONLY(arg0));
     baanim_playForDuration_once(arg0, 0x1DF, 1.5f);
     func_8009FFD8(arg0, 1, 1, 3, 6);
     if (bastick_distance(arg0) != 0.0f) {
@@ -59,7 +59,7 @@ void func_8080010C_bsbeefly(PlayerState *arg0) {
 struct anctrl_s;
 
 void func_808001C4_bsbeefly(PlayerState *arg0) {
-    void _bsbee_entrypoint_2();
+    BT_IDO_ONLY(void _bsbee_entrypoint_2();)
     int anctrl_isAt(struct anctrl_s *, f32);
     s32 anctrl_isStopped(struct anctrl_s *);
     struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
@@ -97,7 +97,7 @@ void func_808001C4_bsbeefly(PlayerState *arg0) {
 
 void func_808002B0_bsbeefly(BT_NATIVE_ONLY(PlayerState *bt_a0))
 {
-    _bsbee_entrypoint_0(BT_NATIVE_ONLY(bt_a0));
+    _bsbee_entrypoint_0(BT_NATIVE_ONLY((struct player_state_s *)bt_a0));
 }
 
 BsScript bsbeefly_entrypoint_0(BsScriptType arg0) {
@@ -219,7 +219,7 @@ void func_808005B0_bsbeefly(BtIntPtr arg0) {
 
 void func_80800600_bsbeefly(PlayerState *arg0) {
     s32 _baboost_entrypoint_2(PlayerState *self, f32 arg1);
-    s32 _bsbee_entrypoint_1();
+    BT_IDO_ONLY(s32 _bsbee_entrypoint_1();)
     void baanim_playForDuration_loopSmooth(PlayerState *, s32, f32);
     int baflag_isTrue(PlayerState *, s32);
     f32 baphysics_get_target_horizontal_velocity(PlayerState *);
@@ -234,7 +234,7 @@ void func_80800600_bsbeefly(PlayerState *arg0) {
     s32 sp30;
     f32 sp2C;
 
-    _bsbee_entrypoint_1();
+    _bsbee_entrypoint_1(BT_NATIVE_ONLY(arg0));
     sp34 = bs_getPreviousState(arg0);
     baanim_playForDuration_loopSmooth(arg0, 0x1DC, 0.38f);
     func_8009FFD8(arg0, 1, 1, 3, 3);
@@ -259,7 +259,7 @@ void func_80800600_bsbeefly(PlayerState *arg0) {
 void func_80800708_bsbeefly(void *arg0) {
     extern f32 D_80800E28_bsbeefly[];
     extern f32 D_80800E3C_bsbeefly[];
-    void _bsbee_entrypoint_2();
+    BT_IDO_ONLY(void _bsbee_entrypoint_2();)
     void bs_setState(PlayerState *, s32);
     s32 _baboost_entrypoint_1(void *);
     s32 _baboost_entrypoint_2(PlayerState *self, f32 arg1);
@@ -386,7 +386,7 @@ BsScript bsbeefly_entrypoint_1(BsScriptType arg0) {
 /* extern */
 
 void func_80800B54_bsbeefly(void *arg0) {
-    extern s32 _bsbee_entrypoint_1();
+    BT_IDO_ONLY(extern s32 _bsbee_entrypoint_1();)
     extern void _bsrest_entrypoint_16(PlayerState *self);
     extern void baphysics_set_gravity(PlayerState *, f32);
     extern void func_8009BA9C(void *, f32 *);
@@ -402,13 +402,13 @@ void func_80800B54_bsbeefly(void *arg0) {
 /* extern */
 
 void func_80800BA4_bsbeefly(BtIntPtr arg0) {
-    void _bsbee_entrypoint_2();
+    BT_IDO_ONLY(void _bsbee_entrypoint_2();)
     s32 _bsrest_entrypoint_20(BtIntPtr);
     void bs_setState(PlayerState *, s32);
     s32 sp1C;
 
     sp1C = 0;
-    _bsbee_entrypoint_2();
+    _bsbee_entrypoint_2(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     if (_bsrest_entrypoint_20(arg0) != 0) {
         sp1C = 0x8C;
     }
@@ -417,7 +417,7 @@ void func_80800BA4_bsbeefly(BtIntPtr arg0) {
 
 void func_80800BE8_bsbeefly(BtIntPtr arg0)
 {
-    _bsrest_entrypoint_14();
+    _bsrest_entrypoint_14(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_808002E4_bsbeefly(arg0);
     _bsbee_entrypoint_0(arg0);
 }
@@ -438,9 +438,9 @@ void func_80800C2C_bsbeefly(BtIntPtr arg0)
 
 void func_80800C5C_bsbeefly(BtIntPtr arg0) {
     s32 _bafly_entrypoint_16(BtIntPtr, s32, s32);
-    s32 _bsbee_entrypoint_1();
+    BT_IDO_ONLY(s32 _bsbee_entrypoint_1();)
     void func_8080039C_bsbeefly(PlayerState *);
-    _bsbee_entrypoint_1();
+    _bsbee_entrypoint_1(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_8080039C_bsbeefly(arg0);
     _bafly_entrypoint_16(arg0, 0x1E0, 0x3F800000);
 }
@@ -449,11 +449,11 @@ void func_80800C5C_bsbeefly(BtIntPtr arg0) {
 
 void func_80800C94_bsbeefly(BtIntPtr arg0) {
     void _bafly_entrypoint_17(PlayerState *arg0, s32 arg1, s32 arg2, s32 *arg3);
-    void _bsbee_entrypoint_2();
+    BT_IDO_ONLY(void _bsbee_entrypoint_2();)
     s32 sp1C;
 
     sp1C = 0;
-    _bsbee_entrypoint_2();
+    _bsbee_entrypoint_2(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     _bafly_entrypoint_17(arg0, 0x8C, 0x85, &sp1C);
 }
 
@@ -473,9 +473,9 @@ void func_80800CE0_bsbeefly(BtIntPtr arg0)
 
 void func_80800D10_bsbeefly(BtIntPtr arg0) {
     s32 _bafly_entrypoint_13(BtIntPtr, s32, s32, s32);
-    s32 _bsbee_entrypoint_1();
+    BT_IDO_ONLY(s32 _bsbee_entrypoint_1();)
     void func_8080039C_bsbeefly(PlayerState *);
-    _bsbee_entrypoint_1();
+    _bsbee_entrypoint_1(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_8080039C_bsbeefly(arg0);
     _bafly_entrypoint_13(arg0, 1, 0xD3, 0x3F99999A);
 }
@@ -484,8 +484,8 @@ void func_80800D10_bsbeefly(BtIntPtr arg0) {
 
 void func_80800D50_bsbeefly(BtIntPtr arg0) {
     void _bafly_entrypoint_14(PlayerState *arg0, s32 arg1, s32 arg2);
-    void _bsbee_entrypoint_2();
-    _bsbee_entrypoint_2();
+    BT_IDO_ONLY(void _bsbee_entrypoint_2();)
+    _bsbee_entrypoint_2(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     _bafly_entrypoint_14(arg0, 0x8C, 0x85);
 }
 

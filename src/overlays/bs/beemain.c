@@ -3,7 +3,7 @@
 #include "overlays/ba/anim_smooth.h"
 #endif
 #include "bs_script.h"
-struct player_state_s;
+BT_NATIVE_ONLY(struct player_state_s; void _babounce_entrypoint_3(struct player_state_s *); void _bsbee_entrypoint_0(struct player_state_s *); void _bsbee_entrypoint_1(struct player_state_s *); void _bsbee_entrypoint_2(struct player_state_s *); void _bsrest_entrypoint_14(struct player_state_s *);) struct player_state_s;
 void _babee_entrypoint_2(struct player_state_s *self);
 extern s32 _badrone_entrypoint_3(struct player_state_s *self);
 extern void _bsdrone_entrypoint_1(struct player_state_s *self);
@@ -51,7 +51,7 @@ void func_808000C0_bsbeemain(void *arg0) {
 
 void func_80800128_bsbeemain(struct player_state_s *arg0) {
     s32 _badrone_entrypoint_24(struct player_state_s *);
-    s32 _bsbee_entrypoint_2();
+    BT_IDO_ONLY(s32 _bsbee_entrypoint_2();)
     int bainput_should_enter_first_person(struct player_state_s *);
     int bakey_held(struct player_state_s *, s32);
     int bakey_pressed(struct player_state_s *, s32);
@@ -64,7 +64,7 @@ void func_80800128_bsbeemain(struct player_state_s *arg0) {
     s32 var_s1;
 
     var_s1 = 0;
-    _bsbee_entrypoint_2();
+    _bsbee_entrypoint_2(BT_NATIVE_ONLY(arg0));
     func_8009D3A8(arg0, 0);
     if (func_8008DD04(arg0) != 0) {
         var_s1 = 0x88;
@@ -111,7 +111,7 @@ void func_80800238_bsbeemain(struct player_state_s *arg0) {
 /* extern */
 
 void func_808002C0_bsbeemain(struct player_state_s *arg0) {
-    s32 _bsbee_entrypoint_2();
+    BT_IDO_ONLY(s32 _bsbee_entrypoint_2();)
     int bakey_held(struct player_state_s *, s32);
     int bakey_pressed(struct player_state_s *, s32);
     s32 bastick_getZone(struct player_state_s *);
@@ -125,7 +125,7 @@ void func_808002C0_bsbeemain(struct player_state_s *arg0) {
     s32 sp24;
 
     sp24 = 0;
-    _bsbee_entrypoint_2();
+    _bsbee_entrypoint_2(BT_NATIVE_ONLY(arg0));
     func_8009D3A8(arg0, 0);
     func_80800058_bsbeemain(arg0);
     func_800A2CE8(arg0, 0.94f, 4);
@@ -207,7 +207,7 @@ void func_808003F0_bsbeemain(struct player_state_s *arg0) {
 }
 
 void func_80800548_bsbeemain(struct player_state_s *arg0) {
-    s32 _bsbee_entrypoint_2();
+    BT_IDO_ONLY(s32 _bsbee_entrypoint_2();)
     void func_8009BB24(void *, f32 *);
     int bakey_released(struct player_state_s *, s32);
     int bakey_held(struct player_state_s *, s32);
@@ -313,7 +313,7 @@ void func_80800874_bsbeemain(struct player_state_s *arg0) {
     void func_8009D3A8(struct player_state_s *, s32);
     struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
     s32 _badrone_entrypoint_28(struct player_state_s *);
-    s32 _bsbee_entrypoint_2();
+    BT_IDO_ONLY(s32 _bsbee_entrypoint_2();)
     s32 anctrl_isStopped(struct anctrl_s *);
     void baanim_setEndAndDuration(struct player_state_s *, f32, f32);
     int baflag_isFalse(struct player_state_s *, s32);
@@ -384,7 +384,7 @@ void func_80800874_bsbeemain(struct player_state_s *arg0) {
 
 void func_80800A74_bsbeemain(BT_NATIVE_ONLY(struct player_state_s *bt_a0))
 {
-    _bsbee_entrypoint_0(BT_NATIVE_ONLY(bt_a0));
+    _bsbee_entrypoint_0(BT_NATIVE_ONLY((struct player_state_s *)bt_a0));
 }
 
 BsScript bsbeemain_entrypoint_3(BsScriptType arg0) {
@@ -392,24 +392,24 @@ BsScript bsbeemain_entrypoint_3(BsScriptType arg0) {
     return (BsScript)D_80801290_bsbeemain[arg0];
 }
 
-void bsbeemain_entrypoint_4(s32 arg0)
+void bsbeemain_entrypoint_4(BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) arg0)
 {
-    _babounce_entrypoint_3();
+    _babounce_entrypoint_3(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     _bsbee_entrypoint_0(arg0);
 }
 void _babounce_entrypoint_5(BtIntPtr, s32, f32);
-void bsbeemain_entrypoint_5(s32 arg0) { _bsbee_entrypoint_1(); _babounce_entrypoint_4(arg0, 1); _babounce_entrypoint_5(arg0, 0x1E0, 0.7518f); }
+void bsbeemain_entrypoint_5(BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) arg0) { _bsbee_entrypoint_1(BT_NATIVE_ONLY((struct player_state_s *)arg0)); _babounce_entrypoint_4(arg0, 1); _babounce_entrypoint_5(arg0, 0x1E0, 0.7518f); }
 
 /* extern */
 
-void bsbeemain_entrypoint_6(s32 arg0) {
-    s32 _bsbee_entrypoint_2();
+void bsbeemain_entrypoint_6(BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) arg0) {
+    BT_IDO_ONLY(s32 _bsbee_entrypoint_2();)
     s32 _babounce_entrypoint_9(BtIntPtr);
     s32 bs_setState(BtIntPtr, s32);
     s32 sp1C;
 
     sp1C = 0;
-    _bsbee_entrypoint_2();
+    _bsbee_entrypoint_2(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     if (_babounce_entrypoint_9(arg0) != 0) {
         sp1C = 0x85;
     }
@@ -421,23 +421,23 @@ BsScript bsbeemain_entrypoint_7(BsScriptType arg0) {
     return (BsScript)D_808012A0_bsbeemain[arg0];
 }
 
-void func_80800B68_bsbeemain(s32 arg0)
+void func_80800B68_bsbeemain(BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) arg0)
 {
-    _babounce_entrypoint_3();
+    _babounce_entrypoint_3(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     _bsbee_entrypoint_0(arg0);
 }
-void func_80800B90_bsbeemain(s32 arg0) { _bsbee_entrypoint_1(); _babounce_entrypoint_4(arg0, 2); _babounce_entrypoint_5(arg0, 0x1E0, 0.7518f); }
+void func_80800B90_bsbeemain(BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) arg0) { _bsbee_entrypoint_1(BT_NATIVE_ONLY((struct player_state_s *)arg0)); _babounce_entrypoint_4(arg0, 2); _babounce_entrypoint_5(arg0, 0x1E0, 0.7518f); }
 
 /* extern */
 
-void func_80800BD0_bsbeemain(s32 arg0) {
-    s32 _bsbee_entrypoint_2();
+void func_80800BD0_bsbeemain(BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) arg0) {
+    BT_IDO_ONLY(s32 _bsbee_entrypoint_2();)
     s32 _babounce_entrypoint_9(BtIntPtr);
     s32 bs_setState(BtIntPtr, s32);
     s32 sp1C;
 
     sp1C = 0;
-    _bsbee_entrypoint_2();
+    _bsbee_entrypoint_2(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     if (_babounce_entrypoint_9(arg0) != 0) {
         sp1C = 0x85;
     }
@@ -507,7 +507,7 @@ void func_80800C28_bsbeemain(struct player_state_s *arg0) {
 }
 
 void func_80800E0C_bsbeemain(struct player_state_s *arg0) {
-    s32 _bsbee_entrypoint_2();
+    BT_IDO_ONLY(s32 _bsbee_entrypoint_2();)
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
     void baphysics_set_vertical_velocity(struct player_state_s *, f32);
     void func_8009D3A8(struct player_state_s *, s32);
@@ -521,7 +521,7 @@ void func_80800E0C_bsbeemain(struct player_state_s *arg0) {
     s32 bs_setState(BtIntPtr, s32);
     f32 velocity;
 
-    _bsbee_entrypoint_2();
+    _bsbee_entrypoint_2(BT_NATIVE_ONLY(arg0));
     baphysics_set_target_horizontal_velocity(arg0, *(f32 *)((s8 *)arg0 + 0x16C));
     func_8009D3A8(arg0, 0);
     switch (*(s32 *)((s8 *)arg0 + 0x15C)) {
@@ -589,31 +589,31 @@ BsScript bsbeemain_entrypoint_9(BsScriptType arg0) {
     return (BsScript)D_808012C0_bsbeemain[arg0];
 }
 
-void func_80801080_bsbeemain(s32 arg0)
+void func_80801080_bsbeemain(BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) arg0)
 {
-    _bsbee_entrypoint_1();
+    _bsbee_entrypoint_1(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     _bsrest_entrypoint_16(arg0);
 }
 /* extern */
 
-void func_808010A8_bsbeemain(s32 arg0) {
-    s32 _bsbee_entrypoint_2();
+void func_808010A8_bsbeemain(BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) arg0) {
+    BT_IDO_ONLY(s32 _bsbee_entrypoint_2();)
     s32 _bsrest_entrypoint_13(BtIntPtr);
     s32 _bsrest_entrypoint_20(BtIntPtr);
     s32 bs_setState(BtIntPtr, s32);
     s32 sp1C;
 
     sp1C = 0;
-    _bsbee_entrypoint_2();
+    _bsbee_entrypoint_2(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     if (_bsrest_entrypoint_20(arg0) != 0) {
         sp1C = _bsrest_entrypoint_13(arg0);
     }
     bs_setState(arg0, sp1C);
 }
 
-void func_808010F4_bsbeemain(s32 arg0)
+void func_808010F4_bsbeemain(BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) arg0)
 {
-    _bsrest_entrypoint_14();
+    _bsrest_entrypoint_14(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     _bsbee_entrypoint_0(arg0);
 }
 BsScript bsbeemain_entrypoint_10(BsScriptType arg0) {
@@ -633,7 +633,7 @@ void func_80801130_bsbeemain(void *arg0) {
 /* extern */
 
 void func_8080118C_bsbeemain(struct player_state_s *arg0) {
-    s32 _bsbee_entrypoint_2();
+    BT_IDO_ONLY(s32 _bsbee_entrypoint_2();)
     _bsbee_entrypoint_2(arg0);
     _bsdrone_entrypoint_1(arg0);
     if ((_badrone_entrypoint_3(arg0) == 2) && (bakey_held(arg0, 1) != 0)) {

@@ -4,7 +4,7 @@
 #endif
 #include "overlays/ba/playerstate.h"
 #include "bs_script.h"
-BT_NATIVE_ONLY(struct player_state_s; void _bsdrone_entrypoint_1(struct player_state_s *); void _bstnt_entrypoint_4(void *);) void func_80800000_bstntswim(struct player_state_s *arg0) {
+BT_NATIVE_ONLY(struct player_state_s; void _bsrest_entrypoint_14(struct player_state_s *); s32 _bsrest_entrypoint_20(struct player_state_s *);) BT_NATIVE_ONLY(struct player_state_s; void _bsdrone_entrypoint_1(struct player_state_s *); void _bstnt_entrypoint_4(void *);) void func_80800000_bstntswim(struct player_state_s *arg0) {
     void func_80092C00(struct player_state_s *, f32 *);
     void func_80092C24(struct player_state_s *, f32 *);
     s32 func_80096544(struct player_state_s *);
@@ -296,7 +296,7 @@ BsScript bstntswim_entrypoint_2(BsScriptType arg0) {
 
 void func_80800864_bstntswim(BtIntPtr arg0)
 {
-    _bsrest_entrypoint_14();
+    _bsrest_entrypoint_14(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_80800174_bstntswim(arg0);
 }
 void func_8080088C_bstntswim(struct player_state_s *arg0)
@@ -306,12 +306,12 @@ void func_8080088C_bstntswim(struct player_state_s *arg0)
 }
 /* extern */
 
-void func_808008B4_bstntswim(s32 arg0) {
-    s32 _bsrest_entrypoint_20();
+void func_808008B4_bstntswim(BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) arg0) {
+    BT_IDO_ONLY(s32 _bsrest_entrypoint_20();)
     s32 sp1C;
 
     sp1C = 0;
-    if (_bsrest_entrypoint_20() != 0) {
+    if (_bsrest_entrypoint_20(BT_NATIVE_ONLY((struct player_state_s *)arg0)) != 0) {
         sp1C = 0x10F;
     }
     _bstnt_entrypoint_4(arg0);

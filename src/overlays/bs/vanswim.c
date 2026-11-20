@@ -3,7 +3,7 @@
 #include "overlays/ba/anim_smooth.h"
 #endif
 #include "overlays/ba/playerstate.h"
-struct player_state_s;
+BT_NATIVE_ONLY(struct player_state_s; void _bsrest_entrypoint_14(struct player_state_s *); s32 _bsrest_entrypoint_20(struct player_state_s *);) struct player_state_s;
 #include "bs_script.h"
 void func_800BA22C(BtIntPtr, s32);
 
@@ -287,7 +287,7 @@ BsScript bsvanswim_entrypoint_2(BsScriptType arg0) {
 
 void func_8080083C_bsvanswim(BtIntPtr arg0)
 {
-    _bsrest_entrypoint_14();
+    _bsrest_entrypoint_14(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_80800174_bsvanswim(arg0);
 }
 void func_80800864_bsvanswim(struct player_state_s *arg0)
@@ -297,12 +297,12 @@ void func_80800864_bsvanswim(struct player_state_s *arg0)
 }
 /* extern */
 
-void func_8080088C_bsvanswim(s32 arg0) {
-    s32 _bsrest_entrypoint_20();
+void func_8080088C_bsvanswim(BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) arg0) {
+    BT_IDO_ONLY(s32 _bsrest_entrypoint_20();)
     s32 sp1C;
 
     sp1C = 0;
-    if (_bsrest_entrypoint_20() != 0) {
+    if (_bsrest_entrypoint_20(BT_NATIVE_ONLY((struct player_state_s *)arg0)) != 0) {
         sp1C = 0x11B;
     }
     _bsvan_entrypoint_3(arg0);

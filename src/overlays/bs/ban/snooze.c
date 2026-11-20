@@ -7,7 +7,7 @@
 #include "overlays/ba/assets.h"
 #endif
 #include "bs_script.h"
-void func_80800000_bsbansnooze(PlayerState *arg0) {
+BT_NATIVE_ONLY(struct player_state_s; void _bsrest_entrypoint_14(struct player_state_s *); s32 _bsrest_entrypoint_20(struct player_state_s *);) void func_80800000_bsbansnooze(PlayerState *arg0) {
     int _babackpack_get_state();
     void _babackpack_set_state(void *, s32);
     void bastick_popZone(PlayerState *);
@@ -255,7 +255,7 @@ BsScript bsbansnooze_entrypoint_3(BsScriptType arg0) {
 
 void func_808006D0_bsbansnooze(BtIntPtr arg0)
 {
-    _bsrest_entrypoint_14();
+    _bsrest_entrypoint_14(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_80800000_bsbansnooze(arg0);
 }
 void func_808006F8_bsbansnooze(PlayerState *arg0)
@@ -266,12 +266,12 @@ void func_808006F8_bsbansnooze(PlayerState *arg0)
 /* extern */
 
 void func_80800720_bsbansnooze(BtIntPtr arg0) {
-    s32 _bsrest_entrypoint_20();
+    BT_IDO_ONLY(s32 _bsrest_entrypoint_20();)
     void bs_setState(void *self, s32 nextState);
     s32 sp1C;
 
     sp1C = 0;
-    if (_bsrest_entrypoint_20() != 0) {
+    if (_bsrest_entrypoint_20(BT_NATIVE_ONLY((struct player_state_s *)arg0)) != 0) {
         sp1C = 0x16F;
     }
     bs_setState(arg0, sp1C);

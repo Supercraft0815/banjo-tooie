@@ -1,6 +1,6 @@
 #include "common.h"
 
-s32 basub_entrypoint_0() 
+BT_NATIVE_ONLY(struct player_state_s; void _bawobble_entrypoint_3(struct player_state_s *);) s32 basub_entrypoint_0()
 {
     return 0x6C;
 }
@@ -287,12 +287,12 @@ void basub_entrypoint_9(void *arg0) {
 
 void basub_entrypoint_10(u8 *arg0) {
     struct player_state_s;
-    s32 _bawobble_entrypoint_3();
+    BT_IDO_ONLY(s32 _bawobble_entrypoint_3();)
     s32 func_8009D454(struct player_state_s *, volatile u8, s32 *);
     void basub_entrypoint_15(void *, s32);
     extern s32 D_80800C30_basub[8];
 
-    _bawobble_entrypoint_3();
+    _bawobble_entrypoint_3(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_808000CC_basub(arg0);
     *(f32 *)(*(u8 **)(arg0 + 0x130) + 0) = 0.0f;
     *(f32 *)(*(u8 **)(arg0 + 0x130) + 4) = *(f32 *)(*(u8 **)(arg0 + 0x130) + 8) = 0.0f;

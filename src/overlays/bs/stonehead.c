@@ -9,7 +9,7 @@
 #include "bs_script.h"
 #include "overlays/ba/assets.h"
 
-enum baanim_update_type_e {
+BT_NATIVE_ONLY(struct player_state_s; int _babounce_entrypoint_2(struct player_state_s *); void _babounce_entrypoint_3(struct player_state_s *); void _bsrest_entrypoint_14(struct player_state_s *); s32 _bsrest_entrypoint_20(struct player_state_s *);) enum baanim_update_type_e {
     BAANIM_UPDATE_0_NONE,
     BAANIM_UPDATE_1_NORMAL,
     BAANIM_UPDATE_2_SCALE_HORZ,
@@ -736,7 +736,7 @@ BsScript bsstonehead_entrypoint_27(BsScriptType arg0) {
 
 void bsstonehead_entrypoint_28(PlayerState *arg0)
 {
-    _babounce_entrypoint_3();
+    _babounce_entrypoint_3(BT_NATIVE_ONLY(arg0));
     func_80800000_bsstonehead(arg0);
 }
 void bsstonehead_entrypoint_29(PlayerState *arg0) {
@@ -752,14 +752,14 @@ void bsstonehead_entrypoint_29(PlayerState *arg0) {
 /* extern */
 
 void bsstonehead_entrypoint_30(BtIntPtr arg0) {
-    s32 _babounce_entrypoint_2();
+    BT_IDO_ONLY(s32 _babounce_entrypoint_2();)
     s32 _babounce_entrypoint_9(BtIntPtr);
     void bs_setState(void *self, s32 nextState);
     void func_808000CC_bsstonehead(PlayerState *);
     s32 sp1C;
 
     sp1C = 0;
-    if (_babounce_entrypoint_2() != 0) {
+    if (_babounce_entrypoint_2(BT_NATIVE_ONLY((struct player_state_s *)arg0)) != 0) {
         func_808000CC_bsstonehead(arg0);
     }
     if (_babounce_entrypoint_9(arg0) != 0) {
@@ -775,7 +775,7 @@ BsScript bsstonehead_entrypoint_31(BsScriptType arg0) {
 
 void bsstonehead_entrypoint_32(PlayerState *arg0)
 {
-    _bsrest_entrypoint_14();
+    _bsrest_entrypoint_14(BT_NATIVE_ONLY(arg0));
     func_80800000_bsstonehead(arg0);
 }
 void bsstonehead_entrypoint_33(PlayerState *arg0)
@@ -788,13 +788,13 @@ void bsstonehead_entrypoint_33(PlayerState *arg0)
 void bsstonehead_entrypoint_34(BtIntPtr arg0) {
     s32 _bsrest_entrypoint_13(BtIntPtr);
     void bs_setState(void *self, s32 nextState);
-    s32 _bsrest_entrypoint_20();
+    BT_IDO_ONLY(s32 _bsrest_entrypoint_20();)
     s32 var_a1;
     s32 sp1C;
 
     sp1C = 0;
     var_a1 = sp1C;
-    if (_bsrest_entrypoint_20() != 0) {
+    if (_bsrest_entrypoint_20(BT_NATIVE_ONLY((struct player_state_s *)arg0)) != 0) {
         var_a1 = _bsrest_entrypoint_13(arg0);
     }
     bs_setState(arg0, var_a1);

@@ -9,7 +9,7 @@ struct player_state_s;
 #ifdef BT_NATIVE
 #include "overlays/ba/anim_smooth.h"
 #endif
-typedef struct player_state_s PlayerState;
+BT_NATIVE_ONLY(struct player_state_s; void _bsrest_entrypoint_14(struct player_state_s *);) typedef struct player_state_s PlayerState;
 struct anctrl_s;
 #include "bs_script.h"
 void func_80800000_bsbwhirl(void *arg0) {
@@ -564,7 +564,7 @@ BsScript bsbwhirl_entrypoint_23(BsScriptType arg0) {
 
 void bsbwhirl_entrypoint_24(BtIntPtr arg0)
 {
-    _bsrest_entrypoint_14();
+    _bsrest_entrypoint_14(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_8080017C_bsbwhirl(arg0);
 }
 void bsbwhirl_entrypoint_25(BT_NATIVE_ONLY(s32 bt_a0))

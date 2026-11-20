@@ -1,6 +1,6 @@
 #include "bs_script.h"
 #include "common.h"
-struct player_state_s;
+BT_NATIVE_ONLY(struct player_state_s; s32 _bsrest_entrypoint_20(struct player_state_s *);) struct player_state_s;
 void baflag_clear(void *self, s32 id);
 
 void func_800CE88C(s32, s32);
@@ -499,13 +499,13 @@ void func_80800C98_bsstatue(BtIntPtr arg0) {
 void func_80800CCC_bsstatue(BtIntPtr arg0) {
     s32 _bsrest_entrypoint_13(BtIntPtr);
     void bs_setState(void *self, s32 nextState);
-    s32 _bsrest_entrypoint_20();
+    BT_IDO_ONLY(s32 _bsrest_entrypoint_20();)
     s32 var_a1;
     s32 sp1C;
 
     sp1C = 0;
     var_a1 = sp1C;
-    if (_bsrest_entrypoint_20() != 0) {
+    if (_bsrest_entrypoint_20(BT_NATIVE_ONLY((struct player_state_s *)arg0)) != 0) {
         var_a1 = _bsrest_entrypoint_13(arg0);
     }
     bs_setState(arg0, var_a1);

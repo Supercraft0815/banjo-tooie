@@ -16,8 +16,8 @@ OSThread *chmermaidstatue_entrypoint_1(void)
 
 /* extern */
 
-void func_80800018_chmermaidstatue(void *arg0) {
-    s32 _subaddiesect_entrypoint_1();
+BT_NATIVE_ONLY(struct player_state_s; s32 _subaddiesect_entrypoint_1(Actor *);) void func_80800018_chmermaidstatue(void *arg0) {
+    BT_IDO_ONLY(s32 _subaddiesect_entrypoint_1();)
     s32 _subaddiesect_entrypoint_2(void *, s32, s32);
     s32 func_800DA298(s32);
     void func_800DA7A8(s32 startIndex, s32 set, s32 length);
@@ -26,7 +26,7 @@ void func_80800018_chmermaidstatue(void *arg0) {
     void func_8010A570(Actor *arg0);
     s32 temp_v0;
 
-    temp_v0 = _subaddiesect_entrypoint_1();
+    temp_v0 = _subaddiesect_entrypoint_1(BT_NATIVE_ONLY((Actor *)arg0));
     (((Objmermaidstatue_arg0 *)arg0)->unk30) = temp_v0;
     _subaddiesect_entrypoint_2(arg0, temp_v0, 0);
     func_800DA7A8(0x6B1, 0, 3);

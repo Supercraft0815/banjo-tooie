@@ -6,7 +6,7 @@
 #ifdef BT_NATIVE // complete the enum forward declarations below
 #include "overlays/ba/assets.h"
 #endif
-void func_8009D3A8(PlayerState *, s32);
+BT_NATIVE_ONLY(struct player_state_s; void _babounce_entrypoint_3(struct player_state_s *); void _bsrest_entrypoint_14(struct player_state_s *); s32 _bsrest_entrypoint_20(struct player_state_s *);) void func_8009D3A8(PlayerState *, s32);
 void bs_setState(void *self, s32 nextState);
 void bstrexsmall_entrypoint_3(BtIntPtr arg0);
 void bstrexsmall_entrypoint_1(PlayerState *);
@@ -547,7 +547,7 @@ BsScript bstrexsmall_entrypoint_8(BsScriptType arg0) {
 
 void func_80801004_bstrexsmall(BtIntPtr arg0)
 {
-    _babounce_entrypoint_3();
+    _babounce_entrypoint_3(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     bstrexsmall_entrypoint_1(arg0);
 }
 void func_8080102C_bstrexsmall(PlayerState *arg0) { bstrexsmall_entrypoint_2(arg0); _babounce_entrypoint_4(arg0, 1); _babounce_entrypoint_5(arg0, 0x147, (s32) 0x3F30A3D7); }
@@ -574,7 +574,7 @@ BsScript bstrexsmall_entrypoint_9(BsScriptType arg0) {
 
 void func_808010E8_bstrexsmall(BtIntPtr arg0)
 {
-    _babounce_entrypoint_3();
+    _babounce_entrypoint_3(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     bstrexsmall_entrypoint_1(arg0);
 }
 void func_80801110_bstrexsmall(PlayerState *arg0) { bstrexsmall_entrypoint_2(arg0); _babounce_entrypoint_4(arg0, 2); _babounce_entrypoint_5(arg0, 0x147, (s32) 0x3F30A3D7); }
@@ -597,7 +597,7 @@ BsScript bstrexsmall_entrypoint_10(BsScriptType arg0) {
 
 void func_808011A8_bstrexsmall(BtIntPtr arg0)
 {
-    _bsrest_entrypoint_14();
+    _bsrest_entrypoint_14(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     bstrexsmall_entrypoint_1(arg0);
 }
 void func_808011D0_bstrexsmall(PlayerState *arg0)
@@ -609,7 +609,7 @@ void func_808011D0_bstrexsmall(PlayerState *arg0)
 void func_808011F8_bstrexsmall(BtIntPtr arg0) {
     s32 sp1C;
     sp1C = 0;
-    if (_bsrest_entrypoint_20() != 0) {
+    if (_bsrest_entrypoint_20(BT_NATIVE_ONLY((struct player_state_s *)arg0)) != 0) {
         sp1C = _bsrest_entrypoint_13(arg0);
     }
     bstrexsmall_entrypoint_3(arg0);
