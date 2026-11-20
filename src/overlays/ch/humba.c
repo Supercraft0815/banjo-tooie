@@ -488,7 +488,7 @@ void func_80800D74_chhumba(Actor *arg0) {
 }
 
 void func_80800E44_chhumba(u8 *arg0, s32 arg1) {
-    s32 _fxsplash25d_entrypoint_0(f32 *);
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) _fxsplash25d_entrypoint_0(f32 *);
     void _fxsplash_entrypoint_1(f32 arg0[3]);
     void _subaddieaudioquick_entrypoint_2(Actor *arg0, f32 arg1[3], void *arg2);
     s32 func_8008FD48(void);
@@ -666,12 +666,12 @@ void func_8080138C_chhumba(u8 *arg0) {
     s32 func_8008FD48();
     s32 func_80090270();
     s32 func_8009EA2C(void);
-    s32 func_80800A50_chhumba();
+    BT_IDO_ONLY(s32 func_80800A50_chhumba();)
     s32 sp1C;
     s32 temp_v0;
 
 #ifdef BT_NATIVE
-    if ((((s32 (*)())func_80800A50_chhumba)() != 0) && (func_80090270() == 0)) {
+    if ((func_80800A50_chhumba((Actor *)arg0) != 0) && (func_80090270() == 0)) {
 #else
     if ((func_80800A50_chhumba() != 0) && (func_80090270() == 0)) {
 #endif

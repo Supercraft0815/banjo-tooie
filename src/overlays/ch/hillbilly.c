@@ -11,7 +11,7 @@ OSThread *chhillbilly_entrypoint_0(void)
 
 void func_8080000C_chhillbilly(void *arg0) {
     s32 _sucoaster_entrypoint_0(void *, s32);
-    u8 *_sucoaster_entrypoint_3();
+    u8 *_sucoaster_entrypoint_3(BT_NATIVE_ONLY(Actor *));
     void func_800EE940(s16 *dst, f32 *src);
     u8 *sp1C;
     f32 *volatile sp18;
@@ -38,10 +38,10 @@ void func_80800064_chhillbilly(Actor *arg0) {
     s32 _subaddierouteDll_entrypoint_4(Actor *);
     s32 _subaddieskeleton_entrypoint_3(Unk80132ED0 *, s32, f32 *);
     s32 _sucoaster_entrypoint_10(Actor *, s32);
-    s32 _sucoaster_entrypoint_13();
+    s32 _sucoaster_entrypoint_13(BT_NATIVE_ONLY(Actor *));
     void _sucoaster_entrypoint_19(Actor *arg0);
     void _sucoaster_entrypoint_2(Actor *arg0);
-    u8 *_sucoaster_entrypoint_3();
+    u8 *_sucoaster_entrypoint_3(BT_NATIVE_ONLY(Actor *));
     s32 _sucoaster_entrypoint_7(Actor *arg0, s32 arg1, f32 arg2);
     void func_800EE88C(f32 *, s16 *);
     void func_800EE940(s16 *, f32 *);
@@ -49,7 +49,7 @@ void func_80800064_chhillbilly(Actor *arg0) {
     void func_80102BF8(void *, f32, f32, f32);
     f32 func_80102D78(Actor *, f32 *);
     f32 func_8010CD28(Actor *);
-    s32 func_808002F0_chhillbilly(f32 *);
+    s32 func_808002F0_chhillbilly(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(f32 *));
     s32 func_808003C8_chhillbilly(u8 *);
     s32 func_8080042C_chhillbilly(u8 *);
     void func_80800944_chhillbilly(Actor *);
@@ -90,7 +90,7 @@ void func_80800064_chhillbilly(Actor *arg0) {
         case 21:
             _sucoaster_entrypoint_19(arg0);
             if (!_sucoaster_entrypoint_13(arg0)) {
-                if (func_808002F0_chhillbilly((f32 *)arg0)) {
+                if (func_808002F0_chhillbilly(BT_IDO_ONLY((f32 *))arg0)) {
                     _sucoaster_entrypoint_10(arg0, 20);
                     ((f32 *)arg0->actorData)[3] = 0.0f;
                     return;
@@ -118,18 +118,18 @@ void func_80800298_chhillbilly(Actor *arg0, u8 *arg1) { void _sucoaster_entrypoi
 
 /* extern */
 
-s32 func_808002F0_chhillbilly(f32 *arg0) {
-    u8 *_sucoaster_entrypoint_3();
+s32 func_808002F0_chhillbilly(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(f32 *) arg0) {
+    u8 *_sucoaster_entrypoint_3(BT_NATIVE_ONLY(Actor *));
     void func_800EE88C(f32 *, s16 *);
     f32 func_800EFC7C(f32 *, f32 *);
     f32 sp1C[3];
 
-    func_800EE88C(sp1C, (s16 *)(_sucoaster_entrypoint_3() + 6));
-    return func_800EFC7C(arg0 + 1, sp1C) < 10000.0f;
+    func_800EE88C(sp1C, (s16 *)(_sucoaster_entrypoint_3(BT_NATIVE_ONLY(arg0)) + 6));
+    return func_800EFC7C(BT_DATA_FIELD(arg0->position, arg0 + 1), sp1C) < 10000.0f;
 }
 
 void func_80800348_chhillbilly(Actor *arg0) {
-    u8 *_sucoaster_entrypoint_3();
+    u8 *_sucoaster_entrypoint_3(BT_NATIVE_ONLY(Actor *));
     BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800EE7F8(f32 *, f32 *);
     void func_800EE88C(f32 *, s16 *);
@@ -148,7 +148,7 @@ void func_80800348_chhillbilly(Actor *arg0) {
 
 s32 func_808003C8_chhillbilly(u8 *arg0) {
     s32 _subaddiejoy_entrypoint_6(u8 *, s32);
-    s32 _sucoaster_entrypoint_13();
+    s32 _sucoaster_entrypoint_13(BT_NATIVE_ONLY(Actor *));
     struct Flags {
         u8 pad[0x64];
         BT_BITFIELD_ORDER(u32 : 2, u32  : 29);
@@ -158,13 +158,13 @@ s32 func_808003C8_chhillbilly(u8 *arg0) {
         BT_BITFIELD_ORDER(u8 : 7, u8 flag74 : 1);
         BT_BITFIELD_ORDER(u8 flag74 : 1, u8  : 7);
     };
-    if (((struct Flags *)arg0)->flag) {
+    if (BT_DATA_FIELD(((Actor *)arg0)->unk64_29, ((struct Flags *)arg0)->flag)) {
         return _subaddiejoy_entrypoint_6(arg0, 0) == 1;
     }
-    if (((struct Flags *)arg0)->flag74) {
+    if (BT_DATA_FIELD((((Actor *)arg0)->flags74 & 0x01000000u), ((struct Flags *)arg0)->flag74)) {
         return 1;
     }
-    return _sucoaster_entrypoint_13() == 1;
+    return _sucoaster_entrypoint_13(BT_NATIVE_ONLY((Actor *)arg0)) == 1;
 }
 
 /* extern */
@@ -178,7 +178,7 @@ s32 func_8080042C_chhillbilly(u8 *arg0) {
         BT_BITFIELD_ORDER(u32 : 29, u32  : 2);
     };
 
-    if (((struct Flags *)arg0)->flag) {
+    if (BT_DATA_FIELD(((Actor *)arg0)->unk64_29, ((struct Flags *)arg0)->flag)) {
         return _subaddiejoy_entrypoint_6(arg0, 0) == 1;
     } else {
         return 0;
@@ -355,7 +355,7 @@ void func_80800894_chhillbilly(Actor *arg0, s32 arg1) {
 }
 
 void func_80800944_chhillbilly(Actor *arg0) {
-    u8 *_sucoaster_entrypoint_3();
+    u8 *_sucoaster_entrypoint_3(BT_NATIVE_ONLY(Actor *));
     s32 func_8001210C(s32);
     BtIntPtr func_800BBCB8(f32 *, f32 *, f32, s32, s32 *);
     void func_800EE7F8(f32 *, f32 *);

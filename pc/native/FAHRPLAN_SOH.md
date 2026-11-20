@@ -83,6 +83,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Zugriffe auf die Spielerregistrierung. Drei Zugriffe verwenden die ganzzahlige Spielernummer. Beim Auflösen eines Markers bleibt der Actor-Zeiger in voller Breite erhalten.
 
+- Wasser- und Achterbahneffekte. Die Bewegung und die Wassereffekte erhalten die Position, den Spieler und den Actor aus ihren jeweiligen Aufrufern.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

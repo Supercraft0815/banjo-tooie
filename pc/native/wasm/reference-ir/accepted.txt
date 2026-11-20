@@ -557,3 +557,6 @@ pointers or use their storage. Both complete ROMs, all 74 replays and all
 
 2026-11-19  Registry actor and index widths
 0 guest functions change their normalized IR. The 9,706 fixup addresses, both complete ROM images and all 74 replays match. See n1-2026-11-18/current-player-registry-accessors-ir.log.
+
+2026-11-19  Water and coaster arguments
+1 guest functions change their normalized IR. The 9,706 fixup addresses, both complete ROM images and all 74 replays match. See n1-2026-11-18/current-water-coaster-ir.log.

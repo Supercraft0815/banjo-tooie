@@ -11,12 +11,12 @@ OSThread *ch2dbaddy_entrypoint_0(void)
 
 void func_8080000C_ch2dbaddy(Actor *arg0) {
     s32 _sucoaster_entrypoint_0(void *, s32);
-    u8 *_sucoaster_entrypoint_3();
+    u8 *_sucoaster_entrypoint_3(BT_NATIVE_ONLY(Actor *));
     void func_800EE940(s16 dst[3], f32 src[3]);
     void func_80102FDC(Actor *, f32);
     void func_8010A3E8(void *, f32);
     void func_8010A570(Actor *);
-    void func_80800850_ch2dbaddy();
+    void func_80800850_ch2dbaddy(BT_NATIVE_ONLY(Actor *));
     u8 *sp24;
 
     if (_sucoaster_entrypoint_0(arg0, 0xA) != 0) {
@@ -33,10 +33,10 @@ void func_8080000C_ch2dbaddy(Actor *arg0) {
 void func_808000A0_ch2dbaddy(Actor *arg0) {
     s32 _subaddierouteDll_entrypoint_4(Actor *);
     s32 _sucoaster_entrypoint_10(Actor *, s32);
-    s32 _sucoaster_entrypoint_13();
+    s32 _sucoaster_entrypoint_13(BT_NATIVE_ONLY(Actor *));
     void _sucoaster_entrypoint_19(Actor *arg0);
     void _sucoaster_entrypoint_2(Actor *arg0);
-    u8 *_sucoaster_entrypoint_3();
+    u8 *_sucoaster_entrypoint_3(BT_NATIVE_ONLY(Actor *));
     s32 _sucoaster_entrypoint_7(Actor *arg0, s32 arg1, f32 arg2);
     void func_800EE88C(f32 *, s16 *);
     s32 func_80101DDC(Actor *);
@@ -46,7 +46,7 @@ void func_808000A0_ch2dbaddy(Actor *arg0) {
     void func_8010A570(Actor *);
     u32 func_8010A5B0(Actor *, s32);
     f32 func_8010CD28(Actor *);
-    s32 func_808003C4_ch2dbaddy(f32 *);
+    s32 func_808003C4_ch2dbaddy(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(f32 *));
     s32 func_8080041C_ch2dbaddy(u8 *);
     s32 func_80800468_ch2dbaddy(u8 *);
     s32 func_80800700_ch2dbaddy(Actor *, s32);
@@ -98,7 +98,7 @@ void func_808000A0_ch2dbaddy(Actor *arg0) {
         case 21:
             _sucoaster_entrypoint_19(arg0);
             if (!_sucoaster_entrypoint_13(arg0)) {
-                if (func_808003C4_ch2dbaddy((f32 *)arg0)) {
+                if (func_808003C4_ch2dbaddy(BT_IDO_ONLY((f32 *))arg0)) {
                     _sucoaster_entrypoint_10(arg0, 0x16);
                     ((f32 *)arg0->actorData)[3] = 0.0f;
                     break;
@@ -116,7 +116,7 @@ void func_808000A0_ch2dbaddy(Actor *arg0) {
 
 s32 func_808002A8_ch2dbaddy(Actor *arg0, s32 arg1, s32 arg2) {
     s32 _sucoaster_entrypoint_21(Actor *, s32, s32);
-    u8 *_sucoaster_entrypoint_3();
+    u8 *_sucoaster_entrypoint_3(BT_NATIVE_ONLY(Actor *));
     void func_80101074(void *);
     s32 func_801032B0(Actor *, u16, u16);
     void func_808004A8_ch2dbaddy(Actor *);
@@ -163,31 +163,31 @@ s32 func_808002A8_ch2dbaddy(Actor *arg0, s32 arg1, s32 arg2) {
 
 /* extern */
 
-s32 func_808003C4_ch2dbaddy(f32 *arg0) {
+s32 func_808003C4_ch2dbaddy(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(f32 *) arg0) {
     void func_800EE88C(f32 dst[3], s16 src[3]);
     f32 func_800EFC7C(f32 *, f32 *);
-    u8 *_sucoaster_entrypoint_3();
+    u8 *_sucoaster_entrypoint_3(BT_NATIVE_ONLY(Actor *));
     f32 sp1C[3];
 
-    func_800EE88C(sp1C, (s16 *)_sucoaster_entrypoint_3());
-    return func_800EFC7C(arg0 + 1, sp1C) < 10000.0f;
+    func_800EE88C(sp1C, (s16 *)_sucoaster_entrypoint_3(BT_NATIVE_ONLY(arg0)));
+    return func_800EFC7C(BT_DATA_FIELD(arg0->position, arg0 + 1), sp1C) < 10000.0f;
 }
 
 /* extern */
 
 s32 func_8080041C_ch2dbaddy(u8 *arg0) {
     s32 _subaddiejoy_entrypoint_6(u8 *, s32);
-    s32 _sucoaster_entrypoint_13();
+    s32 _sucoaster_entrypoint_13(BT_NATIVE_ONLY(Actor *));
     struct Flags {
         u8 pad[0x64];
         BT_BITFIELD_ORDER(u32 : 2, u32  : 29);
         u32 flag : 1;
         BT_BITFIELD_ORDER(u32 : 29, u32  : 2);
     };
-    if (((struct Flags *)arg0)->flag) {
+    if (BT_DATA_FIELD(((Actor *)arg0)->unk64_29, ((struct Flags *)arg0)->flag)) {
         return _subaddiejoy_entrypoint_6(arg0, 0) == 1;
     }
-    return _sucoaster_entrypoint_13() == 1;
+    return _sucoaster_entrypoint_13(BT_NATIVE_ONLY((Actor *)arg0)) == 1;
 }
 
 /* extern */
@@ -201,7 +201,7 @@ s32 func_80800468_ch2dbaddy(u8 *arg0) {
         BT_BITFIELD_ORDER(u32 : 29, u32  : 2);
     };
 
-    if (((struct Flags *)arg0)->flag) {
+    if (BT_DATA_FIELD(((Actor *)arg0)->unk64_29, ((struct Flags *)arg0)->flag)) {
         return _subaddiejoy_entrypoint_6(arg0, 0) == 1;
     } else {
         return 0;
@@ -297,17 +297,17 @@ s32 func_80800564_ch2dbaddy(Actor *arg0, s32 arg1, u32 arg2) {
 }
 
 s32 func_80800700_ch2dbaddy(Actor *arg0, s32 arg1) {
-    u8 *_sucoaster_entrypoint_3();
+    u8 *_sucoaster_entrypoint_3(BT_NATIVE_ONLY(Actor *));
     s32 _sucoaster_entrypoint_10(Actor *, s32);
     s32 _sucoaster_entrypoint_6(Actor *, f32, ...);
     void func_8010A570(Actor *);
-    void func_80800850_ch2dbaddy();
+    void func_80800850_ch2dbaddy(BT_NATIVE_ONLY(Actor *));
     s32 func_801032B0(Actor *, u16, u16);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32[3], void *);
     extern u32 D_80800AE4_ch2dbaddy[4];
     u8 *sp24;
 
-    sp24 = _sucoaster_entrypoint_3();
+    sp24 = _sucoaster_entrypoint_3(BT_NATIVE_ONLY(arg0));
     switch (arg1) {
         case 12:
             func_8010A570(arg0);
@@ -343,16 +343,16 @@ void func_80800820_ch2dbaddy(Actor *arg0) {
 }    typedef struct { u8 pad0[0x6]; s16 unk6; } Obj2dbaddy_func_80800850_ch2dbaddy_sp1C; /* offsets.py genstruct: fields from raw offsets on sp1C; rename once understood */
 
 #ifdef BT_NATIVE
-void func_80800850_ch2dbaddy(s32 bt_a0) {
+void func_80800850_ch2dbaddy(Actor *actor) {
 #else
 void func_80800850_ch2dbaddy(void) {
 #endif
     s32 func_800DC128(s32, s32);
-    u8 *_sucoaster_entrypoint_3();
+    u8 *_sucoaster_entrypoint_3(BT_NATIVE_ONLY(Actor *));
     extern s16 D_80800B00_ch2dbaddy[];
     u8 *sp1C;
 
-    sp1C = _sucoaster_entrypoint_3();
+    sp1C = _sucoaster_entrypoint_3(BT_NATIVE_ONLY(actor));
     (((Obj2dbaddy_func_80800850_ch2dbaddy_sp1C *)sp1C)->unk6) = D_80800B00_ch2dbaddy[func_800DC128(0, 3)];
 }
 /* data_to_c.py: from asm/data/overlays/ch/2dbaddy.data.s */

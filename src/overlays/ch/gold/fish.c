@@ -288,7 +288,7 @@ void func_80800924_chgoldfish(u8 *arg0) {
 void func_80800964_chgoldfish(u8 *arg0) {
     BtIntPtr _fxairbub_entrypoint_1(f32 *, f32, f32, s32);
     s32 _fxripple_entrypoint_0(s32, f32 *);
-    s32 _fxsplash25d_entrypoint_0(f32 *);
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) _fxsplash25d_entrypoint_0(f32 *);
     BtIntPtr _fxsplash_entrypoint_2(f32[3], f32);
     void func_800BA22C(BtIntPtr, s32);
     void func_800BA930(BtIntPtr, s16, s16, s16, s16, s16, s16);

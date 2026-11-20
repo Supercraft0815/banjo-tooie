@@ -351,7 +351,7 @@ void func_808008DC_chpoolkids(u8 *arg0) {
 void func_80800944_chpoolkids(Actor *arg0, f32 arg1) { BT_NATIVE_ONLY(void func_800BA930(BtIntPtr, s16, s16, s16, s16, s16, s16);)
     BtIntPtr _fxairbub_entrypoint_1(f32 *, f32, f32, f32);
     void _fxripple_entrypoint_0(s32 arg0, BtIntPtr arg1);
-    s32 _fxsplash25d_entrypoint_0(f32 *);
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) _fxsplash25d_entrypoint_0(f32 *);
     BtIntPtr _fxsplash_entrypoint_2(f32 *, f32);
     void _subaddieaudioquick_entrypoint_2(Actor *, f32 *, void *);
     void func_800EE7F8(f32 *, f32 *);

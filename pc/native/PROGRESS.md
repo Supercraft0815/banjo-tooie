@@ -3691,3 +3691,9 @@ Die beiden Läufe des neueren Stands verwenden das Spielprogramm mit SHA-256 `7e
 Drei Zugriffe verwenden die ganzzahlige Spielernummer. Beim Auflösen eines Markers bleibt der Actor-Zeiger in voller Breite erhalten.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 75 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-player-registry-accessors*`.
+
+### 2026-11-19 – Wasser- und Achterbahneffekte (N1/N3)
+
+Die Bewegung und die Wassereffekte erhalten die Position, den Spieler und den Actor aus ihren jeweiligen Aufrufern.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 75 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 1 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-water-coaster*`.

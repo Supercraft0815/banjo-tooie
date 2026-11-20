@@ -11,7 +11,7 @@ f32 func_800A0E58(void *arg0) {
 void func_800A0E64(PlayerState *arg0) {
     BtIntPtr _fxairbub_entrypoint_1(f32 *, f32, f32, f32);
     void _fxripple_entrypoint_0(s32 arg0, BtIntPtr arg1);
-    s32 _fxsplash25d_entrypoint_0(f32 *);
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) _fxsplash25d_entrypoint_0(f32 *);
     BtIntPtr _fxsplash_entrypoint_2(f32 *, f32);
     f32 func_800964DC(PlayerState *);
     s32 func_80096544(PlayerState *);

@@ -2,10 +2,10 @@
 
 /* extern */
 
-void fxsplash25d_entrypoint_0(BT_PARAM_OR_VOID(s32 bt_a0)) {
+void fxsplash25d_entrypoint_0(BT_PARAM_OR_VOID(f32 *position)) {
     void func_800BA22C(BtIntPtr arg0, s32 n);
-    BtIntPtr func_8080002C_fxsplash25d();
-    func_800BA22C(func_8080002C_fxsplash25d(), 1);
+    BtIntPtr func_8080002C_fxsplash25d(BT_NATIVE_ONLY(f32 *));
+    func_800BA22C(func_8080002C_fxsplash25d(BT_NATIVE_ONLY(position)), 1);
 }
 
 BtIntPtr func_8080002C_fxsplash25d(f32 *arg0) {
@@ -36,7 +36,7 @@ BtIntPtr func_8080002C_fxsplash25d(f32 *arg0) {
     func_800EF04C(sp2C, sp44);
     emitter = func_800B5BE4(4);
     if (sp20 != 0) {
-        func_800BA660(emitter, sp20, (s16)(s32)sp2C[1]);
+        func_800BA660(BT_NATIVE_ONLY((void *))emitter, sp20, (s16)(s32)sp2C[1]);
     }
     return func_800BABB8(emitter, sp2C, 0, 1.0f, D_80800110_fxsplash25d);
 }
