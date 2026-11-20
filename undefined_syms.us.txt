@@ -567,6 +567,11 @@ SECTIONS
     {
         D_80801456_chjollyroger = D_80801448_chjollyroger + 0xE;
     }
+    .sucoasterdata :
+    {
+        D_808003C0_sucoasterdata = coasterTracks + 0x0;
+        D_8080041C_sucoasterdata = coasterTracks + 0x5C;
+    }
     .gcmapsects_lagoonbot :
     {
         D_80800230_gcmapsects_lagoonbot = lagoonBottomSections + 0x0;

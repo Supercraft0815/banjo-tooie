@@ -3843,3 +3843,9 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten
 Die obere Lagune schaltet die Abschnitte drei und vier anhand der Länge ihrer Tabelle ab. Vier Sichtpunkte bilden jeweils einen vollständigen Vektor.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 79 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 2 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-lagoon-top-bounds*`.
+
+### 2026-11-20 – Bewegungsprofile der Figuren (N2)
+
+Neun Profile mit je 92 Bytes enthalten Figurenkennung, Sounds und Bewegungswerte. Die LP64-Probe findet alle neun IDs und prüft den Rückfall auf das erste Profil bei einer unbekannten ID.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 79 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 3 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-coaster-tracks*`.

@@ -1364,7 +1364,7 @@ void func_80802690_sucoaster(Actor *arg0, u8 *arg1) {
     TrackData *sp1C;
 
     sp1C = _sucoasterdata_entrypoint_1(((CoasterData *)arg1)->track);
-    if (func_80100094(arg0, 1) == NULL && _suexpression_entrypoint_1(sp1C->expression.bytes[1]) != 0) {
+    if (func_80100094(arg0, 1) == NULL && _suexpression_entrypoint_1(BT_DATA_FIELD((u8)sp1C->expression.id, sp1C->expression.bytes[1])) != 0) {
         _suexpression_entrypoint_7(arg0, 1, sp1C->expression.id);
         _suexpression_entrypoint_12(func_80100094(arg0, 1), 60.0f, 40.0f);
         _suexpression_entrypoint_17(func_80100094(arg0, 1), 0x960);

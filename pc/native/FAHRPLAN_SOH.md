@@ -133,6 +133,8 @@ Weitere geprüfte N2-Pakete am 20. November
 
 - Kartengrenzen der oberen Lagune. Die obere Lagune schaltet die Abschnitte drei und vier anhand der Länge ihrer Tabelle ab. Vier Sichtpunkte bilden jeweils einen vollständigen Vektor.
 
+- Bewegungsprofile der Figuren. Neun Profile mit je 92 Bytes enthalten Figurenkennung, Sounds und Bewegungswerte. Die LP64-Probe findet alle neun IDs und prüft den Rückfall auf das erste Profil bei einer unbekannten ID.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026
