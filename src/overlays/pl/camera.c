@@ -38,13 +38,13 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) plcamera_entrypoint_4(s32 *arg0, s32 arg1)
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) plcamera_entrypoint_5(s32 *arg0, s32 arg1) { BtIntPtr func_80110014(s32 *); BT_NATIVE_ONLY(return) func_80110790(func_80110014(func_800F5EF8(arg0)), arg1); }
 
-void plcamera_entrypoint_6(s32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4) {
+void plcamera_entrypoint_6(s32 arg0, BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(s32) arg1, BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32) arg2, BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32) arg3, f32 arg4) {
     BtIntPtr func_80110014(s32 *);
-    void _ncbadeflect_entrypoint_0(BtIntPtr, s32, s32, s32, f32, f32);
+    void _ncbadeflect_entrypoint_0(BtIntPtr, BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(s32), BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32), BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32), f32, f32);
     s32 *camera;
     BtIntPtr deflect;
 
-    camera = func_800F5EF8(arg0);
+    camera = BT_NATIVE_ONLY((s32 *))func_800F5EF8(arg0);
     if (camera != NULL) {
         deflect = func_80110014(camera);
         if (deflect != 0) {
@@ -59,7 +59,7 @@ void plcamera_entrypoint_7(s32 arg0, f32 *arg1, f32 arg2, f32 arg3) {
     s32 *camera;
     BtIntPtr deflect;
 
-    camera = func_800F5EF8(arg0);
+    camera = BT_NATIVE_ONLY((s32 *))func_800F5EF8(arg0);
     if (camera != NULL) {
         deflect = func_80110014(camera);
         if (deflect != 0) {

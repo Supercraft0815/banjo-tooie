@@ -99,6 +99,8 @@ Weitere geprüfte N-Pakete am 20. November
 
 - Der Dialogzustand besitzt ein gemeinsames C-Objekt. Beim Zurücksetzen bleiben die benachbarten Zustandsbytes wie im Original erhalten. Die acht Trefferplätze der Deflektion verwenden native Zellzeiger.
 
+- Kamera bei Ablenkungen. Die Kamera erhält den vollständigen Positionszeiger und beide Höhen als Gleitkommazahlen.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

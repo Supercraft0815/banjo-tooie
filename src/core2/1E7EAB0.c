@@ -1,4 +1,5 @@
 #include "common.h"
+BT_NATIVE_ONLY(u32 func_800F54E4(void);)
 
 void func_800A51C0()
 {
@@ -27,8 +28,8 @@ void func_800A526C(s32 arg0)
 
 /* extern */
 
-void func_800A5298(s32 arg0, s32 arg1, s32 arg2, f32 arg3) {
-    void _plcamera_entrypoint_6(s32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 arg4);
+void func_800A5298(BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(s32) arg0, BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32) arg1, BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32) arg2, f32 arg3) {
+    void _plcamera_entrypoint_6(s32 arg0, BT_NATIVE_ONLY(f32 *) BT_IDO_ONLY(s32) arg1, BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32) arg2, BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32) arg3, f32 arg4);
     _plcamera_entrypoint_6(func_800F54E4(), arg0, arg1, arg2, arg3);
 }
 
