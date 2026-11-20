@@ -2334,10 +2334,18 @@ void func_8080401C_chgameselect(BtIntPtr arg0, s32 arg1, s32 arg2) {
 
 void func_8080407C_chgameselect(BtIntPtr arg0, s32 arg1, s32 arg2) {
     GAME_SELECT_LP64(void, s32) _gcnewoption_entrypoint_13(BtIntPtr, s32, GAME_SELECT_LP64(void *, s32 *));
+#ifdef BT_NATIVE
+    s32 _gcnewoption_entrypoint_17(BtIntPtr, s32);
+#else
     s32 _gcnewoption_entrypoint_17();
+#endif
     s32 _gcnewoption_entrypoint_21(BtIntPtr, s32);
 
+#ifdef BT_NATIVE
+    if (_gcnewoption_entrypoint_17(arg0, arg1) == 0) {
+#else
     if (_gcnewoption_entrypoint_17() == 0) {
+#endif
         _gcnewoption_entrypoint_21(arg0, arg1);
         _gcnewoption_entrypoint_13(arg0, arg1, D_808083D0_chgameselect);
         if (arg2 != 0) {
@@ -2348,10 +2356,18 @@ void func_8080407C_chgameselect(BtIntPtr arg0, s32 arg1, s32 arg2) {
 
 void func_808040DC_chgameselect(BtIntPtr arg0, s32 arg1, s32 arg2) {
     GAME_SELECT_LP64(void, s32) _gcnewoption_entrypoint_13(BtIntPtr, s32, GAME_SELECT_LP64(void *, s32 *));
+#ifdef BT_NATIVE
+    s32 _gcnewoption_entrypoint_18(BtIntPtr, s32);
+#else
     s32 _gcnewoption_entrypoint_18();
+#endif
     s32 _gcnewoption_entrypoint_22(BtIntPtr, s32);
 
+#ifdef BT_NATIVE
+    if (_gcnewoption_entrypoint_18(arg0, arg1) == 0) {
+#else
     if (_gcnewoption_entrypoint_18() == 0) {
+#endif
         _gcnewoption_entrypoint_22(arg0, arg1);
         _gcnewoption_entrypoint_13(arg0, arg1, D_808083D8_chgameselect);
         if (arg2 != 0) {

@@ -3609,3 +3609,9 @@ Der isolierte Stand `gameplay-event-words` erreicht ohne DataGroup für 176 Eins
 Auf dem Trennpad unterschieden sich die Duo-Felder bereits bei Retrace 3.224. Der IDO-Code von `baduo_entrypoint_8` übergibt die Komponentenposition in a0 und den Positionsvektor des Pads in a1 an die Vektorkopie. Im korrigierten Stand `gameplay-split-pad` stimmen beide Solo-Fälle bei vier abgeschalteten Pässen über je 5.245 Retraces überein. Das Ballonspiel stimmt über 4.256 Retraces überein. In `gameplay-golden-hits` gibt die Treffertabelle beide Marker an die Trefferabfrage weiter. Saucer of Peril erreicht damit 4.496 identische Retraces. Der separate native Sanitizertest prüft beide über vier GiB liegenden Marker und die Reihenfolge der zwei Treffermeldungen. Beide Quellstände bestehen den Original-IDO-Vergleich über alle 16.401 Funktionen und beide ROMs. Bei Weldar und HAG 1 weichen im Versuch ohne FixCalls weiterhin Actorflags ab.
 
 Der XSYM-Korpus von `dialog-dart-sound` umfasst 74 Fälle und 6.466 instrumentierte Stellen. Er meldet null Fremdzugriffe. Die Messprotokolle liegen unter `build/acceptance/n1-2026-11-18/` in `dialog-dart-sound-xsym.log`, `event-words-map-sweep/summary.json`, `event-words-four-maps/summary.json`, `split-pad-targets.log`, `golden-hits-targets.log` und `hit-table-markers-lp64.log`.
+
+### 2026-11-19 – EEPROM-Transport (N1/N3)
+
+Lese- und Schreibaufrufe erhalten die Speicheradresse, den Datenpuffer und die Länge. Der Test prüft vier Spielstände, beide globalen Blöcke, Prüfsummen und Fehler beim Lesen und Schreiben.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 73 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-save-transport*`.

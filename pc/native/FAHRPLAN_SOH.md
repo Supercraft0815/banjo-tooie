@@ -63,6 +63,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Stimmen im Audiotreiber. Soundquellen und Audiotreiber verwenden dieselben Stimmentypen. Das Nachrichtenformat bewahrt die Stimme sowie Ereignistyp und Parameter bei beiden Wortbreiten.
 
+- EEPROM-Transport. Lese- und Schreibaufrufe erhalten die Speicheradresse, den Datenpuffer und die Länge. Der Test prüft vier Spielstände, beide globalen Blöcke, Prüfsummen und Fehler beim Lesen und Schreiben.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026
