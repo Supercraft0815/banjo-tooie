@@ -11,7 +11,7 @@ void func_80101870(Actor *, void *);
 void func_80105834(Actor *);
 void *func_80107C2C(s32 *, s32, void *, s32, void *);
 void func_808000C0_chprisonbits(Actor *arg0);
-void func_808001E0_chprisonbits(s32 arg0);
+void func_808001E0_chprisonbits(BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32) arg0);
 void func_80800200_chprisonbits(BtIntPtr arg0);
 void func_80800224_chprisonbits(Actor *arg0);
 s32 func_808002A0_chprisonbits(s32 arg0, s32 arg1, s32 arg2);
@@ -125,13 +125,13 @@ OSThread *chprisonbits_entrypoint_4(void)
 }
 
 #ifdef BT_NATIVE
-void func_8080003C_chprisonbits(BtIntPtr bt_a0, s32 bt_a1)
-#else
-void func_8080003C_chprisonbits()
-#endif
-{
-    _chswitch_entrypoint_7();
+void func_8080003C_chprisonbits(void *actor, s32 flag) {
+    s32 _chswitch_entrypoint_7(void *, s32);
+    _chswitch_entrypoint_7(actor, flag);
 }
+#else
+void func_8080003C_chprisonbits() { _chswitch_entrypoint_7(); }
+#endif
 
 Actor *_subaddiefind_entrypoint_2(s32, BtIntPtr);
 
@@ -170,7 +170,7 @@ void func_808000C0_chprisonbits(Actor *arg0) {
     arg0->unk64_19 = func_800DA298(0xD5);
 }
 
-void func_808001E0_chprisonbits(s32 arg0)
+void func_808001E0_chprisonbits(BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32) arg0)
 {
     func_8080003C_chprisonbits(arg0,1);
 }

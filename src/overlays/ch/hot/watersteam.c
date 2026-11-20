@@ -9,11 +9,11 @@ OSThread *chhotwatersteam_entrypoint_0(void)
 
 /* extern */
 
-void func_8080000C_chhotwatersteam(Unk80132ED0 **arg0) {
+void func_8080000C_chhotwatersteam(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(Unk80132ED0 **) arg0) {
     void func_800FFA88(Unk80132ED0 *);
-    s32 func_808001E8_chhotwatersteam();
-    if (func_808001E8_chhotwatersteam() == 0) {
-        func_800FFA88(*arg0);
+    s32 func_808001E8_chhotwatersteam(BT_NATIVE_ONLY(Actor *));
+    if (func_808001E8_chhotwatersteam(BT_NATIVE_ONLY(arg0)) == 0) {
+        func_800FFA88(BT_DATA_FIELD(arg0->unk0, *arg0));
     }
 }
 
@@ -22,7 +22,7 @@ void func_8080003C_chhotwatersteam(Actor *arg0) {
     s32 func_800D9078(f32 *);
     void func_80101FDC(Actor *, u32);
     void func_808000D8_chhotwatersteam(Actor *);
-    s32 func_808001E8_chhotwatersteam(void *);
+    s32 func_808001E8_chhotwatersteam(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(void *));
 
     if (func_808001E8_chhotwatersteam(arg0) == 0) {
         func_800FFA88(arg0->unk0);
@@ -58,7 +58,7 @@ void func_808000D8_chhotwatersteam(Actor *arg0) {
     s32 func_8080014C_chhotwatersteam(Actor *, f32 *);
     f32 sp24[3];
 
-    func_800CD08C(((struct SteamActorFlags *)arg0)->index - 1, (u8 *)sp24);
+    func_800CD08C(BT_DATA_FIELD(arg0->unk70_25, ((struct SteamActorFlags *)arg0)->index) - 1, BT_IDO_ONLY((u8 *))sp24);
     sp24[1] = arg0->position[1];
     if (func_8080014C_chhotwatersteam(arg0, sp24) != 0) {
         func_80101FDC(arg0, 2);
@@ -87,9 +87,9 @@ s32 func_8080014C_chhotwatersteam(Actor *arg0, f32 *arg1) {
 
 /* extern */
 
-s32 func_808001E8_chhotwatersteam(void *arg0) {
+s32 func_808001E8_chhotwatersteam(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(void *) arg0) {
     s32 func_800DA298(s32);
-    if (((u32)*(u16 *)((u8 *)arg0 + 0x76) >> 7) == 0x33) {
+    if (BT_DATA_FIELD(arg0->unk74_7, ((u32)*(u16 *)((u8 *)arg0 + 0x76) >> 7)) == 0x33) {
         return func_800DA298(0x31B) == 0;
     } else {
         return 1;

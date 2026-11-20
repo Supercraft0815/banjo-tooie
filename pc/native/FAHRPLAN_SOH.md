@@ -157,6 +157,8 @@ Weitere geprüfte N2-/N3-Pakete am 20. November
 
 - Tonbefehl der Pfeilfalle. Der Tonbefehl und sein abschließendes Nullwort stehen in einem gemeinsamen Array.
 
+- Lavaschalter und Dampf. Die Schalter erhalten ihren Actor und das zugehörige Flag. Der Dampfeffekt verwendet den Figurenmarker beim Entfernen.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

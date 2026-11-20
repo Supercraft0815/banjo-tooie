@@ -3915,3 +3915,9 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten
 Der Host aus `4c0c72d6b` öffnet das SDL-Fenster vor der Initialisierung des Gastspeichers. Nach einem verspäteten Bildwechsel verteilt die VI-Uhr die fälligen Retraces auf aufeinanderfolgende Bildwechsel. Der Software- und GPU-Rendertest besteht, auf der GPU stimmen 65.536 Bytes überein. Alle 2.694 GPU-Introbilder liegen unter dem Grenzwert. Die größte Abweichung betrifft 0,056267 % der Pixel. Alle 74 Replays mit 447.849 Retraces bestehen.
 
 Mit derselben Binärdatei, demselben synthetischen Spielstand und 75 Sekunden Laufzeit auf dem LG UltraGear bei 1.920 × 1.080 und 60 Hz ergaben sich 5/4.499, 1/4.498 und 2/4.498 ausgelassene Retraces. Der mittlere Lauf erfüllt die Abnahmegrenze. Im letzten Lauf lagen beide Auslassungen bei 0,074 und 0,100 Sekunden. Alle 37 Prozessabfragen fanden ausschließlich das Messspiel. Die Messreihen, Binär- und Quellhashes liegen in `build/acceptance/a2-2026-11-20/A2-A11-ERGEBNIS.md` und `pacing-final-release/integration-manifest.json` im selben Verzeichnis.
+
+### 2026-11-20 – Lavaschalter und Dampf (N2/N3)
+
+Die Schalter erhalten ihren Actor und das zugehörige Flag. Der Dampfeffekt verwendet den Figurenmarker beim Entfernen.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 83 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 1 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-lava-prison-switches*`.

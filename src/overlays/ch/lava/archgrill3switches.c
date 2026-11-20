@@ -1,13 +1,13 @@
 #include "common.h"
 #include "core2/switch_animations.h"
 #ifdef BT_NATIVE
-void func_80800000_chlavaarchgrill3switches(BtIntPtr bt_a0, s32 bt_a1)
-#else
-void func_80800000_chlavaarchgrill3switches()
-#endif
-{
-    _chswitch_entrypoint_7();
+void func_80800000_chlavaarchgrill3switches(void *actor, s32 flag) {
+    s32 _chswitch_entrypoint_7(void *, s32);
+    _chswitch_entrypoint_7(actor, flag);
 }
+#else
+void func_80800000_chlavaarchgrill3switches() { _chswitch_entrypoint_7(); }
+#endif
 
 void func_80800020_chlavaarchgrill3switches(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     s32 _chswitch_entrypoint_10(BtIntPtr, s32, s32);
@@ -29,7 +29,7 @@ void func_80800020_chlavaarchgrill3switches(s32 arg0, s32 arg1, s32 arg2, s32 ar
 
 /* extern */
 
-void func_808000C0_chlavaarchgrill3switches(BtIntPtr arg0) {
+void func_808000C0_chlavaarchgrill3switches(BT_NATIVE_ONLY(void *) BT_IDO_ONLY(BtIntPtr) arg0) {
     void _chswitch_entrypoint_8(s32 *arg0, s32 arg1);
     func_80800000_chlavaarchgrill3switches(arg0, 0xA1D);
     _chswitch_entrypoint_8(arg0, 0x200);
@@ -49,7 +49,7 @@ OSThread *chlavaarchgrill3switches_entrypoint_0(void)
 
 /* extern */
 
-void func_80800124_chlavaarchgrill3switches(BtIntPtr arg0) {
+void func_80800124_chlavaarchgrill3switches(BT_NATIVE_ONLY(void *) BT_IDO_ONLY(BtIntPtr) arg0) {
     void _chswitch_entrypoint_8(s32 *arg0, s32 arg1);
     func_80800000_chlavaarchgrill3switches(arg0, 0xA1E);
     _chswitch_entrypoint_8(arg0, 0x400);
@@ -69,7 +69,7 @@ OSThread *chlavaarchgrill3switches_entrypoint_1(void)
 
 /* extern */
 
-void func_80800188_chlavaarchgrill3switches(BtIntPtr arg0) {
+void func_80800188_chlavaarchgrill3switches(BT_NATIVE_ONLY(void *) BT_IDO_ONLY(BtIntPtr) arg0) {
     void _chswitch_entrypoint_8(s32 *arg0, s32 arg1);
     func_80800000_chlavaarchgrill3switches(arg0, 0xA1F);
     _chswitch_entrypoint_8(arg0, 0x200);
