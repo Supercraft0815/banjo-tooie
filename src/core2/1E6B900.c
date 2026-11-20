@@ -1,8 +1,29 @@
 #include "core2/1E6B900.h"
 #include "player_model_details.inc"
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+typedef void (*PlayerRenderCallback)(uintptr_t);
+typedef struct {
+    u8 guest_bytes[0x118];
+    void *vector_table;
+    void *attached_actor;
+} NativePlayerModelStorage;
+_Static_assert(__builtin_offsetof(NativePlayerModelStorage, vector_table) == 0x118, "player vector sidecar offset");
+_Static_assert(__builtin_offsetof(NativePlayerModelStorage, attached_actor) == 0x120, "player actor sidecar offset");
+_Static_assert(sizeof(NativePlayerModelStorage) == 0x128, "player model native extension size");
+#define PLAYER_MODEL(p) ((u8 *)((PlayerState *)(p))->model)
+#define PLAYER_MODEL_STORAGE(p) ((NativePlayerModelStorage *)PLAYER_MODEL(p))
+#define PLAYER_VECTORS(p) (PLAYER_MODEL_STORAGE(p)->vector_table)
+#define PLAYER_ATTACHED_ACTOR(p) (PLAYER_MODEL_STORAGE(p)->attached_actor)
+#else
+#define PLAYER_MODEL(p) (*(u8 **)&((PlayerState *)(p))->pad48[8])
+#endif
 s32 func_80092010(void)
 {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+	return 0x128; /* Keep the guest model bytes intact and append native pointers. */
+#else
 	return 0x118;
+#endif
 } typedef struct { u8 pad0[0x28]; f32 unk28; u8 pad2C[0x98]; u8 unkC4; u8 padC5[0x3]; f32 unkC8; } Obj1E6B900_func_80092018_temp_s0; /* offsets.py genstruct: fields from raw offsets on temp_s0; rename once understood */ typedef struct { u8 pad0[0x50]; union { void * unk50; u8 * unk50_u8p; }; u8 pad54[0x10]; union { void * unk64; u8 * unk64_u8p; }; u8 pad68[0x11C]; s32 unk184; } Obj1E6B900_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
 
 /* extern */
@@ -19,7 +40,7 @@ void func_80092018(u8 *arg0) {
     f32 var_f0;
     u8 *temp_s0;
 
-    temp_s0 = (((Obj1E6B900_arg0 *)arg0)->unk50_u8p);
+    temp_s0 = (PLAYER_MODEL(arg0));
     if ((((Obj1E6B900_func_80092018_temp_s0 *)temp_s0)->unkC4) != 0) {
         var_f0 = (((Obj1E6B900_func_80092018_temp_s0 *)temp_s0)->unkC8);
     } else {
@@ -50,7 +71,7 @@ void func_800920C8(void *arg0) {
     BT_IDO_ONLY(void func_80093504();) BT_NATIVE_ONLY(void func_80093504(void *, f32 *, f32 *);)
     u8 *temp_v0;
 
-    temp_v0 = ((Obj1E6B900_arg0 *)arg0)->unk50_u8p;
+    temp_v0 = PLAYER_MODEL(arg0);
     func_80093504(arg0, temp_v0 + 0x64, temp_v0 + 0x50);
 }
 
@@ -61,13 +82,13 @@ void func_800920F0(PlayerState *arg0) {
     f32 func_800136E4(f32);
     u8 temp_v0;
 
-    temp_v0 = (*(u8 **)((u8 *)arg0 + 0x50))[0x15];
+    temp_v0 = PLAYER_MODEL(arg0)[0x15];
     switch (temp_v0) {
         case 2:
-            *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x28) = func_800136E4(yaw_get(arg0) + 180.0f);
+            *(f32 *)(PLAYER_MODEL(arg0) + 0x28) = func_800136E4(yaw_get(arg0) + 180.0f);
             break;
         default:
-            *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x28) = yaw_get(arg0);
+            *(f32 *)(PLAYER_MODEL(arg0) + 0x28) = yaw_get(arg0);
             break;
         case 3:
             break;
@@ -82,9 +103,9 @@ void func_8009216C(PlayerState *arg0, f32 arg1[3], f32 arg2[3]) {
     u8 *temp_v0;
 
     func_800920F0(arg0);
-    *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x24) = baroll_get(arg0);
-    *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x20) = func_8009BFCC(arg0);
-    temp_v0 = *(u8 **)((u8 *)arg0 + 0x50);
+    *(f32 *)(PLAYER_MODEL(arg0) + 0x24) = baroll_get(arg0);
+    *(f32 *)(PLAYER_MODEL(arg0) + 0x20) = func_8009BFCC(arg0);
+    temp_v0 = PLAYER_MODEL(arg0);
     func_800EFA4C(arg2, *(f32 *)(temp_v0 + 0x20), *(f32 *)(temp_v0 + 0x28), *(f32 *)(temp_v0 + 0x24));
     func_8009C128(arg0, arg1);
 }
@@ -93,19 +114,23 @@ void func_800921E0(PlayerState *player, s32 id, f32 dst[3]) {
     void func_8009C2A0(BtIntPtr arg0, s32 arg1, BtIntPtr arg2);
     int func_800EEEA8(f32[3]);
     void func_8009C128(PlayerState *, f32[3]);
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    func_8009C2A0((BtIntPtr)PLAYER_VECTORS(player), id, (BtIntPtr)dst);
+#else
     func_8009C2A0((void *)((s32 **)player)[20][1], id, dst);
+#endif
     if (func_800EEEA8(dst)) {
         func_8009C128(player, dst);
     }
 }
 
 void func_80092224(void *arg0) {
-    (*(s8 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk50)) + (0x1A))) = 1;
+    (*(s8 *)((s8 *)((PLAYER_MODEL(arg0))) + (0x1A))) = 1;
 }
 
 void func_80092234(void *arg0) {
-    (*(s8 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk50)) + (0x1A))) = 1;
-    (*(s8 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk50)) + (0x16))) = 1;
+    (*(s8 *)((s8 *)((PLAYER_MODEL(arg0))) + (0x1A))) = 1;
+    (*(s8 *)((s8 *)((PLAYER_MODEL(arg0))) + (0x16))) = 1;
 }
 
 s32 func_8009224C(u8 **arg0) {
@@ -124,7 +149,7 @@ s32 func_80092258(void *arg0) {
     f32 var_f20;
     u8 *temp_v0;
 
-    temp_v0 = *(u8 **)((u8 *)arg0 + 0x50);
+    temp_v0 = PLAYER_MODEL(arg0);
     if (temp_v0[0x88] != 0) {
         var_f20 = (f32)(s32)temp_v0[0x8C];
     } else {
@@ -172,13 +197,13 @@ void func_800923A8(void *arg0, s32 arg1) {
     func_800A2540(arg0, temp_v0);
     func_800DF464(2.0f);
     if (arg1 != 0) {
-        temp_v0_2 = (*(void **)((s8 *)(arg0) + (0x50)));
+        temp_v0_2 = PLAYER_MODEL(arg0);
         if ((((Obj1E6B900_func_800923A8_temp_v0_2 *)temp_v0_2)->unk16) == 0) {
             func_800DF738((((Obj1E6B900_func_800923A8_temp_v0_2 *)temp_v0_2)->unk4));
         }
     }
     func_800DF830(1);
-    temp_v0_3 = (*(void **)((s8 *)(arg0) + (0x50)));
+    temp_v0_3 = PLAYER_MODEL(arg0);
     if ((((Obj1E6B900_func_800923A8_temp_v0_3 *)temp_v0_3)->unk88) != 0) {
         func_800DF5D8((((Obj1E6B900_func_800923A8_temp_v0_3 *)temp_v0_3)->unk89), (((Obj1E6B900_func_800923A8_temp_v0_3 *)temp_v0_3)->unk8A), (((Obj1E6B900_func_800923A8_temp_v0_3 *)temp_v0_3)->unk8B), sp1F);
     }
@@ -217,7 +242,11 @@ s32 func_800A89F8(void);
 void *func_800AE080(s16);
 void *func_800DE448(f32 *, f32 *, f32, f32 *, BtIntPtr);
 void func_800DF440(s32);
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+void func_800DF47C(PlayerRenderCallback, uintptr_t);
+#else
 void func_800DF47C(s32, BtIntPtr);
+#endif
 void func_800DF4CC(BtIntPtr);
 void func_800DF720(BtIntPtr);
 void func_800DF72C(BtIntPtr);
@@ -238,53 +267,69 @@ void func_80092444(PlayerState *arg0, Gfx **arg1) {
     u8 *temp_v0;
     BtIntPtr sp3C;
 
-    if ((*(u8 **)((u8 *)arg0 + 0x50))[0xA2] != 0) {
+    if (PLAYER_MODEL(arg0)[0xA2] != 0) {
         func_80093AB8(arg0, arg1);
         return;
     }
-    if ((func_800A89F8() != func_800A4C68(arg0)) || ((*(u8 **)((u8 *)arg0 + 0x50))[0x18] != 0)) {
-        if ((*(u8 **)((u8 *)arg0 + 0x50))[0x17] != 0) {
-            temp_v0 = (*(u8 **)((u8 *)arg0 + 0x50)) + 0x78;
-            if (*(Unk80132ED0 **)((*(u8 **)((u8 *)arg0 + 0x50)) + 0x84) != NULL) {
+    if ((func_800A89F8() != func_800A4C68(arg0)) || (PLAYER_MODEL(arg0)[0x18] != 0)) {
+        if (PLAYER_MODEL(arg0)[0x17] != 0) {
+            temp_v0 = PLAYER_MODEL(arg0) + 0x78;
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+            if (PLAYER_ATTACHED_ACTOR(arg0) != NULL) {
+#else
+            if (*(Unk80132ED0 **)(PLAYER_MODEL(arg0) + 0x84) != NULL) {
+#endif
                 if (temp_v0[4] != 0) {
                     temp_v0[4] = 0;
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+                    func_800A7108(PLAYER_ATTACHED_ACTOR(arg0), *(f32 *)temp_v0);
+#else
                     func_800A7108(*(Unk80132ED0 **)(temp_v0 + 0xC), *(f32 *)temp_v0);
+#endif
                 } else if (temp_v0[9] != 0) {
                     temp_v0[9] = 0;
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+                    func_800A7130(PLAYER_ATTACHED_ACTOR(arg0), temp_v0[8]);
+#else
                     func_800A7130(*(Unk80132ED0 **)(temp_v0 + 0xC), temp_v0[8]);
+#endif
                 }
             }
-            sp50 = *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x1C);
+            sp50 = *(f32 *)(PLAYER_MODEL(arg0) + 0x1C);
             func_8009216C(arg0, sp60, sp6C);
             func_80094070((u8 *)arg0, sp60);
-            func_800EE7F8(sp54, (f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x2C));
-            func_800EF04C(sp60, (f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x44));
-            func_800EF04C(sp54, (f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x44));
-            if (func_800E3E8C(sp60, *(f32 *)((*(u8 **)((u8 *)arg0 + 0x50)) + 0x1C) * *(f32 *)((*(u8 **)((u8 *)arg0 + 0x50)) + 0x74)) &&
-                *(s16 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0xC) != 0) {
+            func_800EE7F8(sp54, (f32 *)(PLAYER_MODEL(arg0) + 0x2C));
+            func_800EF04C(sp60, (f32 *)(PLAYER_MODEL(arg0) + 0x44));
+            func_800EF04C(sp54, (f32 *)(PLAYER_MODEL(arg0) + 0x44));
+            if (func_800E3E8C(sp60, *(f32 *)(PLAYER_MODEL(arg0) + 0x1C) * *(f32 *)(PLAYER_MODEL(arg0) + 0x74)) &&
+                *(s16 *)(PLAYER_MODEL(arg0) + 0xC) != 0) {
                 sp3C = func_80092B04(arg0, 1);
-                if ((*(u8 **)((u8 *)arg0 + 0x50))[0x10] == 0) {
+                if (PLAYER_MODEL(arg0)[0x10] == 0) {
                     func_8008CA98(arg0);
-                    func_8008C200(**(s16 **)((u8 *)arg0 + 0x50), (BtIntPtr)func_800B27E0((u8 *)sp3C), (BtIntPtr)func_8008AEDC(baanim_getAnimCtrlPtr(arg0)));
-                    (*(u8 **)((u8 *)arg0 + 0x50))[0x13] ^= 1;
+                    func_8008C200(*(s16 *)PLAYER_MODEL(arg0), (BtIntPtr)func_800B27E0((u8 *)sp3C), (BtIntPtr)func_8008AEDC(baanim_getAnimCtrlPtr(arg0)));
+                    PLAYER_MODEL(arg0)[0x13] ^= 1;
                 }
-                (*(u8 **)((u8 *)arg0 + 0x50))[0x10] = 1;
+                PLAYER_MODEL(arg0)[0x10] = 1;
                 func_800A06E8((BtIntPtr)arg0);
-                if ((*(u8 **)((u8 *)arg0 + 0x50))[0xC4] != 0) {
+                if (PLAYER_MODEL(arg0)[0xC4] != 0) {
                     func_800EFA4C(sp44, 0.0f, sp6C[1], 0.0f);
-                    sp6C[1] = *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0xC8);
+                    sp6C[1] = *(f32 *)(PLAYER_MODEL(arg0) + 0xC8);
                     func_800DF4CC((BtIntPtr)sp44);
                 }
-                if ((*(u8 **)((u8 *)arg0 + 0x50))[0x12] != 0) {
-                    func_800DF818(func_80100A74((s16)(*(u8 **)((u8 *)arg0 + 0x50))[0x12], 0));
+                if (PLAYER_MODEL(arg0)[0x12] != 0) {
+                    func_800DF818(func_80100A74((s16)PLAYER_MODEL(arg0)[0x12], 0));
                 }
-                func_800DF72C((BtIntPtr)func_800AE080(**(s16 **)((u8 *)arg0 + 0x50)));
-                func_800DF47C((BtIntPtr)func_80092234, (BtIntPtr)arg0);
+                func_800DF72C((BtIntPtr)func_800AE080(*(s16 *)PLAYER_MODEL(arg0)));
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+                func_800DF47C((PlayerRenderCallback)func_80092234, (uintptr_t)arg0);
+#else
+            func_800DF47C((BtIntPtr)func_80092234, (BtIntPtr)arg0);
+#endif
                 func_800923A8(arg0, 1);
-                func_800DF720(func_80100AC4((*(u8 **)((u8 *)arg0 + 0x50))[0x12]));
+                func_800DF720(func_80100AC4(PLAYER_MODEL(arg0)[0x12]));
                 func_800DF440(0);
                 func_800DE448(sp60, sp6C, sp50, sp54, sp3C);
-                if ((*(u8 **)((u8 *)arg0 + 0x50))[0x11] != 0) {
+                if (PLAYER_MODEL(arg0)[0x11] != 0) {
                     func_800923A8(arg0, 0);
                     _babackpack_entrypoint_3(arg0, sp60, sp6C, sp50, sp54);
                 }
@@ -294,22 +339,34 @@ void func_80092444(PlayerState *arg0, Gfx **arg1) {
 }
 
 void func_8009272C(s32 *arg0, s32 arg1) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    PLAYER_MODEL(arg0)[17] = arg1;
+#else
     ((u8 *)arg0[20])[17] = arg1;
+#endif
 }
 
 u32 func_80092738(s32 *arg0) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    return PLAYER_MODEL(arg0)[17];
+#else
     return ((u8 *)arg0[20])[17];
+#endif
 }
 
 void func_80092744(s32 *arg0, s32 arg1) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    PLAYER_MODEL(arg0)[0x88] = arg1;
+#else
     ((u8 *)arg0[20])[0x88] = arg1;
+#endif
 }
 
 void func_80092750(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    (*(s8 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk50)) + (0x89))) = arg1;
-    (*(s8 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk50)) + (0x8A))) = arg2;
-    (*(s8 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk50)) + (0x8B))) = arg3;
-    (*(s8 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk50)) + (0x8C))) = (s8) arg4;
+    (*(s8 *)((s8 *)((PLAYER_MODEL(arg0))) + (0x89))) = arg1;
+    (*(s8 *)((s8 *)((PLAYER_MODEL(arg0))) + (0x8A))) = arg2;
+    (*(s8 *)((s8 *)((PLAYER_MODEL(arg0))) + (0x8B))) = arg3;
+    (*(s8 *)((s8 *)((PLAYER_MODEL(arg0))) + (0x8C))) = (s8) arg4;
 }
 
 /* extern */
@@ -360,21 +417,27 @@ void func_800927C4(u32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     if (func_800F6BE4(arg4) != 0) {
         temp_s0 = func_800F53D0(arg4);
         func_800EFA4C(sp28, arg1, arg2, arg3);
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+        PLAYER_ATTACHED_ACTOR(temp_s0) = func_80108474(arg0, sp28, 0)->unk0;
+        func_800A70D0(PLAYER_ATTACHED_ACTOR(temp_s0), temp_s0->unk184);
+        func_800A7108(PLAYER_ATTACHED_ACTOR(temp_s0), *(f32 *)(PLAYER_MODEL(temp_s0) + 0x78));
+#else
         (*(struct unknown50_s **)&temp_s0->pad48[8])->unk84 = func_80108474(arg0, sp28, 0)->unk0;
         func_800A70D0((*(struct unknown50_s **)&temp_s0->pad48[8])->unk84, temp_s0->unk184);
         temp_v0 = *(struct unknown50_s **)&temp_s0->pad48[8];
         func_800A7108(temp_v0->unk84, temp_v0->unk78);
+#endif
     }
 }
 
 void func_80092864(PlayerState *arg0, f32 arg1) {
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0x78))) = arg1;
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0x7C))) = 1;
+    (*(f32 *)((s8 *)(PLAYER_MODEL(arg0)) + (0x78))) = arg1;
+    (*(s8 *)((s8 *)(PLAYER_MODEL(arg0)) + (0x7C))) = 1;
 }
 
 void func_80092880(PlayerState *arg0, s32 arg1) {
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0x80))) = (s8) arg1;
-    (*(s8 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0x81))) = 1;
+    (*(s8 *)((s8 *)(PLAYER_MODEL(arg0)) + (0x80))) = (s8) arg1;
+    (*(s8 *)((s8 *)(PLAYER_MODEL(arg0)) + (0x81))) = 1;
 }
 
 void func_80092898(PlayerState *arg0) {
@@ -397,37 +460,42 @@ void func_80092898(PlayerState *arg0) {
     u8 *temp_v0;
 
     _babackpack_entrypoint_9(arg0);
-    (*(u8 **)&arg0->pad48[8])[0x11] = 0;
-    (*(u8 **)&arg0->pad48[8])[0x14] = 0xFF;
-    (*(u8 **)&arg0->pad48[8])[0x10] = 0;
-    (*(u8 **)&arg0->pad48[8])[0x16] = 0;
-    (*(u8 **)&arg0->pad48[8])[0x12] = 0;
-    (*(u8 **)&arg0->pad48[8])[0x13] = 0;
-    *(s16 *)(*(u8 **)&arg0->pad48[8] + 0xC) = 0;
-    (*(u8 **)&arg0->pad48[8])[0xA2] = 0;
-    *(s16 *)(*(u8 **)&arg0->pad48[8] + 0x9C) = 0;
+    (PLAYER_MODEL(arg0))[0x11] = 0;
+    (PLAYER_MODEL(arg0))[0x14] = 0xFF;
+    (PLAYER_MODEL(arg0))[0x10] = 0;
+    (PLAYER_MODEL(arg0))[0x16] = 0;
+    (PLAYER_MODEL(arg0))[0x12] = 0;
+    (PLAYER_MODEL(arg0))[0x13] = 0;
+    *(s16 *)(PLAYER_MODEL(arg0) + 0xC) = 0;
+    (PLAYER_MODEL(arg0))[0xA2] = 0;
+    *(s16 *)(PLAYER_MODEL(arg0) + 0x9C) = 0;
     func_800936E8(arg0, 0);
     func_80093700(arg0, 1);
-    **(s16 **)&arg0->pad48[8] = func_800AE020();
-    sp20 = func_800AE080(**(s16 **)&arg0->pad48[8]);
+    *(s16 *)PLAYER_MODEL(arg0) = func_800AE020();
+    sp20 = func_800AE080(*(s16 *)PLAYER_MODEL(arg0));
     func_800AE6FC(sp20, func_800E09B8(0xA));
-    (*(u8 **)&arg0->pad48[8])[0x88] = 0;
-    *(u8 **)(*(u8 **)&arg0->pad48[8] + 4) = func_800DBFF8();
-    *(void **)(*(u8 **)&arg0->pad48[8] + 0x84) = NULL;
-    (*(u8 **)&arg0->pad48[8])[0x7C] = 0;
-    (*(u8 **)&arg0->pad48[8])[0x81] = 0;
-    func_800EFD24((f32 *)(*(u8 **)&arg0->pad48[8] + 0x2C));
-    func_800EFD24((f32 *)(*(u8 **)&arg0->pad48[8] + 0x38));
-    func_800EFD24((f32 *)(*(u8 **)&arg0->pad48[8] + 0x44));
-    *(f32 *)(*(u8 **)&arg0->pad48[8] + 0x20) = 0.0f;
-    temp_v0 = *(u8 **)&arg0->pad48[8];
+    (PLAYER_MODEL(arg0))[0x88] = 0;
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    PLAYER_VECTORS(arg0) = func_800DBFF8();
+    PLAYER_ATTACHED_ACTOR(arg0) = NULL;
+#else
+    *(u8 **)(PLAYER_MODEL(arg0) + 4) = func_800DBFF8();
+    *(void **)(PLAYER_MODEL(arg0) + 0x84) = NULL;
+#endif
+    (PLAYER_MODEL(arg0))[0x7C] = 0;
+    (PLAYER_MODEL(arg0))[0x81] = 0;
+    func_800EFD24((f32 *)(PLAYER_MODEL(arg0) + 0x2C));
+    func_800EFD24((f32 *)(PLAYER_MODEL(arg0) + 0x38));
+    func_800EFD24((f32 *)(PLAYER_MODEL(arg0) + 0x44));
+    *(f32 *)(PLAYER_MODEL(arg0) + 0x20) = 0.0f;
+    temp_v0 = PLAYER_MODEL(arg0);
     temp_f0 = *(f32 *)(temp_v0 + 0x20);
     *(f32 *)(temp_v0 + 0x24) = temp_f0;
-    *(f32 *)(*(u8 **)&arg0->pad48[8] + 0x28) = temp_f0;
+    *(f32 *)(PLAYER_MODEL(arg0) + 0x28) = temp_f0;
     func_80093370(arg0, 1);
     func_8009337C(arg0, 1);
     func_80093230(arg0, 1.0f);
-    (*(u8 **)&arg0->pad48[8])[0x15] = 0;
+    (PLAYER_MODEL(arg0))[0x15] = 0;
     func_800931AC(arg0, 1);
     func_80092778(arg0);
     func_80092864(arg0, 1.0f);
@@ -444,6 +512,15 @@ void func_80092A1C(PlayerState *arg0) {
 
     func_80092EC8(arg0, 0);
     func_8009359C(arg0, 0);
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    func_800ADFE0(*(s16 *)PLAYER_MODEL(arg0));
+    *(s16 *)PLAYER_MODEL(arg0) = 0;
+    func_800DBFD8(PLAYER_VECTORS(arg0));
+    PLAYER_VECTORS(arg0) = NULL;
+    temp_a0 = PLAYER_ATTACHED_ACTOR(arg0);
+    if (temp_a0 != NULL) func_800A70B0(temp_a0);
+    PLAYER_ATTACHED_ACTOR(arg0) = NULL;
+#else
     func_800ADFE0(**(s16 **)&arg0->pad48[8]);
     **(s16 **)&arg0->pad48[8] = 0;
     func_800DBFD8((*(void ***)&arg0->pad48[8])[1]);
@@ -453,12 +530,17 @@ void func_80092A1C(PlayerState *arg0) {
         func_800A70B0(temp_a0);
     }
     (*(void ***)&arg0->pad48[8])[0x21] = NULL;
+#endif
     _babackpack_entrypoint_8(arg0);
 }
 
 void func_80092AA4(PlayerState* arg0)
 {
-    (*(s32 **)((u8 *)arg0 + 0x50))[0x21] = 0;
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    PLAYER_ATTACHED_ACTOR(arg0) = NULL;
+#else
+    ((s32 *)PLAYER_MODEL(arg0))[0x21] = 0;
+#endif
 }
 
 void func_80092AB0(PlayerState* arg0)
@@ -471,62 +553,68 @@ void func_80092AB0(PlayerState* arg0)
 Unkfunc_800E0960_1 *func_80092AD8(PlayerState *arg0) {
     void *func_800AE080(s16);
     Unkfunc_800E0960_1 *func_800AE6BC(BtIntPtr);
-    return func_800AE6BC(func_800AE080(*(*(s16 **)((s8 *)(arg0) + (0x50)))));
+    return func_800AE6BC(func_800AE080(*(s16 *)PLAYER_MODEL(arg0)));
 }
 
 BtIntPtr func_80092B04(PlayerState *arg0, s32 arg1) {
-    s32 func_80093F7C(u8 *, s32);
+    BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) func_80093F7C(u8 *, s32);
     BtIntPtr func_800D674C(s32);
     void func_800D62E4(s32);
     BtIntPtr result;
     s16 asset;
     PlayerState *self = arg0;
 
-    asset = (*(s16 **)((u8 *)self + 0x50))[6];
+    asset = ((s16 *)PLAYER_MODEL(self))[6];
     if (asset == 0x607) {
         return func_80093F7C((u8 *)arg0, arg1);
     }
     result = func_800D674C(asset);
     if (arg1 == 0) {
-        func_800D62E4((*(s16 **)((u8 *)self + 0x50))[6]);
+        func_800D62E4(((s16 *)PLAYER_MODEL(self))[6]);
     }
     return result;
 }
 
 s32 func_80092B80(PlayerState *arg0)
 {
-    return (*(s16 **)((u8 *)arg0 + 0x50))[6];
+    return ((s16 *)PLAYER_MODEL(arg0))[6];
 }
 
 f32 func_80092B8C(PlayerState *arg0, f32 *arg1) {
     void func_800EE7F8(f32 dst[3], f32 src[3]);
-    func_800EE7F8(arg1, (u8 *)(*(u32 *)((u8 *)arg0 + 0x50)) + 0x64);
-    return *(f32 *)((u8 *)(*(u32 *)((u8 *)arg0 + 0x50)) + 0x70);
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    u8 *model = PLAYER_MODEL(arg0);
+    func_800EE7F8(arg1, (f32 *)(model + 0x64));
+    return *(f32 *)(model + 0x70);
+#else
+    func_800EE7F8(arg1, PLAYER_MODEL(arg0) + 0x64);
+    return *(f32 *)(PLAYER_MODEL(arg0) + 0x70);
+#endif
 }
 
 u32 func_80092BC4(PlayerState *arg0)
 {
-    return (*(u8 **)((u8 *)arg0 + 0x50))[0xC4];
+    return PLAYER_MODEL(arg0)[0xC4];
 }
 
 f32 func_80092BD0(PlayerState *arg0)
 {
-    return *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0xC8);
+    return *(f32 *)(PLAYER_MODEL(arg0) + 0xC8);
 }
 
 f32 func_80092BDC(PlayerState *arg0)
 {
-    return *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x1C);
+    return *(f32 *)(PLAYER_MODEL(arg0) + 0x1C);
 }
 
 f32 func_80092BE8(PlayerState *arg0)
 {
-    return *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x28);
+    return *(f32 *)(PLAYER_MODEL(arg0) + 0x28);
 }
 
 f32 func_80092BF4(PlayerState *arg0)
 {
-    return *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x30);
+    return *(f32 *)(PLAYER_MODEL(arg0) + 0x30);
 }
 
 void func_80092C00(PlayerState* arg0, f32* arg1)
@@ -553,9 +641,17 @@ void func_80092C6C(BtIntPtr arg0,BtIntPtr arg1)
 
 void func_80092C90(void *arg0, f32 arg1[3], s32 arg2) {
     void func_8009C128(PlayerState *, f32[3]);
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    void func_800DBEFC(void *, s32, f32 *);
+#else
     void func_800DBEFC(s32 *, s32, f32[3]);
+#endif
     int func_800EEEA8(f32[3]);
-    func_800DBEFC((*(s32 **)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (4))), arg2, arg1);
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    func_800DBEFC(PLAYER_VECTORS(arg0), arg2, arg1);
+#else
+    func_800DBEFC((*(s32 **)((s8 *)(PLAYER_MODEL(arg0)) + (4))), arg2, arg1);
+#endif
     if (func_800EEEA8(arg1) != 0) {
         func_8009C128(arg0, arg1);
     }
@@ -564,15 +660,23 @@ void func_80092C90(void *arg0, f32 arg1[3], s32 arg2) {
 /* extern */
 
 int func_80092CDC(void *arg0, f32 arg1[3], s32 arg2) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    void func_800DBEFC(void *, s32, f32 *);
+#else
     void func_800DBEFC(s32 *, s32, f32[3]);
+#endif
     int func_800EEF24(f32[3]);
-    func_800DBEFC((*(s32 **)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (4))), arg2, arg1);
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    func_800DBEFC(PLAYER_VECTORS(arg0), arg2, arg1);
+#else
+    func_800DBEFC((*(s32 **)((s8 *)(PLAYER_MODEL(arg0)) + (4))), arg2, arg1);
+#endif
     return func_800EEF24(arg1);
 }
 
 void func_80092D18(void *arg0, BtIntPtr arg1) {
     void func_800EE7F8();
-    func_800EE7F8(arg1, *(u8 **)((u8 *)arg0 + 0x50) + 0x44);
+    func_800EE7F8(arg1, PLAYER_MODEL(arg0) + 0x44);
 }
 
 void func_80092D44(PlayerState *player, f32 dst[3]) {
@@ -614,7 +718,11 @@ void func_80092E2C(BtIntPtr arg0,BtIntPtr arg1)
 
 u32 func_80092E50(u32 *arg0)
 {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    return PLAYER_MODEL(arg0)[0x15];
+#else
     return *((u8 *) arg0[20] + 0x15);
+#endif
 }
 
 void func_80092E5C(BtIntPtr arg0,BtIntPtr arg1)
@@ -626,21 +734,29 @@ void func_80092E5C(BtIntPtr arg0,BtIntPtr arg1)
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(void *) func_80092E80(void *arg0) {
     void *func_800AE080(s16);
-    BT_NATIVE_ONLY(return) func_800AE080(*(*(s16 **)((s8 *)(arg0) + (0x50))));
+    BT_NATIVE_ONLY(return) func_800AE080(*(s16 *)PLAYER_MODEL(arg0));
 }
 
 u32 func_80092EA4(u32 *arg0)
 {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    return PLAYER_MODEL(arg0)[0x17];
+#else
     return *((u8 *) arg0[20] + 0x17);
+#endif
 }
 
 u32 func_80092EB0(u32 *arg0)
 {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    return PLAYER_MODEL(arg0)[0x18];
+#else
     return *((u8 *) arg0[20] + 0x18);
+#endif
 }
 
 void func_80092EBC(void *arg0, s32 arg1) {
-    *(s8 *)((u8 *)*&((Obj1E6B900_arg0 *)arg0)->unk50 + 20) = arg1;
+    *(s8 *)((u8 *)PLAYER_MODEL(arg0) + 20) = arg1;
 }
 
 void func_80092EC8(PlayerState *arg0, s32 arg1) {
@@ -663,46 +779,46 @@ void func_80092EC8(PlayerState *arg0, s32 arg1) {
     u8 handle;
     u8 *data;
 
-    data = *(u8 **)((u8 *)arg0 + 0x50);
+    data = PLAYER_MODEL(arg0);
     old = *(s16 *)(data + 0xC);
     if (arg1 != old) {
         if (old != 0) {
             func_800D70F8(old, 0);
-            func_800D6CEC(*(s16 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0xC));
-            *(s16 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0xE) = 0;
-            data = *(u8 **)((u8 *)arg0 + 0x50);
+            func_800D6CEC(*(s16 *)(PLAYER_MODEL(arg0) + 0xC));
+            *(s16 *)(PLAYER_MODEL(arg0) + 0xE) = 0;
+            data = PLAYER_MODEL(arg0);
         }
         handle = *(u8 *)(data + 0x12);
         if (handle != 0) {
             func_80100E18((s16)handle);
-            *(u8 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x12) = 0;
-            data = *(u8 **)((u8 *)arg0 + 0x50);
+            *(u8 *)(PLAYER_MODEL(arg0) + 0x12) = 0;
+            data = PLAYER_MODEL(arg0);
         }
         *(s16 *)(data + 0xC) = arg1;
         func_80093FD4((BtIntPtr)arg0, arg1);
         if (arg1 != 0) {
             sp2C = func_80092B04(arg0, 0);
-            func_800D70F8(*(s16 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0xC), 1);
-            func_800ADD80(*(s16 *)*(u8 **)((u8 *)arg0 + 0x50), func_800B27E0((u8 *)sp2C));
-            if (*(u8 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x12) == 0) {
+            func_800D70F8(*(s16 *)(PLAYER_MODEL(arg0) + 0xC), 1);
+            func_800ADD80(*(s16 *)PLAYER_MODEL(arg0), func_800B27E0((u8 *)sp2C));
+            if (*(u8 *)(PLAYER_MODEL(arg0) + 0x12) == 0) {
                 if (func_800B26F0((u8 *)sp2C) != 0) {
                     flag = 1;
                 } else {
                     flag = 0;
                 }
-                *(u8 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x12) = func_80100D24(sp2C, *(s16 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0xC), flag, func_800A25D0(arg0), 0, 0);
+                *(u8 *)(PLAYER_MODEL(arg0) + 0x12) = func_80100D24(sp2C, *(s16 *)(PLAYER_MODEL(arg0) + 0xC), flag, func_800A25D0(arg0), 0, 0);
             }
-            func_800B237C((void *)func_800B2840(sp2C), (f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x50), (f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x5C));
-            *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x58) = 0.0f;
-            data = *(u8 **)((u8 *)arg0 + 0x50);
+            func_800B237C((void *)func_800B2840(sp2C), (f32 *)(PLAYER_MODEL(arg0) + 0x50), (f32 *)(PLAYER_MODEL(arg0) + 0x5C));
+            *(f32 *)(PLAYER_MODEL(arg0) + 0x58) = 0.0f;
+            data = PLAYER_MODEL(arg0);
             *(f32 *)(data + 0x50) = *(f32 *)(data + 0x58);
-            data = *(u8 **)((u8 *)arg0 + 0x50);
+            data = PLAYER_MODEL(arg0);
             func_800EE7F8((f32 *)(data + 0x64), (f32 *)(data + 0x50));
-            data = *(u8 **)((u8 *)arg0 + 0x50);
+            data = PLAYER_MODEL(arg0);
             *(f32 *)(data + 0x70) = *(f32 *)(data + 0x5C);
             scale = func_800B2354((void *)func_800B2840(sp2C));
-            *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x74) = scale;
-            *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x60) = scale;
+            *(f32 *)(PLAYER_MODEL(arg0) + 0x74) = scale;
+            *(f32 *)(PLAYER_MODEL(arg0) + 0x60) = scale;
         }
     }
 }
@@ -710,7 +826,11 @@ void func_80092EC8(PlayerState *arg0, s32 arg1) {
 void func_80093070(PlayerState *arg0, s32 arg1, s32 arg2, u8 *arg3) {
     struct VertexListView;
     u32 func_800A25D0(void *);
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    void func_800B25D8(struct VertexListView *, struct VertexListView *, const void *);
+#else
     void func_800B25D8(struct VertexListView *, struct VertexListView *, s32);
+#endif
     BtIntPtr func_800B2840(BtIntPtr);
     BtIntPtr func_800D674C(s32);
     BtIntPtr func_80100A74(s16, s32);
@@ -736,7 +856,11 @@ void func_80093070(PlayerState *arg0, s32 arg1, s32 arg2, u8 *arg3) {
     }
     *arg3 = func_80100D24(sp34, arg2, 1, var_a3, 0, 0);
     sp2C = func_800B2840(sp34);
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    func_800B25D8((struct VertexListView *)(uintptr_t)func_80100A74(*arg3, 0), (struct VertexListView *)(uintptr_t)sp2C, (const void *)(uintptr_t)sp30);
+#else
     func_800B25D8(func_80100A74(*arg3, 0), sp2C, sp30);
+#endif
 }    typedef struct { u8 pad0[0xC]; s16 unkC; s16 unkE; } Obj1E6B900_func_8009312C_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_8009312C(PlayerState *arg0, s32 arg1) {
@@ -745,10 +869,10 @@ void func_8009312C(PlayerState *arg0, s32 arg1) {
     u8 *temp_v0_2;
 
     if (arg1 != 0) {
-        temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x50)));
+        temp_v0 = PLAYER_MODEL(arg0);
         if (arg1 != (((Obj1E6B900_func_8009312C_temp_v0 *)temp_v0)->unkE)) {
             (((Obj1E6B900_func_8009312C_temp_v0 *)temp_v0)->unkE) = arg1;
-            temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x50)));
+            temp_v0 = PLAYER_MODEL(arg0);
             func_80093070(arg0, arg1, (((Obj1E6B900_func_8009312C_temp_v0 *)temp_v0)->unkC), temp_v0 + 0x12);
         }
     }
@@ -760,10 +884,10 @@ void func_8009316C(PlayerState *arg0, s32 arg1) {
     u8 *temp_v0_2;
 
     if (arg1 != 0) {
-        temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x50)));
+        temp_v0 = PLAYER_MODEL(arg0);
         if (arg1 != (((Obj1E6B900_func_8009316C_temp_v0 *)temp_v0)->unk9E)) {
             (((Obj1E6B900_func_8009316C_temp_v0 *)temp_v0)->unk9E) = arg1;
-            temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x50)));
+            temp_v0 = PLAYER_MODEL(arg0);
             func_80093070(arg0, arg1, (((Obj1E6B900_func_8009316C_temp_v0 *)temp_v0)->unk9C), temp_v0 + 0xA0);
         }
     }
@@ -780,13 +904,13 @@ void func_800931AC(PlayerState *arg0, s32 arg1) {
     s32 temp_a0;
     void *var_v0;
 
-    var_v0 = (*(void **)((s8 *)(arg0) + (0x50)));
+    var_v0 = PLAYER_MODEL(arg0);
     temp_a0 = 2;
     temp_v1 = (((Obj1E6B900_func_800931AC_var_v0 *)var_v0)->unk15);
     if ((arg1 != temp_v1) && ((arg1 == temp_a0) || (temp_a0 == temp_v1))) {
         yaw_setIdeal(arg0, func_800136E4(yaw_get(arg0) + 180.0f));
         yaw_applyIdeal(arg0);
-        var_v0 = (*(void **)((s8 *)(arg0) + (0x50)));
+        var_v0 = PLAYER_MODEL(arg0);
     }
     (*(s8 *)((s8 *)(var_v0) + (0x15))) = (s8) arg1;
 } 
@@ -797,12 +921,12 @@ void func_80093230(PlayerState *arg0, f32 arg1) {
     void func_800EF334(f32 *, f32);
     u8 *temp_v0;
 
-    (*(f32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x50)))) + (0x1C))) = arg1;
-    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x50)));
+    (*(f32 *)((s8 *)(PLAYER_MODEL(arg0)) + (0x1C))) = arg1;
+    temp_v0 = PLAYER_MODEL(arg0);
     (*(f32 *)((s8 *)(temp_v0) + (0x70))) = (f32) ((*(f32 *)((s8 *)(temp_v0) + (0x1C))) * (*(f32 *)((s8 *)(temp_v0) + (0x5C))));
-    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x50)));
+    temp_v0 = PLAYER_MODEL(arg0);
     (*(f32 *)((s8 *)(temp_v0) + (0x74))) = (f32) ((*(f32 *)((s8 *)(temp_v0) + (0x1C))) * (*(f32 *)((s8 *)(temp_v0) + (0x60))));
-    temp_v0 = (*(u8 **)((s8 *)(arg0) + (0x50)));
+    temp_v0 = PLAYER_MODEL(arg0);
     func_800EF334((f32 *)(temp_v0 + 0x64), (*(f32 *)((s8 *)(temp_v0) + (0x1C))));
 }
 
@@ -810,21 +934,21 @@ void func_80093230(PlayerState *arg0, f32 arg1) {
 
 void func_8009328C(PlayerState *arg0, f32 arg1) {
     f32 func_800136E4(f32);
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0x28))) = func_800136E4(arg1);
+    (*(f32 *)((s8 *)(PLAYER_MODEL(arg0)) + (0x28))) = func_800136E4(arg1);
 }
 
 void func_800932BC(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 80) + 200) = arg1;
+    *(f32 *)(PLAYER_MODEL(arg0) + 200) = arg1;
 }
 
 void func_800932CC(PlayerState *arg0, s32 arg1)
 {
-    u8 *temp_v0 = *(u8 **)((u8 *)arg0 + 0x50);
+    u8 *temp_v0 = PLAYER_MODEL(arg0);
 
     if (arg1 != temp_v0[0xC4]) {
         if (arg1 != 0) {
             *(f32 *)(temp_v0 + 0xC8) = 0.0f;
-            temp_v0 = *(u8 **)((u8 *)arg0 + 0x50);
+            temp_v0 = PLAYER_MODEL(arg0);
         }
         temp_v0[0xC4] = arg1;
     }
@@ -832,12 +956,12 @@ void func_800932CC(PlayerState *arg0, s32 arg1)
 
 void func_80093300(void *arg0, f32 arg1) {
     void func_8009332C(void *arg0, f32 arg1);
-    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 0x50) + 0x30) = arg1;
+    *(f32 *)((u8 *)PLAYER_MODEL(arg0) + 0x30) = arg1;
     func_8009332C(arg0, arg1);
 }
 
 void func_8009332C(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)*&((Obj1E6B900_arg0 *)arg0)->unk50 + 60) = arg1;
+    *(f32 *)((u8 *)PLAYER_MODEL(arg0) + 60) = arg1;
 }
 
 /* extern */
@@ -845,22 +969,22 @@ void func_8009332C(void *arg0, f32 arg1) {
 void func_8009333C(BT_IDO_ONLY(void *arg0) BT_PASS2(void *arg0, f32 *bt_a1)) {
     void func_800EE7F8();
 #ifdef BT_NATIVE
-    ((void (*)())func_800EE7F8)(BT_PASS2(((*(s32 *)((s8 *)(arg0) + (0x50))) + 0x44), bt_a1));
+    ((void (*)())func_800EE7F8)(BT_PASS2(((PLAYER_MODEL(arg0)) + 0x44), bt_a1));
 #else
-    func_800EE7F8((*(s32 *)((s8 *)(arg0) + (0x50))) + 0x44);
+    func_800EE7F8((PLAYER_MODEL(arg0)) + 0x44);
 #endif
 }
 
 void func_80093360(PlayerState *arg0, f32 arg1) {
-    (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0x50)))) + (0x48))) = arg1;
+    (*(f32 *)((s8 *)(PLAYER_MODEL(arg0)) + (0x48))) = arg1;
 }
 
 void func_80093370(void *arg0, s32 arg1) {
-    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 80) + 23) = arg1;
+    PLAYER_MODEL(arg0)[23] = (s8)arg1;
 }
 
 void func_8009337C(void *arg0, s32 arg1) {
-    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 80) + 24) = arg1;
+    PLAYER_MODEL(arg0)[24] = (s8)arg1;
 }
 
 void func_80093388(void *arg0) {
@@ -869,20 +993,20 @@ void func_80093388(void *arg0) {
     f32 difference;
     f32 step;
 
-    difference = *(f32 *)((u8 *)*&((Obj1E6B900_arg0 *)arg0)->unk50 + 0x3C)
-               - *(f32 *)((u8 *)*&((Obj1E6B900_arg0 *)arg0)->unk50 + 0x30);
+    difference = *(f32 *)((u8 *)PLAYER_MODEL(arg0) + 0x3C)
+               - *(f32 *)((u8 *)PLAYER_MODEL(arg0) + 0x30);
     step = mlAbsF(difference);
     if (step < 0.01f) {
-        *(f32 *)((u8 *)*&((Obj1E6B900_arg0 *)arg0)->unk50 + 0x30) =
-            *(f32 *)((u8 *)*&((Obj1E6B900_arg0 *)arg0)->unk50 + 0x3C);
+        *(f32 *)((u8 *)PLAYER_MODEL(arg0) + 0x30) =
+            *(f32 *)((u8 *)PLAYER_MODEL(arg0) + 0x3C);
     } else {
         if (step > 5.0f) {
             step = 1.0f;
         }
         if (difference > 0.0f) {
-            *(f32 *)((u8 *)*&((Obj1E6B900_arg0 *)arg0)->unk50 + 0x30) += step;
+            *(f32 *)((u8 *)PLAYER_MODEL(arg0) + 0x30) += step;
         } else {
-            *(f32 *)((u8 *)*&((Obj1E6B900_arg0 *)arg0)->unk50 + 0x30) -= step;
+            *(f32 *)((u8 *)PLAYER_MODEL(arg0) + 0x30) -= step;
         }
     }
 }
@@ -895,7 +1019,7 @@ void func_80093448(void *arg0) {
         s32 i[3];
     } position;
 
-    if (*(s32 *)((u8 *)*&((Obj1E6B900_arg0 *)arg0)->unk50 + 0x84) == 0) {
+    if (*(s32 *)((u8 *)PLAYER_MODEL(arg0) + 0x84) == 0) {
         func_8009C128(arg0, position.f);
         _chbaddiesetup_entrypoint_5(func_800927C4, 0x215,
             position.i[0], position.i[1], position.i[2],
@@ -909,13 +1033,17 @@ void func_80093448(void *arg0) {
 /* extern */
 
 void func_800934C4(void *arg0) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    void *func_800DC060(void *);
+    if (PLAYER_VECTORS(arg0) != NULL) PLAYER_VECTORS(arg0) = func_800DC060(PLAYER_VECTORS(arg0));
+#else
     s32 func_800DC060(s32);
     s32 temp;
-
-    temp = *(s32 *)((u8 *)*&((Obj1E6B900_arg0 *)arg0)->unk50 + 4);
+    temp = *(s32 *)((u8 *)PLAYER_MODEL(arg0) + 4);
     if (temp != 0) {
-        *(s32 *)((u8 *)*&((Obj1E6B900_arg0 *)arg0)->unk50 + 4) = func_800DC060(temp);
+        *(s32 *)((u8 *)PLAYER_MODEL(arg0) + 4) = func_800DC060(temp);
     }
+#endif
 }
 
 /* extern */
@@ -924,7 +1052,7 @@ void func_800934C4(void *arg0) {
 void func_80093504(void *player, f32 *dst, f32 *src) {
     void func_800F23D0(void *, f32 *, f32 *);
 #if defined(BT_ILP32)
-    u8 *model = *(u8 **)((u8 *)player + 0x50);
+    u8 *model = PLAYER_MODEL(player);
 #else
     u8 *model = ((PlayerState *)player)->model;
 #endif
@@ -933,7 +1061,7 @@ void func_80093504(void *player, f32 *dst, f32 *src) {
 #else
 void func_80093504(void *arg0) {
     s32 func_800F23D0(s32);
-    BT_NATIVE_ONLY(return) func_800F23D0((*(s32 *)((s8 *)(arg0) + (0x50))) + 0xCC);
+    BT_NATIVE_ONLY(return) func_800F23D0((PLAYER_MODEL(arg0)) + 0xCC);
 }
 #endif
     typedef struct { u8 pad0[0xA1]; u8 unkA1; u8 padA2[0x3]; u8 unkA5; } Obj1E6B900_func_80093528_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
@@ -941,25 +1069,40 @@ void func_80093504(void *arg0) {
 /* extern */
 
 void func_80093528(void *arg0) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    void func_800DBEB0(void *);
+    u8 *model = PLAYER_MODEL(arg0);
+    model[0x1A] = 0;
+    func_800DBEB0(PLAYER_VECTORS(arg0));
+    model[0x16] = 0;
+    model[0xA5] = 0;
+    model[0xA1] = model[0xA5];
+    model[0x10] = model[0xA5];
+#else
     s32 func_800DBEB0(s32, void *);
     u8 temp_v1;
     void *temp_v0;
 
-    (*(s8 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk50)) + (0x1A))) = 0;
-    func_800DBEB0((*(s32 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk50)) + (4))), arg0);
-    (*(s8 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk50)) + (0x16))) = 0;
-    (*(u8 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk50)) + (0xA5))) = 0U;
-    temp_v0 = (((Obj1E6B900_arg0 *)arg0)->unk50);
+    (*(s8 *)((s8 *)((PLAYER_MODEL(arg0))) + (0x1A))) = 0;
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    func_800DBEB0(PLAYER_VECTORS(arg0));
+#else
+    func_800DBEB0((*(s32 *)((s8 *)((PLAYER_MODEL(arg0))) + (4))), arg0);
+#endif
+    (*(s8 *)((s8 *)((PLAYER_MODEL(arg0))) + (0x16))) = 0;
+    (*(u8 *)((s8 *)((PLAYER_MODEL(arg0))) + (0xA5))) = 0U;
+    temp_v0 = (PLAYER_MODEL(arg0));
     temp_v1 = (((Obj1E6B900_func_80093528_temp_v0 *)temp_v0)->unkA5);
     (((Obj1E6B900_func_80093528_temp_v0 *)temp_v0)->unkA1) = temp_v1;
-    (*(u8 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk50)) + (0x10))) = temp_v1;
+    (*(u8 *)((s8 *)((PLAYER_MODEL(arg0))) + (0x10))) = temp_v1;
+#endif
 }    typedef struct { u8 pad0[0x8]; s32 unk8; u8 padC[0x88]; s32 unk94; } Obj1E6B900_func_80093584_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
 void func_80093584(void *arg0) {
     void *temp_v0;
 
-    (*(s32 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk50)) + (0x94))) = 0;
-    temp_v0 = (((Obj1E6B900_arg0 *)arg0)->unk50);
+    (*(s32 *)((s8 *)((PLAYER_MODEL(arg0))) + (0x94))) = 0;
+    temp_v0 = (PLAYER_MODEL(arg0));
     (((Obj1E6B900_func_80093584_temp_v0 *)temp_v0)->unk8) = (s32) (((Obj1E6B900_func_80093584_temp_v0 *)temp_v0)->unk94);
 }
 
@@ -984,7 +1127,7 @@ void func_8009359C(void *arg0, s32 arg1) {
     u8 *state;
     s16 *list;
 
-    state = *(u8 **)((u8 *)arg0 + 0x50);
+    state = PLAYER_MODEL(arg0);
     old = *(s16 *)(state + 0x9C);
     state += 0x90;
     if (arg1 != old) {
@@ -1022,39 +1165,39 @@ void func_8009359C(void *arg0, s32 arg1) {
 }
 
 void func_800936CC(void *arg0, s32 arg1) {
-    *(s8 *)((u8 *)*&((Obj1E6B900_arg0 *)arg0)->unk50 + 162) = arg1;
+    *(s8 *)((u8 *)PLAYER_MODEL(arg0) + 162) = arg1;
 }
 
 void func_800936D8(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)*&((Obj1E6B900_arg0 *)arg0)->unk50 + 152) = arg1;
+    *(f32 *)((u8 *)PLAYER_MODEL(arg0) + 152) = arg1;
 }
 
 void func_800936E8(void *arg0, s32 arg1) {
-    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 80) + 163) = arg1;
+    PLAYER_MODEL(arg0)[163] = (s8)arg1;
 }
 
 u32 func_800936F4(void *arg0) {
-    return *(u8 *)((u8 *)*&((Obj1E6B900_arg0 *)arg0)->unk50 + 163);
+    return *(u8 *)((u8 *)PLAYER_MODEL(arg0) + 163);
 }
 
 void func_80093700(void *arg0, s32 arg1) {
-    *(s8 *)((u8 *)*(void **)((u8 *)arg0 + 80) + 25) = arg1;
+    PLAYER_MODEL(arg0)[25] = (s8)arg1;
 }
 
 BT_IDO_ONLY(void) BT_NATIVE_ONLY(Unkfunc_800E0960_1 *) func_8009370C(u8 *arg0) {
     void *func_800AE080(s16);
     Unkfunc_800E0960_1 *func_800AE6BC(BtIntPtr);
-    BT_NATIVE_ONLY(return) func_800AE6BC(func_800AE080((*(s16 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk50_u8p)) + (0x90)))));
+    BT_NATIVE_ONLY(return) func_800AE6BC(func_800AE080((*(s16 *)((s8 *)((PLAYER_MODEL(arg0))) + (0x90)))));
 }
 
 /* extern */
 
 BtIntPtr func_80093738(void *arg0) {
     BtIntPtr func_800D674C(s32);
-    return func_800D674C((*(s16 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk50)) + (0x9C))));
+    return func_800D674C((*(s16 *)((s8 *)((PLAYER_MODEL(arg0))) + (0x9C))));
 }    typedef struct { u8 pad0[0x4]; s32 unk4; } Obj1E6B900_arg1; /* offsets.py genstruct: fields from raw offsets on arg1; rename once understood */
 
-s32 func_8009375C(u8 *arg0, Gfx **arg1, s32 arg2) {
+BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) func_8009375C(u8 *arg0, Gfx **arg1, s32 arg2) {
     struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
     struct anctrl_s *func_8008D04C(PlayerState *);
     void *func_8008AEDC(void *);
@@ -1086,7 +1229,7 @@ s32 func_8009375C(u8 *arg0, Gfx **arg1, s32 arg2) {
     }
     temp_s0 = func_800B27E0((u8 *)sp24);
     func_8008C200(sp2A, (BtIntPtr)temp_s0, (BtIntPtr)func_8008AEDC(sp2C));
-    BT_NATIVE_ONLY(void *bt_result;) func_800AE598((s32 *)BT_IDO_ONLY(func_800AE080(sp2A)) BT_NATIVE_ONLY((bt_result = func_800AE080(sp2A))), &((Obj1E6B900_arg1 *)arg1)->unk4); BT_NATIVE_ONLY(return (s32)bt_result;)
+    BT_NATIVE_ONLY(void *bt_result;) func_800AE598((s32 *)BT_IDO_ONLY(func_800AE080(sp2A)) BT_NATIVE_ONLY((bt_result = func_800AE080(sp2A))), &((Obj1E6B900_arg1 *)arg1)->unk4); BT_NATIVE_ONLY(return (BtIntPtr)bt_result;)
 }
 
 s32 func_80093864(u8 *arg0, Gfx **arg1, s32 arg2) {
@@ -1097,7 +1240,11 @@ s32 func_80093864(u8 *arg0, Gfx **arg1, s32 arg2) {
     void *func_800DE448(f32 *, f32 *, f32, f32 *, BtIntPtr);
     void func_800DF3E0(void);
     void func_800DF440(s32);
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    void func_800DF47C(PlayerRenderCallback, uintptr_t);
+#else
     void func_800DF47C(s32, BtIntPtr);
+#endif
     void func_800DF574(s32);
     void func_800DF714(s32);
     void func_800DF720(BtIntPtr);
@@ -1153,7 +1300,11 @@ s32 func_80093864(u8 *arg0, Gfx **arg1, s32 arg2) {
             func_800DF714(*(s32 *)(*(u8 **)(arg0 + 0x50) + 0x94));
             func_800DF72C((BtIntPtr)sp38);
             func_800DF3E0();
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+            func_800DF47C((PlayerRenderCallback)func_80092224, (uintptr_t)arg0);
+#else
             func_800DF47C((BtIntPtr)func_80092224, (BtIntPtr)arg0);
+#endif
             func_800A0714((BtIntPtr)arg0, *(s16 *)(*(u8 **)(arg0 + 0x50) + 0x9C));
         }
         break;
@@ -1187,24 +1338,24 @@ void func_80093AB8(void *arg0, Gfx **arg1) {
     struct ZoneCount { u8 pad[0xA4]; BT_BITFIELD_ORDER(unsigned int count : 8, unsigned int : 24; unsigned int count : 8); };
     s32 sp2C;
 
-    if ((*(u8 **)((u8 *)arg0 + 0x50))[0x17] != 0) {
+    if (PLAYER_MODEL(arg0)[0x17] != 0) {
         sp44 = func_800A89F8();
-        switch ((*(u8 **)((u8 *)arg0 + 0x50))[0xA2]) {
+        switch (PLAYER_MODEL(arg0)[0xA2]) {
         case 1:
             sp40 = 3;
             break;
         case 2:
         case 3:
-            switch ((*(u8 **)((u8 *)arg0 + 0x50))[0x19]) {
+            switch (PLAYER_MODEL(arg0)[0x19]) {
             case 0:
                 sp40 = 3;
                 break;
             case 1:
                 sp40 = 3;
                 if (func_800A4C68(arg0) == sp44) {
-                    if ((*(u8 **)((u8 *)arg0 + 0x50))[0xA3] != 0) {
+                    if (PLAYER_MODEL(arg0)[0xA3] != 0) {
                         sp40 = 1;
-                    } else if ((*(u8 **)((u8 *)arg0 + 0x50))[0x18] == 0) {
+                    } else if (PLAYER_MODEL(arg0)[0x18] == 0) {
                         sp40 = 0;
                     }
                 }
@@ -1220,37 +1371,37 @@ void func_80093AB8(void *arg0, Gfx **arg1) {
         case 3:
             func_8009C128(arg0, sp34);
             if (!func_800E3E8C(sp34,
-                *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x1C) *
-                *(f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x74))) {
+                *(f32 *)(PLAYER_MODEL(arg0) + 0x1C) *
+                *(f32 *)(PLAYER_MODEL(arg0) + 0x74))) {
                 return;
             }
             sp2C = func_800BEC1C();
             if (sp2C != 0) {
-                if ((*(u8 **)((u8 *)arg0 + 0x50))[0xA5] == 0) {
-                    (*(u8 **)((u8 *)arg0 + 0x50))[0xA5] = 1;
-                    func_800EF04C(sp34, (f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0x64));
-                    (*(u8 **)((u8 *)arg0 + 0x50))[0xA4] = _dbzone_entrypoint_4(
-                        func_800BEC28(0), sp34, *(u8 **)((u8 *)arg0 + 0x50) + 0xA6);
+                if (PLAYER_MODEL(arg0)[0xA5] == 0) {
+                    PLAYER_MODEL(arg0)[0xA5] = 1;
+                    func_800EF04C(sp34, (f32 *)(PLAYER_MODEL(arg0) + 0x64));
+                    PLAYER_MODEL(arg0)[0xA4] = _dbzone_entrypoint_4(
+                        func_800BEC28(0), sp34, PLAYER_MODEL(arg0) + 0xA6);
                 }
                 if ((*(struct ZoneCount **)((u8 *)arg0 + 0x50))->count != 0 &&
-                    !_glzone_entrypoint_6(sp2C, *(u8 **)((u8 *)arg0 + 0x50) + 0xA6,
+                    !_glzone_entrypoint_6(sp2C, PLAYER_MODEL(arg0) + 0xA6,
                         (*(struct ZoneCount **)((u8 *)arg0 + 0x50))->count)) {
                     return;
                 }
             }
         }
-        switch ((*(u8 **)((u8 *)arg0 + 0x50))[0xA2]) {
+        switch (PLAYER_MODEL(arg0)[0xA2]) {
         case 1:
-            if ((*(u8 **)((u8 *)arg0 + 0x50))[0x18] != 0 || func_800A4C68(arg0) != sp44) {
-                if ((*(u8 **)((u8 *)arg0 + 0x50))[0x10] == 0) {
+            if (PLAYER_MODEL(arg0)[0x18] != 0 || func_800A4C68(arg0) != sp44) {
+                if (PLAYER_MODEL(arg0)[0x10] == 0) {
                     func_8008CA98(arg0);
                     func_8009375C(arg0, arg1, 0);
                 }
                 func_80093864(arg0, arg1, 0);
-                if ((*(u8 **)((u8 *)arg0 + 0x50))[0xA3] != 0) {
-                    func_8009216C(arg0, (f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0xAC),
-                        (f32 *)(*(u8 **)((u8 *)arg0 + 0x50) + 0xB8));
-                    if ((*(u8 **)((u8 *)arg0 + 0x50))[0xA1] == 0) {
+                if (PLAYER_MODEL(arg0)[0xA3] != 0) {
+                    func_8009216C(arg0, (f32 *)(PLAYER_MODEL(arg0) + 0xAC),
+                        (f32 *)(PLAYER_MODEL(arg0) + 0xB8));
+                    if (PLAYER_MODEL(arg0)[0xA1] == 0) {
                         func_8008D058(arg0);
                         func_8009375C(arg0, arg1, 1);
                     }
@@ -1260,7 +1411,7 @@ void func_80093AB8(void *arg0, Gfx **arg1) {
             break;
         case 2:
             if (sp40 == 3) {
-                if ((*(u8 **)((u8 *)arg0 + 0x50))[0x10] == 0) {
+                if (PLAYER_MODEL(arg0)[0x10] == 0) {
                     _bsfirstp_entrypoint_1(arg0, 0);
                     func_8009375C(arg0, arg1, 0);
                 }
@@ -1269,7 +1420,7 @@ void func_80093AB8(void *arg0, Gfx **arg1) {
             break;
         case 3:
             if (sp40 == 3) {
-                if ((*(u8 **)((u8 *)arg0 + 0x50))[0x10] == 0) {
+                if (PLAYER_MODEL(arg0)[0x10] == 0) {
                     _bsfirstp_entrypoint_1(arg0, 0);
                     func_8009375C(arg0, arg1, 0);
                 }
@@ -1281,7 +1432,7 @@ void func_80093AB8(void *arg0, Gfx **arg1) {
 }
 
 s32 func_80093DF4(void *arg0, s32 arg1) {
-    return arg1 == (*(u8 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk50)) + (0xA2))) ? 1 : 0;
+    return arg1 == (*(u8 *)((s8 *)((PLAYER_MODEL(arg0))) + (0xA2))) ? 1 : 0;
 }
 
 /* extern */
@@ -1290,7 +1441,7 @@ void func_80093E18(u8 *arg0, BT_IDO_ONLY(Gfx **arg1) BT_PASS2(Gfx **arg1, BtIntP
     s32 pad;
     s32 _bsfirstp_entrypoint_0(u8 *, u8 *, u8 *);
     void _bsfirstp_entrypoint_1(u8 *, s32);
-    s32 func_8009375C(u8 *, Gfx **, s32);
+    BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) func_8009375C(u8 *, Gfx **, s32);
     s32 func_80093864(u8 *, Gfx **, s32);
     BtIntPtr func_800A5090(void *);
     BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) func_800A88C4(s32, BT_IDO_ONLY(BtIntPtr) BT_PASS2(BtIntPtr, BtIntPtr));
@@ -1303,9 +1454,9 @@ void func_80093E18(u8 *arg0, BT_IDO_ONLY(Gfx **arg1) BT_PASS2(Gfx **arg1, BtIntP
     sp24 = func_800A89F8();
     sp28 = func_800A88C4(sp24, BT_IDO_ONLY(func_800A5090(arg0)) BT_PASS2(func_800A5090(arg0), bt_a2));
     func_800E44FC(arg1);
-    if ((*(u8 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk50_u8p)) + (0xA1))) == 0) {
+    if ((*(u8 *)((s8 *)((PLAYER_MODEL(arg0))) + (0xA1))) == 0) {
         _bsfirstp_entrypoint_1(arg0, 1);
-        temp_v0 = (((Obj1E6B900_arg0 *)arg0)->unk50_u8p);
+        temp_v0 = (PLAYER_MODEL(arg0));
         _bsfirstp_entrypoint_0(arg0, temp_v0 + 0xAC, temp_v0 + 0xB8);
         func_8009375C(arg0, arg1, 1);
     }
@@ -1321,7 +1472,7 @@ f32 func_80093ECC(u8 *arg0, f32 *arg1, BtIntPtr arg2, f32 *arg3) {
     void func_800EF04C(f32[3], f32[3]);
     void func_8009216C(PlayerState *, f32 *, f32 *);
     u8 *self = arg0;
-    func_8009216C(self, arg1, arg2);
+    func_8009216C((PlayerState *)self, arg1, arg2);
     func_800EE7F8(arg3, (f32 *)(*(u8 **)(self + 0x50) + 0x2C));
     func_800EF04C(arg1, (f32 *)(*(u8 **)(self + 0x50) + 0x44));
     func_800EF04C(arg3, (f32 *)(*(u8 **)(self + 0x50) + 0x44));
@@ -1340,16 +1491,16 @@ s32 func_80093F30(s32 arg0) {
 
 /* extern */
 
-s32 func_80093F7C(u8 *arg0, s32 arg1) {
+BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) func_80093F7C(u8 *arg0, s32 arg1) {
     BtIntPtr func_800D674C(s32);
     void func_800D62E4(s32);
-    struct { s32 pad; s32 value; } sp1C;
-    s32 var_v1;
+    struct { BtIntPtr pad; BtIntPtr value; } sp1C;
+    BtIntPtr var_v1;
 
-    sp1C.value = func_800D674C((*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x50)))) + (0x10C))));
+    sp1C.value = func_800D674C((*(s32 *)((s8 *)(PLAYER_MODEL(arg0)) + (0x10C))));
     var_v1 = sp1C.value;
     if (arg1 == 0) {
-        func_800D62E4((*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x50)))) + (0x10C))));
+        func_800D62E4((*(s32 *)((s8 *)(PLAYER_MODEL(arg0)) + (0x10C))));
         var_v1 = sp1C.value;
     }
     return var_v1;
@@ -1472,7 +1623,7 @@ s32 func_800942D0(u8 *arg0, s32 arg1) {
     s32 sp1C;
 
     func_8001BDAC(&sp1C, 1);
-    if ((*(s32 *)((s8 *)((((Obj1E6B900_arg0 *)arg0)->unk50_u8p)) + (0x110))) != 0) {
+    if ((*(s32 *)((s8 *)((PLAYER_MODEL(arg0))) + (0x110))) != 0) {
         sp1C += BT_DATA_FIELD(playerModelDetails[arg1].memoryCredit, D_80117DD4[arg1][0]);
     }
     return sp1C >= 0x32001;

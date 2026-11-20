@@ -3641,3 +3641,9 @@ Der reguläre Build von `gameplay-combined-camera` besteht alle 74 Replays mit 4
 Der Weltenlauf erreicht in beiden Builds nach 27.093 Retraces die erwartete Karte 0x14F. Der erste Unterschied bei abgeschalteten Hilfen tritt auf Karte 0x15D bei Retrace 21.710 auf. Das Wort an Actor+0x70 unterscheidet sich bei Podium Bankaz und dem Warp-Pad in Bit 3. Der kumulative Prüfstand verwendet die anhand der ursprünglichen HUD-Zählerroutine geprüften Referenzen. Das vollständige Ergebnis und die Welten-Trace liegen unter `build/acceptance/n1-2026-11-18/gameplay-combined-camera*`.
 
 Die Folgestufen für Ei-Geräusche, Kamerakomponenten und Schwebebewegung bestehen 86 bzw. 87 Sanitizertests. Der LP64-Compilerlauf des Schwebestands zählt 491 Warnstellen in 211 Dateien. Das Protokoll steht in `build/acceptance/n1-2026-11-18/gameplay-hover-hazards64.log`.
+
+### 2026-11-19 – Modell des Spielers (N1/N3)
+
+Vektortabelle und angehängter Actor haben eigene native Zeiger. Beim Erzeugen, Zurücksetzen und Verschieben bleiben die benachbarten Modellfelder erhalten.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 73 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 2 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-player-model*`.

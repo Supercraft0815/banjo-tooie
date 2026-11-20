@@ -71,6 +71,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Breite der HUD-Anzeigen. Alle neun Stile verwenden den vollständigen Zeiger auf die HUD-Anzeige. Die Breite wird vom jeweils zuständigen Callback zurückgegeben.
 
+- Modell des Spielers. Vektortabelle und angehängter Actor haben eigene native Zeiger. Beim Erzeugen, Zurücksetzen und Verschieben bleiben die benachbarten Modellfelder erhalten.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026
