@@ -4,7 +4,7 @@
 #endif
 #include "overlays/ba/playerstate.h"
 #include "bs_script.h"
-void func_80800000_bstntswim(struct player_state_s *arg0) {
+BT_NATIVE_ONLY(struct player_state_s; void _bsdrone_entrypoint_1(struct player_state_s *); void _bstnt_entrypoint_4(void *);) void func_80800000_bstntswim(struct player_state_s *arg0) {
     void func_80092C00(struct player_state_s *, f32 *);
     void func_80092C24(struct player_state_s *, f32 *);
     s32 func_80096544(struct player_state_s *);
@@ -328,9 +328,9 @@ void func_8080090C_bstntswim(struct player_state_s *arg0)
     func_80800114_bstntswim(arg0);
     _bsdrone_entrypoint_0(arg0);
 }
-void func_80800934_bstntswim(s32 arg0)
+void func_80800934_bstntswim(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(s32) arg0)
 {
-    _bsdrone_entrypoint_1();
+    _bsdrone_entrypoint_1(BT_NATIVE_ONLY(arg0));
     _bstnt_entrypoint_4(arg0);
 }
 #ifdef BT_NATIVE

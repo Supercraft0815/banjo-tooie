@@ -547,10 +547,10 @@ BsScript bssub_entrypoint_1(BsScriptType arg0) {
     extern BtIntPtr D_808018A0_bssub[];
     return (BsScript)D_808018A0_bssub[arg0];
 }
-
-void func_80801004_bssub(BtIntPtr arg0)
+BT_NATIVE_ONLY(struct player_state_s; void func_80090A2C(struct player_state_s *);)
+void func_80801004_bssub(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0)
 {
-    func_80090A2C();
+    func_80090A2C(BT_NATIVE_ONLY(arg0));
     func_808008D8_bssub(arg0);
 }
 /* extern */
@@ -764,9 +764,9 @@ BsScript bssub_entrypoint_6(BsScriptType arg0) {
     return (BsScript)D_808018F0_bssub[arg0];
 }
 
-void func_80801578_bssub(BtIntPtr arg0)
+void func_80801578_bssub(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0)
 {
-    func_80090A2C();
+    func_80090A2C(BT_NATIVE_ONLY(arg0));
     func_808008D8_bssub(arg0);
 }
 void func_808015A0_bssub(struct player_state_s *arg0) {

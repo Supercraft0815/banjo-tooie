@@ -105,6 +105,8 @@ Weitere geprüfte N-Pakete am 20. November
 
 - Vektoren der Spielerphysik. Zielgeschwindigkeit und Bewegung übernehmen alle drei Komponenten des Quellvektors. Bei einem leeren Zeiger wird das jeweilige Ziel gelöscht.
 
+- Spieler beim Zustandswechsel. Neunzehn Zustandsroutinen erhalten ihren Spieler für Bewegung und Blicksteuerung. Zwei Bienen-Rücksprünge geben den Spieler wie im Original-MIPS an den Overlay-Aufruf weiter.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

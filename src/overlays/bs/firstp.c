@@ -3078,11 +3078,11 @@ void func_808050B0_bsfirstp(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(
 {
     _bsdrone_entrypoint_2(BT_NATIVE_ONLY(arg0));
     func_80807C8C_bsfirstp(arg0);
-}
-void func_808050D8_bsfirstp(BtIntPtr arg0)
+} BT_NATIVE_ONLY(struct player_state_s; void _bsdrone_entrypoint_1(struct player_state_s *); void func_80807D48_bsfirstp(BtIntPtr);)
+void func_808050D8_bsfirstp(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0)
 {
-    _bsdrone_entrypoint_1();
-    func_80807D48_bsfirstp(arg0);
+    _bsdrone_entrypoint_1(BT_NATIVE_ONLY(arg0));
+    func_80807D48_bsfirstp(BT_NATIVE_ONLY((BtIntPtr))arg0);
     func_80809D24_bsfirstp(arg0);
 }
 
@@ -3115,10 +3115,10 @@ void func_8080519C_bsfirstp(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(
     _bsdrone_entrypoint_2(BT_NATIVE_ONLY(arg0));
     func_80807C8C_bsfirstp(arg0);
 }
-void func_808051C4_bsfirstp(BtIntPtr arg0)
+void func_808051C4_bsfirstp(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0)
 {
-    _bsdrone_entrypoint_1();
-    func_80807D48_bsfirstp(arg0);
+    _bsdrone_entrypoint_1(BT_NATIVE_ONLY(arg0));
+    func_80807D48_bsfirstp(BT_NATIVE_ONLY((BtIntPtr))arg0);
     func_80809D24_bsfirstp(arg0);
 }
 

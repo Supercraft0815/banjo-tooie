@@ -1246,10 +1246,10 @@ void bsbtrot_entrypoint_36(PlayerState *arg0)
     func_80800538_bsbtrot(arg0);
     _bsdrone_entrypoint_0(arg0);
 }
-
-void bsbtrot_entrypoint_37(BtIntPtr arg0)
+BT_NATIVE_ONLY(struct player_state_s; void _bsdrone_entrypoint_1(struct player_state_s *);)
+void bsbtrot_entrypoint_37(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0)
 {
-    _bsdrone_entrypoint_1();
+    _bsdrone_entrypoint_1(BT_NATIVE_ONLY(arg0));
     func_808004B4_bsbtrot(arg0);
 }
 #ifdef BT_NATIVE

@@ -7,7 +7,7 @@ struct player_state_s;
 #include "bs_script.h"
 void func_800BA22C(BtIntPtr, s32);
 
-void func_80800000_bsvanswim(struct player_state_s *arg0) {
+BT_NATIVE_ONLY(struct player_state_s; void _bsdrone_entrypoint_1(struct player_state_s *); void _bsvan_entrypoint_3(struct player_state_s *);) void func_80800000_bsvanswim(struct player_state_s *arg0) {
     void func_80092C00(struct player_state_s *, f32 *);
     void func_80092C24(struct player_state_s *, f32 *);
     s32 func_80096544(struct player_state_s *);
@@ -319,9 +319,9 @@ void func_808008E4_bsvanswim(struct player_state_s *arg0)
     func_80800114_bsvanswim(arg0);
     _bsdrone_entrypoint_0(arg0);
 }
-void func_8080090C_bsvanswim(s32 arg0)
+void func_8080090C_bsvanswim(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(s32) arg0)
 {
-    _bsdrone_entrypoint_1();
+    _bsdrone_entrypoint_1(BT_NATIVE_ONLY(arg0));
     _bsvan_entrypoint_3(arg0);
 }
 #ifdef BT_NATIVE

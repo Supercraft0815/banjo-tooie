@@ -621,10 +621,10 @@ BsScript bsbabykaz_entrypoint_10(BsScriptType arg0) {
     extern BtFnWord D_80801780_bsbabykaz[4];
     return (BsScript)D_80801780_bsbabykaz[arg0];
 }
-
-void func_80801014_bsbabykaz(BtIntPtr arg0)
+BT_NATIVE_ONLY(struct player_state_s; void func_80090A2C(struct player_state_s *); void func_800951B4(struct player_state_s *);)
+void func_80801014_bsbabykaz(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0)
 {
-    func_80090A2C();
+    func_80090A2C(BT_NATIVE_ONLY(arg0));
     func_800951B4(arg0);
     bsbabykaz_entrypoint_3(arg0);
 }

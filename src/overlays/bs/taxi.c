@@ -1105,10 +1105,10 @@ BsScript bstaxi_entrypoint_31(BsScriptType arg0) {
     extern BtIntPtr D_808021E8_bstaxi[];
     return (BsScript)D_808021E8_bstaxi[arg0];
 }
-
-void bstaxi_entrypoint_32(BtIntPtr arg0)
+BT_NATIVE_ONLY(struct player_state_s; void func_80090A2C(struct player_state_s *);)
+void bstaxi_entrypoint_32(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0)
 {
-    func_80090A2C();
+    func_80090A2C(BT_NATIVE_ONLY(arg0));
     bstaxi_entrypoint_0(arg0);
 }
 void bstaxi_entrypoint_33(void *arg0) {

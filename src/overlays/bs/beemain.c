@@ -86,10 +86,10 @@ void func_80800128_bsbeemain(struct player_state_s *arg0) {
     }
     bs_setState(arg0, func_800A02DC(arg0, var_s1));
 }
-
-void func_808001FC_bsbeemain(s32 arg0)
+BT_NATIVE_ONLY(struct player_state_s; void _bsbee_entrypoint_0(struct player_state_s *); void func_80090A2C(struct player_state_s *);)
+void func_808001FC_bsbeemain(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(s32) arg0)
 {
-    func_80090A2C();
+    func_80090A2C(BT_NATIVE_ONLY(arg0));
     _bsbee_entrypoint_0(arg0);
 }
 BsScript bsbeemain_entrypoint_0(BsScriptType arg0) {
@@ -148,9 +148,9 @@ void func_808002C0_bsbeemain(struct player_state_s *arg0) {
     bs_setState(arg0, sp24);
 }
 
-void func_808003B4_bsbeemain(s32 arg0)
+void func_808003B4_bsbeemain(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(s32) arg0)
 {
-    func_80090A2C();
+    func_80090A2C(BT_NATIVE_ONLY(arg0));
     _bsbee_entrypoint_0(arg0);
 }
 BsScript bsbeemain_entrypoint_1(BsScriptType arg0) {
@@ -271,9 +271,9 @@ void func_80800548_bsbeemain(struct player_state_s *arg0) {
     bs_setState(arg0, next);
 }
 
-void func_80800788_bsbeemain(s32 arg0)
+void func_80800788_bsbeemain(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(s32) arg0)
 {
-    _bsbee_entrypoint_0();
+    _bsbee_entrypoint_0(BT_NATIVE_ONLY(arg0));
     baphysics_reset_gravity(arg0);
 }
 BsScript bsbeemain_entrypoint_2(BsScriptType arg0) {
@@ -382,7 +382,7 @@ void func_80800874_bsbeemain(struct player_state_s *arg0) {
     bs_setState((BtIntPtr)arg0, sp34);
 }
 
-void func_80800A74_bsbeemain(BT_NATIVE_ONLY(s32 bt_a0))
+void func_80800A74_bsbeemain(BT_NATIVE_ONLY(struct player_state_s *bt_a0))
 {
     _bsbee_entrypoint_0(BT_NATIVE_ONLY(bt_a0));
 }

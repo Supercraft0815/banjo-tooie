@@ -616,10 +616,10 @@ void func_808011CC_bstnt(BtIntPtr arg0)
 {
     bstnt_entrypoint_3(arg0);
     _bsdrone_entrypoint_0(arg0);
-}
-void func_808011F4_bstnt(BtIntPtr arg0)
+} BT_NATIVE_ONLY(struct player_state_s; void _bsdrone_entrypoint_1(struct player_state_s *);)
+void func_808011F4_bstnt(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0)
 {
-    _bsdrone_entrypoint_1();
+    _bsdrone_entrypoint_1(BT_NATIVE_ONLY(arg0));
     bstnt_entrypoint_4(arg0);
 }
 void func_8080121C_bstnt(BtIntPtr arg0)

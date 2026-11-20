@@ -291,10 +291,10 @@ void func_80800788_bsvan(struct player_state_s *arg0)
 {
     bsvan_entrypoint_1(arg0);
     _bsdrone_entrypoint_0(arg0);
-}
-void func_808007B0_bsvan(BtIntPtr arg0)
+} BT_NATIVE_ONLY(struct player_state_s; void _bsdrone_entrypoint_1(struct player_state_s *);)
+void func_808007B0_bsvan(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0)
 {
-    _bsdrone_entrypoint_1();
+    _bsdrone_entrypoint_1(BT_NATIVE_ONLY(arg0));
     bsvan_entrypoint_3(arg0);
 }
 BsScript bsvan_entrypoint_5(BsScriptType arg0) {

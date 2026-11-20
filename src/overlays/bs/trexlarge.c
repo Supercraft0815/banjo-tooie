@@ -341,11 +341,11 @@ void func_808008D0_bstrexlarge(BtIntPtr arg0)
 {
     bstrexlarge_entrypoint_2(arg0);
     _bsdrone_entrypoint_0(arg0);
-}
-void func_808008F8_bstrexlarge(s32 arg0)
+} BT_NATIVE_ONLY(struct player_state_s; void _bsdrone_entrypoint_1(struct player_state_s *); void func_80090A2C(struct player_state_s *); void func_800951B4(struct player_state_s *);)
+void func_808008F8_bstrexlarge(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(s32) arg0)
 {
-    _bsdrone_entrypoint_1();
-    bstrexlarge_entrypoint_3(arg0);
+    _bsdrone_entrypoint_1(BT_NATIVE_ONLY(arg0));
+    bstrexlarge_entrypoint_3(BT_NATIVE_ONLY((BtIntPtr))arg0);
 }
 BsScript bstrexlarge_entrypoint_5(BsScriptType arg0) {
     extern BtIntPtr D_808019B0_bstrexlarge[];
@@ -802,9 +802,9 @@ BsScript bstrexlarge_entrypoint_13(BsScriptType arg0) {
     return (BsScript)D_80801A20_bstrexlarge[arg0];
 }
 
-void func_80801604_bstrexlarge(BtIntPtr arg0)
+void func_80801604_bstrexlarge(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0)
 {
-    func_80090A2C();
+    func_80090A2C(BT_NATIVE_ONLY(arg0));
     func_800951B4(arg0);
     bstrexlarge_entrypoint_1(arg0);
 }

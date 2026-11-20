@@ -195,10 +195,10 @@ void func_80800508_bssnowball(BtIntPtr arg0)
 {
     bssnowball_entrypoint_1(arg0);
     _bsdrone_entrypoint_0(arg0);
-}
-void func_80800530_bssnowball(BtIntPtr arg0)
+} BT_NATIVE_ONLY(struct player_state_s; void _bsdrone_entrypoint_1(struct player_state_s *); void func_80090A2C(struct player_state_s *);)
+void func_80800530_bssnowball(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0)
 {
-    _bsdrone_entrypoint_1();
+    _bsdrone_entrypoint_1(BT_NATIVE_ONLY(arg0));
     bssnowball_entrypoint_2(arg0);
 }
 BsScript bssnowball_entrypoint_4(BsScriptType arg0) {
@@ -501,9 +501,9 @@ BsScript bssnowball_entrypoint_10(BsScriptType arg0) {
     return (BsScript)D_808010C4_bssnowball[arg0];
 }
 
-void func_80800DB0_bssnowball(BtIntPtr arg0)
+void func_80800DB0_bssnowball(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0)
 {
-    func_80090A2C();
+    func_80090A2C(BT_NATIVE_ONLY(arg0));
     bssnowball_entrypoint_0(arg0);
 }
 void func_80800DD8_bssnowball(BtIntPtr arg0) {
