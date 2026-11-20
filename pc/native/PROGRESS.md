@@ -3759,3 +3759,9 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuite
 Münzkasten, Fabriktor und Lagunenwand reichen den Actor an seine Initialisierung weiter. Roboter und Essenswarnung übergeben ihn beim Kontakt, der Jahrmarktarbeiter an die Achterbahnsteuerung.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 79 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-actor-initializers*`.
+
+### 2026-11-20 – Vektoren der Spielerphysik (N2/N3)
+
+Zielgeschwindigkeit und Bewegung übernehmen alle drei Komponenten des Quellvektors. Bei einem leeren Zeiger wird das jeweilige Ziel gelöscht.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 79 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-physics-vectors*`.

@@ -440,13 +440,13 @@ void baphysics_set_type(PlayerState *self, BaPhysicsType type) {
 }
 
 void func_8009B94C(u8 *arg0, f32 *arg1) {
-    void func_800EE7F8();
+    void func_800EE7F8(BT_PASS2(f32 *, f32 *));
     void func_800EFD24(f32 vec[3]);
     if (arg1 != 0) {
-        func_800EE7F8((((PlayerState *)arg0)->unkC8) + 0x1C);
+        func_800EE7F8(BT_DATA_FIELD((f32 *)((PlayerState *)arg0)->physics + 7, (((PlayerState *)arg0)->unkC8) + 0x1C) BT_PASS2(, arg1));
         return;
     }
-    func_800EFD24((((PlayerState *)arg0)->unkC8) + 0x1C);
+    func_800EFD24(BT_DATA_FIELD((f32 *)((PlayerState *)arg0)->physics + 7, (((PlayerState *)arg0)->unkC8) + 0x1C));
 }
 
 /* extern */
@@ -494,13 +494,13 @@ void baphysics_set_horizontal_velocity(PlayerState *arg0, f32 yaw, f32 vel) {
 }
 
 void func_8009BA9C(PlayerState *arg0, f32 *arg1) {
-    void func_800EE7F8();
+    void func_800EE7F8(BT_PASS2(f32 *, f32 *));
     void func_800EFD24(f32 vec[3]);
     if (arg1 != NULL) {
-        func_800EE7F8((arg0->unkC8) + 0x10);
+        func_800EE7F8(BT_DATA_FIELD((f32 *)arg0->physics + 4, (arg0->unkC8) + 0x10) BT_PASS2(, arg1));
         return;
     }
-    func_800EFD24((arg0->unkC8) + 0x10);
+    func_800EFD24(BT_DATA_FIELD((f32 *)arg0->physics + 4, (arg0->unkC8) + 0x10));
 }
 
 f32 func_8009BADC(PlayerState *arg0) {

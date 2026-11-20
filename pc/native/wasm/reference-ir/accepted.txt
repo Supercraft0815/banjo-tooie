@@ -581,3 +581,6 @@ The combined change preserves the original byte clear in the dialog reset. The c
 
 2026-11-20  Actor initialization and contact
 0 guest functions change their normalized IR. The 9,706 fixup addresses, both complete ROM images and all 74 replays match. See n1-2026-11-18/current-actor-initializers-ir.log.
+
+2026-11-20  Physics vector copy
+0 guest functions change their normalized IR. The 9,706 fixup addresses, both complete ROM images and all 74 replays match. See n1-2026-11-18/current-physics-vectors-ir.log.

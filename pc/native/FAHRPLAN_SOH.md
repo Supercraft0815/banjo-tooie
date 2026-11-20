@@ -103,6 +103,8 @@ Weitere geprüfte N-Pakete am 20. November
 
 - Initialisierung und Kontakt der Actors. Münzkasten, Fabriktor und Lagunenwand reichen den Actor an seine Initialisierung weiter. Roboter und Essenswarnung übergeben ihn beim Kontakt, der Jahrmarktarbeiter an die Achterbahnsteuerung.
 
+- Vektoren der Spielerphysik. Zielgeschwindigkeit und Bewegung übernehmen alle drei Komponenten des Quellvektors. Bei einem leeren Zeiger wird das jeweilige Ziel gelöscht.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

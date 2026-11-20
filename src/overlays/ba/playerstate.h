@@ -65,7 +65,7 @@ typedef struct player_state_s {
     /* 0xA4 */ struct ba_input_s *input;
     u8 padA8[0x18];
     /* 0xC0 */ struct ba_unknown_C0_s *unkC0; // 1E72EA0
-    u8 padC4[0x4]; s32 unkC8; u8 padCC[0x10]; f32 * unkDC; u8 padE0[0x4]; f32 * unkE4; u8 padE8[0x8]; u8 * unkF0;
+    u8 padC4[0x4]; BT_NATIVE_ONLY(union { s32 unkC8; void *physics; };) BT_IDO_ONLY(s32 unkC8;) u8 padCC[0x10]; f32 * unkDC; u8 padE0[0x4]; f32 * unkE4; u8 padE8[0x8]; u8 * unkF0;
     /* 0xF4 */ struct ba_roll_s *roll;
     /* 0xF8 */ struct ba_yaw_s *yaw;
     s32 * unkFC; u8 pad100[0x4]; u8 * unk104; u8 * unk108; u8 pad10C[0x8]; u8 pad114[0x4]; u8 pad118[0x8];
