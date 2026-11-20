@@ -93,6 +93,10 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Schrittgeräusche von Actors. Die Routinen für das Schrittgeräusch erhalten den ursprünglichen Actor. Die Freiliste verwendet ihren nativen Zeigertyp.
 
+Weitere geprüfte N-Pakete am 20. November
+
+- Form- und Klauenanimation. Spieler und Animationscontroller behalten beim Aufruf der Animation ihre native Zeigerbreite.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

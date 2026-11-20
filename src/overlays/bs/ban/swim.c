@@ -1,5 +1,9 @@
 #include "bs_script.h"
 #include "common.h"
+#if defined(BT_NATIVE)
+struct anctrl_s;
+struct player_state_s;
+#endif
 struct player_state_s;
 
 void func_80800000_bsbanswim(struct player_state_s *arg0) {
@@ -97,14 +101,18 @@ void func_8080025C_bsbanswim(void *arg0) {
     void _baswim_entrypoint_11(void *);
     void _baswim_entrypoint_13(void *);
     void func_800A0E64(void *);
+    #if defined(BT_NATIVE)
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    #else
     s32 baanim_getAnimCtrlPtr(void *);
-    s32 anctrl_isAt(BtIntPtr, f32);
+    #endif
+    s32 anctrl_isAt(BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr), f32);
     void func_8009BF5C(struct player_state_s *, f32);
     void func_8009DE38(void *, s32, f32);
     s32 player_inWater(void *);
     void bs_setState(void *self, s32 nextState);
     s32 sp24;
-    s32 sp20;
+    BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(s32) sp20;
     u8 temp_v1;
 
     sp24 = 0;
@@ -191,15 +199,19 @@ void func_8080049C_bsbanswim(struct player_state_s *arg0)
 
 /* extern */
 
-void func_808004BC_bsbanswim(BtIntPtr arg0) {
-    s32 anctrl_setDuration(BtIntPtr, s32);
-    s32 baanim_getAnimCtrlPtr();
+void func_808004BC_bsbanswim(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0) {
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) anctrl_setDuration(BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr), BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32));
+    #if defined(BT_NATIVE)
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    #else
+    s32 baanim_getAnimCtrlPtr(BT_NATIVE_ONLY(arg0));
+    #endif
     void func_8080040C_bsbanswim(struct player_state_s *);
-    s32 sp1C;
+    BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(s32) sp1C;
 
-    sp1C = baanim_getAnimCtrlPtr();
+    sp1C = baanim_getAnimCtrlPtr(BT_NATIVE_ONLY(arg0));
     func_8080040C_bsbanswim(arg0);
-    anctrl_setDuration(sp1C, 0x3F800000);
+    anctrl_setDuration(sp1C, BT_DATA_FIELD(1.0f, 0x3F800000));
 }
 
 void func_808004F4_bsbanswim(struct player_state_s *arg0) {
@@ -210,12 +222,16 @@ void func_808004F4_bsbanswim(struct player_state_s *arg0) {
     s32 _baswim_entrypoint_2(BtIntPtr);
     s32 _baswim_entrypoint_3(BtIntPtr);
     void func_8009DF18(struct player_state_s *, s32, f32, s32);
+    #if defined(BT_NATIVE)
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    #else
     s32 baanim_getAnimCtrlPtr();
-    s32 anctrl_isAt(BtIntPtr, f32);
+    #endif
+    s32 anctrl_isAt(BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr), f32);
     void bs_setState(void *self, s32 nextState);
     s32 player_inWater(void *);
     s32 sp24;
-    s32 sp20;
+    BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(s32) sp20;
     s32 temp_v0;
 
     sp24 = 0;
@@ -271,15 +287,19 @@ void func_80800670_bsbanswim(struct player_state_s *arg0)
 
 /* extern */
 
-void func_80800690_bsbanswim(BtIntPtr arg0) {
-    s32 anctrl_setDuration(BtIntPtr, s32);
-    s32 baanim_getAnimCtrlPtr();
+void func_80800690_bsbanswim(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0) {
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) anctrl_setDuration(BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr), BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32));
+    #if defined(BT_NATIVE)
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    #else
+    s32 baanim_getAnimCtrlPtr(BT_NATIVE_ONLY(void *));
+    #endif
     void func_8080040C_bsbanswim(struct player_state_s *);
-    s32 sp1C;
+    BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(s32) sp1C;
 
-    sp1C = baanim_getAnimCtrlPtr();
+    sp1C = baanim_getAnimCtrlPtr(BT_NATIVE_ONLY((struct player_state_s *)(BtIntPtr)arg0));
     func_8080040C_bsbanswim(arg0);
-    anctrl_setDuration(sp1C, 0x3F4CCCCD);
+    anctrl_setDuration(sp1C, BT_DATA_FIELD(0.800000011920929f, 0x3F4CCCCD));
 }
 
 void func_808006CC_bsbanswim(struct player_state_s *arg0) {
@@ -290,12 +310,16 @@ void func_808006CC_bsbanswim(struct player_state_s *arg0) {
     s32 _baswim_entrypoint_2(BtIntPtr);
     s32 _baswim_entrypoint_3(BtIntPtr);
     void func_8009DF18(struct player_state_s *, s32, f32, s32);
+    #if defined(BT_NATIVE)
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    #else
     s32 baanim_getAnimCtrlPtr();
-    s32 anctrl_isAt(BtIntPtr, f32);
+    #endif
+    s32 anctrl_isAt(BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr), f32);
     void bs_setState(void *self, s32 nextState);
     s32 player_inWater(void *);
     s32 sp24;
-    s32 sp20;
+    BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(s32) sp20;
     s32 temp_v0;
 
     sp24 = 0;
@@ -351,15 +375,19 @@ void func_80800848_bsbanswim(struct player_state_s *arg0)
 
 /* extern */
 
-void func_80800868_bsbanswim(BtIntPtr arg0) {
-    s32 anctrl_setDuration(BtIntPtr, s32);
-    s32 baanim_getAnimCtrlPtr();
+void func_80800868_bsbanswim(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0) {
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) anctrl_setDuration(BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr), BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32));
+    #if defined(BT_NATIVE)
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    #else
+    s32 baanim_getAnimCtrlPtr(BT_NATIVE_ONLY(void *));
+    #endif
     void func_8080040C_bsbanswim(struct player_state_s *);
-    s32 sp1C;
+    BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(s32) sp1C;
 
-    sp1C = baanim_getAnimCtrlPtr();
+    sp1C = baanim_getAnimCtrlPtr(BT_NATIVE_ONLY((struct player_state_s *)(BtIntPtr)arg0));
     func_8080040C_bsbanswim(arg0);
-    anctrl_setDuration(sp1C, 0x3F333333);
+    anctrl_setDuration(sp1C, BT_DATA_FIELD(0.699999988079071f, 0x3F333333));
 }
 
 void func_808008A4_bsbanswim(struct player_state_s *arg0) {
@@ -370,12 +398,16 @@ void func_808008A4_bsbanswim(struct player_state_s *arg0) {
     s32 _baswim_entrypoint_2(BtIntPtr);
     s32 _baswim_entrypoint_3(BtIntPtr);
     void func_8009DF18(struct player_state_s *, s32, f32, s32);
+    #if defined(BT_NATIVE)
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    #else
     s32 baanim_getAnimCtrlPtr();
-    s32 anctrl_isAt(BtIntPtr, f32);
+    #endif
+    s32 anctrl_isAt(BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr), f32);
     void bs_setState(void *self, s32 nextState);
     s32 player_inWater(void *);
     s32 sp24;
-    s32 sp20;
+    BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(s32) sp20;
     s32 temp_v0;
 
     sp24 = 0;

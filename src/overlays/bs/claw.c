@@ -1,14 +1,18 @@
 #include "bs_script.h"
 #include "common.h"
+#if defined(BT_NATIVE)
+struct anctrl_s;
+struct player_state_s;
+#endif
 /* extern */
 
 struct player_state_s;
 void bsclaw_entrypoint_0(struct player_state_s *arg0) {
     void baflag_clear(struct player_state_s *, s32);
-    s32 func_8009E474();
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) func_8009E474(BT_NATIVE_ONLY(struct player_state_s *));
     void func_800A0CF4(struct player_state_s *, s32);
     void func_800C6DA0(s32 arg0);
-    func_8009E474();
+    func_8009E474(BT_NATIVE_ONLY(arg0));
     func_800C6DA0(0x47);
     baflag_clear(arg0, 0x1F);
     func_800A0CF4(arg0, 0);
@@ -50,30 +54,34 @@ void bsclaw_entrypoint_1(struct player_state_s *arg0) {
 
 /* extern */
 
-void bsclaw_entrypoint_2(BtIntPtr arg0) {
+void bsclaw_entrypoint_2(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0) {
 
-    s32 _batimer_decrement(BtIntPtr, s32);
-    f32 _batimer_get(BtIntPtr, s32);
-    f32 anctrl_getAnimTimer(BtIntPtr);
-    s32 anctrl_isAt(BtIntPtr, s32);
-    s32 anctrl_isStopped(BtIntPtr);
-    s32 baanim_getAnimCtrlPtr();
+    s32 _batimer_decrement(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr), s32);
+    f32 _batimer_get(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr), s32);
+    f32 anctrl_getAnimTimer(BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr));
+    s32 anctrl_isAt(BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr), BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32));
+    s32 anctrl_isStopped(BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr));
+    #if defined(BT_NATIVE)
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    #else
+    s32 baanim_getAnimCtrlPtr(BT_NATIVE_ONLY(struct player_state_s *));
+    #endif
     void baflag_clear(struct player_state_s *, s32);
-    s32 baflag_set(BtIntPtr, s32);
-    s32 bakey_pressed(BtIntPtr, s32);
-    s32 baphysics_set_horizontal_velocity(BtIntPtr, f32, s32);
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) baflag_set(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr), s32);
+    s32 bakey_pressed(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr), s32);
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) baphysics_set_horizontal_velocity(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr), f32, BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32));
     void baphysics_set_target_horizontal_velocity(struct player_state_s *, f32);
-    s32 bs_getTypeOfJump(BtIntPtr);
-    s32 bs_setState(BtIntPtr, s32);
-    s32 func_8009DE38(BtIntPtr, s32, s32);
-    s32 player_inWater(BtIntPtr);
-    f32 yaw_get(BtIntPtr);
-    s32 sp24;
+    s32 bs_getTypeOfJump(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr));
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) bs_setState(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr), s32);
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) func_8009DE38(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr), s32, BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32));
+    s32 player_inWater(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr));
+    f32 yaw_get(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr));
+    BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(s32) sp24;
     s32 sp20;
     f32 sp1C;
-    s32 temp_v0;
+    BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(s32) temp_v0;
 
-    temp_v0 = baanim_getAnimCtrlPtr();
+    temp_v0 = baanim_getAnimCtrlPtr(BT_NATIVE_ONLY((struct player_state_s *)(BtIntPtr)arg0));
     sp24 = temp_v0;
     sp20 = 0;
     sp1C = anctrl_getAnimTimer(temp_v0);
@@ -81,28 +89,28 @@ void bsclaw_entrypoint_2(BtIntPtr arg0) {
         sp20 = 0x189;
     }
     _batimer_decrement(arg0, 0);
-    if (anctrl_isAt(sp24, 0x3F034D6A) != 0) {
-        baphysics_set_horizontal_velocity(arg0, yaw_get(arg0), 0x43B40000);
+    if (anctrl_isAt(sp24, BT_DATA_FIELD(0.5128999948501587f, 0x3F034D6A)) != 0) {
+        baphysics_set_horizontal_velocity(arg0, yaw_get(arg0), BT_DATA_FIELD(360.0f, 0x43B40000));
     }
-    if (anctrl_isAt(sp24, 0x3F2765FE) != 0) {
+    if (anctrl_isAt(sp24, BT_DATA_FIELD(0.6539000272750854f, 0x3F2765FE)) != 0) {
         baphysics_set_target_horizontal_velocity(arg0, 0);
     }
-    if ((anctrl_isAt(sp24, 0x3E185F07) != 0) || ((sp1C > 0.0488f) && (sp1C < 0.24880001f)) || (anctrl_isAt(sp24, 0x3EA85879) != 0) || ((sp1C > 0.2288f) && (sp1C < 0.4288f)) || (anctrl_isAt(sp24, 0x3F142C3D) != 0) || ((sp1C > 0.47880003f) && (sp1C < 0.67880005f))) {
+    if ((anctrl_isAt(sp24, BT_DATA_FIELD(0.14880000054836273f, 0x3E185F07)) != 0) || ((sp1C > 0.0488f) && (sp1C < 0.24880001f)) || (anctrl_isAt(sp24, BT_DATA_FIELD(0.3287999927997589f, 0x3EA85879)) != 0) || ((sp1C > 0.2288f) && (sp1C < 0.4288f)) || (anctrl_isAt(sp24, BT_DATA_FIELD(0.5788000226020813f, 0x3F142C3D)) != 0) || ((sp1C > 0.47880003f) && (sp1C < 0.67880005f))) {
         baflag_set(arg0, 0x1F);
     } else {
         baflag_clear(arg0, 0x1F);
     }
-    if (anctrl_isAt(sp24, 0x3F142C3D) != 0) {
+    if (anctrl_isAt(sp24, BT_DATA_FIELD(0.5788000226020813f, 0x3F142C3D)) != 0) {
         baphysics_set_target_horizontal_velocity(arg0, 0);
     }
-    if (anctrl_isAt(sp24, 0x3DF34D6A) != 0) {
-        func_8009DE38(arg0, 0x442C, 0x3F90A3D7);
+    if (anctrl_isAt(sp24, BT_DATA_FIELD(0.11879999935626984f, 0x3DF34D6A)) != 0) {
+        func_8009DE38(arg0, 0x442C, BT_DATA_FIELD(1.13f, 0x3F90A3D7));
     }
-    if (anctrl_isAt(sp24, 0x3E93DD98) != 0) {
-        func_8009DE38(arg0, 0x442C, 0x3F8CCCCD);
+    if (anctrl_isAt(sp24, BT_DATA_FIELD(0.2888000011444092f, 0x3E93DD98)) != 0) {
+        func_8009DE38(arg0, 0x442C, BT_DATA_FIELD(1.1f, 0x3F8CCCCD));
     }
-    if (anctrl_isAt(sp24, 0x3F000000) != 0) {
-        func_8009DE38(arg0, 0x442C, 0x3FA8F5C3);
+    if (anctrl_isAt(sp24, BT_DATA_FIELD(0.5f, 0x3F000000)) != 0) {
+        func_8009DE38(arg0, 0x442C, BT_DATA_FIELD(1.32f, 0x3FA8F5C3));
     }
     if (anctrl_isStopped(sp24) != 0) {
         sp20 = 1;

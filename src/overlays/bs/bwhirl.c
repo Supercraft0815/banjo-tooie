@@ -1,4 +1,8 @@
 #include "common.h"
+#if defined(BT_NATIVE)
+struct anctrl_s;
+struct player_state_s;
+#endif
 #ifdef BT_NATIVE
 #include "core2/particle_script.h"
 #endif
@@ -209,9 +213,13 @@ void bsbwhirl_entrypoint_0(PlayerState *arg0) {
 
 /* extern */
 
-void bsbwhirl_entrypoint_1(BtIntPtr arg0) {
-    s32 anctrl_isStopped(BtIntPtr);
-    s32 baanim_getAnimCtrlPtr(BtIntPtr);
+void bsbwhirl_entrypoint_1(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0) {
+    s32 anctrl_isStopped(BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr));
+    #if defined(BT_NATIVE)
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    #else
+    s32 baanim_getAnimCtrlPtr(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr));
+    #endif
     void bs_setState(PlayerState *, int);
     s32 sp1C;
 
@@ -343,7 +351,11 @@ void bsbwhirl_entrypoint_12(PlayerState *arg0) {
     void anctrl_setStart(struct anctrl_s *, f32);
     void anctrl_setSubrange(struct anctrl_s *, f32, f32);
     void anctrl_start(void *control);
+    #if defined(BT_NATIVE)
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    #else
     s32 baanim_getAnimCtrlPtr(BtIntPtr);
+    #endif
     void func_8008B1C8(struct anctrl_s *, f32);
     f32 baphysics_get_target_horizontal_velocity(PlayerState *);
     void baphysics_set_gravity(PlayerState *, f32);
@@ -358,7 +370,7 @@ void bsbwhirl_entrypoint_12(PlayerState *arg0) {
     void func_8009FFD8(PlayerState *, int, int, s32, int);
     s32 pad[2];
     f32 sp2C;
-    BtIntPtr control;
+    BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr) control;
 
     control = baanim_getAnimCtrlPtr(arg0);
     anctrl_reset(control);
@@ -386,18 +398,22 @@ void bsbwhirl_entrypoint_12(PlayerState *arg0) {
 void baphysics_reset_gravity();
 
 void bsbwhirl_entrypoint_13(PlayerState *arg0) {
-    s32 anctrl_isStopped(BtIntPtr);
+    s32 anctrl_isStopped(BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr));
     void anctrl_setDuration(void *arg0, f32 arg1);
     void anctrl_setPlaybackType(void *arg0, s32 arg1);
     void anctrl_setSubrange(struct anctrl_s *, f32, f32);
+    #if defined(BT_NATIVE)
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    #else
     s32 baanim_getAnimCtrlPtr(BtIntPtr);
+    #endif
     int bakey_released(PlayerState *, int);
     s32 player_inWater(PlayerState *);
     void bs_setState(PlayerState *, int);
     void func_8009BB24(void *, f32 *);
     void func_8009FE58(PlayerState *);
     s32 sp34;
-    BtIntPtr sp30;
+    BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr) sp30;
     f32 sp24[3];
 
     sp34 = 0;
@@ -463,13 +479,17 @@ void bsbwhirl_entrypoint_16(PlayerState *arg0) {
     void anctrl_setPlaybackType(void *arg0, s32 arg1);
     void anctrl_setSmoothTransition(void *arg0, s32 arg1);
     void anctrl_start(void *control);
+    #if defined(BT_NATIVE)
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    #else
     s32 baanim_getAnimCtrlPtr();
+    #endif
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     void func_8008B188(void *arg0, s32 arg1);
     void func_8008CA4C(PlayerState *, s32);
     void func_8009D2D8(PlayerState *arg0, s32 arg1);
     void func_800FCAE0(u32 track_id, u32 volume, u32 duration);
-    BtIntPtr temp_v0;
+    BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr) temp_v0;
 
     temp_v0 = baanim_getAnimCtrlPtr(arg0);
     anctrl_reset(temp_v0);
@@ -487,14 +507,18 @@ void bsbwhirl_entrypoint_16(PlayerState *arg0) {
 
 /* extern */
 
-void bsbwhirl_entrypoint_17(BtIntPtr arg0) {
-    s32 anctrl_isStopped(BtIntPtr);
-    s32 baanim_getAnimCtrlPtr();
+void bsbwhirl_entrypoint_17(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0) {
+    s32 anctrl_isStopped(BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr));
+    #if defined(BT_NATIVE)
+    struct anctrl_s *baanim_getAnimCtrlPtr(struct player_state_s *);
+    #else
+    s32 baanim_getAnimCtrlPtr(BT_NATIVE_ONLY(BtIntPtr));
+    #endif
     void bs_setState(PlayerState *, int);
     s32 sp1C;
 
     sp1C = 0;
-    if (anctrl_isStopped(baanim_getAnimCtrlPtr()) != 0) {
+    if (anctrl_isStopped(baanim_getAnimCtrlPtr(BT_NATIVE_ONLY(arg0))) != 0) {
         sp1C = 1;
     }
     func_80800008_bsbwhirl(arg0);

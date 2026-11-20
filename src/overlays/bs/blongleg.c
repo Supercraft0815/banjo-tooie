@@ -113,23 +113,23 @@ void func_80800204_bsblongleg(PlayerState *arg0) {
 
 void func_808002D8_bsblongleg(void *arg0) {
     void anctrl_reset(struct anctrl_s *);
-    s32 anctrl_setDuration(BtIntPtr, s32);
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) anctrl_setDuration(BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr), BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32));
     void anctrl_setIndex(struct anctrl_s *, s32);
     void anctrl_setPlaybackType(struct anctrl_s *, s32);
-    s32 anctrl_setSmoothTransition(BtIntPtr, s32);
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) anctrl_setSmoothTransition(BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr), s32);
     void anctrl_start(struct anctrl_s *);
     struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
     s32 bastatetimer_set(void *, s32, f32);
     f32 func_800A3394(void *);
     void func_800C3BDC(u8);
     s32 func_800C77DC(s32);
-    BtIntPtr temp_v0;
+    BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr) temp_v0;
 
     temp_v0 = baanim_getAnimCtrlPtr(arg0);
     anctrl_reset(temp_v0);
     anctrl_setSmoothTransition(temp_v0, 0);
     anctrl_setIndex(temp_v0, 0x40);
-    anctrl_setDuration(temp_v0, 0x3F800000);
+    anctrl_setDuration(temp_v0, BT_DATA_FIELD(1.0f, 0x3F800000));
     anctrl_setPlaybackType(temp_v0, 1);
     anctrl_start(temp_v0);
     bastatetimer_set(arg0, 2, func_800A3394(arg0));
@@ -142,19 +142,19 @@ void func_808002D8_bsblongleg(void *arg0) {
 
 void func_80800378_bsblongleg(void *arg0) {
     void anctrl_reset(struct anctrl_s *);
-    s32 anctrl_setDuration(BtIntPtr, s32);
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) anctrl_setDuration(BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr), BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32));
     void anctrl_setIndex(struct anctrl_s *, s32);
     void anctrl_setPlaybackType(struct anctrl_s *, s32);
-    s32 anctrl_setSmoothTransition(BtIntPtr, s32);
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) anctrl_setSmoothTransition(BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr), s32);
     void anctrl_start(struct anctrl_s *);
-    struct anctrl_s *baanim_getAnimCtrlPtr();
-    BtIntPtr temp_v0;
+    struct anctrl_s *baanim_getAnimCtrlPtr(BT_NATIVE_ONLY(struct player_state_s *));
+    BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr) temp_v0;
 
-    temp_v0 = baanim_getAnimCtrlPtr();
+    temp_v0 = baanim_getAnimCtrlPtr(BT_NATIVE_ONLY((struct player_state_s *)(BtIntPtr)arg0));
     anctrl_reset(temp_v0);
     anctrl_setSmoothTransition(temp_v0, 0);
     anctrl_setIndex(temp_v0, 0x16);
-    anctrl_setDuration(temp_v0, 0x3F000000);
+    anctrl_setDuration(temp_v0, BT_DATA_FIELD(0.5f, 0x3F000000));
     anctrl_setPlaybackType(temp_v0, 1);
     anctrl_start(temp_v0);
     (((PlayerState *)arg0)->unk15C.word) = 0;
@@ -291,20 +291,20 @@ void bsblongleg_entrypoint_8(PlayerState *arg0) {
     void anctrl_setIndex(struct anctrl_s *, s32);
     void anctrl_setPlaybackType(struct anctrl_s *, s32);
     void anctrl_start(struct anctrl_s *);
-    struct anctrl_s *baanim_getAnimCtrlPtr();
-    s32 func_8008C9F0(BtIntPtr, s32, s32, s32, f32);
+    struct anctrl_s *baanim_getAnimCtrlPtr(BT_NATIVE_ONLY(struct player_state_s *));
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) func_8008C9F0(BT_NATIVE_ONLY(PlayerState *) BT_IDO_ONLY(BtIntPtr), BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32), BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32), BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32), f32);
     void func_8009FFD8(PlayerState *, s32, s32, s32, s32);
-    BtIntPtr sp24;
-    BtIntPtr temp_v0;
+    BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr) sp24;
+    BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr) temp_v0;
 
-    temp_v0 = baanim_getAnimCtrlPtr();
+    temp_v0 = baanim_getAnimCtrlPtr(BT_NATIVE_ONLY((struct player_state_s *)(BtIntPtr)arg0));
     sp24 = temp_v0;
     anctrl_reset(temp_v0);
     anctrl_setIndex(sp24, 0x42);
     anctrl_setPlaybackType(sp24, 2);
     anctrl_start(sp24);
     func_8009FFD8(arg0, 2, 1, 1, 2);
-    func_8008C9F0(arg0, 0x42A00000, 0x43FA0000, 0x3F800000, 0.8f);
+    func_8008C9F0(arg0, BT_DATA_FIELD(80.0f, 0x42A00000), BT_DATA_FIELD(500.0f, 0x43FA0000), BT_DATA_FIELD(1.0f, 0x3F800000), 0.8f);
 }
 
 void bsblongleg_entrypoint_9(PlayerState *arg0) {
@@ -372,21 +372,21 @@ BsScript bsblongleg_entrypoint_11(BsScriptType arg0) {
 
 void func_80800994_bsblongleg(void *arg0) {
     void anctrl_reset(struct anctrl_s *);
-    s32 anctrl_setDuration(BtIntPtr, s32);
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) anctrl_setDuration(BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr), BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32));
     void anctrl_setIndex(struct anctrl_s *, s32);
     void anctrl_setPlaybackType(struct anctrl_s *, s32);
-    s32 anctrl_setSmoothTransition(BtIntPtr, s32);
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) anctrl_setSmoothTransition(BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr), s32);
     void anctrl_start(struct anctrl_s *);
-    struct anctrl_s *baanim_getAnimCtrlPtr();
-    s32 func_8008B188(BtIntPtr, s32);
-    BtIntPtr temp_v0;
+    struct anctrl_s *baanim_getAnimCtrlPtr(BT_NATIVE_ONLY(struct player_state_s *));
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) func_8008B188(BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr), s32);
+    BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr) temp_v0;
 
-    temp_v0 = baanim_getAnimCtrlPtr();
+    temp_v0 = baanim_getAnimCtrlPtr(BT_NATIVE_ONLY((struct player_state_s *)(BtIntPtr)arg0));
     anctrl_reset(temp_v0);
     anctrl_setSmoothTransition(temp_v0, 0);
     func_8008B188(temp_v0, 0);
     anctrl_setIndex(temp_v0, 0x40);
-    anctrl_setDuration(temp_v0, 0x3ECCCCCD);
+    anctrl_setDuration(temp_v0, BT_DATA_FIELD(0.4000000059604645f, 0x3ECCCCCD));
     anctrl_setPlaybackType(temp_v0, 1);
     anctrl_start(temp_v0);
     (((PlayerState *)arg0)->unk15C.word) = 0;
@@ -396,19 +396,19 @@ void func_80800994_bsblongleg(void *arg0) {
 
 void func_80800A18_bsblongleg(void *arg0) {
     void anctrl_reset(struct anctrl_s *);
-    s32 anctrl_setDuration(BtIntPtr, s32);
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) anctrl_setDuration(BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr), BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32));
     void anctrl_setIndex(struct anctrl_s *, s32);
     void anctrl_setPlaybackType(struct anctrl_s *, s32);
-    s32 anctrl_setSmoothTransition(BtIntPtr, s32);
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) anctrl_setSmoothTransition(BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr), s32);
     void anctrl_start(struct anctrl_s *);
-    struct anctrl_s *baanim_getAnimCtrlPtr();
-    BtIntPtr temp_v0;
+    struct anctrl_s *baanim_getAnimCtrlPtr(BT_NATIVE_ONLY(struct player_state_s *));
+    BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr) temp_v0;
 
-    temp_v0 = baanim_getAnimCtrlPtr();
+    temp_v0 = baanim_getAnimCtrlPtr(BT_NATIVE_ONLY((struct player_state_s *)(BtIntPtr)arg0));
     anctrl_reset(temp_v0);
     anctrl_setSmoothTransition(temp_v0, 0);
     anctrl_setIndex(temp_v0, 7);
-    anctrl_setDuration(temp_v0, 0x3E99999A);
+    anctrl_setDuration(temp_v0, BT_DATA_FIELD(0.30000001192092896f, 0x3E99999A));
     anctrl_setPlaybackType(temp_v0, 1);
     anctrl_start(temp_v0);
     (((PlayerState *)arg0)->unk15C.word) = 1;
@@ -478,7 +478,7 @@ BsScript bsblongleg_entrypoint_15(BsScriptType arg0) {
 
 void bsblongleg_entrypoint_16(PlayerState *arg0) {
     void anctrl_reset(struct anctrl_s *);
-    s32 anctrl_setDuration(BtIntPtr, s32);
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) anctrl_setDuration(BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr), BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32));
     void anctrl_setIndex(struct anctrl_s *, s32);
     void anctrl_setPlaybackType(struct anctrl_s *, s32);
     void anctrl_setStart(struct anctrl_s *, f32);
@@ -506,7 +506,7 @@ void bsblongleg_entrypoint_16(PlayerState *arg0) {
     anctrl_reset(control);
     anctrl_setIndex(control, 0x3D);
     func_8008B1C8(control, 0.134f);
-    anctrl_setDuration(control, 0x3F800000);
+    anctrl_setDuration(control, BT_DATA_FIELD(1.0f, 0x3F800000));
     anctrl_setStart(control, arg0->unk16C);
     anctrl_setSubrange(control, 0.0f, 0.42f);
     anctrl_setPlaybackType(control, 1);
@@ -528,7 +528,7 @@ void bsblongleg_entrypoint_16(PlayerState *arg0) {
 void bsblongleg_entrypoint_17(PlayerState *arg0) {
     f32 anctrl_getAnimTimer(struct anctrl_s *);
     s32 anctrl_isStopped(struct anctrl_s *);
-    s32 anctrl_setDuration(BtIntPtr, s32);
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) anctrl_setDuration(BT_NATIVE_ONLY(struct anctrl_s *) BT_IDO_ONLY(BtIntPtr), BT_NATIVE_ONLY(f32) BT_IDO_ONLY(s32));
     void anctrl_setPlaybackType(struct anctrl_s *, s32);
     void anctrl_setSubrange(struct anctrl_s *, f32, f32);
     struct anctrl_s *baanim_getAnimCtrlPtr(PlayerState *);
@@ -563,11 +563,11 @@ void bsblongleg_entrypoint_17(PlayerState *arg0) {
     switch (arg0->unk15C.word) {
     case 0:
         if (velocity[1] < 100.0f || height < 10.0f) {
-            anctrl_setDuration(control, 0x3ECCCCCD);
+            anctrl_setDuration(control, BT_DATA_FIELD(0.4000000059604645f, 0x3ECCCCCD));
         }
         if (anctrl_isStopped(control)) {
             anctrl_setSubrange(control, 0.0f, 0.5282f);
-            anctrl_setDuration(control, 0x40900000);
+            anctrl_setDuration(control, BT_DATA_FIELD(4.5f, 0x40900000));
             anctrl_setPlaybackType(control, 1);
             arg0->unk15C.word = 1;
         }
@@ -586,7 +586,7 @@ void bsblongleg_entrypoint_17(PlayerState *arg0) {
         if (player_isStable(arg0)) {
             func_8009FE58(arg0);
             anctrl_setSubrange(control, 0.0f, 1.0f);
-            anctrl_setDuration(control, 0x3FA66666);
+            anctrl_setDuration(control, BT_DATA_FIELD(1.2999999523162842f, 0x3FA66666));
             anctrl_setPlaybackType(control, 1);
             arg0->unk15C.word = 3;
         }
