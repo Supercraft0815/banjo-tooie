@@ -1,5 +1,8 @@
 #include "common.h"
-
+#ifdef BT_NATIVE
+#include "gc/dialog_state.h"
+typedef GcDialogState DialogInit;
+#else
 typedef struct {
     u8 pad0[0x100];
     s32 unk100;
@@ -58,7 +61,7 @@ typedef struct {
         s32 unk28;
     } entries[4];
 } DialogInit;
-
+#endif
 void gcdialogDll_entrypoint_0(DialogInit *arg0) {
     void func_800EFD24(f32 *);
     DialogInit *dialog;
@@ -66,6 +69,25 @@ void gcdialogDll_entrypoint_0(DialogInit *arg0) {
     u32 mode;
 
     arg0->unk100 = 0;
+#if defined(BT_NATIVE)
+    arg0->unk12C = 0;
+#endif
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    if (arg0 == &gc_dialog_state) {
+        s32 n;
+        for (n = 0; n < 2; n++) { gc_dialog_set_text_entry(arg0, n, NULL); gc_dialog_set_text_data(arg0, n, NULL); }
+        for (n = 0; n < 3; n++) gc_dialog_set_box(arg0, n, NULL);
+        gc_dialog_set_caller(arg0, NULL);
+        for (n = 0; n < 3; n++) gc_dialog_set_callback(arg0, n, NULL);
+        gc_dialog_set_source(arg0, NULL);
+        for (n = 0; n < 4; n++) {
+            gc_dialog_native_state.requests[n].actor = NULL;
+            gc_dialog_native_state.requests[n].callback = NULL;
+            gc_dialog_native_state.requests[n].callback2 = NULL;
+            gc_dialog_native_state.requests[n].callback3 = NULL;
+        }
+    }
+#endif
     for (i = 0; i < 2; i++) {
         arg0->unk104[i] = 0;
         arg0->unk114[i] = 0;
@@ -87,12 +109,20 @@ void gcdialogDll_entrypoint_0(DialogInit *arg0) {
         arg0->entries[i].unk24 = 0;
         func_800EFD24(arg0->entries[i].vec);
     }
+#if defined(BT_NATIVE)
+    arg0->status15C = 0;
+#else
     arg0->unk15C = 0;
+#endif
     arg0->unk15A = arg0->flag5 = 0;
     dialog = arg0;
     dialog->mode0 = 0;
     dialog->mode3 = dialog->mode2 = dialog->mode1 = dialog->mode0;
+#if defined(BT_NATIVE)
+    dialog->count15D = dialog->flag7 = 0;
+#else
     dialog->unk15D = dialog->flag7 = 0;
+#endif
     dialog->unk160 = -1;
     dialog->flag6 = 1;
     dialog->nibble0 = 0;

@@ -520,7 +520,15 @@ target_link_libraries(bt_native_hud_draw_test PRIVATE bt_native_options)
 add_executable(bt_native_fxstep_test tests/fxstep.c
     "${BT_ROOT}/src/core2/1E7BFA0.c" "${BT_ROOT}/src/overlays/fx/step.c")
 target_link_libraries(bt_native_fxstep_test PRIVATE bt_native_options)
-foreach(registry_test IN ITEMS particle_registry transition_registry timer_queue gameselect_roles player_vectors hud_draw fxstep)
+add_executable(bt_native_dialog_state_test tests/dialog_state.c
+    "${BT_ROOT}/src/overlays/gc/dialog/Dll.c" "${BT_ROOT}/src/core2/1E99980.c")
+target_link_libraries(bt_native_dialog_state_test PRIVATE bt_native_options)
+add_executable(bt_native_dialog_open_test tests/dialog_open.c
+    "${BT_ROOT}/src/overlays/gc/dialog/Dll.c" "${BT_ROOT}/src/overlays/gc/dialog/exec.c")
+target_link_libraries(bt_native_dialog_open_test PRIVATE bt_native_options)
+add_executable(bt_native_deflect_test tests/deflect.c "${BT_ROOT}/src/overlays/su/deflect.c")
+target_link_libraries(bt_native_deflect_test PRIVATE bt_native_options)
+foreach(registry_test IN ITEMS particle_registry transition_registry timer_queue gameselect_roles player_vectors hud_draw fxstep dialog_state dialog_open deflect)
     if(MSVC)
         target_compile_options(bt_native_${registry_test}_test PRIVATE /Gy /Gw)
         target_link_options(bt_native_${registry_test}_test PRIVATE /OPT:REF)

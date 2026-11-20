@@ -1,12 +1,51 @@
 #include "common.h"
+BT_NATIVE_ONLY(void _subaddiedialog_entrypoint_13(BtIntPtr, s32, s32);)
+#ifdef BT_NATIVE
+#include "gc/dialog_state.h"
+#endif
 
-typedef struct { u8 pad0[0x12]; u16 unk12; u8 pad14[0xEC]; s32 unk100; u8 pad104[0x28]; BtIntPtr unk12C; u8 pad130[0x28]; s8 unk158; u8 pad159[0x1]; u16 unk15A; u8 pad15C[0x4]; s8 unk160; u8 pad161[0x1]; s16 unk162; s16 unk164; u8 pad166[0x2]; void * unk168; s32 unk16C; s32 (*unk170)(void *, s16, s8); u8 pad174[0x8]; s32 unk17C; } Objexec_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ s32 func_80800000_gcdialogexec(void *arg0, s32 arg1) {
+#ifdef BT_NATIVE
+typedef struct { u8 pad0[0x12]; u16 unk12; u8 pad14[0xEC]; s32 unk100; u8 pad104[0x28]; BtIntPtr unk12C; u8 pad130[0x28]; s8 unk158; u8 pad159[0x1]; u16 unk15A; u8 pad15C[0x4]; s8 unk160; u8 pad161[0x1]; s16 unk162; s16 unk164; u8 pad166[0x2]; void * unk168; s32 unk16C; s32 (*unk170)(void *, s16, s8); s32 unk174; s32 unk178; s32 unk17C; } Objexec_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+#else
+typedef struct { u8 pad0[0x12]; u16 unk12; u8 pad14[0xEC]; s32 unk100; u8 pad104[0x28]; BtIntPtr unk12C; u8 pad130[0x28]; s8 unk158; u8 pad159[0x1]; u16 unk15A; u8 pad15C[0x4]; s8 unk160; u8 pad161[0x1]; s16 unk162; s16 unk164; u8 pad166[0x2]; void * unk168; s32 unk16C; s32 (*unk170)(void *, s16, s8); s32 unk174; s32 unk178; s32 unk17C; } Objexec_arg0; /* IDO layout */
+#endif
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+#define DIALOG_CALLER(arg0) gc_dialog_caller((GcDialogState *)(arg0))
+#define DIALOG_CALLBACK(arg0, slot) gc_dialog_callback((GcDialogState *)(arg0), (slot))
+#define DIALOG_SET_CALLBACK(arg0, slot, p) gc_dialog_set_callback((GcDialogState *)(arg0), (slot), (p))
+#define DIALOG_SOURCE(arg0) gc_dialog_source((GcDialogState *)(arg0))
+#define DIALOG_SET_SOURCE(arg0, p) gc_dialog_set_source((GcDialogState *)(arg0), (void *)(p))
+#define DIALOG_BOX(arg0, i) gc_dialog_box((GcDialogState *)(arg0), (i))
+#define DIALOG_SET_BOX(arg0, i, p) gc_dialog_set_box((GcDialogState *)(arg0), (i), (void *)(p))
+#define DIALOG_TEXT_ENTRY(arg0, i) gc_dialog_text_entry((GcDialogState *)(arg0), (i))
+#define DIALOG_SET_TEXT_ENTRY(arg0, i, p) gc_dialog_set_text_entry((GcDialogState *)(arg0), (i), (void *)(p))
+#else
+#define DIALOG_CALLER(arg0) (((Objexec_arg0 *)(arg0))->unk168)
+#define DIALOG_CALLBACK(arg0, slot) ((slot) == 0 ? ((Objexec_arg0 *)(arg0))->unk170 : (slot) == 1 ? (s32 (*)(void *, s16, s8))((BtIntPtr)((Objexec_arg0 *)(arg0))->unk174) : (s32 (*)(void *, s16, s8))((BtIntPtr)((Objexec_arg0 *)(arg0))->unk178))
+#define DIALOG_SET_CALLBACK(arg0, slot, p) ((void)0)
+#define DIALOG_SOURCE(arg0) ((void *)(BtIntPtr)((Objexec_arg0 *)(arg0))->unk100)
+#define DIALOG_SET_SOURCE(arg0, p) (((Objexec_arg0 *)(arg0))->unk100 = (BtIntPtr)(p))
+#define DIALOG_BOX(arg0, i) ((void *)(BtIntPtr)((i) == 2 ? ((Objexec_arg0 *)(arg0))->unk12C : ((s32 *)(arg0))[0x48 + (i)]))
+#define DIALOG_SET_BOX(arg0, i, p) ((i) == 2 ? (((Objexec_arg0 *)(arg0))->unk12C = (BtIntPtr)(p)) : (((s32 *)(arg0))[0x48 + (i)] = (s32)(BtIntPtr)(p)))
+#define DIALOG_TEXT_ENTRY(arg0, i) ((void *)(BtIntPtr)((BtIntPtr *)(arg0))[(0x104 / sizeof(BtIntPtr)) + (i)])
+#define DIALOG_SET_TEXT_ENTRY(arg0, i, p) (((BtIntPtr *)(arg0))[(0x104 / sizeof(BtIntPtr)) + (i)] = (BtIntPtr)(p))
+#endif
+
+s32 func_80800000_gcdialogexec(void *arg0, s32 arg1) {
     return arg1 == -1 ? 0 : ((u32)arg1 == ((u32)*&((Objexec_arg0 *)arg0)->unk12 >> 1));
 }    typedef struct { u8 pad0[0x11C]; s32 unk11C; s32 unk120; } Objexec_func_8080002C_gcdialogexec_var_s0; /* offsets.py genstruct: fields from raw offsets on var_s0; rename once understood */
 
 /* extern */
 
 void func_8080002C_gcdialogexec(u8 *arg0) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    void _gczoombox_entrypoint_0(void *);
+    s32 i;
+    for (i = 0; i < 3; i++) {
+        void *box = DIALOG_BOX(arg0, i);
+        if (box != NULL) { _gczoombox_entrypoint_0(box); DIALOG_SET_BOX(arg0, i, NULL); }
+    }
+#else
     void _gczoombox_entrypoint_0(void *);
     s32 temp_a0;
     s32 var_s1;
@@ -25,6 +64,7 @@ void func_8080002C_gcdialogexec(u8 *arg0) {
         _gczoombox_entrypoint_0((void *)temp_a0);
         (((Objexec_arg0 *)arg0)->unk12C) = 0;
     }
+#endif
 }    typedef struct { u8 pad0[0x114]; u8 unk114; } Objexec_func_808000A0_gcdialogexec_var_s0; /* offsets.py genstruct: fields from raw offsets on var_s0; rename once understood */ typedef struct { u8 pad0[0x100]; s32 unk100; BtIntPtr unk104; } Objexec_func_808000A0_gcdialogexec_var_s1; /* offsets.py genstruct: fields from raw offsets on var_s1; rename once understood */
 
 /* extern */
@@ -39,6 +79,22 @@ void func_808000A0_gcdialogexec(u8 *arg0) {
     u8 *var_s0;
     u8 *var_s1;
 
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    var_s2 = 0;
+    for (; var_s2 < 2; var_s2++) {
+        void *textEntries = DIALOG_TEXT_ENTRY(arg0, var_s2);
+        var_v0 = ((GcDialogState *)arg0)->unk114[var_s2];
+        var_v1 = 0;
+        while (var_v0-- > 0 && textEntries != NULL) {
+            *(s32 *)((u8 *)textEntries + var_v1 + 4) = 0;
+            var_v1 += 8;
+        }
+        ((GcDialogState *)arg0)->unk114[var_s2] = 0;
+        heap_free(textEntries);
+        DIALOG_SET_TEXT_ENTRY(arg0, var_s2, NULL);
+        gc_dialog_set_text_data((GcDialogState *)arg0, var_s2, NULL);
+    }
+#else
     var_s0 = arg0;
     var_s1 = arg0;
     var_s2 = 0;
@@ -59,11 +115,16 @@ void func_808000A0_gcdialogexec(u8 *arg0) {
         var_s1 += 4;
         (((Objexec_func_808000A0_gcdialogexec_var_s1 *)var_s1)->unk100) = 0;
     } while (var_s2 != 2);
+#endif
     temp_a0 = (((Objexec_arg0 *)arg0)->unk162);
     if (temp_a0 != -1) {
         _gldialog_entrypoint_5(temp_a0);
     }
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    DIALOG_SET_SOURCE(arg0, NULL);
+#else
     (((Objexec_arg0 *)arg0)->unk100) = 0;
+#endif
 }
 
 void func_80800164_gcdialogexec(u8 *arg0) {
@@ -73,11 +134,19 @@ void func_80800164_gcdialogexec(u8 *arg0) {
     }
     *(s16 *)(arg0 + 0x162) = -1;
     *(s16 *)(arg0 + 0x15A) = arg0[0x15D] = 0;
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    gc_dialog_set_caller((GcDialogState *)arg0, NULL);
+    gc_dialog_set_callback((GcDialogState *)arg0, 0, NULL);
+    gc_dialog_set_callback((GcDialogState *)arg0, 1, NULL);
+    gc_dialog_set_callback((GcDialogState *)arg0, 2, NULL);
+    arg0[0x167] = 0;
+#else
     *(s32 *)(arg0 + 0x168) = 0;
     arg0[0x167] = 0;
     *(s32 *)(arg0 + 0x170) = 0;
     *(s32 *)(arg0 + 0x174) = 0;
     *(s32 *)(arg0 + 0x178) = 0;
+#endif
 }    typedef struct { u8 pad0[0x18]; u16 unk18; } Objexec_func_808001DC_gcdialogexec_temp_a0_3; /* offsets.py genstruct: fields from raw offsets on temp_a0_3; rename once understood */
 
 /* extern */
@@ -99,22 +168,26 @@ void func_808001DC_gcdialogexec(u8 *arg0) {
     void *temp_a0_2;
     void *temp_a0_3;
 
-    temp_v0 = (((Objexec_arg0 *)arg0)->unk170);
+    temp_v0 = DIALOG_CALLBACK(arg0, 0);
     temp_a1 = (((Objexec_arg0 *)arg0)->unk162);
     (((Objexec_arg0 *)arg0)->unk164) = temp_a1;
     if (temp_v0 != NULL) {
-        temp_a0 = (((Objexec_arg0 *)arg0)->unk168);
+        temp_a0 = DIALOG_CALLER(arg0);
         if (temp_a0 == NULL) {
             temp_v0(temp_a0, temp_a1, (((Objexec_arg0 *)arg0)->unk160));
         } else if (func_80800000_gcdialogexec(temp_a0, (((Objexec_arg0 *)arg0)->unk16C)) != 0) {
-            (((Objexec_arg0 *)arg0)->unk170)((((Objexec_arg0 *)arg0)->unk168), (((Objexec_arg0 *)arg0)->unk162), (((Objexec_arg0 *)arg0)->unk160));
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+            gc_dialog_callback((GcDialogState *)arg0, 0)(DIALOG_CALLER(arg0), (((Objexec_arg0 *)arg0)->unk162), (((Objexec_arg0 *)arg0)->unk160));
+#else
+            (((Objexec_arg0 *)arg0)->unk170)(DIALOG_CALLER(arg0), (((Objexec_arg0 *)arg0)->unk162), (((Objexec_arg0 *)arg0)->unk160));
+#endif
         }
     }
-    temp_a0_2 = (((Objexec_arg0 *)arg0)->unk168);
+    temp_a0_2 = DIALOG_CALLER(arg0);
     if ((temp_a0_2 != NULL) && (func_80800000_gcdialogexec(temp_a0_2, (((Objexec_arg0 *)arg0)->unk16C)) != 0)) {
-        temp_a0_3 = (((Objexec_arg0 *)arg0)->unk168);
+        temp_a0_3 = DIALOG_CALLER(arg0);
         if ((((Objexec_func_808001DC_gcdialogexec_temp_a0_3 *)temp_a0_3)->unk18) & 1) {
-            _subaddiedialog_entrypoint_12(temp_a0_3, (((Objexec_arg0 *)arg0)->unk162), (((Objexec_arg0 *)arg0)->unk160));
+            _subaddiedialog_entrypoint_12(BT_NATIVE_ONLY((BtIntPtr))temp_a0_3, (((Objexec_arg0 *)arg0)->unk162), (((Objexec_arg0 *)arg0)->unk160));
         }
     }
     if (((((Objexec_arg0 *)arg0)->unk15A) & 8) && ((func_800A9C98() == 0) || !((struct DialogFlags *)(arg0 + 0x15C))->suppress) && (func_800F6438((((Objexec_arg0 *)arg0)->unk17C)) != 0)) {
@@ -193,6 +266,16 @@ void func_80800350_gcdialogexec(u8 *arg0, u8 *arg1, u8 *arg2, s32 arg3, s32 arg4
 }    typedef struct { u8 pad0[0x18]; u16 unk18; } Objexec_func_80800478_gcdialogexec_caller; /* offsets.py genstruct: fields from raw offsets on caller; rename once understood */
 
 int func_80800478_gcdialogexec(u8 *arg0, s32 arg1) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    s32 (*callback)(void *, s16, s32) = (s32 (*)(void *, s16, s32))(BtFnWord)gc_dialog_callback((GcDialogState *)arg0, 1);
+    void *caller = gc_dialog_caller((GcDialogState *)arg0);
+    if (callback != NULL && (caller == NULL || func_80800000_gcdialogexec(caller, ((GcDialogState *)arg0)->unk16C)))
+        callback(caller, ((GcDialogState *)arg0)->unk162, arg1);
+    if (caller != NULL && func_80800000_gcdialogexec(caller, ((GcDialogState *)arg0)->unk16C) &&
+        (*(u16 *)((u8 *)caller + 0x18) & 1))
+        _subaddiedialog_entrypoint_13((BtIntPtr)caller, ((GcDialogState *)arg0)->unk162, arg1);
+    return 0;
+#else
     void _subaddiedialog_entrypoint_13(BtIntPtr arg1, s32 arg2, s32 arg3);
     s32 (*callback)(void *, s16, s32);
     void *caller;
@@ -214,11 +297,13 @@ int func_80800478_gcdialogexec(u8 *arg0, s32 arg1) {
             _subaddiedialog_entrypoint_13(caller, *(s16 *)(arg0 + 0x162), arg1);
         }
     }
-BT_NATIVE_ONLY(return 0;) }
+BT_NATIVE_ONLY(return 0;)
+#endif
+}
 
 void func_8080052C_gcdialogexec(u8 *arg0) {
     int _gczoombox_entrypoint_11();
-    s32 _gczoombox_entrypoint_20(s32, f32, s32, s32, f32, s32, s32);
+    BT_IDO_ONLY(s32 _gczoombox_entrypoint_20(s32, f32, s32, s32, f32, s32, s32);) BT_NATIVE_ONLY(BtIntPtr _gczoombox_entrypoint_20(BtIntPtr, f32, s32, s32, f32, s32, s32);)
     void _gczoombox_entrypoint_26(void *arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4);
     BtIntPtr _gczoombox_entrypoint_5(s32, s32, s32, s32, BtIntPtr);
     int _gczoombox_entrypoint_8();
@@ -238,18 +323,99 @@ void func_8080052C_gcdialogexec(u8 *arg0) {
         f32 temp_f0;
         BtIntPtr temp_v0_2;
         temp_v0_2 = _gczoombox_entrypoint_5(0x72, 0x44, 2, 0, (BtIntPtr)func_800C0890);
-        (((Objexec_arg0 *)arg0)->unk12C) = temp_v0_2;
+        DIALOG_SET_BOX(arg0, 2, temp_v0_2);
         temp_f0 = D_80802EA0_gcdialogexec[*(s8 *)(arg0 + 0x158)];
-        _gczoombox_entrypoint_26(temp_v0_2, (s32) ((304.0f - (temp_f0 * 216.0f)) * 0.5f), 1.0f, temp_f0, 0);
+        _gczoombox_entrypoint_26(BT_NATIVE_ONLY((void *))temp_v0_2, (s32) ((304.0f - (temp_f0 * 216.0f)) * 0.5f), 1.0f, temp_f0, 0);
         }
-        _gczoombox_entrypoint_20((((Objexec_arg0 *)arg0)->unk12C), 100.0f, 0, 2, 0.1f, 0, 0);
-        _gczoombox_entrypoint_8((((Objexec_arg0 *)arg0)->unk12C), sp30[0]);
-        _gczoombox_entrypoint_9((void *)(((Objexec_arg0 *)arg0)->unk12C));
-        _gczoombox_entrypoint_11((((Objexec_arg0 *)arg0)->unk12C));
+        _gczoombox_entrypoint_20(BT_NATIVE_ONLY((BtIntPtr))DIALOG_BOX(arg0, 2), 100.0f, 0, 2, 0.1f, 0, 0);
+        _gczoombox_entrypoint_8(DIALOG_BOX(arg0, 2), sp30[0]);
+        _gczoombox_entrypoint_9(DIALOG_BOX(arg0, 2));
+        _gczoombox_entrypoint_11(DIALOG_BOX(arg0, 2));
     }
 }
 
 int func_8080064C_gcdialogexec(u8 *arg0) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    typedef struct { s16 code; u8 pad[2]; u8 *text; } HostEntry;
+    struct DialogBits {
+        BT_BITFIELD_ORDER(u16 current : 1; u16 rest : 8; u16 unused : 7;,
+                          u16 unused : 7; u16 rest : 8; u16 current : 1;);
+    };
+    struct DialogChanged {
+        u8 pad[0x160];
+        BT_BITFIELD_ORDER(u16 changed : 1; u16 rest : 15;, u16 rest : 15; u16 changed : 1;);
+    };
+    s32 _gczoombox_entrypoint_39(BtIntPtr, s32);
+    GcDialogState *state = (GcDialogState *)arg0;
+    HostEntry *entries;
+    HostEntry *entry;
+    s32 current = ((struct DialogBits *)(arg0 + 0x15E))->current;
+    s32 code;
+    entries = (HostEntry *)gc_dialog_text_entry(state, current);
+    entry = entries + state->unk116[current];
+    state->unk118[current] = entry->code;
+    gc_dialog_set_text_data(state, current, entry->text);
+    code = entry->code;
+    switch (code) {
+    case -8:
+        func_80800478_gcdialogexec(arg0, (BtIntPtr)gc_dialog_text_data(state, current));
+        state->unk116[current]++;
+        return 1;
+    case -9:
+        state->unk116[current]++;
+        return *(u8 *)gc_dialog_text_data(state, current) + 1;
+    case -2:
+        state->unk158 = *(u8 *)gc_dialog_text_data(state, current);
+        state->unk116[current]++;
+        return 1;
+    case -1:
+        return 1;
+    default:
+        if (gc_dialog_box(state, current) == NULL ||
+            _gczoombox_entrypoint_39((BtIntPtr)gc_dialog_box(state, current), code) ||
+            state->unk11C[current].state) {
+            ((struct DialogBits *)(arg0 + 0x15E))->current = current ^ 1;
+            return 0;
+        }
+        switch (code) {
+        case -10:
+        case -11:
+            do {
+                state->unk116[current]++;
+                entry = entries + state->unk116[current];
+                state->unk118[current] = entry->code;
+            } while (state->unk118[current] == -10 || state->unk118[current] == -11);
+            return 1;
+        case -4:
+            state->unk11C[current].mode = 1;
+            state->unk11C[current].state = 1;
+            ((struct DialogChanged *)arg0)->changed = 1;
+            ((struct DialogBits *)(arg0 + 0x15E))->current = current ^ 1;
+            return 0;
+        case -5:
+            state->unk11C[current].mode = 0;
+            state->unk11C[current].state = 1;
+            ((struct DialogChanged *)arg0)->changed = 1;
+            ((struct DialogBits *)(arg0 + 0x15E))->current = current ^ 1;
+            return 0;
+        case -7:
+            for (code = state->unk116[current]; entries[code].code < -5; code++) {}
+            state->unk11C[current].mode = 0;
+            state->unk116[current]++;
+            ((struct DialogBits *)(arg0 + 0x15E))->current = current ^ 1;
+            return 1;
+        case -6:
+            state->unk11C[current].mode = 0;
+            state->unk116[current]++;
+            ((struct DialogBits *)(arg0 + 0x15E))->current = current ^ 1;
+            ((struct DialogChanged *)arg0)->changed = 1;
+            return 1;
+        default:
+            state->unk116[current]++;
+            return 1;
+        }
+    }
+#else
     typedef struct {
         s16 code;
         u8 pad[2];
@@ -341,9 +507,93 @@ int func_8080064C_gcdialogexec(u8 *arg0) {
                     return 1;
             }
     }
+#endif
 }
 
 void func_80800A50_gcdialogexec(u8 *dialog, s32 state) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    void _gcdialogcamera_entrypoint_10(void *, s32, s32);
+    void _gczoombox_entrypoint_0(void *);
+    void _gczoombox_entrypoint_9(void *);
+    void _gczoombox_entrypoint_10(void *);
+    void _gczoombox_entrypoint_12(void *);
+    int _gczoombox_entrypoint_33(u8 *);
+    struct DialogState {
+        u8 pad[0x15C];
+        BT_BITFIELD_ORDER(u32 unused : 30, u32 remaining : 2);
+        BT_BITFIELD_ORDER(u32 remaining : 2, u32 unused : 30);
+    };
+    typedef struct { BT_BITFIELD_ORDER(u8 state : 2, u8 rest : 6); BT_BITFIELD_ORDER(u8 rest : 6, u8 state : 2); } BoxFlags;
+    typedef struct { u8 prefix[0x11C]; BoxFlags flags[2]; u8 unused11E[2]; u32 boxes[2]; u32 unused128; u32 extraBox; } DialogBoxes;
+    struct DialogActions {
+        u8 prefix[0x15E];
+        BT_BITFIELD_ORDER(u8 unused : 5, u8 rest : 2);
+        u8 finishing : 1;
+        BT_BITFIELD_ORDER(u8 rest : 2, u8 unused : 5);
+    };
+    s32 i, result, last;
+    void *box;
+
+    if (dialog[0x15C] != 6 || state != 6) {
+        switch (state) {
+        case 1:
+            for (i = 0; i != 2; i++) {
+                box = DIALOG_BOX(dialog, i);
+                if (box) {
+                    if (((DialogBoxes *)dialog)->flags[i].state == 0) _gczoombox_entrypoint_9(box);
+                    ((DialogBoxes *)dialog)->flags[i].state = 0;
+                }
+            }
+            *(s8 *)(dialog + 0x158) = -1;
+            break;
+        case 5:
+            for (i = 0; i != 2; i++) {
+                box = DIALOG_BOX(dialog, i);
+                if (box && ((DialogBoxes *)dialog)->flags[i].state == 0) {
+                    _gczoombox_entrypoint_12(box);
+                    _gczoombox_entrypoint_10(box);
+                }
+            }
+            box = DIALOG_BOX(dialog, 2);
+            if (box) { _gczoombox_entrypoint_12(box); _gczoombox_entrypoint_10(box); }
+            break;
+        case 6:
+            last = -1;
+            ((struct DialogActions *)dialog)->finishing = 1;
+            while ((result = func_8080064C_gcdialogexec(dialog))) if (result >= 2) last = result - 1;
+            while ((result = func_8080064C_gcdialogexec(dialog))) if (result >= 2) last = result - 1;
+            if (last != -1 && !(*(u16 *)(dialog + 0x15A) & 0x200)) _gcdialogcamera_entrypoint_10(dialog, last, 0);
+            ((struct DialogState *)dialog)->remaining = 0;
+            for (i = 0; i != 2; i++) {
+                ((DialogBoxes *)dialog)->flags[i].state = 0;
+                box = DIALOG_BOX(dialog, i);
+                if (box) ((struct DialogState *)dialog)->remaining += _gczoombox_entrypoint_33((u8 *)box);
+            }
+            ((struct DialogActions *)dialog)->finishing = 0;
+            break;
+        case 7:
+            func_808001DC_gcdialogexec(dialog);
+            state = 0;
+            break;
+        case 8:
+            for (i = 0; i != 2; i++) if (((DialogBoxes *)dialog)->flags[i].state == 0) {
+                box = DIALOG_BOX(dialog, i);
+                _gczoombox_entrypoint_0(box);
+                DIALOG_SET_BOX(dialog, i, NULL);
+            }
+            func_808001DC_gcdialogexec(dialog);
+            break;
+        case 10:
+            box = DIALOG_BOX(dialog, 2);
+            if (box) { _gczoombox_entrypoint_12(box); _gczoombox_entrypoint_10(box); }
+            break;
+        case 11:
+            func_8080052C_gcdialogexec(dialog);
+            break;
+        }
+        dialog[0x15C] = state;
+    }
+#else
     void _gcdialogcamera_entrypoint_10(void *, s32, s32);
     void _gczoombox_entrypoint_0(void *);
     void _gczoombox_entrypoint_9(void *);
@@ -457,9 +707,10 @@ void func_80800A50_gcdialogexec(u8 *dialog, s32 state) {
         }
         dialog[0x15C] = state;
     }
+#endif
 }
 
-int func_80800D30_gcdialogexec(arg0, arg1, arg2) {
+int func_80800D30_gcdialogexec(BT_NATIVE_ONLY(u8 *)arg0, BT_NATIVE_ONLY(s32)arg1, BT_NATIVE_ONLY(s32)arg2) {
     typedef struct {
         u8 pad[0x15C];
         u8 state;
@@ -557,7 +808,41 @@ s32 func_80801020_gcdialogexec(s32 arg0) {
     return arg0 ? 1 : result;
 }
 
-int func_80801038_gcdialogexec(void *arg0, s32 arg1) { BT_NATIVE_ONLY(s32 bt_result = 0;)
+int func_80801038_gcdialogexec(void *arg0, s32 arg1) {
+    BT_NATIVE_ONLY(s32 bt_result = 0;)
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    typedef struct { s16 id; s16 pad; void *data; } HostText;
+    void * _gldialog_entrypoint_4(s32);
+    void *heap_alloc(s32);
+    GcDialogState *state = (GcDialogState *)arg0;
+    u8 *cursor = (u8 *)_gldialog_entrypoint_4(arg1);
+    HostText *entries;
+    s32 channel, i, code, length;
+    u8 token;
+    DIALOG_SET_SOURCE(arg0, cursor);
+    for (channel = 0; channel < 2; channel++) {
+        state->unk114[channel] = *cursor++;
+        entries = (HostText *)heap_alloc((s32)(state->unk114[channel] * sizeof(HostText)));
+        gc_dialog_set_text_entry(state, channel, entries);
+        for (i = 0; i < state->unk114[channel]; i++) {
+            token = *cursor++;
+            code = token;
+            if (code > 0 && code < 0x20) {
+                code = -code;
+                if (token == 3) code = *cursor++ + 0x75;
+            } else if (token >= 0x80) {
+                code = token - 0x80;
+            }
+            if (code == 0x51 || code == 0x79) code = state->unk158 - 0xC;
+            cursor++;
+            entries[i].id = (s16)code;
+            length = cursor[-1];
+            entries[i].data = cursor;
+            cursor += length;
+        }
+    }
+    return 0;
+#else
     typedef struct {
         s16 id;
         s16 pad;
@@ -619,16 +904,26 @@ int func_80801038_gcdialogexec(void *arg0, s32 arg1) { BT_NATIVE_ONLY(s32 bt_res
         counts = (Dialog *)((u8 *)counts + 1);
         arrays = (Dialog *)((u8 *)arrays + 4);
     } while (group != 8);
-BT_NATIVE_ONLY(return bt_result;) }
-
-/* extern */
+BT_NATIVE_ONLY(return bt_result;)
+#endif
+}
 
 void func_808011A4_gcdialogexec(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    BtIntPtr _gczoombox_entrypoint_20(BtIntPtr, f32, s32, s32, f32, s32, s32);
+    s32 i;
+    f32 duration = 0.4f;
+    BtIntPtr box;
+    for (i = 0; i < 2; i++) {
+        box = (BtIntPtr)DIALOG_BOX(arg0, i);
+        if (box != 0) _gczoombox_entrypoint_20(box, arg3, arg1, arg2, duration, arg4, arg5);
+    }
+#else
     typedef struct {
         u8 pad[0x120];
         s32 box[2];
     } Dialog;
-    s32 _gczoombox_entrypoint_20(s32, f32, s32, s32, f32, s32, s32);
+    BT_IDO_ONLY(s32 _gczoombox_entrypoint_20(s32, f32, s32, s32, f32, s32, s32);) BT_NATIVE_ONLY(BtIntPtr _gczoombox_entrypoint_20(BtIntPtr, f32, s32, s32, f32, s32, s32);)
     s32 i;
     f32 box_background_animation_duration = 0.4f;
 
@@ -637,10 +932,80 @@ void func_808011A4_gcdialogexec(u8 *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4
             _gczoombox_entrypoint_20(((Dialog *)arg0)->box[i], arg3, arg1, arg2, box_background_animation_duration, arg4, arg5);
         }
     }
+#endif
 }
 
-void func_80801268_gcdialogexec(void *arg0, s32 arg1, s32 arg2, void *arg3, BtIntPtr arg4, BtIntPtr arg5, BtIntPtr arg6, s16 arg7)
-{
+void func_80801268_gcdialogexec(void *arg0, s32 arg1, s32 arg2, void *arg3, BtIntPtr arg4, BtIntPtr arg5, BtIntPtr arg6, s16 arg7) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    typedef struct { s16 id; s16 pad; void *data; } HostText;
+    typedef struct { u8 pad[0x12]; BT_BITFIELD_ORDER(u16 id:15; u16 flag:1;, u16 flag:1; u16 id:15;); } Marker;
+    BtIntPtr _gczoombox_entrypoint_5(s32, s32, s32, s32, BtIntPtr);
+    void _gczoombox_entrypoint_10(void *);
+    int _gczoombox_entrypoint_24(BtIntPtr, s32);
+    int _gczoombox_entrypoint_25(BtIntPtr, s32);
+    void _gczoombox_entrypoint_35(u8 *, BtIntPtr, s16, s32);
+    s32 func_800A9C98(void);
+    int func_80801038_gcdialogexec(void *, s32);
+    void func_80800A50_gcdialogexec(u8 *, s32);
+    void func_808011A4_gcdialogexec(u8 *, s32, s32, s32, s32, s32);
+    void func_800C01D8(void);
+    GcDialogState *state = (GcDialogState *)arg0;
+    HostText *text;
+    s32 i, j, initial;
+    u8 count;
+    BtIntPtr box;
+    state->unk167 = (u8)arg7;
+    func_80801038_gcdialogexec(arg0, arg1);
+    gc_dialog_set_caller(state, arg3);
+    state->cleared = 0;
+    state->numBoxes = state->pending = state->opened = state->other = 0;
+    gc_dialog_set_callback(state, 0, (s32 (*)(void *, s16, s8))(BtIntPtr)arg4);
+    gc_dialog_set_callback(state, 1, (s32 (*)(void *, s16, s8))(BtIntPtr)arg5);
+    gc_dialog_set_callback(state, 2, (s32 (*)(void *, s16, s8))(BtIntPtr)arg6);
+    state->unk16C = arg3 ? (((Marker *)arg3)->id ? ((Marker *)arg3)->id : -1) : -1;
+    state->low = 0;
+    for (i = 0; i < 2; i++) {
+        text = (HostText *)gc_dialog_text_entry(state, i);
+        j = 0;
+        initial = text[0].id;
+        if (initial < -5) {
+            count = state->unk114[i];
+            while (j < count) if (text[++j].id >= -5) break;
+        }
+        state->unk118[i] = (s16)initial;
+        gc_dialog_set_text_data(state, i, text[0].data);
+        state->unk116[i] = 0;
+        if (i == 0) state->unk128 = (s16)func_80801008_gcdialogexec(i);
+        else state->unk12A = (s16)func_80801008_gcdialogexec(i);
+        state->unk11C[i].unused = 0;
+        if (text[j].id >= 0) {
+            if (state->unk11C[i].state == 0) {
+                s32 boxMode = ((text[j].id + 0xC) == 0x29 || (text[j].id + 0xC) == 0x84) ? 1 - func_80801020_gcdialogexec(i) : func_80801020_gcdialogexec(i);
+                box = _gczoombox_entrypoint_5(i == 0 ? state->unk128 : state->unk12A, text[j].id + 0xC, 0, boxMode, (BtIntPtr)func_800C01D8);
+                gc_dialog_set_box(state, i, (void *)box);
+                if (arg2 & 0x100) _gczoombox_entrypoint_24(box, 0);
+                if (arg2 & 0x400) _gczoombox_entrypoint_25(box, 1);
+            } else {
+                if (func_80800000_gcdialogexec(arg3, state->unk16C)) _gczoombox_entrypoint_35(arg0, (BtIntPtr)arg3, state->unk167, state->unk16C);
+                state->opened++;
+            }
+            state->numBoxes++;
+        } else if (text[j].id < -4) {
+            if (state->unk11C[i].state != 0) { _gczoombox_entrypoint_10(gc_dialog_box(state, i)); state->numBoxes++; }
+            else gc_dialog_set_box(state, i, NULL);
+            state->unk11C[i].state = 0;
+        } else if (state->unk11C[i].state != 0) {
+            state->numBoxes++; state->opened++;
+        }
+    }
+    state->unk162 = (s16)arg1;
+    state->unk15A = (s16)arg2;
+    state->top = state->unk118[0] >= 0;
+    state->active = 1;
+    state->unk160 = func_800A9C98() && state->fast ? 1 : -1;
+    func_80800A50_gcdialogexec(arg0, (func_800A9C98() && state->fast) ? 6 : 1);
+    func_808011A4_gcdialogexec(arg0, 5, 2, 0xF, arg2 & 2, arg2 & 0x80);
+#else
   typedef struct 
   {
     s16 id;
@@ -818,6 +1183,7 @@ void func_80801268_gcdialogexec(void *arg0, s32 arg1, s32 arg2, void *arg3, BtIn
   }
   func_80800A50_gcdialogexec(arg0, (func_800A9C98() && ((Dialog *) arg0)->fast) ? (6) : (1));
   func_808011A4_gcdialogexec(arg0, 5, 2, 0xF, arg2 & 2, arg2 & 0x80);
+#endif
 }
 
 s32 gcdialogexec_entrypoint_0(void *dialog, s32 text, s32 flags, f32 *position, void *actor,
@@ -867,6 +1233,9 @@ s32 gcdialogexec_entrypoint_0(void *dialog, s32 text, s32 flags, f32 *position, 
     void func_800F8300(BtIntPtr dialog, s32 mode, f32 *position);
     void func_800FEC60(u32 dialog);
     s32 replace;
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    s32 queuedCamera;
+#endif
 
     if (!func_800C0638()) {
         ((Dialog *)dialog)->camera = func_800F54E4();
@@ -896,6 +1265,22 @@ s32 gcdialogexec_entrypoint_0(void *dialog, s32 text, s32 flags, f32 *position, 
         if (replace >= 4) {
             replace -= 4;
         }
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+        {
+            GcDialogRequest *request = &((GcDialogState *)dialog)->entries[replace];
+            request->unk0 = (s16)text;
+            request->unk2 = (s16)flags;
+            if (position) func_800EE7F8(request->vec, position);
+            else func_800EFD24(request->vec);
+            gc_dialog_set_request_actor((GcDialogState *)dialog, replace, actor);
+            request->unk14 = actorArg;
+            request->unk18 = actor ? (((Marker *)actor)->id ? ((Marker *)actor)->id : -1) : -1;
+            gc_dialog_set_request_callback((GcDialogState *)dialog, replace, 0, callback);
+            gc_dialog_set_request_callback((GcDialogState *)dialog, replace, 1, callback2);
+            gc_dialog_set_request_callback((GcDialogState *)dialog, replace, 2, callback3);
+            request->unk28 = (s32)func_800F54E4();
+        }
+#else
         ((Dialog *)dialog)->requests[replace].text = text;
         ((Dialog *)dialog)->requests[replace].flags = flags;
         if (position) {
@@ -911,7 +1296,19 @@ s32 gcdialogexec_entrypoint_0(void *dialog, s32 text, s32 flags, f32 *position, 
         ((Dialog *)dialog)->requests[replace].callback2 = callback2;
         ((Dialog *)dialog)->requests[replace].callback3 = callback3;
         ((Dialog *)dialog)->requests[replace].camera = func_800F54E4();
+#endif
         ((Dialog *)dialog)->count++;
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+        queuedCamera = ((GcDialogState *)dialog)->entries[replace].unk28;
+        if ((flags & 8) && (!func_800A9C98() || !((Dialog *)dialog)->suppress)) {
+            if (!func_800F5B0C(queuedCamera)) {
+                if (position) func_800F8300(queuedCamera, 2, position);
+                else func_800F82D4(queuedCamera, 2);
+            } else {
+                func_800F82D4(queuedCamera, func_800F5B0C(queuedCamera));
+            }
+        }
+#else
         if ((flags & 8) && (!func_800A9C98() || !((Dialog *)dialog)->suppress)) {
             if (!func_800F5B0C(((Dialog *)dialog)->requests[replace].camera)) {
                 if (position) {
@@ -924,25 +1321,21 @@ s32 gcdialogexec_entrypoint_0(void *dialog, s32 text, s32 flags, f32 *position, 
                               func_800F5B0C(((Dialog *)dialog)->requests[replace].camera));
             }
         }
+#endif
         return 1;
     }
     return 0;
 }
 
 void gcdialogexec_entrypoint_1(u8 *arg0) {
+#ifdef BT_NATIVE
+    typedef GcDialogRequest Request;
+#else
     typedef struct {
-        s16 text;
-        u16 flags;
-        f32 position[3];
-        void *actor;
-        s16 id;
-        s16 pad;
-        s32 callback;
-        s32 arg4;
-        s32 arg5;
-        s32 arg6;
-        s32 camera;
+        s16 text; u16 flags; f32 position[3]; void *actor; s16 id; s16 pad;
+        s32 callback; s32 arg4; s32 arg5; s32 arg6; s32 camera;
     } Request;
+#endif
     typedef struct {
         u8 pad[0x15C];
         BT_BITFIELD_ORDER(u32 unused : 20, u32 rest : 11);
@@ -961,21 +1354,47 @@ void gcdialogexec_entrypoint_1(u8 *arg0) {
     Request *request;
 
     request = &((Request *)(arg0 + 0x184))[((Dialog *)arg0)->index];
+#ifdef BT_NATIVE
+    func_80801268_gcdialogexec(arg0, request->unk0, request->unk2,
+        gc_dialog_request_actor((GcDialogState *)arg0, ((Dialog *)arg0)->index),
+        (BtIntPtr)gc_dialog_request_callback((GcDialogState *)arg0, ((Dialog *)arg0)->index, 0),
+        (BtIntPtr)gc_dialog_request_callback((GcDialogState *)arg0, ((Dialog *)arg0)->index, 1),
+        (BtIntPtr)gc_dialog_request_callback((GcDialogState *)arg0, ((Dialog *)arg0)->index, 2), request->unk14);
+    *(s32 *)(arg0 + 0x16C) = request->unk18;
+    *(s32 *)(arg0 + 0x17C) = request->unk28;
+#else
     func_80801268_gcdialogexec(arg0, request->text, request->flags,
         request->actor, request->arg4, request->arg5, request->arg6, request->id);
     *(s32 *)(arg0 + 0x16C) = request->callback;
     *(s32 *)(arg0 + 0x17C) = request->camera;
+#endif
     func_800FEC60(0);
+#ifdef BT_NATIVE
+    if ((request->unk2 & 8) && (!func_800A9C98() || !((Dialog *)arg0)->suppress)) {
+#else
     if ((request->flags & 8) && (!func_800A9C98() || !((Dialog *)arg0)->suppress)) {
+#endif
         if (func_800F6438(*(s32 *)(arg0 + 0x17C))) {
             func_800F82D4(*(s32 *)(arg0 + 0x17C), 0);
         }
-        if (func_800EEEA8(request->position)) {
+        if (func_800EEEA8(
+#ifdef BT_NATIVE
+            request->vec
+#else
+            request->position
+#endif
+            )) {
             if (func_800F6438(*(s32 *)(arg0 + 0x17C))) {
                 func_800F82D4(*(s32 *)(arg0 + 0x17C), *(s16 *)(arg0 + 0x11A) < 0 ? 1 : 3);
             }
         } else if (func_800F6438(*(s32 *)(arg0 + 0x17C))) {
-            func_800F8300(*(s32 *)(arg0 + 0x17C), *(s16 *)(arg0 + 0x11A) < 0 ? 1 : 3, request->position);
+            func_800F8300(*(s32 *)(arg0 + 0x17C), *(s16 *)(arg0 + 0x11A) < 0 ? 1 : 3,
+#ifdef BT_NATIVE
+                request->vec
+#else
+                request->position
+#endif
+                );
         }
     }
     ((Dialog *)arg0)->index++;
@@ -986,6 +1405,28 @@ void gcdialogexec_entrypoint_1(u8 *arg0) {
 }
 
 void gcdialogexec_entrypoint_2(u8 *arg0) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    int _gczoombox_entrypoint_33(u8 *);
+    s32 func_800C0638(void);
+    void func_80800A50_gcdialogexec(u8 *, s32);
+    GcDialogState *state = (GcDialogState *)arg0;
+    s32 i;
+    state->unk11C[0].state = 0;
+    state->unk11C[1].state = 0;
+    if (func_800C0638() != 0) {
+        func_80800A50_gcdialogexec(arg0, 6);
+    } else if (arg0[0x15C] != 6) {
+        state->pending = 0;
+        for (i = 0; i < 2; i++) {
+            state->unk11C[i].state = 0;
+            if (gc_dialog_box(state, i) != NULL)
+                state->pending += _gczoombox_entrypoint_33((u8 *)gc_dialog_box(state, i));
+        }
+        if (state->pending) arg0[0x15C] = 6;
+    }
+    state->unk160 = 0;
+    state->nibbleByte = 0;
+#else
     typedef struct {
         BT_BITFIELD_ORDER(u8 state : 2, u8 rest : 6);
         BT_BITFIELD_ORDER(u8 rest : 6, u8 state : 2);
@@ -1029,6 +1470,7 @@ void gcdialogexec_entrypoint_2(u8 *arg0) {
     }
     ((Dialog *)arg0)->middle = 0;
     ((Dialog *)arg0)->low = 0;
+#endif
 }
 
 /* extern */
@@ -1046,7 +1488,7 @@ void gcdialogexec_entrypoint_4(u8 *text_id, s32 arg1, s32 pos, s32 marker, s32 c
     func_808011A4_gcdialogexec(text_id, arg1, pos, marker, callback, arg5);
 }
 
-void gcdialogexec_entrypoint_5(BT_PASS2(s32 bt_a0, BT_PASS2(s32 bt_a1, s32 bt_a2)))
+void gcdialogexec_entrypoint_5(BT_PASS2(u8 *bt_a0, BT_PASS2(s32 bt_a1, s32 bt_a2)))
 {
     func_80800D30_gcdialogexec(BT_PASS2(bt_a0, BT_PASS2(bt_a1, bt_a2)));
 }
@@ -1072,6 +1514,47 @@ void gcdialogexec_entrypoint_9(u8 *arg0, s32 arg1, s32 arg2)
 }
 
 int func_80801DB4_gcdialogexec(u8 *arg0) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    typedef struct { s16 code; s16 pad; u8 *text; } HostEntry;
+    s32 _gldialog_entrypoint_1(volatile u8 *);
+    s32 _subaddiedialog_entrypoint_14(BtIntPtr, s32, s32);
+    struct DialogCurrent {
+        BT_BITFIELD_ORDER(u16 current : 1, u16 unused : 15);
+        BT_BITFIELD_ORDER(u16 unused : 15, u16 current : 1);
+    };
+    s32 (*callback)(void *, s16, BT_NATIVE_ONLY(s8) BT_IDO_ONLY(u8));
+    void *caller;
+    HostEntry *entries;
+    HostEntry *currentEntry;
+    GcDialogState *state = (GcDialogState *)arg0;
+    s32 current = ((struct DialogCurrent *)(arg0 + 0x15E))->current;
+    s32 result = -1, flag1, flag2;
+    callback = gc_dialog_callback(state, 1);
+    caller = gc_dialog_caller(state);
+    entries = (HostEntry *)gc_dialog_text_entry(state, current);
+    currentEntry = entries + state->unk116[current];
+    if (callback != NULL) {
+        flag1 = 1;
+        if (caller == NULL || func_80800000_gcdialogexec(caller, state->unk16C))
+            result = callback(caller, state->unk162, state->unk116[current]);
+        if (result < 0) { result = -1 - result; flag1 = 0; }
+        if (result >= 0 && currentEntry[result + 1].code == -10)
+            func_80800350_gcdialogexec(arg0, currentEntry->text, currentEntry[result + 1].text,
+                                      _gldialog_entrypoint_1(currentEntry->text), flag1);
+        else result = -1;
+    }
+    if (caller != NULL && func_80800000_gcdialogexec(caller, state->unk16C) &&
+        (*(u16 *)((u8 *)caller + 0x18) & 1)) {
+        flag2 = 1;
+        result = _subaddiedialog_entrypoint_14((BtIntPtr)caller, state->unk162, state->unk116[current]);
+        if (result < 0) { result = -1 - result; flag2 = 0; }
+        if (result >= 0 && currentEntry[result + 1].code == -10)
+            func_80800350_gcdialogexec(arg0, currentEntry->text, currentEntry[result + 1].text,
+                                      _gldialog_entrypoint_1(currentEntry->text), flag2);
+        else result = -1;
+    }
+    return result;
+#else
     typedef struct {
         s16 code;
         s16 pad;
@@ -1091,7 +1574,7 @@ int func_80801DB4_gcdialogexec(u8 *arg0) {
         void *caller;
         s32 callerArg;
         u8 pad170[8];
-        s32 (*callback)(void *, s16, u8);
+        s32 (*callback)(void *, s16, BT_NATIVE_ONLY(s8) BT_IDO_ONLY(u8));
     } Dialog;
     s32 _gldialog_entrypoint_1();
     BT_IDO_ONLY(s32 _subaddiedialog_entrypoint_14(void *, s16, s32);) BT_NATIVE_ONLY(s32 _subaddiedialog_entrypoint_14(BtIntPtr, s32, s32);)
@@ -1139,9 +1622,54 @@ int func_80801DB4_gcdialogexec(u8 *arg0) {
         }
     }
     return result;
+#endif
 }
 
 int func_80802020_gcdialogexec(u8 *arg0) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    typedef struct { s16 code; s16 pad; u8 *text; } HostEntry;
+    struct DialogBits {
+        BT_BITFIELD_ORDER(u16 current : 1; u16 rest : 8; u16 unused : 5; u16 sequence : 2;,
+                          u16 sequence : 2; u16 unused : 5; u16 rest : 8; u16 current : 1;);
+    };
+    s32 _gldialog_entrypoint_1(volatile u8 *);
+    s32 _subaddiedialog_entrypoint_14(BtIntPtr, s32, s32);
+    void func_800E6DD8(char *, s32, u8, s32);
+    s32 (*callback)(void *, s16, s32) = (s32 (*)(void *, s16, s32))(BtFnWord)gc_dialog_callback((GcDialogState *)arg0, 1);
+    GcDialogState *state = (GcDialogState *)arg0;
+    struct DialogBits *bits = (struct DialogBits *)(arg0 + 0x15E);
+    s32 current = bits->current;
+    HostEntry *entries = (HostEntry *)gc_dialog_text_entry(state, current);
+    HostEntry *entry = entries + state->unk116[current];
+    void *caller = gc_dialog_caller(state);
+    s32 count = func_808002E4_gcdialogexec(entry->text);
+    s32 format = _gldialog_entrypoint_1(entry->text);
+    char buffer[20] = { 0 };
+    s32 offset = 0, result = -1, i;
+
+    if (callback != NULL) {
+        for (i = 0; i < count; i++) {
+            if (caller == NULL || func_80800000_gcdialogexec(caller, state->unk16C))
+                result = callback(caller, state->unk162, bits->sequence++);
+            func_800E6DD8(buffer + offset, result, 0, format);
+            while (buffer[offset]) offset++;
+            buffer[offset++] = 0;
+        }
+    }
+    if (caller != NULL && func_80800000_gcdialogexec(caller, state->unk16C) &&
+        (*(u16 *)((u8 *)caller + 0x18) & 1)) {
+        offset = 0;
+        buffer[0] = 0;
+        for (i = 0; i < count; i++) {
+            result = _subaddiedialog_entrypoint_14((BtIntPtr)caller, state->unk162, bits->sequence++);
+            func_800E6DD8(buffer + offset, result, 0, format);
+            while (buffer[offset]) offset++;
+            buffer[offset++] = 0;
+        }
+    }
+    func_80800350_gcdialogexec(arg0, entry->text, (u8 *)buffer, format, 0);
+    return 0;
+#else
     typedef struct {
         s16 code;
         s16 pad;
@@ -1218,19 +1746,35 @@ int func_80802020_gcdialogexec(u8 *arg0) {
         buffer,
         _gldialog_entrypoint_1(((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + ((Dialog *)arg0)->index[((Dialog *)arg0)->current] * 8))->text), 0);
     return 0;
+#endif
 }
 
 void gcdialogexec_entrypoint_10(void *arg0) {
-    typedef struct {
-        s16 code;
-        s16 pad;
-        void *text;
-    } DialogEntry;
+    typedef struct { s16 code; s16 pad; void *text; } DialogEntry;
     typedef struct {
         BT_BITFIELD_ORDER(u8 mode : 2, u8 unused : 4);
         u8 busy : 2;
         BT_BITFIELD_ORDER(u8 unused : 4, u8 mode : 2);
     } BoxFlags;
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    typedef struct {
+        u8 pad0[0x104]; u8 pad104[0x10]; u8 pad114[2]; u8 index[2]; s16 code[2];
+        BoxFlags boxFlags[2]; u8 pad11E[2]; u8 pad120[8]; u8 pad128[0x30];
+        u8 value; u8 pad159; u16 flags; u8 state; u8 count;
+        BT_BITFIELD_ORDER(u16 current : 1, u32 unused15F : 4);
+        BT_BITFIELD_ORDER(u16 pending : 1, u32 skipped : 2);
+        BT_BITFIELD_ORDER(u16 unused15E : 6, u32 opened : 2);
+        BT_BITFIELD_ORDER(u32 opened : 2, u16 unused15E : 6);
+        BT_BITFIELD_ORDER(u32 skipped : 2, u16 pending : 1);
+        BT_BITFIELD_ORDER(u32 unused15F : 4, u16 current : 1);
+        s8 answer; u8 pad161; s16 dialogId; u8 pad164[3]; u8 callerId;
+        u8 pad168[4]; s32 callerArg;
+    } Dialog;
+#define DIALOG_ENTRY(arg, slot) ((BtIntPtr)gc_dialog_text_entry((GcDialogState *)(arg), (slot)))
+#define DIALOG_DATA(arg, slot) (gc_dialog_native_state.textData[(slot)])
+#define DIALOG_BOX_SLOT(arg, slot) (gc_dialog_box((GcDialogState *)(arg), (slot)))
+#define DIALOG_CALLER_SLOT(arg) (gc_dialog_caller((GcDialogState *)(arg)))
+#else
     typedef struct {
         u8 pad0[0x104];
         s32 entries[2];
@@ -1261,6 +1805,11 @@ void gcdialogexec_entrypoint_10(void *arg0) {
         void *caller;
         s32 callerArg;
     } Dialog;
+#define DIALOG_ENTRY(arg, slot) (((Dialog *)(arg))->entries[(slot)])
+#define DIALOG_DATA(arg, slot) (((Dialog *)(arg))->data[(slot)])
+#define DIALOG_BOX_SLOT(arg, slot) (((Dialog *)(arg))->box[(slot)])
+#define DIALOG_CALLER_SLOT(arg) (((Dialog *)(arg))->caller)
+#endif
     void func_80015E80(s32, void *);
     void func_80015ECC(s32, void *);
     void func_80015F28(s32, void *);
@@ -1277,7 +1826,7 @@ void gcdialogexec_entrypoint_10(void *arg0) {
     int _gczoombox_entrypoint_18();
     int _gczoombox_entrypoint_32();
     BT_IDO_ONLY(int _gczoombox_entrypoint_35();) BT_NATIVE_ONLY(void _gczoombox_entrypoint_35(u8 *, BtIntPtr, s16, s32);)
-    int _gczoombox_entrypoint_37(s32, s16);
+    int _gczoombox_entrypoint_37(BT_NATIVE_ONLY(u8 *) BT_IDO_ONLY(s32), s16);
     int _gczoombox_entrypoint_39();
     int _subaddiedialog_entrypoint_15();
     int func_80800478_gcdialogexec();
@@ -1304,7 +1853,7 @@ void gcdialogexec_entrypoint_10(void *arg0) {
     case 1:
         i = 0;
         for (scanIndex = 0; scanIndex < 2; scanIndex++) {
-            if (((Dialog *)arg0)->box[scanIndex] == 0) {
+            if (DIALOG_BOX_SLOT(arg0, scanIndex) == 0) {
                 i++;
             }
         }
@@ -1317,29 +1866,29 @@ void gcdialogexec_entrypoint_10(void *arg0) {
         break;
     case 2:
         handled = 0;
-        ((Dialog *)arg0)->code[((Dialog *)arg0)->current] = ((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + ((s32)((Dialog *)arg0)->index[((Dialog *)arg0)->current] * 8)))->code;
-        ((Dialog *)arg0)->data[((Dialog *)arg0)->current] = ((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + ((s32)((Dialog *)arg0)->index[((Dialog *)arg0)->current] * 8)))->text;
+        ((Dialog *)arg0)->code[((Dialog *)arg0)->current] = ((DialogEntry *)(DIALOG_ENTRY(arg0, ((Dialog *)arg0)->current) + ((s32)((Dialog *)arg0)->index[((Dialog *)arg0)->current] * 8)))->code;
+        DIALOG_DATA(arg0, ((Dialog *)arg0)->current) = ((DialogEntry *)(DIALOG_ENTRY(arg0, ((Dialog *)arg0)->current) + ((s32)((Dialog *)arg0)->index[((Dialog *)arg0)->current] * 8)))->text;
         switch (((Dialog *)arg0)->code[((Dialog *)arg0)->current]) {
         case -8:
-            func_80800478_gcdialogexec(arg0, *((Dialog *)arg0)->data[((Dialog *)arg0)->current]);
+            func_80800478_gcdialogexec(arg0, *((u8 *)DIALOG_DATA(arg0, ((Dialog *)arg0)->current)));
             ((Dialog *)arg0)->index[((Dialog *)arg0)->current]++;
             handled = 1;
             break;
         case -9:
             if (!(((Dialog *)arg0)->flags & 0x200)) {
-                _gcdialogcamera_entrypoint_10(arg0, *((Dialog *)arg0)->data[((Dialog *)arg0)->current], 0);
+                _gcdialogcamera_entrypoint_10(arg0, *((u8 *)DIALOG_DATA(arg0, ((Dialog *)arg0)->current)), 0);
             }
             ((Dialog *)arg0)->index[((Dialog *)arg0)->current]++;
             handled = 1;
             break;
         case -2:
-            ((Dialog *)arg0)->value = *((Dialog *)arg0)->data[((Dialog *)arg0)->current];
+            ((Dialog *)arg0)->value = *((u8 *)DIALOG_DATA(arg0, ((Dialog *)arg0)->current));
             ((Dialog *)arg0)->index[((Dialog *)arg0)->current]++;
             func_80800A50_gcdialogexec(arg0, 11);
             handled = 1;
             break;
         case -1:
-            if (_subaddiedialog_entrypoint_15(((Dialog *)arg0)->caller, ((Dialog *)arg0)->dialogId, ((Dialog *)arg0)->index[((Dialog *)arg0)->current]) == 1) {
+            if (_subaddiedialog_entrypoint_15(DIALOG_CALLER_SLOT(arg0), ((Dialog *)arg0)->dialogId, ((Dialog *)arg0)->index[((Dialog *)arg0)->current]) == 1) {
                 func_80800A50_gcdialogexec(arg0, 9);
             }
             ((Dialog *)arg0)->index[((Dialog *)arg0)->current]++;
@@ -1349,7 +1898,7 @@ void gcdialogexec_entrypoint_10(void *arg0) {
         if (handled) {
             break;
         }
-        if (((Dialog *)arg0)->box[((Dialog *)arg0)->current] == 0 || _gczoombox_entrypoint_39(((Dialog *)arg0)->box[((Dialog *)arg0)->current]) || ((Dialog *)arg0)->boxFlags[((Dialog *)arg0)->current].busy) {
+        if (DIALOG_BOX_SLOT(arg0, ((Dialog *)arg0)->current) == 0 || _gczoombox_entrypoint_39(DIALOG_BOX_SLOT(arg0, ((Dialog *)arg0)->current)) || ((Dialog *)arg0)->boxFlags[((Dialog *)arg0)->current].busy) {
             ((Dialog *)arg0)->current ^= 1;
             break;
         }
@@ -1358,37 +1907,37 @@ void gcdialogexec_entrypoint_10(void *arg0) {
         case -11:
             do {
                 ((Dialog *)arg0)->index[((Dialog *)arg0)->current]++;
-                ((Dialog *)arg0)->code[((Dialog *)arg0)->current] = ((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + ((s32)((Dialog *)arg0)->index[((Dialog *)arg0)->current] * 8)))->code;
+                ((Dialog *)arg0)->code[((Dialog *)arg0)->current] = ((DialogEntry *)(DIALOG_ENTRY(arg0, ((Dialog *)arg0)->current) + ((s32)((Dialog *)arg0)->index[((Dialog *)arg0)->current] * 8)))->code;
             } while (((Dialog *)arg0)->code[((Dialog *)arg0)->current] == -10 || ((Dialog *)arg0)->code[((Dialog *)arg0)->current] == -11);
             break;
         case -4:
             if (((Dialog *)arg0)->index[((Dialog *)arg0)->current] == 0) {
                 ((Dialog *)arg0)->skipped++;
             }
-            _gczoombox_entrypoint_12((void *)((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+            _gczoombox_entrypoint_12((void *)DIALOG_BOX_SLOT(arg0, ((Dialog *)arg0)->current));
             ((Dialog *)arg0)->boxFlags[((Dialog *)arg0)->current].mode = 1;
             ((Dialog *)arg0)->boxFlags[((Dialog *)arg0)->current].busy = 1;
             ((Dialog *)arg0)->current ^= 1;
             ((Dialog *)arg0)->pending = 1;
             break;
         case -5:
-            _gczoombox_entrypoint_12((void *)((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
-            _gczoombox_entrypoint_10((void *)((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+            _gczoombox_entrypoint_12((void *)DIALOG_BOX_SLOT(arg0, ((Dialog *)arg0)->current));
+            _gczoombox_entrypoint_10((void *)DIALOG_BOX_SLOT(arg0, ((Dialog *)arg0)->current));
             ((Dialog *)arg0)->boxFlags[((Dialog *)arg0)->current].mode = 0;
             ((Dialog *)arg0)->boxFlags[((Dialog *)arg0)->current].busy = 1;
             ((Dialog *)arg0)->current ^= 1;
             ((Dialog *)arg0)->pending = 1;
             break;
         case -7:
-            for (scanIndex = ((Dialog *)arg0)->index[((Dialog *)arg0)->current]; (scanCode = ((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + scanIndex * 8))->code) < -5; scanIndex++) {}
+            for (scanIndex = ((Dialog *)arg0)->index[((Dialog *)arg0)->current]; (scanCode = ((DialogEntry *)(DIALOG_ENTRY(arg0, ((Dialog *)arg0)->current) + scanIndex * 8))->code) < -5; scanIndex++) {}
             if (scanCode >= 0) {
-                _gczoombox_entrypoint_37(((Dialog *)arg0)->box[((Dialog *)arg0)->current], scanCode + 12);
+                _gczoombox_entrypoint_37(DIALOG_BOX_SLOT(arg0, ((Dialog *)arg0)->current), scanCode + 12);
             }
             if (((Dialog *)arg0)->index[((Dialog *)arg0)->current]) {
-                _gczoombox_entrypoint_12((void *)((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+                _gczoombox_entrypoint_12((void *)DIALOG_BOX_SLOT(arg0, ((Dialog *)arg0)->current));
             }
             if (((Dialog *)arg0)->index[((Dialog *)arg0)->current] == 0 && ((Dialog *)arg0)->boxFlags[((Dialog *)arg0)->current].mode == 2) {
-                _gczoombox_entrypoint_12((void *)((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+                _gczoombox_entrypoint_12((void *)DIALOG_BOX_SLOT(arg0, ((Dialog *)arg0)->current));
             }
             ((Dialog *)arg0)->boxFlags[((Dialog *)arg0)->current].mode = 0;
             ((Dialog *)arg0)->index[((Dialog *)arg0)->current]++;
@@ -1396,52 +1945,52 @@ void gcdialogexec_entrypoint_10(void *arg0) {
             ((Dialog *)arg0)->pending = 1;
             break;
         case -6:
-            _gczoombox_entrypoint_12((void *)((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+            _gczoombox_entrypoint_12((void *)DIALOG_BOX_SLOT(arg0, ((Dialog *)arg0)->current));
             ((Dialog *)arg0)->boxFlags[((Dialog *)arg0)->current].mode = 0;
             ((Dialog *)arg0)->index[((Dialog *)arg0)->current]++;
             ((Dialog *)arg0)->current ^= 1;
             ((Dialog *)arg0)->pending = 1;
             break;
         default:
-            if (((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + ((Dialog *)arg0)->index[((Dialog *)arg0)->current] * 8))[1].code == -10) {
+            if (((DialogEntry *)(DIALOG_ENTRY(arg0, ((Dialog *)arg0)->current) + ((Dialog *)arg0)->index[((Dialog *)arg0)->current] * 8))[1].code == -10) {
                 result = func_80801DB4_gcdialogexec(arg0);
-            } else if (((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + ((Dialog *)arg0)->index[((Dialog *)arg0)->current] * 8))[1].code == -11) {
+            } else if (((DialogEntry *)(DIALOG_ENTRY(arg0, ((Dialog *)arg0)->current) + ((Dialog *)arg0)->index[((Dialog *)arg0)->current] * 8))[1].code == -11) {
                 result = func_80802020_gcdialogexec(arg0);
             }
-            if (!_gczoombox_entrypoint_1(((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + ((Dialog *)arg0)->index[((Dialog *)arg0)->current] * 8))->text)) {
+            if (!_gczoombox_entrypoint_1(((DialogEntry *)(DIALOG_ENTRY(arg0, ((Dialog *)arg0)->current) + ((Dialog *)arg0)->index[((Dialog *)arg0)->current] * 8))->text)) {
                 ((Dialog *)arg0)->index[((Dialog *)arg0)->current]++;
                 break;
             }
-            if (func_80800000_gcdialogexec(((Dialog *)arg0)->caller, ((Dialog *)arg0)->callerArg)) {
-                _gczoombox_entrypoint_35(((Dialog *)arg0)->box[((Dialog *)arg0)->current], ((Dialog *)arg0)->caller, ((Dialog *)arg0)->callerId, ((Dialog *)arg0)->callerArg);
+            if (func_80800000_gcdialogexec(DIALOG_CALLER_SLOT(arg0), ((Dialog *)arg0)->callerArg)) {
+                _gczoombox_entrypoint_35(DIALOG_BOX_SLOT(arg0, ((Dialog *)arg0)->current), BT_NATIVE_ONLY((BtIntPtr))DIALOG_CALLER_SLOT(arg0), ((Dialog *)arg0)->callerId, ((Dialog *)arg0)->callerArg);
             }
             if (result == -1) {
-                if (_gczoombox_entrypoint_37(((Dialog *)arg0)->box[((Dialog *)arg0)->current], ((Dialog *)arg0)->code[((Dialog *)arg0)->current] + 12)) {
-                    _gczoombox_entrypoint_12((void *)((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+                if (_gczoombox_entrypoint_37(DIALOG_BOX_SLOT(arg0, ((Dialog *)arg0)->current), ((Dialog *)arg0)->code[((Dialog *)arg0)->current] + 12)) {
+                    _gczoombox_entrypoint_12((void *)DIALOG_BOX_SLOT(arg0, ((Dialog *)arg0)->current));
                     ((Dialog *)arg0)->pending = 1;
                 } else {
-                    _gczoombox_entrypoint_18(((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+                    _gczoombox_entrypoint_18(DIALOG_BOX_SLOT(arg0, ((Dialog *)arg0)->current));
                 }
             }
             if (((Dialog *)arg0)->pending) {
-                _gczoombox_entrypoint_11(((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
+                _gczoombox_entrypoint_11(DIALOG_BOX_SLOT(arg0, ((Dialog *)arg0)->current));
                 ((Dialog *)arg0)->pending = 0;
             }
             if (result == -1) {
                 for (i = ((Dialog *)arg0)->index[((Dialog *)arg0)->current];
-                     ((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + (i << 3)))->code == ((Dialog *)arg0)->code[((Dialog *)arg0)->current] &&
+                     ((DialogEntry *)(DIALOG_ENTRY(arg0, ((Dialog *)arg0)->current) + (i << 3)))->code == ((Dialog *)arg0)->code[((Dialog *)arg0)->current] &&
                      i - ((Dialog *)arg0)->index[((Dialog *)arg0)->current] < 8 &&
-                     ((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + (i << 3)))[1].code != -11 &&
-                     ((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + (i << 3)))[1].code != -10;
+                     ((DialogEntry *)(DIALOG_ENTRY(arg0, ((Dialog *)arg0)->current) + (i << 3)))[1].code != -11 &&
+                     ((DialogEntry *)(DIALOG_ENTRY(arg0, ((Dialog *)arg0)->current) + (i << 3)))[1].code != -10;
                      i++) {
-                    texts[i - ((Dialog *)arg0)->index[((Dialog *)arg0)->current]] = ((DialogEntry *)(((Dialog *)arg0)->entries[((Dialog *)arg0)->current] + (i << 3)))->text;
+                    texts[i - ((Dialog *)arg0)->index[((Dialog *)arg0)->current]] = ((DialogEntry *)(DIALOG_ENTRY(arg0, ((Dialog *)arg0)->current) + (i << 3)))->text;
                 }
-                _gczoombox_entrypoint_32(((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
-                _gczoombox_entrypoint_7(((Dialog *)arg0)->box[((Dialog *)arg0)->current], i - ((Dialog *)arg0)->index[((Dialog *)arg0)->current], texts);
+                _gczoombox_entrypoint_32(DIALOG_BOX_SLOT(arg0, ((Dialog *)arg0)->current));
+                _gczoombox_entrypoint_7(DIALOG_BOX_SLOT(arg0, ((Dialog *)arg0)->current), i - ((Dialog *)arg0)->index[((Dialog *)arg0)->current], texts);
                 ((Dialog *)arg0)->index[((Dialog *)arg0)->current] = i;
             } else {
-                _gczoombox_entrypoint_32(((Dialog *)arg0)->box[((Dialog *)arg0)->current]);
-                _gczoombox_entrypoint_8(((Dialog *)arg0)->box[((Dialog *)arg0)->current], arg0);
+                _gczoombox_entrypoint_32(DIALOG_BOX_SLOT(arg0, ((Dialog *)arg0)->current));
+                _gczoombox_entrypoint_8(DIALOG_BOX_SLOT(arg0, ((Dialog *)arg0)->current), arg0);
                 ((Dialog *)arg0)->index[((Dialog *)arg0)->current]++;
             }
             func_80800A50_gcdialogexec(arg0, 3);

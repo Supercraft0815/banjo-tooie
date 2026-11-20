@@ -4,7 +4,16 @@
 
 typedef struct PauseState PauseState;
 
+#if !defined(BT_NATIVE)
 extern s32 D_801288B0;
+extern s32 D_801288B8;
+extern s32 D_801289DC;
+extern s32 D_80128A0C;
+extern u8 D_80128A11;
+extern s16 D_80128A12;
+extern s32 D_80128A18;
+extern u8 D_80128A30;
+#endif
 extern s32 D_80128AF4;
 
 int func_800C0090(void *caller, s32 arg1) {
@@ -14,12 +23,22 @@ int func_800C0090(void *caller, s32 arg1) {
 
 void func_800C00BC()
 {
-    _gcdialogDll_entrypoint_0(&D_801288B0);
+    BT_NATIVE_ONLY(void _gcdialogDll_entrypoint_0(GcDialogState *);) _gcdialogDll_entrypoint_0(BT_DATA_FIELD(&gc_dialog_state, &D_801288B0));
 }    typedef struct { u8 pad0[0x11C]; u8 unk11C; u8 unk11D; u8 pad11E[0x2]; s32 unk120; s32 unk124; s16 unk128; s16 unk12A; s32 unk12C; u8 pad130[0x2E]; u16 unk15E; u8 pad160[0x6]; s8 unk166; u8 pad167[0x1]; void * unk168; s32 unk16C; u8 pad170[0x10]; s8 unk180; } Obj1E99980_D_801288B0; /* offsets.py genstruct: fields from raw offsets on &D_801288B0; rename once understood */
 
 /* extern */
 
 void func_800C00E0(void) {
+#if defined(BT_NATIVE)
+    void func_800C0658(void);
+    void _gcdialogexec_entrypoint_7(GcDialogState *);
+    void func_800FECB8(u32 arg0);
+    if (func_800C0638() != 0) func_800FECB8(0);
+    func_800C0658();
+    _gcdialogexec_entrypoint_7(&gc_dialog_state);
+    gc_dialog_state.status15C = 0;
+    gc_dialog_state.unk180 = 0;
+#else
     void func_800C0658(void);
     void _gcdialogexec_entrypoint_7(s32 *);
     void func_800FECB8(u32 arg0);
@@ -30,12 +49,24 @@ void func_800C00E0(void) {
     _gcdialogexec_entrypoint_7(&D_801288B0);
     (*(s8 *)((s8 *)(&D_801288B0) + (0x15C))) = 0;
     (((Obj1E99980_D_801288B0 *)&D_801288B0)->unk180) = 0;
+#endif
 }
-
 void func_800C0130(BtIntPtr arg0) {
-    s32 _gczoombox_entrypoint_2(s32, BtIntPtr);
-    extern s32 D_801288B8;
-    extern s32 D_801289DC;
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    void _gczoombox_entrypoint_2(BtIntPtr, BtIntPtr);
+
+
+    s32 i;
+    BtIntPtr box;
+
+    for (i = 0; i < 2; i++) {
+        box = (BtIntPtr)gc_dialog_box(&gc_dialog_state, i);
+        if (box != 0) _gczoombox_entrypoint_2(box, arg0);
+    }
+    box = (BtIntPtr)gc_dialog_box(&gc_dialog_state, 2);
+    if (box != 0) _gczoombox_entrypoint_2(box, arg0);
+#else
+    void _gczoombox_entrypoint_2(BtIntPtr, BtIntPtr);
     s32 *var_s0;
     s32 temp_a0;
 
@@ -49,6 +80,7 @@ void func_800C0130(BtIntPtr arg0) {
     if (D_801289DC != 0) {
         _gczoombox_entrypoint_2(D_801289DC, arg0);
     }
+#endif
 }
 
 /* extern */
@@ -61,47 +93,75 @@ void func_800C01A8(s16 arg0, s32 arg1) {
 /* Single line: IDO schedules this prologue by source line. */
 void func_800C01D8(s32 arg0, s32 arg1) { void _gcdialogexec_entrypoint_5(); _gcdialogexec_entrypoint_5(&D_801288B0, arg0, arg1); }
 
-int func_800C0208(void) {
-    extern s32 D_80128A18;
-    void *caller = ((Obj1E99980_D_801288B0 *)&D_801288B0)->unk168;
-    if (caller == NULL) {
-        return 0;
-    }
-    if (func_800C0090(caller, ((Obj1E99980_D_801288B0 *)&D_801288B0)->unk16C)) {
-        return D_80128A18;
-    }
+BT_IDO_ONLY(int) BT_NATIVE_ONLY(BtIntPtr) func_800C0208(void) {
+#if defined(BT_NATIVE)
+    void *caller = gc_dialog_caller(&gc_dialog_state);
+    if (caller == NULL) return 0;
+    if (func_800C0090(caller, gc_dialog_state.unk16C)) return (BtIntPtr)caller;
     return 0;
+#else
+    void *caller = ((Obj1E99980_D_801288B0 *)&D_801288B0)->unk168;
+    if (caller == NULL) return 0;
+    if (func_800C0090(caller, ((Obj1E99980_D_801288B0 *)&D_801288B0)->unk16C)) return (BtIntPtr)D_80128A18;
+    return 0;
+#endif
 }
 
 s16 func_800C0258(void) {
     return ((s16 *)&D_801288B0)[((u32)*&((Obj1E99980_D_801288B0 *)&D_801288B0)->unk15E >> 15) + 0x8C] + 12;
 }
 
-s32 func_800C0284(void) {
+BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) func_800C0284(void) {
+#ifdef BT_NATIVE
+    void _gcdialogexec_entrypoint_10(void *);
+    void _gczoombox_entrypoint_4(u8 *);
+    s32 i;
+    u8 *box;
+    if (gc_dialog_state.status15C != 0) _gcdialogexec_entrypoint_10(&gc_dialog_state);
+    for (i = 0; i < 3; i++) {
+        box = gc_dialog_box(&gc_dialog_state, i);
+        if (box != 0) _gczoombox_entrypoint_4(box);
+    }
+
+#else
     s32 _gcdialogexec_entrypoint_10(s32 *);
     s32 _gczoombox_entrypoint_4(s32);
-    extern s32 D_801288B8;
-    extern s32 D_801289DC;
-    extern s32 D_80128A0C;
     s32 *var_s0;
     s32 temp_a0;
-
-    if (*(u8 *)&D_80128A0C != 0) {
-        _gcdialogexec_entrypoint_10(&D_801288B0);
-    }
+    if (*(u8 *)&D_80128A0C != 0) _gcdialogexec_entrypoint_10(&D_801288B0);
     var_s0 = &D_801288B0; do {
         temp_a0 = var_s0[0x48];
-        if (temp_a0 != 0) {
-            _gczoombox_entrypoint_4(temp_a0);
-        }
+        if (temp_a0 != 0) _gczoombox_entrypoint_4(temp_a0);
         var_s0++;
     } while (var_s0 != &D_801288B8);
-    if (D_801289DC != 0) {
-        _gczoombox_entrypoint_4(D_801289DC);
-    } BT_NATIVE_ONLY(return 0;)
+    if (D_801289DC != 0) _gczoombox_entrypoint_4(D_801289DC);
+#endif
 }
 
 void func_800C0308(void) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    void _gczoombox_entrypoint_38(BtIntPtr, s32);
+    extern s8 D_8011A7C0[];
+    s32 y_position_change;
+    BtIntPtr box;
+    if (gc_dialog_state.decremented) {
+        gc_dialog_state.unk166++;
+        y_position_change = D_8011A7C0[gc_dialog_state.unk166];
+        box = (BtIntPtr)gc_dialog_box(&gc_dialog_state, 0);
+        if (box != 0) { gc_dialog_state.unk128 -= y_position_change; _gczoombox_entrypoint_38(box, gc_dialog_state.unk128); }
+        box = (BtIntPtr)gc_dialog_box(&gc_dialog_state, 1);
+        if (box != 0) { gc_dialog_state.unk12A += y_position_change; _gczoombox_entrypoint_38(box, gc_dialog_state.unk12A); }
+        if (gc_dialog_state.unk166 == 12) gc_dialog_state.queued = 0;
+    } else {
+        gc_dialog_state.unk166--;
+        y_position_change = D_8011A7C0[gc_dialog_state.unk166];
+        box = (BtIntPtr)gc_dialog_box(&gc_dialog_state, 0);
+        if (box != 0) { gc_dialog_state.unk128 += y_position_change; _gczoombox_entrypoint_38(box, gc_dialog_state.unk128); }
+        box = (BtIntPtr)gc_dialog_box(&gc_dialog_state, 1);
+        if (box != 0) { gc_dialog_state.unk12A -= y_position_change; _gczoombox_entrypoint_38(box, gc_dialog_state.unk12A); }
+        if (gc_dialog_state.unk166 == 0) gc_dialog_state.queued = 0;
+    }
+#else
     BT_IDO_ONLY(s32 _gczoombox_entrypoint_38(s32, s16);) BT_NATIVE_ONLY(void _gczoombox_entrypoint_38(u8 *, s32);)
     extern s8 D_8011A7C0[];
     struct DialogFlags {
@@ -141,14 +201,15 @@ void func_800C0308(void) {
             ((struct DialogFlags *)((s8 *)&D_801288B0 + 0x15C))->queued = 0;
         }
     }
-}
 
+#endif
+}
 void func_800C0438(void) {
     s32 _gcdialogexec_entrypoint_1(s32 *);
     int func_800A819C(void);
-    s32 func_800C0284();
-    extern s32 D_80128A0C;
-    extern u8 D_80128A11;
+    BT_IDO_ONLY(s32 func_800C0284();)
+
+
     struct DialogFlags {
         BT_BITFIELD_ORDER(u32 unused:18, u32 rest : 12);
         BT_BITFIELD_ORDER(u32 queued:1, u32 decremented : 1);
@@ -169,7 +230,7 @@ void func_800C0438(void) {
 
 s32 func_800C04C8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, BtIntPtr arg4) {
     s32 _gcdialogexec_entrypoint_3(s32 *, s32, s32, s32, s32, BtIntPtr);
-    extern u8 D_80128A30;
+
     s32 var_v1;
 
     if (D_80128A30 != 0) {
@@ -182,7 +243,7 @@ s32 func_800C04C8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, BtIntPtr arg4) {
 
 u32 func_800C0534(u32 arg0, u32 arg1, f32 *arg2, Unk80132ED0 *arg3, BtIntPtr arg4, BtIntPtr arg5, BtIntPtr arg6, s32 arg7) {
     BT_IDO_ONLY(s32 _gcdialogexec_entrypoint_0(s32 *, s32, s32, f32 *, Unk80132ED0 *, BtIntPtr, BtIntPtr, BtIntPtr, s32);) BT_NATIVE_ONLY(s32 _gcdialogexec_entrypoint_0(void *, s32, s32, f32 *, void *, void *, void *, void *, s16);)
-    extern u8 D_80128A30;
+
     u32 var_v1;
 
     if (D_80128A30 != 0) {
@@ -195,7 +256,6 @@ u32 func_800C0534(u32 arg0, u32 arg1, f32 *arg2, Unk80132ED0 *arg3, BtIntPtr arg
 
  s32 func_800C05B8(s32 arg0, s32 arg1, f32 *arg2, Unk80132ED0 *arg3, BtIntPtr arg4, s32 arg5, s16 arg6) {
     BT_IDO_ONLY(s32 _gcdialogexec_entrypoint_0(s32 *, s32, s32, f32 *, Unk80132ED0 *, BtIntPtr, BtIntPtr, BtIntPtr, s32);) BT_NATIVE_ONLY(s32 _gcdialogexec_entrypoint_0(void *, s32, s32, f32 *, void *, void *, void *, void *, s16);)
-    extern u8 D_80128A30;
     s32 var_v1;
     if (D_80128A30 != 0) {
         var_v1 = _gcdialogexec_entrypoint_0(&D_801288B0, arg0, arg1, arg2, arg3, BT_NATIVE_ONLY((void *)) arg4, BT_NATIVE_ONLY((void *)) (BtIntPtr) arg5, 0, arg6);
@@ -206,18 +266,18 @@ u32 func_800C0534(u32 arg0, u32 arg1, f32 *arg2, Unk80132ED0 *arg3, BtIntPtr arg
 }
 
 s32 func_800C0638(void) {
-    extern s16 D_80128A12;
+
     return (D_80128A12 + 1) != 0;
 }    typedef struct { s16 unk0; } Obj1E99980_D_80128A12; /* offsets.py genstruct: fields from raw offsets on &D_80128A12; rename once understood */
 
 s32 func_800C064C(void) {
-    extern s16 D_80128A12;
+
     return *&((Obj1E99980_D_80128A12 *)&D_80128A12)->unk0;
 }
 
 void func_800C0658()
 {
-    _gcdialogexec_entrypoint_2(&D_801288B0);
+    BT_NATIVE_ONLY(void _gcdialogexec_entrypoint_2(u8 *);) _gcdialogexec_entrypoint_2(BT_NATIVE_ONLY((u8 *))&D_801288B0);
 }
 
 /* extern */
@@ -268,16 +328,31 @@ void func_800C0710(void) {
 }    typedef struct { u8 pad0[0x104]; BtIntPtr unk104; u8 pad108[0x18]; s32 unk120; } Obj1E99980_func_800C075C_var_s0; /* offsets.py genstruct: fields from raw offsets on var_s0; rename once understood */
 
 void func_800C075C(void) {
-    void *defrag(void *); s32 func_800C7150(s32); extern s32 D_801288B8; s32 *var_s0; s32 temp_a0; BtIntPtr temp_a0_2; var_s0 = &D_801288B8 - 2; do { temp_a0 = ((Obj1E99980_func_800C075C_var_s0 *)var_s0)->unk120; if (temp_a0 != 0) { ((Obj1E99980_func_800C075C_var_s0 *)var_s0)->unk120 = func_800C7150(temp_a0); } if (((Obj1E99980_D_801288B0 *)&D_801288B0)->unk12C != 0) { ((Obj1E99980_D_801288B0 *)&D_801288B0)->unk12C = func_800C7150(((Obj1E99980_D_801288B0 *)&D_801288B0)->unk12C); } temp_a0_2 = ((Obj1E99980_func_800C075C_var_s0 *)var_s0)->unk104; if (temp_a0_2 != 0) { ((Obj1E99980_func_800C075C_var_s0 *)var_s0)->unk104 = defrag(temp_a0_2); } var_s0++; } while (var_s0 != &D_801288B8); }
+#if defined(BT_NATIVE)
+    void *defrag(void *);
+    BtIntPtr func_800C7150(BtIntPtr);
+    s32 i;
+    void *ptr;
+    for (i = 0; i < 2; i++) {
+        ptr = gc_dialog_box(&gc_dialog_state, i);
+        if (ptr != NULL) gc_dialog_set_box(&gc_dialog_state, i, (void *)func_800C7150((BtIntPtr)ptr));
+        ptr = gc_dialog_box(&gc_dialog_state, 2);
+        if (ptr != NULL) gc_dialog_set_box(&gc_dialog_state, 2, (void *)func_800C7150((BtIntPtr)ptr));
+        ptr = gc_dialog_text_entry(&gc_dialog_state, i);
+        if (ptr != NULL) gc_dialog_set_text_entry(&gc_dialog_state, i, defrag(ptr));
+    }
+#else
+    void *defrag(void *); s32 func_800C7150(s32); s32 *var_s0; s32 temp_a0; BtIntPtr temp_a0_2; var_s0 = &D_801288B8 - 2; do { temp_a0 = ((Obj1E99980_func_800C075C_var_s0 *)var_s0)->unk120; if (temp_a0 != 0) { ((Obj1E99980_func_800C075C_var_s0 *)var_s0)->unk120 = func_800C7150(temp_a0); } if (((Obj1E99980_D_801288B0 *)&D_801288B0)->unk12C != 0) { ((Obj1E99980_D_801288B0 *)&D_801288B0)->unk12C = func_800C7150(((Obj1E99980_D_801288B0 *)&D_801288B0)->unk12C); } temp_a0_2 = ((Obj1E99980_func_800C075C_var_s0 *)var_s0)->unk104; if (temp_a0_2 != 0) { ((Obj1E99980_func_800C075C_var_s0 *)var_s0)->unk104 = defrag(temp_a0_2); } var_s0++; } while (var_s0 != &D_801288B8);
+#endif
+}
 
 u32 func_800C07F4(void) {
-    extern s32 D_80128A0C;
     return (u32) (D_80128A0C << 0x15) >> 0x1F;
 }
 
 void func_800C0808()
 {
-    _gcdialogexec_entrypoint_8(&D_801288B0);
+    BT_NATIVE_ONLY(void _gcdialogexec_entrypoint_8(BtIntPtr);) _gcdialogexec_entrypoint_8(BT_NATIVE_ONLY((BtIntPtr))&D_801288B0);
 }
 
 void func_800C082C(s32 arg0) {
@@ -301,8 +376,7 @@ BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) func_800C0850(void) {
 
 void func_800C0890(s32 arg0, s32 arg1) {
     void _gcdialogexec_entrypoint_9(u8 *arg0, s32 arg1, s32 arg2);
-    extern s32 D_801288B0;
-    _gcdialogexec_entrypoint_9(&D_801288B0, arg0, arg1);
+    _gcdialogexec_entrypoint_9(BT_NATIVE_ONLY((u8 *))&D_801288B0, arg0, arg1);
 }
 
 void func_800C08C0(void) {
@@ -489,8 +563,8 @@ void func_800C0BC0(Gfx** gfx, void* destination, void* source) {
     *gfx = cur_gfx;
 }
 #else
-s32 func_800C0BC0(BtIntPtr gfx, BtIntPtr destination, BtIntPtr source) {
-    BtIntPtr func_80014F00(void);
+s32 func_800C0BC0(BtIntPtr gfx, BT_NATIVE_ONLY(void *) BT_IDO_ONLY(BtIntPtr) destination, BT_NATIVE_ONLY(void *) BT_IDO_ONLY(BtIntPtr) source) {
+    BT_IDO_ONLY(BtIntPtr func_80014F00(void);)
     s32 row; BT_NATIVE_ONLY(u32 result;)
     s32 col;
     Gfx* cur_gfx = *(Gfx**)gfx;
@@ -557,12 +631,12 @@ s32 func_800C0BC0(BtIntPtr gfx, BtIntPtr destination, BtIntPtr source) {
 
 void func_800C0F8C(BtIntPtr arg0) {
     void func_800EA34C(s32 arg0);
-    BtIntPtr func_80014F00();
-    s32 func_8001A0A8();
-    s32 func_800C0BC0(BtIntPtr, BtIntPtr, BtIntPtr);
+    BT_IDO_ONLY(BtIntPtr func_80014F00();)
+    BT_IDO_ONLY(s32 func_8001A0A8();)
+    BT_IDO_ONLY(s32 func_800C0BC0(BtIntPtr, BtIntPtr, BtIntPtr);)
     extern s32 D_80128B00;
     s32 unused;
-    s32 sp18;
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(s32) sp18;
 
     func_800EA34C(0);
     D_80128B00 = 2;
@@ -571,14 +645,14 @@ void func_800C0F8C(BtIntPtr arg0) {
 }
 
 void func_800C0FD8(BtIntPtr arg0) {
-    BtIntPtr func_80014F00();
-    s32 func_8001A0A8();
-    s32 func_800C0BC0(BtIntPtr, BtIntPtr, BtIntPtr);
+    BT_IDO_ONLY(BtIntPtr func_80014F00();)
+    BT_IDO_ONLY(s32 func_8001A0A8();)
+    BT_IDO_ONLY(s32 func_800C0BC0(BtIntPtr, BtIntPtr, BtIntPtr);)
     s32 func_800D6E54(s32);
     void func_800FFD10(s32);
     extern s32 D_80128B00;
     s32 unused;
-    BtIntPtr sp18;
+    BT_NATIVE_ONLY(void *) BT_IDO_ONLY(BtIntPtr) sp18;
 
     if (D_80128B00 == 0) {
         func_800D6E54(2);
@@ -600,14 +674,17 @@ void func_800C1044(BtIntPtr arg0) {
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
-s32 D_801288B0 BT_DATA(4, bss_core2bss1_0_2, 0x1110);
-s32 D_801288B8 BT_DATA(4, bss_core2bss1_0_2, 0x1118);
-s32 D_801289DC BT_DATA(4, bss_core2bss1_0_2, 0x123C);
-s32 D_80128A0C BT_DATA(4, bss_core2bss1_0_2, 0x126C);
-u8 D_80128A11 BT_DATA(4, bss_core2bss1_0_2, 0x1271);
-s16 D_80128A12 BT_DATA(4, bss_core2bss1_0_2, 0x1272);
-s32 D_80128A18 BT_DATA(4, bss_core2bss1_0_2, 0x1278);
-u8 D_80128A30 BT_DATA(4, bss_core2bss1_0_2, 0x1290);
+#ifdef BT_NATIVE
+#ifdef BT_ILP32
+GcDialogStateStorage gc_dialog_state_storage __asm__("D_801288B0") BT_DATA(4, bss_core2bss1_0_2, 0x1110);
+_Static_assert(sizeof(GcDialogStateStorage) == 0x240, "O32 dialog storage including original padding");
+#else
+GcDialogState gc_dialog_state;
+#endif
+#endif
+#if !defined(BT_ILP32)
+GcDialogNativeState gc_dialog_native_state;
+#endif
 PauseState * D_80128AF0 BT_DATA(4, bss_core2bss1_0_2, 0x1350);
 s32 D_80128AF4 BT_DATA(4, bss_core2bss1_0_2, 0x1354);
 s32 D_80128B00 BT_DATA(4, bss_core2bss1_0_2, 0x1360);

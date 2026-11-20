@@ -572,3 +572,6 @@ pointers or use their storage. Both complete ROMs, all 74 replays and all
 
 2026-11-20  Form and claw animation
 0 guest functions change their normalized IR. The 9,706 fixup addresses, both complete ROM images and all 74 replays match. See n1-2026-11-18/current-animation-controllers-ir.log.
+
+2026-11-20  Dialog state storage and deflection hit lists
+The combined change preserves the original byte clear in the dialog reset. The complete replay corpus, both ROMs and all 9,706 fixup addresses match. See n1-2026-11-18/current-deflect-combined-ir.log.

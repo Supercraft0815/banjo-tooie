@@ -97,6 +97,8 @@ Weitere geprüfte N-Pakete am 20. November
 
 - Form- und Klauenanimation. Spieler und Animationscontroller behalten beim Aufruf der Animation ihre native Zeigerbreite.
 
+- Der Dialogzustand besitzt ein gemeinsames C-Objekt. Beim Zurücksetzen bleiben die benachbarten Zustandsbytes wie im Original erhalten. Die acht Trefferplätze der Deflektion verwenden native Zellzeiger.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

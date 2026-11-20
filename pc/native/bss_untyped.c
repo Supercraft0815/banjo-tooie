@@ -91,6 +91,5 @@ u8 B_80800560_idflame[16] BT_DATA(16, bss_id_flame, 0x0);
 u8 D_80803F30[16] BT_DATA(16, bss_jiggy_gamenew, 0x0);
 u8 bss_starspinner_star__end[1] BT_DATA(1, bss_starspinner_star, 0xF);
 u8 bss_su_deathmatch__end[1] BT_DATA(1, bss_su_deathmatch, 0xCF);
-u8 B_80801020_sudeflect[48] BT_DATA(16, bss_su_deflect, 0x0);
 u8 bss_su_fade__end[1] BT_DATA(1, bss_su_fade, 0xF);
 u8 bss_weldarboss_fireball__end[1] BT_DATA(1, bss_weldarboss_fireball, 0xF);

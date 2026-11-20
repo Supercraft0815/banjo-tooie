@@ -1,13 +1,31 @@
 #include "common.h"
 
+#ifdef BT_NATIVE
+#include "native_world_grid.h"
+typedef struct {
+    NativeWorldCell **cells;
+    s32 players[8];
+    s32 count;
+    BT_ILP32_ONLY(u8 padding[8];)
+} DeflectHits;
+DeflectHits B_80801020_sudeflect BT_DATA(16, bss_su_deflect, 0x0);
+#ifdef BT_ILP32
+_Static_assert(sizeof(DeflectHits) == 0x30 && __builtin_offsetof(DeflectHits, count) == 0x24, "deflection hit list");
+#endif
+#define DEFLECT_PLAYER(i) B_80801020_sudeflect.players[i]
+#define DEFLECT_CELLS B_80801020_sudeflect.cells
+#else
 extern struct {
     s32 entries[9];
     s32 count;
 } B_80801020_sudeflect;
+#define DEFLECT_PLAYER(i) B_80801020_sudeflect.entries[(i) + 1]
+#define DEFLECT_CELLS B_80801020_sudeflect.entries[0]
+#endif
 
 s32 sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3) {
     void func_800A52E0(f32 *, f32, f32);
-    s32 *func_800BE3F8(u8 *);
+    BT_IDO_ONLY(s32 *func_800BE3F8(u8 *);)
     s32 func_800F4F34(BtUIntPtr, f32 *, f32, f32);
     s32 func_800F6438(BtUIntPtr);
     s32 func_808006A4_sudeflect(f32 *, f32, f32);
@@ -18,14 +36,14 @@ s32 sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3) {
     var_s2 = 0;
     B_80801020_sudeflect.count = 0;
     if (arg3 & 0x18) {
-        B_80801020_sudeflect.entries[0] = (BtIntPtr)func_800BE3F8((u8 *)arg0);
+        DEFLECT_CELLS = BT_IDO_ONLY((BtIntPtr))func_800BE3F8(BT_IDO_ONLY((u8 *))arg0);
     }
     if (arg3 & 2) {
         var_s0 = 0;
         do {
             if (func_800F6438(var_s0) != 0 &&
                 func_800F4F34(var_s0, arg0, arg1, arg2) != 0) {
-                B_80801020_sudeflect.entries[B_80801020_sudeflect.count + 1] = var_s0;
+                DEFLECT_PLAYER(B_80801020_sudeflect.count) = var_s0;
                 B_80801020_sudeflect.count++;
                 var_s2 |= 2;
             }
@@ -41,13 +59,13 @@ s32 sudeflect_entrypoint_0(f32 *arg0, f32 arg1, f32 arg2, s32 arg3) {
     if ((arg3 & 0x10) && func_80800940_sudeflect(arg0, arg1, arg2) != 0) {
         var_s2 |= 0x10;
     }
-    B_80801020_sudeflect.entries[0] = 0;
+    DEFLECT_CELLS = 0;
     return var_s2;
 }
 
 s32 sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     void func_800A5298(f32 *, f32, f32, f32);
-    s32 *func_800BE3F8(u8 *);
+    BT_IDO_ONLY(s32 *func_800BE3F8(u8 *);)
     s32 func_800F4EC8(BtUIntPtr, BtIntPtr, f32, f32, f32);
     s32 func_800F6438(BtUIntPtr);
     s32 func_808007F4_sudeflect(f32 *, f32, f32, f32);
@@ -58,14 +76,14 @@ s32 sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     var_s2 = 0;
     B_80801020_sudeflect.count = 0;
     if (arg4 & 0x18) {
-        B_80801020_sudeflect.entries[0] = (BtIntPtr)func_800BE3F8((u8 *)arg0);
+        DEFLECT_CELLS = BT_IDO_ONLY((BtIntPtr))func_800BE3F8(BT_IDO_ONLY((u8 *))arg0);
     }
     if (arg4 & 2) {
         var_s0 = 0;
         do {
             if (func_800F6438(var_s0) != 0 &&
                 func_800F4EC8(var_s0, (BtIntPtr)arg0, arg1, arg2, arg3) != 0) {
-                B_80801020_sudeflect.entries[B_80801020_sudeflect.count + 1] = var_s0;
+                DEFLECT_PLAYER(B_80801020_sudeflect.count) = var_s0;
                 B_80801020_sudeflect.count++;
                 var_s2 |= 2;
             }
@@ -81,12 +99,12 @@ s32 sudeflect_entrypoint_1(f32 *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     if ((arg4 & 0x10) && func_80800A98_sudeflect(arg0, arg1, arg2, arg3) != 0) {
         var_s2 |= 0x10;
     }
-    B_80801020_sudeflect.entries[0] = 0;
+    DEFLECT_CELLS = 0;
     return var_s2;
 }
 
 s32 sudeflect_entrypoint_2(f32 *arg0, f32 *arg1, s32 arg2) {
-    s32 *func_800BE3F8(u8 *);
+    BT_IDO_ONLY(s32 *func_800BE3F8(u8 *);)
     s32 func_800F4D18(BtIntPtr, f32 *, f32 *);
     s32 func_800F6438(BtUIntPtr);
     s32 func_80800BEC_sudeflect(f32 *, f32 *);
@@ -101,7 +119,7 @@ s32 sudeflect_entrypoint_2(f32 *arg0, f32 *arg1, s32 arg2) {
     }
     B_80801020_sudeflect.count = 0;
     if (arg2 & 0x18) {
-        B_80801020_sudeflect.entries[0] = (BtIntPtr)func_800BE3F8((u8 *)midpoint);
+        DEFLECT_CELLS = BT_IDO_ONLY((BtIntPtr))func_800BE3F8(BT_IDO_ONLY((u8 *))midpoint);
     }
     i = 0;
     if (arg2 & 2) {
@@ -112,7 +130,7 @@ s32 sudeflect_entrypoint_2(f32 *arg0, f32 *arg1, s32 arg2) {
             if (func_800F4D18(i, arg0, arg1) == 0) {
                 continue;
             }
-            B_80801020_sudeflect.entries[B_80801020_sudeflect.count + 1] = i;
+            DEFLECT_PLAYER(B_80801020_sudeflect.count) = i;
             B_80801020_sudeflect.count++;
             result |= 2;
         }
@@ -123,7 +141,7 @@ s32 sudeflect_entrypoint_2(f32 *arg0, f32 *arg1, s32 arg2) {
     if ((arg2 & 0x10) && func_80800D14_sudeflect(arg0, arg1) != 0) {
         result |= 0x10;
     }
-    B_80801020_sudeflect.entries[0] = 0;
+    DEFLECT_CELLS = 0;
     return result;
 }
 
@@ -139,7 +157,7 @@ s32 sudeflect_entrypoint_3(BtIntPtr arg0, BtIntPtr arg1, BtIntPtr arg2, BtIntPtr
         var_s0 = 0;
         do {
             if ((func_800F6438(var_s0) != 0) && (func_800F4E5C(var_s0, arg0, arg1, arg2, arg3) != 0)) {
-                B_80801020_sudeflect.entries[B_80801020_sudeflect.count + 1] = var_s0;
+                DEFLECT_PLAYER(B_80801020_sudeflect.count) = var_s0;
                 B_80801020_sudeflect.count++;
                 var_s2 |= 2;
             }
@@ -156,7 +174,7 @@ void sudeflect_entrypoint_4(s32 arg0, f32 *arg1) {
     s32 var_s1;
 
     for (var_s1 = 0; var_s1 < B_80801020_sudeflect.count; var_s1++) {
-        temp_s0 = B_80801020_sudeflect.entries[var_s1 + 1];
+        temp_s0 = DEFLECT_PLAYER(var_s1);
         if (func_80800630_sudeflect(temp_s0) != 0) {
             func_800F7700(temp_s0, arg0, arg1);
         }
@@ -166,12 +184,12 @@ void sudeflect_entrypoint_4(s32 arg0, f32 *arg1) {
 /* extern */
 
 s32 func_80800630_sudeflect(s32 arg0) {
-    s32 func_800F52B8(BtIntPtr, s32);
+    s32 func_800F52B8(BtIntPtr, BT_NATIVE_ONLY(Unk80132ED0 *) BT_IDO_ONLY(s32));
     s32 func_800F5410(BtIntPtr);
-    s32 func_800F6720();
+    s32 func_800F6720(BT_NATIVE_ONLY(BtIntPtr));
     s32 temp_v0;
 
-    if (func_800F6720() != 0) {
+    if (func_800F6720(BT_NATIVE_ONLY(arg0)) != 0) {
         return 1;
     }
     if (func_800F5410(arg0) == 0x11) {
@@ -185,36 +203,36 @@ s32 func_80800630_sudeflect(s32 arg0) {
 }
 
 s32 func_808006A4_sudeflect(f32 *arg0, f32 arg1, f32 arg2) {
-    s32 _sueggmisc_entrypoint_0();
-    BtIntPtr func_800E9E88(BtIntPtr);
-    BtUIntPtr func_800E9EB4(s16 *);
+    s32 _sueggmisc_entrypoint_0(BT_NATIVE_ONLY(Unk80132ED0 *));
+    BT_IDO_ONLY(BtIntPtr func_800E9E88(BtIntPtr);)
+    BT_IDO_ONLY(BtUIntPtr func_800E9EB4(s16 *);)
     void func_800EE7F8(f32 *, f32 *);
     s32 func_800F0008(f32 *, f32, f32 *, f32);
-    s32 func_8010108C(Actor *, s32, BtIntPtr);
+    s32 func_8010108C(Actor *, s32, BT_NATIVE_ONLY(s32) BT_IDO_ONLY(BtIntPtr));
     Actor *func_80106790(Unk80132ED0 *);
-    struct EggProp {
+    BT_NATIVE_ONLY(NativeMarkerProp) BT_IDO_ONLY(struct EggProp {
         Unk80132ED0 *marker;
         s32 unk4;
         u32 flags;
-    } *entry, *end;
+    }) *entry, *end;
     f32 radius;
     f32 position[3];
     Unk80132ED0 *marker;
     Actor *actor;
     s32 count;
-    s16 **list;
-    s16 *cell;
+    BT_NATIVE_ONLY(NativeWorldCell) BT_IDO_ONLY(s16) **list;
+    BT_NATIVE_ONLY(NativeWorldCell) BT_IDO_ONLY(s16) *cell;
 
     radius = 38.0f;
-    list = (s16 **)B_80801020_sudeflect.entries[0];
+    list = BT_IDO_ONLY((s16 **))DEFLECT_CELLS;
     count = 0;
     func_800EE7F8(position, arg0);
     position[1] += arg1;
     cell = *list;
     if (cell != NULL) {
         do {
-            entry = (struct EggProp *)func_800E9E88((BtIntPtr)cell);
-            end = (struct EggProp *)func_800E9EB4(*list);
+            entry = BT_IDO_ONLY((struct EggProp *))func_800E9E88(BT_IDO_ONLY((BtIntPtr))cell);
+            end = BT_IDO_ONLY((struct EggProp *))func_800E9EB4(*list);
             if (entry < end) {
                 do {
                 if (entry->flags & 1) {
@@ -238,27 +256,27 @@ s32 func_808006A4_sudeflect(f32 *arg0, f32 arg1, f32 arg2) {
 }
 
 s32 func_808007F4_sudeflect(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
-    s32 _sueggmisc_entrypoint_0();
-    BtIntPtr func_800E9E88(BtIntPtr);
-    BtUIntPtr func_800E9EB4(s16 *);
-    s32 func_8010108C(Actor *, s32, BtIntPtr);
+    s32 _sueggmisc_entrypoint_0(BT_NATIVE_ONLY(Unk80132ED0 *));
+    BT_IDO_ONLY(BtIntPtr func_800E9E88(BtIntPtr);)
+    BT_IDO_ONLY(BtUIntPtr func_800E9EB4(s16 *);)
+    s32 func_8010108C(Actor *, s32, BT_NATIVE_ONLY(s32) BT_IDO_ONLY(BtIntPtr));
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_80800E44_sudeflect(f32 *, f32, f32, f32, f32 *, f32);
-    struct EggProp {
+    BT_NATIVE_ONLY(NativeMarkerProp) BT_IDO_ONLY(struct EggProp {
         Unk80132ED0 *marker;
         s32 unk4;
         u32 flags;
-    } *entry, *end;
+    }) *entry, *end;
     Unk80132ED0 *marker;
     Actor *actor;
     s32 count;
-    s16 **list;
-    s16 *cell;
+    BT_NATIVE_ONLY(NativeWorldCell) BT_IDO_ONLY(s16) **list;
+    BT_NATIVE_ONLY(NativeWorldCell) BT_IDO_ONLY(s16) *cell;
 
     count = 0;
-    for (list = (s16 **)B_80801020_sudeflect.entries[0]; (cell = *list) != NULL; list++) {
-        entry = (struct EggProp *)func_800E9E88((BtIntPtr)cell);
-        end = (struct EggProp *)func_800E9EB4(*list);
+    for (list = BT_IDO_ONLY((s16 **))DEFLECT_CELLS; (cell = *list) != NULL; list++) {
+        entry = BT_IDO_ONLY((struct EggProp *))func_800E9E88(BT_IDO_ONLY((BtIntPtr))cell);
+        end = BT_IDO_ONLY((struct EggProp *))func_800E9EB4(*list);
         for (; entry < end; entry++) {
             if (!(entry->flags & 1)) {
                 continue;
@@ -278,33 +296,33 @@ s32 func_808007F4_sudeflect(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
 }
 
 s32 func_80800940_sudeflect(f32 *arg0, f32 arg1, f32 arg2) {
-    BtIntPtr func_800E9E88(BtIntPtr);
-    BtUIntPtr func_800E9EB4(s16 *);
+    BT_IDO_ONLY(BtIntPtr func_800E9E88(BtIntPtr);)
+    BT_IDO_ONLY(BtUIntPtr func_800E9EB4(s16 *);)
     void func_800EE7F8(f32 *, f32 *);
     s32 func_800F0008(f32 *, f32, f32 *, f32);
-    s32 func_8010108C(Actor *, s32, BtIntPtr);
+    s32 func_8010108C(Actor *, s32, BT_NATIVE_ONLY(s32) BT_IDO_ONLY(BtIntPtr));
     Actor *func_80106790(Unk80132ED0 *);
-    struct DeflectProp {
+    BT_NATIVE_ONLY(NativeMarkerProp) BT_IDO_ONLY(struct DeflectProp {
         Unk80132ED0 *marker;
         s32 unk4;
         u32 flags;
-    } *entry, *end;
+    }) *entry, *end;
     f32 radius;
     f32 position[3];
     Unk80132ED0 *marker;
     Actor *actor;
     s32 count;
-    s16 **list;
-    s16 *cell;
+    BT_NATIVE_ONLY(NativeWorldCell) BT_IDO_ONLY(s16) **list;
+    BT_NATIVE_ONLY(NativeWorldCell) BT_IDO_ONLY(s16) *cell;
 
     radius = 40.0f;
-    list = (s16 **)B_80801020_sudeflect.entries[0];
+    list = BT_IDO_ONLY((s16 **))DEFLECT_CELLS;
     count = 0;
     func_800EE7F8(position, arg0);
     position[1] += arg1;
     for (; (cell = *list) != NULL; list++) {
-        entry = (struct DeflectProp *)func_800E9E88((BtIntPtr)cell);
-        end = (struct DeflectProp *)func_800E9EB4(*list);
+        entry = BT_IDO_ONLY((struct DeflectProp *))func_800E9E88(BT_IDO_ONLY((BtIntPtr))cell);
+        end = BT_IDO_ONLY((struct DeflectProp *))func_800E9EB4(*list);
         for (; entry < end; entry++) {
             if (!(entry->flags & 1)) {
                 continue;
@@ -324,29 +342,29 @@ s32 func_80800940_sudeflect(f32 *arg0, f32 arg1, f32 arg2) {
 }
 
 s32 func_80800A98_sudeflect(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
-    BtIntPtr func_800E9E88(BtIntPtr);
-    BtUIntPtr func_800E9EB4(s16 *);
-    s32 func_8010108C(Actor *, s32, BtIntPtr);
+    BT_IDO_ONLY(BtIntPtr func_800E9E88(BtIntPtr);)
+    BT_IDO_ONLY(BtUIntPtr func_800E9EB4(s16 *);)
+    s32 func_8010108C(Actor *, s32, BT_NATIVE_ONLY(s32) BT_IDO_ONLY(BtIntPtr));
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_80800E44_sudeflect(f32 *, f32, f32, f32, f32 *, f32);
-    struct DeflectProp {
+    BT_NATIVE_ONLY(NativeMarkerProp) BT_IDO_ONLY(struct DeflectProp {
         Unk80132ED0 *marker;
         s32 unk4;
         u32 flags;
-    } *entry, *end;
+    }) *entry, *end;
     Unk80132ED0 *marker;
     Actor *actor;
     s32 count;
-    s16 **list;
-    s16 *cell;
+    BT_NATIVE_ONLY(NativeWorldCell) BT_IDO_ONLY(s16) **list;
+    BT_NATIVE_ONLY(NativeWorldCell) BT_IDO_ONLY(s16) *cell;
 
-    list = (s16 **)B_80801020_sudeflect.entries[0];
+    list = BT_IDO_ONLY((s16 **))DEFLECT_CELLS;
     cell = *list;
     count = 0;
     if (cell != NULL) {
         do {
-            entry = (struct DeflectProp *)func_800E9E88((BtIntPtr)cell);
-            end = (struct DeflectProp *)func_800E9EB4(*list);
+            entry = BT_IDO_ONLY((struct DeflectProp *))func_800E9E88(BT_IDO_ONLY((BtIntPtr))cell);
+            end = BT_IDO_ONLY((struct DeflectProp *))func_800E9EB4(*list);
             if (entry < end) {
                 do {
                     if (entry->flags & 1) {
@@ -370,30 +388,30 @@ s32 func_80800A98_sudeflect(f32 *arg0, f32 arg1, f32 arg2, f32 arg3) {
 }
 
 s32 func_80800BEC_sudeflect(f32 *arg0, f32 *arg1) {
-    s32 _sueggmisc_entrypoint_0();
-    BtIntPtr func_800E9E88(BtIntPtr);
-    BtUIntPtr func_800E9EB4(s16 *);
-    s32 func_8010108C(Actor *, s32, BtIntPtr);
+    s32 _sueggmisc_entrypoint_0(BT_NATIVE_ONLY(Unk80132ED0 *));
+    BT_IDO_ONLY(BtIntPtr func_800E9E88(BtIntPtr);)
+    BT_IDO_ONLY(BtUIntPtr func_800E9EB4(s16 *);)
+    s32 func_8010108C(Actor *, s32, BT_NATIVE_ONLY(s32) BT_IDO_ONLY(BtIntPtr));
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_80800ECC_sudeflect(f32 *, f32 *, f32 *, f32);
-    struct EggProp {
+    BT_NATIVE_ONLY(NativeMarkerProp) BT_IDO_ONLY(struct EggProp {
         Unk80132ED0 *marker;
         s32 unk4;
         u32 flags;
-    } *entry, *end;
+    }) *entry, *end;
     Unk80132ED0 *marker;
     Actor *actor;
     s32 count;
-    s16 **list;
-    s16 *cell;
+    BT_NATIVE_ONLY(NativeWorldCell) BT_IDO_ONLY(s16) **list;
+    BT_NATIVE_ONLY(NativeWorldCell) BT_IDO_ONLY(s16) *cell;
 
-    list = (s16 **)B_80801020_sudeflect.entries[0];
+    list = BT_IDO_ONLY((s16 **))DEFLECT_CELLS;
     cell = *list;
     count = 0;
     if (cell != NULL) {
         do {
-            entry = (struct EggProp *)func_800E9E88((BtIntPtr)cell);
-            end = (struct EggProp *)func_800E9EB4(*list);
+            entry = BT_IDO_ONLY((struct EggProp *))func_800E9E88(BT_IDO_ONLY((BtIntPtr))cell);
+            end = BT_IDO_ONLY((struct EggProp *))func_800E9EB4(*list);
             if (entry < end) {
                 do {
                     if (entry->flags & 1) {
@@ -417,29 +435,29 @@ s32 func_80800BEC_sudeflect(f32 *arg0, f32 *arg1) {
 }
 
 s32 func_80800D14_sudeflect(f32 *arg0, f32 *arg1) {
-    BtIntPtr func_800E9E88(BtIntPtr);
-    BtUIntPtr func_800E9EB4(s16 *);
-    s32 func_8010108C(Actor *, s32, BtIntPtr);
+    BT_IDO_ONLY(BtIntPtr func_800E9E88(BtIntPtr);)
+    BT_IDO_ONLY(BtUIntPtr func_800E9EB4(s16 *);)
+    s32 func_8010108C(Actor *, s32, BT_NATIVE_ONLY(s32) BT_IDO_ONLY(BtIntPtr));
     Actor *func_80106790(Unk80132ED0 *);
     s32 func_80800ECC_sudeflect(f32 *, f32 *, f32 *, f32);
-    struct DeflectProp {
+    BT_NATIVE_ONLY(NativeMarkerProp) BT_IDO_ONLY(struct DeflectProp {
         Unk80132ED0 *marker;
         s32 unk4;
         u32 flags;
-    } *entry, *end;
+    }) *entry, *end;
     Unk80132ED0 *marker;
     Actor *actor;
     s32 count;
-    s16 **list;
-    s16 *cell;
+    BT_NATIVE_ONLY(NativeWorldCell) BT_IDO_ONLY(s16) **list;
+    BT_NATIVE_ONLY(NativeWorldCell) BT_IDO_ONLY(s16) *cell;
 
-    list = (s16 **)B_80801020_sudeflect.entries[0];
+    list = BT_IDO_ONLY((s16 **))DEFLECT_CELLS;
     cell = *list;
     count = 0;
     if (cell != NULL) {
         do {
-            entry = (struct DeflectProp *)func_800E9E88((BtIntPtr)cell);
-            end = (struct DeflectProp *)func_800E9EB4(*list);
+            entry = BT_IDO_ONLY((struct DeflectProp *))func_800E9E88(BT_IDO_ONLY((BtIntPtr))cell);
+            end = BT_IDO_ONLY((struct DeflectProp *))func_800E9EB4(*list);
             if (entry < end) {
                 do {
                     if (entry->flags & 1) {
