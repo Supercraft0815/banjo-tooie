@@ -647,3 +647,6 @@ The combined change preserves the original byte clear in the dialog reset. The c
 
 2026-11-20  First person player argument
 0 guest functions change their normalized IR. The 9,706 fixup addresses, both complete ROM images and all 74 replays match. See n1-2026-11-18/current-firstperson-player-ir.log.
+
+2026-11-20  Ball controller markers
+0 guest functions change their normalized IR. The 9,706 fixup addresses, both complete ROM images and all 74 replays match. See n1-2026-11-18/current-ball-controllers-ir.log.

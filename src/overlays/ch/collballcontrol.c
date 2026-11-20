@@ -90,7 +90,7 @@ BtFnWord D_80804DA8_chcollballcontrol[] = {
     0x003F019E, 0x06370001, 0x00000000, (BtFnWord)func_808006FC_chcollballcontrol,
     (BtFnWord)func_80105834, (BtFnWord)func_8010A730, 0x00000000, 0x00000000,
     0x00000000, 0x00080004, (BtFnWord)func_80801038_chcollballcontrol, 0x00000000,
-    0x00400000, (BtFnWord)func_80800DD8_chcollballcontrol, (BtFnWord)func_80107C2C, 0x80000202,
+    0x00400000 + (sizeof(void *) > 4 ? 0x00100000 : 0), (BtFnWord)func_80800DD8_chcollballcontrol, (BtFnWord)func_80107C2C, 0x80000202,
     (BtFnWord)func_808002B8_chcollballcontrol, 0x00000000,
 };
 
@@ -371,13 +371,13 @@ s32 func_808002B8_chcollballcontrol(Unk80132ED0 **arg0, s32 arg1, Unk80132ED0 *a
     };
     struct BallData {
         u8 pad0[0x14];
-        s32 markers[3];
+        union { Unk80132ED0 *native_markers[3]; s32 markers[3]; };
         s32 score;
         u8 pad1[0x15];
         u8 level;
         u8 pad2;
         u8 result;
-    };
+    }; typedef char BallData_layout_check[(sizeof(struct BallData) == (sizeof(void *) > 4 ? 0x50 : 0x3C)) ? 1 : -1];
     struct BallData *data;
     f32 duration;
 
@@ -400,7 +400,7 @@ s32 func_808002B8_chcollballcontrol(Unk80132ED0 **arg0, s32 arg1, Unk80132ED0 *a
         }
         if (_capod_entrypoint_17(duration)) {
             _subaddiedialog_entrypoint_11(*arg0, data->level + 0x12C7, 6,
-                func_80106790((Unk80132ED0 *)data->markers[data->level])->position, 0);
+                func_80106790(BT_DATA_FIELD(data->native_markers[data->level], (Unk80132ED0 *)data->markers[data->level]))->position, 0);
             ((struct Flags *)arg0)->dialog = 1;
         }
         return 3;
@@ -946,12 +946,12 @@ void func_808011E8_chcollballcontrol(Actor *arg0) {
 void func_80801350_chcollballcontrol(Actor *arg0, s32 *arg1) {
     typedef struct { u8 pad[0x1A]; u16 index; u8 pad1[8]; BT_BITFIELD_ORDER(u32 id:10, u32 flags : 22); BT_BITFIELD_ORDER(u32 flags:22, u32 id : 10); } Marker;
     typedef struct { Marker *marker; s32 unk4; u32 flags; } Entry;
-    s32 *func_800BE444(f32 *);
+    BT_NATIVE_ONLY(BtIntPtr *) BT_IDO_ONLY(s32 *) func_800BE444(f32 *);
     BtIntPtr func_800E9E88(BtIntPtr);
     BtUIntPtr func_800E9EB4(s16 *);
     Actor *func_80106790(Unk80132ED0 *);
     Entry *entry, *end;
-    s32 *list;
+    BT_NATIVE_ONLY(BtIntPtr *) BT_IDO_ONLY(s32 *) list;
     s32 i;
     for (i = 0; i < 6; i++) {
         arg1[i] = 0;
@@ -959,7 +959,7 @@ void func_80801350_chcollballcontrol(Actor *arg0, s32 *arg1) {
     list = func_800BE444(arg0->position);
     while (*list != 0) {
         entry = (Entry *)func_800E9E88(*list);
-        end = (Entry *)func_800E9EB4((s16 *)*list);
+        end = (Entry *)func_800E9EB4(BT_DATA_FIELD((s16 *)(uintptr_t)*list, (s16 *)*list));
         for (; entry < end; entry++) {
             if (entry->flags & 1) {
                 switch (entry->marker->id) {
@@ -1112,12 +1112,12 @@ void func_80801764_chcollballcontrol(u8 *arg0, s32 arg1) {
     data = func_80100094(arg0, 0);
     state = (u32)*(u16 *)(arg0 + 0x72) >> 10;
     if (state == 2 && arg1 != state) {
-        linked = *(s32 *)(arg0 + 0x3C);
+        linked = BT_DATA_FIELD((BtIntPtr)((Actor *)arg0)->unk3C, *(s32 *)(arg0 + 0x3C));
         if (linked != 0) {
             if (_sukickball_entrypoint_6(func_80106790(linked), data[0x20])) {
                 func_800F4F98(data[0x20], *(void **)arg0);
             }
-            _sukickball_entrypoint_11(func_80106790(*(s32 *)(arg0 + 0x3C)), data[0x20]);
+            _sukickball_entrypoint_11(func_80106790(BT_DATA_FIELD(((Actor *)arg0)->unk3C, *(s32 *)(arg0 + 0x3C))), data[0x20]);
             state = (u32)*(u16 *)(arg0 + 0x72) >> 10;
         }
     }
@@ -1488,7 +1488,7 @@ void func_80802764_chcollballcontrol(s32 *arg0) {
     void func_808028D0_chcollballcontrol(Actor *, Actor *);
     void func_80802964_chcollballcontrol(Actor *, u32);
     void func_808029D8_chcollballcontrol(Actor *, Actor *);
-    s32 *list;
+    BT_NATIVE_ONLY(BtIntPtr *) BT_IDO_ONLY(s32 *) list;
     Entry *entry;
     Entry *end;
     Marker *marker;
@@ -1496,11 +1496,11 @@ void func_80802764_chcollballcontrol(s32 *arg0) {
     list = func_800BE3F8(arg0 + 1);
     while (*list != 0) {
         entry = (Entry *)func_800E9E88(*list);
-        end = (Entry *)func_800E9EB4((s16 *)*list);
+        end = (Entry *)func_800E9EB4(BT_DATA_FIELD((s16 *)(uintptr_t)*list, (s16 *)*list));
         for (; entry < end; entry++) {
             if (entry->flags & 1) {
                 marker = entry->marker;
-                if (marker != (Marker *)*arg0) {
+                if (marker != BT_DATA_FIELD((Marker *)((Actor *)arg0)->unk0, (Marker *)*arg0)) {
                     if (marker->id == 0x44 || marker->id == 0x42 || marker->id == 0x43) {
                         func_808028D0_chcollballcontrol(arg0, func_80106790((BtIntPtr)marker));
                     }
@@ -1676,7 +1676,7 @@ void func_80802CE0_chcollballcontrol(u8 *arg0) {
     s32 i;
 
     *(Distances *)distances = (*(Distances *)D_80804F3C_chcollballcontrol);
-    parent = func_80106790(*(s32 *)(arg0 + 0x3C));
+    parent = func_80106790(BT_DATA_FIELD(((Actor *)arg0)->unk3C, *(s32 *)(arg0 + 0x3C)));
     parentData = func_80100094(parent, 0);
     if ((((ActorState *)parent)->state == 4 ||
          ((ActorState *)parent)->state == 7) &&
@@ -2245,7 +2245,7 @@ void func_8080405C_chcollballcontrol(u8 *arg0) {
     f32 hitPos[3];
 
     other = NULL;
-    parent = func_80106790(*(s32 *)(arg0 + 0x3C));
+    parent = func_80106790(BT_DATA_FIELD(((Actor *)arg0)->unk3C, *(s32 *)(arg0 + 0x3C)));
     data = func_80100094(parent, 0);
     for (i = 0; i < data[0x3A]; i++) {
         if (i != (*(s32 *)(arg0 + 0x6C) & 0x1FF)) {

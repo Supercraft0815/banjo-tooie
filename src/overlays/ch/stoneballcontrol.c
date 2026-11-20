@@ -727,12 +727,12 @@ void func_80800F9C_chstoneballcontrol(Actor *arg0) {
         u8 types[4];
         u8 padE[2];
         Unk80132ED0 *markers[4];
-        u8 pad20[0x19];
+        u8 pad20[0x19 - (sizeof(void *) - 4) * 4];
         u8 state;
         u8 count;
         u8 pad3B;
         u8 active;
-    };
+    }; typedef char Stoneball_owner_layout_check[(sizeof(struct Fields) == 0x40) ? 1 : -1];
     struct Fields *data;
     Actor *actor;
     s32 i;
@@ -879,9 +879,9 @@ void func_80801330_chstoneballcontrol(Actor *arg0, s32 arg1) {
     struct Fields {
         u8 pad0[0xA];
         u8 states[6];
-        Unk80132ED0 *markers[9];
+        Unk80132ED0 *markers[4]; u8 pad[0x24 - sizeof(void *) * 4];
         u8 bytes[6];
-    } *data;
+    } *data; typedef char Stoneball_child_layout_check[(sizeof(struct Fields) == (sizeof(void *) > 4 ? 0x40 : 0x3C)) ? 1 : -1];
     Actor *actor;
     struct ChildFields {
         u8 pad0[8];
@@ -1109,12 +1109,12 @@ void func_80801944_chstoneballcontrol(u8 *arg0, s32 arg1) {
     data = func_80100094(arg0, 0);
     state = (u32)*(u16 *)(arg0 + 0x72) >> 10;
     if (state == 2 && arg1 != state) {
-        linked = *(s32 *)(arg0 + 0x3C);
+        linked = BT_DATA_FIELD((BtIntPtr)((Actor *)arg0)->unk3C, *(s32 *)(arg0 + 0x3C));
         if (linked != 0) {
             if (_sukickball_entrypoint_6(func_80106790(linked), data[0x20])) {
                 func_800F4F98(data[0x20], *(void **)arg0);
             }
-            _sukickball_entrypoint_11(func_80106790(*(s32 *)(arg0 + 0x3C)), data[0x20]);
+            _sukickball_entrypoint_11(func_80106790(BT_DATA_FIELD(((Actor *)arg0)->unk3C, *(s32 *)(arg0 + 0x3C))), data[0x20]);
             state = (u32)*(u16 *)(arg0 + 0x72) >> 10;
         }
     }
@@ -1527,14 +1527,14 @@ void func_8080282C_chstoneballcontrol(u8 *arg0, s32 arg1) {
 void func_80802C30_chstoneballcontrol(s32 *arg0) {
     typedef struct { u8 pad[0x1A]; u16 index; u8 pad1[8]; BT_BITFIELD_ORDER(u32 id:10, u32 flags : 22); BT_BITFIELD_ORDER(u32 flags:22, u32 id : 10); } Marker;
     typedef struct { Marker *marker; s32 unk4; u32 flags; } Entry;
-    s32 *func_800BE3F8(void *);
+    BT_NATIVE_ONLY(BtIntPtr *) BT_IDO_ONLY(s32 *) func_800BE3F8(void *);
     Entry *func_800E9E88(BtIntPtr);
     void * func_800E9EB4(void *cube);
     Actor *func_80106790(Unk80132ED0 *);
     void func_80802D9C_chstoneballcontrol(Actor *, Actor *);
     void func_80802E30_chstoneballcontrol(Actor *, u32);
     void func_80802EA0_chstoneballcontrol(Actor *, Actor *);
-    s32 *list;
+    BT_NATIVE_ONLY(BtIntPtr *) BT_IDO_ONLY(s32 *) list;
     Entry *entry;
     Entry *end;
     Marker *marker;
@@ -1542,11 +1542,11 @@ void func_80802C30_chstoneballcontrol(s32 *arg0) {
     list = func_800BE3F8(arg0 + 1);
     while (*list != 0) {
         entry = func_800E9E88(*list);
-        end = func_800E9EB4(*list);
+        end = func_800E9EB4(BT_DATA_FIELD((void *)(uintptr_t)*list, *list));
         for (; entry < end; entry++) {
             if (entry->flags & 1) {
                 marker = entry->marker;
-                if (marker != (Marker *)*arg0) {
+                if (marker != BT_DATA_FIELD((Marker *)((Actor *)arg0)->unk0, (Marker *)*arg0)) {
                     if (marker->id == 0x267 || marker->id == 0x253 || marker->id == 0x254) {
                         func_80802D9C_chstoneballcontrol(arg0, func_80106790((BtIntPtr)marker));
                     }
@@ -1712,7 +1712,7 @@ void func_80803148_chstoneballcontrol(u8 *arg0) {
     s32 i;
 
     *(Distances *)distances = D_808052B0_chstoneballcontrol;
-    parent = func_80106790(*(s32 *)(arg0 + 0x3C));
+    parent = func_80106790(BT_DATA_FIELD(((Actor *)arg0)->unk3C, *(s32 *)(arg0 + 0x3C)));
     parentData = func_80100094(parent, 0);
     if ((((ActorState *)parent)->state == 4 ||
          ((ActorState *)parent)->state == 7) &&
@@ -2228,11 +2228,11 @@ void func_80804304_chstoneballcontrol(u8 *arg0) {
     f32 velocity[3];
 
     other = NULL;
-    parentData = func_80100094(func_80106790(*(s32 *)(arg0 + 0x3C)), 0);
+    parentData = func_80100094(func_80106790(BT_DATA_FIELD(((Actor *)arg0)->unk3C, *(s32 *)(arg0 + 0x3C))), 0);
     for (i = 0; i < parentData[0x3A]; i++) {
         selfPosition = (f32 *)(arg0 + 4);
         if (i != (*(s32 *)(arg0 + 0x6C) & 0x1FF)) {
-            parent = func_80106790(*(s32 *)(arg0 + 0x3C));
+            parent = func_80106790(BT_DATA_FIELD(((Actor *)arg0)->unk3C, *(s32 *)(arg0 + 0x3C)));
             if (_sukickball_entrypoint_7(parent, i)) {
                 other = func_80106790(_sukickball_entrypoint_8(parent, i));
                 position[0] = *(f32 *)(other + 4);

@@ -424,6 +424,27 @@ else()
 endif()
 add_test(NAME native_actor_items COMMAND bt_native_actor_items_test)
 
+add_executable(bt_native_ballcontroller_markers_test
+    tests/ballcontroller_markers.c
+    ${CMAKE_SOURCE_DIR}/../src/overlays/ch/collballcontrol.c
+    ${CMAKE_SOURCE_DIR}/../src/overlays/ch/stoneballcontrol.c)
+target_link_libraries(bt_native_ballcontroller_markers_test PRIVATE bt_native_core)
+target_compile_options(bt_native_ballcontroller_markers_test PRIVATE
+    -Wno-error=incompatible-pointer-types
+    -Wno-error=int-conversion
+    -Wno-error=pointer-to-int-cast
+    -Wno-error=int-to-pointer-cast)
+if(APPLE)
+    target_link_options(bt_native_ballcontroller_markers_test PRIVATE -Wl,-dead_strip)
+else()
+    target_link_options(bt_native_ballcontroller_markers_test PRIVATE -Wl,--gc-sections)
+endif()
+add_test(NAME native_ballcontroller_markers COMMAND bt_native_ballcontroller_markers_test)
+set_source_files_properties(
+    ${CMAKE_SOURCE_DIR}/../src/overlays/ch/collballcontrol.c
+    ${CMAKE_SOURCE_DIR}/../src/overlays/ch/stoneballcontrol.c
+    PROPERTIES COMPILE_OPTIONS "-Wno-error;-Wno-incompatible-pointer-types;-Wno-int-conversion;-Wno-pointer-to-int-cast;-Wno-int-to-pointer-cast;-Wno-implicit-function-declaration")
+
 add_executable(bt_native_actors_test tests/actors.c)
 target_link_libraries(bt_native_actors_test PRIVATE bt_native_core)
 if(APPLE)

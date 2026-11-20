@@ -151,6 +151,8 @@ Weitere geprüfte N2-/N3-Pakete am 20. November
 
 - Spieler der Ego-Steuerung. Die Abfrage des Spielerzustands erhält den im Original-MIPS übergebenen Spieler.
 
+- Kugelsteuerungen. Beide Steuerungen behalten die Figurenmarker in nativer Zeigerbreite.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026
