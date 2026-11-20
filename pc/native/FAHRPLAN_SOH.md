@@ -139,6 +139,8 @@ Weitere geprüfte N2-Pakete am 20. November
 
 - Wasserhöhe der Regentropfen. Die Routine prüft die Wasseroberfläche an der Position des Actors. Die Hochadressprobe deckt einen Treffer und den Rückfall auf die Ausgangshöhe ab.
 
+- Tabellen für Licht und Figureneffekte. Die Fabrik liest vier Lichtpositionen und speichert die Eingabeposition im eigenen Vektor. Die Mine liest neun Lichtkennungen, der Treibsandgegner zehn Ereignispaare und der Schneeball vier Partikelversätze.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

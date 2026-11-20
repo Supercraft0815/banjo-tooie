@@ -195,7 +195,7 @@ void func_808005E0_chfactorysparkroom(Actor *arg0, f32 *arg1) {
 
     sp40.color = D_80801094_chfactorysparkroom;
     temp_s2 = func_80100094(arg0, 0);
-    func_800EE7F8(D_808010A8_chfactorysparkroom[4], arg1);
+    func_800EE7F8(BT_DATA_FIELD(D_808010D8_chfactorysparkroom, D_808010A8_chfactorysparkroom[4]), arg1);
     var_s0 = temp_s2;
     var_s1 = D_808010A8_chfactorysparkroom; do {
         temp_v0 = func_800C8A98();
@@ -207,7 +207,7 @@ void func_808005E0_chfactorysparkroom(Actor *arg0, f32 *arg1) {
         func_800C8E84(var_s0->light, sp40.color.values);
         var_s1++;
         var_s0 = (struct SparkRoomLight *)((u8 *)var_s0 + 4);
-    } while (var_s1 != &D_808010D8_chfactorysparkroom);
+    } while (var_s1 != BT_DATA_FIELD(D_808010A8_chfactorysparkroom + ARRLEN(D_808010A8_chfactorysparkroom), &D_808010D8_chfactorysparkroom));
 }
 struct SparkRoomColor { s32 values[3]; };
 void func_808006D0_chfactorysparkroom(Actor *arg0, f32 arg1) {

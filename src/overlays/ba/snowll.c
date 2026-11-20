@@ -246,7 +246,7 @@ void basnowball_entrypoint_10(void *arg0)
   BtIntPtr func_800BABB8(BtIntPtr, f32 [3], f32 [3], f32, s32 []);
   void func_800EE7F8(f32 *, f32 *);
   extern s32 D_80801098_basnowball[];
-  extern SnowballParticle D_808010C0_basnowball[];
+  extern SnowballParticle D_808010C0_basnowball[BT_NATIVE_ONLY(4)];
   extern SnowballParticle D_808010F0_basnowball[];
   f32 startScale;
   f32 endScale;
@@ -279,7 +279,7 @@ void basnowball_entrypoint_10(void *arg0)
     func_800BA22C(particle, 1);
     i++;
   }
-  while (D_808010F0_basnowball != &D_808010C0_basnowball[i]);
+  while (BT_DATA_FIELD(i < (s32)ARRLEN(D_808010C0_basnowball), D_808010F0_basnowball != &D_808010C0_basnowball[i]));
 }
 
 void func_808007CC_basnowball(struct player_state_s *arg0) {

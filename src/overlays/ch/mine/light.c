@@ -141,7 +141,7 @@ void func_808004D4_chminelight(Actor *arg0) {
         color[-3] = rgb[0];
         color[-2] = rgb[1];
         color[-1] = rgb[2];
-    } while ((void *)id != D_808006AC_chminelight);
+    } while (BT_DATA_FIELD(id, (void *)id) != BT_DATA_FIELD(D_80800688_chminelight + ARRLEN(D_80800688_chminelight), D_808006AC_chminelight));
     if (func_800DA298(0x9E0)) {
         if (arg0->unk70_10 != 3) {
             arg0->unk70_10 = 2;

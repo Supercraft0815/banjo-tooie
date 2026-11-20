@@ -268,7 +268,7 @@ void func_80800140_chquicksandbaddy(Actor *arg0) {
                 }
                 break;
             }
-        } while (++p != (void *)D_80801370_chquicksandbaddy);
+        } while (++p != BT_DATA_FIELD(D_80801320_chquicksandbaddy + ARRLEN(D_80801320_chquicksandbaddy), (void *)D_80801370_chquicksandbaddy));
         break;
     case 6:
         if (func_80101E14(arg0, 0.09f)) {
