@@ -445,6 +445,20 @@ set_source_files_properties(
     ${CMAKE_SOURCE_DIR}/../src/overlays/ch/stoneballcontrol.c
     PROPERTIES COMPILE_OPTIONS "-Wno-error;-Wno-incompatible-pointer-types;-Wno-int-conversion;-Wno-pointer-to-int-cast;-Wno-int-to-pointer-cast;-Wno-implicit-function-declaration")
 
+add_executable(bt_native_solo_duo_test tests/solo_duo.c ${BT_ROOT}/src/overlays/ba/duo.c)
+    target_link_libraries(bt_native_solo_duo_test PRIVATE bt_native_options)
+    if(CMAKE_C_COMPILER_ID MATCHES "Clang|GNU")
+        target_compile_options(bt_native_solo_duo_test PRIVATE -ffunction-sections -fdata-sections)
+    endif()
+    if(APPLE)
+        target_link_options(bt_native_solo_duo_test PRIVATE -Wl,-dead_strip)
+    else()
+        target_link_options(bt_native_solo_duo_test PRIVATE -Wl,--gc-sections)
+    endif()
+    add_test(NAME native_solo_duo COMMAND bt_native_solo_duo_test)
+    set_source_files_properties(${BT_ROOT}/src/overlays/ba/duo.c
+        PROPERTIES COMPILE_OPTIONS "-Wno-error;-Wno-incompatible-pointer-types;-Wno-int-conversion;-Wno-pointer-to-int-cast;-Wno-int-to-pointer-cast;-Wno-implicit-function-declaration")
+
 add_executable(bt_native_actors_test tests/actors.c)
 target_link_libraries(bt_native_actors_test PRIVATE bt_native_core)
 if(APPLE)

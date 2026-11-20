@@ -138,7 +138,7 @@ void baduo_entrypoint_12(BtIntPtr arg0) {
     int _bashoes_entrypoint_6(void *arg0, s32 arg1);
     s32 func_8008E39C();
     void func_800F9A6C(void);
-    if (func_8008E39C() != 0) {
+    if (BT_DATA_FIELD(func_8008E39C(arg0), func_8008E39C()) != 0) {
         _bashoes_entrypoint_6(arg0, 2);
     }
     func_800F9A6C();

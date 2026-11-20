@@ -3951,3 +3951,9 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten
 V19 besteht den regulären und den vierfach passfreien Gastvergleich mit jeweils 74 Fällen und 447.849 Retraces. Ohne die vier Hilfen stimmen auch alle 229 Karteneinstiege und 15 Gastsuiten. Original-IDO bestätigt 16.401 Funktionen und beide ROMs. Bei 6.380 überwachten Speicherzugriffen meldet der instrumentierte Korpus null Treffer. Nach der Korrektur von vier Testdateien bestehen alle 248 nativen Sanitizertests. Der erste Buildfehler und die Prüfung der identischen Produktquellen sind unter `build/acceptance/n1-2026-11-18/verified-host-v19-native-suite-repair/cumulative/proof.json` dokumentiert.
 
 Eine auf 117 Sekunden verlängerte Eingabefolge in Temple Shootout deckt eine fehlende Übergabe des Stickwerts auf. Im passfreien V19-Gast stehen beide Spieler. Bei Retrace 5.636 weicht die erste Position von der Kontrolle ab. Mit der korrigierten Übergabe stimmen alle 7.013 Retraces. Auf der Zielkarte erreichen die Spieler 406 und 215 verschiedene Positionen. Eingaben, Vorherlauf und Nachprüfung stehen unter `build/acceptance/n1-2026-11-18/v19-pass-diagnosis/temple-directed-stick/proof.json`.
+
+### 2026-11-20 – Solo-Spieler und Duo-Zustand (N2/N3)
+
+Die Duo-Abfrage erhält den Spieler des Zustandsaufrufs.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 85 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-solo-duo*`.

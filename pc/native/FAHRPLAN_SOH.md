@@ -177,6 +177,8 @@ Weitere geprüfte N2-/N3-Pakete am 20. November
 
 - Freezys Figurenmarker. Die vier Spawn-Rückgaben erreichen den Aufrufer mit voller Zeigerbreite.
 
+- Solo-Spieler und Duo-Zustand. Die Duo-Abfrage erhält den Spieler des Zustandsaufrufs.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026
