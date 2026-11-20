@@ -523,9 +523,14 @@ void bsbwhirl_entrypoint_21(BtIntPtr arg0)
     _bsdrone_entrypoint_1(arg0);
 }
 
-void bsbwhirl_entrypoint_22(BtIntPtr arg0)
+#ifdef BT_NATIVE
+struct player_state_s;
+void _bsdrone_entrypoint_2(struct player_state_s *);
+#endif
+
+void bsbwhirl_entrypoint_22(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0)
 {
-    _bsdrone_entrypoint_2();
+    _bsdrone_entrypoint_2(BT_NATIVE_ONLY(arg0));
     func_8080017C_bsbwhirl(arg0);
 }
 BsScript bsbwhirl_entrypoint_23(BsScriptType arg0) {

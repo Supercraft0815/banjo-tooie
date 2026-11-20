@@ -767,9 +767,14 @@ void bsblongleg_entrypoint_29(PlayerState *arg0) {
     }
 }
 
-void bsblongleg_entrypoint_30(BtIntPtr arg0)
+#ifdef BT_NATIVE
+struct player_state_s;
+void _bsdrone_entrypoint_2(struct player_state_s *);
+#endif
+
+void bsblongleg_entrypoint_30(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0)
 {
-    _bsdrone_entrypoint_2();
+    _bsdrone_entrypoint_2(BT_NATIVE_ONLY(arg0));
     func_80800204_bsblongleg(arg0);
 }
 BsScript bsblongleg_entrypoint_31(BsScriptType arg0) {

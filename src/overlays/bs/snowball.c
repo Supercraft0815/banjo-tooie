@@ -181,9 +181,14 @@ BsScript bssnowball_entrypoint_3(BsScriptType arg0) {
     return (BsScript)D_80801054_bssnowball[arg0];
 }
 
-void func_808004E0_bssnowball(BtIntPtr arg0)
+#ifdef BT_NATIVE
+struct player_state_s;
+void _bsdrone_entrypoint_2(struct player_state_s *);
+#endif
+
+void func_808004E0_bssnowball(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0)
 {
-    _bsdrone_entrypoint_2();
+    _bsdrone_entrypoint_2(BT_NATIVE_ONLY(arg0));
     bssnowball_entrypoint_0(arg0);
 }
 void func_80800508_bssnowball(BtIntPtr arg0)

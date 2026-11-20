@@ -521,9 +521,14 @@ BsScript bssub_entrypoint_0(BsScriptType arg0) {
     return (BsScript)D_80801890_bssub[arg0];
 }
 
-void func_80800F70_bssub(BtIntPtr arg0)
+#ifdef BT_NATIVE
+struct player_state_s;
+void _bsdrone_entrypoint_2(struct player_state_s *);
+#endif
+
+void func_80800F70_bssub(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0)
 {
-    _bsdrone_entrypoint_2();
+    _bsdrone_entrypoint_2(BT_NATIVE_ONLY(arg0));
     func_808008D8_bssub(arg0);
 }
 void func_80800F98_bssub(BtIntPtr arg0)

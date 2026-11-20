@@ -413,9 +413,14 @@ void func_80800AF0_bsswim(BtIntPtr arg0) {
     bs_setState(arg0, sp1C);
 }
 
-void func_80800B34_bsswim(BtIntPtr arg0)
+#ifdef BT_NATIVE
+struct player_state_s;
+void _bsdrone_entrypoint_2(struct player_state_s *);
+#endif
+
+void func_80800B34_bsswim(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0)
 {
-    _bsdrone_entrypoint_2();
+    _bsdrone_entrypoint_2(BT_NATIVE_ONLY(arg0));
     func_80800270_bsswim(arg0);
 }
 BsScript bsswim_entrypoint_3(BsScriptType arg0) {

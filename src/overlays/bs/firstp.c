@@ -3069,9 +3069,14 @@ void func_80805058_bsfirstp(struct player_state_s *arg0) {
 
 void func_80809D24_bsfirstp(void *);
 
-void func_808050B0_bsfirstp(s32 arg0)
+#ifdef BT_NATIVE
+struct player_state_s;
+void _bsdrone_entrypoint_2(struct player_state_s *);
+#endif
+
+void func_808050B0_bsfirstp(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(s32) arg0)
 {
-    _bsdrone_entrypoint_2();
+    _bsdrone_entrypoint_2(BT_NATIVE_ONLY(arg0));
     func_80807C8C_bsfirstp(arg0);
 }
 void func_808050D8_bsfirstp(BtIntPtr arg0)
@@ -3105,9 +3110,9 @@ void func_8080511C_bsfirstp(struct player_state_s *arg0) {
     func_80800264_bsfirstp((BtIntPtr)arg0, 0x3F000000);
 }
 
-void func_8080519C_bsfirstp(s32 arg0)
+void func_8080519C_bsfirstp(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(s32) arg0)
 {
-    _bsdrone_entrypoint_2();
+    _bsdrone_entrypoint_2(BT_NATIVE_ONLY(arg0));
     func_80807C8C_bsfirstp(arg0);
 }
 void func_808051C4_bsfirstp(BtIntPtr arg0)

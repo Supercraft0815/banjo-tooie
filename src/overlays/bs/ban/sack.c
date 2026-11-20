@@ -741,9 +741,14 @@ BsScript bsbansack_entrypoint_5(BsScriptType arg0) {
     return (BsScript)D_80801E60_bsbansack[arg0];
 }
 
-void func_80801560_bsbansack(BtIntPtr arg0)
+#ifdef BT_NATIVE
+struct player_state_s;
+void _bsdrone_entrypoint_2(struct player_state_s *);
+#endif
+
+void func_80801560_bsbansack(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0)
 {
-    _bsdrone_entrypoint_2();
+    _bsdrone_entrypoint_2(BT_NATIVE_ONLY(arg0));
     func_80800238_bsbansack(arg0);
 }
 void func_80801588_bsbansack(PlayerState *arg0)

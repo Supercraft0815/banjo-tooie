@@ -87,6 +87,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Wasser- und Achterbahneffekte. Die Bewegung und die Wassereffekte erhalten die Position, den Spieler und den Actor aus ihren jeweiligen Aufrufern.
 
+- Abschluss geführter Bewegung. 17 Abschlussroutinen reichen den Spieler an die gemeinsame Drohnensteuerung weiter. Das ursprüngliche MIPS-Programm erhält das Spielerregister bei jedem dieser Aufrufe.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

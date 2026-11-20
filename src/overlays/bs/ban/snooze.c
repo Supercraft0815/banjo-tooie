@@ -229,9 +229,14 @@ BsScript bsbansnooze_entrypoint_2(BsScriptType arg0) {
     return (BsScript)D_80800A78_bsbansnooze[arg0];
 }
 
-void func_8080064C_bsbansnooze(BtIntPtr arg0)
+#ifdef BT_NATIVE
+struct player_state_s;
+void _bsdrone_entrypoint_2(struct player_state_s *);
+#endif
+
+void func_8080064C_bsbansnooze(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0)
 {
-    _bsdrone_entrypoint_2();
+    _bsdrone_entrypoint_2(BT_NATIVE_ONLY(arg0));
     func_80800000_bsbansnooze(arg0);
 }
 void func_80800674_bsbansnooze(PlayerState *arg0)

@@ -240,9 +240,14 @@ BsScript bscarry_entrypoint_2(BsScriptType arg0) {
     return (BsScript)D_808007D0_bscarry[arg0];
 }
 
-void func_8080065C_bscarry(BtIntPtr arg0)
+#ifdef BT_NATIVE
+struct player_state_s;
+void _bsdrone_entrypoint_2(struct player_state_s *);
+#endif
+
+void func_8080065C_bscarry(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0)
 {
-    _bsdrone_entrypoint_2();
+    _bsdrone_entrypoint_2(BT_NATIVE_ONLY(arg0));
     func_808001D4_bscarry(arg0);
 }
 void func_80800684_bscarry(BtIntPtr arg0)

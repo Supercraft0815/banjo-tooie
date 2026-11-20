@@ -1252,9 +1252,14 @@ void bsbtrot_entrypoint_37(BtIntPtr arg0)
     _bsdrone_entrypoint_1();
     func_808004B4_bsbtrot(arg0);
 }
-void bsbtrot_entrypoint_38(BtIntPtr arg0)
+#ifdef BT_NATIVE
+struct player_state_s;
+void _bsdrone_entrypoint_2(struct player_state_s *);
+#endif
+
+void bsbtrot_entrypoint_38(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0)
 {
-    _bsdrone_entrypoint_2();
+    _bsdrone_entrypoint_2(BT_NATIVE_ONLY(arg0));
     func_8080061C_bsbtrot(arg0);
 }
 BsScript bsbtrot_entrypoint_39(BsScriptType arg0) {

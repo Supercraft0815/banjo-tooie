@@ -333,9 +333,14 @@ void func_80800934_bstntswim(s32 arg0)
     _bsdrone_entrypoint_1();
     _bstnt_entrypoint_4(arg0);
 }
-void func_8080095C_bstntswim(BtIntPtr arg0)
+#ifdef BT_NATIVE
+struct player_state_s;
+void _bsdrone_entrypoint_2(struct player_state_s *);
+#endif
+
+void func_8080095C_bstntswim(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0)
 {
-    _bsdrone_entrypoint_2();
+    _bsdrone_entrypoint_2(BT_NATIVE_ONLY(arg0));
     func_80800174_bstntswim(arg0);
 }
 BsScript bstntswim_entrypoint_4(BsScriptType arg0) {

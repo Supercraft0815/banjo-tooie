@@ -1016,9 +1016,14 @@ void func_80801C9C_bsbfly(PlayerState* self)
 {
     _bsdrone_entrypoint_1(self);
 }
-void func_80801CBC_bsbfly(BtIntPtr arg0)
+#ifdef BT_NATIVE
+struct player_state_s;
+void _bsdrone_entrypoint_2(struct player_state_s *);
+#endif
+
+void func_80801CBC_bsbfly(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0)
 {
-    _bsdrone_entrypoint_2();
+    _bsdrone_entrypoint_2(BT_NATIVE_ONLY(arg0));
     func_80800188_bsbfly(arg0);
 }
 BsScript bsbfly_entrypoint_9(BsScriptType arg0) {
