@@ -11,7 +11,7 @@ OSThread *chfreezy_entrypoint_0(void)
 
 void func_8080000C_chfreezy(void *arg0) {
     s32 _sufreezy_entrypoint_1();
-    _sufreezy_entrypoint_1();
+    _sufreezy_entrypoint_1(BT_NATIVE_ONLY(arg0));
     (((Objfreezy_arg0 *)arg0)->unk38) = 0.2f;
 }
 
@@ -237,7 +237,7 @@ void func_80800538_chfreezy(Actor *arg0) {
 void func_808006C0_chfreezy(Actor *arg0) {
     s32 _sufreezy_entrypoint_2();
     void func_800FFAB0(Actor *);
-    _sufreezy_entrypoint_2();
+    _sufreezy_entrypoint_2(BT_NATIVE_ONLY(arg0));
     func_800FFAB0(arg0);
 }
 /* data_to_c.py: from asm/data/overlays/ch/freezy.data.s */

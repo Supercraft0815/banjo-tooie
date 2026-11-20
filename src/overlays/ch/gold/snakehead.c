@@ -111,7 +111,7 @@ void func_80800324_chgoldsnakehead(BtIntPtr arg0, s32 arg1) {
     s32 sp1C;
     s32 temp_a1;
 
-    func_8010A570();
+    func_8010A570(BT_NATIVE_ONLY((void *)arg0));
     func_80101FDC(arg0, 2);
     func_80102FE8(arg0, 0);
     func_80103110(arg0, 1);

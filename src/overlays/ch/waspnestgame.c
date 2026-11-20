@@ -589,14 +589,14 @@ void func_80801260_chwaspnestgame(Unk80132ED0 *arg0, s32 arg1) {
 /* extern */
 
 #ifdef BT_NATIVE
-void func_8080129C_chwaspnestgame(s32 bt_a0) {
+void func_8080129C_chwaspnestgame(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) bt_a0) {
 #else
 void func_8080129C_chwaspnestgame(void) {
 #endif
     Actor *func_80106790();
     void *temp_v0;
 
-    temp_v0 = func_80106790();
+    temp_v0 = func_80106790(BT_NATIVE_ONLY((void *)bt_a0));
     (((Objwaspnestgame_func_8080129C_chwaspnestgame_temp_v0 *)temp_v0)->unk34) = (s32) ((((Objwaspnestgame_func_8080129C_chwaspnestgame_temp_v0 *)temp_v0)->unk34) - 1);
 }
 

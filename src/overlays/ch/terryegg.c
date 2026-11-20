@@ -425,9 +425,9 @@ void func_80800C08_chterryegg(Actor *arg0) {
     *sp1C = _glsplinefind_entrypoint_0(0x357U, arg0->position);
 }
 
-void func_80800C48_chterryegg(s32 arg0)
+void func_80800C48_chterryegg(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) arg0)
 {
-    func_8010C964();
+    func_8010C964(BT_NATIVE_ONLY((void *)arg0));
     func_80801080_chterryegg(arg0);
 }
 s32 func_80800C70_chterryegg(Actor *arg0, s32 arg1, s32 arg2) {

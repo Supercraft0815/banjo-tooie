@@ -95,7 +95,7 @@ s32 func_8080000C_chjiggygamenew(BtIntPtr bt_a0) {
 #else
 s32 func_8080000C_chjiggygamenew() {
 #endif
-    return (*(s32 *)((s8 *)(func_80106790()) + (0x20)));
+    return (*(s32 *)((s8 *)(func_80106790(BT_NATIVE_ONLY((void *)bt_a0))) + (0x20)));
 }
 
 /* extern */
@@ -381,11 +381,11 @@ void func_808006E0_chjiggygamenew(Unk80132ED0 *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 #ifdef BT_NATIVE
-s32 func_808007BC_chjiggygamenew(s32 bt_a0) {
+s32 func_808007BC_chjiggygamenew(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) bt_a0) {
 #else
 s32 func_808007BC_chjiggygamenew(void) {
 #endif
-    return (*(s32 *)((s8 *)(func_80106790()) + (0x28))) == 5;
+    return (*(s32 *)((s8 *)(func_80106790(BT_NATIVE_ONLY((void *)bt_a0))) + (0x28))) == 5;
 }
 
 /* extern */
@@ -1343,7 +1343,7 @@ void chjiggygamenew_entrypoint_1(void) {
 }
 
 void chjiggygamenew_entrypoint_2(void) {
-    BtIntPtr func_80014F00(void);
+    BT_IDO_ONLY(BtIntPtr) BT_NATIVE_ONLY(void *) func_80014F00(void);
     s32 _glglobalsettings_entrypoint_3(void);
 
     u16 *buffer;
@@ -1585,12 +1585,12 @@ void func_8080356C_chjiggygamenew(Unk80132ED0 *arg0) {
 /* extern */
 
 #ifdef BT_NATIVE
-void func_80803598_chjiggygamenew(s32 bt_a0) {
+void func_80803598_chjiggygamenew(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) bt_a0) {
 #else
 void func_80803598_chjiggygamenew(void) {
 #endif
     void func_80102424(Actor *actor,s32 state);
-    func_80102424(func_80106790(), 7);
+    func_80102424(func_80106790(BT_NATIVE_ONLY((void *)bt_a0)), 7);
 }
 
 void func_808035C4_chjiggygamenew(Unk80132ED0 *arg0, f32 *arg1) {

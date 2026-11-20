@@ -1665,7 +1665,7 @@ void func_808035A8_chevilmumbo(u8 *arg0, s32 arg1) {
     void func_801018A4(Actor *, BtIntPtr);
     s32 func_80101970();
     (((Objevilmumbo_arg0 *)arg0)->unk44) = (f32) -(((Objevilmumbo_arg0 *)arg0)->unk44);
-    func_80101970();
+    func_80101970(BT_NATIVE_ONLY(arg0));
     func_800DF830(2);
     func_800DE448((f32 *)(arg0 + 4), (f32 *)(arg0 + 0x44), (((Objevilmumbo_arg0 *)arg0)->unk38), 0, func_800D674C(0x69E));
     func_801018A4(arg0, arg1);

@@ -160,7 +160,7 @@ void func_80800160_chmolehill(u8 *arg0) {
     }
 }    typedef struct { s32 unk0; u8 pad4[0x38]; s32 unk3C; u8 pad40[0x32]; u16 unk72; } Objhill_chmolehill_entrypoint_0_sp24; /* offsets.py genstruct: fields from raw offsets on sp24; rename once understood */ typedef struct { s32 unk0; u8 pad4[0x38]; s32 unk3C; } Objhill_chmolehill_entrypoint_0_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
-void chmolehill_entrypoint_0(s32 arg0)
+void chmolehill_entrypoint_0(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) arg0)
 {
   void _chmoley_entrypoint_1(Actor *arg0, s32 arg1);
   Actor *func_80106790();
@@ -169,7 +169,7 @@ void chmolehill_entrypoint_0(s32 arg0)
   void *sp24;
   void *sp20;
   void *temp_v0;
-  sp24 = func_80106790();
+  sp24 = func_80106790(BT_NATIVE_ONLY((void *)arg0));
   temp_v0 = func_801084B0(0x18F, &sp24);
   sp20 = temp_v0;
   ((Objhill_chmolehill_entrypoint_0_sp24 *)sp24)->unk3C = (s32) (((Objhill_chmolehill_entrypoint_0_temp_v0 *)temp_v0)->unk0);

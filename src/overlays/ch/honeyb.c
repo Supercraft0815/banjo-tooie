@@ -97,7 +97,7 @@ void func_80800240_chhoneyb(BtIntPtr arg0) {
     u8 _susubgame_entrypoint_2(BtIntPtr arg0, u8 *arg1);
     s32 _susubgame_entrypoint_4(BtIntPtr, BtIntPtr);
     void *func_80100094(Actor *, u32);
-    if (_suexpression_entrypoint_20() != 0) {
+    if (_suexpression_entrypoint_20(BT_NATIVE_ONLY((void *)arg0)) != 0) {
         _suexpression_entrypoint_8(arg0, 0);
     }
     if (_susubgame_entrypoint_2(arg0, func_80100094(arg0, 1)) != 0) {
@@ -239,7 +239,7 @@ void func_80800680_chhoneyb(s32 *arg0) {
     f32 temp_f0;
     BtIntPtr temp_v0;
 
-    temp_v0 = _suexpression_entrypoint_20();
+    temp_v0 = _suexpression_entrypoint_20(BT_NATIVE_ONLY(arg0));
     sp1C = temp_v0;
     sp18 = 0;
     if (temp_v0 != 0) {

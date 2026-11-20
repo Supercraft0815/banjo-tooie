@@ -13,7 +13,7 @@ void func_8010A73C(Actor *arg0, s32 arg1) {
 
 void func_8010A764(BtIntPtr arg0, BtIntPtr arg1) {
     void *func_80100368();
-    (*(s32 (**)(s32, s32))((s8 *)(func_80100368()) + (0x14)))(arg0, arg1);
+    (*(s32 (**)(s32, s32))((s8 *)(func_80100368(BT_NATIVE_ONLY((void *)arg0))) + (0x14)))(arg0, arg1);
 }
 
 /* extern */

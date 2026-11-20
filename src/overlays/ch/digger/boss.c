@@ -224,7 +224,7 @@ void func_808005DC_chdiggerboss(BtIntPtr arg0, s32 arg1) {
     void * func_800AE6BC(void *list);
     void *func_801040A8();
     void func_80806528_chdiggerboss(BtIntPtr, BtIntPtr, BtIntPtr);
-    func_80806528_chdiggerboss(arg0, func_800AE6BC(func_801040A8()), arg1);
+    func_80806528_chdiggerboss(arg0, func_800AE6BC(func_801040A8(BT_NATIVE_ONLY((void *)arg0))), arg1);
 }
 
 void func_80800618_chdiggerboss(BtIntPtr arg0, s32 arg1, s32 arg2) {

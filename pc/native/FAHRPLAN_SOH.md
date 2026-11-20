@@ -189,6 +189,8 @@ Weitere geprüfte N2-/N3-Pakete am 20. November
 
 - Spielerargumente. Die Aufrufer der Bewegungs- und Spielformroutinen geben den Spieler aus dem ursprünglichen Argumentregister weiter.
 
+- Actor- und Markerargumente. Die Aufrufer von Figuren-, Kamera- und Kernfunktionen übergeben den zugehörigen Actor, Marker oder Zustand.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

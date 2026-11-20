@@ -326,7 +326,7 @@ s32 func_80800634_chkingjinjo(Actor *arg0, s32 arg1, s32 arg2) {
 void func_808009D0_chkingjinjo(BtIntPtr arg0) {
     void _suexpression_entrypoint_8(void *arg0, s32 arg1);
     s32 func_80800C18_chkingjinjo();
-    func_80800C18_chkingjinjo();
+    func_80800C18_chkingjinjo(BT_NATIVE_ONLY((void *)arg0));
     _suexpression_entrypoint_8(arg0, 0x1);
 }
 

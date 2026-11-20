@@ -123,7 +123,7 @@ void func_80800310_chdinofoot(BtIntPtr arg0, BtIntPtr arg1) {
     void func_80101870(Actor* arg0, void* arg1);
     s32 sp1C;
 
-    sp1C = _subaddiefade_entrypoint_0();
+    sp1C = _subaddiefade_entrypoint_0(BT_NATIVE_ONLY((void *)arg0));
     _subaddiefade_entrypoint_1(arg0, 0xFF);
     func_80101870(arg0, arg1);
     _subaddiefade_entrypoint_1(arg0, sp1C);

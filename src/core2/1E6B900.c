@@ -1798,7 +1798,7 @@ void func_80094824(PlayerState *arg0) {
     s32 func_80094A10(PlayerState *);
     void func_80094C88(void *);
     void func_80094D04(void *);
-    if (bainput_func_80097C7C() != 0) {
+    if (bainput_func_80097C7C(BT_NATIVE_ONLY(arg0)) != 0) {
         func_80094A10(arg0);
         func_80094C88(arg0);
     }

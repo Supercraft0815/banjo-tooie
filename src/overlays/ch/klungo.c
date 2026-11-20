@@ -1525,7 +1525,7 @@ void func_80802940_chklungo(Actor *arg0) {
     s32 func_800E15CC(s32, f32, f32);
     s32 func_8080299C_chklungo();
     extern s16 D_80803CB8_chklungo[4];
-    func_8080299C_chklungo();
+    func_8080299C_chklungo(BT_NATIVE_ONLY(arg0));
     func_80018820(0, 1.0f, 0.4f);
     func_800E15CC(0, 10.0f, 0.8f);
     _subaddieaudioquick_entrypoint_2(arg0, arg0->position, D_80803CB8_chklungo);

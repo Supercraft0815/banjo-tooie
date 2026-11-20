@@ -363,14 +363,14 @@ void func_808004B0_chflysaucer(Actor *arg0) {
 }    typedef struct { u8 pad0[0x434]; s16 unk434; } Objflysaucer_D_80127194; /* offsets.py genstruct: fields from raw offsets on &D_80127194; rename once understood */
 
 #ifdef BT_NATIVE
-void func_808004F0_chflysaucer(s32 bt_a0) {
+void func_808004F0_chflysaucer(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) bt_a0) {
 #else
 void func_808004F0_chflysaucer(void) {
 #endif
     void func_808017D0_chflysaucer();
     extern s32 D_80127194;
     (BT_DATA_FIELD(D_801275C8, ((Objflysaucer_D_80127194 *)&D_80127194)->unk434)) = 0;
-    func_808017D0_chflysaucer();
+    func_808017D0_chflysaucer(BT_NATIVE_ONLY((void *)bt_a0));
 }
 
 void func_80800514_chflysaucer(Actor *arg0) {

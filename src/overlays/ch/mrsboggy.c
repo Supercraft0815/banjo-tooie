@@ -165,7 +165,7 @@ void func_808004F4_chmrsboggy(BtIntPtr arg0) {
     BtIntPtr sp1C;
     BtIntPtr temp_v0;
 
-    if (_suexpression_entrypoint_20() == 0) {
+    if (_suexpression_entrypoint_20(BT_NATIVE_ONLY((void *)arg0)) == 0) {
         temp_v0 = BT_NATIVE_ONLY((BtIntPtr)) _suexpression_entrypoint_7(BT_NATIVE_ONLY((Actor *)) arg0, 1, 0x3E);
         sp1C = temp_v0;
         _suexpression_entrypoint_12(temp_v0, 0x42700000, 0x41A00000);

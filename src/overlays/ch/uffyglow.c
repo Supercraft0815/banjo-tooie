@@ -132,13 +132,13 @@ void func_8080048C_chchuffyglow(BtIntPtr arg0) {
 
 /* extern */
 
-void chchuffyglow_entrypoint_0(s32 arg0) {
+void chchuffyglow_entrypoint_0(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) arg0) {
     s32 *func_80106790();
     void *func_801084B0(BtIntPtr, s32 **);
     s32 *sp24;
     s32 pad[2];
 
-    sp24 = func_80106790();
+    sp24 = func_80106790(BT_NATIVE_ONLY((void *)arg0));
     (*(s32 *)((s8 *)(func_801084B0(0x30E, &sp24)) + (0x3C))) = (s32) *sp24;
 }
 

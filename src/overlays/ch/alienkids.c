@@ -727,7 +727,7 @@ void func_80801520_chalienkids(void *arg0, s32 arg1) {
     s32 func_8010A3E8(void *, s32);
     void func_808014B0_chalienkids(AlienKidsActor *, s32);
     (((Actor *)arg0)->unk58) = 2.0f;
-    _subaddiefade_entrypoint_2();
+    _subaddiefade_entrypoint_2(BT_NATIVE_ONLY(arg0));
     _subaddieDll_entrypoint_4(arg0, 1);
     func_8010A3E8(arg0, 0x3F19999A);
     func_80102424(arg0, 0xD);

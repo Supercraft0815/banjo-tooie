@@ -21,7 +21,7 @@ void func_8080000C_chgobiwitchy(Actor *arg0) {
     s32 func_80105A5C(Actor *);
     void func_808002DC_chgobiwitchy(Actor *);
 
-    _suexpression_entrypoint_10(_suexpression_entrypoint_20(), arg0->unk0, 0);
+    _suexpression_entrypoint_10(_suexpression_entrypoint_20(BT_NATIVE_ONLY(arg0)), arg0->unk0, 0);
     _chgobicommon_entrypoint_0(arg0);
     func_8008FB10(arg0->position, 240.0f, 0.0f, 150.0f);
     switch (arg0->unk70_10) {

@@ -55,7 +55,7 @@ void func_80800130_ncbaspline(BtIntPtr arg0, f32 *arg1) {
     void func_80112524(void *arg0, f32 *arg1);
     s32 sp1C;
 
-    sp1C = func_80112518();
+    sp1C = func_80112518(BT_NATIVE_ONLY((void *)arg0));
     func_801124D0(arg0, 0x1);
     func_80112524(arg0, arg1);
     func_801124D0(arg0, sp1C);

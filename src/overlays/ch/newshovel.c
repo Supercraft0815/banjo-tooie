@@ -219,7 +219,7 @@ void func_80800570_chnewshovel(BtIntPtr arg0) {
     extern s32 D_80801024_chnewshovel[4];
     s32 temp_v0;
 
-    temp_v0 = func_801022E4();
+    temp_v0 = func_801022E4(BT_NATIVE_ONLY((void *)arg0));
     if (temp_v0 != 0x1BA) {
         if (temp_v0 == 0x1BB) {
             _subaddieaudioquick_entrypoint_4(arg0, arg0 + 4, D_80801008_chnewshovel, D_80801018_chnewshovel);

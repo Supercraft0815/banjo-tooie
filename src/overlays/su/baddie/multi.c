@@ -109,7 +109,7 @@ BtUIntPtr subaddiemulti_entrypoint_5(void *arg0)
   BT_IDO_ONLY(u32) BT_NATIVE_ONLY(s16) _suegg_entrypoint_7(void *);
   s32 _sueggmisc_entrypoint_0();
   u32 func_800F54E4(BT_IDO_ONLY(void *) BT_NATIVE_ONLY(void));
-  if (_sueggmisc_entrypoint_0() != 0)
+  if (_sueggmisc_entrypoint_0(BT_NATIVE_ONLY(arg0)) != 0)
   {
     return (u32)_suegg_entrypoint_7(arg0);
   }

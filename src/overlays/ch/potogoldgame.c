@@ -626,7 +626,7 @@ void func_808010A0_chpotogoldgame(void *arg0) {
     s32 func_8080206C_chpotogoldgame();
     s32 sp1C;
 
-    sp1C = func_8080206C_chpotogoldgame();
+    sp1C = func_8080206C_chpotogoldgame(BT_NATIVE_ONLY(arg0));
     if (func_800D211C(0x84) == 0x64) {
         func_800D2054(1, 0x89, (*(s32 *)((s8 *)(arg0) + (0x20))));
         return;
@@ -815,7 +815,7 @@ void func_80801558_chpotogoldgame(Actor *arg0) {
     struct Color end = D_8080254C_chpotogoldgame;
     f32 ratio;
 
-    ratio = func_800F10B4((f32)func_8080206C_chpotogoldgame(), 100.0f, 0.0f, 0.0f, 0.5f);
+    ratio = func_800F10B4((f32)func_8080206C_chpotogoldgame(BT_NATIVE_ONLY(arg0)), 100.0f, 0.0f, 0.0f, 0.5f);
     ratio += func_800F10B4(((struct GameData *)arg0->actorData)->values[5], 0.0f, 2.0f, 0.0f, 0.1f);
     ratio += func_800F10B4(((struct GameData *)arg0->actorData)->values[6], 0.0f, 2.0f, 0.0f, 0.1f);
     ratio += func_800F10B4(((struct GameData *)arg0->actorData)->values[0], 0.0f, 2.0f, 0.0f, 0.1f);

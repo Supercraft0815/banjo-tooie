@@ -396,7 +396,7 @@ void func_80800F30_chpufferfish(Actor *arg0) {
     f32 position[3];
     f32 speed;
 
-    speed = _subaddiejoy_entrypoint_3() * 300.0f;
+    speed = _subaddiejoy_entrypoint_3(BT_NATIVE_ONLY(arg0)) * 300.0f;
     func_8010D254(position);
     arg0->unk50 = func_800F1828(arg0->position, position);
     if (arg0->unk50 > 30.0f && arg0->unk50 <= 180.0f) {

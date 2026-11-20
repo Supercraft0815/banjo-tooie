@@ -438,7 +438,7 @@ void func_80107750(BtIntPtr arg0, BtIntPtr arg1) {
     s32 _subaddiefade_entrypoint_5();
     void func_8010A570(Actor *);
     void func_8010A624(void ***);
-    _subaddiefade_entrypoint_5();
+    _subaddiefade_entrypoint_5(BT_NATIVE_ONLY((void *)arg0));
     func_8010A570(arg0);
     func_8010A624(arg0);
 }

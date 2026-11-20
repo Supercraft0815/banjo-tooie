@@ -117,7 +117,7 @@ void func_808002E0_chnests(void *arg0) {
     void func_80101FDC(Actor *, u32);
     void func_8010A570();
     (*(u8 *)((s8 *)(arg0) + (0x65))) = (u8) ((*(u8 *)((s8 *)(arg0) + (0x65))) & 0xFFFE);
-    func_8010A570();
+    func_8010A570(BT_NATIVE_ONLY(arg0));
     (((Actor *)arg0)->actorData[0]) = ((u32) (*(u16 *)((s8 *)(arg0) + (0x72)))) >> 0xA;
     func_80101FDC(arg0, 4);
 }
@@ -136,7 +136,7 @@ void func_8080034C_chnests(void *arg0) {
     void func_80101FDC(Actor *, u32);
     void func_80103110(void *, s32);
     void func_8010A590(Actor *arg0);
-    _subaddiefade_entrypoint_2();
+    _subaddiefade_entrypoint_2(BT_NATIVE_ONLY(arg0));
     func_80103110(arg0, 0);
     _subaddieDll_entrypoint_4(arg0, 0);
     func_8010A590(arg0);

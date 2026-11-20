@@ -16,9 +16,9 @@ void func_8080000C_chklungoleave(Actor *arg0) {
     func_80105BAC(arg0);
 }
 
-void func_80800038_chklungoleave(s32 arg0)
+void func_80800038_chklungoleave(BT_IDO_ONLY(s32) BT_NATIVE_ONLY(BtIntPtr) arg0)
 {
-    func_80105834();
+    func_80105834(BT_NATIVE_ONLY((void *)arg0));
     func_808000F0_chklungoleave(arg0);
 }
 /* extern */

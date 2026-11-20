@@ -60,7 +60,7 @@ void func_8080017C_chjigsaw(Actor *arg0) {
 
 void func_808001D0_chjigsaw(BtIntPtr arg0)
 {
-    func_80105834();
+    func_80105834(BT_NATIVE_ONLY((void *)arg0));
     func_8080011C_chjigsaw(arg0);
 }
 void func_808001F8_chjigsaw(Actor *arg0) {

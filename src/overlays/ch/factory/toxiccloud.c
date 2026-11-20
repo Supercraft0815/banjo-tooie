@@ -545,7 +545,7 @@ void func_808010B8_chfactorytoxiccloud(void *arg0) {
     f32 mlAbsF(f32);
     f32 sp24;
 
-    sp24 = _subaddiejoy_entrypoint_3() * 650.0f;
+    sp24 = _subaddiejoy_entrypoint_3(BT_NATIVE_ONLY(arg0)) * 650.0f;
     func_80102BAC(arg0, 1.5f, 1.0f, 25.0f);
     if (mlAbsF(func_80013728((((Actor *)arg0)->unk54) - (((Actor *)arg0)->rotation[1]))) < 90.0f) {
         (*(f32 *)((s8 *)(arg0) + (0x24))) = sp24;

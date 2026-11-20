@@ -46,7 +46,7 @@ s32 func_800996E0(BtIntPtr arg0) {
     void func_800A17A8(PlayerState *, s32);
     s32 temp_v0;
 
-    temp_v0 = func_800A1718();
+    temp_v0 = func_800A1718(BT_NATIVE_ONLY((void *)arg0));
     if (temp_v0 < 2) {
         func_800A17A8(arg0, -temp_v0);
         return 0;

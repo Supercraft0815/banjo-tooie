@@ -325,7 +325,7 @@ void func_800EDCEC(void *arg0, f32 arg1) {
 void func_800EDD20(void *arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     void func_800EDC10(void *, f32, f32, f32, s32);
     void func_800EE010();
-    func_800EE010();
+    func_800EE010(BT_NATIVE_ONLY(arg0));
     func_800EDC10(arg0, arg1, arg2, arg3, arg4);
 }
 

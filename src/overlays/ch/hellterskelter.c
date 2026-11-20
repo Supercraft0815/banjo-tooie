@@ -182,7 +182,7 @@ void func_808004D0_chhellterskelter(Actor *arg0) {
     s32 func_800DC298(f32);
     void *func_80105494();
     extern s32 D_808008C0_chhellterskelter[13];
-    if (!((*(f32 *)((s8 *)(func_80105494()) + (0xC))) > 0.9f) && (func_800DC298(0.1f) != 0)) {
+    if (!((*(f32 *)((s8 *)(func_80105494(BT_NATIVE_ONLY(arg0))) + (0xC))) > 0.9f) && (func_800DC298(0.1f) != 0)) {
         func_800BBCB8(arg0->position, 0, 1.0f, 1, D_808008C0_chhellterskelter);
     }
 }

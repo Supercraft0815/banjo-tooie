@@ -119,7 +119,7 @@ void func_80800204_chtransparentfish(Actor *arg0) {
     s32 func_8010BA80(Actor *, s32, s32);
     f32 speed;
 
-    speed = _subaddiejoy_entrypoint_3() * 300.0f;
+    speed = _subaddiejoy_entrypoint_3(BT_NATIVE_ONLY(arg0)) * 300.0f;
     func_80102BAC(arg0, 0.5f, 0.5, 5.0f);
     if (((f32 *)arg0->actorData)[3] <= speed) {
         ((f32 *)arg0->actorData)[3] = speed;

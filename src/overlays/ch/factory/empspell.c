@@ -1025,7 +1025,7 @@ void func_80801FE0_chfactoryempspell(void *arg0) {
     u8 _subaddieaudioloop_entrypoint_3(u8);
     void _sumumbofx_entrypoint_1(Actor *arg0, u32 arg1);
     void func_80801AB4_chfactoryempspell(Actor *);
-    _subaddieaudioloop_entrypoint_2();
+    _subaddieaudioloop_entrypoint_2(BT_NATIVE_ONLY(arg0));
     (((Objempspell_arg0 *)arg0)->unk28) = _subaddieaudioloop_entrypoint_3((((Objempspell_arg0 *)arg0)->unk28));
     func_80801AB4_chfactoryempspell(arg0);
     if ((((Objempspell_arg0 *)arg0)->unk82) != 0) {

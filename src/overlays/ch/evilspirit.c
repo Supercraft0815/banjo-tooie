@@ -656,7 +656,7 @@ void func_808015A4_chevilspirit(Actor *arg0) {
     s32 func_80801458_chevilspirit();
     s32 func_808015E0_chevilspirit(Actor *, f32);
 #ifdef BT_NATIVE
-    ((s32 (*)())func_80801458_chevilspirit)();
+    func_80801458_chevilspirit(arg0);
 #else
     func_80801458_chevilspirit();
 #endif
