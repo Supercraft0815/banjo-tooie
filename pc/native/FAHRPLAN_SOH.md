@@ -69,6 +69,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Tod und Schwerkraft. Beim Zurücksetzen der Schwerkraft verwenden alle sechs Aufrufpfade den aktuellen Spieler. Die Kamera in der Gondel und das Honigobjekt erhalten ihre Argumente aus dem Originalaufruf.
 
+- Breite der HUD-Anzeigen. Alle neun Stile verwenden den vollständigen Zeiger auf die HUD-Anzeige. Die Breite wird vom jeweils zuständigen Callback zurückgegeben.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

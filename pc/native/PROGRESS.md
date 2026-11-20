@@ -3627,3 +3627,9 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuite
 Beim Zurücksetzen der Schwerkraft verwenden alle sechs Aufrufpfade den aktuellen Spieler. Die Kamera in der Gondel und das Honigobjekt erhalten ihre Argumente aus dem Originalaufruf.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 73 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-pod-gravity*`.
+
+### 2026-11-19 – Breite der HUD-Anzeigen (N1/N3)
+
+Alle neun Stile verwenden den vollständigen Zeiger auf die HUD-Anzeige. Die Breite wird vom jeweils zuständigen Callback zurückgegeben.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 73 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-infobar-widths*`.

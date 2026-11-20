@@ -1,21 +1,21 @@
 /* data_to_c.py: from asm/data/overlays/sc/infobar.data.s */
 void _sccustom_entrypoint_0();
-void _sccustom_entrypoint_3();
+BT_NATIVE_ONLY(s32 _sccustom_entrypoint_3(BtIntPtr);) BT_IDO_ONLY(void _sccustom_entrypoint_3();)
 void _sccustom_entrypoint_2();
-void _sccustom_entrypoint_5();
+BT_NATIVE_ONLY(s32 _sccustom_entrypoint_5(BtIntPtr);) BT_IDO_ONLY(void _sccustom_entrypoint_5();)
 void _sccustom_banjo_entrypoint_0();
-void _sccustom_banjo_entrypoint_2();
+BT_NATIVE_ONLY(s32 _sccustom_banjo_entrypoint_2(BtIntPtr);) BT_IDO_ONLY(void _sccustom_banjo_entrypoint_2();)
 void _sccustom_banjo_entrypoint_1();
-void _sccustom_banjo_entrypoint_3();
+BT_NATIVE_ONLY(s32 _sccustom_banjo_entrypoint_3(BtIntPtr);) BT_IDO_ONLY(void _sccustom_banjo_entrypoint_3();)
 void _sccustom_entrypoint_6();
-void _sccustom_entrypoint_7();
+BT_NATIVE_ONLY(s32 _sccustom_entrypoint_7(BtIntPtr);) BT_IDO_ONLY(void _sccustom_entrypoint_7();)
 void _sccustom_big_entrypoint_0();
-void _sccustom_big_entrypoint_2();
+BT_NATIVE_ONLY(s32 _sccustom_big_entrypoint_2(BtIntPtr);) BT_IDO_ONLY(void _sccustom_big_entrypoint_2();)
 void _sccustom_big_entrypoint_1();
-void _sccustom_big_entrypoint_3();
+BT_NATIVE_ONLY(s32 _sccustom_big_entrypoint_3(BtIntPtr);) BT_IDO_ONLY(void _sccustom_big_entrypoint_3();)
 void _chhoneyb_entrypoint_2();
 void _sccustom_entrypoint_1();
-void _sccustom_entrypoint_4();
+BT_NATIVE_ONLY(s32 _sccustom_entrypoint_4(BtIntPtr);) BT_IDO_ONLY(void _sccustom_entrypoint_4();)
 InfobarEntry D_808008B0_scinfobar[99] BT_DATA(4, overlays_sc_infobar, 0x0) = {
     {0, 0, 0, {{0, 0}}, 0},           {2896, 0, 0, {{0, 0}}, 0},
     {3049, 0, 0, {{0, 0}}, 0},        {2945, 0, 0, {{0, 0}}, 0},

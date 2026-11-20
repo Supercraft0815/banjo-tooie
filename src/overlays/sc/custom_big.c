@@ -122,20 +122,20 @@ s32 func_80800314_sccustom_big(BtIntPtr arg0, BtIntPtr arg1) {
 
 /* extern */
 
-void sccustom_big_entrypoint_2(s32 arg0) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) sccustom_big_entrypoint_2(BtIntPtr arg0) {
     BtIntPtr func_80800000_sccustom_big();
     s32 func_80800314_sccustom_big(BtIntPtr, BtIntPtr);
 #ifdef BT_NATIVE
-    func_80800314_sccustom_big(arg0, ((s32 (*)())func_80800000_sccustom_big)());
+    return func_80800314_sccustom_big(arg0, func_80800000_sccustom_big(arg0));
 #else
     func_80800314_sccustom_big(arg0, func_80800000_sccustom_big());
 #endif
 }
 
-void sccustom_big_entrypoint_3(s32 arg0) {
+BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) sccustom_big_entrypoint_3(BtIntPtr arg0) {
     BtIntPtr func_80800044_sccustom_big(BtIntPtr, u8);
     s32 func_80800314_sccustom_big(BtIntPtr, BtIntPtr);
-    func_80800314_sccustom_big(arg0, func_80800044_sccustom_big(arg0, 0x2F));
+    BT_NATIVE_ONLY(return) func_80800314_sccustom_big(arg0, func_80800044_sccustom_big(arg0, 0x2F));
 }
 
 #ifdef BT_NATIVE

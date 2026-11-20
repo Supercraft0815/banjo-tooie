@@ -131,10 +131,10 @@ void sccustom_banjo_entrypoint_1(s32 arg0, BtIntPtr arg1, s32 arg2, s32 arg3) {
 s32 sccustom_banjo_entrypoint_2(BtIntPtr arg0)
 {
   f32 _scinfobar_entrypoint_18(f32 *arg0);
-  s32 _scinfobar_entrypoint_20(BT_ILP32_ONLY(s32 *));
+  s32 _scinfobar_entrypoint_20(BT_NATIVE_ONLY(s32 *));
   s32 sp1C;
   f32 new_var;
-  sp1C = _scinfobar_entrypoint_20(BT_ILP32_ONLY((s32 *)arg0)) - 1;
+  sp1C = _scinfobar_entrypoint_20(BT_NATIVE_ONLY((s32 *)arg0)) - 1;
   new_var = _scinfobar_entrypoint_18(arg0);
   return (s32) (((f32) ((sp1C * 0x14) + 0x28)) * new_var);
   if (sp1C)

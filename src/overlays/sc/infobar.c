@@ -56,7 +56,7 @@ void func_80800144_scinfobar(u8 *arg0, s32 arg1) {
     void scinfobar_entrypoint_10(void *, s32);
     s32 index;
 
-    s32 (*callback)(u8 *, s32);
+    InfobarValue callback;
     if (arg1 != arg0[0]) {
         if (arg0[2] != 0 && arg0[0] == arg0[2]) {
             func_808000C4_scinfobar((u32 *)arg0, arg1);
@@ -71,7 +71,7 @@ void func_80800144_scinfobar(u8 *arg0, s32 arg1) {
             }
             callback = D_80800D54_scinfobar[index].value;
             if (callback != NULL) {
-                scinfobar_entrypoint_10(arg0, callback(arg0, arg1));
+                scinfobar_entrypoint_10(arg0, BT_DATA_FIELD(callback((BtIntPtr)arg0), callback(arg0, arg1)));
             }
             break;
         case 0x66:

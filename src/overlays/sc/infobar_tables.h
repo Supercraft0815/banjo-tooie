@@ -10,7 +10,11 @@ typedef struct {
 } InfobarEntry;
 
 typedef s32 (*InfobarDraw)(s32, void *, s32, s32);
+#ifdef BT_NATIVE
+typedef s32 (*InfobarValue)(BtIntPtr);
+#else
 typedef s32 (*InfobarValue)(u8 *, s32);
+#endif
 
 typedef struct {
     InfobarDraw draw;
