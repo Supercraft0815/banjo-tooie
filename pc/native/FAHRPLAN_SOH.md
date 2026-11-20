@@ -67,6 +67,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Kamera und Spieleranimation. Die Splinekamera erhält den dritten Vektor. Spielerroutinen geben den Animationscontroller, Explosionsmarker und Kamerapositionen an die zugehörigen Funktionen weiter.
 
+- Tod und Schwerkraft. Beim Zurücksetzen der Schwerkraft verwenden alle sechs Aufrufpfade den aktuellen Spieler. Die Kamera in der Gondel und das Honigobjekt erhalten ihre Argumente aus dem Originalaufruf.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

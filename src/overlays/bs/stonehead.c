@@ -1,5 +1,8 @@
 #include "common.h"
 #ifdef BT_NATIVE
+#include "overlays/ba/sudie.h"
+#endif
+#ifdef BT_NATIVE
 #include "overlays/ba/anim_smooth.h"
 #endif
 #include "overlays/ba/playerstate.h"
@@ -390,7 +393,7 @@ void bsstonehead_entrypoint_5(PlayerState *arg0) {
     bs_setState(arg0, 0);
 }
 
-void bsstonehead_entrypoint_6(BT_NATIVE_ONLY(s32 bt_a0))
+void bsstonehead_entrypoint_6(BT_NATIVE_ONLY(PlayerState *bt_a0))
 {
     _basudie_entrypoint_6(BT_NATIVE_ONLY(bt_a0));
 }

@@ -403,7 +403,7 @@ void func_80800A5C_chhoney(u8 *arg0) {
     void func_80800754_chhoney(Actor *);
     void func_808008F8_chhoney(Actor *, s32);
     void func_808009BC_chhoney(Actor *);
-    s32 func_80800EB0_chhoney();
+    s32 func_80800EB0_chhoney(BT_NATIVE_ONLY(Actor *));
     extern s32 D_80801038_chhoney[4];
     f32 sp34;
     s32 sp30;
@@ -417,7 +417,7 @@ void func_80800A5C_chhoney(u8 *arg0) {
     u32 temp_t8;
     u8 temp_t3;
 
-    func_80800EB0_chhoney();
+    func_80800EB0_chhoney(BT_NATIVE_ONLY((Actor *)arg0));
     if (((struct HoneyFlags *)arg0)->mode != ((struct HoneyFlags *)arg0)->active) {
         if (((struct HoneyFlags *)arg0)->active) {
             if (((struct HoneyFlags *)arg0)->valid) {

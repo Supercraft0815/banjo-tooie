@@ -101,13 +101,13 @@ void basudie_entrypoint_5(u8 *arg0) {
 
 /* extern */
 
-void basudie_entrypoint_6(BtIntPtr arg0) {
-    s32 baphysics_reset_gravity();
+void basudie_entrypoint_6(BT_NATIVE_ONLY(struct player_state_s *) BT_IDO_ONLY(BtIntPtr) arg0) {
+    BT_NATIVE_ONLY(void baphysics_reset_gravity(struct player_state_s *);) BT_IDO_ONLY(s32 baphysics_reset_gravity();)
     void func_800951B4(void *player);
     int func_800A4C68(void *);
     void func_800A4E30(void *arg0);
     s32 func_800C53EC(s32, s32);
-    baphysics_reset_gravity();
+    baphysics_reset_gravity(BT_NATIVE_ONLY(arg0));
     func_800A4E30(arg0);
     func_800C53EC(func_800A4C68(arg0), 2);
     func_800951B4(arg0);

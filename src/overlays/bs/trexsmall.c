@@ -1,5 +1,8 @@
 #include "bs_script.h"
 #include "bs/trexsmall.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/sudie.h"
+#endif
 #ifdef BT_NATIVE // complete the enum forward declarations below
 #include "overlays/ba/assets.h"
 #endif
@@ -233,8 +236,8 @@ void func_80800680_bstrexsmall(PlayerState *self) {
 void func_8080070C_bstrexsmall(PlayerState *arg0) {
     void baroll_setIdeal(PlayerState *self, f32 arg1);
     void func_8009BF5C(PlayerState *, f32);
-    s32 _basudie_entrypoint_6();
-    _basudie_entrypoint_6();
+    BT_IDO_ONLY(s32 _basudie_entrypoint_6();)
+    _basudie_entrypoint_6(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_8009BF5C(arg0, 0.0f);
     baroll_setIdeal((BtIntPtr) arg0, 0.0f);
 }

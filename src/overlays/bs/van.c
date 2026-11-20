@@ -1,4 +1,7 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/sudie.h"
+#endif
 #ifdef BT_NATIVE // complete the enum forward declarations below
 #include "overlays/ba/assets.h"
 #endif
@@ -191,7 +194,7 @@ void bsvan_entrypoint_3(struct player_state_s *arg0) {
 
 void func_808004F8_bsvan(BtIntPtr arg0)
 {
-    _basudie_entrypoint_6();
+    _basudie_entrypoint_6(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     bsvan_entrypoint_0(arg0);
 }
 struct anctrl_s;

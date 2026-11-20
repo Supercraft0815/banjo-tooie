@@ -1,5 +1,8 @@
 #include "common.h"
 #ifdef BT_NATIVE
+#include "overlays/ba/sudie.h"
+#endif
+#ifdef BT_NATIVE
 #include "overlays/ba/anim_smooth.h"
 #endif
 #ifdef BT_NATIVE // complete the enum forward declarations below
@@ -320,7 +323,7 @@ BT_NATIVE_ONLY(return 0;) }
 
 void func_80800590_bswasher(BtIntPtr arg0)
 {
-    _basudie_entrypoint_6();
+    _basudie_entrypoint_6(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_808000F0_bswasher(arg0);
 }
 

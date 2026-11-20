@@ -1009,13 +1009,13 @@ void ncpoddialog_entrypoint_9(void *arg0, s16 *arg1, int arg2, s32 arg3) {
     void func_8009055C(s32, s32);
     void *func_80110024(s16 *);
     s32 func_80800338_ncpoddialog(void *, BtIntPtr, s32);
-    s32 func_80801310_ncpoddialog();
+    BT_IDO_ONLY(s32 func_80801310_ncpoddialog();)
     s32 var_v1;
 
     var_v1 = (((Objdialog_arg0 *)arg0)->unk211);
     if (var_v1 == -1) {
 #ifdef BT_NATIVE
-        ((s32 (*)())func_80801310_ncpoddialog)();
+        func_80801310_ncpoddialog(arg0, arg1);
 #else
         func_80801310_ncpoddialog();
 #endif

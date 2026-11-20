@@ -1,5 +1,8 @@
 #include "bs_script.h"
 #include "common.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/sudie.h"
+#endif
 #ifdef BT_NATIVE // complete the enum forward declarations below
 #include "overlays/ba/assets.h"
 #endif
@@ -124,10 +127,10 @@ void bsdie_entrypoint_1(struct player_state_s *arg0) {
 
 void bsdie_entrypoint_2(BtIntPtr arg0) {
     void baroll_setIdeal(void *self, f32 arg1);
-    s32 _basudie_entrypoint_6();
+    BT_IDO_ONLY(s32 _basudie_entrypoint_6();)
     void func_8009BF5C(BtIntPtr, f32);
     void func_800A0CF4(struct player_state_s *, s32);
-    _basudie_entrypoint_6();
+    _basudie_entrypoint_6(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_800A0CF4(arg0, 0);
     func_8009BF5C(arg0, 0);
     baroll_setIdeal(arg0, 0);
@@ -236,10 +239,10 @@ void bsdie_entrypoint_5(struct player_state_s *arg0) {
 
 void bsdie_entrypoint_6(BtIntPtr arg0) {
     void baroll_setIdeal(void *self, f32 arg1);
-    s32 _basudie_entrypoint_6();
+    BT_IDO_ONLY(s32 _basudie_entrypoint_6();)
     void func_8009BF5C(BtIntPtr, f32);
     void func_800A0CF4(struct player_state_s *, s32);
-    _basudie_entrypoint_6();
+    _basudie_entrypoint_6(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_8009BF5C(arg0, 0.0f);
     baroll_setIdeal(arg0, 0.0f);
     func_800A0CF4(arg0, 0);
@@ -349,9 +352,9 @@ void bsdie_entrypoint_9(struct player_state_s *arg0) {
 
 void bsdie_entrypoint_10(BtIntPtr arg0) {
     void baroll_setIdeal(void *self, f32 arg1);
-    s32 _basudie_entrypoint_6();
+    BT_IDO_ONLY(s32 _basudie_entrypoint_6();)
     void func_8009BF5C(BtIntPtr, f32);
-    _basudie_entrypoint_6();
+    _basudie_entrypoint_6(BT_NATIVE_ONLY((struct player_state_s *)arg0));
     func_8009BF5C(arg0, 0.0f);
     baroll_setIdeal(arg0, 0.0f);
 }
