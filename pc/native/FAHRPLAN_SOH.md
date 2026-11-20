@@ -109,6 +109,8 @@ Weitere geprüfte N-Pakete am 20. November
 
 - Blickrichtung des Spielers. Pitch, Yaw und Roll werden beim selben Spieler abgefragt. Der LP64-Test prüft die Spielerauswahl und die benachbarten Werte des Ausgabevektors.
 
+- Schubbewegung. Die Schubberechnung erhält den Spieler für die Abfrage der Neigung. Die LP64-Probe prüft Beschleunigung, Widerstand und Begrenzung der Fallgeschwindigkeit an einem hoch adressierten Physikobjekt.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026
