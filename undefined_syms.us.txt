@@ -567,6 +567,14 @@ SECTIONS
     {
         D_80801456_chjollyroger = D_80801448_chjollyroger + 0xE;
     }
+    .gcmapsects_lagoonbot :
+    {
+        D_80800230_gcmapsects_lagoonbot = lagoonBottomSections + 0x0;
+        D_8080023C_gcmapsects_lagoonbot = lagoonBottomSections + 0xC;
+        D_80800248_gcmapsects_lagoonbot = lagoonBottomSections + 0x18;
+        D_808002F4_gcmapsects_lagoonbot = lagoonBottomPoint + 0x0;
+        D_808002F8_gcmapsects_lagoonbot = lagoonBottomPoint + 0x4;
+    }
     .gcmapsects_lagoontop :
     {
         D_80800630_gcmapsects_lagoontop = lagoonTopSections + 0x0;

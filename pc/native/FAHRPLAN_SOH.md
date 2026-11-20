@@ -129,6 +129,8 @@ Weitere geprüfte N2-Pakete am 20. November
 
 - Globale Spielstandabschnitte. Die zwei Anbieter übergeben jeweils die Bytezahl und die Adresse ihres Speicherbereichs. Der zweite Abschnitt enthält 23 Halbwortwerte. Die LP64-Probe prüft Länge, Inhalt und Zeiger beider Abschnitte.
 
+- Kartenabschnitte am Lagunengrund. Der Gast und der native Kartenaufbau verwenden dieselben vier Datensätze für Position, Grenzen, Höhe und Assets. Die Liste der abgeschalteten Abschnitte endet nach vier Einträgen.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

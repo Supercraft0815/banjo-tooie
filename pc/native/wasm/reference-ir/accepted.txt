@@ -617,3 +617,6 @@ The combined change preserves the original byte clear in the dialog reset. The c
 
 2026-11-20  Global save chunk callbacks
 3 guest functions change their normalized IR. The 9,706 fixup addresses, both complete ROM images and all 74 replays match. See n1-2026-11-18/current-global-save-chunks-ir.log.
+
+2026-11-20  Lagoon bottom section data
+2 guest functions change their normalized IR. The 9,706 fixup addresses, both complete ROM images and all 74 replays match. See n1-2026-11-18/current-lagoon-bottom-ir.log.
