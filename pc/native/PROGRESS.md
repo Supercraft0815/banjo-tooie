@@ -3633,3 +3633,11 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuite
 Alle neun Stile verwenden den vollständigen Zeiger auf die HUD-Anzeige. Die Breite wird vom jeweils zuständigen Callback zurückgegeben.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 73 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-infobar-widths*`.
+
+### 2026-11-20 – Kumulativer Replayvergleich mit vier abgeschalteten Compilerhilfen
+
+Der reguläre Build von `gameplay-combined-camera` besteht alle 74 Replays mit 447.849 Retraces. Mit `BT_PASS_OFF=fixcalls,stackslots,datagroup,safepoints` und `BT_NO_ASMDATA=1` stimmen 73 Fälle mit 420.756 Retraces überein, darunter New Game, Weldar, HAG 1, beide Kickballspiele und alle drei Shootouts. Beide Builds bestehen die elf Gastsuiten. Original-IDO bestätigt 16.401 Funktionen und beide vollständigen ROM-Abbilder.
+
+Der Weltenlauf erreicht in beiden Builds nach 27.093 Retraces die erwartete Karte 0x14F. Der erste Unterschied bei abgeschalteten Hilfen tritt auf Karte 0x15D bei Retrace 21.710 auf. Das Wort an Actor+0x70 unterscheidet sich bei Podium Bankaz und dem Warp-Pad in Bit 3. Der kumulative Prüfstand verwendet die anhand der ursprünglichen HUD-Zählerroutine geprüften Referenzen. Das vollständige Ergebnis und die Welten-Trace liegen unter `build/acceptance/n1-2026-11-18/gameplay-combined-camera*`.
+
+Die Folgestufen für Ei-Geräusche, Kamerakomponenten und Schwebebewegung bestehen 86 bzw. 87 Sanitizertests. Der LP64-Compilerlauf des Schwebestands zählt 491 Warnstellen in 211 Dateien. Das Protokoll steht in `build/acceptance/n1-2026-11-18/gameplay-hover-hazards64.log`.
