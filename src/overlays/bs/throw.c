@@ -2,26 +2,31 @@
 #include "overlays/ba/playerstate.h"
 /* extern */
 #include "bs_script.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/anim.h"
+#endif
 void bsthrow_entrypoint_0(void *arg0) {
 
+    #ifndef BT_NATIVE
     s32 anctrl_reset(BtIntPtr);
     s32 anctrl_setDuration(BtIntPtr, s32);
     s32 anctrl_setIndex(BtIntPtr, s32);
     s32 anctrl_setPlaybackType(BtIntPtr, s32);
     s32 anctrl_start(BtIntPtr);
     s32 baanim_getAnimCtrlPtr();
+    #endif
     void baphysics_set_target_horizontal_velocity(PlayerState *, f32);
     s32 baphysics_set_type(void *, s32);
-    s32 func_8008CA4C(void *, s32);
+    BT_IDO_ONLY(s32 func_8008CA4C(void *, s32);)
     s32 func_8009BA9C(void *, s32);
     s32 func_8009D2D8(void *, s32);
     s32 yaw_setUpdateType(void *, s32);
-    s32 temp_v0;
+    BT_NATIVE_ONLY(AnimCtrl *) BT_IDO_ONLY(s32) temp_v0;
 
-    temp_v0 = baanim_getAnimCtrlPtr();
+    temp_v0 = baanim_getAnimCtrlPtr(BT_NATIVE_ONLY(arg0));
     anctrl_reset(temp_v0);
     anctrl_setIndex(temp_v0, 0x11B);
-    anctrl_setDuration(temp_v0, 0x3F800000);
+    anctrl_setDuration(temp_v0, BT_DATA_FIELD(1.0f, 0x3F800000));
     anctrl_setPlaybackType(temp_v0, 1);
     anctrl_start(temp_v0);
     func_8008CA4C(arg0, 1);
@@ -35,10 +40,12 @@ void bsthrow_entrypoint_0(void *arg0) {
 
 
 void bsthrow_entrypoint_1(void *arg0) {
+    #ifndef BT_NATIVE
     struct anctrl_s;
     s32 baanim_getAnimCtrlPtr();
     int anctrl_isAt(BtIntPtr, f32);
     s32 anctrl_isStopped(BtIntPtr);
+    #endif
     void func_8009C128(void *, f32[3]);
     s32 func_800F1E6C(f32 *, f32 *, f32 *);
     void yaw_setIdeal(void *, f32);
@@ -48,7 +55,7 @@ void bsthrow_entrypoint_1(void *arg0) {
     void _bahold_entrypoint_6(void *arg0, BtIntPtr arg1);
     void func_800A33CC(BT_IDO_ONLY(void *) BT_NATIVE_ONLY(PlayerState *), f32 *);
     s32 sp4C;
-    s32 sp48;
+    BT_NATIVE_ONLY(AnimCtrl *) BT_IDO_ONLY(s32) sp48;
     f32 sp3C[3];
     f32 sp30[3];
     f32 sp2C;
@@ -58,7 +65,7 @@ void bsthrow_entrypoint_1(void *arg0) {
     sp48 = baanim_getAnimCtrlPtr(arg0);
     sp28 = _bahold_entrypoint_5(arg0);
     if ((((PlayerState *)arg0)->unk15C.word) == 0 && sp28 != NULL) {
-        _bahold_entrypoint_6(arg0, sp28);
+        _bahold_entrypoint_6(arg0, BT_NATIVE_ONLY((BtIntPtr))sp28);
     }
     func_8009C128(arg0, sp30);
     func_800A33CC(arg0, sp3C);
@@ -79,7 +86,7 @@ void bsthrow_entrypoint_1(void *arg0) {
 void bsthrow_entrypoint_2(void *self) {
     void bastatetimer_set(void *self, s32 id, f32 arg2);
     s32 bs_getNextState(void *);
-    (((Objthrow_bsthrow_entrypoint_2_self *)self)->unk15C) = 0;
+    BT_DATA_FIELD(((PlayerState *)self)->unk15C.word, ((Objthrow_bsthrow_entrypoint_2_self *)self)->unk15C) = 0;
     if (bs_getNextState(self) == 1) {
         bastatetimer_set(self, 0, 0.14f);
         bastatetimer_set(self, 1, 0.28f);
@@ -97,11 +104,11 @@ void bsthrow_entrypoint_4(void *arg0) {
     s32 func_8008E9AC(void *);
     void func_8008F6B8(struct player_state_s *player, s32 actor_id);
     void func_80099B94(void *arg0);
-    s32 func_8009E6EC();
+    s32 func_8009E6EC(BT_NATIVE_ONLY(PlayerState *));
     void func_8009E830(void *arg0, s32 arg1);
     s32 temp_v0;
 
-    temp_v0 = func_8009E6EC();
+    temp_v0 = func_8009E6EC(BT_NATIVE_ONLY(arg0));
     switch (temp_v0) {
     case 18:
         if ((((PlayerState *)arg0)->unk15C.word) == 0) {

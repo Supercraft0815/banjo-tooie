@@ -45,7 +45,7 @@ typedef struct player_state_s {
     /* 0x3C */ struct ba_state_timer_list_s *state_timer; // clock?
     /* 0x40 */ struct ba_key_s *key; // controller?
     /* 0x44 */ struct ba_cough_s *cough;
-    u8 pad48[0xC];
+    BT_NATIVE_ONLY(union {) u8 pad48[0xC]; BT_NATIVE_ONLY(struct { u8 *action_flags; u8 *death_state; void *model; }; };)
     /* 0x54 */ struct ba_drone_s *drone;
     union {
         u8 pad58[0x28];

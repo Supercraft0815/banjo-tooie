@@ -217,6 +217,10 @@ else()
 endif()
 add_test(NAME native_level_query COMMAND bt_native_level_test)
 
+add_executable(bt_native_player_death_test tests/player_death.c "${BT_ROOT}/src/core2/1E6B700.c")
+target_link_libraries(bt_native_player_death_test PRIVATE bt_native_options)
+add_test(NAME native_player_death COMMAND bt_native_player_death_test)
+
 add_executable(bt_native_taxi_test tests/taxi.c "${BT_ROOT}/src/core2/1EA4CD0.c")
 target_link_libraries(bt_native_taxi_test PRIVATE bt_native_options)
 add_test(NAME native_taxi_owner COMMAND bt_native_taxi_test)

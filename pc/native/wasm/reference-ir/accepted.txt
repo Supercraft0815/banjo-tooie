@@ -542,3 +542,6 @@ pointers or use their storage. Both complete ROMs, all 74 replays and all
 
 2026-11-19  Player model storage
 2 guest functions change their normalized IR. The 9,706 fixup addresses, both complete ROM images and all 74 replays match. See n1-2026-11-18/current-player-model-ir.log.
+
+2026-11-19  Player throw and fall death
+1 guest functions change their normalized IR. The 9,706 fixup addresses, both complete ROM images and all 74 replays match. See n1-2026-11-18/current-throw-fall-ir.log.

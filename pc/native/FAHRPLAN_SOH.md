@@ -73,6 +73,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Modell des Spielers. Vektortabelle und angehängter Actor haben eigene native Zeiger. Beim Erzeugen, Zurücksetzen und Verschieben bleiben die benachbarten Modellfelder erhalten.
 
+- Wurf- und Sturzzustände. Wurf und Sturz verwenden den Animationscontroller und den Todeszustand des aktuellen Spielers. Der native Test prüft die Zustandswechsel mit Spieleradressen oberhalb von 4 GiB.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

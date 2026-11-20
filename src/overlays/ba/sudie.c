@@ -1,12 +1,16 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/playerstate.h"
+#endif
 
 #ifdef BT_NATIVE
-BT_IDO_ONLY(void) BT_NATIVE_ONLY(s32) basudie_entrypoint_0(BtIntPtr bt_a0)
+void basudie_entrypoint_0(PlayerState *self)
 #else
 void basudie_entrypoint_0()
 #endif
 {
-    BT_NATIVE_ONLY(return) func_80091EF0();
+    BT_NATIVE_ONLY(void func_80091EF0(PlayerState *);)
+    func_80091EF0(BT_NATIVE_ONLY(self));
 }
 
 /* extern */
@@ -17,7 +21,7 @@ void basudie_entrypoint_1(void *arg0) {
     void func_800F90F8(s32 arg0);
     s32 func_80101238(s32, s32);
     if (func_800F8B64() == 0) {
-        func_80101238(0x9F, (*(s32 *)((s8 *)(arg0) + (0x184))));
+        func_80101238(0x9F, BT_DATA_FIELD(((PlayerState *)arg0)->unk184, *(s32 *)((s8 *)(arg0) + (0x184))));
         func_800F90F8(1);
         func_800C0658();
     }
@@ -95,7 +99,7 @@ void basudie_entrypoint_5(u8 *arg0) {
     void func_8009D3A8(void *, s32);
     func_8009D3A8(arg0, 0);
     if (_batimer_decrement(arg0, 9) != 0) {
-        basudie_entrypoint_0(arg0);
+        basudie_entrypoint_0(BT_NATIVE_ONLY((PlayerState *))arg0);
     }
 }
 
@@ -171,7 +175,7 @@ void basudie_entrypoint_9(struct player_state_s *arg0, f32 arg1) {
 void basudie_entrypoint_10(u8 *arg0) {
     s32 _batimer_decrement(void *, s32);
     if (_batimer_decrement(arg0, 9) != 0) {
-        basudie_entrypoint_0(arg0);
+        basudie_entrypoint_0(BT_NATIVE_ONLY((PlayerState *))arg0);
     }
 }
 

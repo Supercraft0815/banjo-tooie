@@ -3647,3 +3647,9 @@ Die Folgestufen für Ei-Geräusche, Kamerakomponenten und Schwebebewegung besteh
 Vektortabelle und angehängter Actor haben eigene native Zeiger. Beim Erzeugen, Zurücksetzen und Verschieben bleiben die benachbarten Modellfelder erhalten.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 73 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 2 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-player-model*`.
+
+### 2026-11-19 – Wurf- und Sturzzustände (N1/N3)
+
+Wurf und Sturz verwenden den Animationscontroller und den Todeszustand des aktuellen Spielers. Der native Test prüft die Zustandswechsel mit Spieleradressen oberhalb von 4 GiB.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 74 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 1 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-throw-fall*`.

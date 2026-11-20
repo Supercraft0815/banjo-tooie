@@ -7,7 +7,7 @@ typedef struct player_state_s {
  struct ba_boost_s *boost; struct ba_bounce_s *bounce; struct ba_unknown_2C_s *unk2C;
  union { void *component30; s32 unk30; }; struct ba_buzz_s *buzz; u8 pad38[8];
  struct ba_state_timer_list_s *state_timer; struct ba_key_s *key; struct ba_cough_s *cough;
- union { u8 pad48[24]; struct { u8 prefix48[16]; void *model; }; };
+ union { u8 pad48[24]; struct { u8 *action_flags; u8 *death_state; void *model; }; };
  struct ba_drone_s *drone;
  union { u8 pad58[80]; struct { void *pad[3]; PlayerEggSelection *slot; } eggSelection; };
  struct ba_flag_s *flag; u8 pad84[16]; union { void *component8C; f32 unk8C; };

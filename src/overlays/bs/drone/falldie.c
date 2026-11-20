@@ -1,13 +1,17 @@
 #include "common.h"
+#ifdef BT_NATIVE
+#include "overlays/ba/sudie.h"
+typedef struct { PlayerState player; s32 first_word; s32 step; } FallDeathPlayer;
+#endif
 
 /* extern */
 
 void func_80800000_bsdronefalldie(void *arg0, s32 arg1) {
-    s32 _basudie_entrypoint_0();
+    BT_IDO_ONLY(s32 _basudie_entrypoint_0();)
     if (arg1 == 2) {
-        _basudie_entrypoint_0();
+        _basudie_entrypoint_0(BT_NATIVE_ONLY(arg0));
     }
-    (*(s32 *)((s8 *)(arg0) + (0x190))) = arg1;
+    BT_DATA_FIELD(((FallDeathPlayer *)arg0)->step, *(s32 *)((s8 *)(arg0) + (0x190))) = arg1;
 }
 
 /* extern */
@@ -70,7 +74,7 @@ void bsdronefalldie_entrypoint_1(struct player_state_s *arg0) {
     func_800A4DFC(arg0, 5);
     func_80098B4C(arg0, 0);
     func_80092880(arg0, 0);
-    *(s32 *)((s8 *)arg0 + 0x190) = 0;
+    BT_DATA_FIELD(((FallDeathPlayer *)arg0)->step, *(s32 *)((s8 *)arg0 + 0x190)) = 0;
     func_80800000_bsdronefalldie(arg0, 1);
 }
 
@@ -88,7 +92,7 @@ void bsdronefalldie_entrypoint_3(BT_IDO_ONLY(void *) BT_NATIVE_ONLY(struct playe
     s32 _badata_entrypoint_16(void);
     s32 func_800FCCD4(s32);
 
-    switch (((Objfalldie_arg0 *)arg0)->unk190) {
+    switch (BT_DATA_FIELD(((FallDeathPlayer *)arg0)->step, ((Objfalldie_arg0 *)arg0)->unk190)) {
         case 1:
             if (func_800FCCD4(_badata_entrypoint_16()) == 0) {
                 func_80800000_bsdronefalldie(arg0, 2);
