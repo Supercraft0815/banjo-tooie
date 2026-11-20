@@ -1,8 +1,9 @@
 #include "common.h"
 #include "core1/audio_config_data.h"
+#include "core1/sfx_player.h"
 
 s32 rom_read_word(u32, u32 *);
-void func_8001EB10(s32 *);
+void func_8001EB10(SfxConfig *);
 
 struct {
     s32 order[13];
@@ -10,7 +11,7 @@ struct {
     s32 (*read_word)(u32, u32 *);
     int (*format)(char *, const char *, ...);
     f32 (*square_root)(f32);
-    void (*init_sfx)(s32 *);
+    void (*init_sfx)(SfxConfig *);
     void (*ortho)(Mtx *, f32, f32, f32, f32, f32, f32, f32);
     s32 (*read_eeprom)(OSMesgQueue *, u8, u8 *, int);
     s32 (*write_eeprom)(OSMesgQueue *, u8, u8 *, int);

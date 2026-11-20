@@ -184,7 +184,10 @@ add_executable(bt_native_core_test tests/core.c)
 target_link_libraries(bt_native_core_test PRIVATE bt_native_core)
 add_test(NAME native_core COMMAND bt_native_core_test)
 
-add_executable(bt_native_sfx_owner_test tests/sfx_owner.c "${BT_ROOT}/src/core2/1E9A960.c")
+add_executable(bt_native_sfx_owner_test tests/sfx_owner.c
+    "${BT_ROOT}/src/core2/1E9A960.c" "${BT_ROOT}/src/core2/1EB5C70.c"
+    "${BT_ROOT}/src/core1/1E36640.c" "${BT_ROOT}/src/core1/1E38100.c"
+    "${BT_ROOT}/src/core1/1E38970.c" "${BT_ROOT}/src/core1/1E3DEF0.c")
 target_link_libraries(bt_native_sfx_owner_test PRIVATE bt_native_options)
 set_source_files_properties("${BT_ROOT}/src/core2/1E9A960.c" PROPERTIES COMPILE_OPTIONS "-Wno-error=int-conversion;-Wno-error=incompatible-pointer-types;-Wno-error=implicit-function-declaration")
 if(CMAKE_C_COMPILER_ID MATCHES "Clang|GNU")

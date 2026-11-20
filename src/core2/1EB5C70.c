@@ -1,6 +1,20 @@
 #include "common.h"
-BT_NATIVE_ONLY(void func_80020C08(s32, s16, s32);)
+#include "core1/sfx_player.h"
+BT_NATIVE_ONLY(void func_80020C08(SfxVoiceRef, s16, s32);)
 
+#ifdef BT_NATIVE
+extern SfxConfig D_8012C800;
+void func_800DC380(void) {
+    void *func_80012EDC(void);
+    void func_8001EB10(SfxConfig *);
+    D_8012C800.stateCount = 50;
+    D_8012C800.eventCount = 256;
+    D_8012C800.channelCount = 64;
+    D_8012C800.maxVoices = 24;
+    D_8012C800.heap = func_80012EDC();
+    func_8001EB10(&D_8012C800);
+}
+#else
 typedef struct { s32 unk0; s32 unk4; s32 unk8; s32 unkC; s16 unk10; } Obj1EB5C70_D_8012C800; /* offsets.py genstruct: fields from raw offsets on &D_8012C800; rename once understood */ void func_800DC380(void) {
     s32 func_80012EDC(s32 *);
     void func_8001EB10(s32 *arg0);
@@ -12,6 +26,7 @@ typedef struct { s32 unk0; s32 unk4; s32 unk8; s32 unkC; s16 unk10; } Obj1EB5C70
     (((Obj1EB5C70_D_8012C800 *)&D_8012C800)->unkC) = func_80012EDC(&D_8012C800);
     func_8001EB10(&D_8012C800);
 }
+#endif
 
 /* extern */
 
@@ -20,38 +35,45 @@ void func_800DC3D4(s32 arg0, f32 arg1, u16 arg2, u8 arg3, u8 arg4, BtIntPtr arg5
     func_80020790((s16) (arg0 + 1), arg2, arg3, arg1, arg4, 0, arg5);
 }
 
-void func_800DC42C(s32 arg0, volatile s32 arg1) { func_80020C08(arg0, 0x10, arg1); }
+void func_800DC42C(SfxVoiceRef arg0, volatile s32 arg1) { func_80020C08(arg0, 0x10, arg1); }
 
-void func_800DC454(s32 arg0, u16 arg1) {
+void func_800DC454(SfxVoiceRef arg0, u16 arg1) {
     s32 var_a2;
     var_a2 = arg1;
     if (var_a2 >= 0x8000) var_a2 = 0x7FFF;
     func_80020C08(arg0, 8, var_a2);
 }
 
-void func_800DC48C(s32 arg0,s32 arg1)
+void func_800DC48C(SfxVoiceRef arg0,s32 arg1)
 {
     func_80020C08(arg0,0x100,arg1);
 }
 
-void func_800DC4B0(s32 arg0,s32 arg1)
+void func_800DC4B0(SfxVoiceRef arg0,s32 arg1)
 {
     func_80020C08(arg0,0x4,arg1);
 }
 
-#if defined(BT_NATIVE) && defined(BT_ILP32)
-void func_800DC4D4(s32 arg0) { s32 func_80020760(void *); if (arg0 != 0) { if (func_80020760((void *)(BtIntPtr)arg0) != 0) func_80020A60(arg0); } }
+#ifdef BT_NATIVE
+void func_800DC4D4(SfxVoiceRef voice) {
+    s32 func_80020760(void *);
+    void func_80020A60(void *);
+    if (func_80020760(voice))
+        func_80020A60(voice);
+}
 #else
 void func_800DC4D4(s32 arg0) { if (arg0 != 0) { if (func_80020760() != 0) func_80020A60(arg0); } }
 #endif
 
-void func_800DC508(BT_NATIVE_ONLY(s32 bt_a0))
+void func_800DC508(BT_NATIVE_ONLY(SfxVoiceRef bt_a0))
 {
+    BT_NATIVE_ONLY(s32 func_80020760(void *);)
     func_80020760(BT_NATIVE_ONLY(bt_a0));
 }
 
 void func_800DC528(void) {
-    func_800E9054(NULL);
+    BT_NATIVE_ONLY(s16 func_800E9054(s32);)
+    func_800E9054(0);
 }
 
 /* extern */
@@ -61,5 +83,5 @@ s32 func_800DC548(BT_PARAM_OR_VOID(s32 bt_a0) BT_PASS2(, s32 bt_a1)) { u8 *func_
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
-s32 D_8012C800 BT_DATA(4, bss_core2bss2, 0x10);
+SfxConfig D_8012C800 BT_DATA(4, bss_core2bss2, 0x10);
 #endif

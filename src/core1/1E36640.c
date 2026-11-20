@@ -1,53 +1,6 @@
 #include "common.h"
 #include "core1/sfx_player.h"
 
-typedef struct {
-    u8 velocityMin;
-    u8 velocityMax;
-    u8 keyMin;
-    u8 keyMax;
-    u8 keyBase;
-    s8 detune;
-} SfxKeyMap;
-typedef struct {
-    s32 attackTime;
-    s32 decayTime;
-    s32 releaseTime;
-    u8 attackVolume;
-    u8 decayVolume;
-    u8 padE[2];
-    SfxKeyMap key;
-    u8 pad16[0xBE];
-    u8 pan;
-    u8 volume;
-} SfxSound;
-typedef struct SfxState {
-    struct SfxState *next;
-    struct SfxState *prev;
-    SfxSound *sound;
-    ALVoice voice;
-    f32 pitch;
-    f32 pitchRatio;
-    s32 handle;
-    s32 retries;
-    s16 volume;
-    s16 envelopeVolume;
-    s32 endTime;
-    u8 priority;
-    u8 pan;
-    u8 fxMix;
-    u8 fxBus;
-    u8 flags;
-    u8 phase;
-    u8 pad46[2];
-} SfxState;
-typedef struct {
-    u16 type;
-    SfxState *state;
-    union { s32 data; f32 pitch; } value;
-    s32 padC;
-} SfxEvent;
-
 extern SfxState *D_800411D4;
 extern SfxPlayer *D_800411DC;
 BT_IDO_ONLY(extern s16 D_800411E0;)
@@ -58,7 +11,7 @@ void func_800200B8(SfxState *);
 void func_80020128(SfxState *);
 void func_800201A4(ALEventQueue *, SfxState *, s32);
 s32 func_80020298(u16 *, u16 *);
-SfxState *func_80020790(s16, s16, u8, f32, u8, u8, BtIntPtr);
+SfxState *func_80020790(s16, u16, u8, f32, u8, u8, BtIntPtr);
 void func_80026500(ALEventQueue *, SfxEvent *, s32, s32);
 s32 func_800268D0(ALVoice *, ALVoiceConfig *);
 void func_80026BE0(ALVoice *, s16, s32);
@@ -67,7 +20,7 @@ void func_80026DE0(ALVoice *, u8);
 void func_80026E90(ALVoice *, f32);
 void func_80026F40(ALVoice *, u8);
 
-void func_8001EB10(s32 *arg0) {
+void func_8001EB10(SfxConfig *arg0) {
     void func_80020E40(ALLink *, ALLink *);
     BtIntPtr func_80020EE4(s32, s32, void *, s32, s32);
     void func_800263C0(ALEventQueue *, ALEventListItem *, s32);
@@ -80,20 +33,20 @@ void func_8001EB10(s32 *arg0) {
     SfxEvent event;
     SfxState *states;
 
-    D_800411DC->maxVoices = arg0[2];
-    *(s32 *)((u8 *)D_800411DC + 0x3C) = 0;
+    D_800411DC->maxVoices = arg0->maxVoices;
+    D_800411DC->lastStarted = 0;
     D_800411DC->frameTime = 16000;
-    memory = (void *)func_80020EE4(0, 0, *(void **)&arg0[3], 1, (u32)arg0[0] * sizeof(SfxState));
-    *(void **)((u8 *)D_800411DC + 0x40) = memory;
-    memory = (void *)func_80020EE4(0, 0, *(void **)&arg0[3], 1, arg0[1] * 0x1C);
-    func_800263C0(&D_800411DC->queue, memory, arg0[1]);
-    D_800411D8 = *(SfxState **)((u8 *)D_800411DC + 0x40);
-    for (i = 1; i < (u32)arg0[0]; i++) {
-        states = *(SfxState **)((u8 *)D_800411DC + 0x40);
+    memory = (void *)func_80020EE4(0, 0, arg0->heap, 1, (u32)arg0->stateCount * sizeof(SfxState));
+    D_800411DC->states = memory;
+    memory = (void *)func_80020EE4(0, 0, arg0->heap, 1, arg0->eventCount * sizeof(ALEventListItem));
+    func_800263C0(&D_800411DC->queue, memory, arg0->eventCount);
+    D_800411D8 = D_800411DC->states;
+    for (i = 1; i < (u32)arg0->stateCount; i++) {
+        states = D_800411DC->states;
         func_80020E40((ALLink *)&states[i], (ALLink *)(&states[i] - 1));
     }
-    D_8007EA24 = (s16 *)func_80020EE4(0, 0, *(void **)&arg0[3], 2, *(u16 *)&arg0[4]);
-    for (i = 0; i < *(u16 *)&arg0[4]; i++) {
+    D_8007EA24 = (s16 *)func_80020EE4(0, 0, arg0->heap, 2, arg0->channelCount);
+    for (i = 0; i < arg0->channelCount; i++) {
         D_8007EA24[i] = 0x7FFF;
     }
     D_800411DC->player.next = NULL;
@@ -102,29 +55,29 @@ void func_8001EB10(s32 *arg0) {
     func_800267F0(&D_800411DC->player);
     event.type = 0x20;
     func_80026500(&D_800411DC->queue, &event, D_800411DC->frameTime, 1);
-    D_800411DC->pad4C = func_8002645C(&D_800411DC->queue, (SfxEvent *)D_800411DC->pad28);
-}    typedef struct { u8 pad0[0x28]; s16 unk28; u8 pad2A[0x1E]; s32 unk48; s32 unk4C; s32 unk50; } Obj1E36640_func_8001ED68_player; /* offsets.py genstruct: fields from raw offsets on player; rename once understood */
+    D_800411DC->nextDelta = func_8002645C(&D_800411DC->queue, &D_800411DC->nextEvent);
+}
 
 s32 func_8001ED68(void *arg0) {
     s32 func_8002645C(ALEventQueue *, SfxEvent *);
-    u8 *player;
+    SfxPlayer *player;
     SfxEvent event;
 
     player = arg0;
     do {
-        switch (((Obj1E36640_func_8001ED68_player *)player)->unk28) {
+        switch ((s16)player->nextEvent.type) {
         case 0x20:
             event.type = 0x20;
-            func_80026500((ALEventQueue *)(player + 0x14), &event, ((Obj1E36640_func_8001ED68_player *)player)->unk48, 1);
+            func_80026500(&player->queue, &event, player->frameTime, 1);
             break;
         default:
-            func_8001EE34((SfxEvent *)(player + 0x28));
+            func_8001EE34(&player->nextEvent);
             break;
         }
-        ((Obj1E36640_func_8001ED68_player *)player)->unk4C = func_8002645C((ALEventQueue *)(player + 0x14), (SfxEvent *)(player + 0x28));
-    } while (((Obj1E36640_func_8001ED68_player *)player)->unk4C == 0);
-    ((Obj1E36640_func_8001ED68_player *)player)->unk50 += ((Obj1E36640_func_8001ED68_player *)player)->unk4C;
-    return *&((Obj1E36640_func_8001ED68_player *)player)->unk4C;
+        player->nextDelta = func_8002645C(&player->queue, &player->nextEvent);
+    } while (player->nextDelta == 0);
+    player->currentTime += player->nextDelta;
+    return *&player->nextDelta;
 }
 
 void func_8001EE34(SfxEvent *arg0) {
@@ -363,7 +316,7 @@ void func_8001EE34(SfxEvent *arg0) {
         break;
     case 0x200:
         if (state->flags & 0x10) {
-            func_80020790((s16) arg0->value.data, state->volume, state->pan, state->pitchRatio, (u8) (s32) state->fxMix, (u8) (s32) state->fxBus, state->handle);
+            func_80020790((s16) arg0->value.data, state->volume, state->pan, state->pitchRatio, (u8) (s32) state->fxMix, (u8) (s32) state->fxBus, (BtIntPtr)state->handle);
         }
         break;
     default:
@@ -380,7 +333,7 @@ void func_8001EE34(SfxEvent *arg0) {
 /* extern */
 
 void func_800200B8(SfxState *arg0) {
-    void func_800205D0(void *arg0);
+    void func_800205D0(SfxState *arg0);
     void func_80026FF0(ALVoice *arg0);
     void func_80027090(ALVoice *arg0);
     if (arg0->flags & 4) {

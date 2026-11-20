@@ -1,4 +1,5 @@
 #include "core2/1E9A960.h"
+#include "core1/sfx_player.h"
 BT_NATIVE_ONLY(extern s16 D_8012A994;) BT_NATIVE_ONLY(extern s16 D_8012A996;)
 
 /* One entry of the sound source pool (60 entries at D_80128B90, see func_800C1414). */
@@ -59,7 +60,7 @@ typedef struct sfx_source_s {
 #ifdef BT_NATIVE
 #include <stddef.h>
 typedef struct {
-    s32 value;
+    SfxVoiceRef value;
     s32 occupied;
 } SfxHandleSlot;
 typedef struct {
@@ -68,16 +69,16 @@ typedef struct {
 typedef struct {
     SfxHandleTable handles;
     SfxSource sources[60];
-} SfxState;
+} SfxSourcePool;
 #ifdef BT_ILP32
 _Static_assert(sizeof(SfxHandleSlot) == 8, "O32 sound handle slot");
 _Static_assert(sizeof(SfxHandleTable) == 0x88, "O32 sound handle table");
 _Static_assert(sizeof(SfxSource) == 0x80, "O32 sound source stride");
-_Static_assert(offsetof(SfxState, sources) == 0x88, "O32 sound source pool offset");
-_Static_assert(sizeof(SfxState) == 0x1E88, "O32 sound owner extent");
+_Static_assert(offsetof(SfxSourcePool, sources) == 0x88, "O32 sound source pool offset");
+_Static_assert(sizeof(SfxSourcePool) == 0x1E88, "O32 sound owner extent");
 _Static_assert(offsetof(SfxSource, flags) == 0x7C, "sound source trailing flags");
 #endif
-static SfxState sfx_state BT_DATA(4, bss_core2bss1_0_2, 0x1368);
+static SfxSourcePool sfx_state BT_DATA(4, bss_core2bss1_0_2, 0x1368);
 #define sfx_handle_table (sfx_state.handles)
 #define sfx_sources (sfx_state.sources)
 #define D_80128B08 (sfx_handle_table.slots[0])
@@ -261,17 +262,21 @@ extern s32 D_80128B90;
 }
 
 u8 *func_800C1430(s32 arg0) {
-    #ifndef BT_NATIVE
-extern s32 D_80128B10;
-#endif
+#ifdef BT_NATIVE
+    return (u8 *)&sfx_handle_table.slots[arg0].value;
+#else
+    extern s32 D_80128B10;
     return (u8 *) &D_80128B10 + ((arg0 << 3) - 8);
+#endif
 }
 
-s32 func_800C1448(s32 arg0) {
-    #ifndef BT_NATIVE
-extern s64 D_80128B08;
-#endif
+SfxVoiceRef func_800C1448(s32 arg0) {
+#ifdef BT_NATIVE
+    return sfx_handle_table.slots[arg0].value;
+#else
+    extern s64 D_80128B08;
     return *(s32 *)((u8 *)&D_80128B08 + (arg0 << 3));
+#endif
 }
 
 u8 func_800C145C(void) {
@@ -289,19 +294,24 @@ extern s32 D_80128B90;
 }
 
 void func_800C1568(s32 arg0) {
-    #ifndef BT_NATIVE
-extern s32 D_80128B0C;
-#endif
+#ifdef BT_NATIVE
+    sfx_handle_table.slots[arg0].occupied = 0;
+#else
+    extern s32 D_80128B0C;
     *((s32 *)((u8 *)&D_80128B0C + (arg0 << 3))) = 0;
+#endif
 }
 
 void func_800C157C(void) {
-    #ifndef BT_NATIVE
-extern s32 D_80128B10;
-#endif
-    #ifndef BT_NATIVE
-extern s32 D_80128B90;
-#endif
+#ifdef BT_NATIVE
+    s32 i;
+    for (i = 1; i <= 16; ++i) {
+        sfx_handle_table.slots[i].value = NULL;
+        sfx_handle_table.slots[i].occupied = 0;
+    }
+#else
+    extern s32 D_80128B10;
+    extern s32 D_80128B90;
     BtUIntPtr end;
     s32 *var_v1;
 
@@ -320,6 +330,7 @@ extern s32 D_80128B90;
             break;
         }
     }
+#endif
 }
 
 s32 func_800C15BC(void) {
@@ -332,10 +343,10 @@ extern s32 D_80128B10;
     do {
         count = 0;
         for (i = 0; i < 16; i++) {
-            if ((&D_80128B10)[i * 2 + 1] != 0) {
+            if (BT_DATA_FIELD(sfx_handle_table.slots[i + 1].occupied, (&D_80128B10)[i * 2 + 1]) != 0) {
                 count++;
-            } else if ((&D_80128B10)[i * 2] == 0) {
-                (&D_80128B10)[i * 2 + 1] = 1;
+            } else if (BT_DATA_FIELD(sfx_handle_table.slots[i + 1].value, (&D_80128B10)[i * 2]) == 0) {
+                BT_DATA_FIELD(sfx_handle_table.slots[i + 1].occupied, (&D_80128B10)[i * 2 + 1]) = 1;
                 return i + 1;
             }
         }
@@ -401,7 +412,7 @@ void func_800C16F8(SfxSource *arg0, s32 arg1) {
 /* extern */
 
 void func_800C1860(SfxSource *arg0) {
-    void func_800DC4D4(s32);
+    void func_800DC4D4(SfxVoiceRef);
 
     if (arg0->state == 1) {
         func_800C13B0(arg0, 0x20);
@@ -414,9 +425,9 @@ void func_800C1860(SfxSource *arg0) {
 
 void func_800C18C8(s32 index, s32 a, s32 b, s32 c, s32 d) {
     s32 func_800C122C(s32, s32, s32, s32);
-    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800DC48C(s32, s32);
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800DC48C(SfxVoiceRef, s32);
     s32 parameters;
-    s32 source;
+    SfxVoiceRef source;
     if (index) {
         source = func_800C1448(index);
         parameters = func_800C122C(a, b, c, d);
@@ -427,8 +438,8 @@ void func_800C18C8(s32 index, s32 a, s32 b, s32 c, s32 d) {
 /* extern */
 
 void func_800C191C(s32 arg0, s32 arg1) {
-    s32 func_800C1448();
-    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800DC4B0(s32, s32);
+    SfxVoiceRef func_800C1448();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800DC4B0(SfxVoiceRef, s32);
     if (arg0 != 0) {
 #ifdef BT_NATIVE
         func_800DC4B0(func_800C1448(arg0), arg1);
@@ -441,8 +452,8 @@ void func_800C191C(s32 arg0, s32 arg1) {
 /* extern */
 
 void func_800C1950(s32 arg0, s32 arg1) {
-    s32 func_800C1448();
-    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800DC42C(s32, s32);
+    SfxVoiceRef func_800C1448();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) func_800DC42C(SfxVoiceRef, s32);
     if (arg0 != 0) {
 #ifdef BT_NATIVE
         func_800DC42C(func_800C1448(arg0), arg1);
@@ -453,8 +464,8 @@ void func_800C1950(s32 arg0, s32 arg1) {
 }
 
 void func_800C1984(s32 arg0, s32 arg1, s32 arg2) {
-    s32 func_800C1448(s32);
-    void func_800DC454(s32, u16);
+    SfxVoiceRef func_800C1448(s32);
+    void func_800DC454(SfxVoiceRef, u16);
     extern f32 D_8011A878;
 
     if (arg0 != 0) {
@@ -1619,8 +1630,13 @@ u8 func_800C429C(s32 uid, s32 arg1){
 /* extern */
 
 s32 func_800C42E0(s32 arg0) {
+#ifdef BT_NATIVE
+    s32 func_800DC548(s32, s32);
+    return func_800DC548(0, arg0 - 0x3E9);
+#else
     s32 func_800DC548(s32, s32, s32);
     return func_800DC548(0, arg0 - 0x3E9, arg0);
+#endif
 }
 
 void func_800C4308(f32 arg0, f32 arg1) {

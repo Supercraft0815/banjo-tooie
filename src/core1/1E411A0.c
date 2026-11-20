@@ -1,7 +1,7 @@
 #include "common.h"
 
 void func_80029670(u8 *arg0, ALVoice *arg1) {
-    void func_800E90A4(s32 arg0, s32 arg1);
+    void func_800E90A4(BtIntPtr arg0, s32 arg1);
     ALLink *sp1C;
     ALLink *sp18;
 

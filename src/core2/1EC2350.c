@@ -230,7 +230,7 @@ void func_800E9070(BtIntPtr arg0, s32 arg1) {
     *p = *p + 1;
 }
 
-void func_800E90A4(s32 arg0, s32 arg1) {
+void func_800E90A4(BtIntPtr arg0, s32 arg1) {
     extern struct StateView D_8012D690;
     BtIntPtr offset = FRAME_VIEW((u32)arg0 - (u32)(BtUIntPtr)&D_8012D690, arg0 - (BtIntPtr)&D_8012D690);
     u8 *p = (u8 *)&D_8012D690 + ((offset - 0x3A8) / 216);
