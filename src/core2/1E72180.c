@@ -208,7 +208,7 @@ void func_80098C48(void *arg0) {
     void func_800A16F4(void *arg0);
     void func_800A1F78(void *arg0);
     void func_800A21C8(void *arg0);
-    void func_800A2D94(void *arg0);
+    void func_800A2D94(PlayerState *arg0);
     void func_800A3820(void *arg0);
     void func_800A4168(u8 *arg0);
 #if defined(BT_NATIVE) && !defined(BT_ILP32)

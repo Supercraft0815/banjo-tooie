@@ -2,12 +2,21 @@
 
 /* extern */
 
-typedef struct { s32 unk0; u8 pad4[0x4]; f32 unk8; u8 padC[0x4]; f32 unk10; s32 (*unk14)(u8 *, s32, s32); s32 unk18; s32 (*unk1C)(void *, s32, s32); s32 unk20; u8 unk24; u8 unk25; u8 unk26; } Objstep_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */ s32 func_80800000_fxstep(void *arg0) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+typedef struct { s32 unk0; f32 position[3]; s32 unk10; s32 (*unk14)(u8 *, s32, s32); s32 unk18; s32 (*unk1C)(void *, s32, s32); s32 unk20; u8 unk24; u8 unk25; u8 unk26; u8 unk27; } Objstep_arg0;
+#else
+typedef struct { s32 unk0; u8 pad4[0x4]; f32 unk8; u8 padC[0x4]; f32 unk10; s32 (*unk14)(u8 *, s32, s32); s32 unk18; s32 (*unk1C)(void *, s32, s32); s32 unk20; u8 unk24; u8 unk25; u8 unk26; } Objstep_arg0;
+#endif /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+s32 func_80800000_fxstep(void *arg0) {
     s32 func_800C84B0(s32);
     f32 temp_f0;
     s32 temp_a1;
 
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    temp_f0 = (((Objstep_arg0 *)arg0)->unk10) - (((Objstep_arg0 *)arg0)->position[1]);
+#else
     temp_f0 = (((Objstep_arg0 *)arg0)->unk10) - (((Objstep_arg0 *)arg0)->unk8);
+#endif
     if ((temp_f0 > 0.0f) && (temp_f0 < 60.0f)) {
         return 4;
     }
@@ -67,7 +76,11 @@ void func_8080012C_fxstep(u8 *arg0, s32 arg1, s32 arg2, f32 arg3, f32 arg4, f32 
     }
     temp_f0 = arg5 * 0.5f;
     var_f2 = func_800DC178(var_f2 - temp_f0, var_f2 + temp_f0);
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    if (((Objstep_arg0 *)arg0)->unk26 != 0) {
+#else
     if (arg0[0x26] != 0) {
+#endif
         var_a2 = arg1;
     } else {
         var_a2 = arg2;
@@ -125,7 +138,11 @@ s32 func_808002B4_fxstep(BtIntPtr arg0, f32 arg1, f32 arg2, s32 arg3) {
     s32 i;
     for (i = 0; D_80800AA0_fxstep[i].id != 0; i++) {
         if (arg3 == D_80800AA0_fxstep[i].id) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+            func_80800078_fxstep((u8 *)(uintptr_t)arg0, D_80800AA0_fxstep[i].sound, D_80800AA0_fxstep[i].offset + arg1, D_80800AA0_fxstep[i].flags, (s32) ((f32) D_80800AA0_fxstep[i].scale * arg2));
+#else
             func_80800078_fxstep(arg0, D_80800AA0_fxstep[i].sound, D_80800AA0_fxstep[i].offset + arg1, D_80800AA0_fxstep[i].flags, (s32) ((f32) D_80800AA0_fxstep[i].scale * arg2));
+#endif
             return 1;
         }
     }
@@ -158,7 +175,11 @@ void func_808003B4_fxstep(void *arg0, f32 arg1, f32 arg2, s32 arg3) {
 
     var_a3 = func_80800000_fxstep(arg0);
     if (arg3 != 0) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+        func_808002B4_fxstep((BtIntPtr)(uintptr_t)arg0, arg1, arg2, var_a3);
+#else
         func_808002B4_fxstep(arg0, arg1, arg2, var_a3);
+#endif
     }
     temp_v0_2 = (((Objstep_arg0 *)arg0)->unk1C);
     if (temp_v0_2 != NULL) {
@@ -177,6 +198,34 @@ void fxstep_entrypoint_0(void *arg0) {
 }
 
 void *fxstep_entrypoint_1(void) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    u8 func_800C2E04(void);
+    void func_800C330C(u8, s32);
+    void func_800C3418(u8, s32);
+    void func_800EFD24(f32 *);
+    void *heap_alloc(s32);
+    void fxstep_entrypoint_4(void *, BtIntPtr, s32);
+    void fxstep_entrypoint_5(void *, s32, f32);
+    void fxstep_entrypoint_7(void *, BtIntPtr, s32);
+    Objstep_arg0 *this = heap_alloc(sizeof(*this));
+    this->unk14 = NULL;
+    this->unk18 = 0;
+    this->unk1C = NULL;
+    this->unk20 = 0;
+    this->unk26 = 0;
+    this->unk27 = 1;
+    this->unk24 = func_800C2E04();
+    func_800C330C(this->unk24, 3);
+    func_800C3418(this->unk24, 0);
+    this->unk25 = func_800C2E04();
+    func_800C330C(this->unk25, 3);
+    func_800C3418(this->unk25, 0);
+    func_800EFD24(this->position);
+    fxstep_entrypoint_4(this, 0, 0);
+    fxstep_entrypoint_5(this, 0, 0.0f);
+    fxstep_entrypoint_7(this, 0, 0);
+    return this;
+#else
     u8 func_800C2E04(void);
     void func_800C330C(u8, s32);
     void func_800C3418(u8, s32);
@@ -208,8 +257,8 @@ void *fxstep_entrypoint_1(void) {
     fxstep_entrypoint_5(this, 0, 0.0f);
     fxstep_entrypoint_7(this, 0, 0);
     return this;
+#endif
 }
-
 void fxstep_entrypoint_2(s8 *arg0, s32 arg1) {
     arg0[38] = arg1;
 }
@@ -219,10 +268,15 @@ void fxstep_entrypoint_3(s8 *arg0, s32 arg1) {
 }
 
 void fxstep_entrypoint_4(void *arg0, BtIntPtr arg1, s32 arg2) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    ((Objstep_arg0 *)arg0)->unk1C = (s32 (*)(void *, s32, s32))(uintptr_t)arg1;
+    ((Objstep_arg0 *)arg0)->unk20 = arg2;
+#else
+
     (*(s32 *)((s8 *)(arg0) + (0x1C))) = arg1;
     (*(s32 *)((s8 *)(arg0) + (0x20))) = arg2;
+#endif
 }
-
 void fxstep_entrypoint_5(void *arg0, s32 arg1, f32 arg2) {
     (*(s32 *)((s8 *)(arg0) + (0))) = arg1;
     (*(f32 *)((s8 *)(arg0) + (0x10))) = arg2;
@@ -236,10 +290,15 @@ void fxstep_entrypoint_6(BtIntPtr effect, f32 position[3]) {
 }
 
 void fxstep_entrypoint_7(void *arg0, BtIntPtr arg1, s32 arg2) {
+#if defined(BT_NATIVE) && !defined(BT_ILP32)
+    ((Objstep_arg0 *)arg0)->unk14 = (s32 (*)(u8 *, s32, s32))(uintptr_t)arg1;
+    ((Objstep_arg0 *)arg0)->unk18 = arg2;
+#else
+
     (*(s32 *)((s8 *)(arg0) + (0x14))) = arg1;
     (*(s32 *)((s8 *)(arg0) + (0x18))) = arg2;
+#endif
 }
-
 /* extern */
 
 void fxstep_entrypoint_8(u8 *arg0, f32 arg1, f32 arg2) {

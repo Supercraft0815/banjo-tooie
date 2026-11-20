@@ -6,7 +6,7 @@ AnimCtrl *baanim_getAnimCtrlPtr(PlayerState *);
 #include "player_contact_vectors.inc"
 s32 func_800A26B0() 
 {
-    return 0xC;
+    return sizeof(PlayerFootstep);
 }
 
 void func_800A26B8(PlayerState *arg0) {
@@ -66,7 +66,7 @@ void func_800A2848(BtIntPtr arg0, s32 arg1, s32 arg2) {
     void _bashake_entrypoint_0(struct player_state_s *arg0, s32 arg1, s32 arg2);
     s32 _bashoes_entrypoint_1(PlayerState *);
     s32 func_8009E674(PlayerState *, s32);
-    void _fxstep_entrypoint_13(u8 *arg0, s32 arg1);
+    void _fxstep_entrypoint_13(BtIntPtr arg0, s32 arg1);
     s32 shoes;
     s32 water;
     s32 splash;
@@ -83,21 +83,21 @@ void func_800A2848(BtIntPtr arg0, s32 arg1, s32 arg2) {
             return;
         case 15:
             if (splash || water) {
-                _fxstep_entrypoint_13(arg0, 14);
+                _fxstep_entrypoint_13((BtIntPtr)(uintptr_t)arg0, 14);
             } else {
                 func_8009DB04(player, 0x448, 1.0f, 5000);
             }
             break;
         case 14:
             _bashake_entrypoint_0(player, 0, 0);
-            _fxstep_entrypoint_13(arg0, 19);
+            _fxstep_entrypoint_13((BtIntPtr)(uintptr_t)arg0, 19);
             if (arg1 == 20) {
-                _fxstep_entrypoint_13(arg0, 20);
+                _fxstep_entrypoint_13((BtIntPtr)(uintptr_t)arg0, 20);
             }
             break;
         case 19:
             _bashake_entrypoint_0(player, 0, 0);
-            _fxstep_entrypoint_13(arg0, 22);
+            _fxstep_entrypoint_13((BtIntPtr)(uintptr_t)arg0, 22);
             break;
         case 1:
         case 11:
@@ -105,10 +105,10 @@ void func_800A2848(BtIntPtr arg0, s32 arg1, s32 arg2) {
                 shoes = _bashoes_entrypoint_1(player);
                 switch (shoes) {
                     case 4:
-                        _fxstep_entrypoint_13(arg0, 23);
+                        _fxstep_entrypoint_13((BtIntPtr)(uintptr_t)arg0, 23);
                         break;
                     case 5:
-                        _fxstep_entrypoint_13(arg0, 26);
+                        _fxstep_entrypoint_13((BtIntPtr)(uintptr_t)arg0, 26);
                         break;
                 }
             }
@@ -128,7 +128,7 @@ void func_800A2A00(BtIntPtr arg0, s32 arg1, s32 arg2) {
     void func_8009DC98(PlayerState *, s32, f32, f32);
     void _bashake_entrypoint_0(struct player_state_s *arg0, s32 arg1, s32 arg2);
     void _fxstep_entrypoint_10(BtIntPtr, s32);
-    void _fxstep_entrypoint_13(u8 *arg0, s32 arg1);
+    void _fxstep_entrypoint_13(BtIntPtr arg0, s32 arg1);
     void _bsvan_entrypoint_2(PlayerState *);
     void _bswasher_entrypoint_0(PlayerState *);
     s32 func_8009E674(PlayerState *, s32);
@@ -159,7 +159,7 @@ void func_800A2A00(BtIntPtr arg0, s32 arg1, s32 arg2) {
         case 14:
             _fxstep_entrypoint_10(arg0, 0x13);
             if (arg1 == 0x14) {
-                _fxstep_entrypoint_13(arg0, 0x14);
+                _fxstep_entrypoint_13((BtIntPtr)(uintptr_t)arg0, 0x14);
             }
             _bashake_entrypoint_0(self, 3, 3);
             break;
@@ -200,17 +200,17 @@ s32 func_800A2C84(PlayerState *arg0) {
     f32 func_800964DC(PlayerState *);
     s32 func_80096628(PlayerState *);
     void func_8009C128(PlayerState *, f32[3]);
-    s32 _fxstep_entrypoint_5(s32, s32, f32);
+    s32 _fxstep_entrypoint_5(BtIntPtr, s32, f32);
     void _fxstep_entrypoint_6(BtIntPtr effect, f32 position[3]);
     f32 sp2C[3];
     s32 pad;
     s32 sp24;
 
     func_8009C128(arg0, sp2C);
-    _fxstep_entrypoint_6(*(arg0->unk124), sp2C);
+    _fxstep_entrypoint_6(arg0->unk124->effect, sp2C);
     sp24 = func_80096628(arg0);
     pad = 0;
-    return _fxstep_entrypoint_5(*(arg0->unk124), sp24, func_800964DC(arg0)) + pad;
+    return _fxstep_entrypoint_5(arg0->unk124->effect, sp24, func_800964DC(arg0)) + pad;
 }
 
 /* extern */
@@ -233,70 +233,66 @@ void func_800A2D2C(PlayerState *arg0, f32 arg1, s32 arg2) {
     if (anctrl_isAt(baanim_getAnimCtrlPtr(BT_NATIVE_ONLY(arg0)), arg1) != 0) {
         func_800A2FCC(arg0, arg2);
     }
-}    typedef struct { u8 pad0[0xA0]; void * unkA0; u8 padA4[0x80]; s32 * unk124; u8 pad128[0x5C]; s32 unk184; } Obj1E7BFA0_arg0; /* offsets.py genstruct: fields from raw offsets on arg0; rename once understood */
+} typedef struct { u8 pad0[0xA0]; void *unkA0; u8 padA4[0x80]; s32 *unk124; u8 pad128[0x5C]; s32 unk184; } Obj1E7BFA0_arg0;
 
 /* extern */
 
-void func_800A2D70(void *arg0) {
+void func_800A2D70(PlayerState *arg0) {
     void _fxstep_entrypoint_0(void *arg0);
-    _fxstep_entrypoint_0(*(((Obj1E7BFA0_arg0 *)arg0)->unk124));
+    _fxstep_entrypoint_0((void *)(uintptr_t)arg0->unk124->effect);
 }
 
-void func_800A2D94(void *arg0) {
+void func_800A2D94(PlayerState *arg0) {
     void *_fxstep_entrypoint_1(void);
     void _fxstep_entrypoint_3(s8 *arg0, s32 arg1);
     void _fxstep_entrypoint_4(void *arg0, BtIntPtr arg1, s32 arg2);
     void _fxstep_entrypoint_7(void *arg0, BtIntPtr arg1, s32 arg2);
-    void func_800A2EDC(void *, f32);
+    void func_800A2EDC(PlayerState *, f32);
     s32 func_800D3948(void);
     void func_800A2848(BtIntPtr, s32, s32);
     void func_800A2A00(BtIntPtr, s32, s32);
 
-    *((Obj1E7BFA0_arg0 *)arg0)->unk124 = _fxstep_entrypoint_1();
+    arg0->unk124->effect = (BtIntPtr)(uintptr_t)_fxstep_entrypoint_1();
     func_800A2EDC(arg0, 1.0f);
-    _fxstep_entrypoint_3(*((Obj1E7BFA0_arg0 *)arg0)->unk124, func_800D3948() == 0);
-    _fxstep_entrypoint_4(*((Obj1E7BFA0_arg0 *)arg0)->unk124, &func_800A2A00, ((Obj1E7BFA0_arg0 *)arg0)->unk184);
-    _fxstep_entrypoint_7(*((Obj1E7BFA0_arg0 *)arg0)->unk124, &func_800A2848, ((Obj1E7BFA0_arg0 *)arg0)->unk184);
-}    typedef struct { BtIntPtr unk0; u8 pad4[0x4]; f32 unk8; } Obj1E7BFA0_func_800A2E18_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { BtIntPtr unk0; u8 pad4[0x4]; f32 unk8; } Obj1E7BFA0_func_800A2E18_temp_v0_2; /* offsets.py genstruct: fields from raw offsets on temp_v0_2; rename once understood */
+    _fxstep_entrypoint_3((s8 *)(uintptr_t)arg0->unk124->effect, func_800D3948() == 0);
+    _fxstep_entrypoint_4((void *)(uintptr_t)arg0->unk124->effect, (BtIntPtr)(uintptr_t)&func_800A2A00, arg0->unk184);
+    _fxstep_entrypoint_7((void *)(uintptr_t)arg0->unk124->effect, (BtIntPtr)(uintptr_t)&func_800A2848, arg0->unk184);
+}
 
 /* extern */
 
 void func_800A2E18(PlayerState *arg0) {
-    void _fxstep_entrypoint_8(u8 *arg0, f32 arg1, f32 arg2);
+    void _fxstep_entrypoint_8(BtIntPtr arg0, f32 arg1, f32 arg2);
     s32 bs_getCurrentState(PlayerState *);
     s32 func_8009CA70(PlayerState *, s32, s32);
     s16 func_8009CBDC(PlayerState *, s32);
     s32 sp24;
-    void *temp_v0;
-    void *temp_v0_2;
+    PlayerFootstep *temp_v0;
+    PlayerFootstep *temp_v0_2;
 
     sp24 = bs_getCurrentState(arg0);
     func_800A2C84(arg0);
     if ((func_8009CBDC(arg0, sp24) == 8) || (func_8009CA70(arg0, sp24, 0x40) != 0)) {
-        temp_v0 = (*(void **)((s8 *)(arg0) + (0x124)));
-        _fxstep_entrypoint_8((((Obj1E7BFA0_func_800A2E18_temp_v0 *)temp_v0)->unk0), 0.2f, (((Obj1E7BFA0_func_800A2E18_temp_v0 *)temp_v0)->unk8));
+        temp_v0 = arg0->unk124;
+        _fxstep_entrypoint_8(temp_v0->effect, 0.2f, temp_v0->amount);
         return;
     }
-    temp_v0_2 = (*(void **)((s8 *)(arg0) + (0x124)));
-    _fxstep_entrypoint_8((((Obj1E7BFA0_func_800A2E18_temp_v0_2 *)temp_v0_2)->unk0), 0.0f, (((Obj1E7BFA0_func_800A2E18_temp_v0_2 *)temp_v0_2)->unk8));
+    temp_v0_2 = arg0->unk124;
+    _fxstep_entrypoint_8(temp_v0_2->effect, 0.0f, temp_v0_2->amount);
 }
 
 /* extern */
 
-void func_800A2EAC(void *arg0) {
+void func_800A2EAC(PlayerState *arg0) {
     void _fxstep_entrypoint_9(void *arg0);
-    s32 func_800A2C84();
-#ifdef BT_NATIVE
-    ((s32 (*)())func_800A2C84)();
-#else
-    func_800A2C84();
-#endif
-    _fxstep_entrypoint_9(*(((PlayerState *)arg0)->unk124));
+    BT_IDO_ONLY(s32 func_800A2C84();)
+    func_800A2C84(BT_NATIVE_ONLY(arg0));
+    _fxstep_entrypoint_9((void *)(uintptr_t)arg0->unk124->effect);
 }
 
-void func_800A2EDC(void *arg0, f32 arg1) {
-    *(f32 *)((u8 *)*(void **)((u8 *)arg0 + 292) + 8) = arg1;
-}    typedef struct { u8 pad0[0x8]; f32 unk8; } Obj1E7BFA0_func_800A2EEC_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */ typedef struct { u8 pad0[0x8]; f32 unk8; } Obj1E7BFA0_func_800A2EEC_temp_v0_2; /* offsets.py genstruct: fields from raw offsets on temp_v0_2; rename once understood */
+void func_800A2EDC(PlayerState *arg0, f32 arg1) {
+    arg0->unk124->amount = arg1;
+}
 
 void func_800A2EEC(PlayerState *arg0, s32 arg1) {
     void _fxstep_entrypoint_11(u8 *arg0, f32 arg1, f32 arg2);
@@ -304,37 +300,42 @@ void func_800A2EEC(PlayerState *arg0, s32 arg1) {
     s32 func_8009CA70(PlayerState *, s32, s32);
     s16 func_8009CBDC(PlayerState *, s32);
     s32 sp24;
-    void *temp_v0;
-    void *temp_v0_2;
+    PlayerFootstep *temp_v0;
+    PlayerFootstep *temp_v0_2;
 
     sp24 = bs_getCurrentState(arg0);
     func_800A2C84(arg0);
-    *(s8 *)((s8 *)*(void **)((s8 *)arg0 + 0x124) + 4) = arg1;
+    arg0->unk124->mode = arg1;
     if ((func_8009CBDC(arg0, sp24) == 8) || (func_8009CA70(arg0, sp24, 0x40) != 0)) {
-        temp_v0 = *(void **)((s8 *)arg0 + 0x124);
-        _fxstep_entrypoint_11(*(s32 *)temp_v0, 0.2f, ((Obj1E7BFA0_func_800A2EEC_temp_v0 *)temp_v0)->unk8);
+        temp_v0 = arg0->unk124;
+        _fxstep_entrypoint_11((u8 *)(uintptr_t)temp_v0->effect, 0.2f, temp_v0->amount);
         return;
     }
-    temp_v0_2 = *(void **)((s8 *)arg0 + 0x124);
-    _fxstep_entrypoint_11(*(s32 *)temp_v0_2, 0.0f, ((Obj1E7BFA0_func_800A2EEC_temp_v0_2 *)temp_v0_2)->unk8);
+    temp_v0_2 = arg0->unk124;
+    _fxstep_entrypoint_11((u8 *)(uintptr_t)temp_v0_2->effect, 0.0f, temp_v0_2->amount);
 }
 
 /* extern */
 
-void func_800A2F90(void *arg0, s32 arg1) {
+void func_800A2F90(PlayerState *arg0, s32 arg1) {
     void _fxstep_entrypoint_2(s8 *arg0, s32 arg1);
     void func_800A2EEC(PlayerState *, s32);
-    _fxstep_entrypoint_2(*(((Obj1E7BFA0_arg0 *)arg0)->unk124), 0);
+    _fxstep_entrypoint_2((s8 *)(uintptr_t)arg0->unk124->effect, 0);
     func_800A2EEC(arg0, arg1);
 }
 
-s32 func_800A2FCC(PlayerState *arg0, s32 arg1) { func_800A2C84(arg0); (*(s8 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x124)))) + (4))) = (s8) arg1; return _fxstep_entrypoint_12((*(s32 *)((s8 *)((*(u8 **)((s8 *)(arg0) + (0x124)))) + (0)))); }
+s32 func_800A2FCC(PlayerState *arg0, s32 arg1) {
+    s32 _fxstep_entrypoint_12(BtIntPtr);
+    func_800A2C84(arg0);
+    arg0->unk124->mode = (s8)arg1;
+    return _fxstep_entrypoint_12(arg0->unk124->effect);
+}
 
 /* extern */
 
-void func_800A300C(void *arg0) {
+void func_800A300C(PlayerState *arg0) {
     void* func_800BC3F0(void* arg0);
-    *(((Obj1E7BFA0_arg0 *)arg0)->unk124) = func_800BC3F0(*(((Obj1E7BFA0_arg0 *)arg0)->unk124));
+    arg0->unk124->effect = (BtIntPtr)(uintptr_t)func_800BC3F0((void *)(uintptr_t)arg0->unk124->effect);
 }
 
 s32 func_800A3040() 
@@ -427,8 +428,8 @@ f32 func_800A328C(void *arg0) {
 /* extern */
 
 f32 func_800A3298(PlayerState *arg0) {
-    f32 func_800964DC();
-    return (*(f32 *)((s8 *)((*(void **)((s8 *)(arg0) + (0xA0)))) + (0x48))) - func_800964DC();
+    f32 func_800964DC(PlayerState *);
+    return BT_DATA_FIELD(arg0->unkA0[0x48 / sizeof(f32)], *(f32 *)((s8 *)(*(void **)((s8 *)arg0 + 0xA0)) + 0x48)) - func_800964DC(arg0);
 }
 
 #ifndef BT_NATIVE

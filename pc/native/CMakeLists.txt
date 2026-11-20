@@ -517,7 +517,10 @@ add_executable(bt_native_hud_draw_test tests/hud_draw.c
     "${BT_ROOT}/src/overlays/ch/honeyb_hud.inc" "${BT_ROOT}/src/core2/1EC0300.c"
     "${BT_ROOT}/src/core2/1EB45C0.c")
 target_link_libraries(bt_native_hud_draw_test PRIVATE bt_native_options)
-foreach(registry_test IN ITEMS particle_registry transition_registry timer_queue gameselect_roles player_vectors hud_draw)
+add_executable(bt_native_fxstep_test tests/fxstep.c
+    "${BT_ROOT}/src/core2/1E7BFA0.c" "${BT_ROOT}/src/overlays/fx/step.c")
+target_link_libraries(bt_native_fxstep_test PRIVATE bt_native_options)
+foreach(registry_test IN ITEMS particle_registry transition_registry timer_queue gameselect_roles player_vectors hud_draw fxstep)
     if(MSVC)
         target_compile_options(bt_native_${registry_test}_test PRIVATE /Gy /Gw)
         target_link_options(bt_native_${registry_test}_test PRIVATE /OPT:REF)

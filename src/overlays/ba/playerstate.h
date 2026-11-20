@@ -23,6 +23,13 @@ typedef struct ba_unknown_2C_s {
 
 typedef struct { u8 mode, index, flags, cycle; } PlayerEggSelection;
 
+typedef struct {
+    BtIntPtr effect;
+    s8 mode;
+    f32 amount;
+} PlayerFootstep;
+
+
 #if defined(BT_NATIVE) && !defined(BT_ILP32)
 #include "playerstate_lp64.h"
 #else
@@ -63,7 +70,7 @@ typedef struct player_state_s {
     /* 0xF8 */ struct ba_yaw_s *yaw;
     s32 * unkFC; u8 pad100[0x4]; u8 * unk104; u8 * unk108; u8 pad10C[0x8]; u8 pad114[0x4]; u8 pad118[0x8];
     /* 0x120 */ struct bs_state_s *state;
-    s32 * unk124;
+    PlayerFootstep *unk124;
     /* 0x128 */ struct ba_stick_s *stick;
     s32 * unk12C; u8 pad130[0x8]; u8 * unk138;
     /* 0x13C */ struct ba_timer_s *timer;

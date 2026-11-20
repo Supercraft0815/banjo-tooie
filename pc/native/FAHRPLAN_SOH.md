@@ -89,6 +89,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Abschluss geführter Bewegung. 17 Abschlussroutinen reichen den Spieler an die gemeinsame Drohnensteuerung weiter. Das ursprüngliche MIPS-Programm erhält das Spielerregister bei jedem dieser Aufrufe.
 
+- Zustand der Schritteffekte. Der Test setzt und liest Effekt, Modus und Stärke unabhängig und verwendet einen Effektzeiger oberhalb von 4 GiB.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

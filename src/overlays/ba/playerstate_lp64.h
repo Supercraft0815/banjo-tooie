@@ -17,7 +17,7 @@ typedef struct player_state_s {
  u8 padE0[8]; f32 *unkE4; u8 padE8[16]; u8 *unkF0; struct ba_roll_s *roll;
  struct ba_yaw_s *yaw; s32 *unkFC; u8 pad100[8]; u8 *unk104; u8 *unk108;
  u8 pad10C[16]; u8 pad114[8]; u8 pad118[16]; struct bs_state_s *state;
- s32 *unk124; struct ba_stick_s *stick; s32 *unk12C; u8 pad130[16];
+ PlayerFootstep *unk124; struct ba_stick_s *stick; s32 *unk12C; u8 pad130[16];
  u8 *unk138; struct ba_timer_s *timer; struct ba_translate_s *translate;
  struct ba_van_s *van; struct ba_wandglow_s *wandglow; struct ba_washer_s *washer;
  u8 *unk150; struct ba_wobble_s *wobble;
