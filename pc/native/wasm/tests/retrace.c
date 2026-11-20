@@ -55,10 +55,15 @@ int main(void) {
     RetraceClock c = {0};
     assert(retrace_step(&c, 1, 60, 59.94) == 0);
     assert(retrace_step(&c, 1 + 1 / 60., 60, 59.94) == 1);
-    assert(retrace_step(&c, 1 + 3 / 60., 60, 59.94) == 2);  // a missed refresh: the game keeps its time
-    assert(retrace_step(&c, 1 + 4 / 60., 60, 59.94) == 1);
-    assert(retrace_step(&c, 9, 60, 59.94) == 4);            // a long stall is not caught up
-    assert(retrace_step(&c, 9 + 1 / 60., 60, 59.94) == 1);
+    assert(retrace_step(&c, 1 + 3 / 60., 60, 59.94) == 1);  // a late swap: give the next presentation its own VI
+    assert(retrace_step(&c, 1 + 4 / 60., 60, 59.94) == 2);  // really missed: catch up immediately
+    assert(retrace_step(&c, 9, 60, 59.94) == 3);            // a long stall is bounded to four VIs
+    assert(retrace_step(&c, 9 + 1 / 60., 60, 59.94) == 2);
+    RetraceClock jitter = {0};
+    assert(retrace_step(&jitter, 1, 60, 59.94) == 0);
+    assert(retrace_step(&jitter, 1.03093, 60, 59.94) == 1);
+    assert(retrace_step(&jitter, 1.03340, 60, 59.94) == 1);  // two real swaps for two VIs
+    assert(retrace_step(&jitter, 1.05005, 60, 59.94) == 1);
     int r = 0;
     for (int i = 0; i < 20; i++) r = retrace_step(&c, 10 + i * .0001, 60, 59.94);  // swaps stop waiting
     assert(r == -1);

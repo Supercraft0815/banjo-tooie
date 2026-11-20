@@ -43,8 +43,9 @@ int main(int argc, char **argv) {
     bt_mod_texture_init_rom(getenv("BT_MOD_ORDER"), bt_rom_title());
 
     wasm_rt_init();
+    bt_crash_install();  // retain crash reporting throughout window and guest initialization
+    bt_video_window();   // let the display settle while the guest memory is prepared
     wasm2c_bt_instantiate(&bt_inst, &env);
-    bt_crash_install();
 #ifdef BT_CRASH_TEST
     const char *crash_test = getenv("BT_CRASH_TEST");
     if (crash_test && !strcmp(crash_test, "fatal")) bt_fatal("A11 injected fatal test");
@@ -65,7 +66,6 @@ int main(int argc, char **argv) {
     BT_SP = w2c_bt_bt_guest_boot_stack_top(&bt_inst);
     w2c_bt_bt_be_fixup(&bt_inst); // relocated words in the data, into big-endian order
     bt_trace_init(rom);
-    bt_video_window();  // before any game thread: the GPU renderer shares the window's context
     w2c_bt_bt_guest_start(&bt_inst); // never returns: the boot context ends in osStartThread
     return 0;
 }

@@ -197,7 +197,10 @@ static void retrace_clock(void) {
     int n = vsync && !bt_vclock_on ? retrace_step(&clock, now, mode ? mode->refresh_rate : 0, 59.94 * bt_speed()) : -1;
     bt_vi_display_swap(vsync && !bt_vclock_on);
     atomic_store(&bt_vi_display, n >= 0);
-    if (n < 0) clock.on = 0;
+    if (n < 0) {
+        if (clock.pending) bt_vi_tick();  // settle the last display VI before the timer takes over
+        clock.on = clock.pending = 0;
+    }
     if (n < 0 && since < .002) SDL_Delay(2);  // nothing paces the loop
     for (; n > 0; n--) bt_vi_tick();
 }
