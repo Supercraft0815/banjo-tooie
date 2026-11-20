@@ -193,6 +193,8 @@ Weitere geprüfte N2-/N3-Pakete am 20. November
 
 - Mehrspielerauswahl. Die vier Menü-Callbacks übernehmen den Actor und den Ausgabewert über denselben Typ. Beim Übergang zur Spielauswahl bleibt der Actor erhalten.
 
+- Spielerzähler und Obergrenze. Die HUD-Steuerung und die Ausrüstungstabelle geben Spielerindex und Obergrenze an dieselbe Zählerverwaltung weiter.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

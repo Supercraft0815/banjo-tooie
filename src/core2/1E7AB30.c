@@ -291,8 +291,8 @@ void func_800A1870(PlayerState *arg0, s32 arg1) {
 /* extern */
 
 void func_800A18C8(void *arg0 BT_PASS2(, s32 bt_a0)) {
-    s32 func_800F9F74(s32);
-    func_800F9F74((((PlayerState *)arg0)->unk184));
+    BT_NATIVE_ONLY(void) BT_IDO_ONLY(s32) func_800F9F74(s32 BT_PASS2(, s32));
+    func_800F9F74((((PlayerState *)arg0)->unk184) BT_PASS2(, bt_a0));
 }
 
 /* extern */

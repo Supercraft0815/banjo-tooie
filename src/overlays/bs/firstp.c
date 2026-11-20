@@ -1584,14 +1584,14 @@ void bsfirstp_entrypoint_4(BtIntPtr arg0, s32 arg1) {
 
 void bsfirstp_entrypoint_5(u8 *arg0, s32 arg1, s32 arg2) {
     s32 pad[2];
-    void func_800A18C8(void *arg0);
+    void func_800A18C8(void *arg0 BT_PASS2(, s32));
     void func_800A1870(PlayerState *arg0, s32 arg1);
     extern FirstpEquipment D_8080ABF0_bsfirstp;
     s32 sp1C[1];
 
     arg1 = D_8080ABF0_bsfirstp.equipment[(arg2 - 1) * 5 + (arg1 - 1)];
     sp1C[0] = arg1;
-    func_800A18C8(arg0);
+    func_800A18C8(arg0 BT_PASS2(, arg1));
     arg1 = sp1C[0];
     func_800A1870(arg0, arg1);
 }    typedef struct { s16 unk0; s16 unk2; s32 unk4; } Objfirstp_func_80802A40_bsfirstp_temp_v1; /* offsets.py genstruct: fields from raw offsets on temp_v1; rename once understood */

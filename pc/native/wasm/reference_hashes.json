@@ -106,7 +106,7 @@
     },
     "mp-clinkers-cavern": {
       "retrace_count": 5155,
-      "sha256": "8d6a59ccdcad44a5d8a1119418297c082e00bc06874058f4d2f259ac600dbb8d"
+      "sha256": "880687541b029a6f012af3c9b4e2ad712e9eb786c8d9253321fc747c15da4a25"
     },
     "mp-colosseum-kickball": {
       "retrace_count": 5275,
@@ -130,7 +130,7 @@
     },
     "mp-ordnance-shootout": {
       "retrace_count": 4796,
-      "sha256": "e19bd24cab5c2a009a65e6912d02e2c25039a9ed64f32631cf3d41b852c0a9be"
+      "sha256": "42c4ceaf2c4bdaba45f2ebaf704b0185e91f29a62e5117a03bb0763ecf47d3ea"
     },
     "mp-packing": {
       "retrace_count": 5215,
@@ -150,7 +150,7 @@
     },
     "mp-temple-shootout": {
       "retrace_count": 5575,
-      "sha256": "58dd7c323e271062366ddb7af9b945f7ca962184f8343ebec7d5c1dce0a363f7"
+      "sha256": "6ec4129322d643b785943d0f923973c7405f44a3aba3f8f8fa4e79226a3e6086"
     },
     "mp-trashcan": {
       "retrace_count": 4736,
