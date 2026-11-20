@@ -3737,3 +3737,9 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuite
 Spieler und Animationscontroller behalten beim Aufruf der Animation ihre native Zeigerbreite.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 76 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-animation-controllers*`.
+
+### 2026-11-20 – Diagnoseausgabe beim Programmende (A11)
+
+Beim regulären Beenden konnte die letzte Statistikzeile verloren gehen. Der Host wartet jetzt auf seinen Logleser und leitet auch bei kurzen Schreibvorgängen die vollständige Ausgabe weiter. Die Release-Tests prüfen einen vorübergehend vollen stderr-Kanal und den Absturzbericht bei fehlender ROM. Beide bestehen auf macOS ARM64, Linux ARM64 und mit dem Windows-x64-Programm unter Wine. Ein zusätzlicher Kindprozesstest prüft, dass ein geerbter Schreibkanal das Beenden nach SDL_Quit nicht aufhält.
+
+Der Mac-Neubau mit SHA-256 `63621d1538a56ed8ab7b1eba395fbb4fa8365a5f5f293c950ee8d7d055c74614` besteht elf Gastsuiten und alle 74 Replays mit 447.849 Retraces. Beim GPU-Introvergleich blieben alle 2.694 Bilder innerhalb der Toleranz. Das schlechteste Bild hatte 0,056267 % abweichende Pixel. Im separaten GPU-Rendertest waren alle 65.536 Bytes identisch. Ein vorheriger Hoststand verlor am externen 1080p/60-Hz-Display in 75 Sekunden sechs Retraces und bei Wiederholung am selben Programm keinen. Die Messung mit dem endgültigen Neubau steht noch aus. Belege unter `build/acceptance/a2-2026-11-20/A2-A11-ERGEBNIS.md`.

@@ -140,7 +140,7 @@ jobs:
           python pc/native/wasm/tests/audio_mixer_test.py
           exe=build/ilp32/bt_game
           if [[ "$RUNNER_OS" == Windows ]]; then exe="$exe.exe"; fi
-          python pc/native/wasm/tests/crash_report_smoke.py --exe "$exe"
+          python pc/native/wasm/tests/crash_report_smoke.py --exe "$exe" --rom baserom.us.z64
           export BT_REFERENCE_MANIFEST="$GITHUB_WORKSPACE/pc/native/wasm/reference_hashes.json"
           if [[ "$RUNNER_OS" == Linux ]]; then
             python pc/native/wasm/port.py gate --full --exe "$exe"

@@ -13,6 +13,8 @@
 #include <dbghelp.h>
 #endif
 #include <stdatomic.h>
+#include <pthread.h>
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -22,7 +24,7 @@
 #include "crash_map_names.h"
 #ifndef _WIN32
 #include <fcntl.h>
-#include <pthread.h>
+#include <sys/socket.h>
 #include <signal.h>
 #include <ucontext.h>
 #include <unistd.h>
@@ -43,7 +45,7 @@
 #define LINE_SIZE 768
 static char log_ring[LOG_LINES][LINE_SIZE];
 static unsigned log_next, log_count;
-static SDL_Mutex *log_lock;
+static pthread_mutex_t log_lock = PTHREAD_MUTEX_INITIALIZER;
 static char crash_path[1024], version_text[128], map_path[1024], native_map_path[1024];
 static int interactive;
 static atomic_uint_least16_t last_map = 0xffff;
@@ -143,23 +145,82 @@ static int fault_main(void *unused) {
     return 0;
 }
 #endif
-static int saved_stderr = -1, log_read = -1;
+static int saved_stderr = -1, log_read = -1, log_write = -1;
+static pthread_t log_thread;
+#ifdef _WIN32
+static pthread_mutex_t read_lock = PTHREAD_MUTEX_INITIALIZER;
+static int reading, stopping;
+#endif
+
+static void finish_log(void) {
+    fflush(stderr);
+    if (dup2(saved_stderr, STDERR_FILENO) < 0) return;
+#ifdef _WIN32
+    pthread_mutex_lock(&read_lock);
+    stopping = 1;
+    close(log_write);
+    pthread_mutex_unlock(&read_lock);
+    HANDLE thread = (HANDLE)pthread_gethandle(log_thread);
+    // A child may still own a write handle. Interrupt only a read, preserving pending output.
+    while (WaitForSingleObject(thread, 10) == WAIT_TIMEOUT) {
+        pthread_mutex_lock(&read_lock);
+        if (reading) CancelSynchronousIo(thread);
+        pthread_mutex_unlock(&read_lock);
+    }
+#else
+    // Half-close every inherited copy of the writer after the parent's last byte.
+    shutdown(log_write, SHUT_WR);
+    close(log_write);
+#endif
+    pthread_join(log_thread, NULL);
+    close(log_read);
+    close(saved_stderr);
+}
 static void capture_line(const char *line, size_t n) {
-    if (!log_lock) return;
-    SDL_LockMutex(log_lock);
+    pthread_mutex_lock(&log_lock);
     size_t m = n < LINE_SIZE - 1 ? n : LINE_SIZE - 1;
     memcpy(log_ring[log_next], line, m); log_ring[log_next][m] = 0;
     log_next = (log_next + 1) % LOG_LINES;
     if (log_count < LOG_LINES) log_count++;
-    SDL_UnlockMutex(log_lock);
+    pthread_mutex_unlock(&log_lock);
 }
-static int log_main(void *unused) {
+static void *log_main(void *unused) {
     (void)unused;
     char chunk[2048], line[LINE_SIZE]; size_t used = 0;
+#ifdef _WIN32
+    int64_t left = -1;
+#endif
     for (;;) {
-        int n = (int)read(log_read, chunk, sizeof chunk);
+        size_t wanted = sizeof chunk;
+#ifdef _WIN32
+        pthread_mutex_lock(&read_lock);
+        if (stopping && left < 0) {
+            DWORD bytes = 0;
+            if (!PeekNamedPipe((HANDLE)_get_osfhandle(log_read), NULL, 0, NULL, &bytes, NULL)) bytes = 0;
+            left = bytes;
+        }
+        reading = left < 0;
+        pthread_mutex_unlock(&read_lock);
+        if (left == 0) break;
+        if (left > 0 && (uint64_t)left < wanted) wanted = (size_t)left;
+#endif
+        int n = (int)read(log_read, chunk, wanted);
+#ifdef _WIN32
+        pthread_mutex_lock(&read_lock);
+        reading = 0;
+        int interrupted = stopping && left < 0 && n <= 0;
+        pthread_mutex_unlock(&read_lock);
+        if (interrupted) continue;
+        if (left >= 0 && n > 0) left -= n;
+#endif
+        if (n < 0 && errno == EINTR) continue;
         if (n <= 0) break;
-        if (saved_stderr >= 0) (void)write(saved_stderr, chunk, (size_t)n);
+        for (int pos = 0; pos < n;) {
+            int sent = (int)write(saved_stderr, chunk + pos, (size_t)(n - pos));
+            if (sent < 0 && errno == EINTR) continue;
+            if (sent <= 0) break;
+            pos += sent;
+        }
         for (int i = 0; i < n; i++) {
             if (chunk[i] == '\n') {
                 line[used++] = '\n';
@@ -169,7 +230,7 @@ static int log_main(void *unused) {
         }
     }
     if (used) capture_line(line, used);
-    return 0;
+    return NULL;
 }
 
 static void report_path_init(void) {
@@ -205,16 +266,24 @@ void bt_crash_init(const char *version, const char *map, const char *native_map)
 #endif
     report_path_init();
     if (crash_path[0]) {
-        log_lock = SDL_CreateMutex();
         int p[2];
-        if (!pipe(p)) {
+#ifdef _WIN32
+        int rc = pipe(p);
+#else
+        int rc = socketpair(AF_UNIX, SOCK_STREAM, 0, p);
+#endif
+        if (rc == 0) {
             saved_stderr = dup(STDERR_FILENO);
-            if (saved_stderr >= 0 && dup2(p[1], STDERR_FILENO) >= 0) {
-                close(p[1]); log_read = p[0];
-                SDL_Thread *t = SDL_CreateThread(log_main, "crash-log", NULL);
-                if (!t) { dup2(saved_stderr, STDERR_FILENO); close(log_read); log_read = -1; }
-                else SDL_DetachThread(t);
-            } else { close(p[0]); close(p[1]); }
+            log_read = p[0];
+            log_write = p[1];
+            if (saved_stderr >= 0 && dup2(log_write, STDERR_FILENO) >= 0 &&
+                pthread_create(&log_thread, NULL, log_main, NULL) == 0) {
+                atexit(finish_log);
+            } else {
+                if (saved_stderr >= 0) { dup2(saved_stderr, STDERR_FILENO); close(saved_stderr); }
+                close(log_read); close(log_write);
+                saved_stderr = log_read = log_write = -1;
+            }
         }
     }
 #ifndef _WIN32
@@ -327,10 +396,10 @@ void bt_crash_report(const char *kind, const char *detail, const void *const *fr
     fputs("\nGuest symbol map excerpt (game.map addresses are wasm addresses):\n", f);
     map_excerpt(f, guest_names);
     fputs("\nLast captured log lines:\n", f);
-    if (log_lock && SDL_TryLockMutex(log_lock)) {
+    if (saved_stderr >= 0 && pthread_mutex_trylock(&log_lock) == 0) {
         unsigned first = (log_next + LOG_LINES - log_count) % LOG_LINES;
         for (unsigned i = 0; i < log_count; i++) fputs(log_ring[(first + i) % LOG_LINES], f);
-        SDL_UnlockMutex(log_lock);
+        pthread_mutex_unlock(&log_lock);
     } else fputs("(log tail unavailable: capture lock was busy)\n", f);
     fprintf(f, "\nReport file: %s\n", crash_path); fclose(f);
     fprintf(stderr, "bt_native: crash report written to %s\n", crash_path);
