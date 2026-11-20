@@ -1,5 +1,5 @@
 #include "core2/movement_collision.h"
-
+BT_NATIVE_ONLY(void func_800AAD28(f32 *);)
 void func_800D4400(void *arg0, void *arg1, f32 *arg2) {
     void func_800D4D5C(BtIntPtr, void *);
     f32 func_800C6784(void *);
@@ -37,15 +37,15 @@ void func_800D4400(void *arg0, void *arg1, f32 *arg2) {
     }
 }
 
- s32 func_800D4534(f32 arg0[3][3], void *arg1) { if (arg1 == 0) return 0; func_800AAD28(arg0); return 1; }
+ s32 func_800D4534(f32 arg0[3][3], void *arg1) { if (arg1 == 0) return 0; func_800AAD28(BT_NATIVE_ONLY(&arg0[0][0]) BT_IDO_ONLY(arg0)); return 1; }
 
 #ifdef BT_NATIVE
-void func_800D4564(BtIntPtr bt_a0)
+void func_800D4564(f32 (*bt_a0)[3])
 #else
 void func_800D4564()
 #endif
 {
-    func_800AAD28();
+    func_800AAD28(BT_NATIVE_ONLY(&bt_a0[0][0]));
 }
 
 void func_800D4584(void *arg0, f32 arg1[3], f32 arg2[3], f32 arg3[3])

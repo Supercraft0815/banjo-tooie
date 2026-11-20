@@ -111,6 +111,8 @@ Weitere geprüfte N-Pakete am 20. November
 
 - Schubbewegung. Die Schubberechnung erhält den Spieler für die Abfrage der Neigung. Die LP64-Probe prüft Beschleunigung, Widerstand und Begrenzung der Fallgeschwindigkeit an einem hoch adressierten Physikobjekt.
 
+- Kollisionsmatrix. Die neun Matrixkomponenten erreichen den ursprünglichen Matrixanbieter auch bei einer Adresse über 4 GiB. Der Lauf ohne FixCalls erreicht in beiden Mumbo-Fällen dieselbe Position wie der Lauf mit eingeschaltetem Pass.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026
