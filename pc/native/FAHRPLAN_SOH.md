@@ -21,7 +21,9 @@ Die Belege der laufenden N-Serie liegen unter `build/acceptance/n1-2026-11-18/re
 Am 20. November sank der mit `du -kx` gemessene Verbrauch von `build/acceptance` von
 1.058,59 auf 899,71 GiB. Die Messprotokolle stehen dort unter `space-before-2026-11-20.log`
 und `space-after-2026-11-20.log`. Während die nächsten Stände gebaut wurden, ergab die
-Folgemessung 900,99 GiB (`space-recheck-2026-11-20.log`). Für die Haltegrenze zählt der freie Platz laut `df`.
+Folgemessung 900,99 GiB (`space-recheck-2026-11-20.log`). Nach der Übernahme der Spielerzugriffe
+ergab die Messung um 20:21 Uhr 895,06 GiB (`space-after-player-accessors-2026-11-20.log`). Für die
+Haltegrenze zählt der freie Platz laut `df`.
 
 | Paket | Geprüfter Stand | Offene Abnahme |
 |---|---|---|
@@ -37,8 +39,8 @@ Folgemessung 900,99 GiB (`space-recheck-2026-11-20.log`). Für die Haltegrenze z
 | A8 | C-Mixer als Standard, alle 74 Korpusfälle gegen den Microcode, 83.772.256 identische PCM-Bytes in `new-game` | macOS-Abnahme abgeschlossen |
 | A9–A11 | A9 ersetzt HUD-Texturen und Modell-Assets nach Paketpriorität und lädt Rice-Texturen. A11-Absturzberichte und vollständige letzte Logausgabe auf macOS, Linux und unter Wine geprüft | A10-Wunschliste auf Nutzerwunsch zurückgestellt |
 | N1 | Der kumulative Stand V19 besteht mit `BT_NO_ASMDATA=1`. In allen 74 Replays melden 6.380 überwachte Stellen null Fremdzugriffe. `offsets.py check` und `make check` bestätigen die Originalfunktionen und Datenabschnitte. | Die Quellpakete durchlaufen die Übernahme in den lokalen Git-Stand. |
-| N2 | V19 besteht mit und ohne die vier Compilerhilfen jeweils 74 Replays mit 447.849 Retraces. Ohne die Hilfen stimmen auch alle 229 Karteneinstiege. Ein zusätzlicher 117-Sekunden-Tempellauf zeigt einen Stillstand bei gehaltener Stickrichtung. Nach der Korrektur stimmen die 7.013 Retraces des gezielt neu gelinkten Gasts mit der Kontrolle überein. | V19 hat 1.141 strenge Diagnosen in 377 von 1.146 Gastdateien. Im späteren Quellstand `current-audio-delay-commands` bleiben 1.077 in 365 Dateien. Übernahme und globale Durchsetzung der vier Warnklassen stehen aus. |
-| N3 | Alle 1.146 Spieldateien im V19-Stand lassen sich für LP64 übersetzen. Der erste native Build scheiterte an Testquellen. Mit vier korrigierten Testdateien und identischen Produktquellen bestehen 248 von 248 Sanitizertests. | Der LP64-Scan meldet 244 Warnstellen in 146 Dateien. |
+| N2 | V19 besteht mit und ohne die vier Compilerhilfen jeweils 74 Replays mit 447.849 Retraces. Ohne die Hilfen stimmen auch alle 229 Karteneinstiege. Ein zusätzlicher 117-Sekunden-Tempellauf zeigt einen Stillstand bei gehaltener Stickrichtung. Nach der Korrektur stimmen die 7.013 Retraces des gezielt neu gelinkten Gasts mit der Kontrolle überein. | V19 hat 1.141 strenge Diagnosen in 377 von 1.146 Gastdateien. Im späteren Quellstand `current-boggy-igloo-dialog` bleiben 1.042 in 356 Dateien. Die Iglu-Korrektur besteht zusätzlich einen 92-Sekunden-Lauf mit 5.515 Retraces, davon 3.299 auf der Zielkarte mit allen drei Kindern. Übernahme und globale Durchsetzung der vier Warnklassen stehen aus. |
+| N3 | Alle 1.146 Spieldateien im V19-Stand lassen sich für LP64 übersetzen. Der erste native Build scheiterte an Testquellen. Mit vier korrigierten Testdateien und identischen Produktquellen bestehen 248 von 248 Sanitizertests. Der darauf aufbauende V20-Stand besteht 257 von 257 Sanitizertests sowie den verlängerten Tempellauf. | Der LP64-Scan meldet 244 Warnstellen in 146 Dateien. |
 | N4–N6 | Der direkte native Build setzt N1–N3 voraus | Umstellung nach dem Spike, Entscheidung über Little-Endian nach N5 |
 
 Weitere geprüfte N1-/N3-Pakete am 19. November
