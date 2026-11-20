@@ -175,6 +175,8 @@ Weitere geprüfte N2-/N3-Pakete am 20. November
 
 - Spielerzugriffe für Winkel und Physik. 28 am Original-MIPS geprüfte Aufrufe aus 20 Dateien übergeben den Spieler an ihren Empfänger. Der kumulative Stand enthält zusätzlich den Schwerkraft-Reset des Schneeballs.
 
+- Freezys Figurenmarker. Die vier Spawn-Rückgaben erreichen den Aufrufer mit voller Zeigerbreite.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

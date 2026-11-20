@@ -3939,3 +3939,9 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten
 28 am Original-MIPS geprüfte Aufrufe aus 20 Dateien übergeben den Spieler an ihren Empfänger. Der kumulative Stand enthält zusätzlich den Schwerkraft-Reset des Schneeballs.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 83 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-player-accessors*`.
+
+### 2026-11-20 – Freezys Figurenmarker (N2/N3)
+
+Die vier Spawn-Rückgaben erreichen den Aufrufer mit voller Zeigerbreite.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 84 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-freezy-markers*`.

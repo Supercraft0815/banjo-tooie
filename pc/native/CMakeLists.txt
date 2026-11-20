@@ -952,6 +952,19 @@ if(CMAKE_SIZEOF_VOID_P EQUAL 8)
     add_test(NAME native_newfreezy_model_pointers COMMAND bt_native_newfreezy_models_test)
 endif()
 
+if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+    set(BT_FREEZY_SPAWN_TEST_BODY "${CMAKE_CURRENT_BINARY_DIR}/generated/newfreezy_spawn_function.c")
+    add_custom_command(OUTPUT "${BT_FREEZY_SPAWN_TEST_BODY}"
+        COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/tests/extract_newfreezy_spawn_function.py"
+            "${BT_ROOT}/src/overlays/ch/newfreezy.c" "${BT_FREEZY_SPAWN_TEST_BODY}"
+        DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/tests/extract_newfreezy_spawn_function.py"
+            "${BT_ROOT}/src/overlays/ch/newfreezy.c"
+        VERBATIM)
+    add_executable(bt_native_newfreezy_spawn_test tests/newfreezy_spawn.c "${BT_FREEZY_SPAWN_TEST_BODY}")
+    target_link_libraries(bt_native_newfreezy_spawn_test PRIVATE bt_native_options)
+    add_test(NAME native_newfreezy_spawn_pointers COMMAND bt_native_newfreezy_spawn_test)
+endif()
+
 # The game executable: everything that compiles natively, plus generated traps for
 # what is still missing (pc/native/link_game.py builds it and writes the traps).
 file(STRINGS game_sources.txt BT_GAME_PORTED)

@@ -1,5 +1,5 @@
 #include "common.h"
-
+BT_NATIVE_ONLY(Actor *func_80106790(Unk80132ED0 *); void *func_80101080(void); Actor *func_801084B0(BtIntPtr, Actor **); u8 *func_800B27E0(u8 *);)
 void func_80800000_chnewfreezy(BT_NATIVE_ONLY(s32 bt_a0))
 {
     _sufreezy_entrypoint_1(BT_NATIVE_ONLY(bt_a0));
