@@ -119,6 +119,8 @@ Weitere geprüfte N2-Pakete am 20. November
 
 - Ereignisse der Spielformen. Die Eingabe- und Physikabfragen erhalten den Spielerzeiger. Pool Kids wertet das dritte Ereignisargument als Modellzeiger oder als zwei vorzeichenbehaftete Halbwörter aus.
 
+- Tür- und Coasteraufrufe. Die aufrufenden Figuren geben die ursprünglichen Zeiger weiter. In der isolierten Probe erreichen beide Cauldron-Keep-Fälle und Terry dieselben Retraces wie mit eingeschaltetem FixCalls.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

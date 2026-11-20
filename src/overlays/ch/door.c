@@ -1,10 +1,10 @@
 #include "common.h"
 
 void func_8080050C_chdoor(Actor *);
-
-void chdoor_entrypoint_0(BtIntPtr arg0)
+BT_NATIVE_ONLY(int func_80800028_chdoor(u8 *);)
+void chdoor_entrypoint_0(BT_NATIVE_ONLY(Actor *) BT_IDO_ONLY(BtIntPtr) arg0)
 {
-    func_80800028_chdoor();
+    func_80800028_chdoor(BT_NATIVE_ONLY((u8 *)arg0));
     func_8080050C_chdoor(arg0);
 }
 int func_80800028_chdoor(u8 *arg0) {

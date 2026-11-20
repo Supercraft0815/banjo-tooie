@@ -84,7 +84,7 @@ void func_80800018_chklungodoors(Actor *arg0) {
 }
 
 void func_80800234_chklungodoors(Actor *arg0) {
-    s32 _chdoor_entrypoint_0();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) _chdoor_entrypoint_0(BT_NATIVE_ONLY(Actor *));
     void _subaddieaudioloop_entrypoint_0(Actor *, f32);
     s32 _subaddieaudioloop_entrypoint_4(Actor *, f32 *, u32, u32 *);
     s32 _subaddiefade_entrypoint_0(Actor *);
@@ -96,7 +96,7 @@ void func_80800234_chklungodoors(Actor *arg0) {
     s32 sp2C;
     s32 temp_v0;
 
-    _chdoor_entrypoint_0();
+    _chdoor_entrypoint_0(BT_NATIVE_ONLY((Actor *)arg0));
     if (D_80800490_chklungodoors[arg0->actorData[4]].animated != 0) {
         temp_v0 = _subaddiefade_entrypoint_0(arg0);
         sp2C = temp_v0;

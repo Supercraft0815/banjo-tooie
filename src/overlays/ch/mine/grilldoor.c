@@ -43,9 +43,9 @@ s32 func_80800068_chminegrilldoor(Actor *arg0, s32 arg1, s32 arg2) {
 /* extern */
 
 void func_80800144_chminegrilldoor(void *arg0) {
-    s32 _chdoor_entrypoint_0();
+    BT_IDO_ONLY(s32) BT_NATIVE_ONLY(void) _chdoor_entrypoint_0(BT_NATIVE_ONLY(Actor *));
     if (((((Objgrilldoor_arg0 *)arg0)->unk6C) & 0x1FF) == 3) {
-        _chdoor_entrypoint_0();
+        _chdoor_entrypoint_0(BT_NATIVE_ONLY((Actor *)arg0));
     }
 }
 
