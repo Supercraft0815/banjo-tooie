@@ -367,9 +367,9 @@ OSThread *chfantasycannon_entrypoint_0(void)
     return (OSThread *) D_80800D30_chfantasycannon;
 }
 
-void func_80800B84_chfantasycannon(BT_PASS2(s32 bt_a0, s32 bt_a1))
+void func_80800B84_chfantasycannon(BT_PASS2(Actor *bt_a0, void *bt_a1))
 {
-    func_80101870();
+    BT_NATIVE_ONLY(s32 func_80101870(Actor *, void *);) func_80101870(BT_PASS2(bt_a0, bt_a1));
 }
 
 void func_80800BA4_chfantasycannon(Actor *arg0) { arg0->rotation[1] = 0.0f; if (arg0->unk74_7 == 0x38) { func_800FFAB0(arg0); } }

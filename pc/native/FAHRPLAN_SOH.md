@@ -121,6 +121,8 @@ Weitere geprüfte N2-Pakete am 20. November
 
 - Tür- und Coasteraufrufe. Die aufrufenden Figuren geben die ursprünglichen Zeiger weiter. In der isolierten Probe erreichen beide Cauldron-Keep-Fälle und Terry dieselben Retraces wie mit eingeschaltetem FixCalls.
 
+- Kanone und Jiggy. Der Kanonen-Callback übergibt beide Parameter an die Zeichenroutine. Der Jiggy reicht seinen Actor an den ursprünglichen Anbieter weiter. In den Eingangsreplays für Isle o’ Hags und Cloud Cuckooland entfallen die beiden bisherigen Abstürze ohne FixCalls.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

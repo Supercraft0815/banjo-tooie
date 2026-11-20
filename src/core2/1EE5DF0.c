@@ -167,9 +167,9 @@ void func_8010C878(BtIntPtr arg0, BtIntPtr arg1, volatile f32 arg2) {
 /* extern */
 
 void func_8010C908(BtIntPtr arg0, BtIntPtr arg1) {
-    f32 func_8010A40C();
+    f32 func_8010A40C(BT_NATIVE_ONLY(void *));
     void func_8010C878(BtIntPtr, BtIntPtr, volatile f32);
-    func_8010C878(arg0, arg1, func_8010A40C());
+    func_8010C878(arg0, arg1, func_8010A40C(BT_NATIVE_ONLY((void *)arg0)));
 }
 
 void func_8010C93C(BtIntPtr arg0, BtIntPtr arg1, f32 arg2) {

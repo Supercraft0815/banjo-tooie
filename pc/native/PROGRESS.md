@@ -3807,3 +3807,9 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten
 Die aufrufenden Figuren geben die ursprünglichen Zeiger weiter. In der isolierten Probe erreichen beide Cauldron-Keep-Fälle und Terry dieselben Retraces wie mit eingeschaltetem FixCalls.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 79 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-door-hillbilly*`.
+
+### 2026-11-20 – Kanone und Jiggy (N2)
+
+Der Kanonen-Callback übergibt beide Parameter an die Zeichenroutine. Der Jiggy reicht seinen Actor an den ursprünglichen Anbieter weiter. In den Eingangsreplays für Isle o’ Hags und Cloud Cuckooland entfallen die beiden bisherigen Abstürze ohne FixCalls.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 79 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-fantasy-jiggy*`.
