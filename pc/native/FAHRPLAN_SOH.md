@@ -149,6 +149,8 @@ Weitere geprüfte N2-/N3-Pakete am 20. November
 
 - Fabrikbeleuchtung. Beide Aufrufstellen der Beleuchtung erhalten ihren Actor. Der Fabrik-Innenraum besteht ohne FixCalls alle 2.638 Retraces im Vergleich zur Kontrolle desselben Quellstands.
 
+- Spieler der Ego-Steuerung. Die Abfrage des Spielerzustands erhält den im Original-MIPS übergebenen Spieler.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

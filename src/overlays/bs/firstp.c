@@ -186,12 +186,12 @@ FirstpState *func_80800000_bsfirstp(PlayerState *player) {
 }
 
 #ifdef BT_NATIVE
-void func_80800040_bsfirstp(BtIntPtr bt_a0)
+void func_80800040_bsfirstp(void *bt_a0)
 #else
 void func_80800040_bsfirstp()
 #endif
 {
-    _bastatemem_entrypoint_1();
+    BT_NATIVE_ONLY(void _bastatemem_entrypoint_1(void *);) _bastatemem_entrypoint_1(BT_NATIVE_ONLY(bt_a0));
 }
 
 void bsfirstp_entrypoint_0(PlayerState *player, f32 *position, f32 *rotation) {
@@ -299,10 +299,10 @@ void func_80800264_bsfirstp(BtIntPtr player, s32 arg1) {
 /* extern */
 
 void func_80800290_bsfirstp(struct player_state_s *player, s32 anim, f32 duration) {
-    f32 baanim_getTimer();
+    f32 baanim_getTimer(BT_NATIVE_ONLY(struct player_state_s *));
     void baanim_playForDuration_loopStartingAt(struct player_state_s *, enum asset_e, f32, f32);
 #ifdef BT_NATIVE
-    baanim_playForDuration_loopStartingAt(player, anim, duration, ((f32 (*)())baanim_getTimer)());
+    baanim_playForDuration_loopStartingAt(player, anim, duration, baanim_getTimer(player));
 #else
     baanim_playForDuration_loopStartingAt(player, anim, duration, baanim_getTimer());
 #endif
@@ -994,10 +994,10 @@ void func_80801928_bsfirstp(struct player_state_s *arg0) {
 void func_808019B0_bsfirstp(BtIntPtr arg0) {
     s16 *func_800A4C88(void *);
     void func_8010FD60(BtIntPtr, f32);
-    FirstpConfig *func_80802484_bsfirstp();
+    FirstpConfig *func_80802484_bsfirstp(BT_NATIVE_ONLY(void *));
     FirstpConfig *sp1C;
 
-    sp1C = func_80802484_bsfirstp();
+    sp1C = func_80802484_bsfirstp(BT_NATIVE_ONLY((void *)arg0));
     func_8010FD60(func_800A4C88(arg0), *(f32 *)sp1C);
 }
 
@@ -1051,10 +1051,10 @@ void func_80801AEC_bsfirstp(BtIntPtr arg0)
 
 void func_80801B0C_bsfirstp(BtIntPtr arg0, s32 *arg1, s32 *arg2) {
     s32 bainput_func_80097B28(BtIntPtr);
-    s32 func_800F424C();
+    s32 func_800F424C(BT_NATIVE_ONLY(void *));
     s32 temp_v0;
 
-    if (func_800F424C() != 0) {
+    if (func_800F424C(BT_NATIVE_ONLY((void *)arg0)) != 0) {
         temp_v0 = bainput_func_80097B28(arg0);
         *arg1 = temp_v0;
         *arg2 = temp_v0;
@@ -1678,12 +1678,12 @@ void func_80802BE0_bsfirstp(BtIntPtr arg0)
 /* extern */
 
 s32 func_80802C30_bsfirstp(void *arg0) {
-    s32 _badeathmatch_entrypoint_6();
-    s32 func_80094510();
-    if ((((Objfirstp_arg0 *)arg0)->unk158) == 0) {
-        return func_80094510();
+    s32 _badeathmatch_entrypoint_6(BT_NATIVE_ONLY(void *));
+    s32 func_80094510(BT_NATIVE_ONLY(PlayerState *));
+    if (BT_DATA_FIELD(((PlayerState *)arg0)->unk158, ((Objfirstp_arg0 *)arg0)->unk158) == 0) {
+        return func_80094510(BT_NATIVE_ONLY((PlayerState *)arg0));
     }
-    return _badeathmatch_entrypoint_6();
+    return _badeathmatch_entrypoint_6(BT_NATIVE_ONLY(arg0));
 }
 
 void func_80802C6C_bsfirstp(BtIntPtr arg0)
@@ -1695,22 +1695,22 @@ void func_80802C6C_bsfirstp(BtIntPtr arg0)
 /* extern */
 
 s32 func_80802C90_bsfirstp(void *arg0) {
-    s32 _badeathmatch_entrypoint_6();
+    s32 _badeathmatch_entrypoint_6(BT_NATIVE_ONLY(void *));
     s32 _badeathmatch_entrypoint_9(void *, s32);
-    s32 func_80094BC0();
-    if ((((Objfirstp_arg0 *)arg0)->unk158) == 0) {
-        return func_80094BC0();
+    s32 func_80094BC0(BT_NATIVE_ONLY(PlayerState *));
+    if (BT_DATA_FIELD(((PlayerState *)arg0)->unk158, ((Objfirstp_arg0 *)arg0)->unk158) == 0) {
+        return func_80094BC0(BT_NATIVE_ONLY((PlayerState *)arg0));
     }
-    return _badeathmatch_entrypoint_9(arg0, _badeathmatch_entrypoint_6());
+    return _badeathmatch_entrypoint_9(arg0, _badeathmatch_entrypoint_6(BT_NATIVE_ONLY(arg0)));
 }
 
 /* extern */
 
 void func_80802CD8_bsfirstp(void *arg0, s32 arg1) {
-    s32 func_80094C0C();
+    BT_NATIVE_ONLY(void func_80094C0C(PlayerState *, s32);) BT_IDO_ONLY(s32 func_80094C0C();)
     s32 _badeathmatch_entrypoint_5(BtIntPtr, s32, s32);
-    if ((((Objfirstp_arg0 *)arg0)->unk158) == 0) {
-        func_80094C0C();
+    if (BT_DATA_FIELD(((PlayerState *)arg0)->unk158, ((Objfirstp_arg0 *)arg0)->unk158) == 0) {
+        BT_NATIVE_ONLY(func_80094C0C((PlayerState *)arg0, arg1);) BT_IDO_ONLY(func_80094C0C();)
         return;
     }
     _badeathmatch_entrypoint_5(arg0, arg1, -1);
@@ -1719,12 +1719,12 @@ void func_80802CD8_bsfirstp(void *arg0, s32 arg1) {
 /* extern */
 
 s32 func_80802D14_bsfirstp(void *arg0) {
-    s32 _badeathmatch_entrypoint_0();
-    s32 func_80094A10();
-    if ((((Objfirstp_arg0 *)arg0)->unk158) == 0) {
-        return func_80094A10();
+    s32 _badeathmatch_entrypoint_0(BT_NATIVE_ONLY(u8 *));
+    s32 func_80094A10(BT_NATIVE_ONLY(PlayerState *));
+    if (BT_DATA_FIELD(((PlayerState *)arg0)->unk158, ((Objfirstp_arg0 *)arg0)->unk158) == 0) {
+        return func_80094A10(BT_NATIVE_ONLY((PlayerState *)arg0));
     }
-    return _badeathmatch_entrypoint_0();
+    return _badeathmatch_entrypoint_0(BT_NATIVE_ONLY((u8 *)arg0));
 }
 
 s32 func_80802D50_bsfirstp(BtIntPtr arg0, s32 *arg1) {
@@ -2439,7 +2439,7 @@ void func_80803E84_bsfirstp(struct player_state_s *arg0) {
     func_8009BDAC(arg0, 1.25f);
 }
 
-void func_808090D8_bsfirstp();     
+void func_808090D8_bsfirstp(BT_NATIVE_ONLY(void *));
 
 void func_80803F6C_bsfirstp(s32 arg0)
 {
@@ -2556,9 +2556,9 @@ void func_808041D0_bsfirstp(BtIntPtr arg0) {
     func_80804104_bsfirstp(arg0, sp1C, sp18);
 }
 
-void func_80804210_bsfirstp(s32 arg0)
+void func_80804210_bsfirstp(BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) arg0)
 {
-    func_808090D8_bsfirstp();
+    func_808090D8_bsfirstp(BT_NATIVE_ONLY((void *)arg0));
     func_80807C8C_bsfirstp(arg0);
 }
 void func_80804238_bsfirstp(struct player_state_s *arg0) {
@@ -2614,9 +2614,9 @@ void func_8080432C_bsfirstp(BtIntPtr arg0) {
     func_80804104_bsfirstp(arg0, sp1C, sp18);
 }
 
-void func_8080436C_bsfirstp(s32 arg0)
+void func_8080436C_bsfirstp(BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) arg0)
 {
-    func_808090D8_bsfirstp();
+    func_808090D8_bsfirstp(BT_NATIVE_ONLY((void *)arg0));
     func_80807C8C_bsfirstp(arg0);
 }
 void func_80804394_bsfirstp(struct player_state_s *arg0) {
@@ -3971,15 +3971,15 @@ void func_80806588_bsfirstp(void *player) {
 /* extern */
 
 void func_80806774_bsfirstp(void *arg0) {
-    void func_8009B7C0();
+    BT_NATIVE_ONLY(void func_8009B7C0(PlayerState *);) BT_IDO_ONLY(void func_8009B7C0();)
     struct {
         s32 pad;
         void *data;
     } local;
 
-    local.data = ((Objfirstp_arg0 *)arg0)->unk188;
+    local.data = BT_DATA_FIELD(((PlayerState *)arg0)->state_mem, ((Objfirstp_arg0 *)arg0)->unk188);
 #ifdef BT_NATIVE
-    ((void (*)())func_8009B7C0)();
+    func_8009B7C0((PlayerState *)arg0);
 #else
     func_8009B7C0();
 #endif
@@ -3995,7 +3995,7 @@ void func_808067B0_bsfirstp(void *arg0) {
         void *data;
     } local;
 
-    local.data = ((Objfirstp_arg0 *)arg0)->unk188;
+    local.data = BT_DATA_FIELD(((PlayerState *)arg0)->state_mem, ((Objfirstp_arg0 *)arg0)->unk188);
     *(f32 *)((u8 *)local.data + 0x20C) = func_80809D94_bsfirstp(arg0);
     *(f32 *)((u8 *)local.data + 0x210) = 0.0f;
     *(f32 *)((u8 *)local.data + 0x214) = 0.0f;
@@ -4008,10 +4008,10 @@ void func_808067E8_bsfirstp(u8 *arg0) {
     void func_808067B0_bsfirstp(void *);
     struct {
         s32 pad;
-        s32 data;
+        BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) data;
     } local;
 
-    local.data = *(s32 *)((u8 *)arg0 + 0x188);
+    local.data = BT_DATA_FIELD((BtIntPtr)((PlayerState *)arg0)->state_mem, *(s32 *)((u8 *)arg0 + 0x188));
     bcopy((u8 *)func_80802458_bsfirstp(arg0) + 0x54, (u8 *)local.data + 0x1E8, 0x20);
     func_808067B0_bsfirstp(arg0);
 }
@@ -4030,7 +4030,7 @@ void func_8080682C_bsfirstp(void *arg0) {
     f32 lower;
     u8 *data;
 
-    data = *(u8 **)((u8 *)arg0 + 0x188);
+    data = BT_DATA_FIELD(((PlayerState *)arg0)->state_mem, *(u8 **)((u8 *)arg0 + 0x188));
     switch (*(s32 *)(data + 0xC)) {
         case 0:
             local.delta = func_808068E8_bsfirstp((BtIntPtr)arg0);
@@ -4055,8 +4055,8 @@ void func_8080682C_bsfirstp(void *arg0) {
 f32 func_808068E8_bsfirstp(BtIntPtr arg0) {
     f32 func_808069BC_bsfirstp(BtIntPtr);
     f32 func_808069FC_bsfirstp(BtIntPtr);
-    s32 func_80809D6C_bsfirstp();
-    if (func_80809D6C_bsfirstp() != 0) {
+    s32 func_80809D6C_bsfirstp(BT_NATIVE_ONLY(void *));
+    if (func_80809D6C_bsfirstp(BT_NATIVE_ONLY((void *)arg0)) != 0) {
         return func_808069BC_bsfirstp(arg0);
     }
     return func_808069FC_bsfirstp(arg0);
@@ -4088,11 +4088,11 @@ f32 func_80806928_bsfirstp(void *arg0) {
 
 f32 func_808069BC_bsfirstp(BtIntPtr arg0) {
     f32 func_80013728(f32);
-    f32 func_80809D94_bsfirstp();
+    f32 func_80809D94_bsfirstp(BT_NATIVE_ONLY(void *));
     FirstpState *firstp;
 
     firstp = ((PlayerState *)arg0)->state_mem;
-    (firstp->unk208) = func_80809D94_bsfirstp();
+    (firstp->unk208) = func_80809D94_bsfirstp(BT_NATIVE_ONLY((void *)arg0));
     return func_80013728((firstp->unk208) - (firstp->yaw)) / 6.0f;
 }    typedef struct { u8 pad0[0xA8]; s32 unkA8; u8 padAC[0x18]; f32 unkC4; u8 padC8[0x128]; f32 unk1F0; f32 unk1F4; f32 unk1F8; f32 unk1FC; f32 unk200; f32 unk204; } Objfirstp_func_808069FC_bsfirstp_temp_v0; /* offsets.py genstruct: fields from raw offsets on temp_v0; rename once understood */
 
@@ -4283,9 +4283,9 @@ void func_80806E0C_bsfirstp(void *arg0) {
     func_80801A34_bsfirstp((BtIntPtr)arg0);
 }
 
-void func_80806E9C_bsfirstp(s32 arg0)
+void func_80806E9C_bsfirstp(BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) arg0)
 {
-    _bsbabykaz_entrypoint_3();
+    _bsbabykaz_entrypoint_3(BT_NATIVE_ONLY((PlayerState *)arg0));
     func_80807C8C_bsfirstp(arg0);
 }
 void func_80806EC4_bsfirstp(u8 *arg0) {
@@ -4426,9 +4426,9 @@ BsScript bsfirstp_entrypoint_30(BsScriptType arg0) {
     return (BsScript)D_8080B570_bsfirstp[arg0];
 }
 
-void func_808071D8_bsfirstp(s32 arg0)
+void func_808071D8_bsfirstp(BT_NATIVE_ONLY(BtIntPtr) BT_IDO_ONLY(s32) arg0)
 {
-    func_80091E6C();
+    BT_NATIVE_ONLY(void func_80091E6C(void *);) func_80091E6C(BT_NATIVE_ONLY((void *)arg0));
     _bsbabykaz_entrypoint_3(arg0);
     func_80807C8C_bsfirstp(arg0);
 }
@@ -4843,7 +4843,7 @@ void func_80807BB8_bsfirstp(void *arg0) {
     void func_80807F9C_bsfirstp(BtIntPtr);
     void func_8080995C_bsfirstp(u8 *);
     void func_80809C90_bsfirstp(BtIntPtr);
-    void func_80809CD8_bsfirstp();
+    void func_80809CD8_bsfirstp(BT_NATIVE_ONLY(PlayerState *));
     u8 *sp24;
 
     if (func_8009E77C(arg0, 5) == 0) {
@@ -5464,11 +5464,11 @@ void func_80808CAC_bsfirstp(struct player_state_s *arg0, s32 arg1) {
 
 void func_80808D80_bsfirstp(void *arg0) {
     BT_IDO_ONLY(void baanim_playForDuration_loopSmooth(struct player_state_s *, s32, f32);)
-    void *func_80802508_bsfirstp();
+    void *func_80802508_bsfirstp(BT_NATIVE_ONLY(void *));
     void *temp_v0;
 
 #ifdef BT_NATIVE
-    temp_v0 = ((void * (*)())func_80802508_bsfirstp)();
+    temp_v0 = func_80802508_bsfirstp(arg0);
 #else
     temp_v0 = func_80802508_bsfirstp();
 #endif
@@ -6096,13 +6096,13 @@ void func_80809CB4_bsfirstp(u8 *arg0) {
 }
 
 #ifdef BT_NATIVE
-void func_80809CD8_bsfirstp(s32 bt_a0)
+void func_80809CD8_bsfirstp(PlayerState *bt_a0)
 #else
 void func_80809CD8_bsfirstp()
 #endif
 {
-    void func_80809CF8_bsfirstp();
-    func_80809CF8_bsfirstp();
+    void func_80809CF8_bsfirstp(BT_NATIVE_ONLY(void *));
+    func_80809CF8_bsfirstp(BT_NATIVE_ONLY(bt_a0));
 }
 
 void func_80809CF8_bsfirstp(void *arg0) {
@@ -6139,8 +6139,8 @@ s32 func_80809D6C_bsfirstp(void *arg0) {
 f32 func_80809D94_bsfirstp(void *arg0) {
     void *temp_v0;
 
-    temp_v0 = ((Objfirstp_arg0 *)arg0)->unk188;
-    return *&((Objfirstp_func_80809D94_bsfirstp_temp_v0 *)temp_v0)->unk25C;
+    temp_v0 = BT_DATA_FIELD(((PlayerState *)arg0)->state_mem, ((Objfirstp_arg0 *)arg0)->unk188);
+    return BT_DATA_FIELD(((FirstpState *)temp_v0)->unk25C, *&((Objfirstp_func_80809D94_bsfirstp_temp_v0 *)temp_v0)->unk25C);
 }
 
 void func_80809DA0_bsfirstp(void *arg0, s32 arg1) {

@@ -3885,3 +3885,9 @@ Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten
 Beide Aufrufstellen der Beleuchtung erhalten ihren Actor. Der Fabrik-Innenraum besteht ohne FixCalls alle 2.638 Retraces im Vergleich zur Kontrolle desselben Quellstands.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 81 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-factory-light*`.
+
+### 2026-11-20 – Spieler der Ego-Steuerung (N2/N3)
+
+Die Abfrage des Spielerzustands erhält den im Original-MIPS übergebenen Spieler.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, 11 Gastsuiten und 81 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 0 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-firstperson-player*`.
