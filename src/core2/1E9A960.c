@@ -55,6 +55,39 @@ typedef struct sfx_source_s {
     /* 0x7C */ u16 flags;
 } SfxSource;
 
+
+#ifdef BT_NATIVE
+#include <stddef.h>
+typedef struct {
+    s32 value;
+    s32 occupied;
+} SfxHandleSlot;
+typedef struct {
+    SfxHandleSlot slots[17];
+} SfxHandleTable;
+typedef struct {
+    SfxHandleTable handles;
+    SfxSource sources[60];
+} SfxState;
+#ifdef BT_ILP32
+_Static_assert(sizeof(SfxHandleSlot) == 8, "O32 sound handle slot");
+_Static_assert(sizeof(SfxHandleTable) == 0x88, "O32 sound handle table");
+_Static_assert(sizeof(SfxSource) == 0x80, "O32 sound source stride");
+_Static_assert(offsetof(SfxState, sources) == 0x88, "O32 sound source pool offset");
+_Static_assert(sizeof(SfxState) == 0x1E88, "O32 sound owner extent");
+_Static_assert(offsetof(SfxSource, flags) == 0x7C, "sound source trailing flags");
+#endif
+static SfxState sfx_state BT_DATA(4, bss_core2bss1_0_2, 0x1368);
+#define sfx_handle_table (sfx_state.handles)
+#define sfx_sources (sfx_state.sources)
+#define D_80128B08 (sfx_handle_table.slots[0])
+#define D_80128B0C (sfx_handle_table.slots[0].occupied)
+#define D_80128B10 (sfx_handle_table.slots[1].value)
+#define D_80128B90 (sfx_sources[0])
+#define D_80128C10 (sfx_sources[1])
+#define D_80128C08 ((u8 (*)[0x80])((u8 *)&sfx_sources[0] + 0x78))
+#endif
+
 /* extern */
 
 void func_800C1070(f32 *arg0, f32 *arg1) {
@@ -205,7 +238,9 @@ s32 func_800C13D0(SfxSource *arg0, s32 arg1) {
 }
 
 void func_800C13E4(void) {
-    extern s32 D_80128B90;
+    #ifndef BT_NATIVE
+extern s32 D_80128B90;
+#endif
     int i;
     for (i = 0; i < 60; i++) {
         ((SfxSource *)&D_80128B90)[i].busy = 0;
@@ -213,24 +248,36 @@ void func_800C13E4(void) {
 }
 
 SfxSource *func_800C1414(u8 arg0) {
-    extern s32 D_80128B90;
+    #ifndef BT_NATIVE
+extern s32 D_80128B90;
+#endif
     s32 index = arg0;
+#ifdef BT_NATIVE
+    return &sfx_sources[index];
+#else
     s32 *base = &D_80128B90;
     return (SfxSource *)((u8 *)base + (index << 7));
+#endif
 }
 
 u8 *func_800C1430(s32 arg0) {
-    extern s32 D_80128B10;
+    #ifndef BT_NATIVE
+extern s32 D_80128B10;
+#endif
     return (u8 *) &D_80128B10 + ((arg0 << 3) - 8);
 }
 
 s32 func_800C1448(s32 arg0) {
-    extern s64 D_80128B08;
+    #ifndef BT_NATIVE
+extern s64 D_80128B08;
+#endif
     return *(s32 *)((u8 *)&D_80128B08 + (arg0 << 3));
 }
 
 u8 func_800C145C(void) {
-    extern s32 D_80128B90;
+    #ifndef BT_NATIVE
+extern s32 D_80128B90;
+#endif
     int i;
     for (i = 1; i < 60; i++) {
         if (!((SfxSource *)&D_80128B90)[i].busy) {
@@ -242,13 +289,19 @@ u8 func_800C145C(void) {
 }
 
 void func_800C1568(s32 arg0) {
-    extern s32 D_80128B0C;
+    #ifndef BT_NATIVE
+extern s32 D_80128B0C;
+#endif
     *((s32 *)((u8 *)&D_80128B0C + (arg0 << 3))) = 0;
 }
 
 void func_800C157C(void) {
-    extern s32 D_80128B10;
-    extern s32 D_80128B90;
+    #ifndef BT_NATIVE
+extern s32 D_80128B10;
+#endif
+    #ifndef BT_NATIVE
+extern s32 D_80128B90;
+#endif
     BtUIntPtr end;
     s32 *var_v1;
 
@@ -270,7 +323,9 @@ void func_800C157C(void) {
 }
 
 s32 func_800C15BC(void) {
-    extern s32 D_80128B10;
+    #ifndef BT_NATIVE
+extern s32 D_80128B10;
+#endif
     s32 count;
     s32 i;
 
@@ -289,13 +344,19 @@ s32 func_800C15BC(void) {
 }
 
 void func_800C16A4(u8 index) {
-    extern u8 D_80128C08[][0x80];
+    #ifndef BT_NATIVE
+extern u8 D_80128C08[][0x80];
+#endif
     SfxSource *ptr = func_800C1414(index);
     if (ptr->handle) {
         func_800C1568(ptr->handle);
         ptr->handle = 0;
     }
+#ifdef BT_NATIVE
+    ptr->busy = 0;
+#else
     D_80128C08[index][0] = 0;
+#endif
 }
 
 void func_800C16F8(SfxSource *arg0, s32 arg1) {
@@ -731,7 +792,9 @@ void func_800C2718(void) {
     void func_800C2000(u8);
     f32 func_800D8FF8();
     extern f32 D_8011A878;
-    extern s32 D_80128C10;
+    #ifndef BT_NATIVE
+extern s32 D_80128C10;
+#endif
     SfxSource *var_s2;
     s32 temp_s0;
     s32 var_s1;
@@ -795,7 +858,9 @@ void func_800C28D8()
 }
 
 void func_800C2900(void) {
-    extern s32 D_80128B90;
+    #ifndef BT_NATIVE
+extern s32 D_80128B90;
+#endif
     int i;
     int busy;
 
@@ -841,7 +906,9 @@ void func_800C2A90()
 void func_800C2AB8(void) {
     s32 func_800C269C(u8);
     void func_800C2B80(void);
-    extern s32 D_80128C10;
+    #ifndef BT_NATIVE
+extern s32 D_80128C10;
+#endif
     SfxSource *var_s1;
     s32 temp_s0;
     s32 var_s2;
@@ -872,7 +939,9 @@ loop_2:
 }
 
 void func_800C2B80(void) {
-    extern s32 D_80128C10;
+    #ifndef BT_NATIVE
+extern s32 D_80128C10;
+#endif
     SfxSource *ptr;
     u32 index;
     u8 count;
@@ -1425,7 +1494,9 @@ int func_800C3D78(u8 id) {
 
 s32 func_800C3E00(s32 arg0) {
     int func_800C3D78(u8);
-    extern s32 D_80128C10;
+    #ifndef BT_NATIVE
+extern s32 D_80128C10;
+#endif
     s32 var_s0;
     SfxSource *var_s1;
 
@@ -1882,11 +1953,7 @@ void func_800C4B7C(s32 arg0) {
 #ifdef BT_NATIVE
 /* bss_to_c.py: native definitions of asm .bss labels */
 #include "bt_data.h"
-s64 D_80128B08 BT_DATA(8, bss_core2bss1_0_2, 0x1368);
-s32 D_80128B0C BT_DATA(4, bss_core2bss1_0_2, 0x136C);
-s32 D_80128B10 BT_DATA(4, bss_core2bss1_0_2, 0x1370);
-s32 D_80128B90 BT_DATA(4, bss_core2bss1_0_2, 0x13F0);
-s32 D_80128C10 BT_DATA(4, bss_core2bss1_0_2, 0x1470);
+
 f32 D_8012A990 BT_DATA(4, bss_core2bss1_0_2, 0x31F0);
 s16 D_8012A994 BT_DATA(4, bss_core2bss1_0_2, 0x31F4);
 s16 D_8012A996 BT_DATA(4, bss_core2bss1_0_2, 0x31F6);

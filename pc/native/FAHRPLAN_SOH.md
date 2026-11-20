@@ -53,6 +53,8 @@ Weitere geprüfte N1-/N3-Pakete am 19. November
 
 - Belohnungen des Bohrfelds. Der Test prüft acht Objekt- und Belohnungspaare und das Ende der Liste.
 
+- Soundquellen und Handles. Die 17 Handle-Plätze und 60 Soundquellen speichern die zugehörigen Stimmen und Quellenzeiger mit ihrer nativen Breite.
+
 ---
 
 ## 1. Ausgangsstand am 16. November 2026

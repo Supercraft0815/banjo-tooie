@@ -3559,3 +3559,9 @@ Der Bericht enthält für jede Karte die Rückgabe, die Zielkarte, den Stack bei
 Der Test prüft acht Objekt- und Belohnungspaare und das Ende der Liste.
 
 Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 71 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 3 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-drill-field*`.
+
+### 2026-11-19 – Soundquellen und Handles (N1/N3)
+
+Die 17 Handle-Plätze und 60 Soundquellen speichern die zugehörigen Stimmen und Quellenzeiger mit ihrer nativen Breite.
+
+Der kumulative Stand besteht alle 74 Replays mit 447.849 Retraces, elf Gastsuiten und 72 Sanitizertests. Original-IDO bestätigt alle 16.401 Funktionen und beide vollständigen ROMs. Die normalisierte IR ändert sich in 14 Gastfunktionen. Alle 9.706 Fixups behalten ihre Zieladressen. Belege unter `build/acceptance/n1-2026-11-18/current-sfx-owners*`.

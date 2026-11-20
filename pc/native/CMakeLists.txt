@@ -184,6 +184,21 @@ add_executable(bt_native_core_test tests/core.c)
 target_link_libraries(bt_native_core_test PRIVATE bt_native_core)
 add_test(NAME native_core COMMAND bt_native_core_test)
 
+add_executable(bt_native_sfx_owner_test tests/sfx_owner.c "${BT_ROOT}/src/core2/1E9A960.c")
+target_link_libraries(bt_native_sfx_owner_test PRIVATE bt_native_options)
+set_source_files_properties("${BT_ROOT}/src/core2/1E9A960.c" PROPERTIES COMPILE_OPTIONS "-Wno-error=int-conversion;-Wno-error=incompatible-pointer-types;-Wno-error=implicit-function-declaration")
+if(CMAKE_C_COMPILER_ID MATCHES "Clang|GNU")
+    target_compile_options(bt_native_sfx_owner_test PRIVATE -ffunction-sections -fdata-sections -Wno-error=int-conversion -Wno-error=incompatible-pointer-types -Wno-error=implicit-function-declaration)
+    if(APPLE)
+        target_link_options(bt_native_sfx_owner_test PRIVATE -Wl,-dead_strip)
+    else()
+        target_link_options(bt_native_sfx_owner_test PRIVATE -Wl,--gc-sections)
+    endif()
+elseif(MSVC)
+    target_link_options(bt_native_sfx_owner_test PRIVATE /OPT:REF)
+endif()
+add_test(NAME native_sfx_owner COMMAND bt_native_sfx_owner_test)
+
 add_test(NAME native_overlay_aliases
     COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/tests/overlay_aliases.py"
         "${CMAKE_C_COMPILER}" "${BT_OVERLAY_ALIASES}")
